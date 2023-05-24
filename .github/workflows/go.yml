@@ -28,17 +28,10 @@ jobs:
 
       - name: Build
         run: go build -o ktucli main.go
-               
-               
+             
       - name: Create File
         uses: finnp/create-file-action@1.0.0
         env:
-          FILE_NAME: "${{home}}/buildFile.txt"
-          FILE_DATA: "file content"
-      
-      - name: Write File
-        uses: DamianReeves/write-file-action@v1.2
-        with:
-            path: ${{home}}/buildFile
-            contents: ./ktucli
-            write-mode: append
+          FILE_NAME: "/buildFile.txt"
+          FILE_DATA: /.ktucli
+  
