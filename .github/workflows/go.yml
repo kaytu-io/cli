@@ -4,9 +4,9 @@ name: Go
 
 on:
   push:
-    branches: [ "cliProgram" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "cliProgram" ]
+    branches: [ "main" ]
 
 jobs:
 
