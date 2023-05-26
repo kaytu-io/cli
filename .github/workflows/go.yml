@@ -1,5 +1,5 @@
 # This workflow will build project and create file for store build file inside a file
-# new version 
+# new version yaml file 
 name: Go
 on:
   push:
@@ -28,3 +28,7 @@ jobs:
       env:
         FILE_NAME: "buildFile"
         FILE_DATA: ./ktucli
+        
+        
+        
+        
