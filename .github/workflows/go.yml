@@ -28,7 +28,3 @@ jobs:
       env:
         FILE_NAME: "buildFile"
         FILE_DATA: ./ktucli
-        
-        
-        
-        
