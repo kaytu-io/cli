@@ -1,4 +1,4 @@
-module main
+module github.com/kaytu-io/cli-program
 
 go 1.20
 
@@ -7,7 +7,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/spf13/cobra v1.7.0
-	gitlab.com/keibiengine/keibi-engine v0.0.0-20230524154747-121b562a7be5
+	gitlab.com/keibiengine/keibi-engine v0.0.0-20230526083435-44a1f9246893
 	k8s.io/apimachinery v0.27.2
 )
 
