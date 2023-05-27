@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"errors"
+	"github.com/kaytu-io/cli-program/pkg/cli"
 	"github.com/spf13/cobra"
-	"gitlab.com/keibiengine/keibi-engine/pkg/cli"
 )
 
 // onboard command :
