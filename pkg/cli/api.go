@@ -10,6 +10,7 @@ import (
 	"gitlab.com/keibiengine/keibi-engine/pkg/auth/api"
 	urls "gitlab.com/keibiengine/keibi-engine/pkg/cli/consts"
 	apiOnboard "gitlab.com/keibiengine/keibi-engine/pkg/onboard/api"
+	"gitlab.com/keibiengine/keibi-engine/pkg/source"
 	workspace "gitlab.com/keibiengine/keibi-engine/pkg/workspace/api"
 	"io"
 	"io/ioutil"
@@ -398,11 +399,10 @@ func IamSuspendKey(workspaceName string, accessToken string, id string) (api.Wor
 
 func IamGetUsers(workspaceName string, accessToken string, email string, emailVerified bool, role string) ([]api.GetUserResponse, error) {
 	roleTypeRole := api.Role(role)
-	request := RequestGetIamUsers{
-		email,
-		emailVerified,
-		roleTypeRole,
-	}
+	var request api.GetUsersRequest
+	*request.Email = email
+	*request.EmailVerified = emailVerified
+	*request.RoleName = roleTypeRole
 	reqBody, err := json.Marshal(request)
 	if err != nil {
 		return []api.GetUserResponse{{}}, err
@@ -439,32 +439,32 @@ func IamGetUsers(workspaceName string, accessToken string, email string, emailVe
 	return response, nil
 }
 
-func IamGetUserDetails(accessToken string, workspaceName string, userId string) (ResponseUserDetails, error) {
+func IamGetUserDetails(accessToken string, workspaceName string, userId string) (api.GetUserResponse, error) {
 	req, err := http.NewRequest("GET", urls.Url+workspaceName+"/auth/api/v1/user/"+userId, nil)
 	if err != nil {
-		return ResponseUserDetails{}, err
+		return api.GetUserResponse{}, err
 	}
 	req.Header.Set("Authorization", "Bearer "+accessToken)
 	req.Header.Add("content-type", "application/json")
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return ResponseUserDetails{}, err
+		return api.GetUserResponse{}, err
 	}
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return ResponseUserDetails{}, err
+		return api.GetUserResponse{}, err
 	}
 	if res.StatusCode != http.StatusOK {
-		return ResponseUserDetails{}, fmt.Errorf("[IamGetUserDetails] invalid status code: %d, body=%s", res.StatusCode, string(body))
+		return api.GetUserResponse{}, fmt.Errorf("[IamGetUserDetails] invalid status code: %d, body=%s", res.StatusCode, string(body))
 	}
 	err = res.Body.Close()
 	if err != nil {
-		return ResponseUserDetails{}, err
+		return api.GetUserResponse{}, err
 	}
-	var response ResponseUserDetails
+	var response api.GetUserResponse
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		return ResponseUserDetails{}, err
+		return api.GetUserResponse{}, err
 	}
 	return response, nil
 }
@@ -576,32 +576,32 @@ func IamUpdateUser(workspaceName string, accessToken string, role string, userID
 	}
 }
 
-func IamListRoles(WorkspacesName string, accessToken string) ([]RolesListResponse, error) {
+func IamListRoles(WorkspacesName string, accessToken string) ([]api.RolesListResponse, error) {
 	req, err := http.NewRequest("GET", urls.Url+WorkspacesName+"/auth/api/v1/roles", nil)
 	if err != nil {
-		return []RolesListResponse{{}}, err
+		return nil, err
 	}
 	req.Header.Set("Authorization", "Bearer "+accessToken)
 	req.Header.Add("Content-type", "application/json")
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return []RolesListResponse{{}}, err
+		return nil, err
 	}
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return []RolesListResponse{{}}, err
+		return nil, err
 	}
 	if res.StatusCode != http.StatusOK {
-		return []RolesListResponse{{}}, fmt.Errorf("[IamListRoles] invalid status code: %d, body : %v", res.StatusCode, string(body))
+		return nil, fmt.Errorf("[IamListRoles] invalid status code: %d, body : %v", res.StatusCode, string(body))
 	}
 	err = res.Body.Close()
 	if err != nil {
-		return []RolesListResponse{{}}, err
+		return nil, err
 	}
-	var response []RolesListResponse
+	var response []api.RolesListResponse
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		return []RolesListResponse{{}}, err
+		return nil, err
 	}
 	return response, nil
 }
@@ -829,7 +829,7 @@ func OnboardCreateAWS(workspaceName string, accessToken string, name string, ema
 	return response, nil
 }
 
-func OnboardCreateAzure(workspaceName string, accessToken string, name string, ObjectId string, description string, clientId string, clientSecret string, subscriptionId string, tenantId string) (ResponseCreateAzure, error) {
+func OnboardCreateAzure(workspaceName string, accessToken string, name string, ObjectId string, description string, clientId string, clientSecret string, subscriptionId string, tenantId string) (apiOnboard.SourceAzureRequest, error) {
 	var request apiOnboard.SourceAzureRequest
 	request.Name = name
 	request.Description = description
@@ -841,34 +841,34 @@ func OnboardCreateAzure(workspaceName string, accessToken string, name string, O
 	request.Config.ObjectId = ObjectId
 	reqBodyEncoded, err := json.Marshal(request)
 	if err != nil {
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
 	req, err := http.NewRequest("POST", urls.Url+workspaceName+"/onboard/api/v1/source/azure", bytes.NewBuffer(reqBodyEncoded))
 	if err != nil {
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+accessToken)
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
 	if res.StatusCode != http.StatusOK {
 		fmt.Println("failed creating AWS source.")
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
 	err = res.Body.Close()
 	if err != nil {
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
-	var response ResponseCreateAzure
+	var response apiOnboard.SourceAzureRequest
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		return ResponseCreateAzure{}, err
+		return apiOnboard.SourceAzureRequest{}, err
 	}
 	return response, nil
 }
@@ -931,13 +931,11 @@ func OnboardCatalogMetrics(workspaceName string, accessToken string) (apiOnboard
 	}
 	return response, nil
 }
-
 func OnboardCountConnections(accessToken string, workspaceName string, connectorsNames []string, health string, state string) (string, error) {
-	request := CountConnectionsCLIRequest{
-		connectorsNames,
-		state,
-		health,
-	}
+	var request apiOnboard.ConnectionCountRequest
+	*request.State = apiOnboard.ConnectionState(state)
+	*request.Health = source.HealthStatus(health)
+	request.ConnectorsNames = connectorsNames
 	reqEncoded, err := json.Marshal(request)
 	if err != nil {
 		return "", err
@@ -1041,9 +1039,9 @@ func OnboardGetListCredentialsByFilter(workspacesName string, accessToken string
 	return response, err
 }
 func OnboardCreateConnectionCredentials(workspaceName string, accessToken string, config string, name string, sourceType string) (apiOnboard.CreateCredentialResponse, error) {
-	var request requestCreateConnectionCredentials
+	var request apiOnboard.CreateCredentialRequest
 	request.Name = name
-	request.SourceType = sourceType
+	request.SourceType = source.Type(sourceType)
 	request.Config = config
 	reqEncoded, err := json.Marshal(request)
 	if err != nil {
@@ -1101,10 +1099,10 @@ func OnboardGetCredentialById(workspaceName string, accessToken string, credenti
 	return response, nil
 }
 func OnboardEditeCredentialById(workspaceName string, accessToken string, config string, connector string, name string, credentialId string) error {
-	var request requestEditeCredentialById
-	request.Name = name
+	var request apiOnboard.UpdateCredentialRequest
+	*request.Name = name
 	request.Config = config
-	request.Connector = connector
+	request.Connector = source.Type(connector)
 	reqBody, err := json.Marshal(request)
 	if err != nil {
 		return err
