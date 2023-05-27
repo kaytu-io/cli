@@ -11,8 +11,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "ktucli",
-	Short: "Kaytu cli",
+	Use: "ktucli",
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
