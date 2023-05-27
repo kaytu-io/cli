@@ -3,9 +3,9 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	apis "github.com/kaytu-io/cli-program/pkg/cli"
 	"github.com/spf13/cobra"
-	apies "gitlab.com/keibiengine/keibi-engine/pkg/auth/api"
-	apis "gitlab.com/keibiengine/keibi-engine/pkg/cli"
+	AuthApis "gitlab.com/keibiengine/keibi-engine/pkg/auth/api"
 )
 
 var IamUpdate = &cobra.Command{
@@ -63,7 +63,7 @@ var StateWorkspaceKey = &cobra.Command{
 			return err
 		}
 
-		var response apies.WorkspaceApiKey
+		var response AuthApis.WorkspaceApiKey
 		if state == "active " {
 			response, err = apis.IamActivateKey(cnf.DefaultWorkspace, cnf.AccessToken, idForSuspendAndActive)
 		} else if state == "suspend" {

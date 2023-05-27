@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	apis "github.com/kaytu-io/cli-program/pkg/cli"
 	"github.com/spf13/cobra"
-	"gitlab.com/keibiengine/keibi-engine/pkg/cli"
-	apis "gitlab.com/keibiengine/keibi-engine/pkg/cli"
 	"gitlab.com/keibiengine/keibi-engine/pkg/onboard/api"
 )
 
@@ -307,7 +306,7 @@ var GetSourceCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		err = cli.PrintOutputForTypeArray(response, outputTypeGet)
+		err = apis.PrintOutputForTypeArray(response, outputTypeGet)
 		if err != nil {
 			return err
 		}
@@ -392,11 +391,11 @@ var GetSourceIdCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		response, err := cli.OnboardGetListSourcesFilteredById(cnf.DefaultWorkspace, cnf.AccessToken, sourceIds)
+		response, err := apis.OnboardGetListSourcesFilteredById(cnf.DefaultWorkspace, cnf.AccessToken, sourceIds)
 		if err != nil {
 			return err
 		}
-		err = cli.PrintOutputForTypeArray(response, outputTypeGet)
+		err = apis.PrintOutputForTypeArray(response, outputTypeGet)
 		if err != nil {
 			return err
 		}

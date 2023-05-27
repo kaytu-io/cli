@@ -1,11 +1,8 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
+	iam "github.com/kaytu-io/cli-program/cmd/iam"
 	"github.com/spf13/cobra"
-	iam "gitlab.com/keibiengine/keibi-engine/cmd/cli/cmd/iam"
 	"os"
 )
 

@@ -3,8 +3,8 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"github.com/kaytu-io/cli-program/pkg/cli"
 	"github.com/spf13/cobra"
-	"gitlab.com/keibiengine/keibi-engine/pkg/cli"
 )
 
 var Update = &cobra.Command{
@@ -19,19 +19,19 @@ var credentialUpdateCmd = &cobra.Command{
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().Lookup("id").Changed {
 		} else {
-			return errors.New("please enter id flag.")
+			return errors.New("Please enter id flag. ")
 		}
 		if cmd.Flags().Lookup("name").Changed {
 		} else {
-			return errors.New("please enter name flag for name credential.")
+			return errors.New("Please enter name flag for name credential. ")
 		}
 		if cmd.Flags().Lookup("config").Changed {
 		} else {
-			return errors.New("please enter config flag.")
+			return errors.New("Please enter config flag. ")
 		}
 		if cmd.Flags().Lookup("connector").Changed {
 		} else {
-			return errors.New("please enter connector flag for connector type.")
+			return errors.New("Please enter connector flag for connector type. ")
 		}
 		return nil
 	},
@@ -55,7 +55,7 @@ var credentialUpdateEnableCmd = &cobra.Command{
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().Lookup("id").Changed {
 		} else {
-			return errors.New("please enter id flag.")
+			return errors.New("Please enter id flag. ")
 		}
 		return nil
 	},
@@ -78,7 +78,7 @@ var credentialUpdateDisableCmd = &cobra.Command{
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().Lookup("id").Changed {
 		} else {
-			return errors.New("please enter id flag.")
+			return errors.New("Please enter id flag. ")
 		}
 		return nil
 	},
@@ -107,7 +107,7 @@ var SourceUpdateCredentialCmd = &cobra.Command{
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().Lookup("id").Changed {
 		} else {
-			return errors.New("please enter id flag.")
+			return errors.New("Please enter id flag. ")
 		}
 		return nil
 	},
@@ -131,7 +131,7 @@ var SourceUpdateEnableCmd = &cobra.Command{
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().Lookup("id").Changed {
 		} else {
-			return errors.New("please enter id flag.")
+			return errors.New("Please enter id flag. ")
 		}
 		return nil
 	},
@@ -154,7 +154,7 @@ var SourceUpdateDisableCmd = &cobra.Command{
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().Lookup("id").Changed {
 		} else {
-			return errors.New("please enter id flag.")
+			return errors.New("Please enter id flag. ")
 		}
 		return nil
 	},
