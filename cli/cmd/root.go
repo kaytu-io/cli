@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	iam "github.com/kaytu-io/cli-program/cmd/iam"
+	iam "github.com/kaytu-io/cli-program/cli/cmd/iam"
 	"github.com/spf13/cobra"
 	"os"
 )

@@ -9,11 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]    
+    runs-on: ubuntu-latest
     steps:
     - name: Set up Go
       uses: actions/setup-go@v3
@@ -21,7 +17,7 @@ jobs:
         go-version: 1.20.4
 
     - name: Build
-      run: go build -o ktucli main.go
+      run: GOOS=linux GOARCH=amd64 go build -o ktucli cli/main.go
 
     - name: Create File
       uses: finnp/create-file-action@1.0.0
