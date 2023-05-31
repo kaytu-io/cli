@@ -11,17 +11,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3.5.2
+
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.20.4
 
-    - name: before build create file (1)
+    - name: before build
       run :
         mkdir -p .go &&
         mkdir -p .cache &&
-        echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc &&
-        echo -e "machine github.com login api password ${GITHUB_CI_TOKEN}" >> ~/.netrc
+        echo "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc &&
+        echo "machine github.com login api password ${GITHUB_CI_TOKEN}" >> ~/.netrc
+
     - name: Build
       run: GOOS=linux GOARCH=amd64 go build -o ktucli ./cli/main.go
 
