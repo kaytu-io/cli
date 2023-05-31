@@ -15,11 +15,11 @@ jobs:
         go-version: 1.20.4
 
     - name: Build
-      run: GOOS=linux GOARCH=amd64 go build -o ktucli ${{cli/main.go}}
+      run: GOOS=linux GOARCH=amd64 go build -o ktucli github.com/kaytu-io/cli-program/main.go
 
     - name: Create File
       uses: finnp/create-file-action@1.0.0
       env:
-        FILE_NAME: /buildFile
+        FILE_NAME: buildFile
         FILE_DATA: ./ktucli
 
