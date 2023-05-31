@@ -15,6 +15,12 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.20.4
+    - name: before build create file (1)
+    - run: mkdir -p .go
+
+    - name: before build create file (2)
+    - run: mkdir -p .cache
+
     - name: before build (1)
       run: mkdir -p .go
 
