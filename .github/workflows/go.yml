@@ -17,15 +17,14 @@ jobs:
       with:
         go-version: 1.20.4
 
-    - name: before build
-      run :
-        mkdir -p .go &&
-        mkdir -p .cache &&
-        echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc &&
-        echo -e "machine github.com login api password ${GITHUB_CI_TOKEN}" >> ~/.netrc
-
     - name: Build
-      run: GOOS=linux GOARCH=amd64 go build -o ktucli ./cli/main.go
+      env:
+        CI_ACCESS_TOKEN: ${{ secrets.CI_ACCESS_TOKEN }}
+        GITHUBCI_TOKEN: ${{ secrets.GITHUBCI_TOKEN }}
+      run: |
+        echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc
+        echo -e "machine github.com login api password ${GITHUB_CI_TOKEN}" >> ~/.netrc
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine GOOS=linux GOARCH=amd64 go build -o ktucli ./cli/main.go
 
     - name: Create File
       uses: finnp/create-file-action@1.0.0
