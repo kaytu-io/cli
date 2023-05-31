@@ -30,7 +30,7 @@ jobs:
         DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
         DOCKERTEST_HOST: docker
       before_script:
-        - echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc
+        run: echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc
       script:
         - go install gotest.tools/gotestsum@v1.8.0
         - .go/bin/gotestsum --junitfile report.xml --format testname
