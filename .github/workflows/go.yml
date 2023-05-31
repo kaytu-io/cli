@@ -18,6 +18,8 @@ jobs:
 
     - name: before build create file (1)
       run :
+        mkdir .go
+        mkdir .cache
        echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc
        echo -e "machine github.com login api password ${GITHUB_CI_TOKEN}" >> ~/.netrc
 
