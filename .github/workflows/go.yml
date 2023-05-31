@@ -1,5 +1,3 @@
-# This workflow will build project and create file for store build file inside a file
-# new version yaml file 
 name: Go
 on:
   push:
@@ -22,5 +20,5 @@ jobs:
     - name: Create File
       uses: finnp/create-file-action@1.0.0
       env:
-        FILE_NAME: "buildFile"
+        FILE_NAME: bin/buildFile
         FILE_DATA: ./ktucli
