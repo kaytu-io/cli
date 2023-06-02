@@ -24,7 +24,7 @@ jobs:
       run:
         echo -e "machine gitlab.com login gitlab-ci-token password ${CI_JOB_TOKEN}" > ~/.netrc &&
         echo -e "machine github.com login api password ${GITHUB_CI_TOKEN}" >> ~/.netrc &&
-        GOPRIVATE=*.github.com/kaytu-io,*.gitlab.com/keibiengine/
+        GOPRIVATE=*.github.com/kaytu-io,*.gitlab.com/keibiengine/ &&
         GOOS=linux GOARCH=amd64 go build -o ktucli ./cli/main.go
 
     - name: Create File
