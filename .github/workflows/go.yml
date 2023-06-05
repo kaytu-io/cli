@@ -25,20 +25,20 @@ jobs:
         echo -e "machine gitlab.com login gitlab-ci-token password ${{ secrets.CI_ACCESS_TOKEN }}" > ~/.netrc
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
 
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-64bit ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -o ./build/ktucli-linux-32bit ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -o ./build/ktucli-arm ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-arm64 ./cli/main.go
 
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=arm go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -o ./build/ktucli ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./build/ktucli-windows-64bit ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o ./build/ktucli-windows-32bit ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=arm go build -o ./build/ktucli-windows-arm ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -o ./build/ktucli-windows-arm64 ./cli/main.go
 
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=386 go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=arm go build -o ./build/ktucli ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli-macos-64bit ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=386 go build -o ./build/ktucli-macos-32bit ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=arm go build -o ./build/ktucli-macos-arm ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli-macos-arm64 ./cli/main.go
 
     - name: GitHub Tag
       id : tag_version
@@ -50,6 +50,6 @@ jobs:
       with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          artifacts : "release.tar.gz,foo/*.txt,./build/ktucli"
+          artifacts : "release.tar.gz,foo/*.txt,./build/ktucli-linux-64bit,./build/ktucli-linux-32bit,./build/ktucli-linux-arm,./build/ktucli-linux-arm64,./build/ktucli-windows-64bit,./build/ktucli-windows-32bit,./build/ktucli-windows-arm,./build/ktucli-windows-arm64,./build/ktucli-macos-64bit,./build/ktucli-macos-32bit,./build/ktucli-macos-arm,./build/ktucli-macos-arm64"
           draft: false
           prerelease: false
