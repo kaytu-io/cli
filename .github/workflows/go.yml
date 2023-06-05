@@ -25,7 +25,7 @@ jobs:
       run: |
         echo -e "machine gitlab.com login gitlab-ci-token password ${{ secrets.CI_ACCESS_TOKEN }}" > ~/.netrc
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
-        GOPRIVATE = github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli ./cli/main.go
     - name: Upload a Build Artifact
       id : build-file
       uses: actions/upload-artifact@v3.1.2
