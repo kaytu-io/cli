@@ -42,7 +42,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+          token : ${{ secrets.GITHUB_TOKEN }}
           tag: "CLI Release"
           name: Release ${{ steps.SemanticVersion.outputs.version }}
+          artifact : "release.tar.gz,foo/*.txt"
+          bodyFile: "body.md"
           draft: false
           prerelease: false
