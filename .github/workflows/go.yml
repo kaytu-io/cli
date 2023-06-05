@@ -31,6 +31,11 @@ jobs:
       env:
         FILE_NAME: buildFile
         FILE_DATA: ./ktucli
+    - name: GitHub Tag
+      id : tag_version
+      uses: mathieudutour/github-tag-action@v6.1
+      with:
+        github_token: ${{ secrets.GITHUBCI_TOKEN }}
     - name: SemanticVersion
       uses: PaulHatch/semantic-version@v5.0.3
       with:
@@ -41,11 +46,8 @@ jobs:
         search_commit_body: true
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          token : ${{ secrets.GITHUB_TOKEN }}
-          tag: "CLI Release"
+          tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.SemanticVersion.outputs.version }}
           artifacts : "release.tar.gz,foo/*.txt"
           draft: false
