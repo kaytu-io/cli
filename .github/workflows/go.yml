@@ -45,7 +45,6 @@ jobs:
           token : ${{ secrets.GITHUB_TOKEN }}
           tag: "CLI Release"
           name: Release ${{ steps.SemanticVersion.outputs.version }}
-          artifact : "release.tar.gz,foo/*.txt"
-          bodyFile: "body.md"
+          artifacts : "release.tar.gz,foo/*.txt"
           draft: false
           prerelease: false
