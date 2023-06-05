@@ -46,7 +46,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag: ${{ steps.SemanticVersion.outputs.version }}
+          tag: "CLI Release"
           name: Release ${{ steps.SemanticVersion.outputs.version }}
           body: ${{ steps.SemanticVersion.outputs.changelog }}
           bodyFile: ./bodyFile/body.md
