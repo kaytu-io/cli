@@ -48,7 +48,5 @@ jobs:
       with:
           tag: "CLI Release"
           name: Release ${{ steps.SemanticVersion.outputs.version }}
-          body: ${{ steps.SemanticVersion.outputs.changelog }}
-          bodyFile: ./bodyFile/body.md
           draft: false
           prerelease: false
