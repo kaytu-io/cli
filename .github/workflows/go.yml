@@ -33,7 +33,7 @@ jobs:
         name : BUILD
         path : ./build/ktucli
         run:
-          echo BUILD >> "$GITHUB_OUTPUT"
+          echo "BUILD" >> "$GITHUB_OUTPUT"
     - name: GitHub Tag
       id : tag_version
       uses: mathieudutour/github-tag-action@v6.1
