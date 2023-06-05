@@ -12,12 +12,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3.5.2
-
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.20.4
-
     - name: Build
       env:
         CI_ACCESS_TOKEN: ${{ secrets.CI_ACCESS_TOKEN }}
@@ -26,7 +24,6 @@ jobs:
         echo -e "machine gitlab.com login gitlab-ci-token password ${{ secrets.CI_ACCESS_TOKEN }}" > ~/.netrc
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli ./cli/main.go
-
     - name: Create File
       uses: finnp/create-file-action@1.0.0
       env:
@@ -40,7 +37,6 @@ jobs:
         minor_pattern: "(MINOR)"
         version_format: "${major}.${minor}.${patch}"
         search_commit_body: true
-
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
       env:
