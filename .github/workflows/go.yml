@@ -26,13 +26,10 @@ jobs:
       run: |
         echo -e "machine gitlab.com login gitlab-ci-token password ${{ secrets.CI_ACCESS_TOKEN }}" > ~/.netrc
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
-
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-64bit ./cli/main.go
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-linux-arm64 ./cli/main.go
-
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./build/ktucli-windows-64bit ./cli/main.go
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -o ./build/ktucli-windows-arm64 ./cli/main.go
-
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli-macos-64bit ./cli/main.go
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli-macos-arm64 ./cli/main.go
         
