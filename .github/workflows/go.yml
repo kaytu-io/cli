@@ -13,10 +13,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3.5.2
+
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.20.4
+
     - name: Build
       env:
         CI_ACCESS_TOKEN: ${{ secrets.CI_ACCESS_TOKEN }}
@@ -26,19 +28,30 @@ jobs:
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
 
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-64bit ./cli/main.go
-        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-arm64 ./cli/main.go
+        GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-linux-arm64 ./cli/main.go
 
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./build/ktucli-windows-64bit ./cli/main.go
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=windows GOARCH=arm64 go build -o ./build/ktucli-windows-arm64 ./cli/main.go
 
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli-macos-64bit ./cli/main.go
         GOPRIVATE=github.com/kaytu-io,gitlab.com/keibiengine CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli-macos-arm64 ./cli/main.go
+    
+    - name: Git Semantic Version
+      uses: PaulHatch/semantic-version@v5.0.3
+      with:
+        tag_prefix: "v"
+        major_pattern: "(MAJOR)"
+        minor_pattern: "(MINOR)"
+        version_format: "${major}.${minor}.${patch}"
+        search_commit_body: true
+        namespace: tagBuild
 
     - name: GitHub Tag
       id : tag_version
       uses: mathieudutour/github-tag-action@v6.1
       with:
         github_token: ${{ secrets.GITHUBCI_TOKEN }}
+
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
       with:
