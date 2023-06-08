@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	iam "github.com/kaytu-io/cli-program/cmd/iam"
+	"errors"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -10,6 +10,9 @@ import (
 var rootCmd = &cobra.Command{
 	Use: "ktucli",
 	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if cmd.Flags().ParseErrorsWhitelist.UnknownFlags {
+			return errors.New("Please enter right flag. ")
+		}
 		return cmd.Help()
 	},
 }
@@ -22,11 +25,6 @@ func Execute() {
 }
 
 func init() {
-
-	rootCmd.AddCommand(iam.Get)
-	rootCmd.AddCommand(iam.Delete)
-	rootCmd.AddCommand(iam.Create)
-	rootCmd.AddCommand(iam.Update)
-	rootCmd.AddCommand(iam.Count)
-
+	rootCmd.PersistentFlags().String("workspace-name", "", "specifying the workspaces name ")
+	rootCmd.PersistentFlags().String("output-type", "table", "specifying the output type  [json, table]")
 }

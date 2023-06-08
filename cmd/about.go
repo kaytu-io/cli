@@ -1,42 +1,35 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
-	"github.com/kaytu-io/cli-program/pkg/cli"
+	"github.com/kaytu-io/cli-program/pkg"
+	"github.com/kaytu-io/cli-program/pkg/api/auth0"
 	"github.com/spf13/cobra"
 )
-
-var outputAbout string
 
 // aboutCmd represents the about command
 var aboutCmd = &cobra.Command{
 	Use: "about",
-	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if cmd.Flags().ParseErrorsWhitelist.UnknownFlags {
-			return errors.New("Please enter right flag. ")
-		}
-		return nil
-	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		cnf, err := cli.GetConfig(cmd, false)
+		cnf, err := pkg.GetConfig(cmd, false)
 		if err != nil {
 			return fmt.Errorf("[about]: %v", err)
 		}
 
-		bodyResponse, err := cli.RequestAbout(cnf.AccessToken)
+		bodyResponse, err := auth0.RequestAbout(cnf.AccessToken)
 		if err != nil {
 			return fmt.Errorf("[about]: %v", err)
 		}
-		err = cli.PrintOutput(bodyResponse, outputAbout)
+
+		err = pkg.PrintOutput(cmd, bodyResponse)
 		if err != nil {
 			return fmt.Errorf("[about]: %v", err)
 		}
+
 		return nil
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(aboutCmd)
-	aboutCmd.Flags().StringVar(&outputAbout, "output", "table", "specifying output type [json, table]")
 }

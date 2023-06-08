@@ -1,42 +1,36 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
-	"github.com/kaytu-io/cli-program/pkg/cli"
+	"github.com/kaytu-io/cli-program/pkg"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/workspace"
 	"github.com/spf13/cobra"
 )
 
 // workspacesCmd represents the workspaces command
 var workspacesCmd = &cobra.Command{
 	Use: "workspaces",
-	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if cmd.Flags().ParseErrorsWhitelist.UnknownFlags {
-			return errors.New("Please enter right flag. ")
-		}
-		return nil
-	},
 	RunE: func(cmd *cobra.Command, args []string) error {
-		cnf, err := cli.GetConfig(cmd, false)
+		client, opt, err := kaytu.GetKaytuClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[workspaces] : %v", err)
 		}
 
-		response, err := cli.RequestWorkspaces(cnf.AccessToken)
+		resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(workspace.NewGetWorkspaceAPIV1WorkspacesParams(), opt)
 		if err != nil {
 			return fmt.Errorf("[workspaces] : %v", err)
 		}
 
-		err = cli.PrintOutputForTypeArray(response, outputTypeWorkspaces)
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[workspaces] : %v", err)
 		}
+
 		return nil
 	},
 }
-var outputTypeWorkspaces string
 
 func init() {
 	rootCmd.AddCommand(workspacesCmd)
-	workspacesCmd.Flags().StringVar(&outputTypeWorkspaces, "output", "table", "specifying output type [json, table]")
 }

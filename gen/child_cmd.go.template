@@ -1,0 +1,21 @@
+var {{ .NameCamel }}Cmd = &cobra.Command{
+	Use: "{{ .NameSnake }}",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[{{ .NameSnake }}] : %v", err)
+		}
+
+		resp, err := client.{{ .ServiceName }}.{{ .APIName }}({{ .ServiceNameSnake }}.New{{ .APIName }}Params(), auth)
+		if err != nil {
+			return fmt.Errorf("[{{ .NameSnake }}] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[{{ .NameSnake }}] : %v", err)
+		}
+
+		return nil
+	},
+}

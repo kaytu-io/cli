@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/kaytu-io/cli-program/pkg/cli"
+	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/spf13/cobra"
 )
 
@@ -9,7 +9,7 @@ import (
 var logoutCmd = &cobra.Command{
 	Use: "logout",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		err := cli.RemoveConfig()
+		err := pkg.RemoveConfig()
 		if err != nil {
 			return err
 		}

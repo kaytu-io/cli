@@ -1,0 +1,33 @@
+package gen
+
+import (
+	"github.com/spf13/cobra"
+)
+
+var Get{{ .ServiceName }}Cmd = &cobra.Command{
+	Use: "{{ .ServiceNameSnake }}",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
+var Create{{ .ServiceName }}Cmd = &cobra.Command{
+	Use: "{{ .ServiceNameSnake }}",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
+var Delete{{ .ServiceName }}Cmd = &cobra.Command{
+	Use: "{{ .ServiceNameSnake }}",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
+var Update{{ .ServiceName }}Cmd = &cobra.Command{
+	Use: "{{ .ServiceNameSnake }}",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
