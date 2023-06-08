@@ -32,19 +32,23 @@ var UpdateDescribeCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetDescribeCmd.AddCommand(PostScheduleApiV1DescribeResourceCmd)
+		GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceSummarizerTriggerCmd)
 
-		GetDescribeCmd.AddCommand(PutScheduleApiV1ComplianceTriggerCmd)
+		GetDescribeCmd.AddCommand(GetScheduleApiV0InsightTriggerCmd)
+
+		GetDescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
 
 		GetDescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
-
-		GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceSummarizerTriggerCmd)
 
 		GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceTriggerCmd)
 
 		GetDescribeCmd.AddCommand(GetScheduleApiV0DescribeTriggerCmd)
 
-		GetDescribeCmd.AddCommand(GetScheduleApiV0InsightTriggerCmd)
-
 		GetDescribeCmd.AddCommand(GetScheduleApiV0SummarizeTriggerCmd)
+
+		GetDescribeCmd.AddCommand(PostScheduleApiV1DescribeResourceCmd)
+
+		GetDescribeCmd.AddCommand(PutScheduleApiV1BenchmarkEvaluationTriggerCmd)
+
+		GetDescribeCmd.AddCommand(PutScheduleApiV1ComplianceTriggerCmd)
 }

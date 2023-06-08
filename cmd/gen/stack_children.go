@@ -7,6 +7,69 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/spf13/cobra"
 )
+var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_stacks_stack_id_insight",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
+		}
+
+		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsight(stack.NewGetScheduleAPIV1StacksStackIDInsightParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_stacks_stack_id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		resp, err := client.Stack.GetScheduleAPIV1StacksStackID(stack.NewGetScheduleAPIV1StacksStackIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
+	Use: "post_schedule_api_v_1_stacks_benchmark_trigger",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
+		}
+
+		resp, err := client.Stack.PostScheduleAPIV1StacksBenchmarkTrigger(stack.NewPostScheduleAPIV1StacksBenchmarkTriggerParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
+		}
+
+		return nil
+	},
+}
 var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
 	Use: "post_schedule_api_v_1_stacks_create",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -91,85 +154,22 @@ var GetScheduleApiV1StacksCmd = &cobra.Command{
 		return nil
 	},
 }
-var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks_stack_id_insight",
+var GetScheduleApiV1StacksResourceResourceIdCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_stacks_resource_resource_id",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource_resource_id] : %v", err)
 		}
 
-		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsight(stack.NewGetScheduleAPIV1StacksStackIDInsightParams(), auth)
+		resp, err := client.Stack.GetScheduleAPIV1StacksResourceResourceID(stack.NewGetScheduleAPIV1StacksResourceResourceIDParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource_resource_id] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks_stack_id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		resp, err := client.Stack.GetScheduleAPIV1StacksStackID(stack.NewGetScheduleAPIV1StacksStackIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
-	Use: "post_schedule_api_v_1_stacks_benchmark_trigger",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
-		}
-
-		resp, err := client.Stack.PostScheduleAPIV1StacksBenchmarkTrigger(stack.NewPostScheduleAPIV1StacksBenchmarkTriggerParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-heduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
-	Use: "post_schedule_api_v_1_stacks_benchmark_trigger",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
-		}
-
-		resp, err := client.Stack.PostScheduleAPIV1StacksBenchmarkTrigger(stack.NewPostScheduleAPIV1StacksBenchmarkTriggerParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource_resource_id] : %v", err)
 		}
 
 		return nil

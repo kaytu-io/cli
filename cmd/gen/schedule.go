@@ -32,27 +32,27 @@ var UpdateScheduleCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetScheduleCmd.AddCommand(GetScheduleApiV1DescribeSourceJobsPendingCmd)
+
+		GetScheduleCmd.AddCommand(GetScheduleApiV1ResourceTypeProviderCmd)
+
+		GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesCmd)
+
+		GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdCmd)
+
+		GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd)
+
 		GetScheduleCmd.AddCommand(GetScheduleApiV1ComplianceReportLastCompletedCmd)
 
 		GetScheduleCmd.AddCommand(GetScheduleApiV1DescribeResourceJobsPendingCmd)
 
-		GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesCmd)
+		GetScheduleCmd.AddCommand(GetScheduleApiV1InsightJobsPendingCmd)
 
 		GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsComplianceCmd)
 
-		GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd)
-
-		GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd)
-
-		GetScheduleCmd.AddCommand(GetScheduleApiV1DescribeSourceJobsPendingCmd)
-
-		GetScheduleCmd.AddCommand(GetScheduleApiV1InsightJobsPendingCmd)
-
-		GetScheduleCmd.AddCommand(GetScheduleApiV1ResourceTypeProviderCmd)
-
 		GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsDescribeCmd)
 
-		GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdCmd)
-
 		GetScheduleCmd.AddCommand(GetScheduleApiV1SummarizeJobsPendingCmd)
+
+		GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd)
 }

@@ -32,37 +32,37 @@ var UpdateInventoryCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesAwsCmd)
+
 		GetInventoryCmd.AddCommand(GetInventoryApiV1ResourcesRegionsCmd)
-
-		GetInventoryCmd.AddCommand(GetInventoryApiV1ResourcesTopRegionsCmd)
-
-		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricCmd)
 
 		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTrendCmd)
 
-		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricCmd)
+		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesTagKeyCmd)
 
-		GetInventoryCmd.AddCommand(GetInventoryApiV1ResourcesCountCmd)
+		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesTagCmd)
 
 		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesCompositionKeyCmd)
 
-		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagKeyCmd)
+		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricCmd)
 
 		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesCostTrendCmd)
 
-		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesTagKeyCmd)
-
-		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesFiltersCmd)
-
-		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesCmd)
+		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricCmd)
 
 		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagCmd)
 
 		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesCompositionKeyCmd)
 
-		GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesTagCmd)
-
-		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesAwsCmd)
-
 		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesAzureCmd)
+
+		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesFiltersCmd)
+
+		GetInventoryCmd.AddCommand(PostInventoryApiV1ResourcesCmd)
+
+		GetInventoryCmd.AddCommand(GetInventoryApiV1ResourcesCountCmd)
+
+		GetInventoryCmd.AddCommand(GetInventoryApiV1ResourcesTopRegionsCmd)
+
+		GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagKeyCmd)
 }
