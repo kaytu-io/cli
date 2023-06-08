@@ -30,15 +30,15 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
+	DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
 
-	GetComplianceAPIV1Assignments(params *GetComplianceAPIV1AssignmentsParams, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsOK, error)
+	GetComplianceAPIV1Assignments(params *GetComplianceAPIV1AssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsOK, error)
 
-	GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error)
+	GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error)
 
-	GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error)
+	GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error)
 
-	PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
+	PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -48,7 +48,7 @@ DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID deletes benchm
 
 Delete benchmark assignment with source id and benchmark id
 */
-func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
+func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
@@ -62,6 +62,7 @@ func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnection
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -88,7 +89,7 @@ GetComplianceAPIV1Assignments gets all assignments
 
 Returns all assignments
 */
-func (a *Client) GetComplianceAPIV1Assignments(params *GetComplianceAPIV1AssignmentsParams, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsOK, error) {
+func (a *Client) GetComplianceAPIV1Assignments(params *GetComplianceAPIV1AssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1AssignmentsParams()
@@ -102,6 +103,7 @@ func (a *Client) GetComplianceAPIV1Assignments(params *GetComplianceAPIV1Assignm
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1AssignmentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -128,7 +130,7 @@ GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID gets all benchmark assigned so
 
 Returns all benchmark assigned sources with benchmark id
 */
-func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error) {
+func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams()
@@ -142,6 +144,7 @@ func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetCo
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -168,7 +171,7 @@ GetComplianceAPIV1AssignmentsConnectionConnectionID gets all benchmark assignmen
 
 Returns all benchmark assignments with source id
 */
-func (a *Client) GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error) {
+func (a *Client) GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1AssignmentsConnectionConnectionIDParams()
@@ -182,6 +185,7 @@ func (a *Client) GetComplianceAPIV1AssignmentsConnectionConnectionID(params *Get
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1AssignmentsConnectionConnectionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -208,7 +212,7 @@ PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID creates benchmar
 
 Returns benchmark assignment which insert
 */
-func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
+func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
@@ -222,6 +226,7 @@ func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

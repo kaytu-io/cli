@@ -70,7 +70,7 @@ type PostScheduleAPIV1StacksCreateParams struct {
 
 	/* Tags.
 
-	   Tags
+	   Tags Map[string][]string
 	*/
 	Tags *string
 

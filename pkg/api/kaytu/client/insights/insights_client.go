@@ -30,13 +30,13 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetComplianceAPIV1Insight(params *GetComplianceAPIV1InsightParams, opts ...ClientOption) (*GetComplianceAPIV1InsightOK, error)
+	GetComplianceAPIV1Insight(params *GetComplianceAPIV1InsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightOK, error)
 
-	GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1InsightInsightIDParams, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDOK, error)
+	GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1InsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDOK, error)
 
-	GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAPIV1InsightInsightIDTrendParams, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDTrendOK, error)
+	GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAPIV1InsightInsightIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDTrendOK, error)
 
-	GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error)
+	GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error)
 
 	GetComplianceAPIV1MetadataTagInsight(params *GetComplianceAPIV1MetadataTagInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightOK, error)
 
@@ -50,7 +50,7 @@ GetComplianceAPIV1Insight lists insight with result
 
 Listing insight with result
 */
-func (a *Client) GetComplianceAPIV1Insight(params *GetComplianceAPIV1InsightParams, opts ...ClientOption) (*GetComplianceAPIV1InsightOK, error) {
+func (a *Client) GetComplianceAPIV1Insight(params *GetComplianceAPIV1InsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1InsightParams()
@@ -64,6 +64,7 @@ func (a *Client) GetComplianceAPIV1Insight(params *GetComplianceAPIV1InsightPara
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1InsightReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -90,7 +91,7 @@ GetComplianceAPIV1InsightInsightID gets insight with result by id
 
 Get insight with result by id
 */
-func (a *Client) GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1InsightInsightIDParams, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDOK, error) {
+func (a *Client) GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1InsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1InsightInsightIDParams()
@@ -104,6 +105,7 @@ func (a *Client) GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1In
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1InsightInsightIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -130,7 +132,7 @@ GetComplianceAPIV1InsightInsightIDTrend gets insight trend with result by id
 
 Get insight trend with result by id
 */
-func (a *Client) GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAPIV1InsightInsightIDTrendParams, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDTrendOK, error) {
+func (a *Client) GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAPIV1InsightInsightIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDTrendOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1InsightInsightIDTrendParams()
@@ -144,6 +146,7 @@ func (a *Client) GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAP
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1InsightInsightIDTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -170,7 +173,7 @@ GetComplianceAPIV1MetadataInsight lists insight metadata
 
 Listing insight metadata
 */
-func (a *Client) GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error) {
+func (a *Client) GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1MetadataInsightParams()
@@ -184,6 +187,7 @@ func (a *Client) GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1Met
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1MetadataInsightReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

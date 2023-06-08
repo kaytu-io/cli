@@ -45,7 +45,7 @@ GetInventoryAPIV2MetadataServicesOK describes a response with status code 200, w
 OK
 */
 type GetInventoryAPIV2MetadataServicesOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIServiceMetadata
+	Payload *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListServiceMetadataResponse
 }
 
 // IsSuccess returns true when this get inventory Api v2 metadata services o k response has a 2xx status code
@@ -86,14 +86,16 @@ func (o *GetInventoryAPIV2MetadataServicesOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/metadata/services][%d] getInventoryApiV2MetadataServicesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2MetadataServicesOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIServiceMetadata {
+func (o *GetInventoryAPIV2MetadataServicesOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListServiceMetadataResponse {
 	return o.Payload
 }
 
 func (o *GetInventoryAPIV2MetadataServicesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListServiceMetadataResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

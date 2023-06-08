@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 )
 
 // NewGetScheduleAPIV1StacksFindingsJobIDParams creates a new GetScheduleAPIV1StacksFindingsJobIDParams object,
@@ -66,6 +68,12 @@ type GetScheduleAPIV1StacksFindingsJobIDParams struct {
 	   JobID
 	*/
 	JobID string
+
+	/* Request.
+
+	   Request Body
+	*/
+	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,6 +139,17 @@ func (o *GetScheduleAPIV1StacksFindingsJobIDParams) SetJobID(jobID string) {
 	o.JobID = jobID
 }
 
+// WithRequest adds the request to the get schedule API v1 stacks findings job ID params
+func (o *GetScheduleAPIV1StacksFindingsJobIDParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) *GetScheduleAPIV1StacksFindingsJobIDParams {
+	o.SetRequest(request)
+	return o
+}
+
+// SetRequest adds the request to the get schedule API v1 stacks findings job ID params
+func (o *GetScheduleAPIV1StacksFindingsJobIDParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) {
+	o.Request = request
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetScheduleAPIV1StacksFindingsJobIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,6 +161,11 @@ func (o *GetScheduleAPIV1StacksFindingsJobIDParams) WriteToRequest(r runtime.Cli
 	// path param jobId
 	if err := r.SetPathParam("jobId", o.JobID); err != nil {
 		return err
+	}
+	if o.Request != nil {
+		if err := r.SetBodyParam(o.Request); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -48,7 +48,7 @@ type ClientService interface {
 
 	GetInventoryAPIV2ServicesCompositionKey(params *GetInventoryAPIV2ServicesCompositionKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCompositionKeyOK, error)
 
-	GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error)
+	GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error)
 
 	GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error)
 
@@ -423,7 +423,7 @@ func (a *Client) GetInventoryAPIV2ServicesCompositionKey(params *GetInventoryAPI
 /*
 GetInventoryAPIV2ServicesCostTrend returns list of costs over the course of the specified time frame based on the given input filters
 */
-func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error) {
+func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInventoryAPIV2ServicesCostTrendParams()
@@ -437,6 +437,7 @@ func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2Ser
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetInventoryAPIV2ServicesCostTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

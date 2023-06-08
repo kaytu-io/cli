@@ -30,31 +30,31 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
+	DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
 
-	GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1WorkspaceWorkspaceIDParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
+	GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
 
-	GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1WorkspacesParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesOK, error)
+	GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1WorkspacesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesOK, error)
 
-	GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesByidWorkspaceIDOK, error)
+	GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesByidWorkspaceIDOK, error)
 
-	GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK, error)
+	GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK, error)
 
-	GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error)
+	GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error)
 
-	PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1WorkspaceParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceOK, error)
+	PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1WorkspaceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceOK, error)
 
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDName(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDNameOK, error)
+	PostWorkspaceAPIV1WorkspaceWorkspaceIDName(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDNameOK, error)
 
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationOK, error)
+	PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationOK, error)
 
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerOK, error)
+	PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerOK, error)
 
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK, error)
+	PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK, error)
 
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK, error)
+	PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK, error)
 
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDTierOK, error)
+	PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDTierOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -64,7 +64,7 @@ DeleteWorkspaceAPIV1WorkspaceWorkspaceID deletes workspace for workspace service
 
 Delete workspace with workspace id
 */
-func (a *Client) DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error) {
+func (a *Client) DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams()
@@ -78,6 +78,7 @@ func (a *Client) DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspac
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteWorkspaceAPIV1WorkspaceWorkspaceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -104,7 +105,7 @@ GetWorkspaceAPIV1WorkspaceWorkspaceID gets workspace for workspace service
 
 Get workspace with workspace id
 */
-func (a *Client) GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1WorkspaceWorkspaceIDParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK, error) {
+func (a *Client) GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetWorkspaceAPIV1WorkspaceWorkspaceIDParams()
@@ -118,6 +119,7 @@ func (a *Client) GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWorkspaceAPIV1WorkspaceWorkspaceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -144,7 +146,7 @@ GetWorkspaceAPIV1Workspaces lists all workspaces with owner id
 
 Returns all workspaces with owner id
 */
-func (a *Client) GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1WorkspacesParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesOK, error) {
+func (a *Client) GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1WorkspacesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetWorkspaceAPIV1WorkspacesParams()
@@ -158,6 +160,7 @@ func (a *Client) GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1Workspaces
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWorkspaceAPIV1WorkspacesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -182,7 +185,7 @@ func (a *Client) GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1Workspaces
 /*
 GetWorkspaceAPIV1WorkspacesByidWorkspaceID gets workspace
 */
-func (a *Client) GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesByidWorkspaceIDOK, error) {
+func (a *Client) GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesByidWorkspaceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams()
@@ -196,6 +199,7 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspace
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWorkspaceAPIV1WorkspacesByidWorkspaceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -220,7 +224,7 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspace
 /*
 GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID gets workspace limits
 */
-func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK, error) {
+func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams()
@@ -234,6 +238,7 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWor
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -258,7 +263,7 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWor
 /*
 GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName gets workspace limits
 */
-func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error) {
+func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams()
@@ -272,6 +277,7 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorks
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -298,7 +304,7 @@ PostWorkspaceAPIV1Workspace creates workspace for workspace service
 
 Returns workspace created
 */
-func (a *Client) PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1WorkspaceParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceOK, error) {
+func (a *Client) PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1WorkspaceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceParams()
@@ -312,6 +318,7 @@ func (a *Client) PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1Workspace
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -336,7 +343,7 @@ func (a *Client) PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1Workspace
 /*
 PostWorkspaceAPIV1WorkspaceWorkspaceIDName changes name of workspace
 */
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDName(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDNameOK, error) {
+func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDName(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDNameOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams()
@@ -350,6 +357,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDName(params *PostWorkspac
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -374,7 +382,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDName(params *PostWorkspac
 /*
 PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization changes organization of workspace
 */
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationOK, error) {
+func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams()
@@ -388,6 +396,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *Post
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -412,7 +421,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *Post
 /*
 PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner changes ownership of workspace
 */
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerOK, error) {
+func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams()
@@ -426,6 +435,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspa
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -450,7 +460,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspa
 /*
 PostWorkspaceAPIV1WorkspaceWorkspaceIDResume resumes workspace
 */
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK, error) {
+func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams()
@@ -464,6 +474,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorksp
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -488,7 +499,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorksp
 /*
 PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend suspends workspace
 */
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK, error) {
+func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams()
@@ -502,6 +513,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorks
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -526,7 +538,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorks
 /*
 PostWorkspaceAPIV1WorkspaceWorkspaceIDTier changes tier of workspace
 */
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDTierOK, error) {
+func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDTierOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams()
@@ -540,6 +552,7 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspac
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDTierReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

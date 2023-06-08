@@ -22,6 +22,9 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPILocationResponse struct {
 
 	// Number of resources in the region
 	ResourceCount int64 `json:"resourceCount,omitempty"`
+
+	// Change in number of resources in the region
+	ResourceCountChangePercent float64 `json:"resourceCountChangePercent,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg inventory api location response

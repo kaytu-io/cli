@@ -17,14 +17,17 @@ import (
 // swagger:model gitlab_com_keibiengine_keibi-engine_pkg_describe_api.StackEvaluation
 type GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackEvaluation struct {
 
-	// benchmark ID
-	BenchmarkID string `json:"benchmarkID,omitempty"`
-
 	// created at
 	CreatedAt string `json:"createdAt,omitempty"`
 
+	// evaluator ID
+	EvaluatorID string `json:"evaluatorID,omitempty"`
+
 	// job ID
 	JobID int64 `json:"jobID,omitempty"`
+
+	// type
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg describe api stack evaluation

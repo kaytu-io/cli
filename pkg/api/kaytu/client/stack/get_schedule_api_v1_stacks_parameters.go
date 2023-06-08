@@ -72,7 +72,7 @@ type GetScheduleAPIV1StacksParams struct {
 
 	   Key-Value tags in key=value format to filter by
 	*/
-	Tag *string
+	Tag []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -139,13 +139,13 @@ func (o *GetScheduleAPIV1StacksParams) SetAccounIds(accounIds []string) {
 }
 
 // WithTag adds the tag to the get schedule API v1 stacks params
-func (o *GetScheduleAPIV1StacksParams) WithTag(tag *string) *GetScheduleAPIV1StacksParams {
+func (o *GetScheduleAPIV1StacksParams) WithTag(tag []string) *GetScheduleAPIV1StacksParams {
 	o.SetTag(tag)
 	return o
 }
 
 // SetTag adds the tag to the get schedule API v1 stacks params
-func (o *GetScheduleAPIV1StacksParams) SetTag(tag *string) {
+func (o *GetScheduleAPIV1StacksParams) SetTag(tag []string) {
 	o.Tag = tag
 }
 
@@ -170,18 +170,12 @@ func (o *GetScheduleAPIV1StacksParams) WriteToRequest(r runtime.ClientRequest, r
 
 	if o.Tag != nil {
 
-		// query param tag
-		var qrTag string
+		// binding items for tag
+		joinedTag := o.bindParamTag(reg)
 
-		if o.Tag != nil {
-			qrTag = *o.Tag
-		}
-		qTag := qrTag
-		if qTag != "" {
-
-			if err := r.SetQueryParam("tag", qTag); err != nil {
-				return err
-			}
+		// query array param tag
+		if err := r.SetQueryParam("tag", joinedTag...); err != nil {
+			return err
 		}
 	}
 
@@ -206,4 +200,21 @@ func (o *GetScheduleAPIV1StacksParams) bindParamAccounIds(formats strfmt.Registr
 	accounIdsIS := swag.JoinByFormat(accounIdsIC, "")
 
 	return accounIdsIS
+}
+
+// bindParamGetScheduleAPIV1Stacks binds the parameter tag
+func (o *GetScheduleAPIV1StacksParams) bindParamTag(formats strfmt.Registry) []string {
+	tagIR := o.Tag
+
+	var tagIC []string
+	for _, tagIIR := range tagIR { // explode []string
+
+		tagIIV := tagIIR // string as string
+		tagIC = append(tagIC, tagIIV)
+	}
+
+	// items.CollectionFormat: ""
+	tagIS := swag.JoinByFormat(tagIC, "")
+
+	return tagIS
 }

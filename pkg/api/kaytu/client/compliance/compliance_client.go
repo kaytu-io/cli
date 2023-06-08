@@ -30,19 +30,19 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK, error)
+	GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK, error)
 
-	GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK, error)
+	GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK, error)
 
-	GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK, error)
+	GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK, error)
 
-	GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1BenchmarksParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksOK, error)
+	GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1BenchmarksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksOK, error)
 
-	GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAPIV1BenchmarksBenchmarkIDParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDOK, error)
+	GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAPIV1BenchmarksBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDOK, error)
 
-	GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error)
+	GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error)
 
-	GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error)
+	GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error)
 
 	GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error)
 
@@ -50,7 +50,7 @@ type ClientService interface {
 
 	GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error)
 
-	GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error)
+	GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error)
 
 	GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error)
 
@@ -64,7 +64,7 @@ type ClientService interface {
 /*
 GetComplianceAPIV1BenchmarkBenchmarkIDSummary gets benchmark summary
 */
-func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams()
@@ -78,6 +78,7 @@ func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetCompli
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarkBenchmarkIDSummaryReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -102,7 +103,7 @@ func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetCompli
 /*
 GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend gets result trend
 */
-func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams()
@@ -116,6 +117,7 @@ func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -140,7 +142,7 @@ func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params
 /*
 GetComplianceAPIV1BenchmarkBenchmarkIDTree gets benchmark tree
 */
-func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarkBenchmarkIDTreeParams()
@@ -154,6 +156,7 @@ func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianc
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarkBenchmarkIDTreeReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -178,7 +181,7 @@ func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianc
 /*
 GetComplianceAPIV1Benchmarks lists benchmarks
 */
-func (a *Client) GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1BenchmarksParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksOK, error) {
+func (a *Client) GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1BenchmarksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarksParams()
@@ -192,6 +195,7 @@ func (a *Client) GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1Benchmar
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarksReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -216,7 +220,7 @@ func (a *Client) GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1Benchmar
 /*
 GetComplianceAPIV1BenchmarksBenchmarkID gets benchmark
 */
-func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAPIV1BenchmarksBenchmarkIDParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAPIV1BenchmarksBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDParams()
@@ -230,6 +234,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAP
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -254,7 +259,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAP
 /*
 GetComplianceAPIV1BenchmarksBenchmarkIDPolicies lists policies
 */
-func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams()
@@ -268,6 +273,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComp
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -292,7 +298,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComp
 /*
 GetComplianceAPIV1BenchmarksPoliciesPolicyID gets policy
 */
-func (a *Client) GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarksPoliciesPolicyIDParams()
@@ -306,6 +312,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplia
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarksPoliciesPolicyIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -447,7 +454,7 @@ func (a *Client) GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1Fin
 /*
 GetComplianceAPIV1QueriesQueryID gets query
 */
-func (a *Client) GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error) {
+func (a *Client) GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1QueriesQueryIDParams()
@@ -461,6 +468,7 @@ func (a *Client) GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1Quer
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1QueriesQueryIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

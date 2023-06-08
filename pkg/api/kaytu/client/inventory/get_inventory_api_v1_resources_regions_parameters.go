@@ -74,6 +74,12 @@ type GetInventoryAPIV1ResourcesRegionsParams struct {
 	*/
 	Connector []string
 
+	/* EndTime.
+
+	   timestamp for resource count per location in epoch seconds
+	*/
+	EndTime *string
+
 	/* PageNumber.
 
 	   page number - default is 1
@@ -85,6 +91,12 @@ type GetInventoryAPIV1ResourcesRegionsParams struct {
 	   page size - default is 20
 	*/
 	PageSize *int64
+
+	/* StartTime.
+
+	   timestamp for resource count per location change comparison in epoch seconds
+	*/
+	StartTime *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -161,6 +173,17 @@ func (o *GetInventoryAPIV1ResourcesRegionsParams) SetConnector(connector []strin
 	o.Connector = connector
 }
 
+// WithEndTime adds the endTime to the get inventory API v1 resources regions params
+func (o *GetInventoryAPIV1ResourcesRegionsParams) WithEndTime(endTime *string) *GetInventoryAPIV1ResourcesRegionsParams {
+	o.SetEndTime(endTime)
+	return o
+}
+
+// SetEndTime adds the endTime to the get inventory API v1 resources regions params
+func (o *GetInventoryAPIV1ResourcesRegionsParams) SetEndTime(endTime *string) {
+	o.EndTime = endTime
+}
+
 // WithPageNumber adds the pageNumber to the get inventory API v1 resources regions params
 func (o *GetInventoryAPIV1ResourcesRegionsParams) WithPageNumber(pageNumber *int64) *GetInventoryAPIV1ResourcesRegionsParams {
 	o.SetPageNumber(pageNumber)
@@ -181,6 +204,17 @@ func (o *GetInventoryAPIV1ResourcesRegionsParams) WithPageSize(pageSize *int64) 
 // SetPageSize adds the pageSize to the get inventory API v1 resources regions params
 func (o *GetInventoryAPIV1ResourcesRegionsParams) SetPageSize(pageSize *int64) {
 	o.PageSize = pageSize
+}
+
+// WithStartTime adds the startTime to the get inventory API v1 resources regions params
+func (o *GetInventoryAPIV1ResourcesRegionsParams) WithStartTime(startTime *string) *GetInventoryAPIV1ResourcesRegionsParams {
+	o.SetStartTime(startTime)
+	return o
+}
+
+// SetStartTime adds the startTime to the get inventory API v1 resources regions params
+func (o *GetInventoryAPIV1ResourcesRegionsParams) SetStartTime(startTime *string) {
+	o.StartTime = startTime
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -213,6 +247,23 @@ func (o *GetInventoryAPIV1ResourcesRegionsParams) WriteToRequest(r runtime.Clien
 		}
 	}
 
+	if o.EndTime != nil {
+
+		// query param endTime
+		var qrEndTime string
+
+		if o.EndTime != nil {
+			qrEndTime = *o.EndTime
+		}
+		qEndTime := qrEndTime
+		if qEndTime != "" {
+
+			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.PageNumber != nil {
 
 		// query param pageNumber
@@ -242,6 +293,23 @@ func (o *GetInventoryAPIV1ResourcesRegionsParams) WriteToRequest(r runtime.Clien
 		if qPageSize != "" {
 
 			if err := r.SetQueryParam("pageSize", qPageSize); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.StartTime != nil {
+
+		// query param startTime
+		var qrStartTime string
+
+		if o.StartTime != nil {
+			qrStartTime = *o.StartTime
+		}
+		qStartTime := qrStartTime
+		if qStartTime != "" {
+
+			if err := r.SetQueryParam("startTime", qStartTime); err != nil {
 				return err
 			}
 		}
