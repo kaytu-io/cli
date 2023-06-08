@@ -81,7 +81,7 @@ func main() {
 			return err
 		}
 
-		err = createChildren(root, info.Name(), path)
+		err = createChildren(root, info.Name(), path, f)
 		if err != nil {
 			return err
 		}
@@ -93,7 +93,7 @@ func main() {
 	}
 }
 
-func createChildren(root, serviceName, servicePath string) error {
+func createChildren(root, serviceName, servicePath string, fservice *os.File) error {
 	t := template.New("childCmdTemplate")
 	t, err := t.Parse(childCmdTemplate)
 	if err != nil {
@@ -168,12 +168,8 @@ func createChildren(root, serviceName, servicePath string) error {
 	cmdReference += "}"
 
 	filename = fmt.Sprintf(root+"/cmd/gen/%s.go", serviceName)
-	f2, err := os.OpenFile(filename, os.O_APPEND|os.O_RDWR, os.ModePerm)
-	if err != nil {
-		return err
-	}
 
-	_, err = f2.WriteString(cmdReference)
+	_, err = fservice.WriteString(cmdReference)
 	if err != nil {
 		return err
 	}

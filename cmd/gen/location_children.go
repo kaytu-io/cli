@@ -28,5 +28,3 @@ var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
 		return nil
 	},
 }
-
-

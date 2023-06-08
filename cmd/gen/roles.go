@@ -32,11 +32,11 @@ var UpdateRolesCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetRolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
+
 		GetRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameKeysCmd)
 
 		GetRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameUsersCmd)
 
 		GetRolesCmd.AddCommand(GetAuthApiV1RolesCmd)
-
-		GetRolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
 }

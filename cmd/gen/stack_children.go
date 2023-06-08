@@ -7,6 +7,27 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/spf13/cobra"
 )
+var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
+	Use: "delete_schedule_api_v_1_stacks_stack_id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		resp, err := client.Stack.DeleteScheduleAPIV1StacksStackID(stack.NewDeleteScheduleAPIV1StacksStackIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		return nil
+	},
+}
 var GetScheduleApiV1StacksFindingsJobIdCmd = &cobra.Command{
 	Use: "get_schedule_api_v_1_stacks_findings_job_id",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -149,27 +170,6 @@ var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
-		}
-
-		return nil
-	},
-}
-var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "delete_schedule_api_v_1_stacks_stack_id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		resp, err := client.Stack.DeleteScheduleAPIV1StacksStackID(stack.NewDeleteScheduleAPIV1StacksStackIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
 		return nil

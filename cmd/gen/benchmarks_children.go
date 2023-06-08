@@ -133,4 +133,3 @@ var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
 		return nil
 	},
 }
-

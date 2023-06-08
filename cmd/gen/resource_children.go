@@ -28,5 +28,3 @@ var PostInventoryApiV1ResourceCmd = &cobra.Command{
 		return nil
 	},
 }
-
-

@@ -49,4 +49,3 @@ var GetInventoryApiV1CostTopServicesCmd = &cobra.Command{
 		return nil
 	},
 }
-

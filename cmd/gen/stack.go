@@ -32,6 +32,8 @@ var UpdateStackCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetStackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
+
 		GetStackCmd.AddCommand(GetScheduleApiV1StacksFindingsJobIdCmd)
 
 		GetStackCmd.AddCommand(GetScheduleApiV1StacksCmd)
@@ -45,6 +47,4 @@ func init() {
 		GetStackCmd.AddCommand(PostScheduleApiV1StacksBenchmarkTriggerCmd)
 
 		GetStackCmd.AddCommand(PostScheduleApiV1StacksCreateCmd)
-
-		GetStackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
 }

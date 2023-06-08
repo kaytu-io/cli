@@ -49,4 +49,3 @@ var GetInventoryApiV2ConnectionsDataCmd = &cobra.Command{
 		return nil
 	},
 }
-

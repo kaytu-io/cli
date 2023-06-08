@@ -49,4 +49,3 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 		return nil
 	},
 }
-

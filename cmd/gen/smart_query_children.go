@@ -70,4 +70,3 @@ var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
 		return nil
 	},
 }
-
