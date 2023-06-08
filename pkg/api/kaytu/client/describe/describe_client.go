@@ -30,21 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetScheduleAPIV0ComplianceSummarizerTrigger(params *GetScheduleAPIV0ComplianceSummarizerTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0ComplianceSummarizerTriggerOK, error)
+	GetScheduleAPIV0ComplianceSummarizerTrigger(params *GetScheduleAPIV0ComplianceSummarizerTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0ComplianceSummarizerTriggerOK, error)
 
-	GetScheduleAPIV0ComplianceTrigger(params *GetScheduleAPIV0ComplianceTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0ComplianceTriggerOK, error)
+	GetScheduleAPIV0ComplianceTrigger(params *GetScheduleAPIV0ComplianceTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0ComplianceTriggerOK, error)
 
-	GetScheduleAPIV0DescribeTrigger(params *GetScheduleAPIV0DescribeTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0DescribeTriggerOK, error)
+	GetScheduleAPIV0DescribeTrigger(params *GetScheduleAPIV0DescribeTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0DescribeTriggerOK, error)
 
-	GetScheduleAPIV0InsightTrigger(params *GetScheduleAPIV0InsightTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0InsightTriggerOK, error)
+	GetScheduleAPIV0InsightTrigger(params *GetScheduleAPIV0InsightTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0InsightTriggerOK, error)
 
-	GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0SummarizeTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0SummarizeTriggerOK, error)
+	GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0SummarizeTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0SummarizeTriggerOK, error)
 
-	PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error)
+	PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error)
 
-	PutScheduleAPIV1ComplianceTrigger(params *PutScheduleAPIV1ComplianceTriggerParams, opts ...ClientOption) (*PutScheduleAPIV1ComplianceTriggerOK, error)
+	PutScheduleAPIV1ComplianceTrigger(params *PutScheduleAPIV1ComplianceTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1ComplianceTriggerOK, error)
 
-	PutScheduleAPIV1DescribeTriggerConnectionID(params *PutScheduleAPIV1DescribeTriggerConnectionIDParams, opts ...ClientOption) (*PutScheduleAPIV1DescribeTriggerConnectionIDOK, error)
+	PutScheduleAPIV1DescribeTriggerConnectionID(params *PutScheduleAPIV1DescribeTriggerConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1DescribeTriggerConnectionIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -52,7 +52,7 @@ type ClientService interface {
 /*
 GetScheduleAPIV0ComplianceSummarizerTrigger triggers a compliance summarizer job to run immediately
 */
-func (a *Client) GetScheduleAPIV0ComplianceSummarizerTrigger(params *GetScheduleAPIV0ComplianceSummarizerTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0ComplianceSummarizerTriggerOK, error) {
+func (a *Client) GetScheduleAPIV0ComplianceSummarizerTrigger(params *GetScheduleAPIV0ComplianceSummarizerTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0ComplianceSummarizerTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV0ComplianceSummarizerTriggerParams()
@@ -66,6 +66,7 @@ func (a *Client) GetScheduleAPIV0ComplianceSummarizerTrigger(params *GetSchedule
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV0ComplianceSummarizerTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -92,7 +93,7 @@ GetScheduleAPIV0ComplianceTrigger triggers a compliance job to run immediately
 
 Triggers a compliance job to run immediately
 */
-func (a *Client) GetScheduleAPIV0ComplianceTrigger(params *GetScheduleAPIV0ComplianceTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0ComplianceTriggerOK, error) {
+func (a *Client) GetScheduleAPIV0ComplianceTrigger(params *GetScheduleAPIV0ComplianceTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0ComplianceTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV0ComplianceTriggerParams()
@@ -106,6 +107,7 @@ func (a *Client) GetScheduleAPIV0ComplianceTrigger(params *GetScheduleAPIV0Compl
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV0ComplianceTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -132,7 +134,7 @@ GetScheduleAPIV0DescribeTrigger triggers a describe job to run immediately
 
 Triggers a describe job to run immediately
 */
-func (a *Client) GetScheduleAPIV0DescribeTrigger(params *GetScheduleAPIV0DescribeTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0DescribeTriggerOK, error) {
+func (a *Client) GetScheduleAPIV0DescribeTrigger(params *GetScheduleAPIV0DescribeTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0DescribeTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV0DescribeTriggerParams()
@@ -146,6 +148,7 @@ func (a *Client) GetScheduleAPIV0DescribeTrigger(params *GetScheduleAPIV0Describ
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV0DescribeTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -172,7 +175,7 @@ GetScheduleAPIV0InsightTrigger triggers an insight job to run immediately
 
 Triggers an insight job to run immediately
 */
-func (a *Client) GetScheduleAPIV0InsightTrigger(params *GetScheduleAPIV0InsightTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0InsightTriggerOK, error) {
+func (a *Client) GetScheduleAPIV0InsightTrigger(params *GetScheduleAPIV0InsightTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0InsightTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV0InsightTriggerParams()
@@ -186,6 +189,7 @@ func (a *Client) GetScheduleAPIV0InsightTrigger(params *GetScheduleAPIV0InsightT
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV0InsightTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -212,7 +216,7 @@ GetScheduleAPIV0SummarizeTrigger triggers a summarize job to run immediately
 
 Triggers a summarize job to run immediately
 */
-func (a *Client) GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0SummarizeTriggerParams, opts ...ClientOption) (*GetScheduleAPIV0SummarizeTriggerOK, error) {
+func (a *Client) GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0SummarizeTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0SummarizeTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV0SummarizeTriggerParams()
@@ -226,6 +230,7 @@ func (a *Client) GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0Summar
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV0SummarizeTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -250,7 +255,7 @@ func (a *Client) GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0Summar
 /*
 PostScheduleAPIV1DescribeResource describes single resource
 */
-func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error) {
+func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostScheduleAPIV1DescribeResourceParams()
@@ -264,6 +269,7 @@ func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1Desc
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostScheduleAPIV1DescribeResourceReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -288,7 +294,7 @@ func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1Desc
 /*
 PutScheduleAPIV1ComplianceTrigger triggers a benchmark evaluation job to run immediately
 */
-func (a *Client) PutScheduleAPIV1ComplianceTrigger(params *PutScheduleAPIV1ComplianceTriggerParams, opts ...ClientOption) (*PutScheduleAPIV1ComplianceTriggerOK, error) {
+func (a *Client) PutScheduleAPIV1ComplianceTrigger(params *PutScheduleAPIV1ComplianceTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1ComplianceTriggerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutScheduleAPIV1ComplianceTriggerParams()
@@ -302,6 +308,7 @@ func (a *Client) PutScheduleAPIV1ComplianceTrigger(params *PutScheduleAPIV1Compl
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PutScheduleAPIV1ComplianceTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -328,7 +335,7 @@ PutScheduleAPIV1DescribeTriggerConnectionID triggers a describe job to run immed
 
 Triggers a describe job to run immediately
 */
-func (a *Client) PutScheduleAPIV1DescribeTriggerConnectionID(params *PutScheduleAPIV1DescribeTriggerConnectionIDParams, opts ...ClientOption) (*PutScheduleAPIV1DescribeTriggerConnectionIDOK, error) {
+func (a *Client) PutScheduleAPIV1DescribeTriggerConnectionID(params *PutScheduleAPIV1DescribeTriggerConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1DescribeTriggerConnectionIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutScheduleAPIV1DescribeTriggerConnectionIDParams()
@@ -342,6 +349,7 @@ func (a *Client) PutScheduleAPIV1DescribeTriggerConnectionID(params *PutSchedule
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PutScheduleAPIV1DescribeTriggerConnectionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

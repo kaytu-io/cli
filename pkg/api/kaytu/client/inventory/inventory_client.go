@@ -38,19 +38,19 @@ type ClientService interface {
 
 	GetInventoryAPIV2ResourcesCompositionKey(params *GetInventoryAPIV2ResourcesCompositionKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesCompositionKeyOK, error)
 
-	GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error)
+	GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error)
 
 	GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2ResourcesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagOK, error)
 
 	GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2ResourcesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagKeyOK, error)
 
-	GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error)
+	GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error)
 
 	GetInventoryAPIV2ServicesCompositionKey(params *GetInventoryAPIV2ServicesCompositionKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCompositionKeyOK, error)
 
 	GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error)
 
-	GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error)
+	GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error)
 
 	GetInventoryAPIV2ServicesTag(params *GetInventoryAPIV2ServicesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagOK, error)
 
@@ -228,7 +228,7 @@ func (a *Client) GetInventoryAPIV2ResourcesCompositionKey(params *GetInventoryAP
 /*
 GetInventoryAPIV2ResourcesMetric returns list of resource types with metrics of each type based on the given input filters
 */
-func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error) {
+func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInventoryAPIV2ResourcesMetricParams()
@@ -242,6 +242,7 @@ func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2Resou
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetInventoryAPIV2ResourcesMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -344,7 +345,7 @@ func (a *Client) GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2Resou
 /*
 GetInventoryAPIV2ResourcesTrend returns list of resource counts over the course of the specified time frame based on the given input filters
 */
-func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error) {
+func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInventoryAPIV2ResourcesTrendParams()
@@ -358,6 +359,7 @@ func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2Resour
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetInventoryAPIV2ResourcesTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -459,7 +461,7 @@ func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2Ser
 /*
 GetInventoryAPIV2ServicesMetric returns list of resource types with metrics of each type based on the given input filters
 */
-func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error) {
+func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInventoryAPIV2ServicesMetricParams()
@@ -473,6 +475,7 @@ func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2Servic
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetInventoryAPIV2ServicesMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

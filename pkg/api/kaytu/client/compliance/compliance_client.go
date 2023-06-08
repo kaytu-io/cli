@@ -44,19 +44,19 @@ type ClientService interface {
 
 	GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error)
 
-	GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error)
+	GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error)
 
-	GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error)
+	GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error)
 
-	GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error)
+	GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error)
 
 	GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error)
 
-	GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error)
+	GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error)
 
-	PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error)
+	PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error)
 
-	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
+	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -330,7 +330,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplia
 /*
 GetComplianceAPIV1BenchmarksSummary gets benchmark summary
 */
-func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1BenchmarksSummaryParams()
@@ -344,6 +344,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1B
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1BenchmarksSummaryReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -368,7 +369,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1B
 /*
 GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount returns all findings with respect to filters
 */
-func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error) {
+func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams()
@@ -382,6 +383,7 @@ func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetC
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -406,7 +408,7 @@ func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetC
 /*
 GetComplianceAPIV1FindingsMetrics returns findings metrics
 */
-func (a *Client) GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error) {
+func (a *Client) GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetComplianceAPIV1FindingsMetricsParams()
@@ -420,6 +422,7 @@ func (a *Client) GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1Fin
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetComplianceAPIV1FindingsMetricsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -482,7 +485,7 @@ func (a *Client) GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1Quer
 /*
 GetScheduleAPIV1BenchmarkEvaluations lists all benchmark evaluations
 */
-func (a *Client) GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error) {
+func (a *Client) GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1BenchmarkEvaluationsParams()
@@ -496,6 +499,7 @@ func (a *Client) GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1Be
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1BenchmarkEvaluationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -520,7 +524,7 @@ func (a *Client) GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1Be
 /*
 PostComplianceAPIV1AlarmsTop returns all findings with respect to filters
 */
-func (a *Client) PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error) {
+func (a *Client) PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostComplianceAPIV1AlarmsTopParams()
@@ -534,6 +538,7 @@ func (a *Client) PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsT
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostComplianceAPIV1AlarmsTopReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -558,7 +563,7 @@ func (a *Client) PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsT
 /*
 PostComplianceAPIV1Findings returns all findings with respect to filters
 */
-func (a *Client) PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error) {
+func (a *Client) PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostComplianceAPIV1FindingsParams()
@@ -572,6 +577,7 @@ func (a *Client) PostComplianceAPIV1Findings(params *PostComplianceAPIV1Findings
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostComplianceAPIV1FindingsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

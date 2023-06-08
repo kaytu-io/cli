@@ -14,8 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
+	"github.com/go-openapi/swag"
 )
 
 // NewPostScheduleAPIV1StacksCreateParams creates a new PostScheduleAPIV1StacksCreateParams object,
@@ -63,11 +62,23 @@ PostScheduleAPIV1StacksCreateParams contains all the parameters to send to the A
 */
 type PostScheduleAPIV1StacksCreateParams struct {
 
-	/* Request.
+	/* Resources.
 
-	   Request Body
+	   Additional Resources
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPICreateStackRequest
+	Resources []string
+
+	/* Tags.
+
+	   Tags
+	*/
+	Tags *string
+
+	/* TerrafromFile.
+
+	   File to upload
+	*/
+	TerrafromFile runtime.NamedReadCloser
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,15 +133,37 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
-// WithRequest adds the request to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPICreateStackRequest) *PostScheduleAPIV1StacksCreateParams {
-	o.SetRequest(request)
+// WithResources adds the resources to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithResources(resources []string) *PostScheduleAPIV1StacksCreateParams {
+	o.SetResources(resources)
 	return o
 }
 
-// SetRequest adds the request to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPICreateStackRequest) {
-	o.Request = request
+// SetResources adds the resources to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetResources(resources []string) {
+	o.Resources = resources
+}
+
+// WithTags adds the tags to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithTags(tags *string) *PostScheduleAPIV1StacksCreateParams {
+	o.SetTags(tags)
+	return o
+}
+
+// SetTags adds the tags to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetTags(tags *string) {
+	o.Tags = tags
+}
+
+// WithTerrafromFile adds the terrafromFile to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithTerrafromFile(terrafromFile runtime.NamedReadCloser) *PostScheduleAPIV1StacksCreateParams {
+	o.SetTerrafromFile(terrafromFile)
+	return o
+}
+
+// SetTerrafromFile adds the terrafromFile to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetTerrafromFile(terrafromFile runtime.NamedReadCloser) {
+	o.TerrafromFile = terrafromFile
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -140,9 +173,40 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
-	if o.Request != nil {
-		if err := r.SetBodyParam(o.Request); err != nil {
+
+	if o.Resources != nil {
+
+		// binding items for resources
+		joinedResources := o.bindParamResources(reg)
+
+		// form array param resources
+		if err := r.SetFormParam("resources", joinedResources...); err != nil {
 			return err
+		}
+	}
+
+	if o.Tags != nil {
+
+		// form param tags
+		var frTags string
+		if o.Tags != nil {
+			frTags = *o.Tags
+		}
+		fTags := frTags
+		if fTags != "" {
+			if err := r.SetFormParam("tags", fTags); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.TerrafromFile != nil {
+
+		if o.TerrafromFile != nil {
+			// form file param terrafromFile
+			if err := r.SetFileParam("terrafromFile", o.TerrafromFile); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -150,4 +214,21 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamPostScheduleAPIV1StacksCreate binds the parameter resources
+func (o *PostScheduleAPIV1StacksCreateParams) bindParamResources(formats strfmt.Registry) []string {
+	resourcesIR := o.Resources
+
+	var resourcesIC []string
+	for _, resourcesIIR := range resourcesIR { // explode []string
+
+		resourcesIIV := resourcesIIR // string as string
+		resourcesIC = append(resourcesIC, resourcesIIV)
+	}
+
+	// items.CollectionFormat: ""
+	resourcesIS := swag.JoinByFormat(resourcesIC, "")
+
+	return resourcesIS
 }

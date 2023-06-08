@@ -30,29 +30,29 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetScheduleAPIV1ComplianceReportLastCompleted(params *GetScheduleAPIV1ComplianceReportLastCompletedParams, opts ...ClientOption) (*GetScheduleAPIV1ComplianceReportLastCompletedOK, error)
+	GetScheduleAPIV1ComplianceReportLastCompleted(params *GetScheduleAPIV1ComplianceReportLastCompletedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1ComplianceReportLastCompletedOK, error)
 
-	GetScheduleAPIV1DescribeResourceJobsPending(params *GetScheduleAPIV1DescribeResourceJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1DescribeResourceJobsPendingOK, error)
+	GetScheduleAPIV1DescribeResourceJobsPending(params *GetScheduleAPIV1DescribeResourceJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1DescribeResourceJobsPendingOK, error)
 
-	GetScheduleAPIV1DescribeSourceJobsPending(params *GetScheduleAPIV1DescribeSourceJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1DescribeSourceJobsPendingOK, error)
+	GetScheduleAPIV1DescribeSourceJobsPending(params *GetScheduleAPIV1DescribeSourceJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1DescribeSourceJobsPendingOK, error)
 
-	GetScheduleAPIV1InsightJobsPending(params *GetScheduleAPIV1InsightJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1InsightJobsPendingOK, error)
+	GetScheduleAPIV1InsightJobsPending(params *GetScheduleAPIV1InsightJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1InsightJobsPendingOK, error)
 
-	GetScheduleAPIV1ResourceTypeProvider(params *GetScheduleAPIV1ResourceTypeProviderParams, opts ...ClientOption) (*GetScheduleAPIV1ResourceTypeProviderOK, error)
+	GetScheduleAPIV1ResourceTypeProvider(params *GetScheduleAPIV1ResourceTypeProviderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1ResourceTypeProviderOK, error)
 
-	GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesOK, error)
+	GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesOK, error)
 
-	GetScheduleAPIV1SourcesSourceID(params *GetScheduleAPIV1SourcesSourceIDParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDOK, error)
+	GetScheduleAPIV1SourcesSourceID(params *GetScheduleAPIV1SourcesSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDOK, error)
 
-	GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetScheduleAPIV1SourcesSourceIDJobsComplianceParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsComplianceOK, error)
+	GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetScheduleAPIV1SourcesSourceIDJobsComplianceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsComplianceOK, error)
 
-	GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetScheduleAPIV1SourcesSourceIDJobsDescribeParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsDescribeOK, error)
+	GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetScheduleAPIV1SourcesSourceIDJobsDescribeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsDescribeOK, error)
 
-	GetScheduleAPIV1SummarizeJobsPending(params *GetScheduleAPIV1SummarizeJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1SummarizeJobsPendingOK, error)
+	GetScheduleAPIV1SummarizeJobsPending(params *GetScheduleAPIV1SummarizeJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SummarizeJobsPendingOK, error)
 
-	PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshParams, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshOK, error)
+	PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshOK, error)
 
-	PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshParams, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshOK, error)
+	PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -60,7 +60,7 @@ type ClientService interface {
 /*
 GetScheduleAPIV1ComplianceReportLastCompleted gets last completed compliance report
 */
-func (a *Client) GetScheduleAPIV1ComplianceReportLastCompleted(params *GetScheduleAPIV1ComplianceReportLastCompletedParams, opts ...ClientOption) (*GetScheduleAPIV1ComplianceReportLastCompletedOK, error) {
+func (a *Client) GetScheduleAPIV1ComplianceReportLastCompleted(params *GetScheduleAPIV1ComplianceReportLastCompletedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1ComplianceReportLastCompletedOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1ComplianceReportLastCompletedParams()
@@ -74,6 +74,7 @@ func (a *Client) GetScheduleAPIV1ComplianceReportLastCompleted(params *GetSchedu
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1ComplianceReportLastCompletedReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -98,7 +99,7 @@ func (a *Client) GetScheduleAPIV1ComplianceReportLastCompleted(params *GetSchedu
 /*
 GetScheduleAPIV1DescribeResourceJobsPending listings describe resource jobs
 */
-func (a *Client) GetScheduleAPIV1DescribeResourceJobsPending(params *GetScheduleAPIV1DescribeResourceJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1DescribeResourceJobsPendingOK, error) {
+func (a *Client) GetScheduleAPIV1DescribeResourceJobsPending(params *GetScheduleAPIV1DescribeResourceJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1DescribeResourceJobsPendingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1DescribeResourceJobsPendingParams()
@@ -112,6 +113,7 @@ func (a *Client) GetScheduleAPIV1DescribeResourceJobsPending(params *GetSchedule
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1DescribeResourceJobsPendingReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -136,7 +138,7 @@ func (a *Client) GetScheduleAPIV1DescribeResourceJobsPending(params *GetSchedule
 /*
 GetScheduleAPIV1DescribeSourceJobsPending listings describe source jobs
 */
-func (a *Client) GetScheduleAPIV1DescribeSourceJobsPending(params *GetScheduleAPIV1DescribeSourceJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1DescribeSourceJobsPendingOK, error) {
+func (a *Client) GetScheduleAPIV1DescribeSourceJobsPending(params *GetScheduleAPIV1DescribeSourceJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1DescribeSourceJobsPendingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1DescribeSourceJobsPendingParams()
@@ -150,6 +152,7 @@ func (a *Client) GetScheduleAPIV1DescribeSourceJobsPending(params *GetScheduleAP
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1DescribeSourceJobsPendingReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -174,7 +177,7 @@ func (a *Client) GetScheduleAPIV1DescribeSourceJobsPending(params *GetScheduleAP
 /*
 GetScheduleAPIV1InsightJobsPending listings insight jobs
 */
-func (a *Client) GetScheduleAPIV1InsightJobsPending(params *GetScheduleAPIV1InsightJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1InsightJobsPendingOK, error) {
+func (a *Client) GetScheduleAPIV1InsightJobsPending(params *GetScheduleAPIV1InsightJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1InsightJobsPendingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1InsightJobsPendingParams()
@@ -188,6 +191,7 @@ func (a *Client) GetScheduleAPIV1InsightJobsPending(params *GetScheduleAPIV1Insi
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1InsightJobsPendingReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -214,7 +218,7 @@ GetScheduleAPIV1ResourceTypeProvider gets resource type by provider
 
 get resource type by provider
 */
-func (a *Client) GetScheduleAPIV1ResourceTypeProvider(params *GetScheduleAPIV1ResourceTypeProviderParams, opts ...ClientOption) (*GetScheduleAPIV1ResourceTypeProviderOK, error) {
+func (a *Client) GetScheduleAPIV1ResourceTypeProvider(params *GetScheduleAPIV1ResourceTypeProviderParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1ResourceTypeProviderOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1ResourceTypeProviderParams()
@@ -228,6 +232,7 @@ func (a *Client) GetScheduleAPIV1ResourceTypeProvider(params *GetScheduleAPIV1Re
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1ResourceTypeProviderReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -254,7 +259,7 @@ GetScheduleAPIV1Sources lists sources
 
 Getting all of Keibi sources
 */
-func (a *Client) GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesOK, error) {
+func (a *Client) GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1SourcesParams()
@@ -268,6 +273,7 @@ func (a *Client) GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, 
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1SourcesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -294,7 +300,7 @@ GetScheduleAPIV1SourcesSourceID gets source by id
 
 Getting Keibi source by id
 */
-func (a *Client) GetScheduleAPIV1SourcesSourceID(params *GetScheduleAPIV1SourcesSourceIDParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDOK, error) {
+func (a *Client) GetScheduleAPIV1SourcesSourceID(params *GetScheduleAPIV1SourcesSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1SourcesSourceIDParams()
@@ -308,6 +314,7 @@ func (a *Client) GetScheduleAPIV1SourcesSourceID(params *GetScheduleAPIV1Sources
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1SourcesSourceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -334,7 +341,7 @@ GetScheduleAPIV1SourcesSourceIDJobsCompliance lists source compliance reports
 
 List source compliance reports
 */
-func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetScheduleAPIV1SourcesSourceIDJobsComplianceParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsComplianceOK, error) {
+func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetScheduleAPIV1SourcesSourceIDJobsComplianceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsComplianceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1SourcesSourceIDJobsComplianceParams()
@@ -348,6 +355,7 @@ func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetSchedu
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1SourcesSourceIDJobsComplianceReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -374,7 +382,7 @@ GetScheduleAPIV1SourcesSourceIDJobsDescribe lists source describe jobs
 
 List source describe jobs
 */
-func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetScheduleAPIV1SourcesSourceIDJobsDescribeParams, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsDescribeOK, error) {
+func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetScheduleAPIV1SourcesSourceIDJobsDescribeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsDescribeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1SourcesSourceIDJobsDescribeParams()
@@ -388,6 +396,7 @@ func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetSchedule
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1SourcesSourceIDJobsDescribeReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -412,7 +421,7 @@ func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetSchedule
 /*
 GetScheduleAPIV1SummarizeJobsPending listings summarize jobs
 */
-func (a *Client) GetScheduleAPIV1SummarizeJobsPending(params *GetScheduleAPIV1SummarizeJobsPendingParams, opts ...ClientOption) (*GetScheduleAPIV1SummarizeJobsPendingOK, error) {
+func (a *Client) GetScheduleAPIV1SummarizeJobsPending(params *GetScheduleAPIV1SummarizeJobsPendingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SummarizeJobsPendingOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScheduleAPIV1SummarizeJobsPendingParams()
@@ -426,6 +435,7 @@ func (a *Client) GetScheduleAPIV1SummarizeJobsPending(params *GetScheduleAPIV1Su
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetScheduleAPIV1SummarizeJobsPendingReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -452,7 +462,7 @@ PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh runs compliance report job
 
 Run compliance report jobs
 */
-func (a *Client) PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshParams, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshOK, error) {
+func (a *Client) PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshParams()
@@ -466,6 +476,7 @@ func (a *Client) PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh(params *P
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -492,7 +503,7 @@ PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh runs describe jobs
 
 Run describe jobs
 */
-func (a *Client) PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshParams, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshOK, error) {
+func (a *Client) PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh(params *PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshParams()
@@ -506,6 +517,7 @@ func (a *Client) PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh(params *Pos
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

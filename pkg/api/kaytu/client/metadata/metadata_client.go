@@ -38,9 +38,9 @@ type ClientService interface {
 
 	GetInventoryAPIV2MetadataServicesServiceName(params *GetInventoryAPIV2MetadataServicesServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2MetadataServicesServiceNameOK, error)
 
-	GetMetadataAPIV1MetadataKey(params *GetMetadataAPIV1MetadataKeyParams, opts ...ClientOption) (*GetMetadataAPIV1MetadataKeyOK, error)
+	GetMetadataAPIV1MetadataKey(params *GetMetadataAPIV1MetadataKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetadataAPIV1MetadataKeyOK, error)
 
-	PostMetadataAPIV1Metadata(params *PostMetadataAPIV1MetadataParams, opts ...ClientOption) (*PostMetadataAPIV1MetadataOK, error)
+	PostMetadataAPIV1Metadata(params *PostMetadataAPIV1MetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMetadataAPIV1MetadataOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -218,7 +218,7 @@ GetMetadataAPIV1MetadataKey returns the config metadata for the given key
 
 Returns the config metadata for the given key
 */
-func (a *Client) GetMetadataAPIV1MetadataKey(params *GetMetadataAPIV1MetadataKeyParams, opts ...ClientOption) (*GetMetadataAPIV1MetadataKeyOK, error) {
+func (a *Client) GetMetadataAPIV1MetadataKey(params *GetMetadataAPIV1MetadataKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMetadataAPIV1MetadataKeyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetMetadataAPIV1MetadataKeyParams()
@@ -232,6 +232,7 @@ func (a *Client) GetMetadataAPIV1MetadataKey(params *GetMetadataAPIV1MetadataKey
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetMetadataAPIV1MetadataKeyReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -258,7 +259,7 @@ PostMetadataAPIV1Metadata sets the config metadata for the given key
 
 Sets the config metadata for the given key
 */
-func (a *Client) PostMetadataAPIV1Metadata(params *PostMetadataAPIV1MetadataParams, opts ...ClientOption) (*PostMetadataAPIV1MetadataOK, error) {
+func (a *Client) PostMetadataAPIV1Metadata(params *PostMetadataAPIV1MetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostMetadataAPIV1MetadataOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostMetadataAPIV1MetadataParams()
@@ -272,6 +273,7 @@ func (a *Client) PostMetadataAPIV1Metadata(params *PostMetadataAPIV1MetadataPara
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostMetadataAPIV1MetadataReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

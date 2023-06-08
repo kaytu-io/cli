@@ -38,7 +38,7 @@ type ClientService interface {
 
 	GetScheduleAPIV1StacksStackID(params *GetScheduleAPIV1StacksStackIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDOK, error)
 
-	GetScheduleAPIV1StacksStackIDInsights(params *GetScheduleAPIV1StacksStackIDInsightsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDInsightsOK, error)
+	GetScheduleAPIV1StacksStackIDInsight(params *GetScheduleAPIV1StacksStackIDInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDInsightOK, error)
 
 	PostScheduleAPIV1StacksBenchmarkTrigger(params *PostScheduleAPIV1StacksBenchmarkTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksBenchmarkTriggerOK, error)
 
@@ -89,7 +89,7 @@ func (a *Client) DeleteScheduleAPIV1StacksStackID(params *DeleteScheduleAPIV1Sta
 }
 
 /*
-GetScheduleAPIV1Stacks lists stack
+GetScheduleAPIV1Stacks lists stacks
 
 Get list of stacks
 */
@@ -130,9 +130,9 @@ func (a *Client) GetScheduleAPIV1Stacks(params *GetScheduleAPIV1StacksParams, au
 }
 
 /*
-GetScheduleAPIV1StacksFindingsJobID gets benchmark result
+GetScheduleAPIV1StacksFindingsJobID gets stack findings
 
-Get a benchmark result by jobId
+Get all findings for a stack
 */
 func (a *Client) GetScheduleAPIV1StacksFindingsJobID(params *GetScheduleAPIV1StacksFindingsJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksFindingsJobIDOK, error) {
 	// TODO: Validate the params before sending
@@ -212,24 +212,24 @@ func (a *Client) GetScheduleAPIV1StacksStackID(params *GetScheduleAPIV1StacksSta
 }
 
 /*
-GetScheduleAPIV1StacksStackIDInsights gets insights result
+GetScheduleAPIV1StacksStackIDInsight gets stack insight
 
 Get a benchmark result by jobId
 */
-func (a *Client) GetScheduleAPIV1StacksStackIDInsights(params *GetScheduleAPIV1StacksStackIDInsightsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDInsightsOK, error) {
+func (a *Client) GetScheduleAPIV1StacksStackIDInsight(params *GetScheduleAPIV1StacksStackIDInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDInsightOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetScheduleAPIV1StacksStackIDInsightsParams()
+		params = NewGetScheduleAPIV1StacksStackIDInsightParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetScheduleAPIV1StacksStackIDInsights",
+		ID:                 "GetScheduleAPIV1StacksStackIDInsight",
 		Method:             "GET",
-		PathPattern:        "/schedule/api/v1/stacks/{stackId}/insights",
+		PathPattern:        "/schedule/api/v1/stacks/{stackId}/insight",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetScheduleAPIV1StacksStackIDInsightsReader{formats: a.formats},
+		Reader:             &GetScheduleAPIV1StacksStackIDInsightReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -242,20 +242,20 @@ func (a *Client) GetScheduleAPIV1StacksStackIDInsights(params *GetScheduleAPIV1S
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetScheduleAPIV1StacksStackIDInsightsOK)
+	success, ok := result.(*GetScheduleAPIV1StacksStackIDInsightOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1StacksStackIDInsights: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1StacksStackIDInsight: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-PostScheduleAPIV1StacksBenchmarkTrigger triggers benchmarks
+PostScheduleAPIV1StacksBenchmarkTrigger evaluates stack
 
-Trigger defined benchmarks for a stack
+Trigger defined benchmarks for a stack and save in the history
 */
 func (a *Client) PostScheduleAPIV1StacksBenchmarkTrigger(params *PostScheduleAPIV1StacksBenchmarkTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksBenchmarkTriggerOK, error) {
 	// TODO: Validate the params before sending
@@ -294,9 +294,9 @@ func (a *Client) PostScheduleAPIV1StacksBenchmarkTrigger(params *PostScheduleAPI
 }
 
 /*
-PostScheduleAPIV1StacksCreate builds a stack
+PostScheduleAPIV1StacksCreate creates stack
 
-Temporary API for building a stack by giving a terraform statefile directory
+Create a stack by giving terraform statefile and additional resources
 */
 func (a *Client) PostScheduleAPIV1StacksCreate(params *PostScheduleAPIV1StacksCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksCreateOK, error) {
 	// TODO: Validate the params before sending

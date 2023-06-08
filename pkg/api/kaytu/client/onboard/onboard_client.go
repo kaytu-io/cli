@@ -30,65 +30,65 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardAPIV1CredentialCredentialIDParams, opts ...ClientOption) (*DeleteOnboardAPIV1CredentialCredentialIDOK, error)
+	DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1CredentialCredentialIDOK, error)
 
-	DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1SourceSourceIDParams, opts ...ClientOption) (*DeleteOnboardAPIV1SourceSourceIDOK, error)
+	DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1SourceSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1SourceSourceIDOK, error)
 
-	GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1CatalogConnectorsParams, opts ...ClientOption) (*GetOnboardAPIV1CatalogConnectorsOK, error)
+	GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1CatalogConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogConnectorsOK, error)
 
-	GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error)
+	GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error)
 
-	GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error)
+	GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error)
 
-	GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsParams, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsOK, error)
+	GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsOK, error)
 
-	GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1ConnectorsConnectorNameParams, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsConnectorNameOK, error)
+	GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1ConnectorsConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsConnectorNameOK, error)
 
-	GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialOK, error)
+	GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialOK, error)
 
-	GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1CredentialCredentialIDParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDOK, error)
+	GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDOK, error)
 
-	GetOnboardAPIV1CredentialCredentialIDHealthcheck(params *GetOnboardAPIV1CredentialCredentialIDHealthcheckParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDHealthcheckOK, error)
+	GetOnboardAPIV1CredentialCredentialIDHealthcheck(params *GetOnboardAPIV1CredentialCredentialIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDHealthcheckOK, error)
 
-	GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1CredentialSourcesListParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialSourcesListOK, error)
+	GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1CredentialSourcesListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialSourcesListOK, error)
 
-	GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams, opts ...ClientOption) (*GetOnboardAPIV1ProvidersOK, error)
+	GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersOK, error)
 
-	GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersTypesParams, opts ...ClientOption) (*GetOnboardAPIV1ProvidersTypesOK, error)
+	GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersTypesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersTypesOK, error)
 
-	GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1SourceAccountAccountIDParams, opts ...ClientOption) (*GetOnboardAPIV1SourceAccountAccountIDOK, error)
+	GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1SourceAccountAccountIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceAccountAccountIDOK, error)
 
-	GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSourceIDParams, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDOK, error)
+	GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDOK, error)
 
-	GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV1SourceSourceIDCredentialsParams, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDCredentialsOK, error)
+	GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV1SourceSourceIDCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDCredentialsOK, error)
 
-	GetOnboardAPIV1Sources(params *GetOnboardAPIV1SourcesParams, opts ...ClientOption) (*GetOnboardAPIV1SourcesOK, error)
+	GetOnboardAPIV1Sources(params *GetOnboardAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourcesOK, error)
 
-	GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCountParams, opts ...ClientOption) (*GetOnboardAPIV1SourcesCountOK, error)
+	GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourcesCountOK, error)
 
-	PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialOK, error)
+	PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialOK, error)
 
-	PostOnboardAPIV1CredentialCredentialIDAutoonboard(params *PostOnboardAPIV1CredentialCredentialIDAutoonboardParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDAutoonboardOK, error)
+	PostOnboardAPIV1CredentialCredentialIDAutoonboard(params *PostOnboardAPIV1CredentialCredentialIDAutoonboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDAutoonboardOK, error)
 
-	PostOnboardAPIV1CredentialCredentialIDDisable(params *PostOnboardAPIV1CredentialCredentialIDDisableParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDDisableOK, error)
+	PostOnboardAPIV1CredentialCredentialIDDisable(params *PostOnboardAPIV1CredentialCredentialIDDisableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDDisableOK, error)
 
-	PostOnboardAPIV1CredentialCredentialIDEnable(params *PostOnboardAPIV1CredentialCredentialIDEnableParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDEnableOK, error)
+	PostOnboardAPIV1CredentialCredentialIDEnable(params *PostOnboardAPIV1CredentialCredentialIDEnableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDEnableOK, error)
 
-	PostOnboardAPIV1SourceAws(params *PostOnboardAPIV1SourceAwsParams, opts ...ClientOption) (*PostOnboardAPIV1SourceAwsOK, error)
+	PostOnboardAPIV1SourceAws(params *PostOnboardAPIV1SourceAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceAwsOK, error)
 
-	PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzureParams, opts ...ClientOption) (*PostOnboardAPIV1SourceAzureOK, error)
+	PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceAzureOK, error)
 
-	PostOnboardAPIV1SourceSourceIDDisable(params *PostOnboardAPIV1SourceSourceIDDisableParams, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDDisableOK, error)
+	PostOnboardAPIV1SourceSourceIDDisable(params *PostOnboardAPIV1SourceSourceIDDisableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDDisableOK, error)
 
-	PostOnboardAPIV1SourceSourceIDEnable(params *PostOnboardAPIV1SourceSourceIDEnableParams, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDEnableOK, error)
+	PostOnboardAPIV1SourceSourceIDEnable(params *PostOnboardAPIV1SourceSourceIDEnableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDEnableOK, error)
 
-	PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAPIV1SourceSourceIDHealthcheckParams, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDHealthcheckOK, error)
+	PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAPIV1SourceSourceIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDHealthcheckOK, error)
 
-	PostOnboardAPIV1Sources(params *PostOnboardAPIV1SourcesParams, opts ...ClientOption) (*PostOnboardAPIV1SourcesOK, error)
+	PostOnboardAPIV1Sources(params *PostOnboardAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourcesOK, error)
 
-	PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1CredentialCredentialIDParams, opts ...ClientOption) (*PutOnboardAPIV1CredentialCredentialIDOK, error)
+	PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1CredentialCredentialIDOK, error)
 
-	PutOnboardAPIV1SourceSourceIDCredentials(params *PutOnboardAPIV1SourceSourceIDCredentialsParams, opts ...ClientOption) (*PutOnboardAPIV1SourceSourceIDCredentialsOK, error)
+	PutOnboardAPIV1SourceSourceIDCredentials(params *PutOnboardAPIV1SourceSourceIDCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1SourceSourceIDCredentialsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -98,7 +98,7 @@ DeleteOnboardAPIV1CredentialCredentialID deletes credential
 
 Delete credential
 */
-func (a *Client) DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardAPIV1CredentialCredentialIDParams, opts ...ClientOption) (*DeleteOnboardAPIV1CredentialCredentialIDOK, error) {
+func (a *Client) DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOnboardAPIV1CredentialCredentialIDParams()
@@ -112,6 +112,7 @@ func (a *Client) DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardA
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOnboardAPIV1CredentialCredentialIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -138,7 +139,7 @@ DeleteOnboardAPIV1SourceSourceID deletes a single source
 
 Deleting a single source either AWS / Azure.
 */
-func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1SourceSourceIDParams, opts ...ClientOption) (*DeleteOnboardAPIV1SourceSourceIDOK, error) {
+func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1SourceSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1SourceSourceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteOnboardAPIV1SourceSourceIDParams()
@@ -152,6 +153,7 @@ func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1Sour
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOnboardAPIV1SourceSourceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -176,7 +178,7 @@ func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1Sour
 /*
 GetOnboardAPIV1CatalogConnectors returns the list of connectors for catalog page
 */
-func (a *Client) GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1CatalogConnectorsParams, opts ...ClientOption) (*GetOnboardAPIV1CatalogConnectorsOK, error) {
+func (a *Client) GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1CatalogConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogConnectorsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1CatalogConnectorsParams()
@@ -190,6 +192,7 @@ func (a *Client) GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1Catalog
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1CatalogConnectorsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -214,7 +217,7 @@ func (a *Client) GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1Catalog
 /*
 GetOnboardAPIV1CatalogMetrics returns the list of metrics for catalog page
 */
-func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error) {
+func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1CatalogMetricsParams()
@@ -228,6 +231,7 @@ func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMet
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1CatalogMetricsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -252,7 +256,7 @@ func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMet
 /*
 GetOnboardAPIV1ConnectionsCount returns a count of connections
 */
-func (a *Client) GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error) {
+func (a *Client) GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1ConnectionsCountParams()
@@ -266,6 +270,7 @@ func (a *Client) GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1Connecti
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1ConnectionsCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -292,7 +297,7 @@ GetOnboardAPIV1Connectors gets connectors
 
 Getting connectors
 */
-func (a *Client) GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsParams, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsOK, error) {
+func (a *Client) GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1ConnectorsParams()
@@ -306,6 +311,7 @@ func (a *Client) GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsPara
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1ConnectorsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -332,7 +338,7 @@ GetOnboardAPIV1ConnectorsConnectorName gets connector
 
 Getting connector
 */
-func (a *Client) GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1ConnectorsConnectorNameParams, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsConnectorNameOK, error) {
+func (a *Client) GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1ConnectorsConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsConnectorNameOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1ConnectorsConnectorNameParams()
@@ -346,6 +352,7 @@ func (a *Client) GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1C
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1ConnectorsConnectorNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -372,7 +379,7 @@ GetOnboardAPIV1Credential lists credentials
 
 List credentials
 */
-func (a *Client) GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialOK, error) {
+func (a *Client) GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1CredentialParams()
@@ -386,6 +393,7 @@ func (a *Client) GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialPara
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1CredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -412,7 +420,7 @@ GetOnboardAPIV1CredentialCredentialID lists credentials
 
 List credentials
 */
-func (a *Client) GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1CredentialCredentialIDParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDOK, error) {
+func (a *Client) GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1CredentialCredentialIDParams()
@@ -426,6 +434,7 @@ func (a *Client) GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1Cr
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1CredentialCredentialIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -450,7 +459,7 @@ func (a *Client) GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1Cr
 /*
 GetOnboardAPIV1CredentialCredentialIDHealthcheck gets live credential health status
 */
-func (a *Client) GetOnboardAPIV1CredentialCredentialIDHealthcheck(params *GetOnboardAPIV1CredentialCredentialIDHealthcheckParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDHealthcheckOK, error) {
+func (a *Client) GetOnboardAPIV1CredentialCredentialIDHealthcheck(params *GetOnboardAPIV1CredentialCredentialIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDHealthcheckOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1CredentialCredentialIDHealthcheckParams()
@@ -464,6 +473,7 @@ func (a *Client) GetOnboardAPIV1CredentialCredentialIDHealthcheck(params *GetOnb
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1CredentialCredentialIDHealthcheckReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -490,7 +500,7 @@ GetOnboardAPIV1CredentialSourcesList returns a list of sources
 
 Returning a list of sources including both AWS and Azure unless filtered by Type.
 */
-func (a *Client) GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1CredentialSourcesListParams, opts ...ClientOption) (*GetOnboardAPIV1CredentialSourcesListOK, error) {
+func (a *Client) GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1CredentialSourcesListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialSourcesListOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1CredentialSourcesListParams()
@@ -504,6 +514,7 @@ func (a *Client) GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1Cre
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1CredentialSourcesListReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -530,7 +541,7 @@ GetOnboardAPIV1Providers gets providers
 
 Getting cloud providers
 */
-func (a *Client) GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams, opts ...ClientOption) (*GetOnboardAPIV1ProvidersOK, error) {
+func (a *Client) GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1ProvidersParams()
@@ -544,6 +555,7 @@ func (a *Client) GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1ProvidersReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -570,7 +582,7 @@ GetOnboardAPIV1ProvidersTypes gets provider types
 
 Getting provider types
 */
-func (a *Client) GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersTypesParams, opts ...ClientOption) (*GetOnboardAPIV1ProvidersTypesOK, error) {
+func (a *Client) GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersTypesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersTypesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1ProvidersTypesParams()
@@ -584,6 +596,7 @@ func (a *Client) GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersT
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1ProvidersTypesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -610,7 +623,7 @@ GetOnboardAPIV1SourceAccountAccountID returns source by account id
 
 Returning account source either AWS / Azure.
 */
-func (a *Client) GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1SourceAccountAccountIDParams, opts ...ClientOption) (*GetOnboardAPIV1SourceAccountAccountIDOK, error) {
+func (a *Client) GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1SourceAccountAccountIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceAccountAccountIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1SourceAccountAccountIDParams()
@@ -624,6 +637,7 @@ func (a *Client) GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1So
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1SourceAccountAccountIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -650,7 +664,7 @@ GetOnboardAPIV1SourceSourceID returns a single source
 
 Returning single source either AWS / Azure.
 */
-func (a *Client) GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSourceIDParams, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDOK, error) {
+func (a *Client) GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1SourceSourceIDParams()
@@ -664,6 +678,7 @@ func (a *Client) GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSour
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1SourceSourceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -688,7 +703,7 @@ func (a *Client) GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSour
 /*
 GetOnboardAPIV1SourceSourceIDCredentials gets source credential
 */
-func (a *Client) GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV1SourceSourceIDCredentialsParams, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDCredentialsOK, error) {
+func (a *Client) GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV1SourceSourceIDCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDCredentialsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1SourceSourceIDCredentialsParams()
@@ -702,6 +717,7 @@ func (a *Client) GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1SourceSourceIDCredentialsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -728,7 +744,7 @@ GetOnboardAPIV1Sources returns a list of sources
 
 Returning a list of sources including both AWS and Azure unless filtered by Type.
 */
-func (a *Client) GetOnboardAPIV1Sources(params *GetOnboardAPIV1SourcesParams, opts ...ClientOption) (*GetOnboardAPIV1SourcesOK, error) {
+func (a *Client) GetOnboardAPIV1Sources(params *GetOnboardAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourcesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1SourcesParams()
@@ -742,6 +758,7 @@ func (a *Client) GetOnboardAPIV1Sources(params *GetOnboardAPIV1SourcesParams, op
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1SourcesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -768,7 +785,7 @@ GetOnboardAPIV1SourcesCount returns a count of sources
 
 Returning a count of sources including both AWS and Azure unless filtered by Type.
 */
-func (a *Client) GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCountParams, opts ...ClientOption) (*GetOnboardAPIV1SourcesCountOK, error) {
+func (a *Client) GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourcesCountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOnboardAPIV1SourcesCountParams()
@@ -782,6 +799,7 @@ func (a *Client) GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCount
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOnboardAPIV1SourcesCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -808,7 +826,7 @@ PostOnboardAPIV1Credential creates connection credentials
 
 Creating connection credentials
 */
-func (a *Client) PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialOK, error) {
+func (a *Client) PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1CredentialParams()
@@ -822,6 +840,7 @@ func (a *Client) PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialPa
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1CredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -848,7 +867,7 @@ PostOnboardAPIV1CredentialCredentialIDAutoonboard onboards all available connect
 
 Onboard all available connections for a credential
 */
-func (a *Client) PostOnboardAPIV1CredentialCredentialIDAutoonboard(params *PostOnboardAPIV1CredentialCredentialIDAutoonboardParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDAutoonboardOK, error) {
+func (a *Client) PostOnboardAPIV1CredentialCredentialIDAutoonboard(params *PostOnboardAPIV1CredentialCredentialIDAutoonboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDAutoonboardOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1CredentialCredentialIDAutoonboardParams()
@@ -862,6 +881,7 @@ func (a *Client) PostOnboardAPIV1CredentialCredentialIDAutoonboard(params *PostO
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1CredentialCredentialIDAutoonboardReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -888,7 +908,7 @@ PostOnboardAPIV1CredentialCredentialIDDisable disables credential
 
 Disable credential
 */
-func (a *Client) PostOnboardAPIV1CredentialCredentialIDDisable(params *PostOnboardAPIV1CredentialCredentialIDDisableParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDDisableOK, error) {
+func (a *Client) PostOnboardAPIV1CredentialCredentialIDDisable(params *PostOnboardAPIV1CredentialCredentialIDDisableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDDisableOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1CredentialCredentialIDDisableParams()
@@ -902,6 +922,7 @@ func (a *Client) PostOnboardAPIV1CredentialCredentialIDDisable(params *PostOnboa
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1CredentialCredentialIDDisableReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -928,7 +949,7 @@ PostOnboardAPIV1CredentialCredentialIDEnable enables credential
 
 Enable credential
 */
-func (a *Client) PostOnboardAPIV1CredentialCredentialIDEnable(params *PostOnboardAPIV1CredentialCredentialIDEnableParams, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDEnableOK, error) {
+func (a *Client) PostOnboardAPIV1CredentialCredentialIDEnable(params *PostOnboardAPIV1CredentialCredentialIDEnableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDEnableOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1CredentialCredentialIDEnableParams()
@@ -942,6 +963,7 @@ func (a *Client) PostOnboardAPIV1CredentialCredentialIDEnable(params *PostOnboar
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1CredentialCredentialIDEnableReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -968,7 +990,7 @@ PostOnboardAPIV1SourceAws creates a w s source
 
 Creating AWS source
 */
-func (a *Client) PostOnboardAPIV1SourceAws(params *PostOnboardAPIV1SourceAwsParams, opts ...ClientOption) (*PostOnboardAPIV1SourceAwsOK, error) {
+func (a *Client) PostOnboardAPIV1SourceAws(params *PostOnboardAPIV1SourceAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceAwsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1SourceAwsParams()
@@ -982,6 +1004,7 @@ func (a *Client) PostOnboardAPIV1SourceAws(params *PostOnboardAPIV1SourceAwsPara
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1SourceAwsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1008,7 +1031,7 @@ PostOnboardAPIV1SourceAzure creates azure source
 
 Creating Azure source
 */
-func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzureParams, opts ...ClientOption) (*PostOnboardAPIV1SourceAzureOK, error) {
+func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceAzureOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1SourceAzureParams()
@@ -1022,6 +1045,7 @@ func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzure
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1SourceAzureReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1046,7 +1070,7 @@ func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzure
 /*
 PostOnboardAPIV1SourceSourceIDDisable disables a single source
 */
-func (a *Client) PostOnboardAPIV1SourceSourceIDDisable(params *PostOnboardAPIV1SourceSourceIDDisableParams, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDDisableOK, error) {
+func (a *Client) PostOnboardAPIV1SourceSourceIDDisable(params *PostOnboardAPIV1SourceSourceIDDisableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDDisableOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1SourceSourceIDDisableParams()
@@ -1060,6 +1084,7 @@ func (a *Client) PostOnboardAPIV1SourceSourceIDDisable(params *PostOnboardAPIV1S
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1SourceSourceIDDisableReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1084,7 +1109,7 @@ func (a *Client) PostOnboardAPIV1SourceSourceIDDisable(params *PostOnboardAPIV1S
 /*
 PostOnboardAPIV1SourceSourceIDEnable enables a single source
 */
-func (a *Client) PostOnboardAPIV1SourceSourceIDEnable(params *PostOnboardAPIV1SourceSourceIDEnableParams, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDEnableOK, error) {
+func (a *Client) PostOnboardAPIV1SourceSourceIDEnable(params *PostOnboardAPIV1SourceSourceIDEnableParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDEnableOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1SourceSourceIDEnableParams()
@@ -1098,6 +1123,7 @@ func (a *Client) PostOnboardAPIV1SourceSourceIDEnable(params *PostOnboardAPIV1So
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1SourceSourceIDEnableReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1122,7 +1148,7 @@ func (a *Client) PostOnboardAPIV1SourceSourceIDEnable(params *PostOnboardAPIV1So
 /*
 PostOnboardAPIV1SourceSourceIDHealthcheck gets live source health status
 */
-func (a *Client) PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAPIV1SourceSourceIDHealthcheckParams, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDHealthcheckOK, error) {
+func (a *Client) PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAPIV1SourceSourceIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDHealthcheckOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1SourceSourceIDHealthcheckParams()
@@ -1136,6 +1162,7 @@ func (a *Client) PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAP
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1SourceSourceIDHealthcheckReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1162,7 +1189,7 @@ PostOnboardAPIV1Sources returns a list of sources
 
 Returning a list of sources including both AWS and Azure unless filtered by Type.
 */
-func (a *Client) PostOnboardAPIV1Sources(params *PostOnboardAPIV1SourcesParams, opts ...ClientOption) (*PostOnboardAPIV1SourcesOK, error) {
+func (a *Client) PostOnboardAPIV1Sources(params *PostOnboardAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourcesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostOnboardAPIV1SourcesParams()
@@ -1176,6 +1203,7 @@ func (a *Client) PostOnboardAPIV1Sources(params *PostOnboardAPIV1SourcesParams, 
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PostOnboardAPIV1SourcesReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1202,7 +1230,7 @@ PutOnboardAPIV1CredentialCredentialID edits a credential by Id
 
 Edit a credential by Id
 */
-func (a *Client) PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1CredentialCredentialIDParams, opts ...ClientOption) (*PutOnboardAPIV1CredentialCredentialIDOK, error) {
+func (a *Client) PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutOnboardAPIV1CredentialCredentialIDParams()
@@ -1216,6 +1244,7 @@ func (a *Client) PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1Cr
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PutOnboardAPIV1CredentialCredentialIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -1240,7 +1269,7 @@ func (a *Client) PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1Cr
 /*
 PutOnboardAPIV1SourceSourceIDCredentials puts source credential
 */
-func (a *Client) PutOnboardAPIV1SourceSourceIDCredentials(params *PutOnboardAPIV1SourceSourceIDCredentialsParams, opts ...ClientOption) (*PutOnboardAPIV1SourceSourceIDCredentialsOK, error) {
+func (a *Client) PutOnboardAPIV1SourceSourceIDCredentials(params *PutOnboardAPIV1SourceSourceIDCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1SourceSourceIDCredentialsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutOnboardAPIV1SourceSourceIDCredentialsParams()
@@ -1254,6 +1283,7 @@ func (a *Client) PutOnboardAPIV1SourceSourceIDCredentials(params *PutOnboardAPIV
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PutOnboardAPIV1SourceSourceIDCredentialsReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack gitlab com keibiengine keibi engine pkg describe api stack
@@ -19,8 +20,8 @@ import (
 // swagger:model gitlab_com_keibiengine_keibi-engine_pkg_describe_api.Stack
 type GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack struct {
 
-	// account i ds
-	AccountIDs []string `json:"accountIDs"`
+	// account ids
+	AccountIds []string `json:"accountIds"`
 
 	// created at
 	CreatedAt string `json:"createdAt,omitempty"`
@@ -31,8 +32,9 @@ type GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack struct {
 	// resources
 	Resources []string `json:"resources"`
 
-	// stack ID
-	StackID string `json:"stackID,omitempty"`
+	// stack Id
+	// Required: true
+	StackID *string `json:"stackId"`
 
 	// tags
 	Tags map[string][]string `json:"tags,omitempty"`
@@ -46,6 +48,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack) Validate(formats st
 	var res []error
 
 	if err := m.validateEvaluations(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStackID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -76,6 +82,15 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack) validateEvaluations
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack) validateStackID(formats strfmt.Registry) error {
+
+	if err := validate.Required("stackId", "body", m.StackID); err != nil {
+		return err
 	}
 
 	return nil
