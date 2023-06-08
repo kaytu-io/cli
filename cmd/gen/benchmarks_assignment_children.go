@@ -7,6 +7,48 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/spf13/cobra"
 )
+var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_assignments",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
+		}
+
+		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1Assignments(benchmarks_assignment.NewGetComplianceAPIV1AssignmentsParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
+		}
+
+		return nil
+	},
+}
+var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
+	Use: "post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		return nil
+	},
+}
 var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
 	Use: "delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -65,48 +107,6 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_assignments",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1Assignments(benchmarks_assignment.NewGetComplianceAPIV1AssignmentsParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		return nil
-	},
-}
-var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
 		return nil

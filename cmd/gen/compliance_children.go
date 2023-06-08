@@ -7,90 +7,6 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
 	"github.com/spf13/cobra"
 )
-var GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend] : %v", err)
-		}
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(compliance.NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_benchmarks_benchmark_id_policies",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
-		}
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_benchmark_benchmark_id_summary",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary] : %v", err)
-		}
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarkBenchmarkIDSummary(compliance.NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetComplianceApiV1BenchmarksBenchmarkIdCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_benchmarks_benchmark_id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
-		}
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkID(compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
-		}
-
-		return nil
-	},
-}
 var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
 	Use: "get_compliance_api_v_1_benchmarks",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -107,69 +23,6 @@ var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_benchmark_evaluations",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
-		}
-
-		resp, err := client.Compliance.GetScheduleAPIV1BenchmarkEvaluations(compliance.NewGetScheduleAPIV1BenchmarkEvaluationsParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_findings_benchmark_id_field_top_count",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
-		}
-
-		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(compliance.NewGetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
-		}
-
-		return nil
-	},
-}
-var PostComplianceApiV1FindingsCmd = &cobra.Command{
-	Use: "post_compliance_api_v_1_findings",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
-		}
-
-		resp, err := client.Compliance.PostComplianceAPIV1Findings(compliance.NewPostComplianceAPIV1FindingsParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
 		}
 
 		return nil
@@ -196,6 +49,90 @@ var GetComplianceApiV1QueriesQueryIdCmd = &cobra.Command{
 		return nil
 	},
 }
+var PostComplianceApiV1FindingsCmd = &cobra.Command{
+	Use: "post_compliance_api_v_1_findings",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
+		}
+
+		resp, err := client.Compliance.PostComplianceAPIV1Findings(compliance.NewPostComplianceAPIV1FindingsParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_benchmark_benchmark_id_summary",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary] : %v", err)
+		}
+
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarkBenchmarkIDSummary(compliance.NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend] : %v", err)
+		}
+
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(compliance.NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_summary_result_trend] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_benchmark_evaluations",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
+		}
+
+		resp, err := client.Compliance.GetScheduleAPIV1BenchmarkEvaluations(compliance.NewGetScheduleAPIV1BenchmarkEvaluationsParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
+		}
+
+		return nil
+	},
+}
 var PostComplianceApiV1AlarmsTopCmd = &cobra.Command{
 	Use: "post_compliance_api_v_1_alarms_top",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -217,22 +154,85 @@ var PostComplianceApiV1AlarmsTopCmd = &cobra.Command{
 		return nil
 	},
 }
-var GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_benchmark_benchmark_id_tree",
+var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_findings_benchmark_id_field_top_count",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_tree] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
 		}
 
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarkBenchmarkIDTree(compliance.NewGetComplianceAPIV1BenchmarkBenchmarkIDTreeParams(), auth)
+		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(compliance.NewGetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_tree] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_tree] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetComplianceApiV1FindingsMetricsCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_findings_metrics",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_metrics] : %v", err)
+		}
+
+		resp, err := client.Compliance.GetComplianceAPIV1FindingsMetrics(compliance.NewGetComplianceAPIV1FindingsMetricsParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_metrics] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_metrics] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetComplianceApiV1BenchmarksBenchmarkIdCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_benchmarks_benchmark_id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
+		}
+
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkID(compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_benchmarks_benchmark_id_policies",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
+		}
+
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
 		}
 
 		return nil
@@ -280,22 +280,22 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 		return nil
 	},
 }
-var GetComplianceApiV1FindingsMetricsCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_findings_metrics",
+var GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd = &cobra.Command{
+	Use: "get_compliance_api_v_1_benchmark_benchmark_id_tree",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_findings_metrics] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_tree] : %v", err)
 		}
 
-		resp, err := client.Compliance.GetComplianceAPIV1FindingsMetrics(compliance.NewGetComplianceAPIV1FindingsMetricsParams(), auth)
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarkBenchmarkIDTree(compliance.NewGetComplianceAPIV1BenchmarkBenchmarkIDTreeParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_findings_metrics] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_tree] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_findings_metrics] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_benchmark_benchmark_id_tree] : %v", err)
 		}
 
 		return nil

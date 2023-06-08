@@ -32,9 +32,9 @@ var UpdateInsightCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetInsightCmd.AddCommand(GetInventoryApiV2InsightsCmd)
+
 		GetInsightCmd.AddCommand(GetInventoryApiV2InsightsInsightIdCmd)
 
 		GetInsightCmd.AddCommand(GetInventoryApiV2InsightsInsightIdTrendCmd)
-
-		GetInsightCmd.AddCommand(GetInventoryApiV2InsightsCmd)
 }

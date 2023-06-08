@@ -7,22 +7,22 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/spf13/cobra"
 )
-var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
-	Use: "get_schedule_api_v_0_compliance_summarizer_trigger",
+var GetScheduleApiV0DescribeTriggerCmd = &cobra.Command{
+	Use: "get_schedule_api_v_0_describe_trigger",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
 		}
 
-		resp, err := client.Describe.GetScheduleAPIV0ComplianceSummarizerTrigger(describe.NewGetScheduleAPIV0ComplianceSummarizerTriggerParams(), auth)
+		resp, err := client.Describe.GetScheduleAPIV0DescribeTrigger(describe.NewGetScheduleAPIV0DescribeTriggerParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
 		}
 
 		return nil
@@ -49,43 +49,43 @@ var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
 		return nil
 	},
 }
-var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
-	Use: "put_schedule_api_v_1_insight_evaluation_trigger",
+var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
+	Use: "put_schedule_api_v_1_benchmark_evaluation_trigger",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
+			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
 
-		resp, err := client.Describe.PutScheduleAPIV1InsightEvaluationTrigger(describe.NewPutScheduleAPIV1InsightEvaluationTriggerParams(), auth)
+		resp, err := client.Describe.PutScheduleAPIV1BenchmarkEvaluationTrigger(describe.NewPutScheduleAPIV1BenchmarkEvaluationTriggerParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
+			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
+			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
 
 		return nil
 	},
 }
-var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
-	Use: "put_schedule_api_v_1_describe_trigger_connection_id",
+var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
+	Use: "get_schedule_api_v_0_compliance_summarizer_trigger",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
 		}
 
-		resp, err := client.Describe.PutScheduleAPIV1DescribeTriggerConnectionID(describe.NewPutScheduleAPIV1DescribeTriggerConnectionIDParams(), auth)
+		resp, err := client.Describe.GetScheduleAPIV0ComplianceSummarizerTrigger(describe.NewGetScheduleAPIV0ComplianceSummarizerTriggerParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
 		}
 
 		return nil
@@ -112,22 +112,64 @@ var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
 		return nil
 	},
 }
-var GetScheduleApiV0DescribeTriggerCmd = &cobra.Command{
-	Use: "get_schedule_api_v_0_describe_trigger",
+var PutScheduleApiV1ComplianceTriggerCmd = &cobra.Command{
+	Use: "put_schedule_api_v_1_compliance_trigger",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
+			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger] : %v", err)
 		}
 
-		resp, err := client.Describe.GetScheduleAPIV0DescribeTrigger(describe.NewGetScheduleAPIV0DescribeTriggerParams(), auth)
+		resp, err := client.Describe.PutScheduleAPIV1ComplianceTrigger(describe.NewPutScheduleAPIV1ComplianceTriggerParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
+			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
+			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger] : %v", err)
+		}
+
+		return nil
+	},
+}
+var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
+	Use: "put_schedule_api_v_1_describe_trigger_connection_id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
+		}
+
+		resp, err := client.Describe.PutScheduleAPIV1DescribeTriggerConnectionID(describe.NewPutScheduleAPIV1DescribeTriggerConnectionIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
+	Use: "put_schedule_api_v_1_insight_evaluation_trigger",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
+		}
+
+		resp, err := client.Describe.PutScheduleAPIV1InsightEvaluationTrigger(describe.NewPutScheduleAPIV1InsightEvaluationTriggerParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
 		}
 
 		return nil
@@ -170,48 +212,6 @@ var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
-		}
-
-		return nil
-	},
-}
-var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
-	Use: "put_schedule_api_v_1_benchmark_evaluation_trigger",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
-		}
-
-		resp, err := client.Describe.PutScheduleAPIV1BenchmarkEvaluationTrigger(describe.NewPutScheduleAPIV1BenchmarkEvaluationTriggerParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-var PutScheduleApiV1ComplianceTriggerCmd = &cobra.Command{
-	Use: "put_schedule_api_v_1_compliance_trigger",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger] : %v", err)
-		}
-
-		resp, err := client.Describe.PutScheduleAPIV1ComplianceTrigger(describe.NewPutScheduleAPIV1ComplianceTriggerParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger] : %v", err)
 		}
 
 		return nil

@@ -32,6 +32,10 @@ var UpdateMetadataCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
+
+		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
+
 		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
 
 		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
@@ -39,8 +43,4 @@ func init() {
 		GetMetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
 
 		GetMetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
-
-		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
-
-		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
 }

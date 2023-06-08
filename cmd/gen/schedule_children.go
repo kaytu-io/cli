@@ -7,6 +7,27 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/schedule"
 	"github.com/spf13/cobra"
 )
+var GetScheduleApiV1DescribeResourceJobsPendingCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_describe_resource_jobs_pending",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
+		}
+
+		resp, err := client.Schedule.GetScheduleAPIV1DescribeResourceJobsPending(schedule.NewGetScheduleAPIV1DescribeResourceJobsPendingParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
+		}
+
+		return nil
+	},
+}
 var GetScheduleApiV1DescribeSourceJobsPendingCmd = &cobra.Command{
 	Use: "get_schedule_api_v_1_describe_source_jobs_pending",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -70,22 +91,22 @@ var GetScheduleApiV1SourcesCmd = &cobra.Command{
 		return nil
 	},
 }
-var GetScheduleApiV1SourcesSourceIdCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_sources_source_id",
+var GetScheduleApiV1SourcesSourceIdJobsComplianceCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_sources_source_id_jobs_compliance",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
 		}
 
-		resp, err := client.Schedule.GetScheduleAPIV1SourcesSourceID(schedule.NewGetScheduleAPIV1SourcesSourceIDParams(), auth)
+		resp, err := client.Schedule.GetScheduleAPIV1SourcesSourceIDJobsCompliance(schedule.NewGetScheduleAPIV1SourcesSourceIDJobsComplianceParams(), auth)
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
 		}
 
 		return nil
@@ -133,69 +154,6 @@ var GetScheduleApiV1ComplianceReportLastCompletedCmd = &cobra.Command{
 		return nil
 	},
 }
-var GetScheduleApiV1DescribeResourceJobsPendingCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_describe_resource_jobs_pending",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
-		}
-
-		resp, err := client.Schedule.GetScheduleAPIV1DescribeResourceJobsPending(schedule.NewGetScheduleAPIV1DescribeResourceJobsPendingParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetScheduleApiV1InsightJobsPendingCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_insight_jobs_pending",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
-		}
-
-		resp, err := client.Schedule.GetScheduleAPIV1InsightJobsPending(schedule.NewGetScheduleAPIV1InsightJobsPendingParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetScheduleApiV1SourcesSourceIdJobsComplianceCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_sources_source_id_jobs_compliance",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
-		}
-
-		resp, err := client.Schedule.GetScheduleAPIV1SourcesSourceIDJobsCompliance(schedule.NewGetScheduleAPIV1SourcesSourceIDJobsComplianceParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
-		}
-
-		return nil
-	},
-}
 var GetScheduleApiV1SourcesSourceIdJobsDescribeCmd = &cobra.Command{
 	Use: "get_schedule_api_v_1_sources_source_id_jobs_describe",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -212,6 +170,27 @@ var GetScheduleApiV1SourcesSourceIdJobsDescribeCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_describe] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetScheduleApiV1SourcesSourceIdCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_sources_source_id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
+		}
+
+		resp, err := client.Schedule.GetScheduleAPIV1SourcesSourceID(schedule.NewGetScheduleAPIV1SourcesSourceIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
 		}
 
 		return nil
@@ -254,6 +233,27 @@ var PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_sources_source_id_jobs_compliance_refresh] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetScheduleApiV1InsightJobsPendingCmd = &cobra.Command{
+	Use: "get_schedule_api_v_1_insight_jobs_pending",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
+		}
+
+		resp, err := client.Schedule.GetScheduleAPIV1InsightJobsPending(schedule.NewGetScheduleAPIV1InsightJobsPendingParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
 		}
 
 		return nil

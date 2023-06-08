@@ -7,27 +7,6 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
 	"github.com/spf13/cobra"
 )
-var PostAuthApiV1KeyCreateCmd = &cobra.Command{
-	Use: "post_auth_api_v_1_key_create",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		resp, err := client.Keys.PostAuthAPIV1KeyCreate(keys.NewPostAuthAPIV1KeyCreateParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		return nil
-	},
-}
 var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 	Use: "post_auth_api_v_1_key_id_activate",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -149,6 +128,27 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
+		}
+
+		return nil
+	},
+}
+var PostAuthApiV1KeyCreateCmd = &cobra.Command{
+	Use: "post_auth_api_v_1_key_create",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		resp, err := client.Keys.PostAuthAPIV1KeyCreate(keys.NewPostAuthAPIV1KeyCreateParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
 
 		return nil

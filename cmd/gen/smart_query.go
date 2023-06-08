@@ -32,9 +32,9 @@ var UpdateSmartQueryCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetSmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
+
 		GetSmartQueryCmd.AddCommand(GetInventoryApiV1QueryCmd)
 
 		GetSmartQueryCmd.AddCommand(PostInventoryApiV1QueryQueryIdCmd)
-
-		GetSmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
 }
