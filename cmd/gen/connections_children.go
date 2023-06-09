@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
 	"github.com/spf13/cobra"
 )
+
 var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
-	Use: "get_onboard_api_v_1_connections_summary_connection_id",
+	Use: "summarySummaryConnectionId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +29,9 @@ var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
-	Use: "get_onboard_api_v_1_connections_summary",
+	Use: "summarySummary",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

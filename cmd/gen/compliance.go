@@ -32,31 +32,31 @@ var UpdateComplianceCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd)
-
-		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdCmd)
-
-		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd)
-
-		GetComplianceCmd.AddCommand(GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd)
-
-		GetComplianceCmd.AddCommand(GetComplianceApiV1QueriesQueryIdCmd)
-
-		GetComplianceCmd.AddCommand(PostComplianceApiV1AlarmsTopCmd)
-
-		GetComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
-
-		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd)
-
 		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd)
-
-		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd)
 
 		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksCmd)
 
 		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksSummaryCmd)
 
-		GetComplianceCmd.AddCommand(GetComplianceApiV1FindingsMetricsCmd)
+		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd)
 
 		GetComplianceCmd.AddCommand(GetScheduleApiV1BenchmarkEvaluationsCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1QueriesQueryIdCmd)
+
+		GetComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd)
+
+		GetComplianceCmd.AddCommand(GetComplianceApiV1FindingsMetricsCmd)
+
+		GetComplianceCmd.AddCommand(PostComplianceApiV1AlarmsTopCmd)
 }

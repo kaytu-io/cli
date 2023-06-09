@@ -20,12 +20,16 @@ var childCmdTemplate string
 //go:embed children.go.template
 var childrenTemplate string
 
+//go:embed "child_empty_response_payload.go.template"
+var childCmdEmptyResponsePayloadTemplate string
+
 func main() {
 	root := "."
 	_, err := os.Stat(root + "/pkg")
 	if err != nil {
 		root = ".."
 	}
+	os.RemoveAll(root + "/cmd/gen")
 	os.Mkdir(root+"/cmd/gen", os.ModePerm)
 
 	t := template.New("serviceTemplate")
@@ -52,6 +56,7 @@ func main() {
 		if err != nil {
 			return err
 		}
+		defer f.Close()
 
 		err = t.Execute(f, &ServiceTemplate{
 			ServiceName:      strcase.ToCamel(info.Name()),
@@ -94,17 +99,12 @@ func main() {
 }
 
 func createChildren(root, serviceName, servicePath string, fservice *os.File) error {
-	t := template.New("childCmdTemplate")
-	t, err := t.Parse(childCmdTemplate)
-	if err != nil {
-		panic(err)
-	}
-
 	filename := fmt.Sprintf(root+"/cmd/gen/%s_children.go", serviceName)
 	f, err := os.OpenFile(filename, os.O_CREATE|os.O_RDWR, os.ModePerm)
 	if err != nil {
 		return err
 	}
+	defer f.Close()
 
 	tf := template.New("childrenTemplate")
 	tf, err = tf.Parse(childrenTemplate)
@@ -118,6 +118,7 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 	}
 
 	childrenMap := map[string]ChildCmdTemplate{}
+	hasPayload := map[string]bool{}
 
 	err = filepath.Walk(servicePath, func(path string, info fs.FileInfo, err error) error {
 		if info == nil || info.IsDir() {
@@ -140,10 +141,30 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 
 		apiName := strings.ReplaceAll(strcase.ToCamel(name), "ApiV", "APIV")
 		apiName = strings.ReplaceAll(apiName, "Id", "ID")
+		if strings.HasSuffix(info.Name(), "_responses.go") {
+			c, err := os.ReadFile(path)
+			if err != nil {
+				return err
+			}
+			existPayload := strings.Contains(string(c), "GetPayload")
+			hasPayload[name] = existPayload
+		}
+
+		nameCommand := strings.Split(strcase.ToSnake(name), "_")
+		newNameCommand := ""
+		if len(nameCommand) >= 5 {
+			for i := 5; i <= len(nameCommand)-1; i++ {
+				if i == 6 {
+					newNameCommand = strcase.ToSnake(nameCommand[i])
+				}
+				newNameCommand += strcase.ToCamel(nameCommand[i])
+			}
+		}
 
 		childrenMap[name] = ChildCmdTemplate{
 			NameCamel:        strcase.ToCamel(name),
 			NameSnake:        strcase.ToSnake(name),
+			NameCommand:      newNameCommand,
 			APIName:          apiName,
 			ServiceName:      strcase.ToCamel(serviceName),
 			ServiceNameSnake: strcase.ToSnake(serviceName),
@@ -154,11 +175,30 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 		return err
 	}
 
+	withoutPayload := template.New("childCmdEmptyResponsePayloadTemplate")
+	withoutPayload, err = withoutPayload.Parse(childCmdEmptyResponsePayloadTemplate)
+	if err != nil {
+		panic(err)
+	}
+
+	withPayload := template.New("childCmdTemplate")
+	withPayload, err = withPayload.Parse(childCmdTemplate)
+	if err != nil {
+		panic(err)
+	}
+
 	cmdReference := "func init() {"
-	for _, temp := range childrenMap {
-		err = t.Execute(f, &temp)
-		if err != nil {
-			return err
+	for name, temp := range childrenMap {
+		if hasPayload[name] {
+			err = withPayload.Execute(f, &temp)
+			if err != nil {
+				return err
+			}
+		} else {
+			err = withoutPayload.Execute(f, &temp)
+			if err != nil {
+				return err
+			}
 		}
 
 		cmdReference += fmt.Sprintf(`

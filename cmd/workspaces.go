@@ -12,12 +12,12 @@ import (
 var workspacesCmd = &cobra.Command{
 	Use: "workspaces",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		client, opt, err := kaytu.GetKaytuClient(cmd)
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[workspaces] : %v", err)
 		}
 
-		resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(workspace.NewGetWorkspaceAPIV1WorkspacesParams(), opt)
+		resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(workspace.NewGetWorkspaceAPIV1WorkspacesParams(), auth)
 		if err != nil {
 			return fmt.Errorf("[workspaces] : %v", err)
 		}

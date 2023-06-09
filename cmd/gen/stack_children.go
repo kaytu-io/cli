@@ -7,20 +7,16 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/spf13/cobra"
 )
+
 var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "delete_schedule_api_v_1_stacks_stack_id",
+	Use: "stackStackId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
-		resp, err := client.Stack.DeleteScheduleAPIV1StacksStackID(stack.NewDeleteScheduleAPIV1StacksStackIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		_, err = client.Stack.DeleteScheduleAPIV1StacksStackID(stack.NewDeleteScheduleAPIV1StacksStackIDParams(), auth)
 		if err != nil {
 			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
@@ -29,7 +25,7 @@ var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
 	},
 }
 var GetScheduleApiV1StacksFindingsJobIdCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks_findings_job_id",
+	Use: "findingsFindingsJobId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -49,8 +45,9 @@ var GetScheduleApiV1StacksFindingsJobIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetScheduleApiV1StacksCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks",
+	Use: "Stacks",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -70,8 +67,9 @@ var GetScheduleApiV1StacksCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetScheduleApiV1StacksResourceResourceIdCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks_resource_resource_id",
+	Use: "resourceResourceResourceId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -91,8 +89,9 @@ var GetScheduleApiV1StacksResourceResourceIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks_stack_id_insight",
+	Use: "stackStackIdInsight",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -112,8 +111,9 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "get_schedule_api_v_1_stacks_stack_id",
+	Use: "stackStackId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -133,8 +133,9 @@ var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
-	Use: "post_schedule_api_v_1_stacks_benchmark_trigger",
+	Use: "benchmarkBenchmarkTrigger",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -154,8 +155,9 @@ var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
-	Use: "post_schedule_api_v_1_stacks_create",
+	Use: "createCreate",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

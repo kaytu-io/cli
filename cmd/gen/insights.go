@@ -32,10 +32,6 @@ var UpdateInsightsCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightCmd)
-
-		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightKeyCmd)
-
 		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightCmd)
 
 		GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdCmd)
@@ -43,4 +39,8 @@ func init() {
 		GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdTrendCmd)
 
 		GetInsightsCmd.AddCommand(GetComplianceApiV1InsightCmd)
+
+		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightCmd)
+
+		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightKeyCmd)
 }

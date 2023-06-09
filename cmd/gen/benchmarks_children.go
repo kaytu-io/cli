@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks"
 	"github.com/spf13/cobra"
 )
+
 var GetInventoryApiV1AccountsResourceCountCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_accounts_resource_count",
+	Use: "resourceResourceCount",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +29,9 @@ var GetInventoryApiV1AccountsResourceCountCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV1ResourcesDistributionCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_resources_distribution",
+	Use: "distributionDistribution",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -49,8 +51,9 @@ var GetInventoryApiV1ResourcesDistributionCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV1ResourcesTopGrowingAccountsCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_resources_top_growing_accounts",
+	Use: "topTopGrowingAccounts",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -70,8 +73,9 @@ var GetInventoryApiV1ResourcesTopGrowingAccountsCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV1ServicesDistributionCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_services_distribution",
+	Use: "distributionDistribution",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -91,8 +95,9 @@ var GetInventoryApiV1ServicesDistributionCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2ServicesSummaryCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_services_summary",
+	Use: "summarySummary",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -112,8 +117,9 @@ var GetInventoryApiV2ServicesSummaryCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_services_summary_service_name",
+	Use: "summarySummaryServiceName",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

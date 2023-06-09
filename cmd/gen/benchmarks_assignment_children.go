@@ -7,20 +7,16 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/spf13/cobra"
 )
+
 var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id",
+	Use: "benchmarkBenchmarkIdConnectionConnectionId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
-		resp, err := client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams(), auth)
 		if err != nil {
 			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
@@ -29,7 +25,7 @@ var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobr
 	},
 }
 var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_assignments_benchmark_benchmark_id",
+	Use: "benchmarkBenchmarkBenchmarkId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -49,8 +45,9 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_assignments_connection_connection_id",
+	Use: "connectionConnectionConnectionId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -70,8 +67,9 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
-	Use: "get_compliance_api_v_1_assignments",
+	Use: "Assignments",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -91,8 +89,9 @@ var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id",
+	Use: "benchmarkBenchmarkIdConnectionConnectionId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

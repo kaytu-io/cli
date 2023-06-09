@@ -7,29 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/metadata"
 	"github.com/spf13/cobra"
 )
-var PostMetadataApiV1MetadataCmd = &cobra.Command{
-	Use: "post_metadata_api_v_1_metadata",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
-		}
 
-		resp, err := client.Metadata.PostMetadataAPIV1Metadata(metadata.NewPostMetadataAPIV1MetadataParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
-		}
-
-		return nil
-	},
-}
 var GetInventoryApiV2MetadataResourcetypeCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_metadata_resourcetype",
+	Use: "resourcetypeResourcetype",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -49,8 +29,9 @@ var GetInventoryApiV2MetadataResourcetypeCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_metadata_resourcetype_resource_type",
+	Use: "resourcetypeResourcetypeResourceType",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -70,8 +51,9 @@ var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2MetadataServicesCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_metadata_services",
+	Use: "servicesServices",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -91,8 +73,9 @@ var GetInventoryApiV2MetadataServicesCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_metadata_services_service_name",
+	Use: "servicesServicesServiceName",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -112,8 +95,9 @@ var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
-	Use: "get_metadata_api_v_1_metadata_key",
+	Use: "keyKey",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -128,6 +112,23 @@ var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostMetadataApiV1MetadataCmd = &cobra.Command{
+	Use: "Metadata",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
+		}
+
+		_, err = client.Metadata.PostMetadataAPIV1Metadata(metadata.NewPostMetadataAPIV1MetadataParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
 		}
 
 		return nil

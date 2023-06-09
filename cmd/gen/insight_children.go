@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insight"
 	"github.com/spf13/cobra"
 )
+
 var GetInventoryApiV2InsightsInsightIdCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_insights_insight_id",
+	Use: "insightInsightId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +29,9 @@ var GetInventoryApiV2InsightsInsightIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2InsightsInsightIdTrendCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_insights_insight_id_trend",
+	Use: "insightInsightIdTrend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -49,8 +51,9 @@ var GetInventoryApiV2InsightsInsightIdTrendCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2InsightsCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_insights",
+	Use: "Insights",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

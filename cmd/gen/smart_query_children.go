@@ -7,8 +7,31 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/smart_query"
 	"github.com/spf13/cobra"
 )
+
+var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
+	Use: "queryQueryId",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
+		}
+
+		resp, err := client.SmartQuery.PostInventoryAPIV1QueryQueryID(smart_query.NewPostInventoryAPIV1QueryQueryIDParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV1QueryCountCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_query_count",
+	Use: "countCount",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +51,9 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV1QueryCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_query",
+	Use: "Query",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -44,27 +68,6 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_query] : %v", err)
-		}
-
-		return nil
-	},
-}
-var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
-	Use: "post_inventory_api_v_1_query_query_id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
-		}
-
-		resp, err := client.SmartQuery.PostInventoryAPIV1QueryQueryID(smart_query.NewPostInventoryAPIV1QueryQueryIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
 		}
 
 		return nil

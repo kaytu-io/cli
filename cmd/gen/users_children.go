@@ -7,71 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/users"
 	"github.com/spf13/cobra"
 )
-var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_workspace_role_bindings",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
-		}
 
-		resp, err := client.Users.GetAuthAPIV1WorkspaceRoleBindings(users.NewGetAuthAPIV1WorkspaceRoleBindingsParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
-		}
-
-		return nil
-	},
-}
-var DeleteAuthApiV1UserRoleBindingCmd = &cobra.Command{
-	Use: "delete_auth_api_v_1_user_role_binding",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_user_role_binding] : %v", err)
-		}
-
-		resp, err := client.Users.DeleteAuthAPIV1UserRoleBinding(users.NewDeleteAuthAPIV1UserRoleBindingParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_user_role_binding] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_user_role_binding] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_user_role_bindings",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
-		}
-
-		resp, err := client.Users.GetAuthAPIV1UserRoleBindings(users.NewGetAuthAPIV1UserRoleBindingsParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
-		}
-
-		return nil
-	},
-}
 var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_user_user_id_workspace_membership",
+	Use: "userUserIdWorkspaceMembership",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -91,41 +29,16 @@ var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
 		return nil
 	},
 }
-var PostAuthApiV1UserInviteCmd = &cobra.Command{
-	Use: "post_auth_api_v_1_user_invite",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_user_invite] : %v", err)
-		}
 
-		resp, err := client.Users.PostAuthAPIV1UserInvite(users.NewPostAuthAPIV1UserInviteParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_user_invite] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_user_invite] : %v", err)
-		}
-
-		return nil
-	},
-}
 var PutAuthApiV1UserRoleBindingCmd = &cobra.Command{
-	Use: "put_auth_api_v_1_user_role_binding",
+	Use: "roleRoleBinding",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[put_auth_api_v_1_user_role_binding] : %v", err)
 		}
 
-		resp, err := client.Users.PutAuthAPIV1UserRoleBinding(users.NewPutAuthAPIV1UserRoleBindingParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[put_auth_api_v_1_user_role_binding] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		_, err = client.Users.PutAuthAPIV1UserRoleBinding(users.NewPutAuthAPIV1UserRoleBindingParams(), auth)
 		if err != nil {
 			return fmt.Errorf("[put_auth_api_v_1_user_role_binding] : %v", err)
 		}
@@ -134,19 +47,14 @@ var PutAuthApiV1UserRoleBindingCmd = &cobra.Command{
 	},
 }
 var DeleteAuthApiV1UserInviteCmd = &cobra.Command{
-	Use: "delete_auth_api_v_1_user_invite",
+	Use: "inviteInvite",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[delete_auth_api_v_1_user_invite] : %v", err)
 		}
 
-		resp, err := client.Users.DeleteAuthAPIV1UserInvite(users.NewDeleteAuthAPIV1UserInviteParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_user_invite] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		_, err = client.Users.DeleteAuthAPIV1UserInvite(users.NewDeleteAuthAPIV1UserInviteParams(), auth)
 		if err != nil {
 			return fmt.Errorf("[delete_auth_api_v_1_user_invite] : %v", err)
 		}
@@ -154,8 +62,30 @@ var DeleteAuthApiV1UserInviteCmd = &cobra.Command{
 		return nil
 	},
 }
+var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
+	Use: "roleRoleBindings",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
+		}
+
+		resp, err := client.Users.GetAuthAPIV1UserRoleBindings(users.NewGetAuthAPIV1UserRoleBindingsParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetAuthApiV1UserUserIdCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_user_user_id",
+	Use: "userUserId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -175,8 +105,41 @@ var GetAuthApiV1UserUserIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
+var PostAuthApiV1UserInviteCmd = &cobra.Command{
+	Use: "inviteInvite",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_user_invite] : %v", err)
+		}
+
+		_, err = client.Users.PostAuthAPIV1UserInvite(users.NewPostAuthAPIV1UserInviteParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_user_invite] : %v", err)
+		}
+
+		return nil
+	},
+}
+var DeleteAuthApiV1UserRoleBindingCmd = &cobra.Command{
+	Use: "roleRoleBinding",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_auth_api_v_1_user_role_binding] : %v", err)
+		}
+
+		_, err = client.Users.DeleteAuthAPIV1UserRoleBinding(users.NewDeleteAuthAPIV1UserRoleBindingParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[delete_auth_api_v_1_user_role_binding] : %v", err)
+		}
+
+		return nil
+	},
+}
 var GetAuthApiV1UsersCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_users",
+	Use: "Users",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -191,6 +154,28 @@ var GetAuthApiV1UsersCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_users] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
+	Use: "roleRoleBindings",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
+		}
+
+		resp, err := client.Users.GetAuthAPIV1WorkspaceRoleBindings(users.NewGetAuthAPIV1WorkspaceRoleBindingsParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
 		}
 
 		return nil

@@ -8,6 +8,7 @@ type ServiceTemplate struct {
 type ChildCmdTemplate struct {
 	NameCamel        string
 	NameSnake        string
+	NameCommand      string
 	APIName          string
 	ServiceName      string
 	ServiceNameSnake string

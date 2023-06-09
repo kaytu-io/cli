@@ -7,8 +7,25 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
 	"github.com/spf13/cobra"
 )
+
+var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
+	Use: "idIdDelete",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
+		}
+
+		_, err = client.Keys.DeleteAuthAPIV1KeyIDDelete(keys.NewDeleteAuthAPIV1KeyIDDeleteParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
+		}
+
+		return nil
+	},
+}
 var GetAuthApiV1KeyIdCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_key_id",
+	Use: "idId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +45,9 @@ var GetAuthApiV1KeyIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetAuthApiV1KeysCmd = &cobra.Command{
-	Use: "get_auth_api_v_1_keys",
+	Use: "Keys",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -49,8 +67,9 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostAuthApiV1KeyCreateCmd = &cobra.Command{
-	Use: "post_auth_api_v_1_key_create",
+	Use: "createCreate",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -70,8 +89,9 @@ var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
-	Use: "post_auth_api_v_1_key_id_activate",
+	Use: "idIdActivate",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -91,8 +111,9 @@ var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
-	Use: "post_auth_api_v_1_key_id_suspend",
+	Use: "idIdSuspend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -112,8 +133,9 @@ var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var PostAuthApiV1KeyRoleCmd = &cobra.Command{
-	Use: "post_auth_api_v_1_key_role",
+	Use: "roleRole",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -128,27 +150,6 @@ var PostAuthApiV1KeyRoleCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
-		}
-
-		return nil
-	},
-}
-var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
-	Use: "delete_auth_api_v_1_key_id_delete",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
-		}
-
-		resp, err := client.Keys.DeleteAuthAPIV1KeyIDDelete(keys.NewDeleteAuthAPIV1KeyIDDeleteParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
 		}
 
 		return nil

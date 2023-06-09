@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/location"
 	"github.com/spf13/cobra"
 )
+
 var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_locations_connector",
+	Use: "connectorConnector",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

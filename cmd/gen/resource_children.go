@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource"
 	"github.com/spf13/cobra"
 )
+
 var PostInventoryApiV1ResourceCmd = &cobra.Command{
-	Use: "post_inventory_api_v_1_resource",
+	Use: "Resource",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

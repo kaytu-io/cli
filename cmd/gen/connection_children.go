@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection"
 	"github.com/spf13/cobra"
 )
+
 var GetInventoryApiV2ConnectionsDataConnectionIdCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_connections_data_connection_id",
+	Use: "dataDataConnectionId",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +29,9 @@ var GetInventoryApiV2ConnectionsDataConnectionIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV2ConnectionsDataCmd = &cobra.Command{
-	Use: "get_inventory_api_v_2_connections_data",
+	Use: "dataData",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

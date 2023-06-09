@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 	"github.com/kaytu-io/cli-program/pkg"
@@ -37,10 +36,7 @@ var loginCmd = &cobra.Command{
 		if workspaceName == "" {
 			client := apiclient.New(httptransport.New("app.kaytu.dev", "/keibi", []string{"https"}), strfmt.Default)
 			bearerTokenAuth := httptransport.BearerToken(accessToken)
-			opt := func(r *runtime.ClientOperation) {
-				r.AuthInfo = bearerTokenAuth
-			}
-			resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(workspace.NewGetWorkspaceAPIV1WorkspacesParams(), opt)
+			resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(workspace.NewGetWorkspaceAPIV1WorkspacesParams(), bearerTokenAuth)
 			if err != nil {
 				return fmt.Errorf("[workspaces] : %v", err)
 			}

@@ -7,12 +7,7 @@ var {{ .NameCamel }}Cmd = &cobra.Command{
 			return fmt.Errorf("[{{ .NameSnake }}] : %v", err)
 		}
 
-		resp, err := client.{{ .ServiceName }}.{{ .APIName }}({{ .ServiceNameSnake }}.New{{ .APIName }}Params(), auth)
-		if err != nil {
-			return fmt.Errorf("[{{ .NameSnake }}] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		_, err = client.{{ .ServiceName }}.{{ .APIName }}({{ .ServiceNameSnake }}.New{{ .APIName }}Params(), auth)
 		if err != nil {
 			return fmt.Errorf("[{{ .NameSnake }}] : %v", err)
 		}

@@ -7,8 +7,9 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/cost"
 	"github.com/spf13/cobra"
 )
+
 var GetInventoryApiV1CostTopAccountsCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_cost_top_accounts",
+	Use: "topTopAccounts",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -28,8 +29,9 @@ var GetInventoryApiV1CostTopAccountsCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var GetInventoryApiV1CostTopServicesCmd = &cobra.Command{
-	Use: "get_inventory_api_v_1_cost_top_services",
+	Use: "topTopServices",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
