@@ -138,7 +138,6 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 		if strings.HasSuffix(name, "_responses") {
 			name = name[:len(name)-10]
 		}
-
 		apiName := strings.ReplaceAll(strcase.ToCamel(name), "ApiV", "APIV")
 		apiName = strings.ReplaceAll(apiName, "Id", "ID")
 		if strings.HasSuffix(info.Name(), "_responses.go") {
@@ -160,7 +159,6 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 				newNameCommand += strcase.ToCamel(nameCommand[i])
 			}
 		}
-
 		childrenMap[name] = ChildCmdTemplate{
 			NameCamel:        strcase.ToCamel(name),
 			NameSnake:        strcase.ToSnake(name),
