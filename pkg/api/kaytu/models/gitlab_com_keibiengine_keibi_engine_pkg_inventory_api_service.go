@@ -25,14 +25,20 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIService struct {
 	// cost
 	Cost float64 `json:"cost,omitempty"`
 
-	// cost change percent
-	CostChangePercent float64 `json:"cost_change_percent,omitempty"`
+	// end daily cost
+	EndDailyCost float64 `json:"end_daily_cost,omitempty"`
 
 	// is cost supported
 	IsCostSupported bool `json:"is_cost_supported,omitempty"`
 
 	// logo uri
 	LogoURI string `json:"logo_uri,omitempty"`
+
+	// old resource count
+	OldResourceCount int64 `json:"old_resource_count,omitempty"`
+
+	// resource count
+	ResourceCount int64 `json:"resource_count,omitempty"`
 
 	// resource types
 	ResourceTypes []*GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceType `json:"resource_types"`
@@ -42,6 +48,9 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIService struct {
 
 	// service name
 	ServiceName string `json:"service_name,omitempty"`
+
+	// start daily cost
+	StartDailyCost float64 `json:"start_daily_cost,omitempty"`
 
 	// tags
 	Tags map[string][]string `json:"tags,omitempty"`

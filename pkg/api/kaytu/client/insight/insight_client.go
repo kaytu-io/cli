@@ -36,6 +36,8 @@ type ClientService interface {
 
 	GetInventoryAPIV2InsightsInsightIDTrend(params *GetInventoryAPIV2InsightsInsightIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2InsightsInsightIDTrendOK, error)
 
+	GetInventoryAPIV2InsightsJobJobID(params *GetInventoryAPIV2InsightsJobJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2InsightsJobJobIDOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -159,6 +161,47 @@ func (a *Client) GetInventoryAPIV2InsightsInsightIDTrend(params *GetInventoryAPI
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2InsightsInsightIDTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2InsightsJobJobID gets insight result by job ID
+
+Get insight result for the given JobId - this mostly for internal usage, use compliance api for full api
+*/
+func (a *Client) GetInventoryAPIV2InsightsJobJobID(params *GetInventoryAPIV2InsightsJobJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2InsightsJobJobIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2InsightsJobJobIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2InsightsJobJobID",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/insights/job/{jobId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2InsightsJobJobIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2InsightsJobJobIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2InsightsJobJobID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

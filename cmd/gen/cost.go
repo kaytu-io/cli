@@ -31,8 +31,14 @@ var UpdateCostCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
-func init() {
-		GetCostCmd.AddCommand(GetInventoryApiV1CostTopAccountsCmd)
 
-		GetCostCmd.AddCommand(GetInventoryApiV1CostTopServicesCmd)
+func init() {
+	GetCostCmd.AddCommand(GetInventoryApiV1CostTopServicesCmd)
+	GetInventoryApiV1CostTopServicesCmd.Flags().Int64("count", 0, "")
+	GetInventoryApiV1CostTopServicesCmd.Flags().String("provider", "", "")
+	GetInventoryApiV1CostTopServicesCmd.Flags().String("source-id", "", "")
+
+	GetCostCmd.AddCommand(GetInventoryApiV1CostTopAccountsCmd)
+	GetInventoryApiV1CostTopAccountsCmd.Flags().Int64("count", 0, "")
+	GetInventoryApiV1CostTopAccountsCmd.Flags().String("provider", "", "")
 }

@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/iancoleman/strcase"
+	"github.com/kaytu-io/cli-program/cmd/flags"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -39,6 +40,52 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	os.WriteFile(root+"/cmd/resources.go", []byte(`
+package cmd
+
+import (
+	"github.com/kaytu-io/cli-program/cmd/gen"
+	"github.com/spf13/cobra"
+)
+
+var getCmd = &cobra.Command{
+	Use: "get",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
+var createCmd = &cobra.Command{
+	Use: "create",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
+var deleteCmd = &cobra.Command{
+	Use: "delete",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+var updateCmd = &cobra.Command{
+	Use: "update",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(getCmd)
+	rootCmd.AddCommand(createCmd)
+	rootCmd.AddCommand(deleteCmd)
+	rootCmd.AddCommand(updateCmd)
+	// ========== DO NOT EDIT THIS PART! AUTO GENERATED!!! =========
+	// =============================================================
+
+}
+`), os.ModePerm)
 
 	err = filepath.Walk(root+"/pkg/api/kaytu/client", func(path string, info fs.FileInfo, err error) error {
 		if info == nil {
@@ -207,10 +254,14 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 		Get%sCmd.AddCommand(%sCmd)
 `, strcase.ToCamel(serviceName), temp.NameCamel)
 
-		//		for _, param := range temp.Params {
-		//			cmdReference += fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")
+		fv := ExtractFields(reflect.TypeOf(paramModels[temp.APIName]))
+		output := GenerateFlagDefinitions(temp.NameCamel, fv)
+		cmdReference += output
+		//
+		//for _, param := range temp.Params {
+		//	cmdReference += fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")
 		//`, temp.NameCamel, param.FlagName)
-		//		}
+		//}
 	}
 	cmdReference += "}"
 
@@ -222,4 +273,42 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 	}
 
 	return nil
+}
+
+func GenerateFlagDefinitions(tempName string, fv Field) (output string) {
+	if len(fv.Children) > 0 {
+		for _, param := range fv.Children {
+			var line string
+			if len(param.Children) > 0 {
+				line = GenerateFlagDefinitions(tempName, param)
+			} else {
+				switch param.Type {
+				case "string":
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+				case "*string":
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+				case "int64":
+					line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "")`, tempName, flags.Name(param.Name))
+				case "*int64":
+					line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "")`, tempName, flags.Name(param.Name))
+				case "bool":
+					line = fmt.Sprintf(`%sCmd.Flags().Bool("%s", false, "")`, tempName, flags.Name(param.Name))
+				case "*bool":
+					line = fmt.Sprintf(`%sCmd.Flags().Bool("%s", false, "")`, tempName, flags.Name(param.Name))
+				case "[]string":
+					line = fmt.Sprintf(`%sCmd.Flags().StringArray("%s", nil, "")`, tempName, flags.Name(param.Name))
+				case "map[string]string":
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+				case "map[string][]string":
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+				default:
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+				}
+			}
+			line = strings.ReplaceAll(line, "{{.Name}}", param.Name)
+			output += line + "\n"
+		}
+	}
+
+	return
 }

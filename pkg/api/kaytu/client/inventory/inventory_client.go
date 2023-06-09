@@ -40,6 +40,8 @@ type ClientService interface {
 
 	GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error)
 
+	GetInventoryAPIV2ResourcesMetricResourceType(params *GetInventoryAPIV2ResourcesMetricResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricResourceTypeOK, error)
+
 	GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2ResourcesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagOK, error)
 
 	GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2ResourcesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagKeyOK, error)
@@ -51,6 +53,8 @@ type ClientService interface {
 	GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error)
 
 	GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error)
+
+	GetInventoryAPIV2ServicesMetricServiceName(params *GetInventoryAPIV2ServicesMetricServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricServiceNameOK, error)
 
 	GetInventoryAPIV2ServicesTag(params *GetInventoryAPIV2ServicesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagOK, error)
 
@@ -265,6 +269,45 @@ func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2Resou
 }
 
 /*
+GetInventoryAPIV2ResourcesMetricResourceType returns resource type with metrics
+*/
+func (a *Client) GetInventoryAPIV2ResourcesMetricResourceType(params *GetInventoryAPIV2ResourcesMetricResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricResourceTypeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2ResourcesMetricResourceTypeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2ResourcesMetricResourceType",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/resources/metric/{resourceType}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2ResourcesMetricResourceTypeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2ResourcesMetricResourceTypeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesMetricResourceType: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetInventoryAPIV2ResourcesTag returns list of the keys with possible values for filtering resources types
 */
 func (a *Client) GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2ResourcesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagOK, error) {
@@ -460,7 +503,7 @@ func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2Ser
 }
 
 /*
-GetInventoryAPIV2ServicesMetric returns list of resource types with metrics of each type based on the given input filters
+GetInventoryAPIV2ServicesMetric returns list of services with their metrics based on the given input filters
 */
 func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error) {
 	// TODO: Validate the params before sending
@@ -495,6 +538,45 @@ func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2Servic
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesMetric: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2ServicesMetricServiceName returns the service with metrics for the given service name
+*/
+func (a *Client) GetInventoryAPIV2ServicesMetricServiceName(params *GetInventoryAPIV2ServicesMetricServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricServiceNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2ServicesMetricServiceNameParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2ServicesMetricServiceName",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/services/metric/{serviceName}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2ServicesMetricServiceNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2ServicesMetricServiceNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesMetricServiceName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

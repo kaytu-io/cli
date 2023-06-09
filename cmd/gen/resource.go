@@ -31,6 +31,10 @@ var UpdateResourceCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
+
 func init() {
-		GetResourceCmd.AddCommand(PostInventoryApiV1ResourceCmd)
+	GetResourceCmd.AddCommand(PostInventoryApiV1ResourceCmd)
+	PostInventoryApiV1ResourceCmd.Flags().String("id", "", "")
+	PostInventoryApiV1ResourceCmd.Flags().String("resource-type", "", "")
+
 }

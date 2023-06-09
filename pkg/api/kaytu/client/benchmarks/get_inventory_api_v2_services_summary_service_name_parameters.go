@@ -63,13 +63,13 @@ type GetInventoryAPIV2ServicesSummaryServiceNameParams struct {
 
 	/* Connector.
 
-	   filter: Provider
+	   filter: connector
 	*/
 	Connector *string
 
 	/* ConnectorID.
 
-	   filter: SourceIDs
+	   filter: connectorId
 	*/
 	ConnectorID *string
 

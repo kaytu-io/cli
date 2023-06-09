@@ -2,6 +2,7 @@ package gen
 
 import (
 	"fmt"
+
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -19,7 +20,7 @@ var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
 
 		req := location.NewGetInventoryAPIV1LocationsConnectorParams()
 
-		req.SetConnector(flags.ReadStringFlag("Connector"))
+		req.SetConnector(flags.ReadStringFlag(cmd, "Connector"))
 
 		resp, err := client.Location.GetInventoryAPIV1LocationsConnector(req, auth)
 		if err != nil {

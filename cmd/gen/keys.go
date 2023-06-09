@@ -31,18 +31,27 @@ var UpdateKeysCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
+
 func init() {
-		GetKeysCmd.AddCommand(GetAuthApiV1KeysCmd)
+	GetKeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
+	PostAuthApiV1KeyCreateCmd.Flags().String("name", "", "")
+	PostAuthApiV1KeyCreateCmd.Flags().String("role-name", "", "")
 
-		GetKeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
+	GetKeysCmd.AddCommand(PostAuthApiV1KeyIdActivateCmd)
+	PostAuthApiV1KeyIdActivateCmd.Flags().String("id", "", "")
 
-		GetKeysCmd.AddCommand(PostAuthApiV1KeyIdActivateCmd)
+	GetKeysCmd.AddCommand(PostAuthApiV1KeyIdSuspendCmd)
+	PostAuthApiV1KeyIdSuspendCmd.Flags().String("id", "", "")
 
-		GetKeysCmd.AddCommand(PostAuthApiV1KeyIdSuspendCmd)
+	GetKeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
+	PostAuthApiV1KeyRoleCmd.Flags().Int64("id", 0, "")
+	PostAuthApiV1KeyRoleCmd.Flags().String("role-name", "", "")
 
-		GetKeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
+	GetKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
+	DeleteAuthApiV1KeyIdDeleteCmd.Flags().String("id", "", "")
 
-		GetKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
+	GetKeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
+	GetAuthApiV1KeyIdCmd.Flags().String("id", "", "")
 
-		GetKeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
+	GetKeysCmd.AddCommand(GetAuthApiV1KeysCmd)
 }

@@ -31,6 +31,8 @@ var UpdateLocationCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
+
 func init() {
-		GetLocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
+	GetLocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
+	GetInventoryApiV1LocationsConnectorCmd.Flags().String("connector", "", "")
 }

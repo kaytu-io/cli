@@ -2,6 +2,7 @@ package gen
 
 import (
 	"fmt"
+
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -19,8 +20,8 @@ var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobr
 
 		req := benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
 
-		req.SetBenchmarkID(flags.ReadStringFlag("BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag("ConnectionID"))
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
 
 		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
 		if err != nil {
@@ -40,7 +41,7 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 
 		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams()
 
-		req.SetBenchmarkID(flags.ReadStringFlag("BenchmarkID"))
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
 
 		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(req, auth)
 		if err != nil {
@@ -66,7 +67,7 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 
 		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsConnectionConnectionIDParams()
 
-		req.SetConnectionID(flags.ReadStringFlag("ConnectionID"))
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
 
 		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1AssignmentsConnectionConnectionID(req, auth)
 		if err != nil {
@@ -116,8 +117,8 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.
 
 		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
 
-		req.SetBenchmarkID(flags.ReadStringFlag("BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag("ConnectionID"))
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
 
 		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
 		if err != nil {

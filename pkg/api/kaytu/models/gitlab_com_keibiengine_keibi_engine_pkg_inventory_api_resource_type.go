@@ -33,9 +33,6 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceType struct {
 	// Number of Resources of this Resource Type - Metric
 	Count int64 `json:"count,omitempty"`
 
-	// Percentage change in the number of Resources of this Resource Type - Metric
-	CountChangePercent float64 `json:"count_change_percent,omitempty"`
-
 	// List of Insights that support this Resource Type - Metadata (GET only)
 	Insights []int64 `json:"insights"`
 
@@ -44,6 +41,9 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceType struct {
 
 	// logo uri
 	LogoURI string `json:"logo_uri,omitempty"`
+
+	// Number of Resources of this Resource Type in the past - Metric
+	OldCount int64 `json:"old_count,omitempty"`
 
 	// resource name
 	ResourceName string `json:"resource_name,omitempty"`

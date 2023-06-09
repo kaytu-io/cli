@@ -2,6 +2,7 @@ package gen
 
 import (
 	"fmt"
+
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -19,9 +20,9 @@ var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 
 		req := connections.NewGetOnboardAPIV1ConnectionsSummaryConnectionIDParams()
 
-		req.SetConnectionID(flags.ReadStringFlag("ConnectionID"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag("EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag("StartTime"))
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Connections.GetOnboardAPIV1ConnectionsSummaryConnectionID(req, auth)
 		if err != nil {
@@ -47,15 +48,15 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 
 		req := connections.NewGetOnboardAPIV1ConnectionsSummaryParams()
 
-		req.SetConnectionID(flags.ReadStringOptionalFlag("ConnectionID"))
-		req.SetConnector(flags.ReadStringFlag("Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag("EndTime"))
-		req.SetHealthState(flags.ReadStringOptionalFlag("HealthState"))
-		req.SetLifecycleState(flags.ReadStringOptionalFlag("LifecycleState"))
-		req.SetPageNumber(flags.ReadInt64OptionalFlag("PageNumber"))
-		req.SetPageSize(flags.ReadInt64OptionalFlag("PageSize"))
-		req.SetSortBy(flags.ReadStringOptionalFlag("SortBy"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag("StartTime"))
+		req.SetConnectionID(flags.ReadStringOptionalFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringFlag(cmd, "Connector"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetHealthState(flags.ReadStringOptionalFlag(cmd, "HealthState"))
+		req.SetLifecycleState(flags.ReadStringOptionalFlag(cmd, "LifecycleState"))
+		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
+		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
+		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Connections.GetOnboardAPIV1ConnectionsSummary(req, auth)
 		if err != nil {

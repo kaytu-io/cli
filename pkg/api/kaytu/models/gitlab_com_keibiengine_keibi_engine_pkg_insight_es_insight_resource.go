@@ -31,26 +31,14 @@ type GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource struct {
 	// IncludedConnections list of the connections ids of the resources included in this insight
 	IncludedConnections []*GitlabComKeibiengineKeibiEnginePkgInsightEsInsightConnection `json:"included_connections"`
 
+	// InsightID is the ID of insight which has been executed
+	InsightID int64 `json:"insight_id,omitempty"`
+
 	// Internal hidden to user
 	Internal bool `json:"internal,omitempty"`
 
 	// JobID is the ID of the job which produced this resource
 	JobID int64 `json:"job_id,omitempty"`
-
-	// LastDayValue result of the same query last day
-	LastDayValue int64 `json:"last_day_value,omitempty"`
-
-	// LastMonthValue result of the same query last week
-	LastMonthValue int64 `json:"last_month_value,omitempty"`
-
-	// LastQuarterValue result of the same query last quarter
-	LastQuarterValue int64 `json:"last_quarter_value,omitempty"`
-
-	// LastWeekValue result of the same query last week
-	LastWeekValue int64 `json:"last_week_value,omitempty"`
-
-	// LastYearValue result of the same query last year
-	LastYearValue int64 `json:"last_year_value,omitempty"`
 
 	// Locations list of the locations of the resources included in this insight
 	Locations []string `json:"locations"`
@@ -60,9 +48,6 @@ type GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource struct {
 
 	// Query
 	Query string `json:"query,omitempty"`
-
-	// QueryID is the ID of steampipe query which has been executed
-	QueryID int64 `json:"query_id,omitempty"`
 
 	// ResourceType shows which collection of docs this resource belongs to
 	ResourceType GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResourceType `json:"resource_type,omitempty"`
@@ -75,9 +60,6 @@ type GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource struct {
 
 	// ScheduleUUID
 	ScheduleUUID string `json:"schedule_uuid,omitempty"`
-
-	// SmartQueryID is the ID of smart query id which is connected to this insight
-	SmartQueryID int64 `json:"smart_query_id,omitempty"`
 
 	// SourceID
 	SourceID string `json:"source_id,omitempty"`

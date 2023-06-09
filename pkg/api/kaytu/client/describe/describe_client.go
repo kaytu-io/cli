@@ -40,7 +40,11 @@ type ClientService interface {
 
 	GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0SummarizeTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0SummarizeTriggerOK, error)
 
+	GetScheduleAPIV1InsightJobJobID(params *GetScheduleAPIV1InsightJobJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1InsightJobJobIDOK, error)
+
 	PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error)
+
+	PostScheduleAPIV1StacksInsightTrigger(params *PostScheduleAPIV1StacksInsightTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksInsightTriggerOK, error)
 
 	PutScheduleAPIV1BenchmarkEvaluationTrigger(params *PutScheduleAPIV1BenchmarkEvaluationTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1BenchmarkEvaluationTriggerOK, error)
 
@@ -255,6 +259,47 @@ func (a *Client) GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0Summar
 }
 
 /*
+GetScheduleAPIV1InsightJobJobID gets an insight job
+
+Get an Insight Job details by ID
+*/
+func (a *Client) GetScheduleAPIV1InsightJobJobID(params *GetScheduleAPIV1InsightJobJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1InsightJobJobIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScheduleAPIV1InsightJobJobIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetScheduleAPIV1InsightJobJobID",
+		Method:             "GET",
+		PathPattern:        "/schedule/api/v1/insight/job/{jobId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetScheduleAPIV1InsightJobJobIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScheduleAPIV1InsightJobJobIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1InsightJobJobID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 PostScheduleAPIV1DescribeResource describes single resource
 */
 func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error) {
@@ -290,6 +335,45 @@ func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1Desc
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostScheduleAPIV1DescribeResource: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostScheduleAPIV1StacksInsightTrigger triggers an insight evaluation job to run immediately
+*/
+func (a *Client) PostScheduleAPIV1StacksInsightTrigger(params *PostScheduleAPIV1StacksInsightTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksInsightTriggerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostScheduleAPIV1StacksInsightTriggerParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostScheduleAPIV1StacksInsightTrigger",
+		Method:             "POST",
+		PathPattern:        "/schedule/api/v1/stacks/insight/trigger",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostScheduleAPIV1StacksInsightTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostScheduleAPIV1StacksInsightTriggerOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostScheduleAPIV1StacksInsightTrigger: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
