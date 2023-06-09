@@ -9,6 +9,89 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetInventoryApiV1ResourcesDistributionCmd = &cobra.Command{
+	Use: "resources-distribution",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_resources_distribution] : %v", err)
+		}
+
+		req := benchmarks.NewGetInventoryAPIV1ResourcesDistributionParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag("ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag("Connector"))
+		req.SetTimeWindow(flags.ReadStringFlag("TimeWindow"))
+
+		resp, err := client.Benchmarks.GetInventoryAPIV1ResourcesDistribution(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_resources_distribution] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_resources_distribution] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV1ResourcesTopGrowingAccountsCmd = &cobra.Command{
+	Use: "resources-top-growing-accounts",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_resources_top_growing_accounts] : %v", err)
+		}
+
+		req := benchmarks.NewGetInventoryAPIV1ResourcesTopGrowingAccountsParams()
+
+		req.SetCount(flags.ReadInt64Flag("Count"))
+		req.SetProvider(flags.ReadStringFlag("Provider"))
+		req.SetTimeWindow(flags.ReadStringFlag("TimeWindow"))
+
+		resp, err := client.Benchmarks.GetInventoryAPIV1ResourcesTopGrowingAccounts(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_resources_top_growing_accounts] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_resources_top_growing_accounts] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV1ServicesDistributionCmd = &cobra.Command{
+	Use: "services-distribution",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_services_distribution] : %v", err)
+		}
+
+		req := benchmarks.NewGetInventoryAPIV1ServicesDistributionParams()
+
+		req.SetProvider(flags.ReadStringFlag("Provider"))
+		req.SetSourceID(flags.ReadStringArrayFlag("SourceID"))
+
+		resp, err := client.Benchmarks.GetInventoryAPIV1ServicesDistribution(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_services_distribution] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_services_distribution] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV2ServicesSummaryCmd = &cobra.Command{
 	Use: "services-summary",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -94,89 +177,6 @@ var GetInventoryApiV1AccountsResourceCountCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_accounts_resource_count] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV1ResourcesDistributionCmd = &cobra.Command{
-	Use: "resources-distribution",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_resources_distribution] : %v", err)
-		}
-
-		req := benchmarks.NewGetInventoryAPIV1ResourcesDistributionParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag("ConnectionID"))
-		req.SetConnector(flags.ReadStringArrayFlag("Connector"))
-		req.SetTimeWindow(flags.ReadStringFlag("TimeWindow"))
-
-		resp, err := client.Benchmarks.GetInventoryAPIV1ResourcesDistribution(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_resources_distribution] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_resources_distribution] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV1ResourcesTopGrowingAccountsCmd = &cobra.Command{
-	Use: "resources-top-growing-accounts",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_resources_top_growing_accounts] : %v", err)
-		}
-
-		req := benchmarks.NewGetInventoryAPIV1ResourcesTopGrowingAccountsParams()
-
-		req.SetCount(flags.ReadInt64Flag("Count"))
-		req.SetProvider(flags.ReadStringFlag("Provider"))
-		req.SetTimeWindow(flags.ReadStringFlag("TimeWindow"))
-
-		resp, err := client.Benchmarks.GetInventoryAPIV1ResourcesTopGrowingAccounts(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_resources_top_growing_accounts] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_resources_top_growing_accounts] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV1ServicesDistributionCmd = &cobra.Command{
-	Use: "services-distribution",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_services_distribution] : %v", err)
-		}
-
-		req := benchmarks.NewGetInventoryAPIV1ServicesDistributionParams()
-
-		req.SetProvider(flags.ReadStringFlag("Provider"))
-		req.SetSourceID(flags.ReadStringArrayFlag("SourceID"))
-
-		resp, err := client.Benchmarks.GetInventoryAPIV1ServicesDistribution(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_services_distribution] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_services_distribution] : %v", err)
 		}
 
 		return nil

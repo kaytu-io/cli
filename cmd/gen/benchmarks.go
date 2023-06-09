@@ -32,15 +32,15 @@ var UpdateBenchmarksCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetBenchmarksCmd.AddCommand(GetInventoryApiV2ServicesSummaryCmd)
-
-		GetBenchmarksCmd.AddCommand(GetInventoryApiV2ServicesSummaryServiceNameCmd)
-
-		GetBenchmarksCmd.AddCommand(GetInventoryApiV1AccountsResourceCountCmd)
-
 		GetBenchmarksCmd.AddCommand(GetInventoryApiV1ResourcesDistributionCmd)
 
 		GetBenchmarksCmd.AddCommand(GetInventoryApiV1ResourcesTopGrowingAccountsCmd)
 
 		GetBenchmarksCmd.AddCommand(GetInventoryApiV1ServicesDistributionCmd)
+
+		GetBenchmarksCmd.AddCommand(GetInventoryApiV2ServicesSummaryCmd)
+
+		GetBenchmarksCmd.AddCommand(GetInventoryApiV2ServicesSummaryServiceNameCmd)
+
+		GetBenchmarksCmd.AddCommand(GetInventoryApiV1AccountsResourceCountCmd)
 }

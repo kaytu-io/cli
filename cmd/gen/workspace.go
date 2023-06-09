@@ -32,7 +32,9 @@ var UpdateWorkspaceCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesCmd)
+		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd)
+
+		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd)
 
 		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceCmd)
 
@@ -40,21 +42,19 @@ func init() {
 
 		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd)
 
-		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspaceWorkspaceIdCmd)
-
-		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd)
-
-		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd)
-
-		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd)
-
 		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd)
-
-		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd)
 
 		GetWorkspaceCmd.AddCommand(DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd)
 
+		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspaceWorkspaceIdCmd)
+
 		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd)
 
+		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd)
+
 		GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd)
+
+		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd)
+
+		GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesCmd)
 }

@@ -9,57 +9,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
-	Use: "assignments",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsParams()
-
-		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1Assignments(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "assignments-benchmark-id-connection-connection-id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag("BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag("ConnectionID"))
-
-		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
 	Use: "assignments-benchmark-id-connection-connection-id",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -127,6 +76,57 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
+	Use: "assignments",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
+		}
+
+		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsParams()
+
+		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1Assignments(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
+	Use: "assignments-benchmark-id-connection-connection-id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag("BenchmarkID"))
+		req.SetConnectionID(flags.ReadStringFlag("ConnectionID"))
+
+		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
 		return nil
