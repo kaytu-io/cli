@@ -26,9 +26,7 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIUpdateKeyRoleRequest struct {
 	// Name of the role
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg auth api update key role request

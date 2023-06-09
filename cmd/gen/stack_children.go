@@ -6,77 +6,24 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/spf13/cobra"
+	"github.com/kaytu-io/cli-program/cmd/flags"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 )
 
-var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "stackStackId",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		_, err = client.Stack.DeleteScheduleAPIV1StacksStackID(stack.NewDeleteScheduleAPIV1StacksStackIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetScheduleApiV1StacksFindingsJobIdCmd = &cobra.Command{
-	Use: "findingsFindingsJobId",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_findings_job_id] : %v", err)
-		}
-
-		resp, err := client.Stack.GetScheduleAPIV1StacksFindingsJobID(stack.NewGetScheduleAPIV1StacksFindingsJobIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_findings_job_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks_findings_job_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetScheduleApiV1StacksCmd = &cobra.Command{
-	Use: "Stacks",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
-		}
-
-		resp, err := client.Stack.GetScheduleAPIV1Stacks(stack.NewGetScheduleAPIV1StacksParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetScheduleApiV1StacksResourceResourceIdCmd = &cobra.Command{
-	Use: "resourceResourceResourceId",
+	Use: "stacks-resource-resource-id",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource_resource_id] : %v", err)
 		}
 
-		resp, err := client.Stack.GetScheduleAPIV1StacksResourceResourceID(stack.NewGetScheduleAPIV1StacksResourceResourceIDParams(), auth)
+        req := stack.NewGetScheduleAPIV1StacksResourceResourceIDParams()
+
+        req.SetResourceID(flags.ReadStringFlag("ResourceID"))
+
+
+		resp, err := client.Stack.GetScheduleAPIV1StacksResourceResourceID(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource_resource_id] : %v", err)
 		}
@@ -91,14 +38,22 @@ var GetScheduleApiV1StacksResourceResourceIdCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
-	Use: "stackStackIdInsight",
+	Use: "stacks-stack-id-insight",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
 
-		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsight(stack.NewGetScheduleAPIV1StacksStackIDInsightParams(), auth)
+        req := stack.NewGetScheduleAPIV1StacksStackIDInsightParams()
+
+        req.SetEndTime(flags.ReadInt64OptionalFlag("EndTime"))
+req.SetInsightID(flags.ReadStringFlag("InsightID"))
+req.SetStackID(flags.ReadStringFlag("StackID"))
+req.SetStartTime(flags.ReadInt64OptionalFlag("StartTime"))
+
+
+		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsight(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
@@ -113,14 +68,19 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "stackStackId",
+	Use: "stacks-stack-id",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
-		resp, err := client.Stack.GetScheduleAPIV1StacksStackID(stack.NewGetScheduleAPIV1StacksStackIDParams(), auth)
+        req := stack.NewGetScheduleAPIV1StacksStackIDParams()
+
+        req.SetStackID(flags.ReadStringFlag("StackID"))
+
+
+		resp, err := client.Stack.GetScheduleAPIV1StacksStackID(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
@@ -135,14 +95,23 @@ var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
-	Use: "benchmarkBenchmarkTrigger",
+	Use: "stacks-benchmark-trigger",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
 		}
 
-		resp, err := client.Stack.PostScheduleAPIV1StacksBenchmarkTrigger(stack.NewPostScheduleAPIV1StacksBenchmarkTriggerParams(), auth)
+        req := stack.NewPostScheduleAPIV1StacksBenchmarkTriggerParams()
+
+        req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackBenchmarkRequest{
+Benchmarks: flags.ReadStringArrayFlag("Benchmarks"),
+StackID: flags.ReadStringOptionalFlag("StackID"),
+
+})
+
+
+		resp, err := client.Stack.PostScheduleAPIV1StacksBenchmarkTrigger(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
 		}
@@ -157,14 +126,21 @@ var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
-	Use: "createCreate",
+	Use: "stacks-create",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
 
-		resp, err := client.Stack.PostScheduleAPIV1StacksCreate(stack.NewPostScheduleAPIV1StacksCreateParams(), auth)
+        req := stack.NewPostScheduleAPIV1StacksCreateParams()
+
+        req.SetResources(flags.ReadStringArrayFlag("Resources"))
+req.SetTags(flags.ReadStringOptionalFlag("Tags"))
+req.SetTerrafromFile(v)
+
+
+		resp, err := client.Stack.PostScheduleAPIV1StacksCreate(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
@@ -172,6 +148,97 @@ var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
+	Use: "stacks-stack-id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+        req := stack.NewDeleteScheduleAPIV1StacksStackIDParams()
+
+        req.SetStackID(flags.ReadStringFlag("StackID"))
+
+
+		_, err = client.Stack.DeleteScheduleAPIV1StacksStackID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetScheduleApiV1StacksFindingsJobIdCmd = &cobra.Command{
+	Use: "stacks-findings-job-id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_findings_job_id] : %v", err)
+		}
+
+        req := stack.NewGetScheduleAPIV1StacksFindingsJobIDParams()
+
+        req.SetJobID(flags.ReadStringFlag("JobID"))
+req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings{
+Page: &models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIPage{
+No: flags.ReadInt64Flag("No"),
+Size: flags.ReadInt64Flag("Size"),
+
+},
+Sorts: []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIFindingSortItem{
+{
+Direction: models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIDirectionType(flags.ReadStringFlag("Direction")),
+Field: models.GitlabComKeibiengineKeibiEnginePkgComplianceAPISortFieldType(flags.ReadStringFlag("Field")),
+
+},
+},
+
+})
+
+
+		resp, err := client.Stack.GetScheduleAPIV1StacksFindingsJobID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_findings_job_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_findings_job_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetScheduleApiV1StacksCmd = &cobra.Command{
+	Use: "stacks",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
+		}
+
+        req := stack.NewGetScheduleAPIV1StacksParams()
+
+        req.SetAccounIds(flags.ReadStringArrayFlag("AccounIds"))
+req.SetTag(flags.ReadStringArrayFlag("Tag"))
+
+
+		resp, err := client.Stack.GetScheduleAPIV1Stacks(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
 		}
 
 		return nil

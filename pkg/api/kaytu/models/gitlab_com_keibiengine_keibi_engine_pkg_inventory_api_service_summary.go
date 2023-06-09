@@ -19,9 +19,7 @@ import (
 type GitlabComKeibiengineKeibiEnginePkgInventoryAPIServiceSummary struct {
 
 	// Cloud provider
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// Cost
 	Cost float64 `json:"cost,omitempty"`

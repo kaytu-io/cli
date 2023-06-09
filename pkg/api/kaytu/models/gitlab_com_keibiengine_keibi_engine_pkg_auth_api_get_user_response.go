@@ -43,16 +43,12 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUserResponse struct {
 	// Name of the role
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 
 	// Invite status
 	// Example: pending
 	// Enum: [accepted pending]
-	Status struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIInviteStatus
-	} `json:"status,omitempty"`
+	Status GitlabComKeibiengineKeibiEnginePkgAuthAPIInviteStatus `json:"status,omitempty"`
 
 	// Unique identifier for the user
 	// Example: sampleID

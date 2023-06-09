@@ -32,21 +32,21 @@ var UpdateUsersCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetUsersCmd.AddCommand(GetAuthApiV1UserUserIdWorkspaceMembershipCmd)
-
-		GetUsersCmd.AddCommand(PutAuthApiV1UserRoleBindingCmd)
-
 		GetUsersCmd.AddCommand(DeleteAuthApiV1UserInviteCmd)
 
 		GetUsersCmd.AddCommand(GetAuthApiV1UserRoleBindingsCmd)
 
-		GetUsersCmd.AddCommand(GetAuthApiV1UserUserIdCmd)
+		GetUsersCmd.AddCommand(GetAuthApiV1WorkspaceRoleBindingsCmd)
 
-		GetUsersCmd.AddCommand(PostAuthApiV1UserInviteCmd)
+		GetUsersCmd.AddCommand(PutAuthApiV1UserRoleBindingCmd)
 
 		GetUsersCmd.AddCommand(DeleteAuthApiV1UserRoleBindingCmd)
 
+		GetUsersCmd.AddCommand(GetAuthApiV1UserUserIdCmd)
+
+		GetUsersCmd.AddCommand(GetAuthApiV1UserUserIdWorkspaceMembershipCmd)
+
 		GetUsersCmd.AddCommand(GetAuthApiV1UsersCmd)
 
-		GetUsersCmd.AddCommand(GetAuthApiV1WorkspaceRoleBindingsCmd)
+		GetUsersCmd.AddCommand(PostAuthApiV1UserInviteCmd)
 }

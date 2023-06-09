@@ -25,9 +25,7 @@ type GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldRequest struct {
 
 	// field
 	// Enum: [resourceType serviceName sourceID resourceID]
-	Field struct {
-		GitlabComKeibiengineKeibiEnginePkgComplianceAPITopField
-	} `json:"field,omitempty"`
+	Field GitlabComKeibiengineKeibiEnginePkgComplianceAPITopField `json:"field,omitempty"`
 
 	// filters
 	Filters *GitlabComKeibiengineKeibiEnginePkgComplianceAPIFindingFilters `json:"filters,omitempty"`

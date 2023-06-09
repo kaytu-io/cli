@@ -12,4 +12,14 @@ type ChildCmdTemplate struct {
 	APIName          string
 	ServiceName      string
 	ServiceNameSnake string
+	//Params           []Param
+	ParamString string
+}
+
+type Param struct {
+	Name       string
+	Type       string
+	FlagName   string
+	StructName string
+	Required   bool
 }

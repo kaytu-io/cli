@@ -41,9 +41,7 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey struct {
 	// Name of the role
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`

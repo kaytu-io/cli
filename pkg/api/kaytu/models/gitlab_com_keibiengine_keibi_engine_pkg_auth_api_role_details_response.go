@@ -28,9 +28,7 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIRoleDetailsResponse struct {
 	// Name of the role
 	// Example: admin
 	// Enum: [admin editor viewer]
-	Role struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"role,omitempty"`
+	Role GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"role,omitempty"`
 
 	// Number of users having this role
 	// Example: 1

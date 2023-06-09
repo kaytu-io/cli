@@ -22,9 +22,7 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIListQueryRequest struct {
 	Labels []string `json:"labels"`
 
 	// Specifies the Provider
-	ProviderFilter struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPISourceType
-	} `json:"providerFilter,omitempty"`
+	ProviderFilter GitlabComKeibiengineKeibiEnginePkgInventoryAPISourceType `json:"providerFilter,omitempty"`
 
 	// Specifies the Title
 	TitleFilter string `json:"titleFilter,omitempty"`

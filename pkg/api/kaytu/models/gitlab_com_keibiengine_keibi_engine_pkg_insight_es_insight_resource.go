@@ -56,9 +56,7 @@ type GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource struct {
 	Locations []string `json:"locations"`
 
 	// Provider
-	Provider struct {
-		SourceType
-	} `json:"provider,omitempty"`
+	Provider SourceType `json:"provider,omitempty"`
 
 	// Query
 	Query string `json:"query,omitempty"`
@@ -67,9 +65,7 @@ type GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource struct {
 	QueryID int64 `json:"query_id,omitempty"`
 
 	// ResourceType shows which collection of docs this resource belongs to
-	ResourceType struct {
-		GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResourceType
-	} `json:"resource_type,omitempty"`
+	ResourceType GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResourceType `json:"resource_type,omitempty"`
 
 	// Result of query
 	Result int64 `json:"result,omitempty"`

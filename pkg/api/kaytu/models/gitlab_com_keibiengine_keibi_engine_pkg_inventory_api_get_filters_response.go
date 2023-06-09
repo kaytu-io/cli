@@ -19,9 +19,7 @@ import (
 type GitlabComKeibiengineKeibiEnginePkgInventoryAPIGetFiltersResponse struct {
 
 	// search filters
-	Filters struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceFiltersResponse
-	} `json:"filters,omitempty"`
+	Filters GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceFiltersResponse `json:"filters,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg inventory api get filters response

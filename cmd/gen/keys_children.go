@@ -6,77 +6,28 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
 	"github.com/spf13/cobra"
+	"github.com/kaytu-io/cli-program/cmd/flags"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 )
 
-var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
-	Use: "idIdDelete",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
-		}
-
-		_, err = client.Keys.DeleteAuthAPIV1KeyIDDelete(keys.NewDeleteAuthAPIV1KeyIDDeleteParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
-		}
-
-		return nil
-	},
-}
-var GetAuthApiV1KeyIdCmd = &cobra.Command{
-	Use: "idId",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
-		}
-
-		resp, err := client.Keys.GetAuthAPIV1KeyID(keys.NewGetAuthAPIV1KeyIDParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetAuthApiV1KeysCmd = &cobra.Command{
-	Use: "Keys",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
-		}
-
-		resp, err := client.Keys.GetAuthAPIV1Keys(keys.NewGetAuthAPIV1KeysParams(), auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PostAuthApiV1KeyCreateCmd = &cobra.Command{
-	Use: "createCreate",
+	Use: "key-create",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
 
-		resp, err := client.Keys.PostAuthAPIV1KeyCreate(keys.NewPostAuthAPIV1KeyCreateParams(), auth)
+        req := keys.NewPostAuthAPIV1KeyCreateParams()
+
+        req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgAuthAPICreateAPIKeyRequest{
+Name: flags.ReadStringFlag("Name"),
+RoleName: models.GitlabComKeibiengineKeibiEnginePkgAuthAPIRole(flags.ReadStringFlag("RoleName")),
+
+})
+
+
+		resp, err := client.Keys.PostAuthAPIV1KeyCreate(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
@@ -91,14 +42,19 @@ var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 }
 
 var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
-	Use: "idIdActivate",
+	Use: "key-id-activate",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
 		}
 
-		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(keys.NewPostAuthAPIV1KeyIDActivateParams(), auth)
+        req := keys.NewPostAuthAPIV1KeyIDActivateParams()
+
+        req.SetID(flags.ReadStringFlag("ID"))
+
+
+		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
 		}
@@ -113,14 +69,19 @@ var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 }
 
 var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
-	Use: "idIdSuspend",
+	Use: "key-id-suspend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
 		}
 
-		resp, err := client.Keys.PostAuthAPIV1KeyIDSuspend(keys.NewPostAuthAPIV1KeyIDSuspendParams(), auth)
+        req := keys.NewPostAuthAPIV1KeyIDSuspendParams()
+
+        req.SetID(flags.ReadStringFlag("ID"))
+
+
+		resp, err := client.Keys.PostAuthAPIV1KeyIDSuspend(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
 		}
@@ -135,14 +96,23 @@ var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 }
 
 var PostAuthApiV1KeyRoleCmd = &cobra.Command{
-	Use: "roleRole",
+	Use: "key-role",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}
 
-		resp, err := client.Keys.PostAuthAPIV1KeyRole(keys.NewPostAuthAPIV1KeyRoleParams(), auth)
+        req := keys.NewPostAuthAPIV1KeyRoleParams()
+
+        req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgAuthAPIUpdateKeyRoleRequest{
+ID: flags.ReadInt64Flag("ID"),
+RoleName: models.GitlabComKeibiengineKeibiEnginePkgAuthAPIRole(flags.ReadStringFlag("RoleName")),
+
+})
+
+
+		resp, err := client.Keys.PostAuthAPIV1KeyRole(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}
@@ -150,6 +120,80 @@ var PostAuthApiV1KeyRoleCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
+	Use: "key-id-delete",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
+		}
+
+        req := keys.NewDeleteAuthAPIV1KeyIDDeleteParams()
+
+        req.SetID(flags.ReadStringFlag("ID"))
+
+
+		_, err = client.Keys.DeleteAuthAPIV1KeyIDDelete(req, auth)
+		if err != nil {
+			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
+		}
+
+		return nil
+	},
+}
+var GetAuthApiV1KeyIdCmd = &cobra.Command{
+	Use: "key-id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
+		}
+
+        req := keys.NewGetAuthAPIV1KeyIDParams()
+
+        req.SetID(flags.ReadStringFlag("ID"))
+
+
+		resp, err := client.Keys.GetAuthAPIV1KeyID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetAuthApiV1KeysCmd = &cobra.Command{
+	Use: "keys",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
+		}
+
+        req := keys.NewGetAuthAPIV1KeysParams()
+
+        
+
+		resp, err := client.Keys.GetAuthAPIV1Keys(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
 		}
 
 		return nil

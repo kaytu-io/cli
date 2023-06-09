@@ -19,9 +19,7 @@ import (
 type GitlabComKeibiengineKeibiEnginePkgInventoryAPIServiceMetadata struct {
 
 	// Service Connector
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// List of Cost map service names
 	CostMapServiceNames []string `json:"cost_map_service_names"`

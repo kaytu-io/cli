@@ -7,6 +7,8 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"reflect"
+	"regexp"
 	"strings"
 	"text/template"
 )
@@ -149,24 +151,26 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 			hasPayload[name] = existPayload
 		}
 
-		nameCommand := strings.Split(strcase.ToSnake(name), "_")
-		newNameCommand := ""
-		if len(nameCommand) >= 5 {
-			for i := 5; i <= len(nameCommand)-1; i++ {
-				if i == 6 {
-					newNameCommand = strcase.ToSnake(nameCommand[i])
-				}
-				newNameCommand += strcase.ToCamel(nameCommand[i])
-			}
+		nameCommand := strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
+		r, err := regexp.Compile(`[a-zA-Z\-]+api-v-\d+-`)
+		if err != nil {
+			return err
 		}
-		childrenMap[name] = ChildCmdTemplate{
+		c := r.ReplaceAll([]byte(nameCommand), []byte(""))
+		nameCommand = string(c)
+
+		fv := ExtractFields(reflect.TypeOf(paramModels[apiName]))
+		output := GenerateSetFieldsFromFlags(fv)
+		tmpl := ChildCmdTemplate{
 			NameCamel:        strcase.ToCamel(name),
 			NameSnake:        strcase.ToSnake(name),
-			NameCommand:      newNameCommand,
+			NameCommand:      nameCommand,
 			APIName:          apiName,
 			ServiceName:      strcase.ToCamel(serviceName),
 			ServiceNameSnake: strcase.ToSnake(serviceName),
+			ParamString:      output,
 		}
+		childrenMap[name] = tmpl
 		return nil
 	})
 	if err != nil {
@@ -202,6 +206,11 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 		cmdReference += fmt.Sprintf(`
 		Get%sCmd.AddCommand(%sCmd)
 `, strcase.ToCamel(serviceName), temp.NameCamel)
+
+		//		for _, param := range temp.Params {
+		//			cmdReference += fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")
+		//`, temp.NameCamel, param.FlagName)
+		//		}
 	}
 	cmdReference += "}"
 

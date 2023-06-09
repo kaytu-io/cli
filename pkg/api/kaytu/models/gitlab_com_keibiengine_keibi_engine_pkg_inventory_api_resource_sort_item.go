@@ -22,15 +22,11 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceSortItem struct {
 
 	// direction
 	// Enum: [asc desc]
-	Direction struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPIDirectionType
-	} `json:"direction,omitempty"`
+	Direction GitlabComKeibiengineKeibiEnginePkgInventoryAPIDirectionType `json:"direction,omitempty"`
 
 	// field
 	// Enum: [resourceID resourceName provider resourceType resourceGroup location connectionID]
-	Field struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPISortFieldType
-	} `json:"field,omitempty"`
+	Field GitlabComKeibiengineKeibiEnginePkgInventoryAPISortFieldType `json:"field,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg inventory api resource sort item

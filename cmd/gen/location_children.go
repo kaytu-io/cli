@@ -6,17 +6,24 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/location"
 	"github.com/spf13/cobra"
+	"github.com/kaytu-io/cli-program/cmd/flags"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 )
 
 var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
-	Use: "connectorConnector",
+	Use: "locations-connector",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}
 
-		resp, err := client.Location.GetInventoryAPIV1LocationsConnector(location.NewGetInventoryAPIV1LocationsConnectorParams(), auth)
+        req := location.NewGetInventoryAPIV1LocationsConnectorParams()
+
+        req.SetConnector(flags.ReadStringFlag("Connector"))
+
+
+		resp, err := client.Location.GetInventoryAPIV1LocationsConnector(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}

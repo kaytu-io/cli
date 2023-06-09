@@ -32,13 +32,13 @@ var UpdateBenchmarksAssignmentCmd = &cobra.Command{
 	},
 }
 func init() {
+		GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
+
+		GetBenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
+
 		GetBenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
 
 		GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd)
 
 		GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsConnectionConnectionIdCmd)
-
-		GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
-
-		GetBenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
 }

@@ -36,19 +36,19 @@ func init() {
 
 		GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceTriggerCmd)
 
-		GetDescribeCmd.AddCommand(GetScheduleApiV0DescribeTriggerCmd)
-
-		GetDescribeCmd.AddCommand(PostScheduleApiV1DescribeResourceCmd)
-
-		GetDescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
-
 		GetDescribeCmd.AddCommand(GetScheduleApiV0InsightTriggerCmd)
 
 		GetDescribeCmd.AddCommand(GetScheduleApiV0SummarizeTriggerCmd)
+
+		GetDescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
+
+		GetDescribeCmd.AddCommand(GetScheduleApiV0DescribeTriggerCmd)
+
+		GetDescribeCmd.AddCommand(PostScheduleApiV1DescribeResourceCmd)
 
 		GetDescribeCmd.AddCommand(PutScheduleApiV1BenchmarkEvaluationTriggerCmd)
 
 		GetDescribeCmd.AddCommand(PutScheduleApiV1ComplianceTriggerCmd)
 
-		GetDescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
+		GetDescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
 }

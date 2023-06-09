@@ -6,4 +6,6 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/{{ .ServiceNameSnake }}"
 	"github.com/spf13/cobra"
+	"github.com/kaytu-io/cli-program/cmd/flags"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 )

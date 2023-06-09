@@ -24,9 +24,7 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse struct {
 	// Global Access
 	// Example: admin
 	// Enum: [admin editor viewer]
-	GlobalRoles struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"globalRoles,omitempty"`
+	GlobalRoles GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"globalRoles,omitempty"`
 
 	// List of user roles in each workspace
 	RoleBindings []*GitlabComKeibiengineKeibiEnginePkgAuthAPIUserRoleBinding `json:"roleBindings"`

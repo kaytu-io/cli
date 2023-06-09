@@ -20,9 +20,7 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIGetFiltersRequest struct {
 
 	// search filters
 	// Required: true
-	Filters struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceFilters
-	} `json:"filters"`
+	Filters GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceFilters `json:"filters"`
 
 	// search query
 	Query string `json:"query,omitempty"`

@@ -19,9 +19,7 @@ import (
 type GitlabComKeibiengineKeibiEnginePkgInventoryAPIConnectionResourceCountResponse struct {
 
 	// Source Type
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// Provider Connection Id
 	ConnectorConnectionID string `json:"connectorConnectionID,omitempty"`

@@ -22,9 +22,7 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPISmartQuerySortItem struct {
 
 	// direction
 	// Enum: [asc desc]
-	Direction struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPIDirectionType
-	} `json:"direction,omitempty"`
+	Direction GitlabComKeibiengineKeibiEnginePkgInventoryAPIDirectionType `json:"direction,omitempty"`
 
 	// fill this with column name
 	Field string `json:"field,omitempty"`

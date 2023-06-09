@@ -31,9 +31,7 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUsersRequest struct {
 	// Filter by role name
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg auth api get users request

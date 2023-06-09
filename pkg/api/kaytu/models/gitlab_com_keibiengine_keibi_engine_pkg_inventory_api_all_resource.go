@@ -25,9 +25,7 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIAllResource struct {
 	Location string `json:"location,omitempty"`
 
 	// Resource Provider
-	Provider struct {
-		GitlabComKeibiengineKeibiEnginePkgInventoryAPISourceType
-	} `json:"provider,omitempty"`
+	Provider GitlabComKeibiengineKeibiEnginePkgInventoryAPISourceType `json:"provider,omitempty"`
 
 	// Provider Connection Id
 	ProviderConnectionID string `json:"providerConnectionID,omitempty"`

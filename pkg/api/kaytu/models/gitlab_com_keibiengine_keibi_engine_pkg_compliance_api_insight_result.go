@@ -26,9 +26,7 @@ type GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsightResult struct {
 	Connections []*GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsightConnection `json:"connections"`
 
 	// Insight Details
-	Details struct {
-		GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsightDetail
-	} `json:"details,omitempty"`
+	Details GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsightDetail `json:"details,omitempty"`
 
 	// Time of Execution
 	ExecutedAt string `json:"executedAt,omitempty"`

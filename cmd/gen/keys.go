@@ -32,12 +32,6 @@ var UpdateKeysCmd = &cobra.Command{
 	},
 }
 func init() {
-		GetKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
-
-		GetKeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
-
-		GetKeysCmd.AddCommand(GetAuthApiV1KeysCmd)
-
 		GetKeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
 
 		GetKeysCmd.AddCommand(PostAuthApiV1KeyIdActivateCmd)
@@ -45,4 +39,10 @@ func init() {
 		GetKeysCmd.AddCommand(PostAuthApiV1KeyIdSuspendCmd)
 
 		GetKeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
+
+		GetKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
+
+		GetKeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
+
+		GetKeysCmd.AddCommand(GetAuthApiV1KeysCmd)
 }

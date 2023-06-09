@@ -24,9 +24,7 @@ type GitlabComKeibiengineKeibiEnginePkgAuthAPIPutRoleBindingRequest struct {
 	// Example: admin
 	// Required: true
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GitlabComKeibiengineKeibiEnginePkgAuthAPIRole
-	} `json:"roleName"`
+	RoleName GitlabComKeibiengineKeibiEnginePkgAuthAPIRole `json:"roleName"`
 
 	// Unique identifier for the User
 	// Example: sampleID

@@ -2,6 +2,7 @@ package gen
 
 import (
 	"fmt"
+	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/cost"
@@ -9,14 +10,19 @@ import (
 )
 
 var GetInventoryApiV1CostTopAccountsCmd = &cobra.Command{
-	Use: "topTopAccounts",
+	Use: "cost-top-accounts",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_cost_top_accounts] : %v", err)
 		}
 
-		resp, err := client.Cost.GetInventoryAPIV1CostTopAccounts(cost.NewGetInventoryAPIV1CostTopAccountsParams(), auth)
+		req := cost.NewGetInventoryAPIV1CostTopAccountsParams()
+
+		req.SetCount(flags.ReadInt64Flag("Count"))
+		req.SetProvider(flags.ReadStringFlag("Provider"))
+
+		resp, err := client.Cost.GetInventoryAPIV1CostTopAccounts(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_cost_top_accounts] : %v", err)
 		}
@@ -31,14 +37,20 @@ var GetInventoryApiV1CostTopAccountsCmd = &cobra.Command{
 }
 
 var GetInventoryApiV1CostTopServicesCmd = &cobra.Command{
-	Use: "topTopServices",
+	Use: "cost-top-services",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_cost_top_services] : %v", err)
 		}
 
-		resp, err := client.Cost.GetInventoryAPIV1CostTopServices(cost.NewGetInventoryAPIV1CostTopServicesParams(), auth)
+		req := cost.NewGetInventoryAPIV1CostTopServicesParams()
+
+		req.SetCount(flags.ReadInt64Flag("Count"))
+		req.SetProvider(flags.ReadStringFlag("Provider"))
+		req.SetSourceID(flags.ReadStringFlag("SourceID"))
+
+		resp, err := client.Cost.GetInventoryAPIV1CostTopServices(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_cost_top_services] : %v", err)
 		}
