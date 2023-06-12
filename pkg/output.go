@@ -2,10 +2,11 @@ package pkg
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/spf13/cobra"
 	"k8s.io/apimachinery/pkg/util/json"
-	"os"
 )
 
 type OutputType string
@@ -23,17 +24,29 @@ func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
 	}
 
 	var fields []map[string]interface{}
+	var field map[string]interface{}
 	err = json.Unmarshal(bytes, &fields)
 	if err != nil {
-		return fmt.Errorf("[printoutput] : %v", err)
+		if err.Error() == "json: cannot unmarshal object into Go value of type []map[string]interface {}" {
+			err = json.Unmarshal(bytes, &field)
+		} else {
+			return fmt.Errorf("[printoutput] : %v", err)
+		}
 	}
 	printTable := table.NewWriter()
 	printTable.SetOutputMirror(os.Stdout)
 
 	var headers []interface{}
 	var record []interface{}
-	for _, vl := range fields {
-		for key, value := range vl {
+	if len(fields) != 0 {
+		for _, vl := range fields {
+			for key, value := range vl {
+				headers = append(headers, key)
+				record = append(record, value)
+			}
+		}
+	} else {
+		for key, value := range field {
 			headers = append(headers, key)
 			record = append(record, value)
 		}
