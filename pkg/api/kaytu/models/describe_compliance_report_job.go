@@ -152,6 +152,11 @@ func (m *DescribeComplianceReportJob) ContextValidate(ctx context.Context, forma
 func (m *DescribeComplianceReportJob) contextValidateDeletedAt(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DeletedAt != nil {
+
+		if swag.IsZero(m.DeletedAt) { // not required
+			return nil
+		}
+
 		if err := m.DeletedAt.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("deletedAt")
@@ -167,6 +172,10 @@ func (m *DescribeComplianceReportJob) contextValidateDeletedAt(ctx context.Conte
 
 func (m *DescribeComplianceReportJob) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
 	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("sourceType")
@@ -180,6 +189,10 @@ func (m *DescribeComplianceReportJob) contextValidateSourceType(ctx context.Cont
 }
 
 func (m *DescribeComplianceReportJob) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

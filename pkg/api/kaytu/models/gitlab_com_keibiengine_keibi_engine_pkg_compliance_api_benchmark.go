@@ -121,6 +121,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmark) contextValida
 
 	for i := 0; i < len(m.Connectors); i++ {
 
+		if swag.IsZero(m.Connectors[i]) { // not required
+			return nil
+		}
+
 		if err := m.Connectors[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connectors" + "." + strconv.Itoa(i))

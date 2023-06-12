@@ -30,7 +30,7 @@ func (o *PostScheduleAPIV1StacksInsightTriggerReader) ReadResponse(response runt
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /schedule/api/v1/stacks/insight/trigger] PostScheduleAPIV1StacksInsightTrigger", response, response.Code())
 	}
 }
 
@@ -45,7 +45,7 @@ PostScheduleAPIV1StacksInsightTriggerOK describes a response with status code 20
 OK
 */
 type PostScheduleAPIV1StacksInsightTriggerOK struct {
-	Payload []*models.DescribeInsightJob
+	Payload []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob
 }
 
 // IsSuccess returns true when this post schedule Api v1 stacks insight trigger o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *PostScheduleAPIV1StacksInsightTriggerOK) String() string {
 	return fmt.Sprintf("[POST /schedule/api/v1/stacks/insight/trigger][%d] postScheduleApiV1StacksInsightTriggerOK  %+v", 200, o.Payload)
 }
 
-func (o *PostScheduleAPIV1StacksInsightTriggerOK) GetPayload() []*models.DescribeInsightJob {
+func (o *PostScheduleAPIV1StacksInsightTriggerOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob {
 	return o.Payload
 }
 

@@ -143,6 +143,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) Cont
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Filters != nil {
+
+		if swag.IsZero(m.Filters) { // not required
+			return nil
+		}
+
 		if err := m.Filters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filters")
@@ -159,6 +164,7 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) cont
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) contextValidatePage(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Page != nil {
+
 		if err := m.Page.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("page")
@@ -177,6 +183,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) cont
 	for i := 0; i < len(m.Sorts); i++ {
 
 		if m.Sorts[i] != nil {
+
+			if swag.IsZero(m.Sorts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Sorts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sorts" + "." + strconv.Itoa(i))

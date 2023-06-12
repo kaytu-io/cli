@@ -85,6 +85,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse) con
 	for i := 0; i < len(m.Findings); i++ {
 
 		if m.Findings[i] != nil {
+
+			if swag.IsZero(m.Findings[i]) { // not required
+				return nil
+			}
+
 			if err := m.Findings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("findings" + "." + strconv.Itoa(i))

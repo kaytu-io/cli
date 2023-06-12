@@ -30,7 +30,7 @@ func (o *GetScheduleAPIV1StacksResourceResourceIDReader) ReadResponse(response r
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /schedule/api/v1/stacks/resource/{resourceId}] GetScheduleAPIV1StacksResourceResourceID", response, response.Code())
 	}
 }
 

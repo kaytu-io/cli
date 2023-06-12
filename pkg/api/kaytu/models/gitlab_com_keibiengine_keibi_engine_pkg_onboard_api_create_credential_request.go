@@ -75,6 +75,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialRequest) Co
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialRequest) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
 	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("source_type")

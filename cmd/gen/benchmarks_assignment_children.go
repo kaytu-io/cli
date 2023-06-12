@@ -10,27 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "assignments-benchmark-id-connection-connection-id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
-
-		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
 var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	Use: "assignments-benchmark-benchmark-id",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -128,6 +107,28 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
+	Use: "assignments-benchmark-id-connection-connection-id",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		req := benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+
+		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
 		return nil

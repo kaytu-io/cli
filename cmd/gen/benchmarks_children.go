@@ -10,6 +10,36 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
+	Use: "services-summary-service-name",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
+		}
+
+		req := benchmarks.NewGetInventoryAPIV2ServicesSummaryServiceNameParams()
+
+		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
+		req.SetConnectorID(flags.ReadStringOptionalFlag(cmd, "ConnectorID"))
+		req.SetEndTime(flags.ReadStringFlag(cmd, "EndTime"))
+		req.SetServiceName(flags.ReadStringFlag(cmd, "ServiceName"))
+		req.SetStartTime(flags.ReadStringFlag(cmd, "StartTime"))
+
+		resp, err := client.Benchmarks.GetInventoryAPIV2ServicesSummaryServiceName(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV1AccountsResourceCountCmd = &cobra.Command{
 	Use: "accounts-resource-count",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -148,36 +178,6 @@ var GetInventoryApiV2ServicesSummaryCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_summary] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
-	Use: "services-summary-service-name",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
-		}
-
-		req := benchmarks.NewGetInventoryAPIV2ServicesSummaryServiceNameParams()
-
-		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
-		req.SetConnectorID(flags.ReadStringOptionalFlag(cmd, "ConnectorID"))
-		req.SetEndTime(flags.ReadStringFlag(cmd, "EndTime"))
-		req.SetServiceName(flags.ReadStringFlag(cmd, "ServiceName"))
-		req.SetStartTime(flags.ReadStringFlag(cmd, "StartTime"))
-
-		resp, err := client.Benchmarks.GetInventoryAPIV2ServicesSummaryServiceName(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
 		}
 
 		return nil

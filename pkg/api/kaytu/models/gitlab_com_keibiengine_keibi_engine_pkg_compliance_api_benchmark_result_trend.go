@@ -82,6 +82,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkResultTrend) co
 	for i := 0; i < len(m.ResultTrend); i++ {
 
 		if m.ResultTrend[i] != nil {
+
+			if swag.IsZero(m.ResultTrend[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResultTrend[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resultTrend" + "." + strconv.Itoa(i))

@@ -68,11 +68,11 @@ type PostScheduleAPIV1StacksCreateParams struct {
 	*/
 	Resources []string
 
-	/* Tags.
+	/* Tag.
 
 	   Tags Map[string][]string
 	*/
-	Tags *string
+	Tag *string
 
 	/* TerrafromFile.
 
@@ -144,15 +144,15 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetResources(resources []string) {
 	o.Resources = resources
 }
 
-// WithTags adds the tags to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) WithTags(tags *string) *PostScheduleAPIV1StacksCreateParams {
-	o.SetTags(tags)
+// WithTag adds the tag to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithTag(tag *string) *PostScheduleAPIV1StacksCreateParams {
+	o.SetTag(tag)
 	return o
 }
 
-// SetTags adds the tags to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) SetTags(tags *string) {
-	o.Tags = tags
+// SetTag adds the tag to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetTag(tag *string) {
+	o.Tag = tag
 }
 
 // WithTerrafromFile adds the terrafromFile to the post schedule API v1 stacks create params
@@ -185,16 +185,16 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		}
 	}
 
-	if o.Tags != nil {
+	if o.Tag != nil {
 
-		// form param tags
-		var frTags string
-		if o.Tags != nil {
-			frTags = *o.Tags
+		// form param tag
+		var frTag string
+		if o.Tag != nil {
+			frTag = *o.Tag
 		}
-		fTags := frTags
-		if fTags != "" {
-			if err := r.SetFormParam("tags", fTags); err != nil {
+		fTag := frTag
+		if fTag != "" {
+			if err := r.SetFormParam("tag", fTag); err != nil {
 				return err
 			}
 		}
@@ -227,8 +227,8 @@ func (o *PostScheduleAPIV1StacksCreateParams) bindParamResources(formats strfmt.
 		resourcesIC = append(resourcesIC, resourcesIIV)
 	}
 
-	// items.CollectionFormat: ""
-	resourcesIS := swag.JoinByFormat(resourcesIC, "")
+	// items.CollectionFormat: "csv"
+	resourcesIS := swag.JoinByFormat(resourcesIC, "csv")
 
 	return resourcesIS
 }

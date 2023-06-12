@@ -11,87 +11,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var PostAuthApiV1KeyCreateCmd = &cobra.Command{
-	Use: "key-create",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyCreateParams()
-
-		req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgAuthAPICreateAPIKeyRequest{
-			Name:     flags.ReadStringFlag(cmd, "Name"),
-			RoleName: models.GitlabComKeibiengineKeibiEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
-		})
-
-		resp, err := client.Keys.PostAuthAPIV1KeyCreate(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
-	Use: "key-id-activate",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyIDActivateParams()
-
-		req.SetID(flags.ReadStringFlag(cmd, "ID"))
-
-		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
-	Use: "key-id-suspend",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyIDSuspendParams()
-
-		req.SetID(flags.ReadStringFlag(cmd, "ID"))
-
-		resp, err := client.Keys.PostAuthAPIV1KeyIDSuspend(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PostAuthApiV1KeyRoleCmd = &cobra.Command{
 	Use: "key-role",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -185,6 +104,87 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostAuthApiV1KeyCreateCmd = &cobra.Command{
+	Use: "key-create",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		req := keys.NewPostAuthAPIV1KeyCreateParams()
+
+		req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgAuthAPICreateAPIKeyRequest{
+			Name:     flags.ReadStringFlag(cmd, "Name"),
+			RoleName: models.GitlabComKeibiengineKeibiEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
+		})
+
+		resp, err := client.Keys.PostAuthAPIV1KeyCreate(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
+	Use: "key-id-activate",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
+		}
+
+		req := keys.NewPostAuthAPIV1KeyIDActivateParams()
+
+		req.SetID(flags.ReadStringFlag(cmd, "ID"))
+
+		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
+	Use: "key-id-suspend",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
+		}
+
+		req := keys.NewPostAuthAPIV1KeyIDSuspendParams()
+
+		req.SetID(flags.ReadStringFlag(cmd, "ID"))
+
+		resp, err := client.Keys.PostAuthAPIV1KeyIDSuspend(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
 		}
 
 		return nil

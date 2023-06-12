@@ -25,7 +25,7 @@ type GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest struct {
 	Health SourceHealthStatus `json:"health,omitempty"`
 
 	// state
-	State GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionState `json:"state,omitempty"`
+	State GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionLifecycleState `json:"state,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg onboard api connection count request
@@ -100,6 +100,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest) Con
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest) contextValidateHealth(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Health) { // not required
+		return nil
+	}
+
 	if err := m.Health.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("health")
@@ -113,6 +117,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest) con
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.State) { // not required
+		return nil
+	}
 
 	if err := m.State.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

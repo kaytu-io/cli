@@ -30,7 +30,7 @@ func (o *GetOnboardAPIV1SourcesReader) ReadResponse(response runtime.ClientRespo
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /onboard/api/v1/sources] GetOnboardAPIV1Sources", response, response.Code())
 	}
 }
 

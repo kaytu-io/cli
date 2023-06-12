@@ -30,7 +30,7 @@ func (o *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDReader) ReadResponse(r
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /compliance/api/v1/assignments/benchmark/{benchmark_id}] GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID", response, response.Code())
 	}
 }
 

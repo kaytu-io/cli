@@ -152,6 +152,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount) ContextVali
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount) contextValidateDirection(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Direction) { // not required
+		return nil
+	}
+
 	if err := m.Direction.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("direction")
@@ -166,6 +170,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount) contextVali
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Name) { // not required
+		return nil
+	}
+
 	if err := m.Name.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("name")
@@ -179,6 +187,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount) contextVali
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

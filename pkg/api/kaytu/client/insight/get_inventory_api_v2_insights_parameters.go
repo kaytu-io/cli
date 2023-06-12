@@ -258,8 +258,8 @@ func (o *GetInventoryAPIV2InsightsParams) bindParamConnectionID(formats strfmt.R
 		connectionIDIC = append(connectionIDIC, connectionIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectionIDIS := swag.JoinByFormat(connectionIDIC, "")
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
 }
@@ -275,8 +275,8 @@ func (o *GetInventoryAPIV2InsightsParams) bindParamConnector(formats strfmt.Regi
 		connectorIC = append(connectorIC, connectorIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectorIS := swag.JoinByFormat(connectorIC, "")
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
 }
@@ -292,8 +292,8 @@ func (o *GetInventoryAPIV2InsightsParams) bindParamInsightID(formats strfmt.Regi
 		insightIDIC = append(insightIDIC, insightIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	insightIDIS := swag.JoinByFormat(insightIDIC, "")
+	// items.CollectionFormat: "csv"
+	insightIDIS := swag.JoinByFormat(insightIDIC, "csv")
 
 	return insightIDIS
 }

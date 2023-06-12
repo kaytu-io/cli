@@ -33,6 +33,19 @@ var UpdateScheduleCmd = &cobra.Command{
 }
 
 func init() {
+	GetScheduleCmd.AddCommand(GetScheduleApiV1ResourceTypeProviderCmd)
+	GetScheduleApiV1ResourceTypeProviderCmd.Flags().String("provider", "", "")
+
+	GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd)
+	PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd.Flags().String("source-id", "", "")
+
+	GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesCmd)
+
+	GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsComplianceCmd)
+	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().Int64("from", 0, "")
+	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().String("source-id", "", "")
+	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().Int64("to", 0, "")
+
 	GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsDescribeCmd)
 	GetScheduleApiV1SourcesSourceIdJobsDescribeCmd.Flags().String("source-id", "", "")
 
@@ -45,23 +58,10 @@ func init() {
 
 	GetScheduleCmd.AddCommand(GetScheduleApiV1DescribeSourceJobsPendingCmd)
 
-	GetScheduleCmd.AddCommand(GetScheduleApiV1ResourceTypeProviderCmd)
-	GetScheduleApiV1ResourceTypeProviderCmd.Flags().String("provider", "", "")
+	GetScheduleCmd.AddCommand(GetScheduleApiV1InsightJobsPendingCmd)
 
-	GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd)
-	PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd.Flags().String("source-id", "", "")
+	GetScheduleCmd.AddCommand(GetScheduleApiV1SummarizeJobsPendingCmd)
 
 	GetScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd)
 	PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd.Flags().String("source-id", "", "")
-
-	GetScheduleCmd.AddCommand(GetScheduleApiV1InsightJobsPendingCmd)
-
-	GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesCmd)
-
-	GetScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsComplianceCmd)
-	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().Int64("from", 0, "")
-	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().String("source-id", "", "")
-	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().Int64("to", 0, "")
-
-	GetScheduleCmd.AddCommand(GetScheduleApiV1SummarizeJobsPendingCmd)
 }

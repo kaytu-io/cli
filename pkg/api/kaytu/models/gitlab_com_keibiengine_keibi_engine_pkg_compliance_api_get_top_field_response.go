@@ -82,6 +82,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse) con
 	for i := 0; i < len(m.Records); i++ {
 
 		if m.Records[i] != nil {
+
+			if swag.IsZero(m.Records[i]) { // not required
+				return nil
+			}
+
 			if err := m.Records[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("records" + "." + strconv.Itoa(i))

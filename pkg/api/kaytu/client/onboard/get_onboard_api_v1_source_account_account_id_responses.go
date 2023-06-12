@@ -30,7 +30,7 @@ func (o *GetOnboardAPIV1SourceAccountAccountIDReader) ReadResponse(response runt
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /onboard/api/v1/source/account/{account_id}] GetOnboardAPIV1SourceAccountAccountID", response, response.Code())
 	}
 }
 

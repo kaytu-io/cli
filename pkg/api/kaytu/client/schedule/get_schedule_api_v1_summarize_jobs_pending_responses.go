@@ -30,7 +30,7 @@ func (o *GetScheduleAPIV1SummarizeJobsPendingReader) ReadResponse(response runti
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /schedule/api/v1/summarize/jobs/pending] GetScheduleAPIV1SummarizeJobsPending", response, response.Code())
 	}
 }
 

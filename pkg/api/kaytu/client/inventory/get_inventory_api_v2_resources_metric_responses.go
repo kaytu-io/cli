@@ -30,7 +30,7 @@ func (o *GetInventoryAPIV2ResourcesMetricReader) ReadResponse(response runtime.C
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /inventory/api/v2/resources/metric] GetInventoryAPIV2ResourcesMetric", response, response.Code())
 	}
 }
 

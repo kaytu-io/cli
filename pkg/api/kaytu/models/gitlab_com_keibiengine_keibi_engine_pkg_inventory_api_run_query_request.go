@@ -113,6 +113,7 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest) ContextV
 func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest) contextValidatePage(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Page != nil {
+
 		if err := m.Page.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("page")
@@ -131,6 +132,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest) contextV
 	for i := 0; i < len(m.Sorts); i++ {
 
 		if m.Sorts[i] != nil {
+
+			if swag.IsZero(m.Sorts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Sorts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sorts" + "." + strconv.Itoa(i))

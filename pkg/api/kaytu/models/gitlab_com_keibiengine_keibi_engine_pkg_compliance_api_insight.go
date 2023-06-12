@@ -170,6 +170,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight) ContextValidate
 
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Connector) { // not required
+		return nil
+	}
+
 	if err := m.Connector.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("connector")
@@ -185,6 +189,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight) contextValidate
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight) contextValidateQuery(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Query != nil {
+
+		if swag.IsZero(m.Query) { // not required
+			return nil
+		}
+
 		if err := m.Query.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("query")
@@ -203,6 +212,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight) contextValidate
 	for i := 0; i < len(m.Result); i++ {
 
 		if m.Result[i] != nil {
+
+			if swag.IsZero(m.Result[i]) { // not required
+				return nil
+			}
+
 			if err := m.Result[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("result" + "." + strconv.Itoa(i))

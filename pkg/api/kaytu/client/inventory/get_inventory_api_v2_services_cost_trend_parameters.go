@@ -332,8 +332,8 @@ func (o *GetInventoryAPIV2ServicesCostTrendParams) bindParamConnectionID(formats
 		connectionIDIC = append(connectionIDIC, connectionIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectionIDIS := swag.JoinByFormat(connectionIDIC, "")
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
 }
@@ -349,8 +349,8 @@ func (o *GetInventoryAPIV2ServicesCostTrendParams) bindParamConnector(formats st
 		connectorIC = append(connectorIC, connectorIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectorIS := swag.JoinByFormat(connectorIC, "")
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
 }

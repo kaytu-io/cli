@@ -88,6 +88,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIListResourceTypeMetricsRe
 	for i := 0; i < len(m.ResourceTypes); i++ {
 
 		if m.ResourceTypes[i] != nil {
+
+			if swag.IsZero(m.ResourceTypes[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResourceTypes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resource_types" + "." + strconv.Itoa(i))

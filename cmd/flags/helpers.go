@@ -2,10 +2,11 @@ package flags
 
 import (
 	"fmt"
-	"github.com/iancoleman/strcase"
-	"github.com/spf13/cobra"
 	"strconv"
 	"strings"
+
+	"github.com/iancoleman/strcase"
+	"github.com/spf13/cobra"
 )
 
 func ReadStringFlag(cmd *cobra.Command, name string) string {
@@ -57,7 +58,13 @@ func ReadBooleanOptionalFlag(cmd *cobra.Command, name string) *bool {
 func ReadStringArrayFlag(cmd *cobra.Command, name string) []string {
 	str := ReadStringOptionalFlag(cmd, name)
 	if str != nil {
-		return []string{*str}
+		str := *str
+		str = strings.ReplaceAll(str, "[", "")
+		str = strings.ReplaceAll(str, "]", "")
+		if str == "" {
+			return nil
+		}
+		return strings.Split(str, ",")
 	}
 	return nil
 }

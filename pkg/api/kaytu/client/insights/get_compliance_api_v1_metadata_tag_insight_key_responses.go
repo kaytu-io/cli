@@ -28,7 +28,7 @@ func (o *GetComplianceAPIV1MetadataTagInsightKeyReader) ReadResponse(response ru
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /compliance/api/v1/metadata/tag/insight/{key}] GetComplianceAPIV1MetadataTagInsightKey", response, response.Code())
 	}
 }
 

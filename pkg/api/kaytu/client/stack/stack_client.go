@@ -34,9 +34,7 @@ type ClientService interface {
 
 	GetScheduleAPIV1Stacks(params *GetScheduleAPIV1StacksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksOK, error)
 
-	GetScheduleAPIV1StacksFindingsJobID(params *GetScheduleAPIV1StacksFindingsJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksFindingsJobIDOK, error)
-
-	GetScheduleAPIV1StacksResourceResourceID(params *GetScheduleAPIV1StacksResourceResourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksResourceResourceIDOK, error)
+	GetScheduleAPIV1StacksResource(params *GetScheduleAPIV1StacksResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksResourceOK, error)
 
 	GetScheduleAPIV1StacksStackID(params *GetScheduleAPIV1StacksStackIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDOK, error)
 
@@ -45,6 +43,8 @@ type ClientService interface {
 	PostScheduleAPIV1StacksBenchmarkTrigger(params *PostScheduleAPIV1StacksBenchmarkTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksBenchmarkTriggerOK, error)
 
 	PostScheduleAPIV1StacksCreate(params *PostScheduleAPIV1StacksCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksCreateOK, error)
+
+	PostScheduleAPIV1StacksStackIDFindings(params *PostScheduleAPIV1StacksStackIDFindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksStackIDFindingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -132,65 +132,24 @@ func (a *Client) GetScheduleAPIV1Stacks(params *GetScheduleAPIV1StacksParams, au
 }
 
 /*
-GetScheduleAPIV1StacksFindingsJobID gets stack findings
-
-Get all findings for a stack
-*/
-func (a *Client) GetScheduleAPIV1StacksFindingsJobID(params *GetScheduleAPIV1StacksFindingsJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksFindingsJobIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetScheduleAPIV1StacksFindingsJobIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetScheduleAPIV1StacksFindingsJobID",
-		Method:             "GET",
-		PathPattern:        "/schedule/api/v1/stacks/findings/{jobId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetScheduleAPIV1StacksFindingsJobIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetScheduleAPIV1StacksFindingsJobIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1StacksFindingsJobID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetScheduleAPIV1StacksResourceResourceID lists resource stacks
+GetScheduleAPIV1StacksResource lists resource stacks
 
 Get list of all stacks containing a resource
 */
-func (a *Client) GetScheduleAPIV1StacksResourceResourceID(params *GetScheduleAPIV1StacksResourceResourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksResourceResourceIDOK, error) {
+func (a *Client) GetScheduleAPIV1StacksResource(params *GetScheduleAPIV1StacksResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksResourceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetScheduleAPIV1StacksResourceResourceIDParams()
+		params = NewGetScheduleAPIV1StacksResourceParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetScheduleAPIV1StacksResourceResourceID",
+		ID:                 "GetScheduleAPIV1StacksResource",
 		Method:             "GET",
-		PathPattern:        "/schedule/api/v1/stacks/resource/{resourceId}",
+		PathPattern:        "/schedule/api/v1/stacks/resource",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetScheduleAPIV1StacksResourceResourceIDReader{formats: a.formats},
+		Reader:             &GetScheduleAPIV1StacksResourceReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -203,13 +162,13 @@ func (a *Client) GetScheduleAPIV1StacksResourceResourceID(params *GetScheduleAPI
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetScheduleAPIV1StacksResourceResourceIDOK)
+	success, ok := result.(*GetScheduleAPIV1StacksResourceOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1StacksResourceResourceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1StacksResource: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -257,7 +216,7 @@ func (a *Client) GetScheduleAPIV1StacksStackID(params *GetScheduleAPIV1StacksSta
 /*
 GetScheduleAPIV1StacksStackIDInsight gets stack insight
 
-Get a benchmark result by jobId
+Get benchmark results for a stack
 */
 func (a *Client) GetScheduleAPIV1StacksStackIDInsight(params *GetScheduleAPIV1StacksStackIDInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDInsightOK, error) {
 	// TODO: Validate the params before sending
@@ -374,6 +333,47 @@ func (a *Client) PostScheduleAPIV1StacksCreate(params *PostScheduleAPIV1StacksCr
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostScheduleAPIV1StacksCreate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostScheduleAPIV1StacksStackIDFindings gets stack findings
+
+Get all findings for a stack
+*/
+func (a *Client) PostScheduleAPIV1StacksStackIDFindings(params *PostScheduleAPIV1StacksStackIDFindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksStackIDFindingsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostScheduleAPIV1StacksStackIDFindingsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostScheduleAPIV1StacksStackIDFindings",
+		Method:             "POST",
+		PathPattern:        "/schedule/api/v1/stacks/{stackId}/findings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostScheduleAPIV1StacksStackIDFindingsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostScheduleAPIV1StacksStackIDFindingsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostScheduleAPIV1StacksStackIDFindings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

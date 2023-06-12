@@ -30,7 +30,7 @@ func (o *PostComplianceAPIV1FindingsReader) ReadResponse(response runtime.Client
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /compliance/api/v1/findings] PostComplianceAPIV1Findings", response, response.Code())
 	}
 }
 

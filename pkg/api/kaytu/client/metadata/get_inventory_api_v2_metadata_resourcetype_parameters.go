@@ -292,8 +292,8 @@ func (o *GetInventoryAPIV2MetadataResourcetypeParams) bindParamConnector(formats
 		connectorIC = append(connectorIC, connectorIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectorIS := swag.JoinByFormat(connectorIC, "")
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
 }
@@ -309,8 +309,8 @@ func (o *GetInventoryAPIV2MetadataResourcetypeParams) bindParamService(formats s
 		serviceIC = append(serviceIC, serviceIIV)
 	}
 
-	// items.CollectionFormat: ""
-	serviceIS := swag.JoinByFormat(serviceIC, "")
+	// items.CollectionFormat: "csv"
+	serviceIS := swag.JoinByFormat(serviceIC, "csv")
 
 	return serviceIS
 }
@@ -326,8 +326,8 @@ func (o *GetInventoryAPIV2MetadataResourcetypeParams) bindParamTag(formats strfm
 		tagIC = append(tagIC, tagIIV)
 	}
 
-	// items.CollectionFormat: ""
-	tagIS := swag.JoinByFormat(tagIC, "")
+	// items.CollectionFormat: "csv"
+	tagIS := swag.JoinByFormat(tagIC, "csv")
 
 	return tagIS
 }

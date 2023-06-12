@@ -58,9 +58,6 @@ type GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource struct {
 	// s3 location
 	S3Location string `json:"s3_location,omitempty"`
 
-	// ScheduleUUID
-	ScheduleUUID string `json:"schedule_uuid,omitempty"`
-
 	// SourceID
 	SourceID string `json:"source_id,omitempty"`
 }
@@ -156,6 +153,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource) contextVali
 	for i := 0; i < len(m.IncludedConnections); i++ {
 
 		if m.IncludedConnections[i] != nil {
+
+			if swag.IsZero(m.IncludedConnections[i]) { // not required
+				return nil
+			}
+
 			if err := m.IncludedConnections[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("included_connections" + "." + strconv.Itoa(i))

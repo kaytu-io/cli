@@ -105,6 +105,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy) ContextValidate(
 
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Connector) { // not required
+		return nil
+	}
+
 	if err := m.Connector.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("connector")

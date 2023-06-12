@@ -223,8 +223,8 @@ func (o *GetInventoryAPIV1ResourcesDistributionParams) bindParamConnectionID(for
 		connectionIDIC = append(connectionIDIC, connectionIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectionIDIS := swag.JoinByFormat(connectionIDIC, "")
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
 }
@@ -240,8 +240,8 @@ func (o *GetInventoryAPIV1ResourcesDistributionParams) bindParamConnector(format
 		connectorIC = append(connectorIC, connectorIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectorIS := swag.JoinByFormat(connectorIC, "")
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
 }

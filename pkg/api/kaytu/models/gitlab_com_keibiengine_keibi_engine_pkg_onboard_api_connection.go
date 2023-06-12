@@ -195,6 +195,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) ContextValidate
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidateAssetDiscoveryMethod(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AssetDiscoveryMethod) { // not required
+		return nil
+	}
+
 	if err := m.AssetDiscoveryMethod.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("assetDiscoveryMethod")
@@ -208,6 +212,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidate
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Connector) { // not required
+		return nil
+	}
 
 	if err := m.Connector.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -223,6 +231,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidate
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidateHealthState(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.HealthState) { // not required
+		return nil
+	}
+
 	if err := m.HealthState.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("healthState")
@@ -236,6 +248,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidate
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection) contextValidateLifecycleState(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LifecycleState) { // not required
+		return nil
+	}
 
 	if err := m.LifecycleState.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

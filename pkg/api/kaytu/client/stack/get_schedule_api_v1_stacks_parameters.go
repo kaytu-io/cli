@@ -62,11 +62,11 @@ GetScheduleAPIV1StacksParams contains all the parameters to send to the API endp
 */
 type GetScheduleAPIV1StacksParams struct {
 
-	/* AccounIds.
+	/* AccountIds.
 
 	   Account IDs to filter by
 	*/
-	AccounIds []string
+	AccountIds []string
 
 	/* Tag.
 
@@ -127,15 +127,15 @@ func (o *GetScheduleAPIV1StacksParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAccounIds adds the accounIds to the get schedule API v1 stacks params
-func (o *GetScheduleAPIV1StacksParams) WithAccounIds(accounIds []string) *GetScheduleAPIV1StacksParams {
-	o.SetAccounIds(accounIds)
+// WithAccountIds adds the accountIds to the get schedule API v1 stacks params
+func (o *GetScheduleAPIV1StacksParams) WithAccountIds(accountIds []string) *GetScheduleAPIV1StacksParams {
+	o.SetAccountIds(accountIds)
 	return o
 }
 
-// SetAccounIds adds the accounIds to the get schedule API v1 stacks params
-func (o *GetScheduleAPIV1StacksParams) SetAccounIds(accounIds []string) {
-	o.AccounIds = accounIds
+// SetAccountIds adds the accountIds to the get schedule API v1 stacks params
+func (o *GetScheduleAPIV1StacksParams) SetAccountIds(accountIds []string) {
+	o.AccountIds = accountIds
 }
 
 // WithTag adds the tag to the get schedule API v1 stacks params
@@ -157,13 +157,13 @@ func (o *GetScheduleAPIV1StacksParams) WriteToRequest(r runtime.ClientRequest, r
 	}
 	var res []error
 
-	if o.AccounIds != nil {
+	if o.AccountIds != nil {
 
-		// binding items for accounIds
-		joinedAccounIds := o.bindParamAccounIds(reg)
+		// binding items for accountIds
+		joinedAccountIds := o.bindParamAccountIds(reg)
 
-		// query array param accounIds
-		if err := r.SetQueryParam("accounIds", joinedAccounIds...); err != nil {
+		// query array param accountIds
+		if err := r.SetQueryParam("accountIds", joinedAccountIds...); err != nil {
 			return err
 		}
 	}
@@ -185,21 +185,21 @@ func (o *GetScheduleAPIV1StacksParams) WriteToRequest(r runtime.ClientRequest, r
 	return nil
 }
 
-// bindParamGetScheduleAPIV1Stacks binds the parameter accounIds
-func (o *GetScheduleAPIV1StacksParams) bindParamAccounIds(formats strfmt.Registry) []string {
-	accounIdsIR := o.AccounIds
+// bindParamGetScheduleAPIV1Stacks binds the parameter accountIds
+func (o *GetScheduleAPIV1StacksParams) bindParamAccountIds(formats strfmt.Registry) []string {
+	accountIdsIR := o.AccountIds
 
-	var accounIdsIC []string
-	for _, accounIdsIIR := range accounIdsIR { // explode []string
+	var accountIdsIC []string
+	for _, accountIdsIIR := range accountIdsIR { // explode []string
 
-		accounIdsIIV := accounIdsIIR // string as string
-		accounIdsIC = append(accounIdsIC, accounIdsIIV)
+		accountIdsIIV := accountIdsIIR // string as string
+		accountIdsIC = append(accountIdsIC, accountIdsIIV)
 	}
 
-	// items.CollectionFormat: ""
-	accounIdsIS := swag.JoinByFormat(accounIdsIC, "")
+	// items.CollectionFormat: "csv"
+	accountIdsIS := swag.JoinByFormat(accountIdsIC, "csv")
 
-	return accounIdsIS
+	return accountIdsIS
 }
 
 // bindParamGetScheduleAPIV1Stacks binds the parameter tag
@@ -213,8 +213,8 @@ func (o *GetScheduleAPIV1StacksParams) bindParamTag(formats strfmt.Registry) []s
 		tagIC = append(tagIC, tagIIV)
 	}
 
-	// items.CollectionFormat: ""
-	tagIS := swag.JoinByFormat(tagIC, "")
+	// items.CollectionFormat: "csv"
+	tagIS := swag.JoinByFormat(tagIC, "csv")
 
 	return tagIS
 }

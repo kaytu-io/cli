@@ -33,6 +33,13 @@ var UpdateBenchmarksCmd = &cobra.Command{
 }
 
 func init() {
+	GetBenchmarksCmd.AddCommand(GetInventoryApiV2ServicesSummaryServiceNameCmd)
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("connector", "", "")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("connector-id", "", "")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("service-name", "", "")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("start-time", "", "")
+
 	GetBenchmarksCmd.AddCommand(GetInventoryApiV1AccountsResourceCountCmd)
 	GetInventoryApiV1AccountsResourceCountCmd.Flags().String("provider", "", "")
 	GetInventoryApiV1AccountsResourceCountCmd.Flags().StringArray("source-id", nil, "")
@@ -61,11 +68,4 @@ func init() {
 	GetInventoryApiV2ServicesSummaryCmd.Flags().String("sort-by", "", "")
 	GetInventoryApiV2ServicesSummaryCmd.Flags().String("start-time", "", "")
 	GetInventoryApiV2ServicesSummaryCmd.Flags().String("tag", "", "")
-
-	GetBenchmarksCmd.AddCommand(GetInventoryApiV2ServicesSummaryServiceNameCmd)
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("connector", "", "")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("connector-id", "", "")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("service-name", "", "")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("start-time", "", "")
 }

@@ -132,6 +132,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse) conte
 	for i := 0; i < len(m.RoleBindings); i++ {
 
 		if m.RoleBindings[i] != nil {
+
+			if swag.IsZero(m.RoleBindings[i]) { // not required
+				return nil
+			}
+
 			if err := m.RoleBindings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("roleBindings" + "." + strconv.Itoa(i))

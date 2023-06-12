@@ -27,7 +27,7 @@ func (o *PostMetadataAPIV1MetadataReader) ReadResponse(response runtime.ClientRe
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /metadata/api/v1/metadata] PostMetadataAPIV1Metadata", response, response.Code())
 	}
 }
 

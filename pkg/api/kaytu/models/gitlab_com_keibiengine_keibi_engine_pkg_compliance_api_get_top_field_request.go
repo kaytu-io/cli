@@ -124,6 +124,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldRequest) cont
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldRequest) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Filters != nil {
+
+		if swag.IsZero(m.Filters) { // not required
+			return nil
+		}
+
 		if err := m.Filters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filters")

@@ -110,6 +110,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSource) contextVal
 	for i := 0; i < len(m.DescribeResourceJobs); i++ {
 
 		if m.DescribeResourceJobs[i] != nil {
+
+			if swag.IsZero(m.DescribeResourceJobs[i]) { // not required
+				return nil
+			}
+
 			if err := m.DescribeResourceJobs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("describeResourceJobs" + "." + strconv.Itoa(i))
@@ -126,6 +131,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSource) contextVal
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSource) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -145,6 +145,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceEsFinding) ContextValidate(
 
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceEsFinding) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Connector) { // not required
+		return nil
+	}
+
 	if err := m.Connector.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("connector")
@@ -158,6 +162,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceEsFinding) contextValidateC
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceEsFinding) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Result) { // not required
+		return nil
+	}
 
 	if err := m.Result.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

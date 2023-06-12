@@ -137,6 +137,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIService) ContextValidate(
 
 func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIService) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Connector) { // not required
+		return nil
+	}
+
 	if err := m.Connector.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("connector")
@@ -154,6 +158,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIService) contextValidateR
 	for i := 0; i < len(m.ResourceTypes); i++ {
 
 		if m.ResourceTypes[i] != nil {
+
+			if swag.IsZero(m.ResourceTypes[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResourceTypes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resource_types" + "." + strconv.Itoa(i))

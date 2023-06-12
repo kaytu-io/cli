@@ -115,6 +115,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIStack) contextValidateEval
 	for i := 0; i < len(m.Evaluations); i++ {
 
 		if m.Evaluations[i] != nil {
+
+			if swag.IsZero(m.Evaluations[i]) { // not required
+				return nil
+			}
+
 			if err := m.Evaluations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("evaluations" + "." + strconv.Itoa(i))

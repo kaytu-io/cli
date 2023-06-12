@@ -69,6 +69,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceTierReques
 
 func (m *GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceTierRequest) contextValidateNewName(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.NewName) { // not required
+		return nil
+	}
+
 	if err := m.NewName.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("newName")

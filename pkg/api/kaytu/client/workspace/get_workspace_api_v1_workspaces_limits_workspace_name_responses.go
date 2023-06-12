@@ -30,7 +30,7 @@ func (o *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameReader) ReadResponse(resp
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /workspace/api/v1/workspaces/limits/{workspace_name}] GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName", response, response.Code())
 	}
 }
 

@@ -127,6 +127,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogConnector) ContextVa
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogConnector) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
 	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("sourceType")
@@ -140,6 +144,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogConnector) contextVa
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogConnector) contextValidateState(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.State) { // not required
+		return nil
+	}
 
 	if err := m.State.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

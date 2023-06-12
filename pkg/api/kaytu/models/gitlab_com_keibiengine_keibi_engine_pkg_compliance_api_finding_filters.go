@@ -126,6 +126,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIFindingFilters) contextV
 
 	for i := 0; i < len(m.Connector); i++ {
 
+		if swag.IsZero(m.Connector[i]) { // not required
+			return nil
+		}
+
 		if err := m.Connector[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connector" + "." + strconv.Itoa(i))
@@ -143,6 +147,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIFindingFilters) contextV
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIFindingFilters) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Status); i++ {
+
+		if swag.IsZero(m.Status[i]) { // not required
+			return nil
+		}
 
 		if err := m.Status[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {

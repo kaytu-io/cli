@@ -20,6 +20,9 @@ import (
 // swagger:model gitlab_com_keibiengine_keibi-engine_pkg_describe_api.GetStackFindings
 type GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings struct {
 
+	// benchmark ids
+	BenchmarkIds []string `json:"benchmarkIds"`
+
 	// page
 	// Required: true
 	Page *GitlabComKeibiengineKeibiEnginePkgComplianceAPIPage `json:"page"`
@@ -113,6 +116,7 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) ContextV
 func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) contextValidatePage(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Page != nil {
+
 		if err := m.Page.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("page")
@@ -131,6 +135,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) contextV
 	for i := 0; i < len(m.Sorts); i++ {
 
 		if m.Sorts[i] != nil {
+
+			if swag.IsZero(m.Sorts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Sorts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("sorts" + "." + strconv.Itoa(i))

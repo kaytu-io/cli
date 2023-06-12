@@ -196,6 +196,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkSummary) Contex
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkSummary) contextValidateChecks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Checks != nil {
+
+		if swag.IsZero(m.Checks) { // not required
+			return nil
+		}
+
 		if err := m.Checks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("checks")
@@ -214,6 +219,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkSummary) contex
 	for i := 0; i < len(m.CompliancyTrend); i++ {
 
 		if m.CompliancyTrend[i] != nil {
+
+			if swag.IsZero(m.CompliancyTrend[i]) { // not required
+				return nil
+			}
+
 			if err := m.CompliancyTrend[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("compliancyTrend" + "." + strconv.Itoa(i))
@@ -233,6 +243,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkSummary) contex
 
 	for i := 0; i < len(m.Connectors); i++ {
 
+		if swag.IsZero(m.Connectors[i]) { // not required
+			return nil
+		}
+
 		if err := m.Connectors[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("connectors" + "." + strconv.Itoa(i))
@@ -250,6 +264,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkSummary) contex
 func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkSummary) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Result != nil {
+
+		if swag.IsZero(m.Result) { // not required
+			return nil
+		}
+
 		if err := m.Result.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")

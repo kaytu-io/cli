@@ -118,6 +118,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob) ContextValidat
 
 func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
 	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("sourceType")
@@ -131,6 +135,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob) contextValidat
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

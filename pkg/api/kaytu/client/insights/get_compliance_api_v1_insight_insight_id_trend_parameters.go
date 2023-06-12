@@ -292,8 +292,8 @@ func (o *GetComplianceAPIV1InsightInsightIDTrendParams) bindParamConnectionID(fo
 		connectionIDIC = append(connectionIDIC, connectionIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectionIDIS := swag.JoinByFormat(connectionIDIC, "")
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
 }

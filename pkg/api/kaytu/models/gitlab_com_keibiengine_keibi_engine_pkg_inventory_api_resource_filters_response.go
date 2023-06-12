@@ -137,6 +137,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceFiltersResponse) 
 	for i := 0; i < len(m.Connections); i++ {
 
 		if m.Connections[i] != nil {
+
+			if swag.IsZero(m.Connections[i]) { // not required
+				return nil
+			}
+
 			if err := m.Connections[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("connections" + "." + strconv.Itoa(i))
@@ -157,6 +162,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceFiltersResponse) 
 	for i := 0; i < len(m.ResourceType); i++ {
 
 		if m.ResourceType[i] != nil {
+
+			if swag.IsZero(m.ResourceType[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResourceType[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceType" + "." + strconv.Itoa(i))

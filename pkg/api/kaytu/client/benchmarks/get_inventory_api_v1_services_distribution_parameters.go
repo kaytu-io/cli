@@ -195,8 +195,8 @@ func (o *GetInventoryAPIV1ServicesDistributionParams) bindParamSourceID(formats 
 		sourceIDIC = append(sourceIDIC, sourceIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	sourceIDIS := swag.JoinByFormat(sourceIDIC, "")
+	// items.CollectionFormat: "csv"
+	sourceIDIS := swag.JoinByFormat(sourceIDIC, "csv")
 
 	return sourceIDIS
 }

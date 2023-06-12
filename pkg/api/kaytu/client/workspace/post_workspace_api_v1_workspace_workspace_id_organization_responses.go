@@ -27,7 +27,7 @@ func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationReader) ReadResponse(
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /workspace/api/v1/workspace/{workspace_id}/organization] PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization", response, response.Code())
 	}
 }
 

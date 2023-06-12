@@ -91,6 +91,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetBenchmarksSummaryResp
 	for i := 0; i < len(m.BenchmarkSummary); i++ {
 
 		if m.BenchmarkSummary[i] != nil {
+
+			if swag.IsZero(m.BenchmarkSummary[i]) { // not required
+				return nil
+			}
+
 			if err := m.BenchmarkSummary[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("benchmarkSummary" + "." + strconv.Itoa(i))

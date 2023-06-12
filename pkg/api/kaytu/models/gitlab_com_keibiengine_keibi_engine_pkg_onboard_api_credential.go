@@ -196,6 +196,11 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidate
 	for i := 0; i < len(m.Connections); i++ {
 
 		if m.Connections[i] != nil {
+
+			if swag.IsZero(m.Connections[i]) { // not required
+				return nil
+			}
+
 			if err := m.Connections[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("connections" + "." + strconv.Itoa(i))
@@ -213,6 +218,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidate
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidateConnectorType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ConnectorType) { // not required
+		return nil
+	}
+
 	if err := m.ConnectorType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("connectorType")
@@ -227,6 +236,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidate
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidateCredentialType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CredentialType) { // not required
+		return nil
+	}
+
 	if err := m.CredentialType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("credentialType")
@@ -240,6 +253,10 @@ func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidate
 }
 
 func (m *GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.HealthStatus) { // not required
+		return nil
+	}
 
 	if err := m.HealthStatus.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

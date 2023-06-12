@@ -354,8 +354,8 @@ func (o *GetInventoryAPIV2ResourcesTrendParams) bindParamConnectionID(formats st
 		connectionIDIC = append(connectionIDIC, connectionIDIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectionIDIS := swag.JoinByFormat(connectionIDIC, "")
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
 }
@@ -371,8 +371,8 @@ func (o *GetInventoryAPIV2ResourcesTrendParams) bindParamConnector(formats strfm
 		connectorIC = append(connectorIC, connectorIIV)
 	}
 
-	// items.CollectionFormat: ""
-	connectorIS := swag.JoinByFormat(connectorIC, "")
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
 }
@@ -388,8 +388,8 @@ func (o *GetInventoryAPIV2ResourcesTrendParams) bindParamServicename(formats str
 		servicenameIC = append(servicenameIC, servicenameIIV)
 	}
 
-	// items.CollectionFormat: ""
-	servicenameIS := swag.JoinByFormat(servicenameIC, "")
+	// items.CollectionFormat: "csv"
+	servicenameIS := swag.JoinByFormat(servicenameIC, "csv")
 
 	return servicenameIS
 }
@@ -405,8 +405,8 @@ func (o *GetInventoryAPIV2ResourcesTrendParams) bindParamTag(formats strfmt.Regi
 		tagIC = append(tagIC, tagIIV)
 	}
 
-	// items.CollectionFormat: ""
-	tagIS := swag.JoinByFormat(tagIC, "")
+	// items.CollectionFormat: "csv"
+	tagIS := swag.JoinByFormat(tagIC, "csv")
 
 	return tagIS
 }
