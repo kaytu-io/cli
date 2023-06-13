@@ -44,14 +44,14 @@ func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
 			headers = append(headers, key)
 		}
 	}
-
+	printTable.AppendHeader(headers)
 	for _, vl := range fields {
 		for _, value := range vl {
 			record = append(record, value)
 		}
+		printTable.AppendRow(record)
+		record = nil
 	}
-	printTable.AppendHeader(headers)
-	printTable.AppendRows([]table.Row{record})
 	printTable.AppendSeparator()
 	printTable.Render()
 	return nil
