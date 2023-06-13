@@ -38,16 +38,15 @@ func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
 
 	var headers []interface{}
 	var record []interface{}
-	if len(fields) != 0 {
-		for _, vl := range fields {
-			for key, value := range vl {
-				headers = append(headers, key)
-				record = append(record, value)
-			}
-		}
-	} else {
-		for key, value := range field {
+	if len(fields) > 0 {
+		firstRow := fields[0]
+		for key, _ := range firstRow {
 			headers = append(headers, key)
+		}
+	}
+
+	for _, vl := range fields {
+		for _, value := range vl {
 			record = append(record, value)
 		}
 	}
