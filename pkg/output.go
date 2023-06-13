@@ -2,14 +2,19 @@ package pkg
 
 import (
 	"fmt"
-	"os"
-
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/spf13/cobra"
 	"k8s.io/apimachinery/pkg/util/json"
+	"os"
+	"sort"
 )
 
 type OutputType string
+
+type Cell struct {
+	Key   string
+	Value interface{}
+}
 
 func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
 	bytes, err := json.Marshal(obj)
@@ -36,19 +41,32 @@ func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
 	printTable := table.NewWriter()
 	printTable.SetOutputMirror(os.Stdout)
 
-	var headers []interface{}
+	var headers table.Row
+	headerOrder := map[string]int{}
 	var record []interface{}
 	if len(fields) > 0 {
 		firstRow := fields[0]
+		idx := 0
 		for key, _ := range firstRow {
 			headers = append(headers, key)
+			headerOrder[key] = idx
+			idx++
 		}
 	}
+
 	printTable.AppendHeader(headers)
 	for _, vl := range fields {
-		for _, value := range vl {
-			record = append(record, value)
+		var cells []Cell
+		for key, value := range vl {
+			cells = append(cells, Cell{Key: key, Value: value})
 		}
+		sort.Slice(cells, func(i, j int) bool {
+			return headerOrder[cells[i].Key] < headerOrder[cells[j].Key]
+		})
+		for _, v := range cells {
+			record = append(record, v.Value)
+		}
+
 		printTable.AppendRow(record)
 		record = nil
 	}
