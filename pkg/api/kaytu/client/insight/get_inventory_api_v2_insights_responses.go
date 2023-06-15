@@ -45,7 +45,7 @@ GetInventoryAPIV2InsightsOK describes a response with status code 200, with defa
 OK
 */
 type GetInventoryAPIV2InsightsOK struct {
-	Payload map[string]models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource
+	Payload map[string][]models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource
 }
 
 // IsSuccess returns true when this get inventory Api v2 insights o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetInventoryAPIV2InsightsOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/insights][%d] getInventoryApiV2InsightsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2InsightsOK) GetPayload() map[string]models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource {
+func (o *GetInventoryAPIV2InsightsOK) GetPayload() map[string][]models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource {
 	return o.Payload
 }
 

@@ -19,7 +19,7 @@ func ReadStringFlag(cmd *cobra.Command, name string) string {
 
 func ReadStringOptionalFlag(cmd *cobra.Command, name string) *string {
 	name = strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
-	if v := cmd.Flags().Lookup(name).Value.String(); len(v) > 0 {
+	if v := cmd.Flags().Lookup(name).Value.String(); len(v) > 0 && (cmd.Flags().Lookup(name).Changed == true) {
 		return &v
 	}
 	return nil
@@ -90,4 +90,16 @@ func ReadMapStringArrayFlag(cmd *cobra.Command, name string) map[string][]string
 
 func Name(n string) string {
 	return strings.ReplaceAll(strcase.ToSnake(n), "_", "-")
+}
+
+func ReadIntArrayFlag(cmd *cobra.Command, name string) []int64 {
+	strArr := ReadStringArrayFlag(cmd, name)
+	intArr := make([]int64, len(strArr))
+
+	for i, s := range strArr {
+		num, _ := strconv.ParseInt(s, 10, 64)
+		intArr[i] = num
+	}
+
+	return intArr
 }

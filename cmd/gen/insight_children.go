@@ -107,12 +107,11 @@ var GetInventoryApiV2InsightsCmd = &cobra.Command{
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetInsightID(flags.ReadStringArrayFlag(cmd, "InsightID"))
 		req.SetTime(flags.ReadInt64OptionalFlag(cmd, "Time"))
-
 		resp, err := client.Insight.GetInventoryAPIV2Insights(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
 		}
-
+		fmt.Println(resp)
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)

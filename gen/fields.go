@@ -31,7 +31,12 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 					line = `req.Set{{.Name}}(flags.ReadMapStringFlag(cmd, "{{.Name}}"))`
 				case "map[string][]string":
 					line = `req.Set{{.Name}}(flags.ReadMapStringArrayFlag(cmd, "{{.Name}}"))`
+				case "runtime.NamedReadCloser":
+					line = `reader, err := os.Open(flags.ReadStringFlag(cmd, "{{.Name}}"))
+		{{.Name}} := runtime.NamedReader("{{.Name}}", reader)
+		req.SetTerrafromFile({{.Name}})`
 				default:
+					fmt.Println("Unknown type: " + param.Type)
 					line = `req.Set{{.Name}}(v)`
 				}
 			}
@@ -86,6 +91,8 @@ func GenerateReadingFlag(param Field) string {
 		return fmt.Sprintf(`flags.ReadMapStringFlag(cmd, "%s")`, param.Name)
 	case "map[string][]string":
 		return fmt.Sprintf(`flags.ReadMapStringArrayFlag(cmd, "%s")`, param.Name)
+	case "[]int64":
+		return fmt.Sprintf(`flags.ReadIntArrayFlag(cmd, "%s")`, param.Name)
 	default:
 		var ptype = param.Type
 		if ptype[0] == '*' {

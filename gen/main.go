@@ -3,8 +3,6 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"github.com/iancoleman/strcase"
-	"github.com/kaytu-io/cli-program/cmd/flags"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -12,6 +10,9 @@ import (
 	"regexp"
 	"strings"
 	"text/template"
+
+	"github.com/iancoleman/strcase"
+	"github.com/kaytu-io/cli-program/cmd/flags"
 )
 
 //go:embed service.go.template
@@ -250,9 +251,28 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 			}
 		}
 
-		cmdReference += fmt.Sprintf(`
+		switch {
+		case strings.Contains(temp.NameCamel, "Delete"):
+			cmdReference += fmt.Sprintf(`
+		Delete%sCmd.AddCommand(%sCmd)
+`, strcase.ToCamel(serviceName), temp.NameCamel)
+		case strings.Contains(temp.NameCamel, "Get"):
+			cmdReference += fmt.Sprintf(`
 		Get%sCmd.AddCommand(%sCmd)
 `, strcase.ToCamel(serviceName), temp.NameCamel)
+		case strings.Contains(temp.NameCamel, "Update"):
+			cmdReference += fmt.Sprintf(`
+		Update%sCmd.AddCommand(%sCmd)
+`, strcase.ToCamel(serviceName), temp.NameCamel)
+		case strings.Contains(temp.NameCamel, "Create"):
+			cmdReference += fmt.Sprintf(`
+		Create%sCmd.AddCommand(%sCmd)
+`, strcase.ToCamel(serviceName), temp.NameCamel)
+		default:
+			cmdReference += fmt.Sprintf(`
+		Get%sCmd.AddCommand(%sCmd)
+`, strcase.ToCamel(serviceName), temp.NameCamel)
+		}
 
 		fv := ExtractFields(reflect.TypeOf(paramModels[temp.APIName]))
 		output := GenerateFlagDefinitions(temp.NameCamel, fv)

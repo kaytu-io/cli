@@ -31,33 +31,32 @@ var UpdateInsightsCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
-
 func init() {
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdCmd)
-	GetComplianceApiV1InsightInsightIdCmd.Flags().StringArray("connection-id", nil, "")
-	GetComplianceApiV1InsightInsightIdCmd.Flags().Int64("end-time", 0, "")
-	GetComplianceApiV1InsightInsightIdCmd.Flags().String("insight-id", "", "")
-	GetComplianceApiV1InsightInsightIdCmd.Flags().Int64("start-time", 0, "")
+		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightKeyCmd)
+GetComplianceApiV1MetadataTagInsightKeyCmd.Flags().String("key", "", "")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdTrendCmd)
-	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().StringArray("connection-id", nil, "")
-	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("datapoint-count", 0, "")
-	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("end-time", 0, "")
-	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().String("insight-id", "", "")
-	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("start-time", 0, "")
+		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightCmd)
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightCmd)
-	GetComplianceApiV1InsightCmd.Flags().StringArray("connection-id", nil, "")
-	GetComplianceApiV1InsightCmd.Flags().StringArray("connector", nil, "")
-	GetComplianceApiV1InsightCmd.Flags().Int64("end-time", 0, "")
-	GetComplianceApiV1InsightCmd.Flags().Int64("start-time", 0, "")
-	GetComplianceApiV1InsightCmd.Flags().String("tag", "", "")
+		GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdCmd)
+GetComplianceApiV1InsightInsightIdCmd.Flags().StringArray("connection-id", nil, "")
+GetComplianceApiV1InsightInsightIdCmd.Flags().Int64("end-time", 0, "")
+GetComplianceApiV1InsightInsightIdCmd.Flags().String("insight-id", "", "")
+GetComplianceApiV1InsightInsightIdCmd.Flags().Int64("start-time", 0, "")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightCmd)
-	GetComplianceApiV1MetadataInsightCmd.Flags().StringArray("connector", nil, "")
+		GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdTrendCmd)
+GetComplianceApiV1InsightInsightIdTrendCmd.Flags().StringArray("connection-id", nil, "")
+GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("datapoint-count", 0, "")
+GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("end-time", 0, "")
+GetComplianceApiV1InsightInsightIdTrendCmd.Flags().String("insight-id", "", "")
+GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("start-time", 0, "")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightKeyCmd)
-	GetComplianceApiV1MetadataTagInsightKeyCmd.Flags().String("key", "", "")
+		GetInsightsCmd.AddCommand(GetComplianceApiV1InsightCmd)
+GetComplianceApiV1InsightCmd.Flags().StringArray("connection-id", nil, "")
+GetComplianceApiV1InsightCmd.Flags().StringArray("connector", nil, "")
+GetComplianceApiV1InsightCmd.Flags().Int64("end-time", 0, "")
+GetComplianceApiV1InsightCmd.Flags().Int64("start-time", 0, "")
+GetComplianceApiV1InsightCmd.Flags().String("tag", "", "")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightCmd)
+		GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightCmd)
+GetComplianceApiV1MetadataInsightCmd.Flags().StringArray("connector", nil, "")
 }
