@@ -46,6 +46,9 @@ type GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight struct {
 	// long title
 	LongTitle string `json:"longTitle,omitempty"`
 
+	// old total result value
+	OldTotalResultValue int64 `json:"oldTotalResultValue,omitempty"`
+
 	// query
 	Query *GitlabComKeibiengineKeibiEnginePkgComplianceAPIQuery `json:"query,omitempty"`
 
@@ -57,9 +60,6 @@ type GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight struct {
 
 	// total result value
 	TotalResultValue int64 `json:"totalResultValue,omitempty"`
-
-	// total result value change percent
-	TotalResultValueChangePercent float64 `json:"totalResultValueChangePercent,omitempty"`
 }
 
 // Validate validates this gitlab com keibiengine keibi engine pkg compliance api insight

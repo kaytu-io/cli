@@ -10,8 +10,35 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
+	Use: "add-assignment",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+
+		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "assignments-benchmark-id-connection-connection-id",
+	Use: "remove-assignment",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -32,7 +59,7 @@ var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobr
 	},
 }
 var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
-	Use: "assignments-benchmark-benchmark-id",
+	Use: "benchmark-assignments",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -58,7 +85,7 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
-	Use: "assignments-connection-connection-id",
+	Use: "connection-assignments",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -84,7 +111,7 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
-	Use: "assignments",
+	Use: "list-assignments",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -101,33 +128,6 @@ var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use: "assignments-benchmark-id-connection-connection-id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
-
-		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
 		return nil

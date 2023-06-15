@@ -11,7 +11,7 @@ import (
 )
 
 var GetInventoryApiV1CostTopServicesCmd = &cobra.Command{
-	Use: "cost-top-services",
+	Use: "top-services-by-cost",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -39,7 +39,7 @@ var GetInventoryApiV1CostTopServicesCmd = &cobra.Command{
 }
 
 var GetInventoryApiV1CostTopAccountsCmd = &cobra.Command{
-	Use: "cost-top-accounts",
+	Use: "top-accounts-by-cost",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

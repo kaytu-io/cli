@@ -45,7 +45,7 @@ GetInventoryAPIV2InsightsInsightIDTrendOK describes a response with status code 
 OK
 */
 type GetInventoryAPIV2InsightsInsightIDTrendOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource
+	Payload map[string][]models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource
 }
 
 // IsSuccess returns true when this get inventory Api v2 insights insight Id trend o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetInventoryAPIV2InsightsInsightIDTrendOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/insights/{insightId}/trend][%d] getInventoryApiV2InsightsInsightIdTrendOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2InsightsInsightIDTrendOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource {
+func (o *GetInventoryAPIV2InsightsInsightIDTrendOK) GetPayload() map[string][]models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource {
 	return o.Payload
 }
 

@@ -10,87 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
-	Use: "metadata-tag-insight-key",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
-		}
-
-		req := insights.NewGetComplianceAPIV1MetadataTagInsightKeyParams()
-
-		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
-
-		resp, err := client.Insights.GetComplianceAPIV1MetadataTagInsightKey(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
-	Use: "metadata-tag-insight",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
-		}
-
-		req := insights.NewGetComplianceAPIV1MetadataTagInsightParams()
-
-		resp, err := client.Insights.GetComplianceAPIV1MetadataTagInsight(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1InsightInsightIdCmd = &cobra.Command{
-	Use: "insight-insight-id",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
-		}
-
-		req := insights.NewGetComplianceAPIV1InsightInsightIDParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Insights.GetComplianceAPIV1InsightInsightID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetComplianceApiV1InsightInsightIdTrendCmd = &cobra.Command{
-	Use: "insight-insight-id-trend",
+	Use: "get-insight-trend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -120,7 +41,7 @@ var GetComplianceApiV1InsightInsightIdTrendCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1InsightCmd = &cobra.Command{
-	Use: "insight",
+	Use: "list-insights",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -149,8 +70,34 @@ var GetComplianceApiV1InsightCmd = &cobra.Command{
 	},
 }
 
+var GetComplianceApiV1MetadataInsightInsightIdCmd = &cobra.Command{
+	Use: "",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
+		}
+
+		req := insights.NewGetComplianceAPIV1MetadataInsightInsightIDParams()
+
+		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+
+		resp, err := client.Insights.GetComplianceAPIV1MetadataInsightInsightID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
-	Use: "metadata-insight",
+	Use: "list-insights-metadata",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -169,6 +116,85 @@ var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
+	Use: "list-insights-metadata-tag",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
+		}
+
+		req := insights.NewGetComplianceAPIV1MetadataTagInsightKeyParams()
+
+		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
+
+		resp, err := client.Insights.GetComplianceAPIV1MetadataTagInsightKey(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
+	Use: "list-insights-metadata-tags",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
+		}
+
+		req := insights.NewGetComplianceAPIV1MetadataTagInsightParams()
+
+		resp, err := client.Insights.GetComplianceAPIV1MetadataTagInsight(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1InsightInsightIdCmd = &cobra.Command{
+	Use: "get-insight",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
+		}
+
+		req := insights.NewGetComplianceAPIV1InsightInsightIDParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Insights.GetComplianceAPIV1InsightInsightID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
 		}
 
 		return nil

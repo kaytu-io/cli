@@ -70,7 +70,7 @@ type GetInventoryAPIV2ServicesMetricServiceNameParams struct {
 
 	/* EndTime.
 
-	   timestamp for end of cost aggregation in epoch seconds
+	   timestamp for current values in epoch seconds
 	*/
 	EndTime *string
 
@@ -82,7 +82,7 @@ type GetInventoryAPIV2ServicesMetricServiceNameParams struct {
 
 	/* StartTime.
 
-	   timestamp for start of cost aggregation in epoch seconds
+	   timestamp for old values in epoch seconds
 	*/
 	StartTime *string
 

@@ -40,9 +40,9 @@ type ClientService interface {
 
 	GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error)
 
-	GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsOK, error)
+	GetOnboardAPIV1Connector(params *GetOnboardAPIV1ConnectorParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorOK, error)
 
-	GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1ConnectorsConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsConnectorNameOK, error)
+	GetOnboardAPIV1ConnectorConnectorName(params *GetOnboardAPIV1ConnectorConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorConnectorNameOK, error)
 
 	GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialOK, error)
 
@@ -51,10 +51,6 @@ type ClientService interface {
 	GetOnboardAPIV1CredentialCredentialIDHealthcheck(params *GetOnboardAPIV1CredentialCredentialIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDHealthcheckOK, error)
 
 	GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1CredentialSourcesListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialSourcesListOK, error)
-
-	GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersOK, error)
-
-	GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersTypesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersTypesOK, error)
 
 	GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1SourceAccountAccountIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceAccountAccountIDOK, error)
 
@@ -291,24 +287,24 @@ func (a *Client) GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1Connecti
 }
 
 /*
-GetOnboardAPIV1Connectors gets connectors
+GetOnboardAPIV1Connector gets connectors
 
 Getting connectors
 */
-func (a *Client) GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsOK, error) {
+func (a *Client) GetOnboardAPIV1Connector(params *GetOnboardAPIV1ConnectorParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetOnboardAPIV1ConnectorsParams()
+		params = NewGetOnboardAPIV1ConnectorParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetOnboardAPIV1Connectors",
+		ID:                 "GetOnboardAPIV1Connector",
 		Method:             "GET",
-		PathPattern:        "/onboard/api/v1/connectors",
+		PathPattern:        "/onboard/api/v1/connector",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetOnboardAPIV1ConnectorsReader{formats: a.formats},
+		Reader:             &GetOnboardAPIV1ConnectorReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -321,35 +317,35 @@ func (a *Client) GetOnboardAPIV1Connectors(params *GetOnboardAPIV1ConnectorsPara
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetOnboardAPIV1ConnectorsOK)
+	success, ok := result.(*GetOnboardAPIV1ConnectorOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1Connectors: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1Connector: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-GetOnboardAPIV1ConnectorsConnectorName gets connector
+GetOnboardAPIV1ConnectorConnectorName gets connector
 
 Getting connector
 */
-func (a *Client) GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1ConnectorsConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorsConnectorNameOK, error) {
+func (a *Client) GetOnboardAPIV1ConnectorConnectorName(params *GetOnboardAPIV1ConnectorConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorConnectorNameOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetOnboardAPIV1ConnectorsConnectorNameParams()
+		params = NewGetOnboardAPIV1ConnectorConnectorNameParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetOnboardAPIV1ConnectorsConnectorName",
+		ID:                 "GetOnboardAPIV1ConnectorConnectorName",
 		Method:             "GET",
-		PathPattern:        "/onboard/api/v1/connectors/{connectorName}",
+		PathPattern:        "/onboard/api/v1/connector/{connectorName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetOnboardAPIV1ConnectorsConnectorNameReader{formats: a.formats},
+		Reader:             &GetOnboardAPIV1ConnectorConnectorNameReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -362,13 +358,13 @@ func (a *Client) GetOnboardAPIV1ConnectorsConnectorName(params *GetOnboardAPIV1C
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetOnboardAPIV1ConnectorsConnectorNameOK)
+	success, ok := result.(*GetOnboardAPIV1ConnectorConnectorNameOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1ConnectorsConnectorName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1ConnectorConnectorName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -531,88 +527,6 @@ func (a *Client) GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1Cre
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1CredentialSourcesList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetOnboardAPIV1Providers gets providers
-
-Getting cloud providers
-*/
-func (a *Client) GetOnboardAPIV1Providers(params *GetOnboardAPIV1ProvidersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetOnboardAPIV1ProvidersParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetOnboardAPIV1Providers",
-		Method:             "GET",
-		PathPattern:        "/onboard/api/v1/providers",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetOnboardAPIV1ProvidersReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetOnboardAPIV1ProvidersOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1Providers: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetOnboardAPIV1ProvidersTypes gets provider types
-
-Getting provider types
-*/
-func (a *Client) GetOnboardAPIV1ProvidersTypes(params *GetOnboardAPIV1ProvidersTypesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ProvidersTypesOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetOnboardAPIV1ProvidersTypesParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetOnboardAPIV1ProvidersTypes",
-		Method:             "GET",
-		PathPattern:        "/onboard/api/v1/providers/types",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetOnboardAPIV1ProvidersTypesReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetOnboardAPIV1ProvidersTypesOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1ProvidersTypes: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

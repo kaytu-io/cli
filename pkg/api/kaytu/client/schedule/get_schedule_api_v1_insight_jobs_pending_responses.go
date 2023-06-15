@@ -45,7 +45,7 @@ GetScheduleAPIV1InsightJobsPendingOK describes a response with status code 200, 
 OK
 */
 type GetScheduleAPIV1InsightJobsPendingOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPISource
+	Payload []*models.DescribeInsightJob
 }
 
 // IsSuccess returns true when this get schedule Api v1 insight jobs pending o k response has a 2xx status code
@@ -86,16 +86,14 @@ func (o *GetScheduleAPIV1InsightJobsPendingOK) String() string {
 	return fmt.Sprintf("[GET /schedule/api/v1/insight/jobs/pending][%d] getScheduleApiV1InsightJobsPendingOK  %+v", 200, o.Payload)
 }
 
-func (o *GetScheduleAPIV1InsightJobsPendingOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPISource {
+func (o *GetScheduleAPIV1InsightJobsPendingOK) GetPayload() []*models.DescribeInsightJob {
 	return o.Payload
 }
 
 func (o *GetScheduleAPIV1InsightJobsPendingOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgDescribeAPISource)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

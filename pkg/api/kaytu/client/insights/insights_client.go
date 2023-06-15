@@ -38,6 +38,8 @@ type ClientService interface {
 
 	GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error)
 
+	GetComplianceAPIV1MetadataInsightInsightID(params *GetComplianceAPIV1MetadataInsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightInsightIDOK, error)
+
 	GetComplianceAPIV1MetadataTagInsight(params *GetComplianceAPIV1MetadataTagInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightOK, error)
 
 	GetComplianceAPIV1MetadataTagInsightKey(params *GetComplianceAPIV1MetadataTagInsightKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightKeyOK, error)
@@ -206,6 +208,47 @@ func (a *Client) GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1Met
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1MetadataInsight: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1MetadataInsightInsightID gets insight metadata by id
+
+Get insight metadata by id
+*/
+func (a *Client) GetComplianceAPIV1MetadataInsightInsightID(params *GetComplianceAPIV1MetadataInsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightInsightIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1MetadataInsightInsightIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1MetadataInsightInsightID",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/metadata/insight/{insightId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1MetadataInsightInsightIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1MetadataInsightInsightIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1MetadataInsightInsightID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

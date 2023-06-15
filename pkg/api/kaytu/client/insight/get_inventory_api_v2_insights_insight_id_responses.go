@@ -45,7 +45,7 @@ GetInventoryAPIV2InsightsInsightIDOK describes a response with status code 200, 
 OK
 */
 type GetInventoryAPIV2InsightsInsightIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource
+	Payload []*models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource
 }
 
 // IsSuccess returns true when this get inventory Api v2 insights insight Id o k response has a 2xx status code
@@ -86,16 +86,14 @@ func (o *GetInventoryAPIV2InsightsInsightIDOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/insights/{insightId}][%d] getInventoryApiV2InsightsInsightIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2InsightsInsightIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource {
+func (o *GetInventoryAPIV2InsightsInsightIDOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource {
 	return o.Payload
 }
 
 func (o *GetInventoryAPIV2InsightsInsightIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgInsightEsInsightResource)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

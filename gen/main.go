@@ -7,7 +7,6 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"regexp"
 	"strings"
 	"text/template"
 
@@ -199,14 +198,20 @@ func createChildren(root, serviceName, servicePath string, fservice *os.File) er
 			hasPayload[name] = existPayload
 		}
 
-		nameCommand := strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
-		r, err := regexp.Compile(`[a-zA-Z\-]+api-v-\d+-`)
-		if err != nil {
-			return err
-		}
-		c := r.ReplaceAll([]byte(nameCommand), []byte(""))
-		nameCommand = string(c)
+		// nameCommand := strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
+		// r, err := regexp.Compile(`[a-zA-Z\-]+api-v-\d+-`)
+		// if err != nil {
+		// 	return err
+		// }
+		// c := r.ReplaceAll([]byte(nameCommand), []byte(""))
+		// nameCommand = string(c)
 
+		nameCommand := strings.ReplaceAll(name, "_", "-")
+		nameCommand = urlNames[nameCommand]
+
+		if nameCommand == "" {
+			fmt.Println("***********", name, "***********")
+		}
 		fv := ExtractFields(reflect.TypeOf(paramModels[apiName]))
 		output := GenerateSetFieldsFromFlags(fv)
 		tmpl := ChildCmdTemplate{

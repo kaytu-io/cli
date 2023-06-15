@@ -63,7 +63,7 @@ type GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams struct {
 
 	/* WorkspaceID.
 
-	   Workspace Name
+	   Workspace ID
 	*/
 	WorkspaceID string
 

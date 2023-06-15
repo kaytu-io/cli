@@ -31,29 +31,29 @@ var UpdateMetadataCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
+
 func init() {
-		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
-GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "")
-GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-number", 0, "")
-GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-size", 0, "")
-GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("service", nil, "")
-GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("tag", nil, "")
+	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
+	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-number", 0, "")
+	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-size", 0, "")
+	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("tag", nil, "")
 
-		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
-GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
+	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
+	GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "")
 
-		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
-GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("connector", nil, "")
-GetInventoryApiV2MetadataServicesCmd.Flags().Bool("cost-support", false, "")
-GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-number", 0, "")
-GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-size", 0, "")
-GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("tag", nil, "")
+	GetMetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
+	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
 
-		GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
-GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "")
+	GetMetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
 
-		GetMetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
-GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
+	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
+	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-number", 0, "")
+	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-size", 0, "")
+	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("service", nil, "")
+	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("tag", nil, "")
 
-		GetMetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
+	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
+	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
 }

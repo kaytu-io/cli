@@ -22,15 +22,6 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIService struct {
 	// connector
 	Connector SourceType `json:"connector,omitempty"`
 
-	// cost
-	Cost float64 `json:"cost,omitempty"`
-
-	// end daily cost
-	EndDailyCost float64 `json:"end_daily_cost,omitempty"`
-
-	// is cost supported
-	IsCostSupported bool `json:"is_cost_supported,omitempty"`
-
 	// logo uri
 	LogoURI string `json:"logo_uri,omitempty"`
 
@@ -48,9 +39,6 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIService struct {
 
 	// service name
 	ServiceName string `json:"service_name,omitempty"`
-
-	// start daily cost
-	StartDailyCost float64 `json:"start_daily_cost,omitempty"`
 
 	// tags
 	Tags map[string][]string `json:"tags,omitempty"`

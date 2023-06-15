@@ -66,25 +66,19 @@ type GetInventoryAPIV2ServicesSummaryParams struct {
 
 	   filter: Connection ID
 	*/
-	ConnectionID *string
+	ConnectionID []string
 
 	/* Connector.
 
 	   filter: Connector
 	*/
-	Connector *string
+	Connector []string
 
 	/* EndTime.
 
-	   end time for cost calculation and time resource count in epoch seconds
+	   time for resource count in epoch seconds
 	*/
-	EndTime string
-
-	/* MinSpent.
-
-	   filter: minimum spent amount for the service in the specified time
-	*/
-	MinSpent *int64
+	EndTime *string
 
 	/* PageNumber.
 
@@ -100,21 +94,15 @@ type GetInventoryAPIV2ServicesSummaryParams struct {
 
 	/* SortBy.
 
-	   column to sort by - default is cost
+	   column to sort by - default is resourcecount
 	*/
 	SortBy *string
-
-	/* StartTime.
-
-	   start time for cost calculation in epoch seconds
-	*/
-	StartTime string
 
 	/* Tag.
 
 	   filter: tag for the services
 	*/
-	Tag *string
+	Tag []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -170,47 +158,36 @@ func (o *GetInventoryAPIV2ServicesSummaryParams) SetHTTPClient(client *http.Clie
 }
 
 // WithConnectionID adds the connectionID to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) WithConnectionID(connectionID *string) *GetInventoryAPIV2ServicesSummaryParams {
+func (o *GetInventoryAPIV2ServicesSummaryParams) WithConnectionID(connectionID []string) *GetInventoryAPIV2ServicesSummaryParams {
 	o.SetConnectionID(connectionID)
 	return o
 }
 
 // SetConnectionID adds the connectionId to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) SetConnectionID(connectionID *string) {
+func (o *GetInventoryAPIV2ServicesSummaryParams) SetConnectionID(connectionID []string) {
 	o.ConnectionID = connectionID
 }
 
 // WithConnector adds the connector to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) WithConnector(connector *string) *GetInventoryAPIV2ServicesSummaryParams {
+func (o *GetInventoryAPIV2ServicesSummaryParams) WithConnector(connector []string) *GetInventoryAPIV2ServicesSummaryParams {
 	o.SetConnector(connector)
 	return o
 }
 
 // SetConnector adds the connector to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) SetConnector(connector *string) {
+func (o *GetInventoryAPIV2ServicesSummaryParams) SetConnector(connector []string) {
 	o.Connector = connector
 }
 
 // WithEndTime adds the endTime to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) WithEndTime(endTime string) *GetInventoryAPIV2ServicesSummaryParams {
+func (o *GetInventoryAPIV2ServicesSummaryParams) WithEndTime(endTime *string) *GetInventoryAPIV2ServicesSummaryParams {
 	o.SetEndTime(endTime)
 	return o
 }
 
 // SetEndTime adds the endTime to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) SetEndTime(endTime string) {
+func (o *GetInventoryAPIV2ServicesSummaryParams) SetEndTime(endTime *string) {
 	o.EndTime = endTime
-}
-
-// WithMinSpent adds the minSpent to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) WithMinSpent(minSpent *int64) *GetInventoryAPIV2ServicesSummaryParams {
-	o.SetMinSpent(minSpent)
-	return o
-}
-
-// SetMinSpent adds the minSpent to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) SetMinSpent(minSpent *int64) {
-	o.MinSpent = minSpent
 }
 
 // WithPageNumber adds the pageNumber to the get inventory API v2 services summary params
@@ -246,25 +223,14 @@ func (o *GetInventoryAPIV2ServicesSummaryParams) SetSortBy(sortBy *string) {
 	o.SortBy = sortBy
 }
 
-// WithStartTime adds the startTime to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) WithStartTime(startTime string) *GetInventoryAPIV2ServicesSummaryParams {
-	o.SetStartTime(startTime)
-	return o
-}
-
-// SetStartTime adds the startTime to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) SetStartTime(startTime string) {
-	o.StartTime = startTime
-}
-
 // WithTag adds the tag to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) WithTag(tag *string) *GetInventoryAPIV2ServicesSummaryParams {
+func (o *GetInventoryAPIV2ServicesSummaryParams) WithTag(tag []string) *GetInventoryAPIV2ServicesSummaryParams {
 	o.SetTag(tag)
 	return o
 }
 
 // SetTag adds the tag to the get inventory API v2 services summary params
-func (o *GetInventoryAPIV2ServicesSummaryParams) SetTag(tag *string) {
+func (o *GetInventoryAPIV2ServicesSummaryParams) SetTag(tag []string) {
 	o.Tag = tag
 }
 
@@ -278,60 +244,38 @@ func (o *GetInventoryAPIV2ServicesSummaryParams) WriteToRequest(r runtime.Client
 
 	if o.ConnectionID != nil {
 
-		// query param connectionId
-		var qrConnectionID string
+		// binding items for connectionId
+		joinedConnectionID := o.bindParamConnectionID(reg)
 
-		if o.ConnectionID != nil {
-			qrConnectionID = *o.ConnectionID
-		}
-		qConnectionID := qrConnectionID
-		if qConnectionID != "" {
-
-			if err := r.SetQueryParam("connectionId", qConnectionID); err != nil {
-				return err
-			}
+		// query array param connectionId
+		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
+			return err
 		}
 	}
 
 	if o.Connector != nil {
 
-		// query param connector
-		var qrConnector string
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
 
-		if o.Connector != nil {
-			qrConnector = *o.Connector
-		}
-		qConnector := qrConnector
-		if qConnector != "" {
-
-			if err := r.SetQueryParam("connector", qConnector); err != nil {
-				return err
-			}
-		}
-	}
-
-	// query param endTime
-	qrEndTime := o.EndTime
-	qEndTime := qrEndTime
-	if qEndTime != "" {
-
-		if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
 			return err
 		}
 	}
 
-	if o.MinSpent != nil {
+	if o.EndTime != nil {
 
-		// query param minSpent
-		var qrMinSpent int64
+		// query param endTime
+		var qrEndTime string
 
-		if o.MinSpent != nil {
-			qrMinSpent = *o.MinSpent
+		if o.EndTime != nil {
+			qrEndTime = *o.EndTime
 		}
-		qMinSpent := swag.FormatInt64(qrMinSpent)
-		if qMinSpent != "" {
+		qEndTime := qrEndTime
+		if qEndTime != "" {
 
-			if err := r.SetQueryParam("minSpent", qMinSpent); err != nil {
+			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
 				return err
 			}
 		}
@@ -388,30 +332,14 @@ func (o *GetInventoryAPIV2ServicesSummaryParams) WriteToRequest(r runtime.Client
 		}
 	}
 
-	// query param startTime
-	qrStartTime := o.StartTime
-	qStartTime := qrStartTime
-	if qStartTime != "" {
-
-		if err := r.SetQueryParam("startTime", qStartTime); err != nil {
-			return err
-		}
-	}
-
 	if o.Tag != nil {
 
-		// query param tag
-		var qrTag string
+		// binding items for tag
+		joinedTag := o.bindParamTag(reg)
 
-		if o.Tag != nil {
-			qrTag = *o.Tag
-		}
-		qTag := qrTag
-		if qTag != "" {
-
-			if err := r.SetQueryParam("tag", qTag); err != nil {
-				return err
-			}
+		// query array param tag
+		if err := r.SetQueryParam("tag", joinedTag...); err != nil {
+			return err
 		}
 	}
 
@@ -419,4 +347,55 @@ func (o *GetInventoryAPIV2ServicesSummaryParams) WriteToRequest(r runtime.Client
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetInventoryAPIV2ServicesSummary binds the parameter connectionId
+func (o *GetInventoryAPIV2ServicesSummaryParams) bindParamConnectionID(formats strfmt.Registry) []string {
+	connectionIDIR := o.ConnectionID
+
+	var connectionIDIC []string
+	for _, connectionIDIIR := range connectionIDIR { // explode []string
+
+		connectionIDIIV := connectionIDIIR // string as string
+		connectionIDIC = append(connectionIDIC, connectionIDIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
+
+	return connectionIDIS
+}
+
+// bindParamGetInventoryAPIV2ServicesSummary binds the parameter connector
+func (o *GetInventoryAPIV2ServicesSummaryParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
+}
+
+// bindParamGetInventoryAPIV2ServicesSummary binds the parameter tag
+func (o *GetInventoryAPIV2ServicesSummaryParams) bindParamTag(formats strfmt.Registry) []string {
+	tagIR := o.Tag
+
+	var tagIC []string
+	for _, tagIIR := range tagIR { // explode []string
+
+		tagIIV := tagIIR // string as string
+		tagIC = append(tagIC, tagIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	tagIS := swag.JoinByFormat(tagIC, "csv")
+
+	return tagIS
 }

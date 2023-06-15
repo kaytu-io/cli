@@ -22,8 +22,8 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIListServiceMetricsResponse st
 	// services
 	Services []*GitlabComKeibiengineKeibiEnginePkgInventoryAPIService `json:"services"`
 
-	// total cost
-	TotalCost float64 `json:"total_cost,omitempty"`
+	// total count
+	TotalCount int64 `json:"total_count,omitempty"`
 
 	// total services
 	TotalServices int64 `json:"total_services,omitempty"`

@@ -75,7 +75,7 @@ type GetInventoryAPIV2ServicesSummaryServiceNameParams struct {
 
 	/* EndTime.
 
-	   end time for cost calculation and time resource count in epoch seconds
+	   time for resource count in epoch seconds
 	*/
 	EndTime string
 
@@ -84,12 +84,6 @@ type GetInventoryAPIV2ServicesSummaryServiceNameParams struct {
 	   ServiceName
 	*/
 	ServiceName string
-
-	/* StartTime.
-
-	   start time for cost calculation in epoch seconds
-	*/
-	StartTime string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -188,17 +182,6 @@ func (o *GetInventoryAPIV2ServicesSummaryServiceNameParams) SetServiceName(servi
 	o.ServiceName = serviceName
 }
 
-// WithStartTime adds the startTime to the get inventory API v2 services summary service name params
-func (o *GetInventoryAPIV2ServicesSummaryServiceNameParams) WithStartTime(startTime string) *GetInventoryAPIV2ServicesSummaryServiceNameParams {
-	o.SetStartTime(startTime)
-	return o
-}
-
-// SetStartTime adds the startTime to the get inventory API v2 services summary service name params
-func (o *GetInventoryAPIV2ServicesSummaryServiceNameParams) SetStartTime(startTime string) {
-	o.StartTime = startTime
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *GetInventoryAPIV2ServicesSummaryServiceNameParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -254,16 +237,6 @@ func (o *GetInventoryAPIV2ServicesSummaryServiceNameParams) WriteToRequest(r run
 	// path param serviceName
 	if err := r.SetPathParam("serviceName", o.ServiceName); err != nil {
 		return err
-	}
-
-	// query param startTime
-	qrStartTime := o.StartTime
-	qStartTime := qrStartTime
-	if qStartTime != "" {
-
-		if err := r.SetQueryParam("startTime", qStartTime); err != nil {
-			return err
-		}
 	}
 
 	if len(res) > 0 {

@@ -11,7 +11,7 @@ import (
 )
 
 var GetInventoryApiV2ConnectionsDataConnectionIdCmd = &cobra.Command{
-	Use: "connections-data-connection-id",
+	Use: "get-connection",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -39,7 +39,7 @@ var GetInventoryApiV2ConnectionsDataConnectionIdCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ConnectionsDataCmd = &cobra.Command{
-	Use: "connections-data",
+	Use: "list-connections",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

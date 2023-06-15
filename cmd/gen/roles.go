@@ -31,15 +31,16 @@ var UpdateRolesCmd = &cobra.Command{
 		return cmd.Help()
 	},
 }
+
 func init() {
-		GetRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameKeysCmd)
-GetAuthApiV1RoleRoleNameKeysCmd.Flags().String("role-name", "", "")
+	GetRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameUsersCmd)
+	GetAuthApiV1RoleRoleNameUsersCmd.Flags().String("role-name", "", "")
 
-		GetRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameUsersCmd)
-GetAuthApiV1RoleRoleNameUsersCmd.Flags().String("role-name", "", "")
+	GetRolesCmd.AddCommand(GetAuthApiV1RolesCmd)
 
-		GetRolesCmd.AddCommand(GetAuthApiV1RolesCmd)
+	GetRolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
+	GetAuthApiV1RolesRoleNameCmd.Flags().String("role-name", "", "")
 
-		GetRolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
-GetAuthApiV1RolesRoleNameCmd.Flags().String("role-name", "", "")
+	GetRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameKeysCmd)
+	GetAuthApiV1RoleRoleNameKeysCmd.Flags().String("role-name", "", "")
 }

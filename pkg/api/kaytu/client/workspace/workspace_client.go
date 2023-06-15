@@ -32,8 +32,6 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
 
-	GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
-
 	GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1WorkspacesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesOK, error)
 
 	GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesByidWorkspaceIDOK, error)
@@ -41,6 +39,8 @@ type ClientService interface {
 	GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK, error)
 
 	GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error)
+
+	GetWorkspaceAPIV1WorkspacesWorkspaceID(params *GetWorkspaceAPIV1WorkspacesWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesWorkspaceIDOK, error)
 
 	PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1WorkspaceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceOK, error)
 
@@ -97,47 +97,6 @@ func (a *Client) DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspac
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteWorkspaceAPIV1WorkspaceWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetWorkspaceAPIV1WorkspaceWorkspaceID gets workspace for workspace service
-
-Get workspace with workspace id
-*/
-func (a *Client) GetWorkspaceAPIV1WorkspaceWorkspaceID(params *GetWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetWorkspaceAPIV1WorkspaceWorkspaceIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetWorkspaceAPIV1WorkspaceWorkspaceID",
-		Method:             "GET",
-		PathPattern:        "/workspace/api/v1/workspace/{workspace_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetWorkspaceAPIV1WorkspaceWorkspaceIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetWorkspaceAPIV1WorkspaceWorkspaceIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspaceWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -296,6 +255,47 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorks
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetWorkspaceAPIV1WorkspacesWorkspaceID gets workspace for workspace service
+
+Get workspace with workspace id
+*/
+func (a *Client) GetWorkspaceAPIV1WorkspacesWorkspaceID(params *GetWorkspaceAPIV1WorkspacesWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesWorkspaceIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWorkspaceAPIV1WorkspacesWorkspaceIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetWorkspaceAPIV1WorkspacesWorkspaceID",
+		Method:             "GET",
+		PathPattern:        "/workspace/api/v1/workspaces/{workspace_id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWorkspaceAPIV1WorkspacesWorkspaceIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetWorkspaceAPIV1WorkspacesWorkspaceIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspacesWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

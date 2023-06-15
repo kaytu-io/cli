@@ -11,7 +11,7 @@ import (
 )
 
 var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
-	Use: "connections-summary-connection-id",
+	Use: "connection-summary",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

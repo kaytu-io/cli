@@ -132,9 +132,9 @@ func (a *Client) GetInventoryAPIV2MetadataResourcetypeResourceType(params *GetIn
 /*
 	GetInventoryAPIV2MetadataServices gets list of cloud services
 
-	Gets a list of all workspace cloud services and their metadata, list of resource types and cost support.
+	Gets a list of all workspace cloud services and their metadata, and list of resource types.
 
-The results could be filtered by cost support and tags.
+The results could be filtered by tags.
 */
 func (a *Client) GetInventoryAPIV2MetadataServices(params *GetInventoryAPIV2MetadataServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2MetadataServicesOK, error) {
 	// TODO: Validate the params before sending
@@ -175,7 +175,7 @@ func (a *Client) GetInventoryAPIV2MetadataServices(params *GetInventoryAPIV2Meta
 /*
 GetInventoryAPIV2MetadataServicesServiceName gets cloud service details
 
-Gets a single cloud service details and its metadata, list of resource types & cost support.
+Gets a single cloud service details and its metadata and list of resource types.
 */
 func (a *Client) GetInventoryAPIV2MetadataServicesServiceName(params *GetInventoryAPIV2MetadataServicesServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2MetadataServicesServiceNameOK, error) {
 	// TODO: Validate the params before sending

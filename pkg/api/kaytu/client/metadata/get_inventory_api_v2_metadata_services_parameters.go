@@ -68,12 +68,6 @@ type GetInventoryAPIV2MetadataServicesParams struct {
 	*/
 	Connector []string
 
-	/* CostSupport.
-
-	   Filter by cost support
-	*/
-	CostSupport *bool
-
 	/* PageNumber.
 
 	   page number - default is 1
@@ -156,17 +150,6 @@ func (o *GetInventoryAPIV2MetadataServicesParams) SetConnector(connector []strin
 	o.Connector = connector
 }
 
-// WithCostSupport adds the costSupport to the get inventory API v2 metadata services params
-func (o *GetInventoryAPIV2MetadataServicesParams) WithCostSupport(costSupport *bool) *GetInventoryAPIV2MetadataServicesParams {
-	o.SetCostSupport(costSupport)
-	return o
-}
-
-// SetCostSupport adds the costSupport to the get inventory API v2 metadata services params
-func (o *GetInventoryAPIV2MetadataServicesParams) SetCostSupport(costSupport *bool) {
-	o.CostSupport = costSupport
-}
-
 // WithPageNumber adds the pageNumber to the get inventory API v2 metadata services params
 func (o *GetInventoryAPIV2MetadataServicesParams) WithPageNumber(pageNumber *int64) *GetInventoryAPIV2MetadataServicesParams {
 	o.SetPageNumber(pageNumber)
@@ -216,23 +199,6 @@ func (o *GetInventoryAPIV2MetadataServicesParams) WriteToRequest(r runtime.Clien
 		// query array param connector
 		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
 			return err
-		}
-	}
-
-	if o.CostSupport != nil {
-
-		// query param costSupport
-		var qrCostSupport bool
-
-		if o.CostSupport != nil {
-			qrCostSupport = *o.CostSupport
-		}
-		qCostSupport := swag.FormatBool(qrCostSupport)
-		if qCostSupport != "" {
-
-			if err := r.SetQueryParam("costSupport", qCostSupport); err != nil {
-				return err
-			}
 		}
 	}
 

@@ -10,8 +10,37 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetInventoryApiV2InsightsCmd = &cobra.Command{
+	Use: "list-insights",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
+		}
+
+		req := insight.NewGetInventoryAPIV2InsightsParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetInsightID(flags.ReadStringArrayFlag(cmd, "InsightID"))
+		req.SetTime(flags.ReadInt64OptionalFlag(cmd, "Time"))
+
+		resp, err := client.Insight.GetInventoryAPIV2Insights(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV2InsightsInsightIdCmd = &cobra.Command{
-	Use: "insights-insight-id",
+	Use: "get-insight",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -39,7 +68,7 @@ var GetInventoryApiV2InsightsInsightIdCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2InsightsInsightIdTrendCmd = &cobra.Command{
-	Use: "insights-insight-id-trend",
+	Use: "get-insight-trend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -68,7 +97,7 @@ var GetInventoryApiV2InsightsInsightIdTrendCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2InsightsJobJobIdCmd = &cobra.Command{
-	Use: "insights-job-job-id",
+	Use: "get-insight-job",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -87,34 +116,6 @@ var GetInventoryApiV2InsightsJobJobIdCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_insights_job_job_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2InsightsCmd = &cobra.Command{
-	Use: "insights",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
-		}
-
-		req := insight.NewGetInventoryAPIV2InsightsParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetInsightID(flags.ReadStringArrayFlag(cmd, "InsightID"))
-		req.SetTime(flags.ReadInt64OptionalFlag(cmd, "Time"))
-		resp, err := client.Insight.GetInventoryAPIV2Insights(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
-		}
-		fmt.Println(resp)
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_insights] : %v", err)
 		}
 
 		return nil

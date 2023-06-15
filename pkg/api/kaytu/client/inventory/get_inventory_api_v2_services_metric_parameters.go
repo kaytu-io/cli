@@ -76,7 +76,7 @@ type GetInventoryAPIV2ServicesMetricParams struct {
 
 	/* EndTime.
 
-	   timestamp for end of cost aggregation in epoch seconds
+	   timestamp for current values in epoch seconds
 	*/
 	EndTime *string
 
@@ -94,13 +94,13 @@ type GetInventoryAPIV2ServicesMetricParams struct {
 
 	/* SortBy.
 
-	   Sort by field - default is cost
+	   Sort by field - default is count
 	*/
 	SortBy *string
 
 	/* StartTime.
 
-	   timestamp for start of cost aggregation in epoch seconds
+	   timestamp for old values in epoch seconds
 	*/
 	StartTime *string
 

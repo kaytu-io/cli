@@ -21,9 +21,6 @@ type GitlabComKeibiengineKeibiEnginePkgInventoryAPIServiceSummary struct {
 	// Cloud provider
 	Connector SourceType `json:"connector,omitempty"`
 
-	// Cost
-	Cost float64 `json:"cost,omitempty"`
-
 	// Number of Resources
 	ResourceCount int64 `json:"resourceCount,omitempty"`
 

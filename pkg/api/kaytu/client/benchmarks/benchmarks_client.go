@@ -204,7 +204,7 @@ func (a *Client) GetInventoryAPIV1ServicesDistribution(params *GetInventoryAPIV1
 /*
 GetInventoryAPIV2ServicesSummary gets cloud services summary
 
-Gets a summary of the services including the number of them and the API filters and a list of services with more details. Including connector, the resource counts and the cost.
+Gets a summary of the services including the number of them and the API filters and a list of services with more details. Including connector and the resource counts.
 */
 func (a *Client) GetInventoryAPIV2ServicesSummary(params *GetInventoryAPIV2ServicesSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesSummaryOK, error) {
 	// TODO: Validate the params before sending
@@ -245,7 +245,7 @@ func (a *Client) GetInventoryAPIV2ServicesSummary(params *GetInventoryAPIV2Servi
 /*
 GetInventoryAPIV2ServicesSummaryServiceName gets cloud service summary
 
-Get Cloud Service Summary for the specified service name. Including connector, the resource counts and the cost.
+Get Cloud Service Summary for the specified service name. Including connector, the resource counts.
 */
 func (a *Client) GetInventoryAPIV2ServicesSummaryServiceName(params *GetInventoryAPIV2ServicesSummaryServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesSummaryServiceNameOK, error) {
 	// TODO: Validate the params before sending
