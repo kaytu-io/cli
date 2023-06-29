@@ -45,7 +45,7 @@ GetScheduleAPIV1SourcesOK describes a response with status code 200, with defaul
 OK
 */
 type GetScheduleAPIV1SourcesOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPISource
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPISource
 }
 
 // IsSuccess returns true when this get schedule Api v1 sources o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetScheduleAPIV1SourcesOK) String() string {
 	return fmt.Sprintf("[GET /schedule/api/v1/sources][%d] getScheduleApiV1SourcesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetScheduleAPIV1SourcesOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPISource {
+func (o *GetScheduleAPIV1SourcesOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPISource {
 	return o.Payload
 }
 

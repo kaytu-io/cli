@@ -67,7 +67,7 @@ type PostScheduleAPIV1DescribeResourceParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSingleResourceRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIDescribeSingleResourceRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostScheduleAPIV1DescribeResourceParams) SetHTTPClient(client *http.Cli
 }
 
 // WithRequest adds the request to the post schedule API v1 describe resource params
-func (o *PostScheduleAPIV1DescribeResourceParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSingleResourceRequest) *PostScheduleAPIV1DescribeResourceParams {
+func (o *PostScheduleAPIV1DescribeResourceParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIDescribeSingleResourceRequest) *PostScheduleAPIV1DescribeResourceParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post schedule API v1 describe resource params
-func (o *PostScheduleAPIV1DescribeResourceParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSingleResourceRequest) {
+func (o *PostScheduleAPIV1DescribeResourceParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIDescribeSingleResourceRequest) {
 	o.Request = request
 }
 

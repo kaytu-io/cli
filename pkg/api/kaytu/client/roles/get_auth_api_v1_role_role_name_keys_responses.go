@@ -45,7 +45,7 @@ GetAuthAPIV1RoleRoleNameKeysOK describes a response with status code 200, with d
 OK
 */
 type GetAuthAPIV1RoleRoleNameKeysOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey
 }
 
 // IsSuccess returns true when this get auth Api v1 role role name keys o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetAuthAPIV1RoleRoleNameKeysOK) String() string {
 	return fmt.Sprintf("[GET /auth/api/v1/role/{roleName}/keys][%d] getAuthApiV1RoleRoleNameKeysOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1RoleRoleNameKeysOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey {
+func (o *GetAuthAPIV1RoleRoleNameKeysOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey {
 	return o.Payload
 }
 

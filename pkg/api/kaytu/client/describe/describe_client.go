@@ -40,6 +40,8 @@ type ClientService interface {
 
 	GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0SummarizeTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV0SummarizeTriggerOK, error)
 
+	GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error)
+
 	GetScheduleAPIV1InsightJobJobID(params *GetScheduleAPIV1InsightJobJobIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1InsightJobJobIDOK, error)
 
 	PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1DescribeResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1DescribeResourceOK, error)
@@ -259,6 +261,47 @@ func (a *Client) GetScheduleAPIV0SummarizeTrigger(params *GetScheduleAPIV0Summar
 }
 
 /*
+GetScheduleAPIV1BenchmarkEvaluations lists benchmark evaluations
+
+This API allows users to retrieve details of all benchmark evaluation jobs based on specified filters. The API returns information such as evaluation time, benchmark ID, connection ID, connector name, status, and failure message.
+*/
+func (a *Client) GetScheduleAPIV1BenchmarkEvaluations(params *GetScheduleAPIV1BenchmarkEvaluationsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1BenchmarkEvaluationsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScheduleAPIV1BenchmarkEvaluationsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetScheduleAPIV1BenchmarkEvaluations",
+		Method:             "GET",
+		PathPattern:        "/schedule/api/v1/benchmark/evaluations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetScheduleAPIV1BenchmarkEvaluationsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScheduleAPIV1BenchmarkEvaluationsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScheduleAPIV1BenchmarkEvaluations: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetScheduleAPIV1InsightJobJobID gets an insight job
 
 Get an Insight Job details by ID
@@ -339,7 +382,9 @@ func (a *Client) PostScheduleAPIV1DescribeResource(params *PostScheduleAPIV1Desc
 }
 
 /*
-PostScheduleAPIV1StacksInsightTrigger triggers an insight evaluation job to run immediately
+PostScheduleAPIV1StacksInsightTrigger triggers stack insight evaluation
+
+Trigger an insight evaluation to run immediately on a stack with given details
 */
 func (a *Client) PostScheduleAPIV1StacksInsightTrigger(params *PostScheduleAPIV1StacksInsightTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksInsightTriggerOK, error) {
 	// TODO: Validate the params before sending
@@ -378,7 +423,9 @@ func (a *Client) PostScheduleAPIV1StacksInsightTrigger(params *PostScheduleAPIV1
 }
 
 /*
-PutScheduleAPIV1BenchmarkEvaluationTrigger triggers a benchmark evaluation job to run immediately
+PutScheduleAPIV1BenchmarkEvaluationTrigger triggers benchmark evaluation
+
+Triggers a benchmark evaluation job to run immediately
 */
 func (a *Client) PutScheduleAPIV1BenchmarkEvaluationTrigger(params *PutScheduleAPIV1BenchmarkEvaluationTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1BenchmarkEvaluationTriggerOK, error) {
 	// TODO: Validate the params before sending
@@ -458,7 +505,9 @@ func (a *Client) PutScheduleAPIV1DescribeTriggerConnectionID(params *PutSchedule
 }
 
 /*
-PutScheduleAPIV1InsightEvaluationTrigger triggers a insight evaluation job to run immediately
+PutScheduleAPIV1InsightEvaluationTrigger triggers insight evaluation
+
+Trigger an insight evaluation to run immediately with given details
 */
 func (a *Client) PutScheduleAPIV1InsightEvaluationTrigger(params *PutScheduleAPIV1InsightEvaluationTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1InsightEvaluationTriggerOK, error) {
 	// TODO: Validate the params before sending

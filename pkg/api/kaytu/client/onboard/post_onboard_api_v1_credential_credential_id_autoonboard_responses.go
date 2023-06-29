@@ -45,7 +45,7 @@ PostOnboardAPIV1CredentialCredentialIDAutoonboardOK describes a response with st
 OK
 */
 type PostOnboardAPIV1CredentialCredentialIDAutoonboardOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection
 }
 
 // IsSuccess returns true when this post onboard Api v1 credential credential Id autoonboard o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *PostOnboardAPIV1CredentialCredentialIDAutoonboardOK) String() string {
 	return fmt.Sprintf("[POST /onboard/api/v1/credential/{credentialId}/autoonboard][%d] postOnboardApiV1CredentialCredentialIdAutoonboardOK  %+v", 200, o.Payload)
 }
 
-func (o *PostOnboardAPIV1CredentialCredentialIDAutoonboardOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection {
+func (o *PostOnboardAPIV1CredentialCredentialIDAutoonboardOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection {
 	return o.Payload
 }
 

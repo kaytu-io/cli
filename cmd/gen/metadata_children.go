@@ -7,8 +7,35 @@ import (
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/metadata"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 	"github.com/spf13/cobra"
 )
+
+var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
+	Use: "get-resource-type",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
+		}
+
+		req := metadata.NewGetInventoryAPIV2MetadataResourcetypeResourceTypeParams()
+
+		req.SetResourceType(flags.ReadStringFlag(cmd, "ResourceType"))
+
+		resp, err := client.Metadata.GetInventoryAPIV2MetadataResourcetypeResourceType(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
+		}
+
+		return nil
+	},
+}
 
 var GetInventoryApiV2MetadataServicesCmd = &cobra.Command{
 	Use: "list-services",
@@ -101,6 +128,11 @@ var PostMetadataApiV1MetadataCmd = &cobra.Command{
 
 		req := metadata.NewPostMetadataAPIV1MetadataParams()
 
+		req.SetReq(&models.GithubComKaytuIoKaytuEnginePkgMetadataAPISetConfigMetadataRequest{
+			Key:   flags.ReadStringFlag(cmd, "Key"),
+			Value: interface{}(flags.ReadStringFlag(cmd, "Value")),
+		})
+
 		_, err = client.Metadata.PostMetadataAPIV1Metadata(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
@@ -133,32 +165,6 @@ var GetInventoryApiV2MetadataResourcetypeCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
-	Use: "get-resource-type",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
-		}
-
-		req := metadata.NewGetInventoryAPIV2MetadataResourcetypeResourceTypeParams()
-
-		req.SetResourceType(flags.ReadStringFlag(cmd, "ResourceType"))
-
-		resp, err := client.Metadata.GetInventoryAPIV2MetadataResourcetypeResourceType(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
 		}
 
 		return nil

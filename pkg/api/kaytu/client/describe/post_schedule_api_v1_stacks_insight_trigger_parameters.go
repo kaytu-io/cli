@@ -67,7 +67,7 @@ type PostScheduleAPIV1StacksInsightTriggerParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackInsightRequest
+	Request models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackInsightRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostScheduleAPIV1StacksInsightTriggerParams) SetHTTPClient(client *http
 }
 
 // WithRequest adds the request to the post schedule API v1 stacks insight trigger params
-func (o *PostScheduleAPIV1StacksInsightTriggerParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackInsightRequest) *PostScheduleAPIV1StacksInsightTriggerParams {
+func (o *PostScheduleAPIV1StacksInsightTriggerParams) WithRequest(request models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackInsightRequest) *PostScheduleAPIV1StacksInsightTriggerParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post schedule API v1 stacks insight trigger params
-func (o *PostScheduleAPIV1StacksInsightTriggerParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackInsightRequest) {
+func (o *PostScheduleAPIV1StacksInsightTriggerParams) SetRequest(request models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackInsightRequest) {
 	o.Request = request
 }
 

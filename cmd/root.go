@@ -26,5 +26,5 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().String("workspace-name", "", "specifying the workspaces name ")
-	rootCmd.PersistentFlags().String("output-type", "table", "specifying the output type  [json, table]")
+	rootCmd.PersistentFlags().String("output-type", "json", "specifying the output type  [json, table]")
 }

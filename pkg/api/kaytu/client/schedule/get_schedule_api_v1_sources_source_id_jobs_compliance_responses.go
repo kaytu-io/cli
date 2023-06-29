@@ -45,7 +45,7 @@ GetScheduleAPIV1SourcesSourceIDJobsComplianceOK describes a response with status
 OK
 */
 type GetScheduleAPIV1SourcesSourceIDJobsComplianceOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIComplianceReport
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIComplianceReport
 }
 
 // IsSuccess returns true when this get schedule Api v1 sources source Id jobs compliance o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetScheduleAPIV1SourcesSourceIDJobsComplianceOK) String() string {
 	return fmt.Sprintf("[GET /schedule/api/v1/sources/{source_id}/jobs/compliance][%d] getScheduleApiV1SourcesSourceIdJobsComplianceOK  %+v", 200, o.Payload)
 }
 
-func (o *GetScheduleAPIV1SourcesSourceIDJobsComplianceOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIComplianceReport {
+func (o *GetScheduleAPIV1SourcesSourceIDJobsComplianceOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIComplianceReport {
 	return o.Payload
 }
 

@@ -67,7 +67,7 @@ type PutScheduleAPIV1BenchmarkEvaluationTriggerParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPITriggerBenchmarkEvaluationRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPITriggerBenchmarkEvaluationRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PutScheduleAPIV1BenchmarkEvaluationTriggerParams) SetHTTPClient(client 
 }
 
 // WithRequest adds the request to the put schedule API v1 benchmark evaluation trigger params
-func (o *PutScheduleAPIV1BenchmarkEvaluationTriggerParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPITriggerBenchmarkEvaluationRequest) *PutScheduleAPIV1BenchmarkEvaluationTriggerParams {
+func (o *PutScheduleAPIV1BenchmarkEvaluationTriggerParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPITriggerBenchmarkEvaluationRequest) *PutScheduleAPIV1BenchmarkEvaluationTriggerParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the put schedule API v1 benchmark evaluation trigger params
-func (o *PutScheduleAPIV1BenchmarkEvaluationTriggerParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPITriggerBenchmarkEvaluationRequest) {
+func (o *PutScheduleAPIV1BenchmarkEvaluationTriggerParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPITriggerBenchmarkEvaluationRequest) {
 	o.Request = request
 }
 

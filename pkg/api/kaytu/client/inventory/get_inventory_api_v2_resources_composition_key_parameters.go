@@ -74,17 +74,23 @@ type GetInventoryAPIV2ResourcesCompositionKeyParams struct {
 	*/
 	Connector []string
 
+	/* EndTime.
+
+	   timestamp for resource count in epoch seconds
+	*/
+	EndTime *string
+
 	/* Key.
 
 	   Tag key
 	*/
 	Key string
 
-	/* Time.
+	/* StartTime.
 
-	   timestamp for resource count in epoch seconds
+	   timestamp for resource count change comparison in epoch seconds
 	*/
-	Time *string
+	StartTime *string
 
 	/* Top.
 
@@ -167,6 +173,17 @@ func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) SetConnector(connector 
 	o.Connector = connector
 }
 
+// WithEndTime adds the endTime to the get inventory API v2 resources composition key params
+func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) WithEndTime(endTime *string) *GetInventoryAPIV2ResourcesCompositionKeyParams {
+	o.SetEndTime(endTime)
+	return o
+}
+
+// SetEndTime adds the endTime to the get inventory API v2 resources composition key params
+func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) SetEndTime(endTime *string) {
+	o.EndTime = endTime
+}
+
 // WithKey adds the key to the get inventory API v2 resources composition key params
 func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) WithKey(key string) *GetInventoryAPIV2ResourcesCompositionKeyParams {
 	o.SetKey(key)
@@ -178,15 +195,15 @@ func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) SetKey(key string) {
 	o.Key = key
 }
 
-// WithTime adds the time to the get inventory API v2 resources composition key params
-func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) WithTime(time *string) *GetInventoryAPIV2ResourcesCompositionKeyParams {
-	o.SetTime(time)
+// WithStartTime adds the startTime to the get inventory API v2 resources composition key params
+func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) WithStartTime(startTime *string) *GetInventoryAPIV2ResourcesCompositionKeyParams {
+	o.SetStartTime(startTime)
 	return o
 }
 
-// SetTime adds the time to the get inventory API v2 resources composition key params
-func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) SetTime(time *string) {
-	o.Time = time
+// SetStartTime adds the startTime to the get inventory API v2 resources composition key params
+func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) SetStartTime(startTime *string) {
+	o.StartTime = startTime
 }
 
 // WithTop adds the top to the get inventory API v2 resources composition key params
@@ -230,23 +247,40 @@ func (o *GetInventoryAPIV2ResourcesCompositionKeyParams) WriteToRequest(r runtim
 		}
 	}
 
+	if o.EndTime != nil {
+
+		// query param endTime
+		var qrEndTime string
+
+		if o.EndTime != nil {
+			qrEndTime = *o.EndTime
+		}
+		qEndTime := qrEndTime
+		if qEndTime != "" {
+
+			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param key
 	if err := r.SetPathParam("key", o.Key); err != nil {
 		return err
 	}
 
-	if o.Time != nil {
+	if o.StartTime != nil {
 
-		// query param time
-		var qrTime string
+		// query param startTime
+		var qrStartTime string
 
-		if o.Time != nil {
-			qrTime = *o.Time
+		if o.StartTime != nil {
+			qrStartTime = *o.StartTime
 		}
-		qTime := qrTime
-		if qTime != "" {
+		qStartTime := qrStartTime
+		if qStartTime != "" {
 
-			if err := r.SetQueryParam("time", qTime); err != nil {
+			if err := r.SetQueryParam("startTime", qStartTime); err != nil {
 				return err
 			}
 		}

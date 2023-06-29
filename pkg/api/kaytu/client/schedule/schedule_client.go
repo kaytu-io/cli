@@ -257,7 +257,7 @@ func (a *Client) GetScheduleAPIV1ResourceTypeProvider(params *GetScheduleAPIV1Re
 /*
 GetScheduleAPIV1Sources lists sources
 
-Getting all of Keibi sources
+Retrieves list of all of Keibi sources
 */
 func (a *Client) GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesOK, error) {
 	// TODO: Validate the params before sending
@@ -296,7 +296,9 @@ func (a *Client) GetScheduleAPIV1Sources(params *GetScheduleAPIV1SourcesParams, 
 }
 
 /*
-GetScheduleAPIV1SourcesSourceID gets source by id
+	GetScheduleAPIV1SourcesSourceID gets source
+
+	Retrieves Keibi source details by id
 
 Getting Keibi source by id
 */
@@ -339,7 +341,7 @@ func (a *Client) GetScheduleAPIV1SourcesSourceID(params *GetScheduleAPIV1Sources
 /*
 GetScheduleAPIV1SourcesSourceIDJobsCompliance lists source compliance reports
 
-List source compliance reports
+Retrieves list of source compliance reports for a source by the given source id
 */
 func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetScheduleAPIV1SourcesSourceIDJobsComplianceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsComplianceOK, error) {
 	// TODO: Validate the params before sending
@@ -380,7 +382,7 @@ func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsCompliance(params *GetSchedu
 /*
 GetScheduleAPIV1SourcesSourceIDJobsDescribe lists source describe jobs
 
-List source describe jobs
+Retrieves list of source describe jobs for a source by the given source id
 */
 func (a *Client) GetScheduleAPIV1SourcesSourceIDJobsDescribe(params *GetScheduleAPIV1SourcesSourceIDJobsDescribeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1SourcesSourceIDJobsDescribeOK, error) {
 	// TODO: Validate the params before sending

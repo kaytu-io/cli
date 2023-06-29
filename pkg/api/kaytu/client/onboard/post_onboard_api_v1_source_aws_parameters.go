@@ -67,7 +67,7 @@ type PostOnboardAPIV1SourceAwsParams struct {
 
 	   Request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPISourceAwsRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostOnboardAPIV1SourceAwsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post onboard API v1 source aws params
-func (o *PostOnboardAPIV1SourceAwsParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPISourceAwsRequest) *PostOnboardAPIV1SourceAwsParams {
+func (o *PostOnboardAPIV1SourceAwsParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest) *PostOnboardAPIV1SourceAwsParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post onboard API v1 source aws params
-func (o *PostOnboardAPIV1SourceAwsParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPISourceAwsRequest) {
+func (o *PostOnboardAPIV1SourceAwsParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest) {
 	o.Request = request
 }
 

@@ -67,7 +67,7 @@ type PostScheduleAPIV1StacksStackIDFindingsParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings
+	Request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIGetStackFindings
 
 	/* StackID.
 
@@ -129,13 +129,13 @@ func (o *PostScheduleAPIV1StacksStackIDFindingsParams) SetHTTPClient(client *htt
 }
 
 // WithRequest adds the request to the post schedule API v1 stacks stack ID findings params
-func (o *PostScheduleAPIV1StacksStackIDFindingsParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) *PostScheduleAPIV1StacksStackIDFindingsParams {
+func (o *PostScheduleAPIV1StacksStackIDFindingsParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIGetStackFindings) *PostScheduleAPIV1StacksStackIDFindingsParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post schedule API v1 stacks stack ID findings params
-func (o *PostScheduleAPIV1StacksStackIDFindingsParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIGetStackFindings) {
+func (o *PostScheduleAPIV1StacksStackIDFindingsParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIGetStackFindings) {
 	o.Request = request
 }
 

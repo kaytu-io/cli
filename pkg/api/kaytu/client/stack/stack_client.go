@@ -44,6 +44,8 @@ type ClientService interface {
 
 	PostScheduleAPIV1StacksCreate(params *PostScheduleAPIV1StacksCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksCreateOK, error)
 
+	PostScheduleAPIV1StacksDescriberTrigger(params *PostScheduleAPIV1StacksDescriberTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksDescriberTriggerOK, error)
+
 	PostScheduleAPIV1StacksStackIDFindings(params *PostScheduleAPIV1StacksStackIDFindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksStackIDFindingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -216,7 +218,7 @@ func (a *Client) GetScheduleAPIV1StacksStackID(params *GetScheduleAPIV1StacksSta
 /*
 GetScheduleAPIV1StacksStackIDInsight gets stack insight
 
-Get benchmark results for a stack
+Get Insight results for a stack in the given time period
 */
 func (a *Client) GetScheduleAPIV1StacksStackIDInsight(params *GetScheduleAPIV1StacksStackIDInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDInsightOK, error) {
 	// TODO: Validate the params before sending
@@ -255,7 +257,7 @@ func (a *Client) GetScheduleAPIV1StacksStackIDInsight(params *GetScheduleAPIV1St
 }
 
 /*
-PostScheduleAPIV1StacksBenchmarkTrigger evaluates stack
+PostScheduleAPIV1StacksBenchmarkTrigger triggers stack benchmark
 
 Trigger defined benchmarks for a stack and save in the history
 */
@@ -296,9 +298,12 @@ func (a *Client) PostScheduleAPIV1StacksBenchmarkTrigger(params *PostScheduleAPI
 }
 
 /*
-PostScheduleAPIV1StacksCreate creates stack
+	PostScheduleAPIV1StacksCreate creates stack
 
-Create a stack by giving terraform statefile and additional resources
+	Create a stack by giving terraform statefile and additional resources
+
+Config structure for azure: {tenantId: string, objectId: string, secretId: string, clientId: string, clientSecret:string}
+Config structure for aws: {accessKey: string, secretKey: string}
 */
 func (a *Client) PostScheduleAPIV1StacksCreate(params *PostScheduleAPIV1StacksCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -333,6 +338,50 @@ func (a *Client) PostScheduleAPIV1StacksCreate(params *PostScheduleAPIV1StacksCr
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostScheduleAPIV1StacksCreate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	PostScheduleAPIV1StacksDescriberTrigger triggers stack describer
+
+	Describe stack resources. This is needed before triggering insights and benchmarks
+
+Config structure for azure: {tenantId: string, objectId: string, secretId: string, clientId: string, clientSecret:string}
+Config structure for aws: {accessKey: string, secretKey: string}
+*/
+func (a *Client) PostScheduleAPIV1StacksDescriberTrigger(params *PostScheduleAPIV1StacksDescriberTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostScheduleAPIV1StacksDescriberTriggerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostScheduleAPIV1StacksDescriberTriggerParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostScheduleAPIV1StacksDescriberTrigger",
+		Method:             "POST",
+		PathPattern:        "/schedule/api/v1/stacks/describer/trigger",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostScheduleAPIV1StacksDescriberTriggerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostScheduleAPIV1StacksDescriberTriggerOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostScheduleAPIV1StacksDescriberTrigger: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

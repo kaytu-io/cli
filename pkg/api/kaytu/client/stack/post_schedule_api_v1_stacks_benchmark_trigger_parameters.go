@@ -67,7 +67,7 @@ type PostScheduleAPIV1StacksBenchmarkTriggerParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackBenchmarkRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackBenchmarkRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostScheduleAPIV1StacksBenchmarkTriggerParams) SetHTTPClient(client *ht
 }
 
 // WithRequest adds the request to the post schedule API v1 stacks benchmark trigger params
-func (o *PostScheduleAPIV1StacksBenchmarkTriggerParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackBenchmarkRequest) *PostScheduleAPIV1StacksBenchmarkTriggerParams {
+func (o *PostScheduleAPIV1StacksBenchmarkTriggerParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackBenchmarkRequest) *PostScheduleAPIV1StacksBenchmarkTriggerParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post schedule API v1 stacks benchmark trigger params
-func (o *PostScheduleAPIV1StacksBenchmarkTriggerParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIStackBenchmarkRequest) {
+func (o *PostScheduleAPIV1StacksBenchmarkTriggerParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackBenchmarkRequest) {
 	o.Request = request
 }
 

@@ -45,7 +45,7 @@ PostOnboardAPIV1SourceAwsOK describes a response with status code 200, with defa
 OK
 */
 type PostOnboardAPIV1SourceAwsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateSourceResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateSourceResponse
 }
 
 // IsSuccess returns true when this post onboard Api v1 source aws o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostOnboardAPIV1SourceAwsOK) String() string {
 	return fmt.Sprintf("[POST /onboard/api/v1/source/aws][%d] postOnboardApiV1SourceAwsOK  %+v", 200, o.Payload)
 }
 
-func (o *PostOnboardAPIV1SourceAwsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateSourceResponse {
+func (o *PostOnboardAPIV1SourceAwsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateSourceResponse {
 	return o.Payload
 }
 
 func (o *PostOnboardAPIV1SourceAwsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateSourceResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateSourceResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

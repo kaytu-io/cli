@@ -30,12 +30,6 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetInventoryAPIV1ResourcesCount(params *GetInventoryAPIV1ResourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesCountOK, error)
-
-	GetInventoryAPIV1ResourcesRegions(params *GetInventoryAPIV1ResourcesRegionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesRegionsOK, error)
-
-	GetInventoryAPIV1ResourcesTopRegions(params *GetInventoryAPIV1ResourcesTopRegionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesTopRegionsOK, error)
-
 	GetInventoryAPIV2CostComposition(params *GetInventoryAPIV2CostCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostCompositionOK, error)
 
 	GetInventoryAPIV2CostMetric(params *GetInventoryAPIV2CostMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostMetricOK, error)
@@ -62,138 +56,13 @@ type ClientService interface {
 
 	GetInventoryAPIV2ServicesTagKey(params *GetInventoryAPIV2ServicesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagKeyOK, error)
 
-	PostInventoryAPIV1Resources(params *PostInventoryAPIV1ResourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesOK, error)
-
-	PostInventoryAPIV1ResourcesAws(params *PostInventoryAPIV1ResourcesAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAwsOK, error)
-
-	PostInventoryAPIV1ResourcesAzure(params *PostInventoryAPIV1ResourcesAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAzureOK, error)
-
-	PostInventoryAPIV1ResourcesFilters(params *PostInventoryAPIV1ResourcesFiltersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesFiltersOK, error)
-
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-GetInventoryAPIV1ResourcesCount counts resources
+GetInventoryAPIV2CostComposition lists cost composition
 
-Number of all resources
-*/
-func (a *Client) GetInventoryAPIV1ResourcesCount(params *GetInventoryAPIV1ResourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesCountOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV1ResourcesCountParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV1ResourcesCount",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v1/resources/count",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV1ResourcesCountReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV1ResourcesCountOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1ResourcesCount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV1ResourcesRegions returns top n regions of specified provider by resource count
-*/
-func (a *Client) GetInventoryAPIV1ResourcesRegions(params *GetInventoryAPIV1ResourcesRegionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesRegionsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV1ResourcesRegionsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV1ResourcesRegions",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v1/resources/regions",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV1ResourcesRegionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV1ResourcesRegionsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1ResourcesRegions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV1ResourcesTopRegions returns top n regions of specified provider by resource count
-*/
-func (a *Client) GetInventoryAPIV1ResourcesTopRegions(params *GetInventoryAPIV1ResourcesTopRegionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesTopRegionsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV1ResourcesTopRegionsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV1ResourcesTopRegions",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v1/resources/top/regions",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV1ResourcesTopRegionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV1ResourcesTopRegionsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1ResourcesTopRegions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2CostComposition returns cost composition for a given time range
+This API allows users to retrieve the cost composition with respect to specified filters. The API returns information such as the total cost for the given time range, and the top services by cost.
 */
 func (a *Client) GetInventoryAPIV2CostComposition(params *GetInventoryAPIV2CostCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostCompositionOK, error) {
 	// TODO: Validate the params before sending
@@ -232,7 +101,9 @@ func (a *Client) GetInventoryAPIV2CostComposition(params *GetInventoryAPIV2CostC
 }
 
 /*
-GetInventoryAPIV2CostMetric returns list of cost metrics
+GetInventoryAPIV2CostMetric lists cost metrics
+
+This API allows users to retrieve cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.
 */
 func (a *Client) GetInventoryAPIV2CostMetric(params *GetInventoryAPIV2CostMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostMetricOK, error) {
 	// TODO: Validate the params before sending
@@ -271,7 +142,9 @@ func (a *Client) GetInventoryAPIV2CostMetric(params *GetInventoryAPIV2CostMetric
 }
 
 /*
-GetInventoryAPIV2CostTrend returns list of costs over the course of the specified time frame based on the given input filters
+GetInventoryAPIV2CostTrend gets cost trend
+
+This API allows users to retrieve a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.
 */
 func (a *Client) GetInventoryAPIV2CostTrend(params *GetInventoryAPIV2CostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostTrendOK, error) {
 	// TODO: Validate the params before sending
@@ -310,7 +183,9 @@ func (a *Client) GetInventoryAPIV2CostTrend(params *GetInventoryAPIV2CostTrendPa
 }
 
 /*
-GetInventoryAPIV2ResourcesCompositionKey returns tag values with most resources for the given key
+GetInventoryAPIV2ResourcesCompositionKey lists resource type composition
+
+This API allows users to retrieve tag values with the most resources for the given key.
 */
 func (a *Client) GetInventoryAPIV2ResourcesCompositionKey(params *GetInventoryAPIV2ResourcesCompositionKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesCompositionKeyOK, error) {
 	// TODO: Validate the params before sending
@@ -349,7 +224,9 @@ func (a *Client) GetInventoryAPIV2ResourcesCompositionKey(params *GetInventoryAP
 }
 
 /*
-GetInventoryAPIV2ResourcesMetric returns list of resource types with metrics of each type based on the given input filters
+GetInventoryAPIV2ResourcesMetric lists resource metrics
+
+This API allows users to retrieve a list of resource types with metrics of each type based on the given input filters.
 */
 func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error) {
 	// TODO: Validate the params before sending
@@ -388,7 +265,9 @@ func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2Resou
 }
 
 /*
-GetInventoryAPIV2ResourcesMetricResourceType returns resource type with metrics
+GetInventoryAPIV2ResourcesMetricResourceType gets resource metrics
+
+This API allows users to retrieve metrics for a specific resource type.
 */
 func (a *Client) GetInventoryAPIV2ResourcesMetricResourceType(params *GetInventoryAPIV2ResourcesMetricResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricResourceTypeOK, error) {
 	// TODO: Validate the params before sending
@@ -427,7 +306,9 @@ func (a *Client) GetInventoryAPIV2ResourcesMetricResourceType(params *GetInvento
 }
 
 /*
-GetInventoryAPIV2ResourcesTag returns list of the keys with possible values for filtering resources types
+GetInventoryAPIV2ResourcesTag lists resourcetype tags
+
+This API allows users to retrieve a list of tag keys with their possible values for all resource types.
 */
 func (a *Client) GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2ResourcesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagOK, error) {
 	// TODO: Validate the params before sending
@@ -466,7 +347,9 @@ func (a *Client) GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2Resource
 }
 
 /*
-GetInventoryAPIV2ResourcesTagKey returns list of the possible values for filtering resources types with specified key
+GetInventoryAPIV2ResourcesTagKey gets resourcetype tag
+
+This API allows users to retrieve a list of possible values for a given tag key for all resource types.
 */
 func (a *Client) GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2ResourcesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagKeyOK, error) {
 	// TODO: Validate the params before sending
@@ -505,7 +388,9 @@ func (a *Client) GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2Resou
 }
 
 /*
-GetInventoryAPIV2ResourcesTrend returns list of resource counts over the course of the specified time frame based on the given input filters
+GetInventoryAPIV2ResourcesTrend gets resource type trend
+
+This API allows users to retrieve a list of resource counts over the course of the specified time frame based on the given input filters
 */
 func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error) {
 	// TODO: Validate the params before sending
@@ -544,7 +429,9 @@ func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2Resour
 }
 
 /*
-GetInventoryAPIV2ServicesMetric returns list of services with their metrics based on the given input filters
+GetInventoryAPIV2ServicesMetric lists services metrics
+
+This API allows users to retrieve a list of services with metrics of each type based on the given input filters.
 */
 func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error) {
 	// TODO: Validate the params before sending
@@ -583,7 +470,9 @@ func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2Servic
 }
 
 /*
-GetInventoryAPIV2ServicesMetricServiceName returns the service with metrics for the given service name
+GetInventoryAPIV2ServicesMetricServiceName gets service metrics
+
+This API allows users to retrieve a service with metrics.
 */
 func (a *Client) GetInventoryAPIV2ServicesMetricServiceName(params *GetInventoryAPIV2ServicesMetricServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricServiceNameOK, error) {
 	// TODO: Validate the params before sending
@@ -622,7 +511,9 @@ func (a *Client) GetInventoryAPIV2ServicesMetricServiceName(params *GetInventory
 }
 
 /*
-GetInventoryAPIV2ServicesTag returns list of the keys with possible values for filtering services
+GetInventoryAPIV2ServicesTag lists resourcetype tags
+
+This API allows users to retrieve a list of possible values for a given tag key for all services.
 */
 func (a *Client) GetInventoryAPIV2ServicesTag(params *GetInventoryAPIV2ServicesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagOK, error) {
 	// TODO: Validate the params before sending
@@ -661,7 +552,9 @@ func (a *Client) GetInventoryAPIV2ServicesTag(params *GetInventoryAPIV2ServicesT
 }
 
 /*
-GetInventoryAPIV2ServicesTagKey returns list of the possible values for filtering services with specified key
+GetInventoryAPIV2ServicesTagKey gets resourcetype tag
+
+This API allows users to retrieve a list of possible values for a given tag key for all resource types.
 */
 func (a *Client) GetInventoryAPIV2ServicesTagKey(params *GetInventoryAPIV2ServicesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagKeyOK, error) {
 	// TODO: Validate the params before sending
@@ -696,182 +589,6 @@ func (a *Client) GetInventoryAPIV2ServicesTagKey(params *GetInventoryAPIV2Servic
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesTagKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	PostInventoryAPIV1Resources gets resources
-
-	Getting all cloud providers resources by filters.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
-If sort by is empty, result will be sorted by the first column in ascending order.
-*/
-func (a *Client) PostInventoryAPIV1Resources(params *PostInventoryAPIV1ResourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostInventoryAPIV1ResourcesParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1Resources",
-		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/resources",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostInventoryAPIV1ResourcesReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostInventoryAPIV1ResourcesOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1Resources: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	PostInventoryAPIV1ResourcesAws gets a w s resources
-
-	Getting AWS resources by filters.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
-If sort by is empty, result will be sorted by the first column in ascending order.
-*/
-func (a *Client) PostInventoryAPIV1ResourcesAws(params *PostInventoryAPIV1ResourcesAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAwsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostInventoryAPIV1ResourcesAwsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1ResourcesAws",
-		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/resources/aws",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostInventoryAPIV1ResourcesAwsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostInventoryAPIV1ResourcesAwsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1ResourcesAws: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	PostInventoryAPIV1ResourcesAzure gets azure resources
-
-	Getting Azure resources by filters.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
-If sort by is empty, result will be sorted by the first column in ascending order.
-*/
-func (a *Client) PostInventoryAPIV1ResourcesAzure(params *PostInventoryAPIV1ResourcesAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAzureOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostInventoryAPIV1ResourcesAzureParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1ResourcesAzure",
-		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/resources/azure",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostInventoryAPIV1ResourcesAzureReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostInventoryAPIV1ResourcesAzureOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1ResourcesAzure: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostInventoryAPIV1ResourcesFilters gets resource filters
-
-Getting resource filters by filters.
-*/
-func (a *Client) PostInventoryAPIV1ResourcesFilters(params *PostInventoryAPIV1ResourcesFiltersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesFiltersOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostInventoryAPIV1ResourcesFiltersParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1ResourcesFilters",
-		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/resources/filters",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostInventoryAPIV1ResourcesFiltersReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostInventoryAPIV1ResourcesFiltersOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1ResourcesFilters: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

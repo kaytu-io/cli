@@ -45,7 +45,7 @@ GetComplianceAPIV1InsightOK describes a response with status code 200, with defa
 OK
 */
 type GetComplianceAPIV1InsightOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight
 }
 
 // IsSuccess returns true when this get compliance Api v1 insight o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetComplianceAPIV1InsightOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/insight][%d] getComplianceApiV1InsightOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1InsightOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight {
+func (o *GetComplianceAPIV1InsightOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight {
 	return o.Payload
 }
 

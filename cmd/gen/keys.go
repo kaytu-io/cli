@@ -33,9 +33,6 @@ var UpdateKeysCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
-	DeleteAuthApiV1KeyIdDeleteCmd.Flags().String("id", "", "")
-
 	GetKeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
 	GetAuthApiV1KeyIdCmd.Flags().String("id", "", "")
 
@@ -55,4 +52,6 @@ func init() {
 	PostAuthApiV1KeyRoleCmd.Flags().Int64("id", 0, "")
 	PostAuthApiV1KeyRoleCmd.Flags().String("role-name", "", "")
 
+	DeleteKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
+	DeleteAuthApiV1KeyIdDeleteCmd.Flags().String("id", "", "")
 }

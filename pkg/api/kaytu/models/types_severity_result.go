@@ -18,21 +18,27 @@ import (
 type TypesSeverityResult struct {
 
 	// critical count
+	// Example: 1
 	CriticalCount int64 `json:"criticalCount,omitempty"`
 
 	// high count
+	// Example: 1
 	HighCount int64 `json:"highCount,omitempty"`
 
 	// low count
+	// Example: 1
 	LowCount int64 `json:"lowCount,omitempty"`
 
 	// medium count
+	// Example: 1
 	MediumCount int64 `json:"mediumCount,omitempty"`
 
 	// passed count
+	// Example: 1
 	PassedCount int64 `json:"passedCount,omitempty"`
 
 	// unknown count
+	// Example: 1
 	UnknownCount int64 `json:"unknownCount,omitempty"`
 }
 

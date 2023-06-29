@@ -45,7 +45,7 @@ GetWorkspaceAPIV1WorkspacesOK describes a response with status code 200, with de
 OK
 */
 type GetWorkspaceAPIV1WorkspacesOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIWorkspaceResponse
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse
 }
 
 // IsSuccess returns true when this get workspace Api v1 workspaces o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetWorkspaceAPIV1WorkspacesOK) String() string {
 	return fmt.Sprintf("[GET /workspace/api/v1/workspaces][%d] getWorkspaceApiV1WorkspacesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetWorkspaceAPIV1WorkspacesOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIWorkspaceResponse {
+func (o *GetWorkspaceAPIV1WorkspacesOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse {
 	return o.Payload
 }
 

@@ -45,7 +45,7 @@ GetAuthAPIV1UsersOK describes a response with status code 200, with default head
 OK
 */
 type GetAuthAPIV1UsersOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUsersResponse
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersResponse
 }
 
 // IsSuccess returns true when this get auth Api v1 users o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetAuthAPIV1UsersOK) String() string {
 	return fmt.Sprintf("[GET /auth/api/v1/users][%d] getAuthApiV1UsersOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1UsersOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUsersResponse {
+func (o *GetAuthAPIV1UsersOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersResponse {
 	return o.Payload
 }
 

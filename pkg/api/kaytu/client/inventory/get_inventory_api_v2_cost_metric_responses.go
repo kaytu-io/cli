@@ -45,7 +45,7 @@ GetInventoryAPIV2CostMetricOK describes a response with status code 200, with de
 OK
 */
 type GetInventoryAPIV2CostMetricOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListCostMetricsResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse
 }
 
 // IsSuccess returns true when this get inventory Api v2 cost metric o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetInventoryAPIV2CostMetricOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/cost/metric][%d] getInventoryApiV2CostMetricOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2CostMetricOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListCostMetricsResponse {
+func (o *GetInventoryAPIV2CostMetricOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse {
 	return o.Payload
 }
 
 func (o *GetInventoryAPIV2CostMetricOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListCostMetricsResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -46,7 +46,7 @@ type DescribeDescribeResourceJob struct {
 	RetryCount int64 `json:"retryCount,omitempty"`
 
 	// status
-	Status GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeResourceJobStatus `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgDescribeAPIDescribeResourceJobStatus `json:"status,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`

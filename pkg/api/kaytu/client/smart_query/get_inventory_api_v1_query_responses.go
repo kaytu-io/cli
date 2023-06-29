@@ -45,7 +45,7 @@ GetInventoryAPIV1QueryOK describes a response with status code 200, with default
 OK
 */
 type GetInventoryAPIV1QueryOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPISmartQueryItem
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem
 }
 
 // IsSuccess returns true when this get inventory Api v1 query o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetInventoryAPIV1QueryOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v1/query][%d] getInventoryApiV1QueryOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV1QueryOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPISmartQueryItem {
+func (o *GetInventoryAPIV1QueryOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem {
 	return o.Payload
 }
 

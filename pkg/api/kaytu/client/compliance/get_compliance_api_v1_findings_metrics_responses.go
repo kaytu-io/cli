@@ -45,7 +45,7 @@ GetComplianceAPIV1FindingsMetricsOK describes a response with status code 200, w
 OK
 */
 type GetComplianceAPIV1FindingsMetricsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsMetricsResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsMetricsResponse
 }
 
 // IsSuccess returns true when this get compliance Api v1 findings metrics o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1FindingsMetricsOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/findings/metrics][%d] getComplianceApiV1FindingsMetricsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1FindingsMetricsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsMetricsResponse {
+func (o *GetComplianceAPIV1FindingsMetricsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsMetricsResponse {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1FindingsMetricsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsMetricsResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsMetricsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

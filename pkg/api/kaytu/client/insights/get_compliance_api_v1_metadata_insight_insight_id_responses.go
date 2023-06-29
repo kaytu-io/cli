@@ -45,7 +45,7 @@ GetComplianceAPIV1MetadataInsightInsightIDOK describes a response with status co
 OK
 */
 type GetComplianceAPIV1MetadataInsightInsightIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight
 }
 
 // IsSuccess returns true when this get compliance Api v1 metadata insight insight Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1MetadataInsightInsightIDOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/metadata/insight/{insightId}][%d] getComplianceApiV1MetadataInsightInsightIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1MetadataInsightInsightIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight {
+func (o *GetComplianceAPIV1MetadataInsightInsightIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1MetadataInsightInsightIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

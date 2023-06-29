@@ -67,7 +67,7 @@ type PostInventoryAPIV1ResourceParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIGetResourceRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourceRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostInventoryAPIV1ResourceParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post inventory API v1 resource params
-func (o *PostInventoryAPIV1ResourceParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIGetResourceRequest) *PostInventoryAPIV1ResourceParams {
+func (o *PostInventoryAPIV1ResourceParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourceRequest) *PostInventoryAPIV1ResourceParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post inventory API v1 resource params
-func (o *PostInventoryAPIV1ResourceParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIGetResourceRequest) {
+func (o *PostInventoryAPIV1ResourceParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourceRequest) {
 	o.Request = request
 }
 

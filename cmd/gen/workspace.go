@@ -33,26 +33,12 @@ var UpdateWorkspaceCmd = &cobra.Command{
 }
 
 func init() {
+	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd)
+	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.Flags().Bool("ignore-usage", false, "")
+	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.Flags().String("workspace-name", "", "")
+
 	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd.Flags().String("workspace-id", "", "")
-
-	DeleteWorkspaceCmd.AddCommand(DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd)
-	DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd.Flags().String("workspace-id", "", "")
-
-	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesCmd)
-
-	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesWorkspaceIdCmd)
-	GetWorkspaceApiV1WorkspacesWorkspaceIdCmd.Flags().String("workspace-id", "", "")
-
-	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceCmd)
-	PostWorkspaceApiV1WorkspaceCmd.Flags().String("description", "", "")
-	PostWorkspaceApiV1WorkspaceCmd.Flags().String("name", "", "")
-	PostWorkspaceApiV1WorkspaceCmd.Flags().String("tier", "", "")
-
-	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd)
-	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.Flags().String("new-name", "", "")
-
-	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.Flags().String("workspace-id", "", "")
 
 	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd.Flags().Int64("new-org-id", 0, "")
@@ -64,6 +50,30 @@ func init() {
 
 	PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd.Flags().String("workspace-id", "", "")
 
+	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd)
+	PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd.Flags().String("workspace-id", "", "")
+
+	DeleteWorkspaceCmd.AddCommand(DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd)
+	DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd.Flags().String("workspace-id", "", "")
+
+	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspaceCurrentCmd)
+
+	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceCmd)
+	PostWorkspaceApiV1WorkspaceCmd.Flags().String("description", "", "")
+	PostWorkspaceApiV1WorkspaceCmd.Flags().String("name", "", "")
+	PostWorkspaceApiV1WorkspaceCmd.Flags().String("tier", "", "")
+
+	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd)
+	GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd.Flags().String("workspace-id", "", "")
+
+	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesWorkspaceIdCmd)
+	GetWorkspaceApiV1WorkspacesWorkspaceIdCmd.Flags().String("workspace-id", "", "")
+
+	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd)
+	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.Flags().String("new-name", "", "")
+
+	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.Flags().String("workspace-id", "", "")
+
 	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd.Flags().String("new-name", "", "")
 
@@ -72,13 +82,5 @@ func init() {
 	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd)
 	GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd.Flags().String("workspace-id", "", "")
 
-	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd)
-	GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd.Flags().String("workspace-id", "", "")
-
-	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd)
-	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.Flags().Bool("ignore-usage", false, "")
-	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.Flags().String("workspace-name", "", "")
-
-	GetWorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd)
-	PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd.Flags().String("workspace-id", "", "")
+	GetWorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesCmd)
 }

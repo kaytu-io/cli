@@ -45,7 +45,7 @@ GetAuthAPIV1UserRoleBindingsOK describes a response with status code 200, with d
 OK
 */
 type GetAuthAPIV1UserRoleBindingsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetRoleBindingsResponse
 }
 
 // IsSuccess returns true when this get auth Api v1 user role bindings o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetAuthAPIV1UserRoleBindingsOK) String() string {
 	return fmt.Sprintf("[GET /auth/api/v1/user/role/bindings][%d] getAuthApiV1UserRoleBindingsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1UserRoleBindingsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse {
+func (o *GetAuthAPIV1UserRoleBindingsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetRoleBindingsResponse {
 	return o.Payload
 }
 
 func (o *GetAuthAPIV1UserRoleBindingsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetRoleBindingsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

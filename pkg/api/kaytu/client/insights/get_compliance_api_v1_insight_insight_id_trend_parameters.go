@@ -82,7 +82,7 @@ type GetComplianceAPIV1InsightInsightIDTrendParams struct {
 
 	/* InsightID.
 
-	   InsightID
+	   Insight ID
 	*/
 	InsightID string
 

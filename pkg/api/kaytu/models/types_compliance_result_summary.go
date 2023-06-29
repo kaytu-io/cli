@@ -18,18 +18,23 @@ import (
 type TypesComplianceResultSummary struct {
 
 	// alarm count
+	// Example: 1
 	AlarmCount int64 `json:"alarmCount,omitempty"`
 
 	// error count
+	// Example: 1
 	ErrorCount int64 `json:"errorCount,omitempty"`
 
 	// info count
+	// Example: 1
 	InfoCount int64 `json:"infoCount,omitempty"`
 
 	// ok count
+	// Example: 1
 	OkCount int64 `json:"okCount,omitempty"`
 
 	// skip count
+	// Example: 1
 	SkipCount int64 `json:"skipCount,omitempty"`
 }
 

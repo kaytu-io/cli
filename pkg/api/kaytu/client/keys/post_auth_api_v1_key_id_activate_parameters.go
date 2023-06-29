@@ -63,7 +63,7 @@ type PostAuthAPIV1KeyIDActivateParams struct {
 
 	/* ID.
 
-	   ID
+	   Key ID
 	*/
 	ID string
 

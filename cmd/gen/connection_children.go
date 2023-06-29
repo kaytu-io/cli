@@ -10,34 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetInventoryApiV2ConnectionsDataConnectionIdCmd = &cobra.Command{
-	Use: "get-connection",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_connections_data_connection_id] : %v", err)
-		}
-
-		req := connection.NewGetInventoryAPIV2ConnectionsDataConnectionIDParams()
-
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Connection.GetInventoryAPIV2ConnectionsDataConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_connections_data_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_connections_data_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetInventoryApiV2ConnectionsDataCmd = &cobra.Command{
 	Use: "list-connections",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -60,6 +32,34 @@ var GetInventoryApiV2ConnectionsDataCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_connections_data] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2ConnectionsDataConnectionIdCmd = &cobra.Command{
+	Use: "get-connection",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_connections_data_connection_id] : %v", err)
+		}
+
+		req := connection.NewGetInventoryAPIV2ConnectionsDataConnectionIDParams()
+
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Connection.GetInventoryAPIV2ConnectionsDataConnectionID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_connections_data_connection_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_connections_data_connection_id] : %v", err)
 		}
 
 		return nil

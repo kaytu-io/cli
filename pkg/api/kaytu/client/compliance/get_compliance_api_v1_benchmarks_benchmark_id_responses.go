@@ -45,7 +45,7 @@ GetComplianceAPIV1BenchmarksBenchmarkIDOK describes a response with status code 
 OK
 */
 type GetComplianceAPIV1BenchmarksBenchmarkIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmark
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark
 }
 
 // IsSuccess returns true when this get compliance Api v1 benchmarks benchmark Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/benchmarks/{benchmark_id}][%d] getComplianceApiV1BenchmarksBenchmarkIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1BenchmarksBenchmarkIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmark {
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1BenchmarksBenchmarkIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmark)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -45,7 +45,7 @@ GetScheduleAPIV1ResourceTypeProviderOK describes a response with status code 200
 OK
 */
 type GetScheduleAPIV1ResourceTypeProviderOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIResourceTypeDetail
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPIResourceTypeDetail
 }
 
 // IsSuccess returns true when this get schedule Api v1 resource type provider o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetScheduleAPIV1ResourceTypeProviderOK) String() string {
 	return fmt.Sprintf("[GET /schedule/api/v1/resource_type/{provider}][%d] getScheduleApiV1ResourceTypeProviderOK  %+v", 200, o.Payload)
 }
 
-func (o *GetScheduleAPIV1ResourceTypeProviderOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIResourceTypeDetail {
+func (o *GetScheduleAPIV1ResourceTypeProviderOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPIResourceTypeDetail {
 	return o.Payload
 }
 

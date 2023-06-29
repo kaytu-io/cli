@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetInventoryAPIV2ResourcesTagKeyParams creates a new GetInventoryAPIV2ResourcesTagKeyParams object,
@@ -61,11 +62,35 @@ GetInventoryAPIV2ResourcesTagKeyParams contains all the parameters to send to th
 */
 type GetInventoryAPIV2ResourcesTagKeyParams struct {
 
+	/* ConnectionID.
+
+	   Connection IDs to filter by
+	*/
+	ConnectionID []string
+
+	/* Connector.
+
+	   Connector type to filter by
+	*/
+	Connector []string
+
+	/* EndTime.
+
+	   End time in unix timestamp format, default now
+	*/
+	EndTime *int64
+
 	/* Key.
 
 	   Tag key
 	*/
 	Key string
+
+	/* MinCount.
+
+	   Minimum number of resources with this tag value, default 1
+	*/
+	MinCount *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,6 +145,39 @@ func (o *GetInventoryAPIV2ResourcesTagKeyParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
+// WithConnectionID adds the connectionID to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) WithConnectionID(connectionID []string) *GetInventoryAPIV2ResourcesTagKeyParams {
+	o.SetConnectionID(connectionID)
+	return o
+}
+
+// SetConnectionID adds the connectionId to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) SetConnectionID(connectionID []string) {
+	o.ConnectionID = connectionID
+}
+
+// WithConnector adds the connector to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) WithConnector(connector []string) *GetInventoryAPIV2ResourcesTagKeyParams {
+	o.SetConnector(connector)
+	return o
+}
+
+// SetConnector adds the connector to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) SetConnector(connector []string) {
+	o.Connector = connector
+}
+
+// WithEndTime adds the endTime to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) WithEndTime(endTime *int64) *GetInventoryAPIV2ResourcesTagKeyParams {
+	o.SetEndTime(endTime)
+	return o
+}
+
+// SetEndTime adds the endTime to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) SetEndTime(endTime *int64) {
+	o.EndTime = endTime
+}
+
 // WithKey adds the key to the get inventory API v2 resources tag key params
 func (o *GetInventoryAPIV2ResourcesTagKeyParams) WithKey(key string) *GetInventoryAPIV2ResourcesTagKeyParams {
 	o.SetKey(key)
@@ -131,6 +189,17 @@ func (o *GetInventoryAPIV2ResourcesTagKeyParams) SetKey(key string) {
 	o.Key = key
 }
 
+// WithMinCount adds the minCount to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) WithMinCount(minCount *int64) *GetInventoryAPIV2ResourcesTagKeyParams {
+	o.SetMinCount(minCount)
+	return o
+}
+
+// SetMinCount adds the minCount to the get inventory API v2 resources tag key params
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) SetMinCount(minCount *int64) {
+	o.MinCount = minCount
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetInventoryAPIV2ResourcesTagKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,13 +208,103 @@ func (o *GetInventoryAPIV2ResourcesTagKeyParams) WriteToRequest(r runtime.Client
 	}
 	var res []error
 
+	if o.ConnectionID != nil {
+
+		// binding items for connectionId
+		joinedConnectionID := o.bindParamConnectionID(reg)
+
+		// query array param connectionId
+		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
+			return err
+		}
+	}
+
+	if o.Connector != nil {
+
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
+
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
+		}
+	}
+
+	if o.EndTime != nil {
+
+		// query param endTime
+		var qrEndTime int64
+
+		if o.EndTime != nil {
+			qrEndTime = *o.EndTime
+		}
+		qEndTime := swag.FormatInt64(qrEndTime)
+		if qEndTime != "" {
+
+			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param key
 	if err := r.SetPathParam("key", o.Key); err != nil {
 		return err
+	}
+
+	if o.MinCount != nil {
+
+		// query param minCount
+		var qrMinCount int64
+
+		if o.MinCount != nil {
+			qrMinCount = *o.MinCount
+		}
+		qMinCount := swag.FormatInt64(qrMinCount)
+		if qMinCount != "" {
+
+			if err := r.SetQueryParam("minCount", qMinCount); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetInventoryAPIV2ResourcesTagKey binds the parameter connectionId
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) bindParamConnectionID(formats strfmt.Registry) []string {
+	connectionIDIR := o.ConnectionID
+
+	var connectionIDIC []string
+	for _, connectionIDIIR := range connectionIDIR { // explode []string
+
+		connectionIDIIV := connectionIDIIR // string as string
+		connectionIDIC = append(connectionIDIC, connectionIDIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
+
+	return connectionIDIS
+}
+
+// bindParamGetInventoryAPIV2ResourcesTagKey binds the parameter connector
+func (o *GetInventoryAPIV2ResourcesTagKeyParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
 }

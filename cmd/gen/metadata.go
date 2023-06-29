@@ -33,6 +33,9 @@ var UpdateMetadataCmd = &cobra.Command{
 }
 
 func init() {
+	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
+	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
+
 	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
 	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-number", 0, "")
@@ -46,6 +49,8 @@ func init() {
 	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
 
 	GetMetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
+	PostMetadataApiV1MetadataCmd.Flags().String("key", "", "")
+	PostMetadataApiV1MetadataCmd.Flags().String("value", "", "")
 
 	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "")
@@ -53,7 +58,4 @@ func init() {
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-size", 0, "")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("service", nil, "")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("tag", nil, "")
-
-	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
-	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
 }

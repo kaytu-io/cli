@@ -45,7 +45,7 @@ GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK describes a response with status 
 OK
 */
 type GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicy
 }
 
 // IsSuccess returns true when this get compliance Api v1 benchmarks policies policy Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/benchmarks/policies/{policy_id}][%d] getComplianceApiV1BenchmarksPoliciesPolicyIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy {
+func (o *GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicy {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicy)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

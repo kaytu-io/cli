@@ -63,7 +63,7 @@ type GetComplianceAPIV1QueriesQueryIDParams struct {
 
 	/* QueryID.
 
-	   QueryID
+	   Query ID
 	*/
 	QueryID string
 

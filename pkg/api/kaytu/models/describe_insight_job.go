@@ -46,7 +46,7 @@ type DescribeInsightJob struct {
 	SourceType SourceType `json:"sourceType,omitempty"`
 
 	// status
-	Status GitlabComKeibiengineKeibiEnginePkgInsightAPIInsightJobStatus `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgInsightAPIInsightJobStatus `json:"status,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`

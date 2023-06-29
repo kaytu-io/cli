@@ -45,7 +45,7 @@ GetInventoryAPIV2ResourcesCompositionKeyOK describes a response with status code
 OK
 */
 type GetInventoryAPIV2ResourcesCompositionKeyOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListResourceTypeCompositionResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionResponse
 }
 
 // IsSuccess returns true when this get inventory Api v2 resources composition key o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetInventoryAPIV2ResourcesCompositionKeyOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/resources/composition/{key}][%d] getInventoryApiV2ResourcesCompositionKeyOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2ResourcesCompositionKeyOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListResourceTypeCompositionResponse {
+func (o *GetInventoryAPIV2ResourcesCompositionKeyOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionResponse {
 	return o.Payload
 }
 
 func (o *GetInventoryAPIV2ResourcesCompositionKeyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListResourceTypeCompositionResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

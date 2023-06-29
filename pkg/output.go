@@ -1,10 +1,10 @@
 package pkg
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/spf13/cobra"
-	"k8s.io/apimachinery/pkg/util/json"
 	"os"
 	"sort"
 )
@@ -17,7 +17,7 @@ type Cell struct {
 }
 
 func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
-	bytes, err := json.Marshal(obj)
+	bytes, err := json.MarshalIndent(obj, "", "  ")
 	if err != nil {
 		return fmt.Errorf("[printoutput] : %v", err)
 	}
@@ -77,8 +77,9 @@ func PrintOutputForTypeArray(cmd *cobra.Command, obj interface{}) error {
 	printTable.Render()
 	return nil
 }
+
 func PrintOutput(cmd *cobra.Command, obj interface{}) error {
-	bytes, err := json.Marshal(obj)
+	bytes, err := json.MarshalIndent(obj, "", "  ")
 	if err != nil {
 		return fmt.Errorf("[printoutput] : %v", err)
 	}

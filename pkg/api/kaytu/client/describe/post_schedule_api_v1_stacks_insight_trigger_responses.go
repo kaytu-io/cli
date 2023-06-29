@@ -45,7 +45,7 @@ PostScheduleAPIV1StacksInsightTriggerOK describes a response with status code 20
 OK
 */
 type PostScheduleAPIV1StacksInsightTriggerOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPIInsightJob
 }
 
 // IsSuccess returns true when this post schedule Api v1 stacks insight trigger o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *PostScheduleAPIV1StacksInsightTriggerOK) String() string {
 	return fmt.Sprintf("[POST /schedule/api/v1/stacks/insight/trigger][%d] postScheduleApiV1StacksInsightTriggerOK  %+v", 200, o.Payload)
 }
 
-func (o *PostScheduleAPIV1StacksInsightTriggerOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgDescribeAPIInsightJob {
+func (o *PostScheduleAPIV1StacksInsightTriggerOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPIInsightJob {
 	return o.Payload
 }
 

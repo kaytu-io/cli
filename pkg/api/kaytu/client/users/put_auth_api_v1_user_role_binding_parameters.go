@@ -67,7 +67,7 @@ type PutAuthAPIV1UserRoleBindingParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIPutRoleBindingRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIPutRoleBindingRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PutAuthAPIV1UserRoleBindingParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the put auth API v1 user role binding params
-func (o *PutAuthAPIV1UserRoleBindingParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIPutRoleBindingRequest) *PutAuthAPIV1UserRoleBindingParams {
+func (o *PutAuthAPIV1UserRoleBindingParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIPutRoleBindingRequest) *PutAuthAPIV1UserRoleBindingParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the put auth API v1 user role binding params
-func (o *PutAuthAPIV1UserRoleBindingParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIPutRoleBindingRequest) {
+func (o *PutAuthAPIV1UserRoleBindingParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIPutRoleBindingRequest) {
 	o.Request = request
 }
 

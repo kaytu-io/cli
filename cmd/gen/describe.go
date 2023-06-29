@@ -33,25 +33,6 @@ var UpdateDescribeCmd = &cobra.Command{
 }
 
 func init() {
-	GetDescribeCmd.AddCommand(GetScheduleApiV1InsightJobJobIdCmd)
-	GetScheduleApiV1InsightJobJobIdCmd.Flags().String("job-id", "", "")
-
-	GetDescribeCmd.AddCommand(PostScheduleApiV1StacksInsightTriggerCmd)
-	PostScheduleApiV1StacksInsightTriggerCmd.Flags().String("insights", "", "")
-	PostScheduleApiV1StacksInsightTriggerCmd.Flags().String("stack-id", "", "")
-
-	GetDescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
-	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "")
-
-	GetDescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
-	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().String("connection-id", "", "")
-	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().Int64("insight-id", 0, "")
-	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
-
-	GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceTriggerCmd)
-
-	GetDescribeCmd.AddCommand(GetScheduleApiV0InsightTriggerCmd)
-
 	GetDescribeCmd.AddCommand(GetScheduleApiV0SummarizeTriggerCmd)
 
 	GetDescribeCmd.AddCommand(PostScheduleApiV1DescribeResourceCmd)
@@ -62,12 +43,37 @@ func init() {
 	PostScheduleApiV1DescribeResourceCmd.Flags().String("resource-type", "", "")
 	PostScheduleApiV1DescribeResourceCmd.Flags().String("secret-key", "", "")
 
+	GetDescribeCmd.AddCommand(PostScheduleApiV1StacksInsightTriggerCmd)
+	PostScheduleApiV1StacksInsightTriggerCmd.Flags().String("request", "", "")
+
+	GetDescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
+	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().String("connection-id", "", "")
+	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().Int64("insight-id", 0, "")
+	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
+
+	GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceSummarizerTriggerCmd)
+
+	GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceTriggerCmd)
+
+	GetDescribeCmd.AddCommand(GetScheduleApiV0DescribeTriggerCmd)
+
+	GetDescribeCmd.AddCommand(GetScheduleApiV0InsightTriggerCmd)
+
+	GetDescribeCmd.AddCommand(GetScheduleApiV1BenchmarkEvaluationsCmd)
+	GetScheduleApiV1BenchmarkEvaluationsCmd.Flags().String("benchmark-id", "", "")
+	GetScheduleApiV1BenchmarkEvaluationsCmd.Flags().String("connection-id", "", "")
+	GetScheduleApiV1BenchmarkEvaluationsCmd.Flags().String("connector", "", "")
+	GetScheduleApiV1BenchmarkEvaluationsCmd.Flags().Int64("evaluated-at-after", 0, "")
+	GetScheduleApiV1BenchmarkEvaluationsCmd.Flags().Int64("evaluated-at-before", 0, "")
+
+	GetDescribeCmd.AddCommand(GetScheduleApiV1InsightJobJobIdCmd)
+	GetScheduleApiV1InsightJobJobIdCmd.Flags().String("job-id", "", "")
+
 	GetDescribeCmd.AddCommand(PutScheduleApiV1BenchmarkEvaluationTriggerCmd)
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.Flags().String("benchmark-id", "", "")
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.Flags().String("connection-id", "", "")
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
 
-	GetDescribeCmd.AddCommand(GetScheduleApiV0ComplianceSummarizerTriggerCmd)
-
-	GetDescribeCmd.AddCommand(GetScheduleApiV0DescribeTriggerCmd)
+	GetDescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
+	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "")
 }

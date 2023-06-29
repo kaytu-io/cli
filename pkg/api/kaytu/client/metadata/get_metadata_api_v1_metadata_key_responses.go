@@ -45,7 +45,7 @@ GetMetadataAPIV1MetadataKeyOK describes a response with status code 200, with de
 OK
 */
 type GetMetadataAPIV1MetadataKeyOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgMetadataModelsConfigMetadata
+	Payload *models.GithubComKaytuIoKaytuEnginePkgMetadataModelsConfigMetadata
 }
 
 // IsSuccess returns true when this get metadata Api v1 metadata key o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetMetadataAPIV1MetadataKeyOK) String() string {
 	return fmt.Sprintf("[GET /metadata/api/v1/metadata/{key}][%d] getMetadataApiV1MetadataKeyOK  %+v", 200, o.Payload)
 }
 
-func (o *GetMetadataAPIV1MetadataKeyOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgMetadataModelsConfigMetadata {
+func (o *GetMetadataAPIV1MetadataKeyOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgMetadataModelsConfigMetadata {
 	return o.Payload
 }
 
 func (o *GetMetadataAPIV1MetadataKeyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgMetadataModelsConfigMetadata)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgMetadataModelsConfigMetadata)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

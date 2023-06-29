@@ -45,7 +45,7 @@ PostWorkspaceAPIV1WorkspaceOK describes a response with status code 200, with de
 OK
 */
 type PostWorkspaceAPIV1WorkspaceOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPICreateWorkspaceResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceResponse
 }
 
 // IsSuccess returns true when this post workspace Api v1 workspace o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostWorkspaceAPIV1WorkspaceOK) String() string {
 	return fmt.Sprintf("[POST /workspace/api/v1/workspace][%d] postWorkspaceApiV1WorkspaceOK  %+v", 200, o.Payload)
 }
 
-func (o *PostWorkspaceAPIV1WorkspaceOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPICreateWorkspaceResponse {
+func (o *PostWorkspaceAPIV1WorkspaceOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceResponse {
 	return o.Payload
 }
 
 func (o *PostWorkspaceAPIV1WorkspaceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPICreateWorkspaceResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

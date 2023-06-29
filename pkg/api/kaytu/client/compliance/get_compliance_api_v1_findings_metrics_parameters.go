@@ -64,13 +64,13 @@ type GetComplianceAPIV1FindingsMetricsParams struct {
 
 	/* End.
 
-	   End
+	   unix seconds for the end time
 	*/
 	End *int64
 
 	/* Start.
 
-	   Start
+	   unix seconds for the start time
 	*/
 	Start *int64
 

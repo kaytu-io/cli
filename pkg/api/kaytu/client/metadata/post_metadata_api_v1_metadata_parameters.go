@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 )
 
 // NewPostMetadataAPIV1MetadataParams creates a new PostMetadataAPIV1MetadataParams object,
@@ -60,6 +62,13 @@ PostMetadataAPIV1MetadataParams contains all the parameters to send to the API e
 	Typically these are written to a http.Request.
 */
 type PostMetadataAPIV1MetadataParams struct {
+
+	/* Req.
+
+	   Request Body
+	*/
+	Req *models.GithubComKaytuIoKaytuEnginePkgMetadataAPISetConfigMetadataRequest
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +122,17 @@ func (o *PostMetadataAPIV1MetadataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithReq adds the req to the post metadata API v1 metadata params
+func (o *PostMetadataAPIV1MetadataParams) WithReq(req *models.GithubComKaytuIoKaytuEnginePkgMetadataAPISetConfigMetadataRequest) *PostMetadataAPIV1MetadataParams {
+	o.SetReq(req)
+	return o
+}
+
+// SetReq adds the req to the post metadata API v1 metadata params
+func (o *PostMetadataAPIV1MetadataParams) SetReq(req *models.GithubComKaytuIoKaytuEnginePkgMetadataAPISetConfigMetadataRequest) {
+	o.Req = req
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PostMetadataAPIV1MetadataParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +140,11 @@ func (o *PostMetadataAPIV1MetadataParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+	if o.Req != nil {
+		if err := r.SetBodyParam(o.Req); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

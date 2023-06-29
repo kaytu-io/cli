@@ -42,9 +42,9 @@ type ClientService interface {
 }
 
 /*
-GetAuthAPIV1RoleRoleNameKeys gets role keys
+GetAuthAPIV1RoleRoleNameKeys lists role keys
 
-Returns a list of keys in a workspace for the specified role.
+List Workspace Keys for Specified Role.
 */
 func (a *Client) GetAuthAPIV1RoleRoleNameKeys(params *GetAuthAPIV1RoleRoleNameKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1RoleRoleNameKeysOK, error) {
 	// TODO: Validate the params before sending
@@ -85,7 +85,7 @@ func (a *Client) GetAuthAPIV1RoleRoleNameKeys(params *GetAuthAPIV1RoleRoleNameKe
 /*
 GetAuthAPIV1RoleRoleNameUsers lists role users
 
-Returns a list of users in a workspace with the specified role.
+Returns a list of users in the workspace with the specified role.
 */
 func (a *Client) GetAuthAPIV1RoleRoleNameUsers(params *GetAuthAPIV1RoleRoleNameUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1RoleRoleNameUsersOK, error) {
 	// TODO: Validate the params before sending
@@ -124,9 +124,9 @@ func (a *Client) GetAuthAPIV1RoleRoleNameUsers(params *GetAuthAPIV1RoleRoleNameU
 }
 
 /*
-GetAuthAPIV1Roles gets roles
+GetAuthAPIV1Roles lists roles
 
-Gets a list of roles in a workspace and their descriptions and number of users.
+Retrieve Role Information and User Count for Workspace.
 */
 func (a *Client) GetAuthAPIV1Roles(params *GetAuthAPIV1RolesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1RolesOK, error) {
 	// TODO: Validate the params before sending
@@ -167,7 +167,7 @@ func (a *Client) GetAuthAPIV1Roles(params *GetAuthAPIV1RolesParams, authInfo run
 /*
 GetAuthAPIV1RolesRoleName gets role details
 
-Gets the details of the Role, including the description, number of users and list of those users.
+Retrieves Role Details, Description, User Count, and User List for Workspace.
 */
 func (a *Client) GetAuthAPIV1RolesRoleName(params *GetAuthAPIV1RolesRoleNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1RolesRoleNameOK, error) {
 	// TODO: Validate the params before sending

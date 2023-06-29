@@ -67,7 +67,7 @@ type PostOnboardAPIV1SourcesParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIGetSourcesRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIGetSourcesRequest
 
 	/* Type.
 
@@ -129,13 +129,13 @@ func (o *PostOnboardAPIV1SourcesParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post onboard API v1 sources params
-func (o *PostOnboardAPIV1SourcesParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIGetSourcesRequest) *PostOnboardAPIV1SourcesParams {
+func (o *PostOnboardAPIV1SourcesParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIGetSourcesRequest) *PostOnboardAPIV1SourcesParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post onboard API v1 sources params
-func (o *PostOnboardAPIV1SourcesParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIGetSourcesRequest) {
+func (o *PostOnboardAPIV1SourcesParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIGetSourcesRequest) {
 	o.Request = request
 }
 

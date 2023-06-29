@@ -67,7 +67,7 @@ type GetInventoryAPIV1QueryCountParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListQueryRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *GetInventoryAPIV1QueryCountParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the get inventory API v1 query count params
-func (o *GetInventoryAPIV1QueryCountParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListQueryRequest) *GetInventoryAPIV1QueryCountParams {
+func (o *GetInventoryAPIV1QueryCountParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest) *GetInventoryAPIV1QueryCountParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the get inventory API v1 query count params
-func (o *GetInventoryAPIV1QueryCountParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListQueryRequest) {
+func (o *GetInventoryAPIV1QueryCountParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest) {
 	o.Request = request
 }
 

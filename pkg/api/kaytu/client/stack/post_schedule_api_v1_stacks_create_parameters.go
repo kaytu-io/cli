@@ -62,6 +62,12 @@ PostScheduleAPIV1StacksCreateParams contains all the parameters to send to the A
 */
 type PostScheduleAPIV1StacksCreateParams struct {
 
+	/* Config.
+
+	   Config json structure
+	*/
+	Config *string
+
 	/* Resources.
 
 	   Additional Resources
@@ -133,6 +139,17 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// WithConfig adds the config to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithConfig(config *string) *PostScheduleAPIV1StacksCreateParams {
+	o.SetConfig(config)
+	return o
+}
+
+// SetConfig adds the config to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetConfig(config *string) {
+	o.Config = config
+}
+
 // WithResources adds the resources to the post schedule API v1 stacks create params
 func (o *PostScheduleAPIV1StacksCreateParams) WithResources(resources []string) *PostScheduleAPIV1StacksCreateParams {
 	o.SetResources(resources)
@@ -173,6 +190,21 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
+
+	if o.Config != nil {
+
+		// form param config
+		var frConfig string
+		if o.Config != nil {
+			frConfig = *o.Config
+		}
+		fConfig := frConfig
+		if fConfig != "" {
+			if err := r.SetFormParam("config", fConfig); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.Resources != nil {
 

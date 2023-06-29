@@ -67,7 +67,7 @@ type PostAuthAPIV1KeyRoleParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIUpdateKeyRoleRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIUpdateKeyRoleRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostAuthAPIV1KeyRoleParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post auth API v1 key role params
-func (o *PostAuthAPIV1KeyRoleParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIUpdateKeyRoleRequest) *PostAuthAPIV1KeyRoleParams {
+func (o *PostAuthAPIV1KeyRoleParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIUpdateKeyRoleRequest) *PostAuthAPIV1KeyRoleParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post auth API v1 key role params
-func (o *PostAuthAPIV1KeyRoleParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIUpdateKeyRoleRequest) {
+func (o *PostAuthAPIV1KeyRoleParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIUpdateKeyRoleRequest) {
 	o.Request = request
 }
 

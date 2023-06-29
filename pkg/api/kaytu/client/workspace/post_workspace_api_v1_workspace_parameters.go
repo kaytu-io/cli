@@ -67,7 +67,7 @@ type PostWorkspaceAPIV1WorkspaceParams struct {
 
 	   Create workspace request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPICreateWorkspaceRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostWorkspaceAPIV1WorkspaceParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post workspace API v1 workspace params
-func (o *PostWorkspaceAPIV1WorkspaceParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPICreateWorkspaceRequest) *PostWorkspaceAPIV1WorkspaceParams {
+func (o *PostWorkspaceAPIV1WorkspaceParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest) *PostWorkspaceAPIV1WorkspaceParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post workspace API v1 workspace params
-func (o *PostWorkspaceAPIV1WorkspaceParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPICreateWorkspaceRequest) {
+func (o *PostWorkspaceAPIV1WorkspaceParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest) {
 	o.Request = request
 }
 

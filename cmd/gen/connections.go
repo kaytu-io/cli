@@ -39,10 +39,9 @@ func init() {
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().Int64("start-time", 0, "")
 
 	GetConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryCmd)
-	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("connection-id", "", "")
-	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("connector", "", "")
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connection-id", nil, "")
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connector", nil, "")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("end-time", 0, "")
-	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("health-state", "", "")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("lifecycle-state", "", "")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("page-number", 0, "")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("page-size", 0, "")

@@ -90,7 +90,7 @@ type GetComplianceAPIV1InsightParams struct {
 
 	   Key-Value tags in key=value format to filter by
 	*/
-	Tag *string
+	Tag []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -190,13 +190,13 @@ func (o *GetComplianceAPIV1InsightParams) SetStartTime(startTime *int64) {
 }
 
 // WithTag adds the tag to the get compliance API v1 insight params
-func (o *GetComplianceAPIV1InsightParams) WithTag(tag *string) *GetComplianceAPIV1InsightParams {
+func (o *GetComplianceAPIV1InsightParams) WithTag(tag []string) *GetComplianceAPIV1InsightParams {
 	o.SetTag(tag)
 	return o
 }
 
 // SetTag adds the tag to the get compliance API v1 insight params
-func (o *GetComplianceAPIV1InsightParams) SetTag(tag *string) {
+func (o *GetComplianceAPIV1InsightParams) SetTag(tag []string) {
 	o.Tag = tag
 }
 
@@ -266,18 +266,12 @@ func (o *GetComplianceAPIV1InsightParams) WriteToRequest(r runtime.ClientRequest
 
 	if o.Tag != nil {
 
-		// query param tag
-		var qrTag string
+		// binding items for tag
+		joinedTag := o.bindParamTag(reg)
 
-		if o.Tag != nil {
-			qrTag = *o.Tag
-		}
-		qTag := qrTag
-		if qTag != "" {
-
-			if err := r.SetQueryParam("tag", qTag); err != nil {
-				return err
-			}
+		// query array param tag
+		if err := r.SetQueryParam("tag", joinedTag...); err != nil {
+			return err
 		}
 	}
 
@@ -319,4 +313,21 @@ func (o *GetComplianceAPIV1InsightParams) bindParamConnector(formats strfmt.Regi
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetComplianceAPIV1Insight binds the parameter tag
+func (o *GetComplianceAPIV1InsightParams) bindParamTag(formats strfmt.Registry) []string {
+	tagIR := o.Tag
+
+	var tagIC []string
+	for _, tagIIR := range tagIR { // explode []string
+
+		tagIIV := tagIIR // string as string
+		tagIC = append(tagIC, tagIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	tagIS := swag.JoinByFormat(tagIC, "csv")
+
+	return tagIS
 }

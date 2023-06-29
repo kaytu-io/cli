@@ -64,7 +64,7 @@ type DeleteOnboardAPIV1SourceSourceIDParams struct {
 
 	/* SourceID.
 
-	   SourceID
+	   Source ID
 	*/
 	SourceID int64
 

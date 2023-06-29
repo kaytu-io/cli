@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetComplianceAPIV1BenchmarkBenchmarkIDTreeParams creates a new GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams object,
@@ -63,7 +64,7 @@ type GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams struct {
 
 	/* BenchmarkID.
 
-	   BenchmarkID
+	   Benchmark ID
 	*/
 	BenchmarkID string
 
@@ -71,7 +72,7 @@ type GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams struct {
 
 	   Status
 	*/
-	Status string
+	Status []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,13 +139,13 @@ func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) SetBenchmarkID(benchm
 }
 
 // WithStatus adds the status to the get compliance API v1 benchmark benchmark ID tree params
-func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) WithStatus(status string) *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams {
+func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) WithStatus(status []string) *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams {
 	o.SetStatus(status)
 	return o
 }
 
 // SetStatus adds the status to the get compliance API v1 benchmark benchmark ID tree params
-func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) SetStatus(status string) {
+func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) SetStatus(status []string) {
 	o.Status = status
 }
 
@@ -161,12 +162,13 @@ func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) WriteToRequest(r runt
 		return err
 	}
 
-	// query param status
-	qrStatus := o.Status
-	qStatus := qrStatus
-	if qStatus != "" {
+	if o.Status != nil {
 
-		if err := r.SetQueryParam("status", qStatus); err != nil {
+		// binding items for status
+		joinedStatus := o.bindParamStatus(reg)
+
+		// query array param status
+		if err := r.SetQueryParam("status", joinedStatus...); err != nil {
 			return err
 		}
 	}
@@ -175,4 +177,21 @@ func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) WriteToRequest(r runt
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1BenchmarkBenchmarkIDTree binds the parameter status
+func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams) bindParamStatus(formats strfmt.Registry) []string {
+	statusIR := o.Status
+
+	var statusIC []string
+	for _, statusIIR := range statusIR { // explode []string
+
+		statusIIV := statusIIR // string as string
+		statusIC = append(statusIC, statusIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	statusIS := swag.JoinByFormat(statusIC, "csv")
+
+	return statusIS
 }

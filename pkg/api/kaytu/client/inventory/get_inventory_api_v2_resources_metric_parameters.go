@@ -80,6 +80,12 @@ type GetInventoryAPIV2ResourcesMetricParams struct {
 	*/
 	EndTime *string
 
+	/* MinCount.
+
+	   Minimum number of resources with this tag value, default 1
+	*/
+	MinCount *int64
+
 	/* PageNumber.
 
 	   page number - default is 1
@@ -202,6 +208,17 @@ func (o *GetInventoryAPIV2ResourcesMetricParams) SetEndTime(endTime *string) {
 	o.EndTime = endTime
 }
 
+// WithMinCount adds the minCount to the get inventory API v2 resources metric params
+func (o *GetInventoryAPIV2ResourcesMetricParams) WithMinCount(minCount *int64) *GetInventoryAPIV2ResourcesMetricParams {
+	o.SetMinCount(minCount)
+	return o
+}
+
+// SetMinCount adds the minCount to the get inventory API v2 resources metric params
+func (o *GetInventoryAPIV2ResourcesMetricParams) SetMinCount(minCount *int64) {
+	o.MinCount = minCount
+}
+
 // WithPageNumber adds the pageNumber to the get inventory API v2 resources metric params
 func (o *GetInventoryAPIV2ResourcesMetricParams) WithPageNumber(pageNumber *int64) *GetInventoryAPIV2ResourcesMetricParams {
 	o.SetPageNumber(pageNumber)
@@ -310,6 +327,23 @@ func (o *GetInventoryAPIV2ResourcesMetricParams) WriteToRequest(r runtime.Client
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.MinCount != nil {
+
+		// query param minCount
+		var qrMinCount int64
+
+		if o.MinCount != nil {
+			qrMinCount = *o.MinCount
+		}
+		qMinCount := swag.FormatInt64(qrMinCount)
+		if qMinCount != "" {
+
+			if err := r.SetQueryParam("minCount", qMinCount); err != nil {
 				return err
 			}
 		}

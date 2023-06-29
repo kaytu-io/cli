@@ -64,19 +64,19 @@ type GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams struct {
 
 	/* BenchmarkID.
 
-	   BenchmarkID
+	   Benchmark ID
 	*/
 	BenchmarkID string
 
 	/* End.
 
-	   End
+	   End time
 	*/
 	End int64
 
 	/* Start.
 
-	   Start
+	   Start time
 	*/
 	Start int64
 

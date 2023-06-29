@@ -64,6 +64,12 @@ func init() {
 	createCmd.AddCommand(gen.CreateSmartQueryCmd)
 
 
+	getCmd.AddCommand(gen.GetServicesCmd)
+	updateCmd.AddCommand(gen.UpdateServicesCmd)
+	deleteCmd.AddCommand(gen.DeleteServicesCmd)
+	createCmd.AddCommand(gen.CreateServicesCmd)
+
+
 	getCmd.AddCommand(gen.GetScheduleCmd)
 	updateCmd.AddCommand(gen.UpdateScheduleCmd)
 	deleteCmd.AddCommand(gen.DeleteScheduleCmd)
@@ -118,22 +124,10 @@ func init() {
 	createCmd.AddCommand(gen.CreateInsightsCmd)
 
 
-	getCmd.AddCommand(gen.GetInsightCmd)
-	updateCmd.AddCommand(gen.UpdateInsightCmd)
-	deleteCmd.AddCommand(gen.DeleteInsightCmd)
-	createCmd.AddCommand(gen.CreateInsightCmd)
-
-
 	getCmd.AddCommand(gen.GetDescribeCmd)
 	updateCmd.AddCommand(gen.UpdateDescribeCmd)
 	deleteCmd.AddCommand(gen.DeleteDescribeCmd)
 	createCmd.AddCommand(gen.CreateDescribeCmd)
-
-
-	getCmd.AddCommand(gen.GetCostCmd)
-	updateCmd.AddCommand(gen.UpdateCostCmd)
-	deleteCmd.AddCommand(gen.DeleteCostCmd)
-	createCmd.AddCommand(gen.CreateCostCmd)
 
 
 	getCmd.AddCommand(gen.GetConnectionsCmd)
@@ -158,12 +152,6 @@ func init() {
 	updateCmd.AddCommand(gen.UpdateBenchmarksAssignmentCmd)
 	deleteCmd.AddCommand(gen.DeleteBenchmarksAssignmentCmd)
 	createCmd.AddCommand(gen.CreateBenchmarksAssignmentCmd)
-
-
-	getCmd.AddCommand(gen.GetBenchmarksCmd)
-	updateCmd.AddCommand(gen.UpdateBenchmarksCmd)
-	deleteCmd.AddCommand(gen.DeleteBenchmarksCmd)
-	createCmd.AddCommand(gen.CreateBenchmarksCmd)
 
 	// =============================================================
 

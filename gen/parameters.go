@@ -1,14 +1,11 @@
 package main
 
 import (
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/cost"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insight"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/inventory"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
@@ -18,6 +15,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/roles"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/schedule"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/services"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/smart_query"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/users"
@@ -25,12 +23,6 @@ import (
 )
 
 var paramModels = map[string]interface{}{
-	"GetInventoryAPIV1AccountsResourceCount":                            benchmarks.GetInventoryAPIV1AccountsResourceCountParams{},
-	"GetInventoryAPIV1ResourcesDistribution":                            benchmarks.GetInventoryAPIV1ResourcesDistributionParams{},
-	"GetInventoryAPIV1ResourcesTopGrowingAccounts":                      benchmarks.GetInventoryAPIV1ResourcesTopGrowingAccountsParams{},
-	"GetInventoryAPIV1ServicesDistribution":                             benchmarks.GetInventoryAPIV1ServicesDistributionParams{},
-	"GetInventoryAPIV2ServicesSummary":                                  benchmarks.GetInventoryAPIV2ServicesSummaryParams{},
-	"GetInventoryAPIV2ServicesSummaryServiceName":                       benchmarks.GetInventoryAPIV2ServicesSummaryServiceNameParams{},
 	"DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID": benchmarks_assignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams{},
 	"GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID":                 benchmarks_assignment.GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams{},
 	"GetComplianceAPIV1AssignmentsConnectionConnectionID":               benchmarks_assignment.GetComplianceAPIV1AssignmentsConnectionConnectionIDParams{},
@@ -47,30 +39,27 @@ var paramModels = map[string]interface{}{
 	"GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount":                compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams{},
 	"GetComplianceAPIV1FindingsMetrics":                                 compliance.GetComplianceAPIV1FindingsMetricsParams{},
 	"GetComplianceAPIV1QueriesQueryID":                                  compliance.GetComplianceAPIV1QueriesQueryIDParams{},
-	"GetScheduleAPIV1BenchmarkEvaluations":                              compliance.GetScheduleAPIV1BenchmarkEvaluationsParams{},
 	"PostComplianceAPIV1AlarmsTop":                                      compliance.PostComplianceAPIV1AlarmsTopParams{},
 	"PostComplianceAPIV1Findings":                                       compliance.PostComplianceAPIV1FindingsParams{},
 	"GetInventoryAPIV2ConnectionsDataConnectionID":                      connection.GetInventoryAPIV2ConnectionsDataConnectionIDParams{},
 	"GetInventoryAPIV2ConnectionsData":                                  connection.GetInventoryAPIV2ConnectionsDataParams{},
 	"GetOnboardAPIV1ConnectionsSummaryConnectionID":                     connections.GetOnboardAPIV1ConnectionsSummaryConnectionIDParams{},
 	"GetOnboardAPIV1ConnectionsSummary":                                 connections.GetOnboardAPIV1ConnectionsSummaryParams{},
-	"GetInventoryAPIV1CostTopAccounts":                                  cost.GetInventoryAPIV1CostTopAccountsParams{},
-	"GetInventoryAPIV1CostTopServices":                                  cost.GetInventoryAPIV1CostTopServicesParams{},
 	"GetScheduleAPIV0ComplianceSummarizerTrigger":                       describe.GetScheduleAPIV0ComplianceSummarizerTriggerParams{},
 	"GetScheduleAPIV0ComplianceTrigger":                                 describe.GetScheduleAPIV0ComplianceTriggerParams{},
 	"GetScheduleAPIV0DescribeTrigger":                                   describe.GetScheduleAPIV0DescribeTriggerParams{},
 	"GetScheduleAPIV0InsightTrigger":                                    describe.GetScheduleAPIV0InsightTriggerParams{},
 	"GetScheduleAPIV0SummarizeTrigger":                                  describe.GetScheduleAPIV0SummarizeTriggerParams{},
+	"GetScheduleAPIV1BenchmarkEvaluations":                              describe.GetScheduleAPIV1BenchmarkEvaluationsParams{},
 	"GetScheduleAPIV1InsightJobJobID":                                   describe.GetScheduleAPIV1InsightJobJobIDParams{},
 	"PostScheduleAPIV1DescribeResource":                                 describe.PostScheduleAPIV1DescribeResourceParams{},
 	"PostScheduleAPIV1StacksInsightTrigger":                             describe.PostScheduleAPIV1StacksInsightTriggerParams{},
 	"PutScheduleAPIV1BenchmarkEvaluationTrigger":                        describe.PutScheduleAPIV1BenchmarkEvaluationTriggerParams{},
 	"PutScheduleAPIV1DescribeTriggerConnectionID":                       describe.PutScheduleAPIV1DescribeTriggerConnectionIDParams{},
 	"PutScheduleAPIV1InsightEvaluationTrigger":                          describe.PutScheduleAPIV1InsightEvaluationTriggerParams{},
-	"GetInventoryAPIV2InsightsInsightID":                                insight.GetInventoryAPIV2InsightsInsightIDParams{},
-	"GetInventoryAPIV2InsightsInsightIDTrend":                           insight.GetInventoryAPIV2InsightsInsightIDTrendParams{},
-	"GetInventoryAPIV2InsightsJobJobID":                                 insight.GetInventoryAPIV2InsightsJobJobIDParams{},
-	"GetInventoryAPIV2Insights":                                         insight.GetInventoryAPIV2InsightsParams{},
+	"GetComplianceAPIV1InsightGroupInsightGroupID":                      insights.GetComplianceAPIV1InsightGroupInsightGroupIDParams{},
+	"GetComplianceAPIV1InsightGroupInsightGroupIDTrend":                 insights.GetComplianceAPIV1InsightGroupInsightGroupIDTrendParams{},
+	"GetComplianceAPIV1InsightGroup":                                    insights.GetComplianceAPIV1InsightGroupParams{},
 	"GetComplianceAPIV1InsightInsightID":                                insights.GetComplianceAPIV1InsightInsightIDParams{},
 	"GetComplianceAPIV1InsightInsightIDTrend":                           insights.GetComplianceAPIV1InsightInsightIDTrendParams{},
 	"GetComplianceAPIV1Insight":                                         insights.GetComplianceAPIV1InsightParams{},
@@ -78,9 +67,10 @@ var paramModels = map[string]interface{}{
 	"GetComplianceAPIV1MetadataInsight":                                 insights.GetComplianceAPIV1MetadataInsightParams{},
 	"GetComplianceAPIV1MetadataTagInsightKey":                           insights.GetComplianceAPIV1MetadataTagInsightKeyParams{},
 	"GetComplianceAPIV1MetadataTagInsight":                              insights.GetComplianceAPIV1MetadataTagInsightParams{},
-	"GetInventoryAPIV1ResourcesCount":                                   inventory.GetInventoryAPIV1ResourcesCountParams{},
-	"GetInventoryAPIV1ResourcesRegions":                                 inventory.GetInventoryAPIV1ResourcesRegionsParams{},
-	"GetInventoryAPIV1ResourcesTopRegions":                              inventory.GetInventoryAPIV1ResourcesTopRegionsParams{},
+	"GetInventoryAPIV2InsightsInsightID":                                insights.GetInventoryAPIV2InsightsInsightIDParams{},
+	"GetInventoryAPIV2InsightsInsightIDTrend":                           insights.GetInventoryAPIV2InsightsInsightIDTrendParams{},
+	"GetInventoryAPIV2InsightsJobJobID":                                 insights.GetInventoryAPIV2InsightsJobJobIDParams{},
+	"GetInventoryAPIV2Insights":                                         insights.GetInventoryAPIV2InsightsParams{},
 	"GetInventoryAPIV2CostComposition":                                  inventory.GetInventoryAPIV2CostCompositionParams{},
 	"GetInventoryAPIV2CostMetric":                                       inventory.GetInventoryAPIV2CostMetricParams{},
 	"GetInventoryAPIV2CostTrend":                                        inventory.GetInventoryAPIV2CostTrendParams{},
@@ -94,10 +84,6 @@ var paramModels = map[string]interface{}{
 	"GetInventoryAPIV2ServicesMetricServiceName":                        inventory.GetInventoryAPIV2ServicesMetricServiceNameParams{},
 	"GetInventoryAPIV2ServicesTagKey":                                   inventory.GetInventoryAPIV2ServicesTagKeyParams{},
 	"GetInventoryAPIV2ServicesTag":                                      inventory.GetInventoryAPIV2ServicesTagParams{},
-	"PostInventoryAPIV1ResourcesAws":                                    inventory.PostInventoryAPIV1ResourcesAwsParams{},
-	"PostInventoryAPIV1ResourcesAzure":                                  inventory.PostInventoryAPIV1ResourcesAzureParams{},
-	"PostInventoryAPIV1ResourcesFilters":                                inventory.PostInventoryAPIV1ResourcesFiltersParams{},
-	"PostInventoryAPIV1Resources":                                       inventory.PostInventoryAPIV1ResourcesParams{},
 	"DeleteAuthAPIV1KeyIDDelete":                                        keys.DeleteAuthAPIV1KeyIDDeleteParams{},
 	"GetAuthAPIV1KeyID":                                                 keys.GetAuthAPIV1KeyIDParams{},
 	"GetAuthAPIV1Keys":                                                  keys.GetAuthAPIV1KeysParams{},
@@ -114,7 +100,6 @@ var paramModels = map[string]interface{}{
 	"PostMetadataAPIV1Metadata":                                         metadata.PostMetadataAPIV1MetadataParams{},
 	"DeleteOnboardAPIV1CredentialCredentialID":                          onboard.DeleteOnboardAPIV1CredentialCredentialIDParams{},
 	"DeleteOnboardAPIV1SourceSourceID":                                  onboard.DeleteOnboardAPIV1SourceSourceIDParams{},
-	"GetOnboardAPIV1CatalogConnectors":                                  onboard.GetOnboardAPIV1CatalogConnectorsParams{},
 	"GetOnboardAPIV1CatalogMetrics":                                     onboard.GetOnboardAPIV1CatalogMetricsParams{},
 	"GetOnboardAPIV1ConnectionsCount":                                   onboard.GetOnboardAPIV1ConnectionsCountParams{},
 	"GetOnboardAPIV1ConnectorConnectorName":                             onboard.GetOnboardAPIV1ConnectorConnectorNameParams{},
@@ -139,7 +124,17 @@ var paramModels = map[string]interface{}{
 	"PostOnboardAPIV1Sources":                                           onboard.PostOnboardAPIV1SourcesParams{},
 	"PutOnboardAPIV1CredentialCredentialID":                             onboard.PutOnboardAPIV1CredentialCredentialIDParams{},
 	"PutOnboardAPIV1SourceSourceIDCredentials":                          onboard.PutOnboardAPIV1SourceSourceIDCredentialsParams{},
+	"GetInventoryAPIV1ResourcesCount":                                   resource.GetInventoryAPIV1ResourcesCountParams{},
+	"GetInventoryAPIV1ResourcesRegions":                                 resource.GetInventoryAPIV1ResourcesRegionsParams{},
+	"GetInventoryAPIV1ResourcesTopRegions":                              resource.GetInventoryAPIV1ResourcesTopRegionsParams{},
+	"GetInventoryAPIV2ResourcesRegionsComposition":                      resource.GetInventoryAPIV2ResourcesRegionsCompositionParams{},
+	"GetInventoryAPIV2ResourcesRegionsSummary":                          resource.GetInventoryAPIV2ResourcesRegionsSummaryParams{},
+	"GetInventoryAPIV2ResourcesRegionsTrend":                            resource.GetInventoryAPIV2ResourcesRegionsTrendParams{},
 	"PostInventoryAPIV1Resource":                                        resource.PostInventoryAPIV1ResourceParams{},
+	"PostInventoryAPIV1ResourcesAws":                                    resource.PostInventoryAPIV1ResourcesAwsParams{},
+	"PostInventoryAPIV1ResourcesAzure":                                  resource.PostInventoryAPIV1ResourcesAzureParams{},
+	"PostInventoryAPIV1ResourcesFilters":                                resource.PostInventoryAPIV1ResourcesFiltersParams{},
+	"PostInventoryAPIV1Resources":                                       resource.PostInventoryAPIV1ResourcesParams{},
 	"GetAuthAPIV1RoleRoleNameKeys":                                      roles.GetAuthAPIV1RoleRoleNameKeysParams{},
 	"GetAuthAPIV1RoleRoleNameUsers":                                     roles.GetAuthAPIV1RoleRoleNameUsersParams{},
 	"GetAuthAPIV1Roles":                                                 roles.GetAuthAPIV1RolesParams{},
@@ -156,6 +151,8 @@ var paramModels = map[string]interface{}{
 	"GetScheduleAPIV1SummarizeJobsPending":                              schedule.GetScheduleAPIV1SummarizeJobsPendingParams{},
 	"PostScheduleAPIV1SourcesSourceIDJobsComplianceRefresh":             schedule.PostScheduleAPIV1SourcesSourceIDJobsComplianceRefreshParams{},
 	"PostScheduleAPIV1SourcesSourceIDJobsDescribeRefresh":               schedule.PostScheduleAPIV1SourcesSourceIDJobsDescribeRefreshParams{},
+	"GetInventoryAPIV2ServicesSummary":                                  services.GetInventoryAPIV2ServicesSummaryParams{},
+	"GetInventoryAPIV2ServicesSummaryServiceName":                       services.GetInventoryAPIV2ServicesSummaryServiceNameParams{},
 	"GetInventoryAPIV1QueryCount":                                       smart_query.GetInventoryAPIV1QueryCountParams{},
 	"GetInventoryAPIV1Query":                                            smart_query.GetInventoryAPIV1QueryParams{},
 	"PostInventoryAPIV1QueryQueryID":                                    smart_query.PostInventoryAPIV1QueryQueryIDParams{},
@@ -166,6 +163,7 @@ var paramModels = map[string]interface{}{
 	"GetScheduleAPIV1StacksStackID":                                     stack.GetScheduleAPIV1StacksStackIDParams{},
 	"PostScheduleAPIV1StacksBenchmarkTrigger":                           stack.PostScheduleAPIV1StacksBenchmarkTriggerParams{},
 	"PostScheduleAPIV1StacksCreate":                                     stack.PostScheduleAPIV1StacksCreateParams{},
+	"PostScheduleAPIV1StacksDescriberTrigger":                           stack.PostScheduleAPIV1StacksDescriberTriggerParams{},
 	"PostScheduleAPIV1StacksStackIDFindings":                            stack.PostScheduleAPIV1StacksStackIDFindingsParams{},
 	"DeleteAuthAPIV1UserInvite":                                         users.DeleteAuthAPIV1UserInviteParams{},
 	"DeleteAuthAPIV1UserRoleBinding":                                    users.DeleteAuthAPIV1UserRoleBindingParams{},
@@ -177,6 +175,7 @@ var paramModels = map[string]interface{}{
 	"PostAuthAPIV1UserInvite":                                           users.PostAuthAPIV1UserInviteParams{},
 	"PutAuthAPIV1UserRoleBinding":                                       users.PutAuthAPIV1UserRoleBindingParams{},
 	"DeleteWorkspaceAPIV1WorkspaceWorkspaceID":                          workspace.DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams{},
+	"GetWorkspaceAPIV1WorkspaceCurrent":                                 workspace.GetWorkspaceAPIV1WorkspaceCurrentParams{},
 	"GetWorkspaceAPIV1WorkspacesByidWorkspaceID":                        workspace.GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams{},
 	"GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID":                  workspace.GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams{},
 	"GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName":                    workspace.GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams{},

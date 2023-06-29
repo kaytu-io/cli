@@ -45,7 +45,7 @@ GetOnboardAPIV1ConnectorOK describes a response with status code 200, with defau
 OK
 */
 type GetOnboardAPIV1ConnectorOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount
 }
 
 // IsSuccess returns true when this get onboard Api v1 connector o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetOnboardAPIV1ConnectorOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/connector][%d] getOnboardApiV1ConnectorOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1ConnectorOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectorCount {
+func (o *GetOnboardAPIV1ConnectorOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount {
 	return o.Payload
 }
 

@@ -64,13 +64,13 @@ type GetComplianceAPIV1BenchmarksSummaryParams struct {
 
 	/* End.
 
-	   End
+	   End Time
 	*/
 	End int64
 
 	/* Start.
 
-	   Start
+	   Start Time
 	*/
 	Start int64
 

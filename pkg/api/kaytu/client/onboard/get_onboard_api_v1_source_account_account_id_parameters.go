@@ -64,7 +64,7 @@ type GetOnboardAPIV1SourceAccountAccountIDParams struct {
 
 	/* AccountID.
 
-	   SourceID
+	   Source ID
 	*/
 	AccountID int64
 

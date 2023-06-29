@@ -45,7 +45,7 @@ GetOnboardAPIV1ConnectionsSummaryConnectionIDOK describes a response with status
 OK
 */
 type GetOnboardAPIV1ConnectionsSummaryConnectionIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection
 }
 
 // IsSuccess returns true when this get onboard Api v1 connections summary connection Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetOnboardAPIV1ConnectionsSummaryConnectionIDOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/connections/summary/{connectionId}][%d] getOnboardApiV1ConnectionsSummaryConnectionIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1ConnectionsSummaryConnectionIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection {
+func (o *GetOnboardAPIV1ConnectionsSummaryConnectionIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1ConnectionsSummaryConnectionIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

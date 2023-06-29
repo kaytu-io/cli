@@ -63,7 +63,7 @@ type GetAuthAPIV1UserUserIDParams struct {
 
 	/* UserID.
 
-	   userId
+	   User ID
 	*/
 	UserID string
 
@@ -139,8 +139,8 @@ func (o *GetAuthAPIV1UserUserIDParams) WriteToRequest(r runtime.ClientRequest, r
 	}
 	var res []error
 
-	// path param user_id
-	if err := r.SetPathParam("user_id", o.UserID); err != nil {
+	// path param userId
+	if err := r.SetPathParam("userId", o.UserID); err != nil {
 		return err
 	}
 

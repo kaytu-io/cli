@@ -45,7 +45,7 @@ GetInventoryAPIV2ResourcesTrendOK describes a response with status code 200, wit
 OK
 */
 type GetInventoryAPIV2ResourcesTrendOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceTypeTrendDatapoint
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceTypeTrendDatapoint
 }
 
 // IsSuccess returns true when this get inventory Api v2 resources trend o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetInventoryAPIV2ResourcesTrendOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/resources/trend][%d] getInventoryApiV2ResourcesTrendOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2ResourcesTrendOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIResourceTypeTrendDatapoint {
+func (o *GetInventoryAPIV2ResourcesTrendOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceTypeTrendDatapoint {
 	return o.Payload
 }
 

@@ -45,7 +45,7 @@ PostOnboardAPIV1SourceSourceIDHealthcheckOK describes a response with status cod
 OK
 */
 type PostOnboardAPIV1SourceSourceIDHealthcheckOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection
 }
 
 // IsSuccess returns true when this post onboard Api v1 source source Id healthcheck o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostOnboardAPIV1SourceSourceIDHealthcheckOK) String() string {
 	return fmt.Sprintf("[POST /onboard/api/v1/source/{sourceId}/healthcheck][%d] postOnboardApiV1SourceSourceIdHealthcheckOK  %+v", 200, o.Payload)
 }
 
-func (o *PostOnboardAPIV1SourceSourceIDHealthcheckOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection {
+func (o *PostOnboardAPIV1SourceSourceIDHealthcheckOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection {
 	return o.Payload
 }
 
 func (o *PostOnboardAPIV1SourceSourceIDHealthcheckOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

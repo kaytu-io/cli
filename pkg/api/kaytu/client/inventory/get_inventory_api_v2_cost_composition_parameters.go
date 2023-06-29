@@ -90,7 +90,7 @@ type GetInventoryAPIV2CostCompositionParams struct {
 
 	   How many top values to return default is 5
 	*/
-	Top int64
+	Top *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -190,13 +190,13 @@ func (o *GetInventoryAPIV2CostCompositionParams) SetStartTime(startTime *string)
 }
 
 // WithTop adds the top to the get inventory API v2 cost composition params
-func (o *GetInventoryAPIV2CostCompositionParams) WithTop(top int64) *GetInventoryAPIV2CostCompositionParams {
+func (o *GetInventoryAPIV2CostCompositionParams) WithTop(top *int64) *GetInventoryAPIV2CostCompositionParams {
 	o.SetTop(top)
 	return o
 }
 
 // SetTop adds the top to the get inventory API v2 cost composition params
-func (o *GetInventoryAPIV2CostCompositionParams) SetTop(top int64) {
+func (o *GetInventoryAPIV2CostCompositionParams) SetTop(top *int64) {
 	o.Top = top
 }
 
@@ -264,13 +264,20 @@ func (o *GetInventoryAPIV2CostCompositionParams) WriteToRequest(r runtime.Client
 		}
 	}
 
-	// query param top
-	qrTop := o.Top
-	qTop := swag.FormatInt64(qrTop)
-	if qTop != "" {
+	if o.Top != nil {
 
-		if err := r.SetQueryParam("top", qTop); err != nil {
-			return err
+		// query param top
+		var qrTop int64
+
+		if o.Top != nil {
+			qrTop = *o.Top
+		}
+		qTop := swag.FormatInt64(qrTop)
+		if qTop != "" {
+
+			if err := r.SetQueryParam("top", qTop); err != nil {
+				return err
+			}
 		}
 	}
 

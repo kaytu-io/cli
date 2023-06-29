@@ -45,7 +45,7 @@ GetInventoryAPIV2ConnectionsDataConnectionIDOK describes a response with status 
 OK
 */
 type GetInventoryAPIV2ConnectionsDataConnectionIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIConnectionData
+	Payload *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIConnectionData
 }
 
 // IsSuccess returns true when this get inventory Api v2 connections data connection Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetInventoryAPIV2ConnectionsDataConnectionIDOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/connections/data/{connectionId}][%d] getInventoryApiV2ConnectionsDataConnectionIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2ConnectionsDataConnectionIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIConnectionData {
+func (o *GetInventoryAPIV2ConnectionsDataConnectionIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIConnectionData {
 	return o.Payload
 }
 
 func (o *GetInventoryAPIV2ConnectionsDataConnectionIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIConnectionData)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgInventoryAPIConnectionData)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -45,7 +45,7 @@ GetComplianceAPIV1QueriesQueryIDOK describes a response with status code 200, wi
 OK
 */
 type GetComplianceAPIV1QueriesQueryIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIQuery
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIQuery
 }
 
 // IsSuccess returns true when this get compliance Api v1 queries query Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1QueriesQueryIDOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/queries/{query_id}][%d] getComplianceApiV1QueriesQueryIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1QueriesQueryIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIQuery {
+func (o *GetComplianceAPIV1QueriesQueryIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIQuery {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1QueriesQueryIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIQuery)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIQuery)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

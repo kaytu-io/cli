@@ -63,7 +63,7 @@ type GetScheduleAPIV1InsightJobJobIDParams struct {
 
 	/* JobID.
 
-	   JobId
+	   Job Id
 	*/
 	JobID string
 

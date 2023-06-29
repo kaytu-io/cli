@@ -45,7 +45,7 @@ GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK describes a response with sta
 OK
 */
 type GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIWorkspaceLimits
+	Payload *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceLimits
 }
 
 // IsSuccess returns true when this get workspace Api v1 workspaces limits byid workspace Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK) String() string {
 	return fmt.Sprintf("[GET /workspace/api/v1/workspaces/limits/byid/{workspace_id}][%d] getWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIWorkspaceLimits {
+func (o *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceLimits {
 	return o.Payload
 }
 
 func (o *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIWorkspaceLimits)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceLimits)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

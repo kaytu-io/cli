@@ -30,7 +30,7 @@ func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipReader) ReadResponse(response 
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[GET /auth/api/v1/user/{user_id}/workspace/membership] GetAuthAPIV1UserUserIDWorkspaceMembership", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /auth/api/v1/user/{userId}/workspace/membership] GetAuthAPIV1UserUserIDWorkspaceMembership", response, response.Code())
 	}
 }
 
@@ -45,7 +45,7 @@ GetAuthAPIV1UserUserIDWorkspaceMembershipOK describes a response with status cod
 OK
 */
 type GetAuthAPIV1UserUserIDWorkspaceMembershipOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIMembership
 }
 
 // IsSuccess returns true when this get auth Api v1 user user Id workspace membership o k response has a 2xx status code
@@ -79,23 +79,21 @@ func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipOK) Code() int {
 }
 
 func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipOK) Error() string {
-	return fmt.Sprintf("[GET /auth/api/v1/user/{user_id}/workspace/membership][%d] getAuthApiV1UserUserIdWorkspaceMembershipOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /auth/api/v1/user/{userId}/workspace/membership][%d] getAuthApiV1UserUserIdWorkspaceMembershipOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipOK) String() string {
-	return fmt.Sprintf("[GET /auth/api/v1/user/{user_id}/workspace/membership][%d] getAuthApiV1UserUserIdWorkspaceMembershipOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /auth/api/v1/user/{userId}/workspace/membership][%d] getAuthApiV1UserUserIdWorkspaceMembershipOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse {
+func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIMembership {
 	return o.Payload
 }
 
 func (o *GetAuthAPIV1UserUserIDWorkspaceMembershipOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetRoleBindingsResponse)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -63,7 +63,7 @@ type GetOnboardAPIV1CredentialCredentialIDParams struct {
 
 	/* CredentialID.
 
-	   CredentialID
+	   Credential ID
 	*/
 	CredentialID string
 

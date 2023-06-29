@@ -33,13 +33,13 @@ var UpdateConnectionCmd = &cobra.Command{
 }
 
 func init() {
-	GetConnectionCmd.AddCommand(GetInventoryApiV2ConnectionsDataConnectionIdCmd)
-	GetInventoryApiV2ConnectionsDataConnectionIdCmd.Flags().String("connection-id", "", "")
-	GetInventoryApiV2ConnectionsDataConnectionIdCmd.Flags().Int64("end-time", 0, "")
-	GetInventoryApiV2ConnectionsDataConnectionIdCmd.Flags().Int64("start-time", 0, "")
-
 	GetConnectionCmd.AddCommand(GetInventoryApiV2ConnectionsDataCmd)
 	GetInventoryApiV2ConnectionsDataCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ConnectionsDataCmd.Flags().Int64("end-time", 0, "")
 	GetInventoryApiV2ConnectionsDataCmd.Flags().Int64("start-time", 0, "")
+
+	GetConnectionCmd.AddCommand(GetInventoryApiV2ConnectionsDataConnectionIdCmd)
+	GetInventoryApiV2ConnectionsDataConnectionIdCmd.Flags().String("connection-id", "", "")
+	GetInventoryApiV2ConnectionsDataConnectionIdCmd.Flags().Int64("end-time", 0, "")
+	GetInventoryApiV2ConnectionsDataConnectionIdCmd.Flags().Int64("start-time", 0, "")
 }

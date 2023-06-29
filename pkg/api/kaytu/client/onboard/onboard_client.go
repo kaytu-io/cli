@@ -34,8 +34,6 @@ type ClientService interface {
 
 	DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1SourceSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1SourceSourceIDOK, error)
 
-	GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1CatalogConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogConnectorsOK, error)
-
 	GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error)
 
 	GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error)
@@ -90,7 +88,7 @@ type ClientService interface {
 /*
 DeleteOnboardAPIV1CredentialCredentialID deletes credential
 
-Delete credential
+Remove a credential by Id
 */
 func (a *Client) DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending
@@ -129,9 +127,9 @@ func (a *Client) DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardA
 }
 
 /*
-DeleteOnboardAPIV1SourceSourceID deletes a single source
+DeleteOnboardAPIV1SourceSourceID deletes source
 
-Deleting a single source either AWS / Azure.
+Deleting a single source either AWS / Azure for the given source id.
 */
 func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1SourceSourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1SourceSourceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -170,46 +168,9 @@ func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1Sour
 }
 
 /*
-GetOnboardAPIV1CatalogConnectors returns the list of connectors for catalog page
-*/
-func (a *Client) GetOnboardAPIV1CatalogConnectors(params *GetOnboardAPIV1CatalogConnectorsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogConnectorsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetOnboardAPIV1CatalogConnectorsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetOnboardAPIV1CatalogConnectors",
-		Method:             "GET",
-		PathPattern:        "/onboard/api/v1/catalog/connectors",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetOnboardAPIV1CatalogConnectorsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
+GetOnboardAPIV1CatalogMetrics gets catalog metrics
 
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetOnboardAPIV1CatalogConnectorsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1CatalogConnectors: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetOnboardAPIV1CatalogMetrics returns the list of metrics for catalog page
+Returns the list of metrics for catalog page.
 */
 func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error) {
 	// TODO: Validate the params before sending
@@ -248,7 +209,9 @@ func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMet
 }
 
 /*
-GetOnboardAPIV1ConnectionsCount returns a count of connections
+GetOnboardAPIV1ConnectionsCount connections count
+
+Returns a count of connections
 */
 func (a *Client) GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1ConnectionsCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsCountOK, error) {
 	// TODO: Validate the params before sending
@@ -287,9 +250,9 @@ func (a *Client) GetOnboardAPIV1ConnectionsCount(params *GetOnboardAPIV1Connecti
 }
 
 /*
-GetOnboardAPIV1Connector gets connectors
+GetOnboardAPIV1Connector lists connectors
 
-Getting connectors
+Returns list of all connectors
 */
 func (a *Client) GetOnboardAPIV1Connector(params *GetOnboardAPIV1ConnectorParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorOK, error) {
 	// TODO: Validate the params before sending
@@ -330,7 +293,7 @@ func (a *Client) GetOnboardAPIV1Connector(params *GetOnboardAPIV1ConnectorParams
 /*
 GetOnboardAPIV1ConnectorConnectorName gets connector
 
-Getting connector
+Returns connector details by name
 */
 func (a *Client) GetOnboardAPIV1ConnectorConnectorName(params *GetOnboardAPIV1ConnectorConnectorNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectorConnectorNameOK, error) {
 	// TODO: Validate the params before sending
@@ -371,7 +334,7 @@ func (a *Client) GetOnboardAPIV1ConnectorConnectorName(params *GetOnboardAPIV1Co
 /*
 GetOnboardAPIV1Credential lists credentials
 
-List credentials
+Retrieving list of credentials with their details
 */
 func (a *Client) GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialOK, error) {
 	// TODO: Validate the params before sending
@@ -410,9 +373,9 @@ func (a *Client) GetOnboardAPIV1Credential(params *GetOnboardAPIV1CredentialPara
 }
 
 /*
-GetOnboardAPIV1CredentialCredentialID lists credentials
+GetOnboardAPIV1CredentialCredentialID gets credential
 
-List credentials
+Retrieving credential details by credential ID
 */
 func (a *Client) GetOnboardAPIV1CredentialCredentialID(params *GetOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending
@@ -531,7 +494,7 @@ func (a *Client) GetOnboardAPIV1CredentialSourcesList(params *GetOnboardAPIV1Cre
 }
 
 /*
-GetOnboardAPIV1SourceAccountAccountID returns source by account id
+GetOnboardAPIV1SourceAccountAccountID lists account sources
 
 Returning account source either AWS / Azure.
 */
@@ -572,7 +535,7 @@ func (a *Client) GetOnboardAPIV1SourceAccountAccountID(params *GetOnboardAPIV1So
 }
 
 /*
-GetOnboardAPIV1SourceSourceID returns a single source
+GetOnboardAPIV1SourceSourceID gets source
 
 Returning single source either AWS / Azure.
 */
@@ -613,7 +576,11 @@ func (a *Client) GetOnboardAPIV1SourceSourceID(params *GetOnboardAPIV1SourceSour
 }
 
 /*
-GetOnboardAPIV1SourceSourceIDCredentials gets source credential
+	GetOnboardAPIV1SourceSourceIDCredentials gets source credential
+
+	Returns credential for a source with given source ID.
+
+The responses are different for different source types.
 */
 func (a *Client) GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV1SourceSourceIDCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDCredentialsOK, error) {
 	// TODO: Validate the params before sending
@@ -652,7 +619,7 @@ func (a *Client) GetOnboardAPIV1SourceSourceIDCredentials(params *GetOnboardAPIV
 }
 
 /*
-GetOnboardAPIV1Sources returns a list of sources
+GetOnboardAPIV1Sources lists all sources
 
 Returning a list of sources including both AWS and Azure unless filtered by Type.
 */
@@ -693,9 +660,9 @@ func (a *Client) GetOnboardAPIV1Sources(params *GetOnboardAPIV1SourcesParams, au
 }
 
 /*
-GetOnboardAPIV1SourcesCount returns a count of sources
+GetOnboardAPIV1SourcesCount counts sources
 
-Returning a count of sources including both AWS and Azure unless filtered by Type.
+Returning number of sources including both AWS and Azure unless filtered by Type.
 */
 func (a *Client) GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourcesCountOK, error) {
 	// TODO: Validate the params before sending
@@ -735,6 +702,8 @@ func (a *Client) GetOnboardAPIV1SourcesCount(params *GetOnboardAPIV1SourcesCount
 
 /*
 PostOnboardAPIV1ConnectionsConnectionIDState enables a single source
+
+Enabling a single source either with connection ID.
 */
 func (a *Client) PostOnboardAPIV1ConnectionsConnectionIDState(params *PostOnboardAPIV1ConnectionsConnectionIDStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1ConnectionsConnectionIDStateOK, error) {
 	// TODO: Validate the params before sending
@@ -1019,7 +988,9 @@ func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzure
 }
 
 /*
-PostOnboardAPIV1SourceSourceIDHealthcheck gets live source health status
+PostOnboardAPIV1SourceSourceIDHealthcheck gets source health
+
+Get live source health status with given source ID.
 */
 func (a *Client) PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAPIV1SourceSourceIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceSourceIDHealthcheckOK, error) {
 	// TODO: Validate the params before sending
@@ -1058,7 +1029,7 @@ func (a *Client) PostOnboardAPIV1SourceSourceIDHealthcheck(params *PostOnboardAP
 }
 
 /*
-PostOnboardAPIV1Sources returns a list of sources
+PostOnboardAPIV1Sources gets filtered sources
 
 Returning a list of sources including both AWS and Azure unless filtered by Type.
 */
@@ -1099,7 +1070,7 @@ func (a *Client) PostOnboardAPIV1Sources(params *PostOnboardAPIV1SourcesParams, 
 }
 
 /*
-PutOnboardAPIV1CredentialCredentialID edits a credential by Id
+PutOnboardAPIV1CredentialCredentialID edits credential
 
 Edit a credential by Id
 */
@@ -1140,7 +1111,9 @@ func (a *Client) PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1Cr
 }
 
 /*
-PutOnboardAPIV1SourceSourceIDCredentials puts source credential
+PutOnboardAPIV1SourceSourceIDCredentials updates source credential
+
+Update source credential
 */
 func (a *Client) PutOnboardAPIV1SourceSourceIDCredentials(params *PutOnboardAPIV1SourceSourceIDCredentialsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1SourceSourceIDCredentialsOK, error) {
 	// TODO: Validate the params before sending

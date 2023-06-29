@@ -66,25 +66,19 @@ type GetOnboardAPIV1ConnectionsSummaryParams struct {
 
 	   Connection IDs
 	*/
-	ConnectionID *string
+	ConnectionID []string
 
 	/* Connector.
 
 	   Connector
 	*/
-	Connector string
+	Connector []string
 
 	/* EndTime.
 
 	   end time in unix seconds
 	*/
 	EndTime *int64
-
-	/* HealthState.
-
-	   Source Healthstate
-	*/
-	HealthState *string
 
 	/* LifecycleState.
 
@@ -170,24 +164,24 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetHTTPClient(client *http.Cli
 }
 
 // WithConnectionID adds the connectionID to the get onboard API v1 connections summary params
-func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithConnectionID(connectionID *string) *GetOnboardAPIV1ConnectionsSummaryParams {
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithConnectionID(connectionID []string) *GetOnboardAPIV1ConnectionsSummaryParams {
 	o.SetConnectionID(connectionID)
 	return o
 }
 
 // SetConnectionID adds the connectionId to the get onboard API v1 connections summary params
-func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetConnectionID(connectionID *string) {
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetConnectionID(connectionID []string) {
 	o.ConnectionID = connectionID
 }
 
 // WithConnector adds the connector to the get onboard API v1 connections summary params
-func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithConnector(connector string) *GetOnboardAPIV1ConnectionsSummaryParams {
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithConnector(connector []string) *GetOnboardAPIV1ConnectionsSummaryParams {
 	o.SetConnector(connector)
 	return o
 }
 
 // SetConnector adds the connector to the get onboard API v1 connections summary params
-func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetConnector(connector string) {
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetConnector(connector []string) {
 	o.Connector = connector
 }
 
@@ -200,17 +194,6 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithEndTime(endTime *int64) *G
 // SetEndTime adds the endTime to the get onboard API v1 connections summary params
 func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetEndTime(endTime *int64) {
 	o.EndTime = endTime
-}
-
-// WithHealthState adds the healthState to the get onboard API v1 connections summary params
-func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithHealthState(healthState *string) *GetOnboardAPIV1ConnectionsSummaryParams {
-	o.SetHealthState(healthState)
-	return o
-}
-
-// SetHealthState adds the healthState to the get onboard API v1 connections summary params
-func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetHealthState(healthState *string) {
-	o.HealthState = healthState
 }
 
 // WithLifecycleState adds the lifecycleState to the get onboard API v1 connections summary params
@@ -278,27 +261,22 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 
 	if o.ConnectionID != nil {
 
-		// query param connectionId
-		var qrConnectionID string
+		// binding items for connectionId
+		joinedConnectionID := o.bindParamConnectionID(reg)
 
-		if o.ConnectionID != nil {
-			qrConnectionID = *o.ConnectionID
-		}
-		qConnectionID := qrConnectionID
-		if qConnectionID != "" {
-
-			if err := r.SetQueryParam("connectionId", qConnectionID); err != nil {
-				return err
-			}
+		// query array param connectionId
+		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
+			return err
 		}
 	}
 
-	// query param connector
-	qrConnector := o.Connector
-	qConnector := qrConnector
-	if qConnector != "" {
+	if o.Connector != nil {
 
-		if err := r.SetQueryParam("connector", qConnector); err != nil {
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
+
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
 			return err
 		}
 	}
@@ -315,23 +293,6 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.HealthState != nil {
-
-		// query param healthState
-		var qrHealthState string
-
-		if o.HealthState != nil {
-			qrHealthState = *o.HealthState
-		}
-		qHealthState := qrHealthState
-		if qHealthState != "" {
-
-			if err := r.SetQueryParam("healthState", qHealthState); err != nil {
 				return err
 			}
 		}
@@ -426,4 +387,38 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetOnboardAPIV1ConnectionsSummary binds the parameter connectionId
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) bindParamConnectionID(formats strfmt.Registry) []string {
+	connectionIDIR := o.ConnectionID
+
+	var connectionIDIC []string
+	for _, connectionIDIIR := range connectionIDIR { // explode []string
+
+		connectionIDIIV := connectionIDIIR // string as string
+		connectionIDIC = append(connectionIDIC, connectionIDIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
+
+	return connectionIDIS
+}
+
+// bindParamGetOnboardAPIV1ConnectionsSummary binds the parameter connector
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
 }

@@ -45,7 +45,7 @@ GetAuthAPIV1KeysOK describes a response with status code 200, with default heade
 OK
 */
 type GetAuthAPIV1KeysOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey
 }
 
 // IsSuccess returns true when this get auth Api v1 keys o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetAuthAPIV1KeysOK) String() string {
 	return fmt.Sprintf("[GET /auth/api/v1/keys][%d] getAuthApiV1KeysOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1KeysOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey {
+func (o *GetAuthAPIV1KeysOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey {
 	return o.Payload
 }
 

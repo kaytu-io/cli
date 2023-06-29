@@ -45,7 +45,7 @@ GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK describes a response with stat
 OK
 */
 type GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicy
 }
 
 // IsSuccess returns true when this get compliance Api v1 benchmarks benchmark Id policies o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/benchmarks/{benchmark_id}/policies][%d] getComplianceApiV1BenchmarksBenchmarkIdPoliciesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIPolicy {
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicy {
 	return o.Payload
 }
 

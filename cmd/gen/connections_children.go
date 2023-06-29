@@ -48,10 +48,9 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 
 		req := connections.NewGetOnboardAPIV1ConnectionsSummaryParams()
 
-		req.SetConnectionID(flags.ReadStringOptionalFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringFlag(cmd, "Connector"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetHealthState(flags.ReadStringOptionalFlag(cmd, "HealthState"))
 		req.SetLifecycleState(flags.ReadStringOptionalFlag(cmd, "LifecycleState"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))

@@ -21,9 +21,9 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 
 		req := smart_query.NewGetInventoryAPIV1QueryCountParams()
 
-		req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListQueryRequest{
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
 			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.GitlabComKeibiengineKeibiEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
+			ProviderFilter: models.GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
 			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
 		})
 
@@ -51,9 +51,9 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 
 		req := smart_query.NewGetInventoryAPIV1QueryParams()
 
-		req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIListQueryRequest{
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
 			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.GitlabComKeibiengineKeibiEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
+			ProviderFilter: models.GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
 			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
 		})
 
@@ -83,14 +83,14 @@ var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
 
 		req.SetAccept(flags.ReadStringFlag(cmd, "Accept"))
 		req.SetQueryID(flags.ReadStringFlag(cmd, "QueryID"))
-		req.SetRequest(&models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest{
-			Page: &models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIPage{
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest{
+			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
 				No:   flags.ReadInt64Flag(cmd, "No"),
 				Size: flags.ReadInt64Flag(cmd, "Size"),
 			},
-			Sorts: []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPISmartQuerySortItem{
+			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQuerySortItem{
 				{
-					Direction: models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Direction")),
+					Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Direction")),
 					Field:     flags.ReadStringFlag(cmd, "Field"),
 				},
 			},

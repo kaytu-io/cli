@@ -67,11 +67,11 @@ type PutOnboardAPIV1CredentialCredentialIDParams struct {
 
 	   config
 	*/
-	Config *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIUpdateCredentialRequest
+	Config *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIUpdateCredentialRequest
 
 	/* CredentialID.
 
-	   CredentialID
+	   Credential ID
 	*/
 	CredentialID string
 
@@ -129,13 +129,13 @@ func (o *PutOnboardAPIV1CredentialCredentialIDParams) SetHTTPClient(client *http
 }
 
 // WithConfig adds the config to the put onboard API v1 credential credential ID params
-func (o *PutOnboardAPIV1CredentialCredentialIDParams) WithConfig(config *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIUpdateCredentialRequest) *PutOnboardAPIV1CredentialCredentialIDParams {
+func (o *PutOnboardAPIV1CredentialCredentialIDParams) WithConfig(config *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIUpdateCredentialRequest) *PutOnboardAPIV1CredentialCredentialIDParams {
 	o.SetConfig(config)
 	return o
 }
 
 // SetConfig adds the config to the put onboard API v1 credential credential ID params
-func (o *PutOnboardAPIV1CredentialCredentialIDParams) SetConfig(config *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIUpdateCredentialRequest) {
+func (o *PutOnboardAPIV1CredentialCredentialIDParams) SetConfig(config *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIUpdateCredentialRequest) {
 	o.Config = config
 }
 

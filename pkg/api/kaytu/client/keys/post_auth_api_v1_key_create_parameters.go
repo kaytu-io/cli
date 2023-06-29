@@ -67,7 +67,7 @@ type PostAuthAPIV1KeyCreateParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPICreateAPIKeyRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgAuthAPICreateAPIKeyRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostAuthAPIV1KeyCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post auth API v1 key create params
-func (o *PostAuthAPIV1KeyCreateParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPICreateAPIKeyRequest) *PostAuthAPIV1KeyCreateParams {
+func (o *PostAuthAPIV1KeyCreateParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPICreateAPIKeyRequest) *PostAuthAPIV1KeyCreateParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post auth API v1 key create params
-func (o *PostAuthAPIV1KeyCreateParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPICreateAPIKeyRequest) {
+func (o *PostAuthAPIV1KeyCreateParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPICreateAPIKeyRequest) {
 	o.Request = request
 }
 

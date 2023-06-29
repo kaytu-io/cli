@@ -67,7 +67,7 @@ type PostAuthAPIV1UserInviteParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIInviteRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIInviteRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostAuthAPIV1UserInviteParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post auth API v1 user invite params
-func (o *PostAuthAPIV1UserInviteParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIInviteRequest) *PostAuthAPIV1UserInviteParams {
+func (o *PostAuthAPIV1UserInviteParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIInviteRequest) *PostAuthAPIV1UserInviteParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post auth API v1 user invite params
-func (o *PostAuthAPIV1UserInviteParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIInviteRequest) {
+func (o *PostAuthAPIV1UserInviteParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIInviteRequest) {
 	o.Request = request
 }
 

@@ -67,7 +67,7 @@ type PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams struct {
 
 	   Change ownership request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceOwnershipRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceOwnershipRequest
 
 	/* WorkspaceID.
 
@@ -129,13 +129,13 @@ func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams) SetHTTPClient(client
 }
 
 // WithRequest adds the request to the post workspace API v1 workspace workspace ID owner params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceOwnershipRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceOwnershipRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post workspace API v1 workspace workspace ID owner params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceOwnershipRequest) {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceOwnershipRequest) {
 	o.Request = request
 }
 

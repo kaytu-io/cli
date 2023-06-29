@@ -45,7 +45,7 @@ GetScheduleAPIV1StacksStackIDInsightOK describes a response with status code 200
 OK
 */
 type GetScheduleAPIV1StacksStackIDInsightOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight
 }
 
 // IsSuccess returns true when this get schedule Api v1 stacks stack Id insight o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetScheduleAPIV1StacksStackIDInsightOK) String() string {
 	return fmt.Sprintf("[GET /schedule/api/v1/stacks/{stackId}/insight][%d] getScheduleApiV1StacksStackIdInsightOK  %+v", 200, o.Payload)
 }
 
-func (o *GetScheduleAPIV1StacksStackIDInsightOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight {
+func (o *GetScheduleAPIV1StacksStackIDInsightOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight {
 	return o.Payload
 }
 
 func (o *GetScheduleAPIV1StacksStackIDInsightOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

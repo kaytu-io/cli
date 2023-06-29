@@ -45,7 +45,7 @@ GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK describes a response 
 OK
 */
 type GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkResultTrend
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkResultTrend
 }
 
 // IsSuccess returns true when this get compliance Api v1 benchmark benchmark Id summary result trend o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK) String() st
 	return fmt.Sprintf("[GET /compliance/api/v1/benchmark/{benchmark_id}/summary/result/trend][%d] getComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkResultTrend {
+func (o *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkResultTrend {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkResultTrend)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkResultTrend)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

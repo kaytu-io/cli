@@ -63,7 +63,7 @@ type GetAuthAPIV1KeyIDParams struct {
 
 	/* ID.
 
-	   ID
+	   Key ID
 	*/
 	ID string
 

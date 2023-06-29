@@ -45,7 +45,7 @@ GetComplianceAPIV1BenchmarksOK describes a response with status code 200, with d
 OK
 */
 type GetComplianceAPIV1BenchmarksOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmark
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark
 }
 
 // IsSuccess returns true when this get compliance Api v1 benchmarks o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetComplianceAPIV1BenchmarksOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/benchmarks][%d] getComplianceApiV1BenchmarksOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1BenchmarksOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmark {
+func (o *GetComplianceAPIV1BenchmarksOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark {
 	return o.Payload
 }
 

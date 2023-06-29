@@ -47,10 +47,10 @@ type DescribeDescribeSourceJob struct {
 	SourceType SourceType `json:"sourceType,omitempty"`
 
 	// status
-	Status GitlabComKeibiengineKeibiEnginePkgDescribeAPIDescribeSourceJobStatus `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgDescribeAPIDescribeSourceJobStatus `json:"status,omitempty"`
 
 	// trigger type
-	TriggerType GitlabComKeibiengineKeibiEnginePkgDescribeEnumsDescribeTriggerType `json:"triggerType,omitempty"`
+	TriggerType GithubComKaytuIoKaytuEnginePkgDescribeEnumsDescribeTriggerType `json:"triggerType,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`

@@ -45,7 +45,7 @@ PostComplianceAPIV1FindingsOK describes a response with status code 200, with de
 OK
 */
 type PostComplianceAPIV1FindingsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse
 }
 
 // IsSuccess returns true when this post compliance Api v1 findings o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostComplianceAPIV1FindingsOK) String() string {
 	return fmt.Sprintf("[POST /compliance/api/v1/findings][%d] postComplianceApiV1FindingsOK  %+v", 200, o.Payload)
 }
 
-func (o *PostComplianceAPIV1FindingsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse {
+func (o *PostComplianceAPIV1FindingsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse {
 	return o.Payload
 }
 
 func (o *PostComplianceAPIV1FindingsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

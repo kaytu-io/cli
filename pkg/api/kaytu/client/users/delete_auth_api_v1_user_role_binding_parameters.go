@@ -63,7 +63,7 @@ type DeleteAuthAPIV1UserRoleBindingParams struct {
 
 	/* UserID.
 
-	   userId
+	   User ID
 	*/
 	UserID string
 

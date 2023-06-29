@@ -45,7 +45,7 @@ PostAuthAPIV1KeyIDActivateOK describes a response with status code 200, with def
 OK
 */
 type PostAuthAPIV1KeyIDActivateOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey
+	Payload *models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey
 }
 
 // IsSuccess returns true when this post auth Api v1 key Id activate o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostAuthAPIV1KeyIDActivateOK) String() string {
 	return fmt.Sprintf("[POST /auth/api/v1/key/{id}/activate][%d] postAuthApiV1KeyIdActivateOK  %+v", 200, o.Payload)
 }
 
-func (o *PostAuthAPIV1KeyIDActivateOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey {
+func (o *PostAuthAPIV1KeyIDActivateOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey {
 	return o.Payload
 }
 
 func (o *PostAuthAPIV1KeyIDActivateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

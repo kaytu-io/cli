@@ -45,7 +45,7 @@ GetOnboardAPIV1SourceSourceIDCredentialsOK describes a response with status code
 OK
 */
 type GetOnboardAPIV1SourceSourceIDCredentialsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIAzureCredential
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredential
 }
 
 // IsSuccess returns true when this get onboard Api v1 source source Id credentials o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetOnboardAPIV1SourceSourceIDCredentialsOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/source/{sourceId}/credentials][%d] getOnboardApiV1SourceSourceIdCredentialsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1SourceSourceIDCredentialsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIAzureCredential {
+func (o *GetOnboardAPIV1SourceSourceIDCredentialsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredential {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1SourceSourceIDCredentialsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIAzureCredential)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredential)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

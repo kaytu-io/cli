@@ -45,7 +45,7 @@ GetOnboardAPIV1SourceAccountAccountIDOK describes a response with status code 20
 OK
 */
 type GetOnboardAPIV1SourceAccountAccountIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection
 }
 
 // IsSuccess returns true when this get onboard Api v1 source account account Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetOnboardAPIV1SourceAccountAccountIDOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/source/account/{account_id}][%d] getOnboardApiV1SourceAccountAccountIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1SourceAccountAccountIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection {
+func (o *GetOnboardAPIV1SourceAccountAccountIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1SourceAccountAccountIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

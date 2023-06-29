@@ -67,7 +67,7 @@ type PutScheduleAPIV1InsightEvaluationTriggerParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPITriggerInsightEvaluationRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPITriggerInsightEvaluationRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PutScheduleAPIV1InsightEvaluationTriggerParams) SetHTTPClient(client *h
 }
 
 // WithRequest adds the request to the put schedule API v1 insight evaluation trigger params
-func (o *PutScheduleAPIV1InsightEvaluationTriggerParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPITriggerInsightEvaluationRequest) *PutScheduleAPIV1InsightEvaluationTriggerParams {
+func (o *PutScheduleAPIV1InsightEvaluationTriggerParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPITriggerInsightEvaluationRequest) *PutScheduleAPIV1InsightEvaluationTriggerParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the put schedule API v1 insight evaluation trigger params
-func (o *PutScheduleAPIV1InsightEvaluationTriggerParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgDescribeAPITriggerInsightEvaluationRequest) {
+func (o *PutScheduleAPIV1InsightEvaluationTriggerParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgDescribeAPITriggerInsightEvaluationRequest) {
 	o.Request = request
 }
 

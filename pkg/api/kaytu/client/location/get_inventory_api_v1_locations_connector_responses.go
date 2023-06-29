@@ -45,7 +45,7 @@ GetInventoryAPIV1LocationsConnectorOK describes a response with status code 200,
 OK
 */
 type GetInventoryAPIV1LocationsConnectorOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPILocationByProviderResponse
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPILocationByProviderResponse
 }
 
 // IsSuccess returns true when this get inventory Api v1 locations connector o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetInventoryAPIV1LocationsConnectorOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v1/locations/{connector}][%d] getInventoryApiV1LocationsConnectorOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV1LocationsConnectorOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgInventoryAPILocationByProviderResponse {
+func (o *GetInventoryAPIV1LocationsConnectorOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPILocationByProviderResponse {
 	return o.Payload
 }
 

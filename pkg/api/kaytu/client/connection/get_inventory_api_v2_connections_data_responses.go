@@ -45,7 +45,7 @@ GetInventoryAPIV2ConnectionsDataOK describes a response with status code 200, wi
 OK
 */
 type GetInventoryAPIV2ConnectionsDataOK struct {
-	Payload map[string]models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIConnectionData
+	Payload map[string]models.GithubComKaytuIoKaytuEnginePkgInventoryAPIConnectionData
 }
 
 // IsSuccess returns true when this get inventory Api v2 connections data o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetInventoryAPIV2ConnectionsDataOK) String() string {
 	return fmt.Sprintf("[GET /inventory/api/v2/connections/data][%d] getInventoryApiV2ConnectionsDataOK  %+v", 200, o.Payload)
 }
 
-func (o *GetInventoryAPIV2ConnectionsDataOK) GetPayload() map[string]models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIConnectionData {
+func (o *GetInventoryAPIV2ConnectionsDataOK) GetPayload() map[string]models.GithubComKaytuIoKaytuEnginePkgInventoryAPIConnectionData {
 	return o.Payload
 }
 

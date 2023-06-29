@@ -67,7 +67,7 @@ type PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams struct {
 
 	   Change tier request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceTierRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceTierRequest
 
 	/* WorkspaceID.
 
@@ -129,13 +129,13 @@ func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams) SetHTTPClient(client 
 }
 
 // WithRequest adds the request to the post workspace API v1 workspace workspace ID tier params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceTierRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceTierRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post workspace API v1 workspace workspace ID tier params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceTierRequest) {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceTierRequest) {
 	o.Request = request
 }
 

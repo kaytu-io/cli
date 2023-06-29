@@ -28,7 +28,7 @@ func RequestDeviceCode() (string, error) {
 	payload := DeviceCodeRequest{
 		ClientId: pkg.Auth0ClientID,
 		Scope:    "openid profil email api:read",
-		Audience: "https://app.keibi.io",
+		Audience: "https://app.kaytu.io",
 	}
 	payloadEncode, err := json.Marshal(payload)
 	if err != nil {
@@ -53,6 +53,10 @@ func RequestDeviceCode() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("[requestDeviceCode] : %v", err)
 
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("invalid status code: %d, %s", res.StatusCode, string(body))
 	}
 
 	response := DeviceCodeResponse{}

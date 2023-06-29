@@ -45,7 +45,7 @@ PostComplianceAPIV1AlarmsTopOK describes a response with status code 200, with d
 OK
 */
 type PostComplianceAPIV1AlarmsTopOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse
 }
 
 // IsSuccess returns true when this post compliance Api v1 alarms top o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostComplianceAPIV1AlarmsTopOK) String() string {
 	return fmt.Sprintf("[POST /compliance/api/v1/alarms/top][%d] postComplianceApiV1AlarmsTopOK  %+v", 200, o.Payload)
 }
 
-func (o *PostComplianceAPIV1AlarmsTopOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse {
+func (o *PostComplianceAPIV1AlarmsTopOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse {
 	return o.Payload
 }
 
 func (o *PostComplianceAPIV1AlarmsTopOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

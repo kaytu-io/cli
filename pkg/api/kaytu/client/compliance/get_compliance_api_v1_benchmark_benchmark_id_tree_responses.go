@@ -45,7 +45,7 @@ GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK describes a response with status co
 OK
 */
 type GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkTree
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTree
 }
 
 // IsSuccess returns true when this get compliance Api v1 benchmark benchmark Id tree o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/benchmark/{benchmark_id}/tree][%d] getComplianceApiV1BenchmarkBenchmarkIdTreeOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkTree {
+func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTree {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkTree)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTree)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

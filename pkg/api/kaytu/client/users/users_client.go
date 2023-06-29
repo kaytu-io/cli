@@ -52,9 +52,9 @@ type ClientService interface {
 }
 
 /*
-DeleteAuthAPIV1UserInvite deletes invitation
+DeleteAuthAPIV1UserInvite revokes invitation
 
-Deletes user access to the specified workspace.
+Revokes user's access to the workspace.
 */
 func (a *Client) DeleteAuthAPIV1UserInvite(params *DeleteAuthAPIV1UserInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthAPIV1UserInviteOK, error) {
 	// TODO: Validate the params before sending
@@ -93,9 +93,9 @@ func (a *Client) DeleteAuthAPIV1UserInvite(params *DeleteAuthAPIV1UserInvitePara
 }
 
 /*
-DeleteAuthAPIV1UserRoleBinding deletes user access
+DeleteAuthAPIV1UserRoleBinding revokes user access
 
-Deletes user access to the specified workspace.
+Revokes a user's access to the workspace
 */
 func (a *Client) DeleteAuthAPIV1UserRoleBinding(params *DeleteAuthAPIV1UserRoleBindingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthAPIV1UserRoleBindingOK, error) {
 	// TODO: Validate the params before sending
@@ -134,11 +134,9 @@ func (a *Client) DeleteAuthAPIV1UserRoleBinding(params *DeleteAuthAPIV1UserRoleB
 }
 
 /*
-	GetAuthAPIV1UserRoleBindings gets role bindings
+GetAuthAPIV1UserRoleBindings gets user roles
 
-	Gets the roles binded to a user.
-
-RoleBinding defines the roles and actions a user can perform. There are currently three roles (admin, editor, viewer).
+Retrieves the roles that the user who sent the request has in all workspaces they are a member of.
 */
 func (a *Client) GetAuthAPIV1UserRoleBindings(params *GetAuthAPIV1UserRoleBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserRoleBindingsOK, error) {
 	// TODO: Validate the params before sending
@@ -179,7 +177,7 @@ func (a *Client) GetAuthAPIV1UserRoleBindings(params *GetAuthAPIV1UserRoleBindin
 /*
 GetAuthAPIV1UserUserID gets user details
 
-Get user details by user id.
+Returns user details by specified user id.
 */
 func (a *Client) GetAuthAPIV1UserUserID(params *GetAuthAPIV1UserUserIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserUserIDOK, error) {
 	// TODO: Validate the params before sending
@@ -189,7 +187,7 @@ func (a *Client) GetAuthAPIV1UserUserID(params *GetAuthAPIV1UserUserIDParams, au
 	op := &runtime.ClientOperation{
 		ID:                 "GetAuthAPIV1UserUserID",
 		Method:             "GET",
-		PathPattern:        "/auth/api/v1/user/{user_id}",
+		PathPattern:        "/auth/api/v1/user/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -220,7 +218,7 @@ func (a *Client) GetAuthAPIV1UserUserID(params *GetAuthAPIV1UserUserIDParams, au
 /*
 GetAuthAPIV1UserUserIDWorkspaceMembership users workspaces
 
-Returns a list of workspaces and the user role in it for the specified user.
+Returns a list of workspaces that the specified user belongs to, along with their role in each workspace.
 */
 func (a *Client) GetAuthAPIV1UserUserIDWorkspaceMembership(params *GetAuthAPIV1UserUserIDWorkspaceMembershipParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserUserIDWorkspaceMembershipOK, error) {
 	// TODO: Validate the params before sending
@@ -230,7 +228,7 @@ func (a *Client) GetAuthAPIV1UserUserIDWorkspaceMembership(params *GetAuthAPIV1U
 	op := &runtime.ClientOperation{
 		ID:                 "GetAuthAPIV1UserUserIDWorkspaceMembership",
 		Method:             "GET",
-		PathPattern:        "/auth/api/v1/user/{user_id}/workspace/membership",
+		PathPattern:        "/auth/api/v1/user/{userId}/workspace/membership",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -259,9 +257,9 @@ func (a *Client) GetAuthAPIV1UserUserIDWorkspaceMembership(params *GetAuthAPIV1U
 }
 
 /*
-GetAuthAPIV1Users gets users
+GetAuthAPIV1Users lists users
 
-Gets a list of users with specified filters (filters are optional).
+Retrieves a list of users who are members of the workspace.
 */
 func (a *Client) GetAuthAPIV1Users(params *GetAuthAPIV1UsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UsersOK, error) {
 	// TODO: Validate the params before sending
@@ -302,7 +300,7 @@ func (a *Client) GetAuthAPIV1Users(params *GetAuthAPIV1UsersParams, authInfo run
 /*
 GetAuthAPIV1WorkspaceRoleBindings workspaces user role bindings
 
-RoleBinding defines the roles and actions a user can perform. There are currently three roles (admin, editor, viewer). The workspace path is based on the DNS such as (workspace1.app.keibi.io)
+Get all the RoleBindings of the workspace. RoleBinding defines the roles and actions a user can perform. There are currently three roles (admin, editor, viewer). The workspace path is based on the DNS such as (workspace1.app.keibi.io)
 */
 func (a *Client) GetAuthAPIV1WorkspaceRoleBindings(params *GetAuthAPIV1WorkspaceRoleBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1WorkspaceRoleBindingsOK, error) {
 	// TODO: Validate the params before sending
@@ -341,12 +339,9 @@ func (a *Client) GetAuthAPIV1WorkspaceRoleBindings(params *GetAuthAPIV1Workspace
 }
 
 /*
-	PostAuthAPIV1UserInvite invites user
+PostAuthAPIV1UserInvite invites user
 
-	Invites a user to a workspace with defined role.
-
-by sending an email to the specified email address.
-The user will be found by the email address.
+Sends an invitation to a user to join the workspace with a designated role.
 */
 func (a *Client) PostAuthAPIV1UserInvite(params *PostAuthAPIV1UserInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1UserInviteOK, error) {
 	// TODO: Validate the params before sending
@@ -385,12 +380,9 @@ func (a *Client) PostAuthAPIV1UserInvite(params *PostAuthAPIV1UserInviteParams, 
 }
 
 /*
-	PutAuthAPIV1UserRoleBinding updates user access
+PutAuthAPIV1UserRoleBinding updates user role
 
-	User Access defines the roles of a user.
-
-There are currently three roles (admin, editor, viewer).
-User must exist before you can update its Role.
+Updates the role of a user in the workspace.
 */
 func (a *Client) PutAuthAPIV1UserRoleBinding(params *PutAuthAPIV1UserRoleBindingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAuthAPIV1UserRoleBindingOK, error) {
 	// TODO: Validate the params before sending

@@ -30,7 +30,7 @@ func (o *GetAuthAPIV1UserUserIDReader) ReadResponse(response runtime.ClientRespo
 		}
 		return result, nil
 	default:
-		return nil, runtime.NewAPIError("[GET /auth/api/v1/user/{user_id}] GetAuthAPIV1UserUserID", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /auth/api/v1/user/{userId}] GetAuthAPIV1UserUserID", response, response.Code())
 	}
 }
 
@@ -45,7 +45,7 @@ GetAuthAPIV1UserUserIDOK describes a response with status code 200, with default
 OK
 */
 type GetAuthAPIV1UserUserIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUserResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUserResponse
 }
 
 // IsSuccess returns true when this get auth Api v1 user user Id o k response has a 2xx status code
@@ -79,20 +79,20 @@ func (o *GetAuthAPIV1UserUserIDOK) Code() int {
 }
 
 func (o *GetAuthAPIV1UserUserIDOK) Error() string {
-	return fmt.Sprintf("[GET /auth/api/v1/user/{user_id}][%d] getAuthApiV1UserUserIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /auth/api/v1/user/{userId}][%d] getAuthApiV1UserUserIdOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAuthAPIV1UserUserIDOK) String() string {
-	return fmt.Sprintf("[GET /auth/api/v1/user/{user_id}][%d] getAuthApiV1UserUserIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /auth/api/v1/user/{userId}][%d] getAuthApiV1UserUserIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1UserUserIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUserResponse {
+func (o *GetAuthAPIV1UserUserIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUserResponse {
 	return o.Payload
 }
 
 func (o *GetAuthAPIV1UserUserIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUserResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUserResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

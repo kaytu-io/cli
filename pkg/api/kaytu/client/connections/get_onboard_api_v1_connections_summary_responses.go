@@ -45,7 +45,7 @@ GetOnboardAPIV1ConnectionsSummaryOK describes a response with status code 200, w
 OK
 */
 type GetOnboardAPIV1ConnectionsSummaryOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIListConnectionSummaryResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse
 }
 
 // IsSuccess returns true when this get onboard Api v1 connections summary o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetOnboardAPIV1ConnectionsSummaryOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/connections/summary][%d] getOnboardApiV1ConnectionsSummaryOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1ConnectionsSummaryOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIListConnectionSummaryResponse {
+func (o *GetOnboardAPIV1ConnectionsSummaryOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1ConnectionsSummaryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIListConnectionSummaryResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

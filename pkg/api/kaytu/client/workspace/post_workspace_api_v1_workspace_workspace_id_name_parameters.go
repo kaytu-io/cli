@@ -67,7 +67,7 @@ type PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams struct {
 
 	   Change name request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceNameRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceNameRequest
 
 	/* WorkspaceID.
 
@@ -129,13 +129,13 @@ func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams) SetHTTPClient(client 
 }
 
 // WithRequest adds the request to the post workspace API v1 workspace workspace ID name params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceNameRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceNameRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post workspace API v1 workspace workspace ID name params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceNameRequest) {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceNameRequest) {
 	o.Request = request
 }
 

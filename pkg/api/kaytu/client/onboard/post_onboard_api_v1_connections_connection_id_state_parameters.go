@@ -74,7 +74,7 @@ type PostOnboardAPIV1ConnectionsConnectionIDStateParams struct {
 
 	   Request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -141,13 +141,13 @@ func (o *PostOnboardAPIV1ConnectionsConnectionIDStateParams) SetConnectionID(con
 }
 
 // WithRequest adds the request to the post onboard API v1 connections connection ID state params
-func (o *PostOnboardAPIV1ConnectionsConnectionIDStateParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest) *PostOnboardAPIV1ConnectionsConnectionIDStateParams {
+func (o *PostOnboardAPIV1ConnectionsConnectionIDStateParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest) *PostOnboardAPIV1ConnectionsConnectionIDStateParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post onboard API v1 connections connection ID state params
-func (o *PostOnboardAPIV1ConnectionsConnectionIDStateParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest) {
+func (o *PostOnboardAPIV1ConnectionsConnectionIDStateParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest) {
 	o.Request = request
 }
 

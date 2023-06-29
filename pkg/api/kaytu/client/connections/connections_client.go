@@ -38,7 +38,9 @@ type ClientService interface {
 }
 
 /*
-GetOnboardAPIV1ConnectionsSummary returns resource count of accounts
+GetOnboardAPIV1ConnectionsSummary lists connections summaries
+
+Returns a list of connections summaries
 */
 func (a *Client) GetOnboardAPIV1ConnectionsSummary(params *GetOnboardAPIV1ConnectionsSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsSummaryOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +79,9 @@ func (a *Client) GetOnboardAPIV1ConnectionsSummary(params *GetOnboardAPIV1Connec
 }
 
 /*
-GetOnboardAPIV1ConnectionsSummaryConnectionID returns resource count of accounts
+GetOnboardAPIV1ConnectionsSummaryConnectionID gets connection summary
+
+Returns a connections summaries
 */
 func (a *Client) GetOnboardAPIV1ConnectionsSummaryConnectionID(params *GetOnboardAPIV1ConnectionsSummaryConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsSummaryConnectionIDOK, error) {
 	// TODO: Validate the params before sending

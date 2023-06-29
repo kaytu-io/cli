@@ -45,7 +45,7 @@ GetOnboardAPIV1CredentialSourcesListOK describes a response with status code 200
 OK
 */
 type GetOnboardAPIV1CredentialSourcesListOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPICredential
 }
 
 // IsSuccess returns true when this get onboard Api v1 credential sources list o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetOnboardAPIV1CredentialSourcesListOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/credential/sources/list][%d] getOnboardApiV1CredentialSourcesListOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1CredentialSourcesListOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICredential {
+func (o *GetOnboardAPIV1CredentialSourcesListOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPICredential {
 	return o.Payload
 }
 

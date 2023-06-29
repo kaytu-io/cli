@@ -45,7 +45,7 @@ GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK describes a response with s
 OK
 */
 type GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse
 }
 
 // IsSuccess returns true when this get compliance Api v1 findings benchmark Id field top count o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/findings/{benchmarkId}/{field}/top/{count}][%d] getComplianceApiV1FindingsBenchmarkIdFieldTopCountOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse {
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

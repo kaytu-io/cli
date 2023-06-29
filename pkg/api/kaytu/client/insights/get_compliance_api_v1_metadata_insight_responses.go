@@ -45,7 +45,7 @@ GetComplianceAPIV1MetadataInsightOK describes a response with status code 200, w
 OK
 */
 type GetComplianceAPIV1MetadataInsightOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight
 }
 
 // IsSuccess returns true when this get compliance Api v1 metadata insight o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetComplianceAPIV1MetadataInsightOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/metadata/insight][%d] getComplianceApiV1MetadataInsightOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1MetadataInsightOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsight {
+func (o *GetComplianceAPIV1MetadataInsightOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight {
 	return o.Payload
 }
 

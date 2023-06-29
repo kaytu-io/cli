@@ -10,14 +10,11 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/cost"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insight"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/inventory"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
@@ -27,6 +24,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/roles"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/schedule"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/services"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/smart_query"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/users"
@@ -75,14 +73,11 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KeibiServi
 
 	cli := new(KeibiServiceAPI)
 	cli.Transport = transport
-	cli.Benchmarks = benchmarks.New(transport, formats)
 	cli.BenchmarksAssignment = benchmarks_assignment.New(transport, formats)
 	cli.Compliance = compliance.New(transport, formats)
 	cli.Connection = connection.New(transport, formats)
 	cli.Connections = connections.New(transport, formats)
-	cli.Cost = cost.New(transport, formats)
 	cli.Describe = describe.New(transport, formats)
-	cli.Insight = insight.New(transport, formats)
 	cli.Insights = insights.New(transport, formats)
 	cli.Inventory = inventory.New(transport, formats)
 	cli.Keys = keys.New(transport, formats)
@@ -92,6 +87,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KeibiServi
 	cli.Resource = resource.New(transport, formats)
 	cli.Roles = roles.New(transport, formats)
 	cli.Schedule = schedule.New(transport, formats)
+	cli.Services = services.New(transport, formats)
 	cli.SmartQuery = smart_query.New(transport, formats)
 	cli.Stack = stack.New(transport, formats)
 	cli.Users = users.New(transport, formats)
@@ -140,8 +136,6 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // KeibiServiceAPI is a client for keibi service API
 type KeibiServiceAPI struct {
-	Benchmarks benchmarks.ClientService
-
 	BenchmarksAssignment benchmarks_assignment.ClientService
 
 	Compliance compliance.ClientService
@@ -150,11 +144,7 @@ type KeibiServiceAPI struct {
 
 	Connections connections.ClientService
 
-	Cost cost.ClientService
-
 	Describe describe.ClientService
-
-	Insight insight.ClientService
 
 	Insights insights.ClientService
 
@@ -174,6 +164,8 @@ type KeibiServiceAPI struct {
 
 	Schedule schedule.ClientService
 
+	Services services.ClientService
+
 	SmartQuery smart_query.ClientService
 
 	Stack stack.ClientService
@@ -188,14 +180,11 @@ type KeibiServiceAPI struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *KeibiServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-	c.Benchmarks.SetTransport(transport)
 	c.BenchmarksAssignment.SetTransport(transport)
 	c.Compliance.SetTransport(transport)
 	c.Connection.SetTransport(transport)
 	c.Connections.SetTransport(transport)
-	c.Cost.SetTransport(transport)
 	c.Describe.SetTransport(transport)
-	c.Insight.SetTransport(transport)
 	c.Insights.SetTransport(transport)
 	c.Inventory.SetTransport(transport)
 	c.Keys.SetTransport(transport)
@@ -205,6 +194,7 @@ func (c *KeibiServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Resource.SetTransport(transport)
 	c.Roles.SetTransport(transport)
 	c.Schedule.SetTransport(transport)
+	c.Services.SetTransport(transport)
 	c.SmartQuery.SetTransport(transport)
 	c.Stack.SetTransport(transport)
 	c.Users.SetTransport(transport)

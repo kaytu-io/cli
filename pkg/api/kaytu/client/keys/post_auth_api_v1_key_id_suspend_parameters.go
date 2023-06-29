@@ -63,7 +63,7 @@ type PostAuthAPIV1KeyIDSuspendParams struct {
 
 	/* ID.
 
-	   ID
+	   Key ID
 	*/
 	ID string
 

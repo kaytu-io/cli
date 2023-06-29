@@ -45,7 +45,7 @@ GetAuthAPIV1WorkspaceRoleBindingsOK describes a response with status code 200, w
 OK
 */
 type GetAuthAPIV1WorkspaceRoleBindingsOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceRoleBinding
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceRoleBinding
 }
 
 // IsSuccess returns true when this get auth Api v1 workspace role bindings o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetAuthAPIV1WorkspaceRoleBindingsOK) String() string {
 	return fmt.Sprintf("[GET /auth/api/v1/workspace/role/bindings][%d] getAuthApiV1WorkspaceRoleBindingsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAuthAPIV1WorkspaceRoleBindingsOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceRoleBinding {
+func (o *GetAuthAPIV1WorkspaceRoleBindingsOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceRoleBinding {
 	return o.Payload
 }
 

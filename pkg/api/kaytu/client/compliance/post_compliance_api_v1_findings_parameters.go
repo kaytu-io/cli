@@ -67,7 +67,7 @@ type PostComplianceAPIV1FindingsParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostComplianceAPIV1FindingsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the post compliance API v1 findings params
-func (o *PostComplianceAPIV1FindingsParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) *PostComplianceAPIV1FindingsParams {
+func (o *PostComplianceAPIV1FindingsParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) *PostComplianceAPIV1FindingsParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post compliance API v1 findings params
-func (o *PostComplianceAPIV1FindingsParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsRequest) {
+func (o *PostComplianceAPIV1FindingsParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) {
 	o.Request = request
 }
 

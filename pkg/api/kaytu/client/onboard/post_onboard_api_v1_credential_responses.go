@@ -45,7 +45,7 @@ PostOnboardAPIV1CredentialOK describes a response with status code 200, with def
 OK
 */
 type PostOnboardAPIV1CredentialOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialResponse
 }
 
 // IsSuccess returns true when this post onboard Api v1 credential o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostOnboardAPIV1CredentialOK) String() string {
 	return fmt.Sprintf("[POST /onboard/api/v1/credential][%d] postOnboardApiV1CredentialOK  %+v", 200, o.Payload)
 }
 
-func (o *PostOnboardAPIV1CredentialOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialResponse {
+func (o *PostOnboardAPIV1CredentialOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialResponse {
 	return o.Payload
 }
 
 func (o *PostOnboardAPIV1CredentialOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

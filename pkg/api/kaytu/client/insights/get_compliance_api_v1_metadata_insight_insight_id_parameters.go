@@ -63,7 +63,7 @@ type GetComplianceAPIV1MetadataInsightInsightIDParams struct {
 
 	/* InsightID.
 
-	   InsightID
+	   Insight ID
 	*/
 	InsightID string
 

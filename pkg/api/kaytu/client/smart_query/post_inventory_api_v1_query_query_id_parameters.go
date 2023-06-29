@@ -79,7 +79,7 @@ type PostInventoryAPIV1QueryQueryIDParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -157,13 +157,13 @@ func (o *PostInventoryAPIV1QueryQueryIDParams) SetQueryID(queryID string) {
 }
 
 // WithRequest adds the request to the post inventory API v1 query query ID params
-func (o *PostInventoryAPIV1QueryQueryIDParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest) *PostInventoryAPIV1QueryQueryIDParams {
+func (o *PostInventoryAPIV1QueryQueryIDParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest) *PostInventoryAPIV1QueryQueryIDParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post inventory API v1 query query ID params
-func (o *PostInventoryAPIV1QueryQueryIDParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryRequest) {
+func (o *PostInventoryAPIV1QueryQueryIDParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest) {
 	o.Request = request
 }
 

@@ -37,7 +37,7 @@ type DescribeSummarizerJob struct {
 	ScheduleJobID int64 `json:"scheduleJobID,omitempty"`
 
 	// status
-	Status GitlabComKeibiengineKeibiEnginePkgSummarizerAPISummarizerJobStatus `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgSummarizerAPISummarizerJobStatus `json:"status,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`

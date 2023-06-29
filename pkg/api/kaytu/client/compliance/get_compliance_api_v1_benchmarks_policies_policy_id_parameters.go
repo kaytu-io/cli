@@ -63,7 +63,7 @@ type GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams struct {
 
 	/* PolicyID.
 
-	   PolicyID
+	   Policy ID
 	*/
 	PolicyID string
 

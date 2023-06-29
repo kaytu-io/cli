@@ -45,7 +45,7 @@ GetComplianceAPIV1AssignmentsConnectionConnectionIDOK describes a response with 
 OK
 */
 type GetComplianceAPIV1AssignmentsConnectionConnectionIDOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkAssignment
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment
 }
 
 // IsSuccess returns true when this get compliance Api v1 assignments connection connection Id o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetComplianceAPIV1AssignmentsConnectionConnectionIDOK) String() string 
 	return fmt.Sprintf("[GET /compliance/api/v1/assignments/connection/{connection_id}][%d] getComplianceApiV1AssignmentsConnectionConnectionIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1AssignmentsConnectionConnectionIDOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIBenchmarkAssignment {
+func (o *GetComplianceAPIV1AssignmentsConnectionConnectionIDOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment {
 	return o.Payload
 }
 

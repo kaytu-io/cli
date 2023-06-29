@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	keyNames := map[string]interface{}{}
 	fmt.Println("package main")
 	fmt.Println("var paramModels = map[string]interface{}{")
 	err := filepath.Walk("./pkg/api/kaytu/client", func(path string, info fs.FileInfo, err error) error {
@@ -33,10 +34,15 @@ func main() {
 
 		lines := strings.Split(string(c), "\n")
 		for _, line := range lines {
-			if strings.Contains(line, "struct") {
+			if strings.Contains(line, "struct ") {
 				arr := strings.Split(strings.TrimSpace(line), " ")
 				name := arr[1]
 				keyName := name[:len(name)-6]
+
+				if _, ok := keyNames[keyName]; ok {
+					continue
+				}
+				keyNames[keyName] = struct{}{}
 				fmt.Printf("\"%s\": \t%s.%s{},\n", keyName, serviceName, name)
 			}
 		}

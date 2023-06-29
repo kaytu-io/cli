@@ -19,7 +19,24 @@ import (
 type DescribeComplianceReportJob struct {
 
 	// Not the primary key but should be a unique identifier
-	BenchmarkID string `json:"benchmarkID,omitempty"`
+	// Example: azure_cis_v1
+	BenchmarkID string `json:"BenchmarkId,omitempty"`
+
+	// report created at
+	// Example: 1619510400
+	ReportCreatedAt int64 `json:"ReportCreatedAt,omitempty"`
+
+	// Not the primary key but should be a unique identifier
+	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
+	SourceID string `json:"SourceId,omitempty"`
+
+	// source type
+	// Example: Azure
+	SourceType SourceType `json:"SourceType,omitempty"`
+
+	// status
+	// Example: InProgress
+	Status GithubComKaytuIoKaytuEnginePkgComplianceAPIComplianceReportJobStatus `json:"Status,omitempty"`
 
 	// created at
 	CreatedAt string `json:"createdAt,omitempty"`
@@ -33,20 +50,9 @@ type DescribeComplianceReportJob struct {
 	// id
 	ID int64 `json:"id,omitempty"`
 
-	// report created at
-	ReportCreatedAt int64 `json:"reportCreatedAt,omitempty"`
-
-	// schedule job ID
-	ScheduleJobID int64 `json:"scheduleJobID,omitempty"`
-
-	// Not the primary key but should be a unique identifier
-	SourceID string `json:"sourceID,omitempty"`
-
-	// source type
-	SourceType SourceType `json:"sourceType,omitempty"`
-
-	// status
-	Status GitlabComKeibiengineKeibiEnginePkgComplianceAPIComplianceReportJobStatus `json:"status,omitempty"`
+	// schedule job Id
+	// Example: 1
+	ScheduleJobID int64 `json:"scheduleJobId,omitempty"`
 
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`
@@ -56,10 +62,6 @@ type DescribeComplianceReportJob struct {
 func (m *DescribeComplianceReportJob) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateDeletedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateSourceType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -68,9 +70,29 @@ func (m *DescribeComplianceReportJob) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDeletedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DescribeComplianceReportJob) validateSourceType(formats strfmt.Registry) error {
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *DescribeComplianceReportJob) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
 	return nil
 }
 
@@ -93,47 +115,9 @@ func (m *DescribeComplianceReportJob) validateDeletedAt(formats strfmt.Registry)
 	return nil
 }
 
-func (m *DescribeComplianceReportJob) validateSourceType(formats strfmt.Registry) error {
-	if swag.IsZero(m.SourceType) { // not required
-		return nil
-	}
-
-	if err := m.SourceType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("sourceType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("sourceType")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *DescribeComplianceReportJob) validateStatus(formats strfmt.Registry) error {
-	if swag.IsZero(m.Status) { // not required
-		return nil
-	}
-
-	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("status")
-		}
-		return err
-	}
-
-	return nil
-}
-
 // ContextValidate validate this describe compliance report job based on the context it is used
 func (m *DescribeComplianceReportJob) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.contextValidateDeletedAt(ctx, formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.contextValidateSourceType(ctx, formats); err != nil {
 		res = append(res, err)
@@ -143,9 +127,23 @@ func (m *DescribeComplianceReportJob) ContextValidate(ctx context.Context, forma
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDeletedAt(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DescribeComplianceReportJob) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *DescribeComplianceReportJob) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 
@@ -165,42 +163,6 @@ func (m *DescribeComplianceReportJob) contextValidateDeletedAt(ctx context.Conte
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *DescribeComplianceReportJob) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.SourceType) { // not required
-		return nil
-	}
-
-	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("sourceType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("sourceType")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *DescribeComplianceReportJob) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Status) { // not required
-		return nil
-	}
-
-	if err := m.Status.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("status")
-		}
-		return err
 	}
 
 	return nil

@@ -62,10 +62,18 @@ var urlNames = map[string]string{
 	"put-schedule-api-v1-insight-evaluation-trigger":     "trigger-insight",
 
 	// insight
-	"get-inventory-api-v2-insights-insight-id":       "get-insight",
-	"get-inventory-api-v2-insights-insight-id-trend": "get-insight-trend",
-	"get-inventory-api-v2-insights-job-job-id":       "get-insight-job",
-	"get-inventory-api-v2-insights":                  "list-insights",
+	"get-compliance-api-v2-insights-insight-id":                  "get-insight",
+	"get-compliance-api-v2-insights-insight-id-trend":            "get-insight-trend",
+	"get-compliance-api-v2-insights-job-job-id":                  "get-insight-job",
+	"get-compliance-api-v2-insights":                             "list-insights",
+	"get-compliance-api-v1-insight-group-insight-group-id":       "get-insight-group",
+	"get-compliance-api-v1-insight-group-insight-group-id-trend": "get-insight-group-trend",
+	"get-compliance-api-v1-insight-group":                        "list-insight-groups",
+	"get-compliance-api-v1-metadata-insight-insight-id":          "get-insight-metadata",
+	"get-inventory-api-v2-insights-insight-id-trend":             "old-get-insight-trend",
+	"get-inventory-api-v2-insights":                              "old-list-insights",
+	"get-inventory-api-v2-insights-job-job-id":                   "old-get-insight-job",
+	"get-inventory-api-v2-insights-insight-id":                   "old-get-insight",
 
 	// insights
 	"get-compliance-api-v1-insight-insight-id":       "get-insight",
@@ -98,6 +106,9 @@ var urlNames = map[string]string{
 	"get-inventory-api-v2-cost-trend":                     "cost-trend",
 	"get-inventory-api-v2-cost-metric":                    "cost-metric",
 	"get-inventory-api-v2-cost-composition":               "cost-composition",
+	"get-inventory-api-v2-resources-regions-trend":        "get-resource-trend-by-region",
+	"get-inventory-api-v2-resources-regions-composition":  "get-resource-composition-by-region",
+	"get-inventory-api-v2-resources-regions-summary":      "get-resource-summary-by-region",
 
 	// keys
 	"delete-auth-api-v1-key-id-delete": "remove-key",
@@ -194,6 +205,7 @@ var urlNames = map[string]string{
 	"post-schedule-api-v1-stacks-stack-id-findings":   "stack-findings",
 	"get-schedule-api-v1-stacks-stack-id-insight":     "stack-insights",
 	"get-schedule-api-v1-stacks-resource-resource-id": "resource-stacks",
+	"post-schedule-api-v1-stacks-describer-trigger":   "trigger-stack-describer",
 
 	// users
 	"delete-auth-api-v1-user-invite":                    "delete-user-invite",
@@ -221,4 +233,5 @@ var urlNames = map[string]string{
 	"post-workspace-api-v1-workspace-workspace-id-suspend":      "suspend-workspace",
 	"post-workspace-api-v1-workspace-workspace-id-tier":         "update-workspace-tier",
 	"get-workspace-api-v1-workspaces-workspace-id":              "get-workspace",
+	"get-workspace-api-v1-workspace-current":                    "get-current-workspace",
 }

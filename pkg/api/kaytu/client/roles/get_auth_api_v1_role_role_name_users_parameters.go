@@ -63,7 +63,7 @@ type GetAuthAPIV1RoleRoleNameUsersParams struct {
 
 	/* RoleName.
 
-	   roleName
+	   Role Name
 	*/
 	RoleName string
 

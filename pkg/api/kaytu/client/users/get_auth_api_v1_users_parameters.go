@@ -67,7 +67,7 @@ type GetAuthAPIV1UsersParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUsersRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *GetAuthAPIV1UsersParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the get auth API v1 users params
-func (o *GetAuthAPIV1UsersParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUsersRequest) *GetAuthAPIV1UsersParams {
+func (o *GetAuthAPIV1UsersParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersRequest) *GetAuthAPIV1UsersParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the get auth API v1 users params
-func (o *GetAuthAPIV1UsersParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIGetUsersRequest) {
+func (o *GetAuthAPIV1UsersParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersRequest) {
 	o.Request = request
 }
 

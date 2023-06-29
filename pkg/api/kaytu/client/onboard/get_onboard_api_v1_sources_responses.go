@@ -45,7 +45,7 @@ GetOnboardAPIV1SourcesOK describes a response with status code 200, with default
 OK
 */
 type GetOnboardAPIV1SourcesOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection
 }
 
 // IsSuccess returns true when this get onboard Api v1 sources o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetOnboardAPIV1SourcesOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/sources][%d] getOnboardApiV1SourcesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1SourcesOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnection {
+func (o *GetOnboardAPIV1SourcesOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection {
 	return o.Payload
 }
 

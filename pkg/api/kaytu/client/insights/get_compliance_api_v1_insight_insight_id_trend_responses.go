@@ -45,7 +45,7 @@ GetComplianceAPIV1InsightInsightIDTrendOK describes a response with status code 
 OK
 */
 type GetComplianceAPIV1InsightInsightIDTrendOK struct {
-	Payload []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsightTrendDatapoint
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightTrendDatapoint
 }
 
 // IsSuccess returns true when this get compliance Api v1 insight insight Id trend o k response has a 2xx status code
@@ -86,7 +86,7 @@ func (o *GetComplianceAPIV1InsightInsightIDTrendOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/insight/{insightId}/trend][%d] getComplianceApiV1InsightInsightIdTrendOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1InsightInsightIDTrendOK) GetPayload() []*models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIInsightTrendDatapoint {
+func (o *GetComplianceAPIV1InsightInsightIDTrendOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightTrendDatapoint {
 	return o.Payload
 }
 

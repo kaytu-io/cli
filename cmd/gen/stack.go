@@ -36,12 +36,22 @@ func init() {
 	DeleteStackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
 	DeleteScheduleApiV1StacksStackIdCmd.Flags().String("stack-id", "", "")
 
+	GetStackCmd.AddCommand(GetScheduleApiV1StacksResourceCmd)
+	GetScheduleApiV1StacksResourceCmd.Flags().String("resource-id", "", "")
+
+	GetStackCmd.AddCommand(PostScheduleApiV1StacksBenchmarkTriggerCmd)
+	PostScheduleApiV1StacksBenchmarkTriggerCmd.Flags().StringArray("benchmarks", nil, "")
+	PostScheduleApiV1StacksBenchmarkTriggerCmd.Flags().String("stack-id", "", "")
+
+	CreateStackCmd.AddCommand(PostScheduleApiV1StacksCreateCmd)
+	PostScheduleApiV1StacksCreateCmd.Flags().String("config", "", "")
+	PostScheduleApiV1StacksCreateCmd.Flags().StringArray("resources", nil, "")
+	PostScheduleApiV1StacksCreateCmd.Flags().String("tag", "", "")
+	PostScheduleApiV1StacksCreateCmd.Flags().String("terrafrom-file", "", "")
+
 	GetStackCmd.AddCommand(GetScheduleApiV1StacksCmd)
 	GetScheduleApiV1StacksCmd.Flags().StringArray("account-ids", nil, "")
 	GetScheduleApiV1StacksCmd.Flags().StringArray("tag", nil, "")
-
-	GetStackCmd.AddCommand(GetScheduleApiV1StacksResourceCmd)
-	GetScheduleApiV1StacksResourceCmd.Flags().String("resource-id", "", "")
 
 	GetStackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightCmd)
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("end-time", 0, "")
@@ -52,14 +62,9 @@ func init() {
 	GetStackCmd.AddCommand(GetScheduleApiV1StacksStackIdCmd)
 	GetScheduleApiV1StacksStackIdCmd.Flags().String("stack-id", "", "")
 
-	GetStackCmd.AddCommand(PostScheduleApiV1StacksBenchmarkTriggerCmd)
-	PostScheduleApiV1StacksBenchmarkTriggerCmd.Flags().StringArray("benchmarks", nil, "")
-	PostScheduleApiV1StacksBenchmarkTriggerCmd.Flags().String("stack-id", "", "")
-
-	CreateStackCmd.AddCommand(PostScheduleApiV1StacksCreateCmd)
-	PostScheduleApiV1StacksCreateCmd.Flags().StringArray("resources", nil, "")
-	PostScheduleApiV1StacksCreateCmd.Flags().String("tag", "", "")
-	PostScheduleApiV1StacksCreateCmd.Flags().String("terrafrom-file", "", "")
+	GetStackCmd.AddCommand(PostScheduleApiV1StacksDescriberTriggerCmd)
+	PostScheduleApiV1StacksDescriberTriggerCmd.Flags().String("config", "", "")
+	PostScheduleApiV1StacksDescriberTriggerCmd.Flags().String("stack-id", "", "")
 
 	GetStackCmd.AddCommand(PostScheduleApiV1StacksStackIdFindingsCmd)
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().StringArray("benchmark-ids", nil, "")

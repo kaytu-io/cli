@@ -45,7 +45,7 @@ PostScheduleAPIV1StacksStackIDFindingsOK describes a response with status code 2
 OK
 */
 type PostScheduleAPIV1StacksStackIDFindingsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse
 }
 
 // IsSuccess returns true when this post schedule Api v1 stacks stack Id findings o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostScheduleAPIV1StacksStackIDFindingsOK) String() string {
 	return fmt.Sprintf("[POST /schedule/api/v1/stacks/{stackId}/findings][%d] postScheduleApiV1StacksStackIdFindingsOK  %+v", 200, o.Payload)
 }
 
-func (o *PostScheduleAPIV1StacksStackIDFindingsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse {
+func (o *PostScheduleAPIV1StacksStackIDFindingsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse {
 	return o.Payload
 }
 
 func (o *PostScheduleAPIV1StacksStackIDFindingsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetFindingsResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

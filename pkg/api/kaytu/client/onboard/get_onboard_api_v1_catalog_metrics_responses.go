@@ -45,7 +45,7 @@ GetOnboardAPIV1CatalogMetricsOK describes a response with status code 200, with 
 OK
 */
 type GetOnboardAPIV1CatalogMetricsOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogMetrics
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics
 }
 
 // IsSuccess returns true when this get onboard Api v1 catalog metrics o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetOnboardAPIV1CatalogMetricsOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/catalog/metrics][%d] getOnboardApiV1CatalogMetricsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1CatalogMetricsOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogMetrics {
+func (o *GetOnboardAPIV1CatalogMetricsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1CatalogMetricsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICatalogMetrics)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

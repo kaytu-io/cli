@@ -63,7 +63,7 @@ type DeleteAuthAPIV1KeyIDDeleteParams struct {
 
 	/* ID.
 
-	   ID
+	   Key ID
 	*/
 	ID string
 

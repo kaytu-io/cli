@@ -67,7 +67,7 @@ type PostComplianceAPIV1AlarmsTopParams struct {
 
 	   Request Body
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostComplianceAPIV1AlarmsTopParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithRequest adds the request to the post compliance API v1 alarms top params
-func (o *PostComplianceAPIV1AlarmsTopParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldRequest) *PostComplianceAPIV1AlarmsTopParams {
+func (o *PostComplianceAPIV1AlarmsTopParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldRequest) *PostComplianceAPIV1AlarmsTopParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post compliance API v1 alarms top params
-func (o *PostComplianceAPIV1AlarmsTopParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgComplianceAPIGetTopFieldRequest) {
+func (o *PostComplianceAPIV1AlarmsTopParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldRequest) {
 	o.Request = request
 }
 

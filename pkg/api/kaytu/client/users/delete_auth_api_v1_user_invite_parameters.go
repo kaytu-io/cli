@@ -63,7 +63,7 @@ type DeleteAuthAPIV1UserInviteParams struct {
 
 	/* UserID.
 
-	   userId
+	   User ID
 	*/
 	UserID string
 

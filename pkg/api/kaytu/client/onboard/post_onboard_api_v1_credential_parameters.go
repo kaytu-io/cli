@@ -67,7 +67,7 @@ type PostOnboardAPIV1CredentialParams struct {
 
 	   config
 	*/
-	Config *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialRequest
+	Config *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *PostOnboardAPIV1CredentialParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithConfig adds the config to the post onboard API v1 credential params
-func (o *PostOnboardAPIV1CredentialParams) WithConfig(config *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialRequest) *PostOnboardAPIV1CredentialParams {
+func (o *PostOnboardAPIV1CredentialParams) WithConfig(config *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest) *PostOnboardAPIV1CredentialParams {
 	o.SetConfig(config)
 	return o
 }
 
 // SetConfig adds the config to the post onboard API v1 credential params
-func (o *PostOnboardAPIV1CredentialParams) SetConfig(config *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPICreateCredentialRequest) {
+func (o *PostOnboardAPIV1CredentialParams) SetConfig(config *models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest) {
 	o.Config = config
 }
 

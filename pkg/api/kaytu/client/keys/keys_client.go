@@ -91,7 +91,7 @@ func (a *Client) DeleteAuthAPIV1KeyIDDelete(params *DeleteAuthAPIV1KeyIDDeletePa
 /*
 GetAuthAPIV1KeyID gets workspace key details
 
-Gets the details of a key in a workspace with specified ID.
+Retrieves the details of a workspace key with specified ID.
 */
 func (a *Client) GetAuthAPIV1KeyID(params *GetAuthAPIV1KeyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1KeyIDOK, error) {
 	// TODO: Validate the params before sending
@@ -132,7 +132,7 @@ func (a *Client) GetAuthAPIV1KeyID(params *GetAuthAPIV1KeyIDParams, authInfo run
 /*
 GetAuthAPIV1Keys gets workspace keys
 
-Gets a list of available keys in a workspace.
+Gets list of all keys in the workspace.
 */
 func (a *Client) GetAuthAPIV1Keys(params *GetAuthAPIV1KeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1KeysOK, error) {
 	// TODO: Validate the params before sending
@@ -173,7 +173,7 @@ func (a *Client) GetAuthAPIV1Keys(params *GetAuthAPIV1KeysParams, authInfo runti
 /*
 PostAuthAPIV1KeyCreate creates workspace key
 
-Creates workspace key for the defined role with the defined name.
+Creates workspace key for the defined role with the defined name in the workspace.
 */
 func (a *Client) PostAuthAPIV1KeyCreate(params *PostAuthAPIV1KeyCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -214,7 +214,7 @@ func (a *Client) PostAuthAPIV1KeyCreate(params *PostAuthAPIV1KeyCreateParams, au
 /*
 PostAuthAPIV1KeyIDActivate activates workspace key
 
-Activates a key in the workspace with specified ID.
+Activates Workspace Key by ID
 */
 func (a *Client) PostAuthAPIV1KeyIDActivate(params *PostAuthAPIV1KeyIDActivateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyIDActivateOK, error) {
 	// TODO: Validate the params before sending
@@ -255,7 +255,7 @@ func (a *Client) PostAuthAPIV1KeyIDActivate(params *PostAuthAPIV1KeyIDActivatePa
 /*
 PostAuthAPIV1KeyIDSuspend suspends workspace key
 
-Suspends a key in the workspace with specified ID.
+Suspends Workspace Key by ID
 */
 func (a *Client) PostAuthAPIV1KeyIDSuspend(params *PostAuthAPIV1KeyIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyIDSuspendOK, error) {
 	// TODO: Validate the params before sending

@@ -67,7 +67,7 @@ type GetOnboardAPIV1ConnectionsCountParams struct {
 
 	   Request
 	*/
-	Type *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest
+	Type *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionCountRequest
 
 	timeout    time.Duration
 	Context    context.Context
@@ -123,13 +123,13 @@ func (o *GetOnboardAPIV1ConnectionsCountParams) SetHTTPClient(client *http.Clien
 }
 
 // WithType adds the typeVar to the get onboard API v1 connections count params
-func (o *GetOnboardAPIV1ConnectionsCountParams) WithType(typeVar *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest) *GetOnboardAPIV1ConnectionsCountParams {
+func (o *GetOnboardAPIV1ConnectionsCountParams) WithType(typeVar *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionCountRequest) *GetOnboardAPIV1ConnectionsCountParams {
 	o.SetType(typeVar)
 	return o
 }
 
 // SetType adds the type to the get onboard API v1 connections count params
-func (o *GetOnboardAPIV1ConnectionsCountParams) SetType(typeVar *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnectionCountRequest) {
+func (o *GetOnboardAPIV1ConnectionsCountParams) SetType(typeVar *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionCountRequest) {
 	o.Type = typeVar
 }
 

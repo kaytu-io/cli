@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetOnboardAPIV1SourcesParams creates a new GetOnboardAPIV1SourcesParams object,
@@ -65,7 +66,7 @@ type GetOnboardAPIV1SourcesParams struct {
 
 	   filter by source type
 	*/
-	Connector *string
+	Connector []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -121,13 +122,13 @@ func (o *GetOnboardAPIV1SourcesParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithConnector adds the connector to the get onboard API v1 sources params
-func (o *GetOnboardAPIV1SourcesParams) WithConnector(connector *string) *GetOnboardAPIV1SourcesParams {
+func (o *GetOnboardAPIV1SourcesParams) WithConnector(connector []string) *GetOnboardAPIV1SourcesParams {
 	o.SetConnector(connector)
 	return o
 }
 
 // SetConnector adds the connector to the get onboard API v1 sources params
-func (o *GetOnboardAPIV1SourcesParams) SetConnector(connector *string) {
+func (o *GetOnboardAPIV1SourcesParams) SetConnector(connector []string) {
 	o.Connector = connector
 }
 
@@ -141,18 +142,12 @@ func (o *GetOnboardAPIV1SourcesParams) WriteToRequest(r runtime.ClientRequest, r
 
 	if o.Connector != nil {
 
-		// query param connector
-		var qrConnector string
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
 
-		if o.Connector != nil {
-			qrConnector = *o.Connector
-		}
-		qConnector := qrConnector
-		if qConnector != "" {
-
-			if err := r.SetQueryParam("connector", qConnector); err != nil {
-				return err
-			}
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
 		}
 	}
 
@@ -160,4 +155,21 @@ func (o *GetOnboardAPIV1SourcesParams) WriteToRequest(r runtime.ClientRequest, r
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetOnboardAPIV1Sources binds the parameter connector
+func (o *GetOnboardAPIV1SourcesParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
 }

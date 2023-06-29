@@ -45,7 +45,7 @@ PostAuthAPIV1KeyRoleOK describes a response with status code 200, with default h
 OK
 */
 type PostAuthAPIV1KeyRoleOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey
+	Payload *models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey
 }
 
 // IsSuccess returns true when this post auth Api v1 key role o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostAuthAPIV1KeyRoleOK) String() string {
 	return fmt.Sprintf("[POST /auth/api/v1/key/role][%d] postAuthApiV1KeyRoleOK  %+v", 200, o.Payload)
 }
 
-func (o *PostAuthAPIV1KeyRoleOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey {
+func (o *PostAuthAPIV1KeyRoleOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey {
 	return o.Payload
 }
 
 func (o *PostAuthAPIV1KeyRoleOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgAuthAPIWorkspaceAPIKey)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

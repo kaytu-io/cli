@@ -67,7 +67,7 @@ type PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams struct {
 
 	   Change organization request
 	*/
-	Request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceOrganizationRequest
+	Request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceOrganizationRequest
 
 	/* WorkspaceID.
 
@@ -129,13 +129,13 @@ func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams) SetHTTPClient
 }
 
 // WithRequest adds the request to the post workspace API v1 workspace workspace ID organization params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams) WithRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceOrganizationRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceOrganizationRequest) *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the post workspace API v1 workspace workspace ID organization params
-func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams) SetRequest(request *models.GitlabComKeibiengineKeibiEnginePkgWorkspaceAPIChangeWorkspaceOrganizationRequest) {
+func (o *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams) SetRequest(request *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceOrganizationRequest) {
 	o.Request = request
 }
 

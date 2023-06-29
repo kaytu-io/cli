@@ -45,7 +45,7 @@ PostInventoryAPIV1QueryQueryIDOK describes a response with status code 200, with
 OK
 */
 type PostInventoryAPIV1QueryQueryIDOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryResponse
 }
 
 // IsSuccess returns true when this post inventory Api v1 query query Id o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *PostInventoryAPIV1QueryQueryIDOK) String() string {
 	return fmt.Sprintf("[POST /inventory/api/v1/query/{queryId}][%d] postInventoryApiV1QueryQueryIdOK  %+v", 200, o.Payload)
 }
 
-func (o *PostInventoryAPIV1QueryQueryIDOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryResponse {
+func (o *PostInventoryAPIV1QueryQueryIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryResponse {
 	return o.Payload
 }
 
 func (o *PostInventoryAPIV1QueryQueryIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgInventoryAPIRunQueryResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

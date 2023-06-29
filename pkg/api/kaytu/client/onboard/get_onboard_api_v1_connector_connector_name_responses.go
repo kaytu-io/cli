@@ -45,7 +45,7 @@ GetOnboardAPIV1ConnectorConnectorNameOK describes a response with status code 20
 OK
 */
 type GetOnboardAPIV1ConnectorConnectorNameOK struct {
-	Payload *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnector
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnector
 }
 
 // IsSuccess returns true when this get onboard Api v1 connector connector name o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetOnboardAPIV1ConnectorConnectorNameOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/connector/{connectorName}][%d] getOnboardApiV1ConnectorConnectorNameOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1ConnectorConnectorNameOK) GetPayload() *models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnector {
+func (o *GetOnboardAPIV1ConnectorConnectorNameOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnector {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1ConnectorConnectorNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GitlabComKeibiengineKeibiEnginePkgOnboardAPIConnector)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnector)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
