@@ -12,10 +12,10 @@ rm -rf cmd/gen pkg/api/kaytu/client pkg/api/kaytu/models
 
 swagger generate client --spec https://app.kaytu.dev/docs/api/1.0/swagger.yaml --target ./pkg/api/kaytu/
 go run scripts/fix_api.go
-go run scripts/params/populate_parameters.go > ./gen/parameters.go
+go run scripts/params/populate_parameters.go > ./gen/config/parameters.go
 
-gofmt -s -w ./gen/parameters.go
-goimports -w ./gen/parameters.go
+gofmt -s -w ./gen/config/parameters.go
+goimports -w ./gen/config/parameters.go
 
 go run gen/*.go
 

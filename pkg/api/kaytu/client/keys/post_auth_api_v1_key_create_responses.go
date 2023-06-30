@@ -29,6 +29,12 @@ func (o *PostAuthAPIV1KeyCreateReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return result, nil
+	case 406:
+		result := NewPostAuthAPIV1KeyCreateNotAcceptable()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("[POST /auth/api/v1/key/create] PostAuthAPIV1KeyCreate", response, response.Code())
 	}
@@ -93,6 +99,74 @@ func (o *PostAuthAPIV1KeyCreateOK) GetPayload() *models.GithubComKaytuIoKaytuEng
 func (o *PostAuthAPIV1KeyCreateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgAuthAPICreateAPIKeyResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPostAuthAPIV1KeyCreateNotAcceptable creates a PostAuthAPIV1KeyCreateNotAcceptable with default headers values
+func NewPostAuthAPIV1KeyCreateNotAcceptable() *PostAuthAPIV1KeyCreateNotAcceptable {
+	return &PostAuthAPIV1KeyCreateNotAcceptable{}
+}
+
+/*
+PostAuthAPIV1KeyCreateNotAcceptable describes a response with status code 406, with default header values.
+
+Not Acceptable
+*/
+type PostAuthAPIV1KeyCreateNotAcceptable struct {
+	Payload *models.EchoHTTPError
+}
+
+// IsSuccess returns true when this post auth Api v1 key create not acceptable response has a 2xx status code
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post auth Api v1 key create not acceptable response has a 3xx status code
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post auth Api v1 key create not acceptable response has a 4xx status code
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post auth Api v1 key create not acceptable response has a 5xx status code
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post auth Api v1 key create not acceptable response a status code equal to that given
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
+// Code gets the status code for the post auth Api v1 key create not acceptable response
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) Code() int {
+	return 406
+}
+
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) Error() string {
+	return fmt.Sprintf("[POST /auth/api/v1/key/create][%d] postAuthApiV1KeyCreateNotAcceptable  %+v", 406, o.Payload)
+}
+
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /auth/api/v1/key/create][%d] postAuthApiV1KeyCreateNotAcceptable  %+v", 406, o.Payload)
+}
+
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) GetPayload() *models.EchoHTTPError {
+	return o.Payload
+}
+
+func (o *PostAuthAPIV1KeyCreateNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.EchoHTTPError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

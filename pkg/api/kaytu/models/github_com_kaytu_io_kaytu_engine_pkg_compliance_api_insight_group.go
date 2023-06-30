@@ -12,7 +12,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightGroup github com kaytu io kaytu engine pkg compliance api insight group
@@ -33,7 +32,7 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightGroup struct {
 	ID int64 `json:"id,omitempty"`
 
 	// insights
-	Insights map[string]GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight `json:"insights,omitempty"`
+	Insights []*GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight `json:"insights"`
 
 	// logo URL
 	// Example: https://kaytu.io/logo.png
@@ -103,17 +102,17 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightGroup) validateInsigh
 		return nil
 	}
 
-	for k := range m.Insights {
-
-		if err := validate.Required("insights"+"."+k, "body", m.Insights[k]); err != nil {
-			return err
+	for i := 0; i < len(m.Insights); i++ {
+		if swag.IsZero(m.Insights[i]) { // not required
+			continue
 		}
-		if val, ok := m.Insights[k]; ok {
-			if err := val.Validate(formats); err != nil {
+
+		if m.Insights[i] != nil {
+			if err := m.Insights[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("insights" + "." + k)
+					return ve.ValidateName("insights" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("insights" + "." + k)
+					return ce.ValidateName("insights" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -166,10 +165,20 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightGroup) contextValidat
 
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightGroup) contextValidateInsights(ctx context.Context, formats strfmt.Registry) error {
 
-	for k := range m.Insights {
+	for i := 0; i < len(m.Insights); i++ {
 
-		if val, ok := m.Insights[k]; ok {
-			if err := val.ContextValidate(ctx, formats); err != nil {
+		if m.Insights[i] != nil {
+
+			if swag.IsZero(m.Insights[i]) { // not required
+				return nil
+			}
+
+			if err := m.Insights[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("insights" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("insights" + "." + strconv.Itoa(i))
+				}
 				return err
 			}
 		}

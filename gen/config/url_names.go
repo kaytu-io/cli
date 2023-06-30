@@ -1,8 +1,8 @@
-package main
+package config
 
 // Write the route as Key. The value is the name of the cli command.
 // use - instead of / in the route and remove : or {} signs.
-var urlNames = map[string]string{
+var UrlNames = map[string]string{
 	// benchmarks
 	"get-inventory-api-v1-accounts-resource-count":        "accounts-resource-count",
 	"get-inventory-api-v1-resources-distribution":         "resources-distribution",

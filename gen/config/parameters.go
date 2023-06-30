@@ -1,9 +1,8 @@
-package main
+package config
 
 import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
@@ -22,7 +21,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/workspace"
 )
 
-var paramModels = map[string]interface{}{
+var ParamModels = map[string]interface{}{
 	"DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID": benchmarks_assignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams{},
 	"GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID":                 benchmarks_assignment.GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams{},
 	"GetComplianceAPIV1AssignmentsConnectionConnectionID":               benchmarks_assignment.GetComplianceAPIV1AssignmentsConnectionConnectionIDParams{},
@@ -41,8 +40,6 @@ var paramModels = map[string]interface{}{
 	"GetComplianceAPIV1QueriesQueryID":                                  compliance.GetComplianceAPIV1QueriesQueryIDParams{},
 	"PostComplianceAPIV1AlarmsTop":                                      compliance.PostComplianceAPIV1AlarmsTopParams{},
 	"PostComplianceAPIV1Findings":                                       compliance.PostComplianceAPIV1FindingsParams{},
-	"GetInventoryAPIV2ConnectionsDataConnectionID":                      connection.GetInventoryAPIV2ConnectionsDataConnectionIDParams{},
-	"GetInventoryAPIV2ConnectionsData":                                  connection.GetInventoryAPIV2ConnectionsDataParams{},
 	"GetOnboardAPIV1ConnectionsSummaryConnectionID":                     connections.GetOnboardAPIV1ConnectionsSummaryConnectionIDParams{},
 	"GetOnboardAPIV1ConnectionsSummary":                                 connections.GetOnboardAPIV1ConnectionsSummaryParams{},
 	"GetScheduleAPIV0ComplianceSummarizerTrigger":                       describe.GetScheduleAPIV0ComplianceSummarizerTriggerParams{},
@@ -67,10 +64,6 @@ var paramModels = map[string]interface{}{
 	"GetComplianceAPIV1MetadataInsight":                                 insights.GetComplianceAPIV1MetadataInsightParams{},
 	"GetComplianceAPIV1MetadataTagInsightKey":                           insights.GetComplianceAPIV1MetadataTagInsightKeyParams{},
 	"GetComplianceAPIV1MetadataTagInsight":                              insights.GetComplianceAPIV1MetadataTagInsightParams{},
-	"GetInventoryAPIV2InsightsInsightID":                                insights.GetInventoryAPIV2InsightsInsightIDParams{},
-	"GetInventoryAPIV2InsightsInsightIDTrend":                           insights.GetInventoryAPIV2InsightsInsightIDTrendParams{},
-	"GetInventoryAPIV2InsightsJobJobID":                                 insights.GetInventoryAPIV2InsightsJobJobIDParams{},
-	"GetInventoryAPIV2Insights":                                         insights.GetInventoryAPIV2InsightsParams{},
 	"GetInventoryAPIV2CostComposition":                                  inventory.GetInventoryAPIV2CostCompositionParams{},
 	"GetInventoryAPIV2CostMetric":                                       inventory.GetInventoryAPIV2CostMetricParams{},
 	"GetInventoryAPIV2CostTrend":                                        inventory.GetInventoryAPIV2CostTrendParams{},

@@ -12,7 +12,6 @@ import (
 
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
@@ -75,7 +74,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KeibiServi
 	cli.Transport = transport
 	cli.BenchmarksAssignment = benchmarks_assignment.New(transport, formats)
 	cli.Compliance = compliance.New(transport, formats)
-	cli.Connection = connection.New(transport, formats)
 	cli.Connections = connections.New(transport, formats)
 	cli.Describe = describe.New(transport, formats)
 	cli.Insights = insights.New(transport, formats)
@@ -140,8 +138,6 @@ type KeibiServiceAPI struct {
 
 	Compliance compliance.ClientService
 
-	Connection connection.ClientService
-
 	Connections connections.ClientService
 
 	Describe describe.ClientService
@@ -182,7 +178,6 @@ func (c *KeibiServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.BenchmarksAssignment.SetTransport(transport)
 	c.Compliance.SetTransport(transport)
-	c.Connection.SetTransport(transport)
 	c.Connections.SetTransport(transport)
 	c.Describe.SetTransport(transport)
 	c.Insights.SetTransport(transport)

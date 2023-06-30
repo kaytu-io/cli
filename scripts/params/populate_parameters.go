@@ -10,8 +10,8 @@ import (
 
 func main() {
 	keyNames := map[string]interface{}{}
-	fmt.Println("package main")
-	fmt.Println("var paramModels = map[string]interface{}{")
+	fmt.Println("package config")
+	fmt.Println("var ParamModels = map[string]interface{}{")
 	err := filepath.Walk("./pkg/api/kaytu/client", func(path string, info fs.FileInfo, err error) error {
 		if info == nil {
 			return nil
