@@ -12,6 +12,13 @@ var Get{{ .ServiceNameCamel }}Cmd = &cobra.Command{
 	},
 }
 
+var List{{ .ServiceNameCamel }}Cmd = &cobra.Command{
+	Use: "{{ .ServiceNameSnake }}",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var Create{{ .ServiceNameCamel }}Cmd = &cobra.Command{
 	Use: "{{ .ServiceNameSnake }}",
 	RunE: func(cmd *cobra.Command, args []string) error {

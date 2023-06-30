@@ -13,6 +13,13 @@ var getCmd = &cobra.Command{
 	},
 }
 
+var listCmd = &cobra.Command{
+	Use: "list",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var createCmd = &cobra.Command{
 	Use: "create",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -34,6 +41,7 @@ var updateCmd = &cobra.Command{
 }
 
 func init() {
+	rootCmd.AddCommand(listCmd)
 	rootCmd.AddCommand(getCmd)
 	rootCmd.AddCommand(createCmd)
 	rootCmd.AddCommand(deleteCmd)
@@ -42,6 +50,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetBenchmarksAssignmentCmd)
+    listCmd.AddCommand(gen.ListBenchmarksAssignmentCmd)
     updateCmd.AddCommand(gen.UpdateBenchmarksAssignmentCmd)
     deleteCmd.AddCommand(gen.DeleteBenchmarksAssignmentCmd)
     createCmd.AddCommand(gen.CreateBenchmarksAssignmentCmd)
@@ -49,6 +58,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetComplianceCmd)
+    listCmd.AddCommand(gen.ListComplianceCmd)
     updateCmd.AddCommand(gen.UpdateComplianceCmd)
     deleteCmd.AddCommand(gen.DeleteComplianceCmd)
     createCmd.AddCommand(gen.CreateComplianceCmd)
@@ -56,6 +66,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetConnectionsCmd)
+    listCmd.AddCommand(gen.ListConnectionsCmd)
     updateCmd.AddCommand(gen.UpdateConnectionsCmd)
     deleteCmd.AddCommand(gen.DeleteConnectionsCmd)
     createCmd.AddCommand(gen.CreateConnectionsCmd)
@@ -63,6 +74,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetDescribeCmd)
+    listCmd.AddCommand(gen.ListDescribeCmd)
     updateCmd.AddCommand(gen.UpdateDescribeCmd)
     deleteCmd.AddCommand(gen.DeleteDescribeCmd)
     createCmd.AddCommand(gen.CreateDescribeCmd)
@@ -70,6 +82,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetInsightsCmd)
+    listCmd.AddCommand(gen.ListInsightsCmd)
     updateCmd.AddCommand(gen.UpdateInsightsCmd)
     deleteCmd.AddCommand(gen.DeleteInsightsCmd)
     createCmd.AddCommand(gen.CreateInsightsCmd)
@@ -77,6 +90,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetInventoryCmd)
+    listCmd.AddCommand(gen.ListInventoryCmd)
     updateCmd.AddCommand(gen.UpdateInventoryCmd)
     deleteCmd.AddCommand(gen.DeleteInventoryCmd)
     createCmd.AddCommand(gen.CreateInventoryCmd)
@@ -84,6 +98,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetKeysCmd)
+    listCmd.AddCommand(gen.ListKeysCmd)
     updateCmd.AddCommand(gen.UpdateKeysCmd)
     deleteCmd.AddCommand(gen.DeleteKeysCmd)
     createCmd.AddCommand(gen.CreateKeysCmd)
@@ -91,6 +106,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetLocationCmd)
+    listCmd.AddCommand(gen.ListLocationCmd)
     updateCmd.AddCommand(gen.UpdateLocationCmd)
     deleteCmd.AddCommand(gen.DeleteLocationCmd)
     createCmd.AddCommand(gen.CreateLocationCmd)
@@ -98,6 +114,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetMetadataCmd)
+    listCmd.AddCommand(gen.ListMetadataCmd)
     updateCmd.AddCommand(gen.UpdateMetadataCmd)
     deleteCmd.AddCommand(gen.DeleteMetadataCmd)
     createCmd.AddCommand(gen.CreateMetadataCmd)
@@ -105,6 +122,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetOnboardCmd)
+    listCmd.AddCommand(gen.ListOnboardCmd)
     updateCmd.AddCommand(gen.UpdateOnboardCmd)
     deleteCmd.AddCommand(gen.DeleteOnboardCmd)
     createCmd.AddCommand(gen.CreateOnboardCmd)
@@ -112,6 +130,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetResourceCmd)
+    listCmd.AddCommand(gen.ListResourceCmd)
     updateCmd.AddCommand(gen.UpdateResourceCmd)
     deleteCmd.AddCommand(gen.DeleteResourceCmd)
     createCmd.AddCommand(gen.CreateResourceCmd)
@@ -119,6 +138,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetRolesCmd)
+    listCmd.AddCommand(gen.ListRolesCmd)
     updateCmd.AddCommand(gen.UpdateRolesCmd)
     deleteCmd.AddCommand(gen.DeleteRolesCmd)
     createCmd.AddCommand(gen.CreateRolesCmd)
@@ -126,6 +146,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetScheduleCmd)
+    listCmd.AddCommand(gen.ListScheduleCmd)
     updateCmd.AddCommand(gen.UpdateScheduleCmd)
     deleteCmd.AddCommand(gen.DeleteScheduleCmd)
     createCmd.AddCommand(gen.CreateScheduleCmd)
@@ -133,6 +154,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetServicesCmd)
+    listCmd.AddCommand(gen.ListServicesCmd)
     updateCmd.AddCommand(gen.UpdateServicesCmd)
     deleteCmd.AddCommand(gen.DeleteServicesCmd)
     createCmd.AddCommand(gen.CreateServicesCmd)
@@ -140,6 +162,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetSmartQueryCmd)
+    listCmd.AddCommand(gen.ListSmartQueryCmd)
     updateCmd.AddCommand(gen.UpdateSmartQueryCmd)
     deleteCmd.AddCommand(gen.DeleteSmartQueryCmd)
     createCmd.AddCommand(gen.CreateSmartQueryCmd)
@@ -147,6 +170,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetStackCmd)
+    listCmd.AddCommand(gen.ListStackCmd)
     updateCmd.AddCommand(gen.UpdateStackCmd)
     deleteCmd.AddCommand(gen.DeleteStackCmd)
     createCmd.AddCommand(gen.CreateStackCmd)
@@ -154,6 +178,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetUsersCmd)
+    listCmd.AddCommand(gen.ListUsersCmd)
     updateCmd.AddCommand(gen.UpdateUsersCmd)
     deleteCmd.AddCommand(gen.DeleteUsersCmd)
     createCmd.AddCommand(gen.CreateUsersCmd)
@@ -161,6 +186,7 @@ func init() {
 	
 
     getCmd.AddCommand(gen.GetWorkspaceCmd)
+    listCmd.AddCommand(gen.ListWorkspaceCmd)
     updateCmd.AddCommand(gen.UpdateWorkspaceCmd)
     deleteCmd.AddCommand(gen.DeleteWorkspaceCmd)
     createCmd.AddCommand(gen.CreateWorkspaceCmd)

@@ -11,36 +11,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetComplianceApiV1InsightGroupCmd = &cobra.Command{
-	Use: "list-insight-groups",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
-		}
-
-		req := insights.NewGetComplianceAPIV1InsightGroupParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
-		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
-
-		resp, err := client.Insights.GetComplianceAPIV1InsightGroup(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetComplianceApiV1InsightInsightIdCmd = &cobra.Command{
 	Use: "get-insight",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,36 +34,6 @@ var GetComplianceApiV1InsightInsightIdCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1InsightInsightIdTrendCmd = &cobra.Command{
-	Use: "get-insight-trend",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
-		}
-
-		req := insights.NewGetComplianceAPIV1InsightInsightIDTrendParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetDatapointCount(flags.ReadInt64OptionalFlag(cmd, "DatapointCount"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Insights.GetComplianceAPIV1InsightInsightIDTrend(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
 
 		return nil
@@ -126,29 +66,30 @@ var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
 	},
 }
 
-var GetComplianceApiV1InsightGroupInsightGroupIdCmd = &cobra.Command{
-	Use: "get-insight-group",
+var GetComplianceApiV1InsightGroupCmd = &cobra.Command{
+	Use: "list-insight-groups",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
 
-		req := insights.NewGetComplianceAPIV1InsightGroupInsightGroupIDParams()
+		req := insights.NewGetComplianceAPIV1InsightGroupParams()
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetInsightGroupID(flags.ReadStringFlag(cmd, "InsightGroupID"))
 		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
-		resp, err := client.Insights.GetComplianceAPIV1InsightGroupInsightGroupID(req, auth)
+		resp, err := client.Insights.GetComplianceAPIV1InsightGroup(req, auth)
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
+			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
 
 		return nil
@@ -179,6 +120,36 @@ var GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id_trend] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1InsightInsightIdTrendCmd = &cobra.Command{
+	Use: "get-insight-trend",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
+		}
+
+		req := insights.NewGetComplianceAPIV1InsightInsightIDTrendParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetDatapointCount(flags.ReadInt64OptionalFlag(cmd, "DatapointCount"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Insights.GetComplianceAPIV1InsightInsightIDTrend(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
 
 		return nil
@@ -285,6 +256,35 @@ var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1InsightGroupInsightGroupIdCmd = &cobra.Command{
+	Use: "get-insight-group",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
+		}
+
+		req := insights.NewGetComplianceAPIV1InsightGroupInsightGroupIDParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetInsightGroupID(flags.ReadStringFlag(cmd, "InsightGroupID"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Insights.GetComplianceAPIV1InsightGroupInsightGroupID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
 		}
 
 		return nil

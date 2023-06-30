@@ -63,17 +63,30 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 
 		crud := "Get"
 		if strings.HasPrefix(strings.ToLower(commandName), "create") ||
-			strings.HasPrefix(strings.ToLower(commandName), "insert") {
+			strings.HasPrefix(strings.ToLower(commandName), "insert") ||
+			strings.HasPrefix(strings.ToLower(commandName), "trigger") {
 			crud = "Create"
-		}
-		if strings.HasPrefix(strings.ToLower(commandName), "delete") ||
+			//commandName = strings.TrimPrefix(commandName, "create")
+			//commandName = strings.TrimPrefix(commandName, "insert")
+			//commandName = strings.TrimPrefix(commandName, "trigger")
+		} else if strings.HasPrefix(strings.ToLower(commandName), "delete") ||
 			strings.HasPrefix(strings.ToLower(commandName), "remove") {
 			crud = "Delete"
-		}
-		if strings.HasPrefix(strings.ToLower(commandName), "update") ||
+			//commandName = strings.TrimPrefix(commandName, "remove")
+			//commandName = strings.TrimPrefix(commandName, "delete")
+		} else if strings.HasPrefix(strings.ToLower(commandName), "update") ||
 			strings.HasPrefix(strings.ToLower(commandName), "edit") {
 			crud = "Update"
+			//commandName = strings.TrimPrefix(commandName, "update")
+			//commandName = strings.TrimPrefix(commandName, "edit")
+		} else if strings.HasPrefix(strings.ToLower(commandName), "list") {
+			crud = "List"
+			//commandName = strings.TrimPrefix(commandName, "list")
+		} else {
+			//commandName = strings.TrimPrefix(commandName, "get")
 		}
+		//commandName = strings.Trim(commandName, "-")
+
 		tmpl := Child{
 			Parent:           g,
 			CommandNameCamel: strcase.ToCamel(name),
@@ -87,39 +100,5 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		}
 		g.Children = append(g.Children, tmpl)
 	}
-	//	for name, temp := range childrenMap {
-	//		switch {
-	//		case strings.Contains(temp.NameCamel, "Delete"):
-	//			cmdReference += fmt.Sprintf(`
-	//		Delete%sCmd.AddCommand(%sCmd)
-	//`, strcase.ToCamel(serviceName), temp.NameCamel)
-	//		case strings.Contains(temp.NameCamel, "Get"):
-	//			cmdReference += fmt.Sprintf(`
-	//		Get%sCmd.AddCommand(%sCmd)
-	//`, strcase.ToCamel(serviceName), temp.NameCamel)
-	//		case strings.Contains(temp.NameCamel, "Update"):
-	//			cmdReference += fmt.Sprintf(`
-	//		Update%sCmd.AddCommand(%sCmd)
-	//`, strcase.ToCamel(serviceName), temp.NameCamel)
-	//		case strings.Contains(temp.NameCamel, "Create"):
-	//			cmdReference += fmt.Sprintf(`
-	//		Create%sCmd.AddCommand(%sCmd)
-	//`, strcase.ToCamel(serviceName), temp.NameCamel)
-	//		default:
-	//			cmdReference += fmt.Sprintf(`
-	//		Get%sCmd.AddCommand(%sCmd)
-	//`, strcase.ToCamel(serviceName), temp.NameCamel)
-	//		}
-	//
-	//		fv := utils.ExtractFields(reflect.TypeOf(config.ParamModels[temp.APIName]))
-	//		output := utils.GenerateFlagDefinitions(temp.NameCamel, fv)
-	//		cmdReference += output
-	//		//
-	//		//for _, param := range temp.Params {
-	//		//	cmdReference += fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")
-	//		//`, temp.NameCamel, param.FlagName)
-	//		//}
-	//	}
-
 	return nil
 }

@@ -12,58 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
-	Use: "get-service",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
-		}
-
-		req := metadata.NewGetInventoryAPIV2MetadataServicesServiceNameParams()
-
-		req.SetServiceName(flags.ReadStringFlag(cmd, "ServiceName"))
-
-		resp, err := client.Metadata.GetInventoryAPIV2MetadataServicesServiceName(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
-	Use: "get-config-metadata",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
-		}
-
-		req := metadata.NewGetMetadataAPIV1MetadataKeyParams()
-
-		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
-
-		resp, err := client.Metadata.GetMetadataAPIV1MetadataKey(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PostMetadataApiV1MetadataCmd = &cobra.Command{
 	Use: "set-config-metadata",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -167,6 +115,58 @@ var GetInventoryApiV2MetadataServicesCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
+	Use: "get-service",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
+		}
+
+		req := metadata.NewGetInventoryAPIV2MetadataServicesServiceNameParams()
+
+		req.SetServiceName(flags.ReadStringFlag(cmd, "ServiceName"))
+
+		resp, err := client.Metadata.GetInventoryAPIV2MetadataServicesServiceName(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
+	Use: "get-config-metadata",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
+		}
+
+		req := metadata.NewGetMetadataAPIV1MetadataKeyParams()
+
+		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
+
+		resp, err := client.Metadata.GetMetadataAPIV1MetadataKey(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
 		}
 
 		return nil

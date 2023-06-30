@@ -12,6 +12,36 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetInventoryApiV1QueryCountCmd = &cobra.Command{
+	Use: "get-queries-count",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
+		}
+
+		req := smart_query.NewGetInventoryAPIV1QueryCountParams()
+
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
+			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
+			ProviderFilter: models.GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
+			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
+		})
+
+		resp, err := client.SmartQuery.GetInventoryAPIV1QueryCount(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV1QueryCmd = &cobra.Command{
 	Use: "get-queries",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -75,36 +105,6 @@ var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV1QueryCountCmd = &cobra.Command{
-	Use: "get-queries-count",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
-		}
-
-		req := smart_query.NewGetInventoryAPIV1QueryCountParams()
-
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
-			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
-			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
-		})
-
-		resp, err := client.SmartQuery.GetInventoryAPIV1QueryCount(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
 		}
 
 		return nil

@@ -12,6 +12,13 @@ var GetComplianceCmd = &cobra.Command{
 	},
 }
 
+var ListComplianceCmd = &cobra.Command{
+	Use: "compliance",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateComplianceCmd = &cobra.Command{
 	Use: "compliance",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,40 +42,6 @@ var UpdateComplianceCmd = &cobra.Command{
 
 func init() {
 
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd)
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.Flags().String("benchmark-id", "", "")
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.MarkFlagRequired("benchmark-id")
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.Flags().StringArray("status", nil, "")
-
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdCmd)
-	GetComplianceApiV1BenchmarksBenchmarkIdCmd.Flags().String("benchmark-id", "", "")
-	GetComplianceApiV1BenchmarksBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
-
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd)
-	GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd.Flags().String("policy-id", "", "")
-	GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd.MarkFlagRequired("policy-id")
-
-	GetComplianceCmd.AddCommand(GetComplianceApiV1FindingsMetricsCmd)
-	GetComplianceApiV1FindingsMetricsCmd.Flags().Int64("end", 0, "")
-	GetComplianceApiV1FindingsMetricsCmd.Flags().Int64("start", 0, "")
-
-	GetComplianceCmd.AddCommand(GetComplianceApiV1QueriesQueryIdCmd)
-	GetComplianceApiV1QueriesQueryIdCmd.Flags().String("query-id", "", "")
-	GetComplianceApiV1QueriesQueryIdCmd.MarkFlagRequired("query-id")
-
-	GetComplianceCmd.AddCommand(PostComplianceApiV1AlarmsTopCmd)
-	PostComplianceApiV1AlarmsTopCmd.Flags().Int64("count", 0, "")
-	PostComplianceApiV1AlarmsTopCmd.MarkFlagRequired("count")
-	PostComplianceApiV1AlarmsTopCmd.Flags().String("field", "", "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("benchmark-id", nil, "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("connection-id", nil, "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().String("connector", "", "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("policy-id", nil, "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("resource-id", nil, "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("resource-type-id", nil, "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("severity", nil, "")
-	PostComplianceApiV1AlarmsTopCmd.Flags().String("status", "", "")
-
 	GetComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("benchmark-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("connection-id", nil, "")
@@ -87,15 +60,20 @@ func init() {
 	PostComplianceApiV1FindingsCmd.Flags().String("direction", "", "")
 	PostComplianceApiV1FindingsCmd.Flags().String("field", "", "")
 
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd)
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd.Flags().String("benchmark-id", "", "")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd)
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().String("benchmark-id", "", "")
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().Int64("end", 0, "")
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("end")
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().Int64("start", 0, "")
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("start")
 
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd)
-	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.Flags().String("benchmark-id", "", "")
-	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd)
+	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.Flags().String("benchmark-id", "", "")
+	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.Flags().StringArray("status", nil, "")
 
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksCmd)
+	ListComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksCmd)
 
 	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksSummaryCmd)
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().Int64("end", 0, "")
@@ -111,12 +89,41 @@ func init() {
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().String("field", "", "")
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.MarkFlagRequired("field")
 
-	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd)
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().String("benchmark-id", "", "")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("benchmark-id")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().Int64("end", 0, "")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("end")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().Int64("start", 0, "")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("start")
+	GetComplianceCmd.AddCommand(GetComplianceApiV1QueriesQueryIdCmd)
+	GetComplianceApiV1QueriesQueryIdCmd.Flags().String("query-id", "", "")
+	GetComplianceApiV1QueriesQueryIdCmd.MarkFlagRequired("query-id")
+
+	GetComplianceCmd.AddCommand(PostComplianceApiV1AlarmsTopCmd)
+	PostComplianceApiV1AlarmsTopCmd.Flags().Int64("count", 0, "")
+	PostComplianceApiV1AlarmsTopCmd.MarkFlagRequired("count")
+	PostComplianceApiV1AlarmsTopCmd.Flags().String("field", "", "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("benchmark-id", nil, "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("connection-id", nil, "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().String("connector", "", "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("policy-id", nil, "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("resource-id", nil, "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("resource-type-id", nil, "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().StringArray("severity", nil, "")
+	PostComplianceApiV1AlarmsTopCmd.Flags().String("status", "", "")
+
+	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd)
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd.Flags().String("benchmark-id", "", "")
+	GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd.MarkFlagRequired("benchmark-id")
+
+	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdCmd)
+	GetComplianceApiV1BenchmarksBenchmarkIdCmd.Flags().String("benchmark-id", "", "")
+	GetComplianceApiV1BenchmarksBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
+
+	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd)
+	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.Flags().String("benchmark-id", "", "")
+	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.MarkFlagRequired("benchmark-id")
+
+	GetComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd)
+	GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd.Flags().String("policy-id", "", "")
+	GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd.MarkFlagRequired("policy-id")
+
+	GetComplianceCmd.AddCommand(GetComplianceApiV1FindingsMetricsCmd)
+	GetComplianceApiV1FindingsMetricsCmd.Flags().Int64("end", 0, "")
+	GetComplianceApiV1FindingsMetricsCmd.Flags().Int64("start", 0, "")
 
 }

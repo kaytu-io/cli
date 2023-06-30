@@ -12,6 +12,13 @@ var GetConnectionsCmd = &cobra.Command{
 	},
 }
 
+var ListConnectionsCmd = &cobra.Command{
+	Use: "connections",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateConnectionsCmd = &cobra.Command{
 	Use: "connections",
 	RunE: func(cmd *cobra.Command, args []string) error {

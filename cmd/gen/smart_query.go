@@ -12,6 +12,13 @@ var GetSmartQueryCmd = &cobra.Command{
 	},
 }
 
+var ListSmartQueryCmd = &cobra.Command{
+	Use: "smart_query",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateSmartQueryCmd = &cobra.Command{
 	Use: "smart_query",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,6 +42,12 @@ var UpdateSmartQueryCmd = &cobra.Command{
 
 func init() {
 
+	GetSmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
+	GetInventoryApiV1QueryCountCmd.Flags().StringArray("labels", nil, "")
+	GetInventoryApiV1QueryCountCmd.Flags().String("provider-filter", "", "")
+	GetInventoryApiV1QueryCountCmd.Flags().String("title-filter", "", "")
+	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("title-filter")
+
 	GetSmartQueryCmd.AddCommand(GetInventoryApiV1QueryCmd)
 	GetInventoryApiV1QueryCmd.Flags().StringArray("labels", nil, "")
 	GetInventoryApiV1QueryCmd.Flags().String("provider-filter", "", "")
@@ -54,11 +67,5 @@ func init() {
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("direction", "", "")
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("field", "", "")
 	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("field")
-
-	GetSmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
-	GetInventoryApiV1QueryCountCmd.Flags().StringArray("labels", nil, "")
-	GetInventoryApiV1QueryCountCmd.Flags().String("provider-filter", "", "")
-	GetInventoryApiV1QueryCountCmd.Flags().String("title-filter", "", "")
-	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("title-filter")
 
 }

@@ -12,78 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd = &cobra.Command{
-	Use: "get-workspace-limits",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
-		}
-
-		req := workspace.NewGetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams()
-
-		req.SetIgnoreUsage(flags.ReadBooleanOptionalFlag(cmd, "IgnoreUsage"))
-		req.SetWorkspaceName(flags.ReadStringFlag(cmd, "WorkspaceName"))
-
-		resp, err := client.Workspace.GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetWorkspaceApiV1WorkspacesCmd = &cobra.Command{
-	Use: "list-workspaces",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
-		}
-
-		req := workspace.NewGetWorkspaceAPIV1WorkspacesParams()
-
-		resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetWorkspaceApiV1WorkspacesWorkspaceIdCmd = &cobra.Command{
-	Use: "get-workspace",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces_workspace_id] : %v", err)
-		}
-
-		req := workspace.NewGetWorkspaceAPIV1WorkspacesWorkspaceIDParams()
-
-		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
-
-		_, err = client.Workspace.GetWorkspaceAPIV1WorkspacesWorkspaceID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspaces_workspace_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd = &cobra.Command{
 	Use: "get-workspace-by-id",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -104,75 +32,6 @@ var GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_byid_workspace_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd = &cobra.Command{
-	Use: "suspend-workspace",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_suspend] : %v", err)
-		}
-
-		req := workspace.NewPostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams()
-
-		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
-
-		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_suspend] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd = &cobra.Command{
-	Use: "update-workspace-tier",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_tier] : %v", err)
-		}
-
-		req := workspace.NewPostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams()
-
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceTierRequest{
-			NewName: models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier(flags.ReadStringFlag(cmd, "NewName")),
-		})
-		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
-
-		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_tier] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetWorkspaceApiV1WorkspaceCurrentCmd = &cobra.Command{
-	Use: "get-current-workspace",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
-		}
-
-		req := workspace.NewGetWorkspaceAPIV1WorkspaceCurrentParams()
-
-		resp, err := client.Workspace.GetWorkspaceAPIV1WorkspaceCurrent(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
 		}
 
 		return nil
@@ -205,30 +64,114 @@ var GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd = &cobra.Command{
 	},
 }
 
-var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
-	Use: "create-workspace",
+var GetWorkspaceApiV1WorkspacesCmd = &cobra.Command{
+	Use: "list-workspaces",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
 		}
 
-		req := workspace.NewPostWorkspaceAPIV1WorkspaceParams()
+		req := workspace.NewGetWorkspaceAPIV1WorkspacesParams()
 
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest{
-			Description: flags.ReadStringFlag(cmd, "Description"),
-			Name:        flags.ReadStringFlag(cmd, "Name"),
-			Tier:        flags.ReadStringFlag(cmd, "Tier"),
-		})
-
-		resp, err := client.Workspace.PostWorkspaceAPIV1Workspace(req, auth)
+		resp, err := client.Workspace.GetWorkspaceAPIV1Workspaces(req, auth)
 		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd = &cobra.Command{
+	Use: "update-workspace-name",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_name] : %v", err)
+		}
+
+		req := workspace.NewPostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams()
+
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceNameRequest{
+			NewName: flags.ReadStringFlag(cmd, "NewName"),
+		})
+		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
+
+		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDName(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_name] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd = &cobra.Command{
+	Use: "delete-workspace",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[delete_workspace_api_v_1_workspace_workspace_id] : %v", err)
+		}
+
+		req := workspace.NewDeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams()
+
+		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
+
+		_, err = client.Workspace.DeleteWorkspaceAPIV1WorkspaceWorkspaceID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[delete_workspace_api_v_1_workspace_workspace_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetWorkspaceApiV1WorkspaceCurrentCmd = &cobra.Command{
+	Use: "get-current-workspace",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
+		}
+
+		req := workspace.NewGetWorkspaceAPIV1WorkspaceCurrentParams()
+
+		resp, err := client.Workspace.GetWorkspaceAPIV1WorkspaceCurrent(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetWorkspaceApiV1WorkspacesWorkspaceIdCmd = &cobra.Command{
+	Use: "get-workspace",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces_workspace_id] : %v", err)
+		}
+
+		req := workspace.NewGetWorkspaceAPIV1WorkspacesWorkspaceIDParams()
+
+		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
+
+		_, err = client.Workspace.GetWorkspaceAPIV1WorkspacesWorkspaceID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces_workspace_id] : %v", err)
 		}
 
 		return nil
@@ -280,45 +223,78 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd = &cobra.Command{
 	},
 }
 
-var DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd = &cobra.Command{
-	Use: "delete-workspace",
+var GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd = &cobra.Command{
+	Use: "get-workspace-limits",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[delete_workspace_api_v_1_workspace_workspace_id] : %v", err)
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
 		}
 
-		req := workspace.NewDeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams()
+		req := workspace.NewGetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams()
 
-		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
+		req.SetIgnoreUsage(flags.ReadBooleanOptionalFlag(cmd, "IgnoreUsage"))
+		req.SetWorkspaceName(flags.ReadStringFlag(cmd, "WorkspaceName"))
 
-		_, err = client.Workspace.DeleteWorkspaceAPIV1WorkspaceWorkspaceID(req, auth)
+		resp, err := client.Workspace.GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(req, auth)
 		if err != nil {
-			return fmt.Errorf("[delete_workspace_api_v_1_workspace_workspace_id] : %v", err)
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
 		}
 
 		return nil
 	},
 }
 
-var PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd = &cobra.Command{
-	Use: "update-workspace-name",
+var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
+	Use: "create-workspace",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_name] : %v", err)
+			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
 		}
 
-		req := workspace.NewPostWorkspaceAPIV1WorkspaceWorkspaceIDNameParams()
+		req := workspace.NewPostWorkspaceAPIV1WorkspaceParams()
 
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceNameRequest{
-			NewName: flags.ReadStringFlag(cmd, "NewName"),
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest{
+			Description: flags.ReadStringFlag(cmd, "Description"),
+			Name:        flags.ReadStringFlag(cmd, "Name"),
+			Tier:        flags.ReadStringFlag(cmd, "Tier"),
 		})
+
+		resp, err := client.Workspace.PostWorkspaceAPIV1Workspace(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd = &cobra.Command{
+	Use: "suspend-workspace",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_suspend] : %v", err)
+		}
+
+		req := workspace.NewPostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams()
+
 		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
 
-		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDName(req, auth)
+		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(req, auth)
 		if err != nil {
-			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_name] : %v", err)
+			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_suspend] : %v", err)
 		}
 
 		return nil
@@ -343,6 +319,30 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd = &cobra.Command{
 		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(req, auth)
 		if err != nil {
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_organization] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd = &cobra.Command{
+	Use: "update-workspace-tier",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_tier] : %v", err)
+		}
+
+		req := workspace.NewPostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams()
+
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIChangeWorkspaceTierRequest{
+			NewName: models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier(flags.ReadStringFlag(cmd, "NewName")),
+		})
+		req.SetWorkspaceID(flags.ReadStringFlag(cmd, "WorkspaceID"))
+
+		_, err = client.Workspace.PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_tier] : %v", err)
 		}
 
 		return nil

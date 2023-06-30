@@ -12,6 +12,13 @@ var GetKeysCmd = &cobra.Command{
 	},
 }
 
+var ListKeysCmd = &cobra.Command{
+	Use: "keys",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateKeysCmd = &cobra.Command{
 	Use: "keys",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,11 +42,6 @@ var UpdateKeysCmd = &cobra.Command{
 
 func init() {
 
-	UpdateKeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
-	PostAuthApiV1KeyRoleCmd.Flags().Int64("id", 0, "")
-	PostAuthApiV1KeyRoleCmd.MarkFlagRequired("id")
-	PostAuthApiV1KeyRoleCmd.Flags().String("role-name", "", "")
-
 	DeleteKeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
 	DeleteAuthApiV1KeyIdDeleteCmd.Flags().String("id", "", "")
 	DeleteAuthApiV1KeyIdDeleteCmd.MarkFlagRequired("id")
@@ -48,7 +50,7 @@ func init() {
 	GetAuthApiV1KeyIdCmd.Flags().String("id", "", "")
 	GetAuthApiV1KeyIdCmd.MarkFlagRequired("id")
 
-	GetKeysCmd.AddCommand(GetAuthApiV1KeysCmd)
+	ListKeysCmd.AddCommand(GetAuthApiV1KeysCmd)
 
 	CreateKeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
 	PostAuthApiV1KeyCreateCmd.Flags().String("name", "", "")
@@ -62,5 +64,10 @@ func init() {
 	GetKeysCmd.AddCommand(PostAuthApiV1KeyIdSuspendCmd)
 	PostAuthApiV1KeyIdSuspendCmd.Flags().String("id", "", "")
 	PostAuthApiV1KeyIdSuspendCmd.MarkFlagRequired("id")
+
+	UpdateKeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
+	PostAuthApiV1KeyRoleCmd.Flags().Int64("id", 0, "")
+	PostAuthApiV1KeyRoleCmd.MarkFlagRequired("id")
+	PostAuthApiV1KeyRoleCmd.Flags().String("role-name", "", "")
 
 }

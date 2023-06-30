@@ -12,6 +12,13 @@ var GetServicesCmd = &cobra.Command{
 	},
 }
 
+var ListServicesCmd = &cobra.Command{
+	Use: "services",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateServicesCmd = &cobra.Command{
 	Use: "services",
 	RunE: func(cmd *cobra.Command, args []string) error {

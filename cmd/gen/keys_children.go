@@ -12,35 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var PostAuthApiV1KeyRoleCmd = &cobra.Command{
-	Use: "update-key-role",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyRoleParams()
-
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAuthAPIUpdateKeyRoleRequest{
-			ID:       flags.ReadInt64Flag(cmd, "ID"),
-			RoleName: models.GithubComKaytuIoKaytuEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
-		})
-
-		resp, err := client.Keys.PostAuthAPIV1KeyRole(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
 	Use: "remove-key",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -187,6 +158,35 @@ var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostAuthApiV1KeyRoleCmd = &cobra.Command{
+	Use: "update-key-role",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
+		}
+
+		req := keys.NewPostAuthAPIV1KeyRoleParams()
+
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAuthAPIUpdateKeyRoleRequest{
+			ID:       flags.ReadInt64Flag(cmd, "ID"),
+			RoleName: models.GithubComKaytuIoKaytuEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
+		})
+
+		resp, err := client.Keys.PostAuthAPIV1KeyRole(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}
 
 		return nil

@@ -12,6 +12,13 @@ var GetLocationCmd = &cobra.Command{
 	},
 }
 
+var ListLocationCmd = &cobra.Command{
+	Use: "location",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateLocationCmd = &cobra.Command{
 	Use: "location",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,7 +42,7 @@ var UpdateLocationCmd = &cobra.Command{
 
 func init() {
 
-	GetLocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
+	ListLocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
 	GetInventoryApiV1LocationsConnectorCmd.Flags().String("connector", "", "")
 	GetInventoryApiV1LocationsConnectorCmd.MarkFlagRequired("connector")
 

@@ -12,6 +12,13 @@ var GetOnboardCmd = &cobra.Command{
 	},
 }
 
+var ListOnboardCmd = &cobra.Command{
+	Use: "onboard",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateOnboardCmd = &cobra.Command{
 	Use: "onboard",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,9 +42,66 @@ var UpdateOnboardCmd = &cobra.Command{
 
 func init() {
 
+	DeleteOnboardCmd.AddCommand(DeleteOnboardApiV1CredentialCredentialIdCmd)
+	DeleteOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "")
+	DeleteOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1ConnectionsCountCmd)
+	GetOnboardApiV1ConnectionsCountCmd.Flags().StringArray("connectors", nil, "")
+	GetOnboardApiV1ConnectionsCountCmd.Flags().String("state", "", "")
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1ConnectorConnectorNameCmd)
+	GetOnboardApiV1ConnectorConnectorNameCmd.Flags().String("connector-name", "", "")
+	GetOnboardApiV1ConnectorConnectorNameCmd.MarkFlagRequired("connector-name")
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1SourceSourceIdCredentialsCmd)
+	GetOnboardApiV1SourceSourceIdCredentialsCmd.Flags().String("source-id", "", "")
+	GetOnboardApiV1SourceSourceIdCredentialsCmd.MarkFlagRequired("source-id")
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1SourcesCountCmd)
+	GetOnboardApiV1SourcesCountCmd.Flags().String("connector", "", "")
+
+	CreateOnboardCmd.AddCommand(PostOnboardApiV1CredentialCmd)
+	PostOnboardApiV1CredentialCmd.Flags().String("config", "", "")
+	PostOnboardApiV1CredentialCmd.Flags().String("name", "", "")
+	PostOnboardApiV1CredentialCmd.MarkFlagRequired("name")
+	PostOnboardApiV1CredentialCmd.Flags().String("source-type", "", "")
+
+	DeleteOnboardCmd.AddCommand(DeleteOnboardApiV1SourceSourceIdCmd)
+	DeleteOnboardApiV1SourceSourceIdCmd.Flags().Int64("source-id", 0, "")
+	DeleteOnboardApiV1SourceSourceIdCmd.MarkFlagRequired("source-id")
+
+	ListOnboardCmd.AddCommand(GetOnboardApiV1CredentialSourcesListCmd)
+	GetOnboardApiV1CredentialSourcesListCmd.Flags().String("connector", "", "")
+	GetOnboardApiV1CredentialSourcesListCmd.Flags().Int64("page-number", 0, "")
+	GetOnboardApiV1CredentialSourcesListCmd.Flags().Int64("page-size", 0, "")
+
 	GetOnboardCmd.AddCommand(GetOnboardApiV1SourceAccountAccountIdCmd)
 	GetOnboardApiV1SourceAccountAccountIdCmd.Flags().Int64("account-id", 0, "")
 	GetOnboardApiV1SourceAccountAccountIdCmd.MarkFlagRequired("account-id")
+
+	GetOnboardCmd.AddCommand(PostOnboardApiV1CredentialCredentialIdDisableCmd)
+	PostOnboardApiV1CredentialCredentialIdDisableCmd.Flags().String("credential-id", "", "")
+	PostOnboardApiV1CredentialCredentialIdDisableCmd.MarkFlagRequired("credential-id")
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1ConnectorCmd)
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1CredentialCredentialIdHealthcheckCmd)
+	GetOnboardApiV1CredentialCredentialIdHealthcheckCmd.Flags().String("credential-id", "", "")
+	GetOnboardApiV1CredentialCredentialIdHealthcheckCmd.MarkFlagRequired("credential-id")
+
+	GetOnboardCmd.AddCommand(GetOnboardApiV1CredentialCredentialIdCmd)
+	GetOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "")
+	GetOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
+
+	ListOnboardCmd.AddCommand(GetOnboardApiV1CredentialCmd)
+	GetOnboardApiV1CredentialCmd.Flags().String("connector", "", "")
+	GetOnboardApiV1CredentialCmd.Flags().String("health", "", "")
+	GetOnboardApiV1CredentialCmd.Flags().Int64("page-number", 0, "")
+	GetOnboardApiV1CredentialCmd.Flags().Int64("page-size", 0, "")
+
+	ListOnboardCmd.AddCommand(GetOnboardApiV1SourcesCmd)
+	GetOnboardApiV1SourcesCmd.Flags().StringArray("connector", nil, "")
 
 	UpdateOnboardCmd.AddCommand(PostOnboardApiV1ConnectionsConnectionIdStateCmd)
 	PostOnboardApiV1ConnectionsConnectionIdStateCmd.Flags().Int64("connection-id", 0, "")
@@ -62,25 +126,14 @@ func init() {
 	PostOnboardApiV1SourceAzureCmd.Flags().String("name", "", "")
 	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("name")
 
+	GetOnboardCmd.AddCommand(PostOnboardApiV1SourceSourceIdHealthcheckCmd)
+	PostOnboardApiV1SourceSourceIdHealthcheckCmd.Flags().String("source-id", "", "")
+	PostOnboardApiV1SourceSourceIdHealthcheckCmd.MarkFlagRequired("source-id")
+
 	GetOnboardCmd.AddCommand(PostOnboardApiV1SourcesCmd)
 	PostOnboardApiV1SourcesCmd.Flags().StringArray("source-ids", nil, "")
 
 	PostOnboardApiV1SourcesCmd.Flags().String("type", "", "")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1ConnectorCmd)
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1CredentialSourcesListCmd)
-	GetOnboardApiV1CredentialSourcesListCmd.Flags().String("connector", "", "")
-	GetOnboardApiV1CredentialSourcesListCmd.Flags().Int64("page-number", 0, "")
-	GetOnboardApiV1CredentialSourcesListCmd.Flags().Int64("page-size", 0, "")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1SourceSourceIdCredentialsCmd)
-	GetOnboardApiV1SourceSourceIdCredentialsCmd.Flags().String("source-id", "", "")
-	GetOnboardApiV1SourceSourceIdCredentialsCmd.MarkFlagRequired("source-id")
-
-	GetOnboardCmd.AddCommand(PostOnboardApiV1SourceSourceIdHealthcheckCmd)
-	PostOnboardApiV1SourceSourceIdHealthcheckCmd.Flags().String("source-id", "", "")
-	PostOnboardApiV1SourceSourceIdHealthcheckCmd.MarkFlagRequired("source-id")
 
 	UpdateOnboardCmd.AddCommand(PutOnboardApiV1CredentialCredentialIdCmd)
 	PutOnboardApiV1CredentialCredentialIdCmd.Flags().String("config", "", "")
@@ -91,36 +144,11 @@ func init() {
 	PutOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "")
 	PutOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
 
-	DeleteOnboardCmd.AddCommand(DeleteOnboardApiV1CredentialCredentialIdCmd)
-	DeleteOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "")
-	DeleteOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
-
-	DeleteOnboardCmd.AddCommand(DeleteOnboardApiV1SourceSourceIdCmd)
-	DeleteOnboardApiV1SourceSourceIdCmd.Flags().Int64("source-id", 0, "")
-	DeleteOnboardApiV1SourceSourceIdCmd.MarkFlagRequired("source-id")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1ConnectionsCountCmd)
-	GetOnboardApiV1ConnectionsCountCmd.Flags().StringArray("connectors", nil, "")
-	GetOnboardApiV1ConnectionsCountCmd.Flags().String("state", "", "")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1CredentialCredentialIdHealthcheckCmd)
-	GetOnboardApiV1CredentialCredentialIdHealthcheckCmd.Flags().String("credential-id", "", "")
-	GetOnboardApiV1CredentialCredentialIdHealthcheckCmd.MarkFlagRequired("credential-id")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1CredentialCredentialIdCmd)
-	GetOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "")
-	GetOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
+	GetOnboardCmd.AddCommand(GetOnboardApiV1CatalogMetricsCmd)
 
 	GetOnboardCmd.AddCommand(GetOnboardApiV1SourceSourceIdCmd)
 	GetOnboardApiV1SourceSourceIdCmd.Flags().Int64("source-id", 0, "")
 	GetOnboardApiV1SourceSourceIdCmd.MarkFlagRequired("source-id")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1SourcesCountCmd)
-	GetOnboardApiV1SourcesCountCmd.Flags().String("connector", "", "")
-
-	GetOnboardCmd.AddCommand(PostOnboardApiV1CredentialCredentialIdDisableCmd)
-	PostOnboardApiV1CredentialCredentialIdDisableCmd.Flags().String("credential-id", "", "")
-	PostOnboardApiV1CredentialCredentialIdDisableCmd.MarkFlagRequired("credential-id")
 
 	GetOnboardCmd.AddCommand(PostOnboardApiV1CredentialCredentialIdEnableCmd)
 	PostOnboardApiV1CredentialCredentialIdEnableCmd.Flags().String("credential-id", "", "")
@@ -143,26 +171,5 @@ func init() {
 	GetOnboardCmd.AddCommand(PutOnboardApiV1SourceSourceIdCredentialsCmd)
 	PutOnboardApiV1SourceSourceIdCredentialsCmd.Flags().String("source-id", "", "")
 	PutOnboardApiV1SourceSourceIdCredentialsCmd.MarkFlagRequired("source-id")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1CatalogMetricsCmd)
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1ConnectorConnectorNameCmd)
-	GetOnboardApiV1ConnectorConnectorNameCmd.Flags().String("connector-name", "", "")
-	GetOnboardApiV1ConnectorConnectorNameCmd.MarkFlagRequired("connector-name")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1CredentialCmd)
-	GetOnboardApiV1CredentialCmd.Flags().String("connector", "", "")
-	GetOnboardApiV1CredentialCmd.Flags().String("health", "", "")
-	GetOnboardApiV1CredentialCmd.Flags().Int64("page-number", 0, "")
-	GetOnboardApiV1CredentialCmd.Flags().Int64("page-size", 0, "")
-
-	GetOnboardCmd.AddCommand(GetOnboardApiV1SourcesCmd)
-	GetOnboardApiV1SourcesCmd.Flags().StringArray("connector", nil, "")
-
-	CreateOnboardCmd.AddCommand(PostOnboardApiV1CredentialCmd)
-	PostOnboardApiV1CredentialCmd.Flags().String("config", "", "")
-	PostOnboardApiV1CredentialCmd.Flags().String("name", "", "")
-	PostOnboardApiV1CredentialCmd.MarkFlagRequired("name")
-	PostOnboardApiV1CredentialCmd.Flags().String("source-type", "", "")
 
 }

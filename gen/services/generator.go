@@ -18,7 +18,8 @@ type Generator struct {
 	ServiceNameCamel string
 	ServiceNameSnake string
 
-	Children []Child
+	DefaultChildren *Child
+	Children        []Child
 }
 
 type Child struct {

@@ -12,6 +12,13 @@ var GetMetadataCmd = &cobra.Command{
 	},
 }
 
+var ListMetadataCmd = &cobra.Command{
+	Use: "metadata",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateMetadataCmd = &cobra.Command{
 	Use: "metadata",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -35,20 +42,12 @@ var UpdateMetadataCmd = &cobra.Command{
 
 func init() {
 
-	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
-	GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "")
-	GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
-
-	GetMetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
-	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
-	GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
-
 	GetMetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
 	PostMetadataApiV1MetadataCmd.Flags().String("key", "", "")
 	PostMetadataApiV1MetadataCmd.MarkFlagRequired("key")
 	PostMetadataApiV1MetadataCmd.Flags().String("value", "", "")
 
-	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
+	ListMetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-number", 0, "")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-size", 0, "")
@@ -59,10 +58,18 @@ func init() {
 	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
 	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.MarkFlagRequired("resource-type")
 
-	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
+	ListMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
 	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-number", 0, "")
 	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-size", 0, "")
 	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("tag", nil, "")
+
+	GetMetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
+	GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "")
+	GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
+
+	GetMetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
+	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
+	GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
 
 }

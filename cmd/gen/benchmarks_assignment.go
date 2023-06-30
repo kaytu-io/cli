@@ -12,6 +12,13 @@ var GetBenchmarksAssignmentCmd = &cobra.Command{
 	},
 }
 
+var ListBenchmarksAssignmentCmd = &cobra.Command{
+	Use: "benchmarks_assignment",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
+}
+
 var CreateBenchmarksAssignmentCmd = &cobra.Command{
 	Use: "benchmarks_assignment",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,7 +56,7 @@ func init() {
 	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.Flags().String("connection-id", "", "")
 	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
 
-	GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
+	ListBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
 
 	GetBenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "")
