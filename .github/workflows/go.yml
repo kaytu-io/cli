@@ -51,6 +51,8 @@ jobs:
     - name: Create snap
       id: snapcraft
       uses: snapcore/action-build@v1
+      with:
+        snapcraft-channel: stable
 
     - uses: snapcore/action-publish@v1
       env:
