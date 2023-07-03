@@ -47,3 +47,14 @@ jobs:
           artifacts : "release.tar.gz,foo/*.txt,./build/ktucli-linux-amd64,./build/ktucli-linux-arm64,./build/ktucli-windows-amd64,./build/ktucli-macos-amd64,./build/ktucli-macos-arm64"
           draft: false
           prerelease: false
+
+    - name: Create snap
+      id: snapcraft
+      uses: snapcore/action-build@v1
+
+    - uses: snapcore/action-publish@v1
+      env:
+        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+      with:
+        snap: ${{ steps.snapcraft.outputs.snap }}
+        release: edge
