@@ -8,7 +8,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use: "ktucli",
+	Use: "kaytu",
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().ParseErrorsWhitelist.UnknownFlags {
 			return errors.New("Please enter right flag. ")
