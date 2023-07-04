@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetInventoryCmd = &cobra.Command{
-	Use: "inventory",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListInventoryCmd = &cobra.Command{
-	Use: "inventory",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateInventoryCmd = &cobra.Command{
-	Use: "inventory",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteInventoryCmd = &cobra.Command{
-	Use: "inventory",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateInventoryCmd = &cobra.Command{
+var InventoryCmd = &cobra.Command{
 	Use: "inventory",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,7 +14,14 @@ var UpdateInventoryCmd = &cobra.Command{
 
 func init() {
 
-	GetInventoryCmd.AddCommand(GetInventoryApiV2CostMetricCmd)
+	InventoryCmd.AddCommand(GetInventoryApiV2CostCompositionCmd)
+	GetInventoryApiV2CostCompositionCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2CostCompositionCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2CostCompositionCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2CostCompositionCmd.Flags().String("start-time", "", "")
+	GetInventoryApiV2CostCompositionCmd.Flags().Int64("top", 0, "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2CostMetricCmd)
 	GetInventoryApiV2CostMetricCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2CostMetricCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2CostMetricCmd.Flags().String("end-time", "", "")
@@ -51,7 +30,50 @@ func init() {
 	GetInventoryApiV2CostMetricCmd.Flags().String("sort-by", "", "")
 	GetInventoryApiV2CostMetricCmd.Flags().String("start-time", "", "")
 
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesCompositionKeyCmd)
+	InventoryCmd.AddCommand(GetInventoryApiV2CostTrendCmd)
+	GetInventoryApiV2CostTrendCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2CostTrendCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2CostTrendCmd.Flags().String("datapoint-count", "", "")
+	GetInventoryApiV2CostTrendCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2CostTrendCmd.Flags().String("start-time", "", "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagKeyCmd)
+	GetInventoryApiV2ResourcesTagKeyCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ResourcesTagKeyCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2ResourcesTagKeyCmd.Flags().Int64("end-time", 0, "")
+	GetInventoryApiV2ResourcesTagKeyCmd.Flags().String("key", "", "")
+	GetInventoryApiV2ResourcesTagKeyCmd.MarkFlagRequired("key")
+	GetInventoryApiV2ResourcesTagKeyCmd.Flags().Int64("min-count", 0, "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ServicesTagKeyCmd)
+	GetInventoryApiV2ServicesTagKeyCmd.Flags().String("key", "", "")
+	GetInventoryApiV2ServicesTagKeyCmd.MarkFlagRequired("key")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagCmd)
+	GetInventoryApiV2ResourcesTagCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ResourcesTagCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2ResourcesTagCmd.Flags().Int64("end-time", 0, "")
+	GetInventoryApiV2ResourcesTagCmd.Flags().Int64("min-count", 0, "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ServicesTagCmd)
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricResourceTypeCmd)
+	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("resource-type", "", "")
+	GetInventoryApiV2ResourcesMetricResourceTypeCmd.MarkFlagRequired("resource-type")
+	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("start-time", "", "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesTrendCmd)
+	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2ResourcesTrendCmd.Flags().String("datapoint-count", "", "")
+	GetInventoryApiV2ResourcesTrendCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("servicename", nil, "")
+	GetInventoryApiV2ResourcesTrendCmd.Flags().String("start-time", "", "")
+	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("tag", nil, "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesCompositionKeyCmd)
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().String("end-time", "", "")
@@ -61,55 +83,7 @@ func init() {
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().Int64("top", 0, "")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.MarkFlagRequired("top")
 
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricResourceTypeCmd)
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("resource-type", "", "")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.MarkFlagRequired("resource-type")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("start-time", "", "")
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagKeyCmd)
-	GetInventoryApiV2ResourcesTagKeyCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ResourcesTagKeyCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2ResourcesTagKeyCmd.Flags().Int64("end-time", 0, "")
-	GetInventoryApiV2ResourcesTagKeyCmd.Flags().String("key", "", "")
-	GetInventoryApiV2ResourcesTagKeyCmd.MarkFlagRequired("key")
-	GetInventoryApiV2ResourcesTagKeyCmd.Flags().Int64("min-count", 0, "")
-
-	ListInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagCmd)
-	GetInventoryApiV2ResourcesTagCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ResourcesTagCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2ResourcesTagCmd.Flags().Int64("end-time", 0, "")
-	GetInventoryApiV2ResourcesTagCmd.Flags().Int64("min-count", 0, "")
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesTrendCmd)
-	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2ResourcesTrendCmd.Flags().String("datapoint-count", "", "")
-	GetInventoryApiV2ResourcesTrendCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("servicename", nil, "")
-	GetInventoryApiV2ResourcesTrendCmd.Flags().String("start-time", "", "")
-	GetInventoryApiV2ResourcesTrendCmd.Flags().StringArray("tag", nil, "")
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricServiceNameCmd)
-	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("service-name", "", "")
-	GetInventoryApiV2ServicesMetricServiceNameCmd.MarkFlagRequired("service-name")
-	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("start-time", "", "")
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2CostCompositionCmd)
-	GetInventoryApiV2CostCompositionCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2CostCompositionCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2CostCompositionCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2CostCompositionCmd.Flags().String("start-time", "", "")
-	GetInventoryApiV2CostCompositionCmd.Flags().Int64("top", 0, "")
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesTagKeyCmd)
-	GetInventoryApiV2ServicesTagKeyCmd.Flags().String("key", "", "")
-	GetInventoryApiV2ServicesTagKeyCmd.MarkFlagRequired("key")
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricCmd)
+	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricCmd)
 	GetInventoryApiV2ResourcesMetricCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().String("end-time", "", "")
@@ -121,7 +95,22 @@ func init() {
 	GetInventoryApiV2ResourcesMetricCmd.Flags().String("start-time", "", "")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().StringArray("tag", nil, "")
 
-	GetInventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricCmd)
+	InventoryCmd.AddCommand(GetInventoryApiV2ServicesCostTrendCmd)
+	GetInventoryApiV2ServicesCostTrendCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ServicesCostTrendCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2ServicesCostTrendCmd.Flags().String("datapoint-count", "", "")
+	GetInventoryApiV2ServicesCostTrendCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2ServicesCostTrendCmd.Flags().StringArray("services", nil, "")
+	GetInventoryApiV2ServicesCostTrendCmd.Flags().String("start-time", "", "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricServiceNameCmd)
+	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("service-name", "", "")
+	GetInventoryApiV2ServicesMetricServiceNameCmd.MarkFlagRequired("service-name")
+	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("start-time", "", "")
+
+	InventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricCmd)
 	GetInventoryApiV2ServicesMetricCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ServicesMetricCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ServicesMetricCmd.Flags().String("end-time", "", "")
@@ -130,14 +119,5 @@ func init() {
 	GetInventoryApiV2ServicesMetricCmd.Flags().String("sort-by", "", "")
 	GetInventoryApiV2ServicesMetricCmd.Flags().String("start-time", "", "")
 	GetInventoryApiV2ServicesMetricCmd.Flags().StringArray("tag", nil, "")
-
-	ListInventoryCmd.AddCommand(GetInventoryApiV2ServicesTagCmd)
-
-	GetInventoryCmd.AddCommand(GetInventoryApiV2CostTrendCmd)
-	GetInventoryApiV2CostTrendCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2CostTrendCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2CostTrendCmd.Flags().String("datapoint-count", "", "")
-	GetInventoryApiV2CostTrendCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2CostTrendCmd.Flags().String("start-time", "", "")
 
 }

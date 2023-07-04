@@ -48,6 +48,8 @@ type ClientService interface {
 
 	GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error)
 
+	GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error)
+
 	GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error)
 
 	GetInventoryAPIV2ServicesMetricServiceName(params *GetInventoryAPIV2ServicesMetricServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricServiceNameOK, error)
@@ -425,6 +427,47 @@ func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2Resour
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2ServicesCostTrend gets services cost trend
+
+This API allows users to retrieve a list of costs over the course of the specified time frame for the given services. If startTime and endTime are empty, the API returns the last month trend.
+*/
+func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2ServicesCostTrendParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2ServicesCostTrend",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/services/cost/trend",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2ServicesCostTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2ServicesCostTrendOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesCostTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

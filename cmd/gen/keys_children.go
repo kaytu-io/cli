@@ -12,21 +12,55 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
-	Use: "remove-key",
+var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
+	Use: "activate-key",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
+			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
 		}
 
-		req := keys.NewDeleteAuthAPIV1KeyIDDeleteParams()
+		req := keys.NewPostAuthAPIV1KeyIDActivateParams()
 
 		req.SetID(flags.ReadStringFlag(cmd, "ID"))
 
-		_, err = client.Keys.DeleteAuthAPIV1KeyIDDelete(req, auth)
+		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(req, auth)
 		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
+			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostAuthApiV1KeyCreateCmd = &cobra.Command{
+	Use: "create-key",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		req := keys.NewPostAuthAPIV1KeyCreateParams()
+
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAuthAPICreateAPIKeyRequest{
+			Name:     flags.ReadStringFlag(cmd, "Name"),
+			RoleName: models.GithubComKaytuIoKaytuEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
+		})
+
+		resp, err := client.Keys.PostAuthAPIV1KeyCreate(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
 
 		return nil
@@ -83,55 +117,21 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 	},
 }
 
-var PostAuthApiV1KeyCreateCmd = &cobra.Command{
-	Use: "create-key",
+var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
+	Use: "remove-key",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
+			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
 		}
 
-		req := keys.NewPostAuthAPIV1KeyCreateParams()
-
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAuthAPICreateAPIKeyRequest{
-			Name:     flags.ReadStringFlag(cmd, "Name"),
-			RoleName: models.GithubComKaytuIoKaytuEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
-		})
-
-		resp, err := client.Keys.PostAuthAPIV1KeyCreate(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
-	Use: "activate-key",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyIDActivateParams()
+		req := keys.NewDeleteAuthAPIV1KeyIDDeleteParams()
 
 		req.SetID(flags.ReadStringFlag(cmd, "ID"))
 
-		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(req, auth)
+		_, err = client.Keys.DeleteAuthAPIV1KeyIDDelete(req, auth)
 		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
+			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
 		}
 
 		return nil

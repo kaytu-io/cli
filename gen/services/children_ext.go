@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"sort"
 	"strings"
 )
 
@@ -54,7 +55,7 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		commandName := strings.ReplaceAll(name, "_", "-")
 		commandName = config.UrlNames[commandName]
 		if commandName == "" {
-			return errors.New("url name not found for cmd: " + commandName)
+			return errors.New("url name not found for cmd: " + name)
 		}
 
 		fv := utils.ExtractFields(reflect.TypeOf(config.ParamModels[apiName]))
@@ -100,5 +101,9 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		}
 		g.Children = append(g.Children, tmpl)
 	}
+
+	sort.Slice(g.Children, func(i, j int) bool {
+		return g.Children[i].CommandName < g.Children[j].CommandName
+	})
 	return nil
 }

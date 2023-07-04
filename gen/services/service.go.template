@@ -5,44 +5,16 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Get{{ .ServiceNameCamel }}Cmd = &cobra.Command{
-	Use: "{{ .ServiceNameSnake }}",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var List{{ .ServiceNameCamel }}Cmd = &cobra.Command{
-	Use: "{{ .ServiceNameSnake }}",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var Create{{ .ServiceNameCamel }}Cmd = &cobra.Command{
-	Use: "{{ .ServiceNameSnake }}",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var Delete{{ .ServiceNameCamel }}Cmd = &cobra.Command{
-	Use: "{{ .ServiceNameSnake }}",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var Update{{ .ServiceNameCamel }}Cmd = &cobra.Command{
-	Use: "{{ .ServiceNameSnake }}",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
+var {{ .ServiceNameCamel }}Cmd = &cobra.Command{
+        Use: "{{ .ServiceNameSnake }}",
+        RunE: func(cmd *cobra.Command, args []string) error {
+        return cmd.Help()
+    },
 }
 
 func init() {
     {{ range .Children }}
-        {{ .CRUD }}{{ .Parent.ServiceNameCamel }}Cmd.AddCommand({{ .CommandNameCamel }}Cmd)
+        {{ .Parent.ServiceNameCamel }}Cmd.AddCommand({{ .CommandNameCamel }}Cmd)
         {{ .ParamFlags }}
     {{ end }}
 }

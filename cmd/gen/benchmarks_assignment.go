@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetBenchmarksAssignmentCmd = &cobra.Command{
-	Use: "benchmarks_assignment",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListBenchmarksAssignmentCmd = &cobra.Command{
-	Use: "benchmarks_assignment",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateBenchmarksAssignmentCmd = &cobra.Command{
-	Use: "benchmarks_assignment",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteBenchmarksAssignmentCmd = &cobra.Command{
-	Use: "benchmarks_assignment",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateBenchmarksAssignmentCmd = &cobra.Command{
+var BenchmarksAssignmentCmd = &cobra.Command{
 	Use: "benchmarks_assignment",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,26 +14,26 @@ var UpdateBenchmarksAssignmentCmd = &cobra.Command{
 
 func init() {
 
-	DeleteBenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
-
-	GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd)
-	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.Flags().String("benchmark-id", "", "")
-	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
-
-	GetBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsConnectionConnectionIdCmd)
-	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.Flags().String("connection-id", "", "")
-	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
-
-	ListBenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
-
-	GetBenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
+	BenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
+
+	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd)
+	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.Flags().String("benchmark-id", "", "")
+	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
+
+	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsConnectionConnectionIdCmd)
+	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.Flags().String("connection-id", "", "")
+	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
+
+	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
+
+	BenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
+	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "")
+	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
+	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "")
+	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
 
 }

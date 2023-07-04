@@ -30,11 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetInventoryAPIV1ResourcesCount(params *GetInventoryAPIV1ResourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesCountOK, error)
-
 	GetInventoryAPIV1ResourcesRegions(params *GetInventoryAPIV1ResourcesRegionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesRegionsOK, error)
 
 	GetInventoryAPIV1ResourcesTopRegions(params *GetInventoryAPIV1ResourcesTopRegionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesTopRegionsOK, error)
+
+	GetInventoryAPIV2ResourcesCount(params *GetInventoryAPIV2ResourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesCountOK, error)
 
 	GetInventoryAPIV2ResourcesRegionsComposition(params *GetInventoryAPIV2ResourcesRegionsCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesRegionsCompositionOK, error)
 
@@ -53,47 +53,6 @@ type ClientService interface {
 	PostInventoryAPIV1ResourcesFilters(params *PostInventoryAPIV1ResourcesFiltersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesFiltersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-GetInventoryAPIV1ResourcesCount counts resources
-
-Number of all resources
-*/
-func (a *Client) GetInventoryAPIV1ResourcesCount(params *GetInventoryAPIV1ResourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1ResourcesCountOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV1ResourcesCountParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV1ResourcesCount",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v1/resources/count",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV1ResourcesCountReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV1ResourcesCountOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1ResourcesCount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -171,6 +130,47 @@ func (a *Client) GetInventoryAPIV1ResourcesTopRegions(params *GetInventoryAPIV1R
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1ResourcesTopRegions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2ResourcesCount counts resources
+
+Number of all resources
+*/
+func (a *Client) GetInventoryAPIV2ResourcesCount(params *GetInventoryAPIV2ResourcesCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesCountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2ResourcesCountParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2ResourcesCount",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/resources/count",
+		ProducesMediaTypes: []string{"application/json", "text/csv"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2ResourcesCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2ResourcesCountOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesCount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

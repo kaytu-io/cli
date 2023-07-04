@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetLocationCmd = &cobra.Command{
-	Use: "location",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListLocationCmd = &cobra.Command{
-	Use: "location",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateLocationCmd = &cobra.Command{
-	Use: "location",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteLocationCmd = &cobra.Command{
-	Use: "location",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateLocationCmd = &cobra.Command{
+var LocationCmd = &cobra.Command{
 	Use: "location",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,7 +14,7 @@ var UpdateLocationCmd = &cobra.Command{
 
 func init() {
 
-	ListLocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
+	LocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
 	GetInventoryApiV1LocationsConnectorCmd.Flags().String("connector", "", "")
 	GetInventoryApiV1LocationsConnectorCmd.MarkFlagRequired("connector")
 

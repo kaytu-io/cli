@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetRolesCmd = &cobra.Command{
-	Use: "roles",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListRolesCmd = &cobra.Command{
-	Use: "roles",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateRolesCmd = &cobra.Command{
-	Use: "roles",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteRolesCmd = &cobra.Command{
-	Use: "roles",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateRolesCmd = &cobra.Command{
+var RolesCmd = &cobra.Command{
 	Use: "roles",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,18 +14,18 @@ var UpdateRolesCmd = &cobra.Command{
 
 func init() {
 
-	ListRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameKeysCmd)
+	RolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
+	GetAuthApiV1RolesRoleNameCmd.Flags().String("role-name", "", "")
+	GetAuthApiV1RolesRoleNameCmd.MarkFlagRequired("role-name")
+
+	RolesCmd.AddCommand(GetAuthApiV1RoleRoleNameKeysCmd)
 	GetAuthApiV1RoleRoleNameKeysCmd.Flags().String("role-name", "", "")
 	GetAuthApiV1RoleRoleNameKeysCmd.MarkFlagRequired("role-name")
 
-	ListRolesCmd.AddCommand(GetAuthApiV1RoleRoleNameUsersCmd)
+	RolesCmd.AddCommand(GetAuthApiV1RoleRoleNameUsersCmd)
 	GetAuthApiV1RoleRoleNameUsersCmd.Flags().String("role-name", "", "")
 	GetAuthApiV1RoleRoleNameUsersCmd.MarkFlagRequired("role-name")
 
-	ListRolesCmd.AddCommand(GetAuthApiV1RolesCmd)
-
-	GetRolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
-	GetAuthApiV1RolesRoleNameCmd.Flags().String("role-name", "", "")
-	GetAuthApiV1RolesRoleNameCmd.MarkFlagRequired("role-name")
+	RolesCmd.AddCommand(GetAuthApiV1RolesCmd)
 
 }

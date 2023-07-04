@@ -11,6 +11,36 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetInventoryApiV2CostCompositionCmd = &cobra.Command{
+	Use: "cost-composition",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
+		}
+
+		req := inventory.NewGetInventoryAPIV2CostCompositionParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+		req.SetTop(flags.ReadInt64OptionalFlag(cmd, "Top"))
+
+		resp, err := client.Inventory.GetInventoryAPIV2CostComposition(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV2CostMetricCmd = &cobra.Command{
 	Use: "cost-metric",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,60 +73,30 @@ var GetInventoryApiV2CostMetricCmd = &cobra.Command{
 	},
 }
 
-var GetInventoryApiV2ResourcesCompositionKeyCmd = &cobra.Command{
-	Use: "resources-composition",
+var GetInventoryApiV2CostTrendCmd = &cobra.Command{
+	Use: "cost-trend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
+			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
 		}
 
-		req := inventory.NewGetInventoryAPIV2ResourcesCompositionKeyParams()
+		req := inventory.NewGetInventoryAPIV2CostTrendParams()
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetDatapointCount(flags.ReadStringOptionalFlag(cmd, "DatapointCount"))
 		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
-		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
 		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
-		req.SetTop(flags.ReadInt64Flag(cmd, "Top"))
 
-		resp, err := client.Inventory.GetInventoryAPIV2ResourcesCompositionKey(req, auth)
+		resp, err := client.Inventory.GetInventoryAPIV2CostTrend(req, auth)
 		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
+			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
-	Use: "resource-metrics",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
-		}
-
-		req := inventory.NewGetInventoryAPIV2ResourcesMetricResourceTypeParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
-		req.SetResourceType(flags.ReadStringFlag(cmd, "ResourceType"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Inventory.GetInventoryAPIV2ResourcesMetricResourceType(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
+			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
 		}
 
 		return nil
@@ -133,6 +133,32 @@ var GetInventoryApiV2ResourcesTagKeyCmd = &cobra.Command{
 	},
 }
 
+var GetInventoryApiV2ServicesTagKeyCmd = &cobra.Command{
+	Use: "get-service-tag",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
+		}
+
+		req := inventory.NewGetInventoryAPIV2ServicesTagKeyParams()
+
+		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
+
+		resp, err := client.Inventory.GetInventoryAPIV2ServicesTagKey(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV2ResourcesTagCmd = &cobra.Command{
 	Use: "list-resource-tags",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -156,6 +182,59 @@ var GetInventoryApiV2ResourcesTagCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_tag] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2ServicesTagCmd = &cobra.Command{
+	Use: "list-service-tags",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
+		}
+
+		req := inventory.NewGetInventoryAPIV2ServicesTagParams()
+
+		resp, err := client.Inventory.GetInventoryAPIV2ServicesTag(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
+	Use: "resource-metrics",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
+		}
+
+		req := inventory.NewGetInventoryAPIV2ResourcesMetricResourceTypeParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetResourceType(flags.ReadStringFlag(cmd, "ResourceType"))
+		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Inventory.GetInventoryAPIV2ResourcesMetricResourceType(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
 		}
 
 		return nil
@@ -194,85 +273,31 @@ var GetInventoryApiV2ResourcesTrendCmd = &cobra.Command{
 	},
 }
 
-var GetInventoryApiV2ServicesMetricServiceNameCmd = &cobra.Command{
-	Use: "service-metric",
+var GetInventoryApiV2ResourcesCompositionKeyCmd = &cobra.Command{
+	Use: "resources-composition",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
+			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
 		}
 
-		req := inventory.NewGetInventoryAPIV2ServicesMetricServiceNameParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
-		req.SetServiceName(flags.ReadStringFlag(cmd, "ServiceName"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Inventory.GetInventoryAPIV2ServicesMetricServiceName(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2CostCompositionCmd = &cobra.Command{
-	Use: "cost-composition",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
-		}
-
-		req := inventory.NewGetInventoryAPIV2CostCompositionParams()
+		req := inventory.NewGetInventoryAPIV2ResourcesCompositionKeyParams()
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
-		req.SetTop(flags.ReadInt64OptionalFlag(cmd, "Top"))
-
-		resp, err := client.Inventory.GetInventoryAPIV2CostComposition(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2ServicesTagKeyCmd = &cobra.Command{
-	Use: "get-service-tag",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
-		}
-
-		req := inventory.NewGetInventoryAPIV2ServicesTagKeyParams()
-
 		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
+		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+		req.SetTop(flags.ReadInt64Flag(cmd, "Top"))
 
-		resp, err := client.Inventory.GetInventoryAPIV2ServicesTagKey(req, auth)
+		resp, err := client.Inventory.GetInventoryAPIV2ResourcesCompositionKey(req, auth)
 		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
+			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
+			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
 		}
 
 		return nil
@@ -314,6 +339,66 @@ var GetInventoryApiV2ResourcesMetricCmd = &cobra.Command{
 	},
 }
 
+var GetInventoryApiV2ServicesCostTrendCmd = &cobra.Command{
+	Use: "service-cost-trend",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_cost_trend] : %v", err)
+		}
+
+		req := inventory.NewGetInventoryAPIV2ServicesCostTrendParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetDatapointCount(flags.ReadStringOptionalFlag(cmd, "DatapointCount"))
+		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetServices(flags.ReadStringArrayFlag(cmd, "Services"))
+		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Inventory.GetInventoryAPIV2ServicesCostTrend(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_cost_trend] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_cost_trend] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2ServicesMetricServiceNameCmd = &cobra.Command{
+	Use: "service-metric",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
+		}
+
+		req := inventory.NewGetInventoryAPIV2ServicesMetricServiceNameParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetServiceName(flags.ReadStringFlag(cmd, "ServiceName"))
+		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Inventory.GetInventoryAPIV2ServicesMetricServiceName(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV2ServicesMetricCmd = &cobra.Command{
 	Use: "service-metrics",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -341,60 +426,6 @@ var GetInventoryApiV2ServicesMetricCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_metric] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2ServicesTagCmd = &cobra.Command{
-	Use: "list-service-tags",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
-		}
-
-		req := inventory.NewGetInventoryAPIV2ServicesTagParams()
-
-		resp, err := client.Inventory.GetInventoryAPIV2ServicesTag(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetInventoryApiV2CostTrendCmd = &cobra.Command{
-	Use: "cost-trend",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
-		}
-
-		req := inventory.NewGetInventoryAPIV2CostTrendParams()
-
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetDatapointCount(flags.ReadStringOptionalFlag(cmd, "DatapointCount"))
-		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Inventory.GetInventoryAPIV2CostTrend(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
 		}
 
 		return nil

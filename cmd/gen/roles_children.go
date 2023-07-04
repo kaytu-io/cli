@@ -11,6 +11,32 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
+	Use: "get-role",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
+		}
+
+		req := roles.NewGetAuthAPIV1RolesRoleNameParams()
+
+		req.SetRoleName(flags.ReadStringFlag(cmd, "RoleName"))
+
+		resp, err := client.Roles.GetAuthAPIV1RolesRoleName(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetAuthApiV1RoleRoleNameKeysCmd = &cobra.Command{
 	Use: "list-role-keys",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -81,32 +107,6 @@ var GetAuthApiV1RolesCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_roles] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
-	Use: "get-role",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
-		}
-
-		req := roles.NewGetAuthAPIV1RolesRoleNameParams()
-
-		req.SetRoleName(flags.ReadStringFlag(cmd, "RoleName"))
-
-		resp, err := client.Roles.GetAuthAPIV1RolesRoleName(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
 		}
 
 		return nil

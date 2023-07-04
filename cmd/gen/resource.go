@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetResourceCmd = &cobra.Command{
-	Use: "resource",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListResourceCmd = &cobra.Command{
-	Use: "resource",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateResourceCmd = &cobra.Command{
-	Use: "resource",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteResourceCmd = &cobra.Command{
-	Use: "resource",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateResourceCmd = &cobra.Command{
+var ResourceCmd = &cobra.Command{
 	Use: "resource",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,7 +14,21 @@ var UpdateResourceCmd = &cobra.Command{
 
 func init() {
 
-	GetResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsSummaryCmd)
+	ResourceCmd.AddCommand(PostInventoryApiV1ResourceCmd)
+	PostInventoryApiV1ResourceCmd.Flags().String("id", "", "")
+	PostInventoryApiV1ResourceCmd.Flags().String("resource-type", "", "")
+
+	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsCompositionCmd)
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("end-time", 0, "")
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("start-time", 0, "")
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("top", 0, "")
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.MarkFlagRequired("top")
+
+	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesCountCmd)
+
+	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsSummaryCmd)
 	GetInventoryApiV2ResourcesRegionsSummaryCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ResourcesRegionsSummaryCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ResourcesRegionsSummaryCmd.Flags().Int64("end-time", 0, "")
@@ -51,64 +37,7 @@ func init() {
 	GetInventoryApiV2ResourcesRegionsSummaryCmd.Flags().String("sort-by", "", "")
 	GetInventoryApiV2ResourcesRegionsSummaryCmd.Flags().Int64("start-time", 0, "")
 
-	ListResourceCmd.AddCommand(PostInventoryApiV1ResourcesAzureCmd)
-	PostInventoryApiV1ResourcesAzureCmd.Flags().String("accept", "", "")
-	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("accept")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().String("common", "", "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("category", nil, "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("location", nil, "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("resource-type", nil, "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("service", nil, "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("source-id", nil, "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().String("tags", "", "")
-
-	PostInventoryApiV1ResourcesAzureCmd.Flags().Int64("no", 0, "")
-	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("no")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().Int64("size", 0, "")
-	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("size")
-
-	PostInventoryApiV1ResourcesAzureCmd.Flags().String("query", "", "")
-	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("query")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().String("direction", "", "")
-	PostInventoryApiV1ResourcesAzureCmd.Flags().String("field", "", "")
-
-	ListResourceCmd.AddCommand(PostInventoryApiV1ResourcesFiltersCmd)
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().String("common", "", "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("category", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("connections", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("location", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("provider", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("resource-type", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("service", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("tag-keys", nil, "")
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().String("tag-values", "", "")
-
-	PostInventoryApiV1ResourcesFiltersCmd.Flags().String("query", "", "")
-	PostInventoryApiV1ResourcesFiltersCmd.MarkFlagRequired("query")
-
-	GetResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsCompositionCmd)
-	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("end-time", 0, "")
-	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("start-time", 0, "")
-	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("top", 0, "")
-	GetInventoryApiV2ResourcesRegionsCompositionCmd.MarkFlagRequired("top")
-
-	GetResourceCmd.AddCommand(GetInventoryApiV1ResourcesRegionsCmd)
-	GetInventoryApiV1ResourcesRegionsCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV1ResourcesRegionsCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV1ResourcesRegionsCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV1ResourcesRegionsCmd.Flags().Int64("page-number", 0, "")
-	GetInventoryApiV1ResourcesRegionsCmd.Flags().Int64("page-size", 0, "")
-	GetInventoryApiV1ResourcesRegionsCmd.Flags().String("start-time", "", "")
-
-	GetResourceCmd.AddCommand(GetInventoryApiV1ResourcesTopRegionsCmd)
-	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().Int64("count", 0, "")
-	GetInventoryApiV1ResourcesTopRegionsCmd.MarkFlagRequired("count")
-
-	GetResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsTrendCmd)
+	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsTrendCmd)
 	GetInventoryApiV2ResourcesRegionsTrendCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ResourcesRegionsTrendCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ResourcesRegionsTrendCmd.Flags().Int64("datapoint-count", 0, "")
@@ -116,32 +45,7 @@ func init() {
 	GetInventoryApiV2ResourcesRegionsTrendCmd.Flags().StringArray("region", nil, "")
 	GetInventoryApiV2ResourcesRegionsTrendCmd.Flags().Int64("start-time", 0, "")
 
-	CreateResourceCmd.AddCommand(PostInventoryApiV1ResourceCmd)
-	PostInventoryApiV1ResourceCmd.Flags().String("id", "", "")
-	PostInventoryApiV1ResourceCmd.Flags().String("resource-type", "", "")
-
-	ListResourceCmd.AddCommand(PostInventoryApiV1ResourcesAwsCmd)
-	PostInventoryApiV1ResourcesAwsCmd.Flags().String("accept", "", "")
-	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("accept")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().String("common", "", "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("category", nil, "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("location", nil, "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("resource-type", nil, "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("service", nil, "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("source-id", nil, "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().String("tags", "", "")
-
-	PostInventoryApiV1ResourcesAwsCmd.Flags().Int64("no", 0, "")
-	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("no")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().Int64("size", 0, "")
-	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("size")
-
-	PostInventoryApiV1ResourcesAwsCmd.Flags().String("query", "", "")
-	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("query")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().String("direction", "", "")
-	PostInventoryApiV1ResourcesAwsCmd.Flags().String("field", "", "")
-
-	ListResourceCmd.AddCommand(PostInventoryApiV1ResourcesCmd)
+	ResourceCmd.AddCommand(PostInventoryApiV1ResourcesCmd)
 	PostInventoryApiV1ResourcesCmd.Flags().String("accept", "", "")
 	PostInventoryApiV1ResourcesCmd.MarkFlagRequired("accept")
 	PostInventoryApiV1ResourcesCmd.Flags().String("common", "", "")
@@ -162,6 +66,74 @@ func init() {
 	PostInventoryApiV1ResourcesCmd.Flags().String("direction", "", "")
 	PostInventoryApiV1ResourcesCmd.Flags().String("field", "", "")
 
-	GetResourceCmd.AddCommand(GetInventoryApiV1ResourcesCountCmd)
+	ResourceCmd.AddCommand(PostInventoryApiV1ResourcesAwsCmd)
+	PostInventoryApiV1ResourcesAwsCmd.Flags().String("accept", "", "")
+	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("accept")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().String("common", "", "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("category", nil, "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("location", nil, "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("resource-type", nil, "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("service", nil, "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().StringArray("source-id", nil, "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().String("tags", "", "")
+
+	PostInventoryApiV1ResourcesAwsCmd.Flags().Int64("no", 0, "")
+	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("no")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().Int64("size", 0, "")
+	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("size")
+
+	PostInventoryApiV1ResourcesAwsCmd.Flags().String("query", "", "")
+	PostInventoryApiV1ResourcesAwsCmd.MarkFlagRequired("query")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().String("direction", "", "")
+	PostInventoryApiV1ResourcesAwsCmd.Flags().String("field", "", "")
+
+	ResourceCmd.AddCommand(PostInventoryApiV1ResourcesAzureCmd)
+	PostInventoryApiV1ResourcesAzureCmd.Flags().String("accept", "", "")
+	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("accept")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().String("common", "", "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("category", nil, "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("location", nil, "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("resource-type", nil, "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("service", nil, "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().StringArray("source-id", nil, "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().String("tags", "", "")
+
+	PostInventoryApiV1ResourcesAzureCmd.Flags().Int64("no", 0, "")
+	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("no")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().Int64("size", 0, "")
+	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("size")
+
+	PostInventoryApiV1ResourcesAzureCmd.Flags().String("query", "", "")
+	PostInventoryApiV1ResourcesAzureCmd.MarkFlagRequired("query")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().String("direction", "", "")
+	PostInventoryApiV1ResourcesAzureCmd.Flags().String("field", "", "")
+
+	ResourceCmd.AddCommand(PostInventoryApiV1ResourcesFiltersCmd)
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().String("common", "", "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("category", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("connections", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("location", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("provider", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("resource-type", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("service", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().StringArray("tag-keys", nil, "")
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().String("tag-values", "", "")
+
+	PostInventoryApiV1ResourcesFiltersCmd.Flags().String("query", "", "")
+	PostInventoryApiV1ResourcesFiltersCmd.MarkFlagRequired("query")
+
+	ResourceCmd.AddCommand(GetInventoryApiV1ResourcesRegionsCmd)
+	GetInventoryApiV1ResourcesRegionsCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV1ResourcesRegionsCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV1ResourcesRegionsCmd.Flags().String("end-time", "", "")
+	GetInventoryApiV1ResourcesRegionsCmd.Flags().Int64("page-number", 0, "")
+	GetInventoryApiV1ResourcesRegionsCmd.Flags().Int64("page-size", 0, "")
+	GetInventoryApiV1ResourcesRegionsCmd.Flags().String("start-time", "", "")
+
+	ResourceCmd.AddCommand(GetInventoryApiV1ResourcesTopRegionsCmd)
+	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().StringArray("connection-id", nil, "")
+	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().Int64("count", 0, "")
+	GetInventoryApiV1ResourcesTopRegionsCmd.MarkFlagRequired("count")
 
 }

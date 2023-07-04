@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetConnectionsCmd = &cobra.Command{
-	Use: "connections",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListConnectionsCmd = &cobra.Command{
-	Use: "connections",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateConnectionsCmd = &cobra.Command{
-	Use: "connections",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteConnectionsCmd = &cobra.Command{
-	Use: "connections",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateConnectionsCmd = &cobra.Command{
+var ConnectionsCmd = &cobra.Command{
 	Use: "connections",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,13 +14,13 @@ var UpdateConnectionsCmd = &cobra.Command{
 
 func init() {
 
-	GetConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryConnectionIdCmd)
+	ConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryConnectionIdCmd)
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().String("connection-id", "", "")
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.MarkFlagRequired("connection-id")
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().Int64("end-time", 0, "")
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().Int64("start-time", 0, "")
 
-	GetConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryCmd)
+	ConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryCmd)
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connection-id", nil, "")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connector", nil, "")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("end-time", 0, "")

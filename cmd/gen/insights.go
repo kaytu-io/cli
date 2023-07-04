@@ -5,35 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetInsightsCmd = &cobra.Command{
-	Use: "insights",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var ListInsightsCmd = &cobra.Command{
-	Use: "insights",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var CreateInsightsCmd = &cobra.Command{
-	Use: "insights",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var DeleteInsightsCmd = &cobra.Command{
-	Use: "insights",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
-var UpdateInsightsCmd = &cobra.Command{
+var InsightsCmd = &cobra.Command{
 	Use: "insights",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
@@ -42,25 +14,21 @@ var UpdateInsightsCmd = &cobra.Command{
 
 func init() {
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdCmd)
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdCmd)
 	GetComplianceApiV1InsightInsightIdCmd.Flags().StringArray("connection-id", nil, "")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().Int64("end-time", 0, "")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("insight-id", "", "")
 	GetComplianceApiV1InsightInsightIdCmd.MarkFlagRequired("insight-id")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().Int64("start-time", 0, "")
 
-	ListInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightKeyCmd)
-	GetComplianceApiV1MetadataTagInsightKeyCmd.Flags().String("key", "", "")
-	GetComplianceApiV1MetadataTagInsightKeyCmd.MarkFlagRequired("key")
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdCmd)
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().StringArray("connection-id", nil, "")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().Int64("end-time", 0, "")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("insight-group-id", "", "")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.MarkFlagRequired("insight-group-id")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().Int64("start-time", 0, "")
 
-	ListInsightsCmd.AddCommand(GetComplianceApiV1InsightGroupCmd)
-	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connection-id", nil, "")
-	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connector", nil, "")
-	GetComplianceApiV1InsightGroupCmd.Flags().Int64("end-time", 0, "")
-	GetComplianceApiV1InsightGroupCmd.Flags().Int64("start-time", 0, "")
-	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("tag", nil, "")
-
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd)
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd)
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().StringArray("connection-id", nil, "")
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().Int64("datapoint-count", 0, "")
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().Int64("end-time", 0, "")
@@ -68,7 +36,11 @@ func init() {
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.MarkFlagRequired("insight-group-id")
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().Int64("start-time", 0, "")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdTrendCmd)
+	InsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightInsightIdCmd)
+	GetComplianceApiV1MetadataInsightInsightIdCmd.Flags().String("insight-id", "", "")
+	GetComplianceApiV1MetadataInsightInsightIdCmd.MarkFlagRequired("insight-id")
+
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdTrendCmd)
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().StringArray("connection-id", nil, "")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("datapoint-count", 0, "")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("end-time", 0, "")
@@ -76,27 +48,27 @@ func init() {
 	GetComplianceApiV1InsightInsightIdTrendCmd.MarkFlagRequired("insight-id")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("start-time", 0, "")
 
-	ListInsightsCmd.AddCommand(GetComplianceApiV1InsightCmd)
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupCmd)
+	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connection-id", nil, "")
+	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connector", nil, "")
+	GetComplianceApiV1InsightGroupCmd.Flags().Int64("end-time", 0, "")
+	GetComplianceApiV1InsightGroupCmd.Flags().Int64("start-time", 0, "")
+	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("tag", nil, "")
+
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightCmd)
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connection-id", nil, "")
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connector", nil, "")
 	GetComplianceApiV1InsightCmd.Flags().Int64("end-time", 0, "")
 	GetComplianceApiV1InsightCmd.Flags().Int64("start-time", 0, "")
 	GetComplianceApiV1InsightCmd.Flags().StringArray("tag", nil, "")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightInsightIdCmd)
-	GetComplianceApiV1MetadataInsightInsightIdCmd.Flags().String("insight-id", "", "")
-	GetComplianceApiV1MetadataInsightInsightIdCmd.MarkFlagRequired("insight-id")
-
-	ListInsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightCmd)
+	InsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightCmd)
 	GetComplianceApiV1MetadataInsightCmd.Flags().StringArray("connector", nil, "")
 
-	ListInsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightCmd)
+	InsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightKeyCmd)
+	GetComplianceApiV1MetadataTagInsightKeyCmd.Flags().String("key", "", "")
+	GetComplianceApiV1MetadataTagInsightKeyCmd.MarkFlagRequired("key")
 
-	GetInsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdCmd)
-	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().StringArray("connection-id", nil, "")
-	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().Int64("end-time", 0, "")
-	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("insight-group-id", "", "")
-	GetComplianceApiV1InsightGroupInsightGroupIdCmd.MarkFlagRequired("insight-group-id")
-	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().Int64("start-time", 0, "")
+	InsightsCmd.AddCommand(GetComplianceApiV1MetadataTagInsightCmd)
 
 }
