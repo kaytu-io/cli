@@ -38,9 +38,7 @@ func init() {
 
 	UsersCmd.AddCommand(GetAuthApiV1UsersCmd)
 	GetAuthApiV1UsersCmd.Flags().String("email", "", "")
-	GetAuthApiV1UsersCmd.MarkFlagRequired("email")
 	GetAuthApiV1UsersCmd.Flags().Bool("email-verified", false, "")
-	GetAuthApiV1UsersCmd.MarkFlagRequired("email-verified")
 	GetAuthApiV1UsersCmd.Flags().String("role-name", "", "")
 
 	UsersCmd.AddCommand(GetAuthApiV1WorkspaceRoleBindingsCmd)
