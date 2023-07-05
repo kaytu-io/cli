@@ -51,7 +51,7 @@ var UrlNames = map[string]string{
 	"get-schedule-api-v0-compliance-summarizer-trigger":  "trigger-compliance-summerizer",
 	"get-schedule-api-v0-compliance-trigger":             "trigger-compliance",
 	"get-schedule-api-v0-describe-trigger":               "describe-trigger",
-	"get-schedule-api-v0-insight-trigger":                "trigger-insight",
+	"get-schedule-api-v0-insight-trigger":                "depricated-trigger-insight",
 	"get-schedule-api-v0-summarize-trigger":              "trigger-summerize",
 	"get-schedule-api-v1-insight-job-job-id":             "get-insight-job",
 	"post-schedule-api-v1-describe-resource":             "describe-resource",
