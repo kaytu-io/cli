@@ -62,7 +62,6 @@ func init() {
 
 	DescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().String("connection-id", "", "")
-	PutScheduleApiV1InsightEvaluationTriggerCmd.MarkFlagRequired("connection-id")
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().Int64("insight-id", 0, "")
 	PutScheduleApiV1InsightEvaluationTriggerCmd.MarkFlagRequired("insight-id")
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
