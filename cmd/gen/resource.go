@@ -18,6 +18,7 @@ func init() {
 	PostInventoryApiV1ResourceCmd.Flags().String("id", "", "")
 	PostInventoryApiV1ResourceCmd.MarkFlagRequired("id")
 	PostInventoryApiV1ResourceCmd.Flags().String("resource-type", "", "")
+	PostInventoryApiV1ResourceCmd.MarkFlagRequired("resource-type")
 
 	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesRegionsCompositionCmd)
 	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().StringArray("connection-id", nil, "")
@@ -26,6 +27,7 @@ func init() {
 	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("start-time", 0, "")
 	GetInventoryApiV2ResourcesRegionsCompositionCmd.Flags().Int64("top", 0, "")
 	// GetInventoryApiV2ResourcesRegionsCompositionCmd.MarkFlagRequired("top")
+	GetInventoryApiV2ResourcesRegionsCompositionCmd.MarkFlagRequired("top")
 
 	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesCountCmd)
 
@@ -90,5 +92,6 @@ func init() {
 	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV1ResourcesTopRegionsCmd.Flags().Int64("count", 0, "")
 	// GetInventoryApiV1ResourcesTopRegionsCmd.MarkFlagRequired("count")
+	GetInventoryApiV1ResourcesTopRegionsCmd.MarkFlagRequired("count")
 
 }

@@ -17,17 +17,21 @@ func init() {
 	MetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
 	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
 	// GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
+	GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
 
 	MetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
 	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
 	// GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.MarkFlagRequired("resource-type")
+	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.MarkFlagRequired("resource-type")
 
 	MetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
 	GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "")
 	// GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
+	GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
 
 	MetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "")
+	GetInventoryApiV2MetadataResourcetypeCmd.MarkFlagRequired("connector")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-number", 0, "")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-size", 0, "")
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("service", nil, "")

@@ -17,6 +17,7 @@ func init() {
 	ScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdCmd)
 	GetScheduleApiV1SourcesSourceIdCmd.Flags().String("source-id", "", "")
 	// GetScheduleApiV1SourcesSourceIdCmd.MarkFlagRequired("source-id")
+	GetScheduleApiV1SourcesSourceIdCmd.MarkFlagRequired("source-id")
 
 	ScheduleCmd.AddCommand(GetScheduleApiV1ComplianceReportLastCompletedCmd)
 
@@ -33,23 +34,28 @@ func init() {
 	ScheduleCmd.AddCommand(GetScheduleApiV1ResourceTypeProviderCmd)
 	GetScheduleApiV1ResourceTypeProviderCmd.Flags().String("provider", "", "")
 	// GetScheduleApiV1ResourceTypeProviderCmd.MarkFlagRequired("provider")
+	GetScheduleApiV1ResourceTypeProviderCmd.MarkFlagRequired("provider")
 
 	ScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd)
 	PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd.Flags().String("source-id", "", "")
 	// PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd.MarkFlagRequired("source-id")
+	PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd.MarkFlagRequired("source-id")
 
 	ScheduleCmd.AddCommand(PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd)
 	PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd.Flags().String("source-id", "", "")
 	// PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd.MarkFlagRequired("source-id")
+	PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd.MarkFlagRequired("source-id")
 
 	ScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsComplianceCmd)
 	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().Int64("from", 0, "")
 	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().String("source-id", "", "")
 	// GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.MarkFlagRequired("source-id")
+	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.MarkFlagRequired("source-id")
 	GetScheduleApiV1SourcesSourceIdJobsComplianceCmd.Flags().Int64("to", 0, "")
 
 	ScheduleCmd.AddCommand(GetScheduleApiV1SourcesSourceIdJobsDescribeCmd)
 	GetScheduleApiV1SourcesSourceIdJobsDescribeCmd.Flags().String("source-id", "", "")
 	// GetScheduleApiV1SourcesSourceIdJobsDescribeCmd.MarkFlagRequired("source-id")
+	GetScheduleApiV1SourcesSourceIdJobsDescribeCmd.MarkFlagRequired("source-id")
 
 }

@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"github.com/iancoleman/strcase"
 	"github.com/kaytu-io/cli-program/gen/swagger"
 	"reflect"
 	"strings"
@@ -13,6 +14,10 @@ type Field struct {
 	Children   []Field
 	IsEnum     bool
 	IsRequired bool
+}
+
+func fixParamName(name string) string {
+	return strings.ReplaceAll(strcase.ToCamel(name), "Id", "ID")
 }
 
 func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (resp Field) {
@@ -44,7 +49,7 @@ func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (re
 		if strings.HasSuffix(typeName, "Params") {
 			api := swag.GetAPI(typeName)
 			for _, param := range api.Parameters {
-				if param.Name == child.Name {
+				if fixParamName(param.Name) == child.Name {
 					child.IsRequired = param.Required
 				}
 			}
@@ -54,7 +59,7 @@ func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (re
 		} else {
 			model := swag.GetModel(typeName)
 			for _, param := range model.Parameters {
-				if param.Name == child.Name {
+				if fixParamName(param.Name) == child.Name {
 					child.IsRequired = param.Required
 				}
 			}

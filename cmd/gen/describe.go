@@ -44,6 +44,7 @@ func init() {
 	DescribeCmd.AddCommand(GetScheduleApiV1InsightJobJobIdCmd)
 	GetScheduleApiV1InsightJobJobIdCmd.Flags().String("job-id", "", "")
 	// GetScheduleApiV1InsightJobJobIdCmd.MarkFlagRequired("job-id")
+	GetScheduleApiV1InsightJobJobIdCmd.MarkFlagRequired("job-id")
 
 	DescribeCmd.AddCommand(PutScheduleApiV1BenchmarkEvaluationTriggerCmd)
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.Flags().String("benchmark-id", "", "")
@@ -59,6 +60,7 @@ func init() {
 	DescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "")
 	// PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
+	PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
 
 	DescribeCmd.AddCommand(PutScheduleApiV1InsightEvaluationTriggerCmd)
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().String("connection-id", "", "")
@@ -69,6 +71,7 @@ func init() {
 
 	DescribeCmd.AddCommand(PostScheduleApiV1StacksInsightTriggerCmd)
 	PostScheduleApiV1StacksInsightTriggerCmd.Flags().String("request", "", "")
+	PostScheduleApiV1StacksInsightTriggerCmd.MarkFlagRequired("request")
 
 	DescribeCmd.AddCommand(GetScheduleApiV0SummarizeTriggerCmd)
 

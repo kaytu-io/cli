@@ -17,6 +17,7 @@ func init() {
 	KeysCmd.AddCommand(PostAuthApiV1KeyIdActivateCmd)
 	PostAuthApiV1KeyIdActivateCmd.Flags().String("id", "", "")
 	// PostAuthApiV1KeyIdActivateCmd.MarkFlagRequired("id")
+	PostAuthApiV1KeyIdActivateCmd.MarkFlagRequired("id")
 
 	KeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
 	PostAuthApiV1KeyCreateCmd.Flags().String("name", "", "")
@@ -26,16 +27,19 @@ func init() {
 	KeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
 	GetAuthApiV1KeyIdCmd.Flags().String("id", "", "")
 	// GetAuthApiV1KeyIdCmd.MarkFlagRequired("id")
+	GetAuthApiV1KeyIdCmd.MarkFlagRequired("id")
 
 	KeysCmd.AddCommand(GetAuthApiV1KeysCmd)
 
 	KeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
 	DeleteAuthApiV1KeyIdDeleteCmd.Flags().String("id", "", "")
 	// DeleteAuthApiV1KeyIdDeleteCmd.MarkFlagRequired("id")
+	DeleteAuthApiV1KeyIdDeleteCmd.MarkFlagRequired("id")
 
 	KeysCmd.AddCommand(PostAuthApiV1KeyIdSuspendCmd)
 	PostAuthApiV1KeyIdSuspendCmd.Flags().String("id", "", "")
 	// PostAuthApiV1KeyIdSuspendCmd.MarkFlagRequired("id")
+	PostAuthApiV1KeyIdSuspendCmd.MarkFlagRequired("id")
 
 	KeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
 	PostAuthApiV1KeyRoleCmd.Flags().Int64("id", 0, "")
