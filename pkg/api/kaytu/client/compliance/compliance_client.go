@@ -52,6 +52,8 @@ type ClientService interface {
 
 	GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error)
 
+	GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error)
+
 	PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error)
 
 	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
@@ -509,6 +511,47 @@ func (a *Client) GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1Quer
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1QueriesQueryID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1QueriesSync syncs queries
+
+This API syncs queries with the git backend.
+*/
+func (a *Client) GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1QueriesSyncParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1QueriesSync",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/queries/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1QueriesSyncReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1QueriesSyncOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1QueriesSync: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

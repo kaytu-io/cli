@@ -45,7 +45,7 @@ GetOnboardAPIV1CredentialOK describes a response with status code 200, with defa
 OK
 */
 type GetOnboardAPIV1CredentialOK struct {
-	Payload []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPICredential
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse
 }
 
 // IsSuccess returns true when this get onboard Api v1 credential o k response has a 2xx status code
@@ -86,14 +86,16 @@ func (o *GetOnboardAPIV1CredentialOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/credential][%d] getOnboardApiV1CredentialOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1CredentialOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPICredential {
+func (o *GetOnboardAPIV1CredentialOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1CredentialOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

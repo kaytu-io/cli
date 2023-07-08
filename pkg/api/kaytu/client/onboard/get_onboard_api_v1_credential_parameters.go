@@ -68,6 +68,14 @@ type GetOnboardAPIV1CredentialParams struct {
 	*/
 	Connector *string
 
+	/* CredentialType.
+
+	   filter by credential type
+
+	   Default: "manual"
+	*/
+	CredentialType *string
+
 	/* Health.
 
 	   filter by health status
@@ -108,14 +116,17 @@ func (o *GetOnboardAPIV1CredentialParams) WithDefaults() *GetOnboardAPIV1Credent
 // All values with no default are reset to their zero value.
 func (o *GetOnboardAPIV1CredentialParams) SetDefaults() {
 	var (
+		credentialTypeDefault = string("manual")
+
 		pageNumberDefault = int64(1)
 
 		pageSizeDefault = int64(50)
 	)
 
 	val := GetOnboardAPIV1CredentialParams{
-		PageNumber: &pageNumberDefault,
-		PageSize:   &pageSizeDefault,
+		CredentialType: &credentialTypeDefault,
+		PageNumber:     &pageNumberDefault,
+		PageSize:       &pageSizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -166,6 +177,17 @@ func (o *GetOnboardAPIV1CredentialParams) WithConnector(connector *string) *GetO
 // SetConnector adds the connector to the get onboard API v1 credential params
 func (o *GetOnboardAPIV1CredentialParams) SetConnector(connector *string) {
 	o.Connector = connector
+}
+
+// WithCredentialType adds the credentialType to the get onboard API v1 credential params
+func (o *GetOnboardAPIV1CredentialParams) WithCredentialType(credentialType *string) *GetOnboardAPIV1CredentialParams {
+	o.SetCredentialType(credentialType)
+	return o
+}
+
+// SetCredentialType adds the credentialType to the get onboard API v1 credential params
+func (o *GetOnboardAPIV1CredentialParams) SetCredentialType(credentialType *string) {
+	o.CredentialType = credentialType
 }
 
 // WithHealth adds the health to the get onboard API v1 credential params
@@ -221,6 +243,23 @@ func (o *GetOnboardAPIV1CredentialParams) WriteToRequest(r runtime.ClientRequest
 		if qConnector != "" {
 
 			if err := r.SetQueryParam("connector", qConnector); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.CredentialType != nil {
+
+		// query param credentialType
+		var qrCredentialType string
+
+		if o.CredentialType != nil {
+			qrCredentialType = *o.CredentialType
+		}
+		qCredentialType := qrCredentialType
+		if qCredentialType != "" {
+
+			if err := r.SetQueryParam("credentialType", qCredentialType); err != nil {
 				return err
 			}
 		}

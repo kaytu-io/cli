@@ -33,11 +33,8 @@ const (
 	// GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeResourceID captures enum value "resourceID"
 	GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeResourceID GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType = "resourceID"
 
-	// GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeResourceName captures enum value "resourceName"
-	GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeResourceName GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType = "resourceName"
-
-	// GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeProvider captures enum value "provider"
-	GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeProvider GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType = "provider"
+	// GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeConnector captures enum value "connector"
+	GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeConnector GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType = "connector"
 
 	// GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeResourceType captures enum value "resourceType"
 	GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldTypeResourceType GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType = "resourceType"
@@ -57,7 +54,7 @@ var githubComKaytuIoKaytuEnginePkgInventoryApiSortFieldTypeEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType
-	if err := json.Unmarshal([]byte(`["resourceID","resourceName","provider","resourceType","resourceGroup","location","connectionID"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["resourceID","connector","resourceType","resourceGroup","location","connectionID"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

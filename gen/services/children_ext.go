@@ -58,7 +58,7 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 			return errors.New("url name not found for cmd: " + name)
 		}
 
-		fv := utils.ExtractFields(reflect.TypeOf(config.ParamModels[apiName]))
+		fv := utils.ExtractFields(g.Swagger, reflect.TypeOf(config.ParamModels[apiName]).Name(), reflect.TypeOf(config.ParamModels[apiName]))
 		output := utils.GenerateSetFieldsFromFlags(fv)
 		outputFlags := utils.GenerateFlagDefinitions(strcase.ToCamel(name), fv)
 

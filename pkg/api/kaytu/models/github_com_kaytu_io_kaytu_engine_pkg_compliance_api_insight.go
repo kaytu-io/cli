@@ -31,6 +31,9 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight struct {
 	// Example: true
 	Enabled bool `json:"enabled,omitempty"`
 
+	// Old Total Result Date
+	FirstOldResultDate string `json:"firstOldResultDate,omitempty"`
+
 	// Insight ID
 	// Example: 23
 	ID int64 `json:"id,omitempty"`

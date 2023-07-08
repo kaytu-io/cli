@@ -24,7 +24,7 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
 			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
+			ProviderFilter: models.SourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
 			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
 		})
 
@@ -54,7 +54,7 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
 			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
+			ProviderFilter: models.SourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
 			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
 		})
 

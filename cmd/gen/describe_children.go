@@ -44,6 +44,25 @@ var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 	},
 }
 
+var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
+	Use: "depricated-run-insight",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
+		}
+
+		req := describe.NewGetScheduleAPIV0InsightTriggerParams()
+
+		_, err = client.Describe.GetScheduleAPIV0InsightTrigger(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 	Use: "describe-resource",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -123,7 +142,7 @@ var GetScheduleApiV1InsightJobJobIdCmd = &cobra.Command{
 }
 
 var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
-	Use: "trigger-benchmark-evaluation",
+	Use: "run-benchmark-evaluation",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -153,7 +172,7 @@ var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 }
 
 var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
-	Use: "trigger-compliance",
+	Use: "run-compliance",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -172,7 +191,7 @@ var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
 }
 
 var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
-	Use: "trigger-compliance-summerizer",
+	Use: "run-compliance-summerizer",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -191,7 +210,7 @@ var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
 }
 
 var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
-	Use: "trigger-describe",
+	Use: "run-describe",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -211,27 +230,8 @@ var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 	},
 }
 
-var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
-	Use: "trigger-insight",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
-		}
-
-		req := describe.NewGetScheduleAPIV0InsightTriggerParams()
-
-		_, err = client.Describe.GetScheduleAPIV0InsightTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
-	Use: "trigger-insight",
+	Use: "run-insight",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -261,7 +261,7 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1StacksInsightTriggerCmd = &cobra.Command{
-	Use: "trigger-stack-insight",
+	Use: "run-stack-insight",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -270,7 +270,7 @@ var PostScheduleApiV1StacksInsightTriggerCmd = &cobra.Command{
 
 		req := describe.NewPostScheduleAPIV1StacksInsightTriggerParams()
 
-		//req.SetRequest(v)
+		req.SetRequest(v)
 
 		resp, err := client.Describe.PostScheduleAPIV1StacksInsightTrigger(req, auth)
 		if err != nil {
@@ -287,7 +287,7 @@ var PostScheduleApiV1StacksInsightTriggerCmd = &cobra.Command{
 }
 
 var GetScheduleApiV0SummarizeTriggerCmd = &cobra.Command{
-	Use: "trigger-summerize",
+	Use: "run-summerize",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

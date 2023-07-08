@@ -16,15 +16,15 @@ func init() {
 
 	MetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
 	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "")
-	GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
+	// GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
 
 	MetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
 	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "")
-	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.MarkFlagRequired("resource-type")
+	// GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.MarkFlagRequired("resource-type")
 
 	MetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
 	GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "")
-	GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
+	// GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
 
 	MetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
 	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "")
@@ -41,7 +41,7 @@ func init() {
 
 	MetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
 	PostMetadataApiV1MetadataCmd.Flags().String("key", "", "")
-	PostMetadataApiV1MetadataCmd.MarkFlagRequired("key")
+	// PostMetadataApiV1MetadataCmd.MarkFlagRequired("key")
 	PostMetadataApiV1MetadataCmd.Flags().String("value", "", "")
 
 }

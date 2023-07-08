@@ -42,12 +42,12 @@ func init() {
 	GetInventoryApiV2ResourcesTagKeyCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ResourcesTagKeyCmd.Flags().Int64("end-time", 0, "")
 	GetInventoryApiV2ResourcesTagKeyCmd.Flags().String("key", "", "")
-	GetInventoryApiV2ResourcesTagKeyCmd.MarkFlagRequired("key")
+	// GetInventoryApiV2ResourcesTagKeyCmd.MarkFlagRequired("key")
 	GetInventoryApiV2ResourcesTagKeyCmd.Flags().Int64("min-count", 0, "")
 
 	InventoryCmd.AddCommand(GetInventoryApiV2ServicesTagKeyCmd)
 	GetInventoryApiV2ServicesTagKeyCmd.Flags().String("key", "", "")
-	GetInventoryApiV2ServicesTagKeyCmd.MarkFlagRequired("key")
+	// GetInventoryApiV2ServicesTagKeyCmd.MarkFlagRequired("key")
 
 	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesTagCmd)
 	GetInventoryApiV2ResourcesTagCmd.Flags().StringArray("connection-id", nil, "")
@@ -61,7 +61,7 @@ func init() {
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("end-time", "", "")
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("resource-type", "", "")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.MarkFlagRequired("resource-type")
+	// GetInventoryApiV2ResourcesMetricResourceTypeCmd.MarkFlagRequired("resource-type")
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("start-time", "", "")
 
 	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesTrendCmd)
@@ -78,10 +78,10 @@ func init() {
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().StringArray("connector", nil, "")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().String("end-time", "", "")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().String("key", "", "")
-	GetInventoryApiV2ResourcesCompositionKeyCmd.MarkFlagRequired("key")
+	// GetInventoryApiV2ResourcesCompositionKeyCmd.MarkFlagRequired("key")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().String("start-time", "", "")
 	GetInventoryApiV2ResourcesCompositionKeyCmd.Flags().Int64("top", 0, "")
-	GetInventoryApiV2ResourcesCompositionKeyCmd.MarkFlagRequired("top")
+	// GetInventoryApiV2ResourcesCompositionKeyCmd.MarkFlagRequired("top")
 
 	InventoryCmd.AddCommand(GetInventoryApiV2ResourcesMetricCmd)
 	GetInventoryApiV2ResourcesMetricCmd.Flags().StringArray("connection-id", nil, "")
@@ -107,7 +107,7 @@ func init() {
 	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().StringArray("connection-id", nil, "")
 	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("end-time", "", "")
 	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("service-name", "", "")
-	GetInventoryApiV2ServicesMetricServiceNameCmd.MarkFlagRequired("service-name")
+	// GetInventoryApiV2ServicesMetricServiceNameCmd.MarkFlagRequired("service-name")
 	GetInventoryApiV2ServicesMetricServiceNameCmd.Flags().String("start-time", "", "")
 
 	InventoryCmd.AddCommand(GetInventoryApiV2ServicesMetricCmd)

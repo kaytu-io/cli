@@ -50,10 +50,12 @@ var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest{
 			Config: &models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS{
-				AccessKey: flags.ReadStringOptionalFlag(cmd, "AccessKey"),
-				AccountID: flags.ReadStringFlag(cmd, "AccountID"),
-				Regions:   flags.ReadStringArrayFlag(cmd, "Regions"),
-				SecretKey: flags.ReadStringOptionalFlag(cmd, "SecretKey"),
+				AccessKey:      flags.ReadStringOptionalFlag(cmd, "AccessKey"),
+				AccountID:      flags.ReadStringFlag(cmd, "AccountID"),
+				AssumeRoleName: flags.ReadStringFlag(cmd, "AssumeRoleName"),
+				ExternalID:     flags.ReadStringFlag(cmd, "ExternalID"),
+				Regions:        flags.ReadStringArrayFlag(cmd, "Regions"),
+				SecretKey:      flags.ReadStringOptionalFlag(cmd, "SecretKey"),
 			},
 			Description: flags.ReadStringFlag(cmd, "Description"),
 			Email:       flags.ReadStringFlag(cmd, "Email"),
@@ -380,6 +382,32 @@ var GetOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	},
 }
 
+var GetOnboardApiV1SourceSourceIdCmd = &cobra.Command{
+	Use: "get-source",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
+		}
+
+		req := onboard.NewGetOnboardAPIV1SourceSourceIDParams()
+
+		req.SetSourceID(flags.ReadInt64Flag(cmd, "SourceID"))
+
+		resp, err := client.Onboard.GetOnboardAPIV1SourceSourceID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
+		}
+
+		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var PostOnboardApiV1SourcesCmd = &cobra.Command{
 	Use: "get-source",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -403,32 +431,6 @@ var PostOnboardApiV1SourcesCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_onboard_api_v_1_sources] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1SourceSourceIdCmd = &cobra.Command{
-	Use: "get-source",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1SourceSourceIDParams()
-
-		req.SetSourceID(flags.ReadInt64Flag(cmd, "SourceID"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1SourceSourceID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
 		}
 
 		return nil
@@ -493,6 +495,7 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 		req := onboard.NewGetOnboardAPIV1CredentialParams()
 
 		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
+		req.SetCredentialType(flags.ReadStringOptionalFlag(cmd, "CredentialType"))
 		req.SetHealth(flags.ReadStringOptionalFlag(cmd, "Health"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
@@ -522,6 +525,7 @@ var GetOnboardApiV1CredentialSourcesListCmd = &cobra.Command{
 		req := onboard.NewGetOnboardAPIV1CredentialSourcesListParams()
 
 		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
+		req.SetCredentialType(flags.ReadStringOptionalFlag(cmd, "CredentialType"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 

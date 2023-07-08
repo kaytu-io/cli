@@ -168,16 +168,13 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 
 		req := resource.NewPostInventoryAPIV1ResourcesParams()
 
-		req.SetAccept(flags.ReadStringFlag(cmd, "Accept"))
-		req.SetCommon(flags.ReadStringOptionalFlag(cmd, "Common"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourcesRequest{
 			Filters: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIFilters{
-				Category:     flags.ReadStringArrayFlag(cmd, "Category"),
+				ConnectionID: flags.ReadStringArrayFlag(cmd, "ConnectionID"),
+				Connectors:   flags.ReadEnumArrayFlag[models.SourceType](cmd, "Connectors"),
 				Location:     flags.ReadStringArrayFlag(cmd, "Location"),
 				ResourceType: flags.ReadStringArrayFlag(cmd, "ResourceType"),
 				Service:      flags.ReadStringArrayFlag(cmd, "Service"),
-				SourceID:     flags.ReadStringArrayFlag(cmd, "SourceID"),
-				Tags:         flags.ReadMapStringFlag(cmd, "Tags"),
 			},
 			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
 				No:   flags.ReadInt64Flag(cmd, "No"),
@@ -200,102 +197,6 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resources] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostInventoryApiV1ResourcesAwsCmd = &cobra.Command{
-	Use: "list-aws-resources",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_resources_aws] : %v", err)
-		}
-
-		req := resource.NewPostInventoryAPIV1ResourcesAwsParams()
-
-		req.SetAccept(flags.ReadStringFlag(cmd, "Accept"))
-		req.SetCommon(flags.ReadStringOptionalFlag(cmd, "Common"))
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourcesRequest{
-			Filters: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIFilters{
-				Category:     flags.ReadStringArrayFlag(cmd, "Category"),
-				Location:     flags.ReadStringArrayFlag(cmd, "Location"),
-				ResourceType: flags.ReadStringArrayFlag(cmd, "ResourceType"),
-				Service:      flags.ReadStringArrayFlag(cmd, "Service"),
-				SourceID:     flags.ReadStringArrayFlag(cmd, "SourceID"),
-				Tags:         flags.ReadMapStringFlag(cmd, "Tags"),
-			},
-			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
-				No:   flags.ReadInt64Flag(cmd, "No"),
-				Size: flags.ReadInt64Flag(cmd, "Size"),
-			},
-			Query: flags.ReadStringFlag(cmd, "Query"),
-			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceSortItem{
-				{
-					Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Direction")),
-					Field:     models.GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType(flags.ReadStringFlag(cmd, "Field")),
-				},
-			},
-		})
-
-		resp, err := client.Resource.PostInventoryAPIV1ResourcesAws(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_resources_aws] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_resources_aws] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostInventoryApiV1ResourcesAzureCmd = &cobra.Command{
-	Use: "list-azure-resources",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_resources_azure] : %v", err)
-		}
-
-		req := resource.NewPostInventoryAPIV1ResourcesAzureParams()
-
-		req.SetAccept(flags.ReadStringFlag(cmd, "Accept"))
-		req.SetCommon(flags.ReadStringOptionalFlag(cmd, "Common"))
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourcesRequest{
-			Filters: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIFilters{
-				Category:     flags.ReadStringArrayFlag(cmd, "Category"),
-				Location:     flags.ReadStringArrayFlag(cmd, "Location"),
-				ResourceType: flags.ReadStringArrayFlag(cmd, "ResourceType"),
-				Service:      flags.ReadStringArrayFlag(cmd, "Service"),
-				SourceID:     flags.ReadStringArrayFlag(cmd, "SourceID"),
-				Tags:         flags.ReadMapStringFlag(cmd, "Tags"),
-			},
-			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
-				No:   flags.ReadInt64Flag(cmd, "No"),
-				Size: flags.ReadInt64Flag(cmd, "Size"),
-			},
-			Query: flags.ReadStringFlag(cmd, "Query"),
-			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceSortItem{
-				{
-					Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Direction")),
-					Field:     models.GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType(flags.ReadStringFlag(cmd, "Field")),
-				},
-			},
-		})
-
-		resp, err := client.Resource.PostInventoryAPIV1ResourcesAzure(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_resources_azure] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_resources_azure] : %v", err)
 		}
 
 		return nil

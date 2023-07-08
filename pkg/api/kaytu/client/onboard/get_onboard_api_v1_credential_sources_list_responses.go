@@ -45,7 +45,7 @@ GetOnboardAPIV1CredentialSourcesListOK describes a response with status code 200
 OK
 */
 type GetOnboardAPIV1CredentialSourcesListOK struct {
-	Payload []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPICredential
+	Payload *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse
 }
 
 // IsSuccess returns true when this get onboard Api v1 credential sources list o k response has a 2xx status code
@@ -86,14 +86,16 @@ func (o *GetOnboardAPIV1CredentialSourcesListOK) String() string {
 	return fmt.Sprintf("[GET /onboard/api/v1/credential/sources/list][%d] getOnboardApiV1CredentialSourcesListOK  %+v", 200, o.Payload)
 }
 
-func (o *GetOnboardAPIV1CredentialSourcesListOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgOnboardAPICredential {
+func (o *GetOnboardAPIV1CredentialSourcesListOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse {
 	return o.Payload
 }
 
 func (o *GetOnboardAPIV1CredentialSourcesListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

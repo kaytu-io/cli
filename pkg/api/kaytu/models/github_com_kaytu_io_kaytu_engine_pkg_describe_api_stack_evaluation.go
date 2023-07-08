@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -29,18 +30,95 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation struct {
 	// Example: 1
 	JobID int64 `json:"jobId,omitempty"`
 
+	// status
+	Status GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluationStatus `json:"status,omitempty"`
+
 	// BENCHMARK or INSIGHT
 	// Example: BENCHMARK
-	Type string `json:"type,omitempty"`
+	Type GithubComKaytuIoKaytuEnginePkgDescribeAPIEvaluationType `json:"type,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg describe api stack evaluation
 func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this github com kaytu io kaytu engine pkg describe api stack evaluation based on context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	if err := m.Status.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+// ContextValidate validate this github com kaytu io kaytu engine pkg describe api stack evaluation based on the context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	if err := m.Status.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
 	return nil
 }
 

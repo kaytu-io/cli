@@ -34,6 +34,7 @@ var UrlNames = map[string]string{
 	"post-compliance-api-v1-alarms-top":                                 "top-alarms",
 	"post-compliance-api-v1-findings":                                   "get-findings",
 	"get-compliance-api-v1-benchmarks-policies-policy-id":               "get-policy",
+	"get-compliance-api-v1-queries-sync":                                "sync-queries",
 
 	// connection
 	"get-inventory-api-v2-connections-data-connection-id": "get-connection",
@@ -48,18 +49,18 @@ var UrlNames = map[string]string{
 	"get-inventory-api-v1-cost-top-services": "top-services-by-cost",
 
 	// describe
-	"get-schedule-api-v0-compliance-summarizer-trigger":  "trigger-compliance-summerizer",
-	"get-schedule-api-v0-compliance-trigger":             "trigger-compliance",
+	"get-schedule-api-v0-compliance-summarizer-trigger":  "run-compliance-summerizer",
+	"get-schedule-api-v0-compliance-trigger":             "run-compliance",
 	"get-schedule-api-v0-describe-trigger":               "describe-trigger",
-	"get-schedule-api-v0-insight-trigger":                "depricated-trigger-insight",
-	"get-schedule-api-v0-summarize-trigger":              "trigger-summerize",
+	"get-schedule-api-v0-insight-trigger":                "depricated-run-insight",
+	"get-schedule-api-v0-summarize-trigger":              "run-summerize",
 	"get-schedule-api-v1-insight-job-job-id":             "get-insight-job",
 	"post-schedule-api-v1-describe-resource":             "describe-resource",
-	"post-schedule-api-v1-stacks-insight-trigger":        "trigger-stack-insight",
-	"put-schedule-api-v1-benchmark-evaluation-trigger":   "trigger-benchmark-evaluation",
-	"put-schedule-api-v1-compliance-trigger":             "trigger-compliance",
-	"put-schedule-api-v1-describe-trigger-connection-id": "trigger-describe",
-	"put-schedule-api-v1-insight-evaluation-trigger":     "trigger-insight",
+	"post-schedule-api-v1-stacks-insight-trigger":        "run-stack-insight",
+	"put-schedule-api-v1-benchmark-evaluation-trigger":   "run-benchmark-evaluation",
+	"put-schedule-api-v1-compliance-trigger":             "run-compliance",
+	"put-schedule-api-v1-describe-trigger-connection-id": "run-describe",
+	"put-schedule-api-v1-insight-evaluation-trigger":     "run-insight",
 
 	// insight
 	"get-compliance-api-v2-insights-insight-id":                  "get-insight",

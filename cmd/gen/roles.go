@@ -16,15 +16,15 @@ func init() {
 
 	RolesCmd.AddCommand(GetAuthApiV1RolesRoleNameCmd)
 	GetAuthApiV1RolesRoleNameCmd.Flags().String("role-name", "", "")
-	GetAuthApiV1RolesRoleNameCmd.MarkFlagRequired("role-name")
+	// GetAuthApiV1RolesRoleNameCmd.MarkFlagRequired("role-name")
 
 	RolesCmd.AddCommand(GetAuthApiV1RoleRoleNameKeysCmd)
 	GetAuthApiV1RoleRoleNameKeysCmd.Flags().String("role-name", "", "")
-	GetAuthApiV1RoleRoleNameKeysCmd.MarkFlagRequired("role-name")
+	// GetAuthApiV1RoleRoleNameKeysCmd.MarkFlagRequired("role-name")
 
 	RolesCmd.AddCommand(GetAuthApiV1RoleRoleNameUsersCmd)
 	GetAuthApiV1RoleRoleNameUsersCmd.Flags().String("role-name", "", "")
-	GetAuthApiV1RoleRoleNameUsersCmd.MarkFlagRequired("role-name")
+	// GetAuthApiV1RoleRoleNameUsersCmd.MarkFlagRequired("role-name")
 
 	RolesCmd.AddCommand(GetAuthApiV1RolesCmd)
 

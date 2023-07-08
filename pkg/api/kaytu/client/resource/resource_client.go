@@ -46,10 +46,6 @@ type ClientService interface {
 
 	PostInventoryAPIV1Resources(params *PostInventoryAPIV1ResourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesOK, error)
 
-	PostInventoryAPIV1ResourcesAws(params *PostInventoryAPIV1ResourcesAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAwsOK, error)
-
-	PostInventoryAPIV1ResourcesAzure(params *PostInventoryAPIV1ResourcesAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAzureOK, error)
-
 	PostInventoryAPIV1ResourcesFilters(params *PostInventoryAPIV1ResourcesFiltersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesFiltersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -339,13 +335,9 @@ func (a *Client) PostInventoryAPIV1Resource(params *PostInventoryAPIV1ResourcePa
 }
 
 /*
-	PostInventoryAPIV1Resources gets resources
+PostInventoryAPIV1Resources gets resources
 
-	Getting all cloud providers resources by filters.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
-If sort by is empty, result will be sorted by the first column in ascending order.
+Getting all cloud providers resources by filters
 */
 func (a *Client) PostInventoryAPIV1Resources(params *PostInventoryAPIV1ResourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesOK, error) {
 	// TODO: Validate the params before sending
@@ -356,7 +348,7 @@ func (a *Client) PostInventoryAPIV1Resources(params *PostInventoryAPIV1Resources
 		ID:                 "PostInventoryAPIV1Resources",
 		Method:             "POST",
 		PathPattern:        "/inventory/api/v1/resources",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
+		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
@@ -380,96 +372,6 @@ func (a *Client) PostInventoryAPIV1Resources(params *PostInventoryAPIV1Resources
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1Resources: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	PostInventoryAPIV1ResourcesAws gets a w s resources
-
-	Getting AWS resources by filters.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
-If sort by is empty, result will be sorted by the first column in ascending order.
-*/
-func (a *Client) PostInventoryAPIV1ResourcesAws(params *PostInventoryAPIV1ResourcesAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAwsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostInventoryAPIV1ResourcesAwsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1ResourcesAws",
-		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/resources/aws",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostInventoryAPIV1ResourcesAwsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostInventoryAPIV1ResourcesAwsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1ResourcesAws: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	PostInventoryAPIV1ResourcesAzure gets azure resources
-
-	Getting Azure resources by filters.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
-If sort by is empty, result will be sorted by the first column in ascending order.
-*/
-func (a *Client) PostInventoryAPIV1ResourcesAzure(params *PostInventoryAPIV1ResourcesAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesAzureOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostInventoryAPIV1ResourcesAzureParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1ResourcesAzure",
-		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/resources/azure",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostInventoryAPIV1ResourcesAzureReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostInventoryAPIV1ResourcesAzureOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1ResourcesAzure: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

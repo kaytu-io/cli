@@ -22,6 +22,10 @@ type DescribeComplianceReportJob struct {
 	// Example: azure_cis_v1
 	BenchmarkID string `json:"BenchmarkId,omitempty"`
 
+	// is stack
+	// Example: false
+	IsStack bool `json:"IsStack,omitempty"`
+
 	// report created at
 	// Example: 1619510400
 	ReportCreatedAt int64 `json:"ReportCreatedAt,omitempty"`

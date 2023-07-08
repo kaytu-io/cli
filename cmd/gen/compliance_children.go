@@ -350,6 +350,25 @@ var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
 	},
 }
 
+var GetComplianceApiV1QueriesSyncCmd = &cobra.Command{
+	Use: "sync-queries",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_queries_sync] : %v", err)
+		}
+
+		req := compliance.NewGetComplianceAPIV1QueriesSyncParams()
+
+		_, err = client.Compliance.GetComplianceAPIV1QueriesSync(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_queries_sync] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var PostComplianceApiV1AlarmsTopCmd = &cobra.Command{
 	Use: "top-alarms",
 	RunE: func(cmd *cobra.Command, args []string) error {

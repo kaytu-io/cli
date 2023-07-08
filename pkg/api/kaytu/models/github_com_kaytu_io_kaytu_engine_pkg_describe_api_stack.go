@@ -31,6 +31,10 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIStack struct {
 	// Stack evaluations history, including insight evaluations and compliance evaluations
 	Evaluations []*GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation `json:"evaluations"`
 
+	// Stack failure message
+	// Example: error message
+	FailureMessage string `json:"failureMessage,omitempty"`
+
 	// Stack resource types
 	// Example: ["[Microsoft.Compute/virtualMachines]"]
 	ResourceTypes []string `json:"resourceTypes"`
@@ -39,10 +43,18 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIStack struct {
 	// Example: ["[/subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1]"]
 	Resources []string `json:"resources"`
 
+	// Source type
+	// Example: Azure
+	SourceType SourceType `json:"sourceType,omitempty"`
+
 	// Stack unique identifier
 	// Example: stack-twr32a5d-5as5-4ffe-b1cc-e32w1ast87s0
 	// Required: true
 	StackID *string `json:"stackId"`
+
+	// Stack status. CREATED, EVALUATED, IN_PROGRESS, FAILED
+	// Example: CREATED
+	Status GithubComKaytuIoKaytuEnginePkgDescribeAPIStackStatus `json:"status,omitempty"`
 
 	// Stack tags
 	Tags map[string][]string `json:"tags,omitempty"`
@@ -60,7 +72,15 @@ func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) Validate(formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.validateSourceType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStackID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -96,10 +116,26 @@ func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) validateEvaluations(for
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) validateSourceType(formats strfmt.Registry) error {
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) validateStackID(formats strfmt.Registry) error {
 
 	if err := validate.Required("stackId", "body", m.StackID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
 	}
 
 	return nil
@@ -110,6 +146,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) ContextValidate(ctx con
 	var res []error
 
 	if err := m.contextValidateEvaluations(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSourceType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -140,6 +184,16 @@ func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) contextValidateEvaluati
 		}
 
 	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgDescribeAPIStack) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
