@@ -22,7 +22,9 @@ func init() {
 	KeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
 	PostAuthApiV1KeyCreateCmd.Flags().String("name", "", "")
 	// PostAuthApiV1KeyCreateCmd.MarkFlagRequired("name")
+	PostAuthApiV1KeyCreateCmd.MarkFlagRequired("name")
 	PostAuthApiV1KeyCreateCmd.Flags().String("role-name", "", "")
+	PostAuthApiV1KeyCreateCmd.MarkFlagRequired("role-name")
 
 	KeysCmd.AddCommand(GetAuthApiV1KeyIdCmd)
 	GetAuthApiV1KeyIdCmd.Flags().String("id", "", "")
@@ -44,6 +46,8 @@ func init() {
 	KeysCmd.AddCommand(PostAuthApiV1KeyRoleCmd)
 	PostAuthApiV1KeyRoleCmd.Flags().Int64("id", 0, "")
 	// PostAuthApiV1KeyRoleCmd.MarkFlagRequired("id")
+	PostAuthApiV1KeyRoleCmd.MarkFlagRequired("id")
 	PostAuthApiV1KeyRoleCmd.Flags().String("role-name", "", "")
+	PostAuthApiV1KeyRoleCmd.MarkFlagRequired("role-name")
 
 }

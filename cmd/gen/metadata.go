@@ -46,6 +46,8 @@ func init() {
 	MetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
 	PostMetadataApiV1MetadataCmd.Flags().String("key", "", "")
 	// PostMetadataApiV1MetadataCmd.MarkFlagRequired("key")
+	PostMetadataApiV1MetadataCmd.MarkFlagRequired("key")
 	PostMetadataApiV1MetadataCmd.Flags().String("value", "", "")
+	PostMetadataApiV1MetadataCmd.MarkFlagRequired("value")
 
 }

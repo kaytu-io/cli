@@ -17,10 +17,13 @@ func init() {
 	WorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceCmd)
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("description", "", "")
 	// PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("description")
+	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("description")
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("name", "", "")
 	// PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("name")
+	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("name")
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("tier", "", "")
 	// PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("tier")
+	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("tier")
 
 	WorkspaceCmd.AddCommand(DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd)
 	DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd.Flags().String("workspace-id", "", "")
@@ -65,6 +68,7 @@ func init() {
 	WorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.Flags().String("new-name", "", "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.MarkFlagRequired("new-name")
+	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.MarkFlagRequired("new-name")
 
 	PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.Flags().String("workspace-id", "", "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd.MarkFlagRequired("workspace-id")
@@ -73,6 +77,7 @@ func init() {
 	WorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd.Flags().Int64("new-org-id", 0, "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd.MarkFlagRequired("new-org-id")
+	PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd.MarkFlagRequired("new-org-id")
 
 	PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd.Flags().String("workspace-id", "", "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd.MarkFlagRequired("workspace-id")
@@ -81,6 +86,7 @@ func init() {
 	WorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd.Flags().String("new-owner-user-id", "", "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd.MarkFlagRequired("new-owner-user-id")
+	PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd.MarkFlagRequired("new-owner-user-id")
 
 	PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd.Flags().String("workspace-id", "", "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd.MarkFlagRequired("workspace-id")
@@ -88,6 +94,7 @@ func init() {
 
 	WorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd)
 	PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd.Flags().String("new-name", "", "")
+	PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd.MarkFlagRequired("new-name")
 
 	PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd.Flags().String("workspace-id", "", "")
 	// PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd.MarkFlagRequired("workspace-id")

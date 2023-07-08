@@ -41,13 +41,18 @@ func init() {
 
 	StackCmd.AddCommand(PostScheduleApiV1StacksStackIdFindingsCmd)
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().StringArray("benchmark-ids", nil, "")
+	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("benchmark-ids")
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().Int64("no", 0, "")
 	// PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("no")
+	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("no")
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().Int64("size", 0, "")
 	// PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("size")
+	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("size")
 
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().String("direction", "", "")
+	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("direction")
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().String("field", "", "")
+	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("field")
 
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().String("stack-id", "", "")
 	// PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("stack-id")
@@ -71,7 +76,9 @@ func init() {
 
 	StackCmd.AddCommand(PostScheduleApiV1StacksDescriberTriggerCmd)
 	PostScheduleApiV1StacksDescriberTriggerCmd.Flags().String("config", "", "")
+	PostScheduleApiV1StacksDescriberTriggerCmd.MarkFlagRequired("config")
 	PostScheduleApiV1StacksDescriberTriggerCmd.Flags().String("stack-id", "", "")
 	// PostScheduleApiV1StacksDescriberTriggerCmd.MarkFlagRequired("stack-id")
+	PostScheduleApiV1StacksDescriberTriggerCmd.MarkFlagRequired("stack-id")
 
 }

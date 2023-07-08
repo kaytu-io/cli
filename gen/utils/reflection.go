@@ -20,7 +20,7 @@ func fixParamName(name string) string {
 	return strings.ReplaceAll(strcase.ToCamel(name), "Id", "ID")
 }
 
-func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (resp Field) {
+func ExtractFields(swag *swagger.Swagger, parentType string, parentRequired bool, x reflect.Type) (resp Field) {
 	for i := 0; i < x.NumField(); i++ {
 		field := x.Field(i)
 		fieldType := field.Type
@@ -67,12 +67,13 @@ func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (re
 				panic(fmt.Sprintf("failed to figure out model, %s", typeName))
 			}
 		}
+		child.IsRequired = child.IsRequired || parentRequired
 
 		if fieldType.Kind() == reflect.Struct {
 			if !field.Anonymous {
-				child.Children = append(child.Children, ExtractFields(swag, field.Type.String(), fieldType).Children...)
+				child.Children = append(child.Children, ExtractFields(swag, field.Type.String(), parentRequired || child.IsRequired, fieldType).Children...)
 			} else {
-				resp.Children = append(resp.Children, ExtractFields(swag, field.Type.String(), fieldType).Children...)
+				resp.Children = append(resp.Children, ExtractFields(swag, field.Type.String(), parentRequired, fieldType).Children...)
 			}
 		}
 
