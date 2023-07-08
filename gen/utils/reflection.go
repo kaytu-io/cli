@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"github.com/iancoleman/strcase"
 	"github.com/kaytu-io/cli-program/gen/swagger"
 	"reflect"
 	"strings"
@@ -15,7 +16,11 @@ type Field struct {
 	IsRequired bool
 }
 
-func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (resp Field) {
+func fixParamName(name string) string {
+	return strings.ReplaceAll(strcase.ToCamel(name), "Id", "ID")
+}
+
+func ExtractFields(swag *swagger.Swagger, parentType string, parentRequired bool, x reflect.Type) (resp Field) {
 	for i := 0; i < x.NumField(); i++ {
 		field := x.Field(i)
 		fieldType := field.Type
@@ -44,7 +49,7 @@ func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (re
 		if strings.HasSuffix(typeName, "Params") {
 			api := swag.GetAPI(typeName)
 			for _, param := range api.Parameters {
-				if param.Name == child.Name {
+				if fixParamName(param.Name) == child.Name {
 					child.IsRequired = param.Required
 				}
 			}
@@ -54,7 +59,7 @@ func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (re
 		} else {
 			model := swag.GetModel(typeName)
 			for _, param := range model.Parameters {
-				if param.Name == child.Name {
+				if fixParamName(param.Name) == child.Name {
 					child.IsRequired = param.Required
 				}
 			}
@@ -62,12 +67,13 @@ func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (re
 				panic(fmt.Sprintf("failed to figure out model, %s", typeName))
 			}
 		}
+		child.IsRequired = child.IsRequired || parentRequired
 
 		if fieldType.Kind() == reflect.Struct {
 			if !field.Anonymous {
-				child.Children = append(child.Children, ExtractFields(swag, field.Type.String(), fieldType).Children...)
+				child.Children = append(child.Children, ExtractFields(swag, field.Type.String(), parentRequired || child.IsRequired, fieldType).Children...)
 			} else {
-				resp.Children = append(resp.Children, ExtractFields(swag, field.Type.String(), fieldType).Children...)
+				resp.Children = append(resp.Children, ExtractFields(swag, field.Type.String(), parentRequired, fieldType).Children...)
 			}
 		}
 

@@ -19,8 +19,10 @@ func init() {
 	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().StringArray("connector-id", nil, "")
 	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("end-time", "", "")
 	// GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("end-time")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("end-time")
 	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("service-name", "", "")
 	// GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("service-name")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("service-name")
 
 	ServicesCmd.AddCommand(GetInventoryApiV2ServicesSummaryCmd)
 	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("connection-id", nil, "")
