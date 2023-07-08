@@ -21,20 +21,20 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource struct {
 	// attributes
 	Attributes map[string]string `json:"attributes,omitempty"`
 
-	// The Region of the resource
-	Location string `json:"location,omitempty"`
+	// Kaytu Connection Id of the resource
+	ConnectionID string `json:"connectionID,omitempty"`
 
 	// Resource Provider
-	Provider GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType `json:"provider,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
+
+	// The Region of the resource
+	Location string `json:"location,omitempty"`
 
 	// Provider Connection Id
 	ProviderConnectionID string `json:"providerConnectionID,omitempty"`
 
 	// Provider Connection Name
 	ProviderConnectionName string `json:"providerConnectionName,omitempty"`
-
-	// Resource Category
-	ResourceCategory string `json:"resourceCategory,omitempty"`
 
 	// Resource Id
 	ResourceID string `json:"resourceID,omitempty"`
@@ -45,15 +45,15 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource struct {
 	// Resource Type
 	ResourceType string `json:"resourceType,omitempty"`
 
-	// Resource Type Name
-	ResourceTypeName string `json:"resourceTypeName,omitempty"`
+	// Resource Type Label
+	ResourceTypeLabel string `json:"resourceTypeLabel,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api all resource
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateProvider(formats); err != nil {
+	if err := m.validateConnector(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -63,8 +63,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) Validate(formats
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) validateProvider(formats strfmt.Registry) error {
-	if swag.IsZero(m.Provider) { // not required
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) validateConnector(formats strfmt.Registry) error {
+	if swag.IsZero(m.Connector) { // not required
 		return nil
 	}
 
@@ -75,7 +75,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) validateProvider
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateProvider(ctx, formats); err != nil {
+	if err := m.contextValidateConnector(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,7 +85,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) ContextValidate(
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) contextValidateProvider(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIAllResource) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

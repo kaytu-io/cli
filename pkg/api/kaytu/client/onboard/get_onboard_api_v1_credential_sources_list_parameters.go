@@ -68,6 +68,12 @@ type GetOnboardAPIV1CredentialSourcesListParams struct {
 	*/
 	Connector *string
 
+	/* CredentialType.
+
+	   filter by credential type
+	*/
+	CredentialType *string
+
 	/* PageNumber.
 
 	   page number
@@ -162,6 +168,17 @@ func (o *GetOnboardAPIV1CredentialSourcesListParams) SetConnector(connector *str
 	o.Connector = connector
 }
 
+// WithCredentialType adds the credentialType to the get onboard API v1 credential sources list params
+func (o *GetOnboardAPIV1CredentialSourcesListParams) WithCredentialType(credentialType *string) *GetOnboardAPIV1CredentialSourcesListParams {
+	o.SetCredentialType(credentialType)
+	return o
+}
+
+// SetCredentialType adds the credentialType to the get onboard API v1 credential sources list params
+func (o *GetOnboardAPIV1CredentialSourcesListParams) SetCredentialType(credentialType *string) {
+	o.CredentialType = credentialType
+}
+
 // WithPageNumber adds the pageNumber to the get onboard API v1 credential sources list params
 func (o *GetOnboardAPIV1CredentialSourcesListParams) WithPageNumber(pageNumber *int64) *GetOnboardAPIV1CredentialSourcesListParams {
 	o.SetPageNumber(pageNumber)
@@ -204,6 +221,23 @@ func (o *GetOnboardAPIV1CredentialSourcesListParams) WriteToRequest(r runtime.Cl
 		if qConnector != "" {
 
 			if err := r.SetQueryParam("connector", qConnector); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.CredentialType != nil {
+
+		// query param credentialType
+		var qrCredentialType string
+
+		if o.CredentialType != nil {
+			qrCredentialType = *o.CredentialType
+		}
+		qCredentialType := qrCredentialType
+		if qCredentialType != "" {
+
+			if err := r.SetQueryParam("credentialType", qCredentialType); err != nil {
 				return err
 			}
 		}

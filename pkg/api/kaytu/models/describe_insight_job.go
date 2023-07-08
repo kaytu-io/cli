@@ -36,6 +36,9 @@ type DescribeInsightJob struct {
 	// insight ID
 	InsightID int64 `json:"insightID,omitempty"`
 
+	// is stack
+	IsStack bool `json:"isStack,omitempty"`
+
 	// schedule UUID
 	ScheduleUUID string `json:"scheduleUUID,omitempty"`
 

@@ -5,15 +5,23 @@ import (
 	"github.com/iancoleman/strcase"
 	"github.com/kaytu-io/cli-program/gen/crud"
 	"github.com/kaytu-io/cli-program/gen/services"
+	"github.com/kaytu-io/cli-program/gen/swagger"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
+var swaggerFileName = "https://app.kaytu.dev/docs/api/1.0/swagger.yaml"
+
 func main() {
+	swag, err := swagger.New(swaggerFileName)
+	if err != nil {
+		panic(err)
+	}
+
 	root := "."
-	_, err := os.Stat(root + "/pkg")
+	_, err = os.Stat(root + "/pkg")
 	if err != nil {
 		root = ".."
 	}
@@ -31,6 +39,7 @@ func main() {
 			ServiceFileName:  serviceName,
 			ServiceNameCamel: strcase.ToCamel(serviceName),
 			ServiceNameSnake: strcase.ToSnake(serviceName),
+			Swagger:          swag,
 		}
 
 		err = serviceGen.ExtractChildren(root, path)

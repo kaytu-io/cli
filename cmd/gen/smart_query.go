@@ -18,26 +18,26 @@ func init() {
 	GetInventoryApiV1QueryCmd.Flags().StringArray("labels", nil, "")
 	GetInventoryApiV1QueryCmd.Flags().String("provider-filter", "", "")
 	GetInventoryApiV1QueryCmd.Flags().String("title-filter", "", "")
-	GetInventoryApiV1QueryCmd.MarkFlagRequired("title-filter")
+	// GetInventoryApiV1QueryCmd.MarkFlagRequired("title-filter")
 
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
 	GetInventoryApiV1QueryCountCmd.Flags().StringArray("labels", nil, "")
 	GetInventoryApiV1QueryCountCmd.Flags().String("provider-filter", "", "")
 	GetInventoryApiV1QueryCountCmd.Flags().String("title-filter", "", "")
-	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("title-filter")
+	// GetInventoryApiV1QueryCountCmd.MarkFlagRequired("title-filter")
 
 	SmartQueryCmd.AddCommand(PostInventoryApiV1QueryQueryIdCmd)
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("accept", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("accept")
+	// PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("accept")
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("query-id", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("query-id")
+	// PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("query-id")
 	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("no", 0, "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("no")
+	// PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("no")
 	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("size", 0, "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("size")
+	// PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("size")
 
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("direction", "", "")
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("field", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("field")
+	// PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("field")
 
 }

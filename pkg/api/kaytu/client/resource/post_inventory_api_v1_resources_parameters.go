@@ -63,18 +63,6 @@ PostInventoryAPIV1ResourcesParams contains all the parameters to send to the API
 */
 type PostInventoryAPIV1ResourcesParams struct {
 
-	/* Accept.
-
-	   Accept header
-	*/
-	Accept string
-
-	/* Common.
-
-	   Common filter
-	*/
-	Common *string
-
 	/* Request.
 
 	   Request Body
@@ -134,28 +122,6 @@ func (o *PostInventoryAPIV1ResourcesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAccept adds the accept to the post inventory API v1 resources params
-func (o *PostInventoryAPIV1ResourcesParams) WithAccept(accept string) *PostInventoryAPIV1ResourcesParams {
-	o.SetAccept(accept)
-	return o
-}
-
-// SetAccept adds the accept to the post inventory API v1 resources params
-func (o *PostInventoryAPIV1ResourcesParams) SetAccept(accept string) {
-	o.Accept = accept
-}
-
-// WithCommon adds the common to the post inventory API v1 resources params
-func (o *PostInventoryAPIV1ResourcesParams) WithCommon(common *string) *PostInventoryAPIV1ResourcesParams {
-	o.SetCommon(common)
-	return o
-}
-
-// SetCommon adds the common to the post inventory API v1 resources params
-func (o *PostInventoryAPIV1ResourcesParams) SetCommon(common *string) {
-	o.Common = common
-}
-
 // WithRequest adds the request to the post inventory API v1 resources params
 func (o *PostInventoryAPIV1ResourcesParams) WithRequest(request *models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourcesRequest) *PostInventoryAPIV1ResourcesParams {
 	o.SetRequest(request)
@@ -174,28 +140,6 @@ func (o *PostInventoryAPIV1ResourcesParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
-
-	// header param accept
-	if err := r.SetHeaderParam("accept", o.Accept); err != nil {
-		return err
-	}
-
-	if o.Common != nil {
-
-		// query param common
-		var qrCommon string
-
-		if o.Common != nil {
-			qrCommon = *o.Common
-		}
-		qCommon := qrCommon
-		if qCommon != "" {
-
-			if err := r.SetQueryParam("common", qCommon); err != nil {
-				return err
-			}
-		}
-	}
 	if o.Request != nil {
 		if err := r.SetBodyParam(o.Request); err != nil {
 			return err

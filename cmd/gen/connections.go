@@ -16,7 +16,7 @@ func init() {
 
 	ConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryConnectionIdCmd)
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().String("connection-id", "", "")
-	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.MarkFlagRequired("connection-id")
+	// GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.MarkFlagRequired("connection-id")
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().Int64("end-time", 0, "")
 	GetOnboardApiV1ConnectionsSummaryConnectionIdCmd.Flags().Int64("start-time", 0, "")
 

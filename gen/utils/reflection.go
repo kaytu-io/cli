@@ -2,17 +2,20 @@ package utils
 
 import (
 	"fmt"
+	"github.com/kaytu-io/cli-program/gen/swagger"
 	"reflect"
+	"strings"
 )
 
 type Field struct {
-	Name     string
-	Type     string
-	Children []Field
-	IsEnum   bool
+	Name       string
+	Type       string
+	Children   []Field
+	IsEnum     bool
+	IsRequired bool
 }
 
-func ExtractFields(x reflect.Type) (resp Field) {
+func ExtractFields(swag *swagger.Swagger, parentType string, x reflect.Type) (resp Field) {
 	for i := 0; i < x.NumField(); i++ {
 		field := x.Field(i)
 		fieldType := field.Type
@@ -36,12 +39,35 @@ func ExtractFields(x reflect.Type) (resp Field) {
 			Type:     field.Type.String(),
 			Children: nil,
 		}
-		fmt.Println(field.Name, fieldType.Name(), fieldType.Kind())
+
+		typeName := strings.TrimPrefix(strings.Trim(parentType, "*[]"), "models.")
+		if strings.HasSuffix(typeName, "Params") {
+			api := swag.GetAPI(typeName)
+			for _, param := range api.Parameters {
+				if param.Name == child.Name {
+					child.IsRequired = param.Required
+				}
+			}
+			if api == nil {
+				panic(fmt.Sprintf("failed to figure out api, %s", typeName))
+			}
+		} else {
+			model := swag.GetModel(typeName)
+			for _, param := range model.Parameters {
+				if param.Name == child.Name {
+					child.IsRequired = param.Required
+				}
+			}
+			if model == nil {
+				panic(fmt.Sprintf("failed to figure out model, %s", typeName))
+			}
+		}
+
 		if fieldType.Kind() == reflect.Struct {
 			if !field.Anonymous {
-				child.Children = append(child.Children, ExtractFields(fieldType).Children...)
+				child.Children = append(child.Children, ExtractFields(swag, field.Type.String(), fieldType).Children...)
 			} else {
-				resp.Children = append(resp.Children, ExtractFields(fieldType).Children...)
+				resp.Children = append(resp.Children, ExtractFields(swag, field.Type.String(), fieldType).Children...)
 			}
 		}
 

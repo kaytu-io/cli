@@ -22,7 +22,7 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest struct {
 	Labels []string `json:"labels"`
 
 	// Specifies the Provider
-	ProviderFilter GithubComKaytuIoKaytuEnginePkgInventoryAPISourceType `json:"providerFilter,omitempty"`
+	ProviderFilter SourceType `json:"providerFilter,omitempty"`
 
 	// Specifies the Title
 	TitleFilter string `json:"titleFilter,omitempty"`

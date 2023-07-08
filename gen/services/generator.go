@@ -3,6 +3,7 @@ package services
 import (
 	_ "embed"
 	"fmt"
+	"github.com/kaytu-io/cli-program/gen/swagger"
 	"os"
 	"text/template"
 )
@@ -20,6 +21,8 @@ type Generator struct {
 
 	DefaultChildren *Child
 	Children        []Child
+
+	Swagger *swagger.Swagger
 }
 
 type Child struct {

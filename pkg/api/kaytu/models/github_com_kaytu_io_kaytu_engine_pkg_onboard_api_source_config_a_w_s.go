@@ -26,6 +26,12 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS struct {
 	// account Id
 	AccountID string `json:"accountId,omitempty"`
 
+	// assume role name
+	AssumeRoleName string `json:"assumeRoleName,omitempty"`
+
+	// external Id
+	ExternalID string `json:"externalId,omitempty"`
+
 	// regions
 	Regions []string `json:"regions"`
 

@@ -27,6 +27,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightGroup struct {
 	// Example: List clusters that have role-based access control (RBAC) disabled
 	Description string `json:"description,omitempty"`
 
+	// first old result date
+	// Example: 2023-04-21T08:53:09.928Z
+	FirstOldResultDate string `json:"firstOldResultDate,omitempty"`
+
 	// id
 	// Example: 23
 	ID int64 `json:"id,omitempty"`

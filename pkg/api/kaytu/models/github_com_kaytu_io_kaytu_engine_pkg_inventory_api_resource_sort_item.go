@@ -25,7 +25,7 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceSortItem struct {
 	Direction GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType `json:"direction,omitempty"`
 
 	// field
-	// Enum: [resourceID resourceName provider resourceType resourceGroup location connectionID]
+	// Enum: [resourceID connector resourceType resourceGroup location connectionID]
 	Field GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType `json:"field,omitempty"`
 }
 
@@ -81,7 +81,7 @@ var githubComKaytuIoKaytuEnginePkgInventoryApiResourceSortItemTypeFieldPropEnum 
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType
-	if err := json.Unmarshal([]byte(`["resourceID","resourceName","provider","resourceType","resourceGroup","location","connectionID"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["resourceID","connector","resourceType","resourceGroup","location","connectionID"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
