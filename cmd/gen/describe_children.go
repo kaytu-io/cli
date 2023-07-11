@@ -281,7 +281,7 @@ var PostScheduleApiV1StacksInsightTriggerCmd = &cobra.Command{
 
 		req := describe.NewPostScheduleAPIV1StacksInsightTriggerParams()
 
-		req.SetRequest(v)
+		//req.SetRequest(v)
 
 		resp, err := client.Describe.PostScheduleAPIV1StacksInsightTrigger(req, auth)
 		if err != nil {
