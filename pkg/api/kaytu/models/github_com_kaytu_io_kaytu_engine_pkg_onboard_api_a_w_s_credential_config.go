@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS github com kaytu io kaytu engine pkg onboard api source config a w s
+// GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig github com kaytu io kaytu engine pkg onboard api a w s credential config
 //
-// swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.SourceConfigAWS
-type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS struct {
+// swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.AWSCredentialConfig
+type GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig struct {
 
 	// access key
 	// Required: true
@@ -40,8 +40,8 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS struct {
 	SecretKey *string `json:"secretKey"`
 }
 
-// Validate validates this github com kaytu io kaytu engine pkg onboard api source config a w s
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) Validate(formats strfmt.Registry) error {
+// Validate validates this github com kaytu io kaytu engine pkg onboard api a w s credential config
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccessKey(formats); err != nil {
@@ -58,7 +58,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) Validate(forma
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) validateAccessKey(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig) validateAccessKey(formats strfmt.Registry) error {
 
 	if err := validate.Required("accessKey", "body", m.AccessKey); err != nil {
 		return err
@@ -67,7 +67,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) validateAccess
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) validateSecretKey(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig) validateSecretKey(formats strfmt.Registry) error {
 
 	if err := validate.Required("secretKey", "body", m.SecretKey); err != nil {
 		return err
@@ -76,13 +76,13 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) validateSecret
 	return nil
 }
 
-// ContextValidate validates this github com kaytu io kaytu engine pkg onboard api source config a w s based on context it is used
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this github com kaytu io kaytu engine pkg onboard api a w s credential config based on context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) MarshalBinary() ([]byte, error) {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -90,8 +90,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) MarshalBinary(
 }
 
 // UnmarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS) UnmarshalBinary(b []byte) error {
-	var res GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig) UnmarshalBinary(b []byte) error {
+	var res GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

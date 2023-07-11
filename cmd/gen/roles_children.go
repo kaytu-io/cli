@@ -12,7 +12,8 @@ import (
 )
 
 var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
-	Use: "get-role",
+	Use:   "get-role",
+	Short: `Retrieves Role Details, Description, User Count, and User List for Workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -38,7 +39,8 @@ var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
 }
 
 var GetAuthApiV1RoleRoleNameKeysCmd = &cobra.Command{
-	Use: "list-role-keys",
+	Use:   "list-role-keys",
+	Short: `List Workspace Keys for Specified Role.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -64,7 +66,8 @@ var GetAuthApiV1RoleRoleNameKeysCmd = &cobra.Command{
 }
 
 var GetAuthApiV1RoleRoleNameUsersCmd = &cobra.Command{
-	Use: "list-role-users",
+	Use:   "list-role-users",
+	Short: `Returns a list of users in the workspace with the specified role.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -90,7 +93,8 @@ var GetAuthApiV1RoleRoleNameUsersCmd = &cobra.Command{
 }
 
 var GetAuthApiV1RolesCmd = &cobra.Command{
-	Use: "list-roles",
+	Use:   "list-roles",
+	Short: `Retrieve Role Information and User Count for Workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

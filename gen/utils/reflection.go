@@ -9,11 +9,12 @@ import (
 )
 
 type Field struct {
-	Name       string
-	Type       string
-	Children   []Field
-	IsEnum     bool
-	IsRequired bool
+	Name        string
+	Description string
+	Type        string
+	Children    []Field
+	IsEnum      bool
+	IsRequired  bool
 }
 
 func fixParamName(name string) string {
@@ -48,23 +49,26 @@ func ExtractFields(swag *swagger.Swagger, parentType string, parentRequired bool
 		typeName := strings.TrimPrefix(strings.Trim(parentType, "*[]"), "models.")
 		if strings.HasSuffix(typeName, "Params") {
 			api := swag.GetAPI(typeName)
-			for _, param := range api.Parameters {
-				if fixParamName(param.Name) == child.Name {
-					child.IsRequired = param.Required
-				}
-			}
 			if api == nil {
 				panic(fmt.Sprintf("failed to figure out api, %s", typeName))
 			}
+			for _, param := range api.Parameters {
+				if fixParamName(param.Name) == child.Name {
+					child.IsRequired = param.Required
+					child.Description = param.Description
+				}
+			}
 		} else {
 			model := swag.GetModel(typeName)
+			if model == nil {
+				panic(fmt.Sprintf("failed to figure out model, %s", typeName))
+			}
+
 			for _, param := range model.Parameters {
 				if fixParamName(param.Name) == child.Name {
 					child.IsRequired = param.Required
+					child.Description = param.Description
 				}
-			}
-			if model == nil {
-				panic(fmt.Sprintf("failed to figure out model, %s", typeName))
 			}
 		}
 		child.IsRequired = child.IsRequired || parentRequired

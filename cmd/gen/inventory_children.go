@@ -12,7 +12,8 @@ import (
 )
 
 var GetInventoryApiV2CostCompositionCmd = &cobra.Command{
-	Use: "cost-composition",
+	Use:   "cost-composition",
+	Short: `This API allows users to retrieve the cost composition with respect to specified filters. The API returns information such as the total cost for the given time range, and the top services by cost.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -42,7 +43,8 @@ var GetInventoryApiV2CostCompositionCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2CostMetricCmd = &cobra.Command{
-	Use: "cost-metric",
+	Use:   "cost-metric",
+	Short: `This API allows users to retrieve cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -74,7 +76,8 @@ var GetInventoryApiV2CostMetricCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2CostTrendCmd = &cobra.Command{
-	Use: "cost-trend",
+	Use:   "cost-trend",
+	Short: `This API allows users to retrieve a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -104,7 +107,8 @@ var GetInventoryApiV2CostTrendCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesTagKeyCmd = &cobra.Command{
-	Use: "get-resource-tag",
+	Use:   "get-resource-tag",
+	Short: `This API allows users to retrieve a list of possible values for a given tag key for all resource types.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -134,7 +138,8 @@ var GetInventoryApiV2ResourcesTagKeyCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ServicesTagKeyCmd = &cobra.Command{
-	Use: "get-service-tag",
+	Use:   "get-service-tag",
+	Short: `This API allows users to retrieve a list of possible values for a given tag key for all resource types.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -160,7 +165,8 @@ var GetInventoryApiV2ServicesTagKeyCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesTagCmd = &cobra.Command{
-	Use: "list-resource-tags",
+	Use:   "list-resource-tags",
+	Short: `This API allows users to retrieve a list of tag keys with their possible values for all resource types.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -189,7 +195,8 @@ var GetInventoryApiV2ResourcesTagCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ServicesTagCmd = &cobra.Command{
-	Use: "list-service-tags",
+	Use:   "list-service-tags",
+	Short: `This API allows users to retrieve a list of possible values for a given tag key for all services.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -213,7 +220,8 @@ var GetInventoryApiV2ServicesTagCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
-	Use: "resource-metrics",
+	Use:   "resource-metrics",
+	Short: `This API allows users to retrieve metrics for a specific resource type.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -242,7 +250,8 @@ var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesTrendCmd = &cobra.Command{
-	Use: "resource-trend",
+	Use:   "resource-trend",
+	Short: `This API allows users to retrieve a list of resource counts over the course of the specified time frame based on the given input filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -274,7 +283,8 @@ var GetInventoryApiV2ResourcesTrendCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesCompositionKeyCmd = &cobra.Command{
-	Use: "resources-composition",
+	Use:   "resources-composition",
+	Short: `This API allows users to retrieve tag values with the most resources for the given key.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -305,7 +315,8 @@ var GetInventoryApiV2ResourcesCompositionKeyCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesMetricCmd = &cobra.Command{
-	Use: "resources-metrics",
+	Use:   "resources-metrics",
+	Short: `This API allows users to retrieve a list of resource types with metrics of each type based on the given input filters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -340,7 +351,8 @@ var GetInventoryApiV2ResourcesMetricCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ServicesCostTrendCmd = &cobra.Command{
-	Use: "service-cost-trend",
+	Use:   "service-cost-trend",
+	Short: `This API allows users to retrieve a list of costs over the course of the specified time frame for the given services. If startTime and endTime are empty, the API returns the last month trend.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -371,7 +383,8 @@ var GetInventoryApiV2ServicesCostTrendCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ServicesMetricServiceNameCmd = &cobra.Command{
-	Use: "service-metric",
+	Use:   "service-metric",
+	Short: `This API allows users to retrieve a service with metrics.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -400,7 +413,8 @@ var GetInventoryApiV2ServicesMetricServiceNameCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ServicesMetricCmd = &cobra.Command{
-	Use: "service-metrics",
+	Use:   "service-metrics",
+	Short: `This API allows users to retrieve a list of services with metrics of each type based on the given input filters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

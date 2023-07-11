@@ -116,7 +116,6 @@ var ParamModels = map[string]interface{}{
 	"PostOnboardAPIV1SourceAws":                                         onboard.PostOnboardAPIV1SourceAwsParams{},
 	"PostOnboardAPIV1SourceAzure":                                       onboard.PostOnboardAPIV1SourceAzureParams{},
 	"PostOnboardAPIV1SourceSourceIDHealthcheck":                         onboard.PostOnboardAPIV1SourceSourceIDHealthcheckParams{},
-	"PostOnboardAPIV1Sources":                                           onboard.PostOnboardAPIV1SourcesParams{},
 	"PutOnboardAPIV1CredentialCredentialID":                             onboard.PutOnboardAPIV1CredentialCredentialIDParams{},
 	"PutOnboardAPIV1SourceSourceIDCredentials":                          onboard.PutOnboardAPIV1SourceSourceIDCredentialsParams{},
 	"GetInventoryAPIV1ResourcesRegions":                                 resource.GetInventoryAPIV1ResourcesRegionsParams{},

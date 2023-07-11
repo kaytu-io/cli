@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"fmt"
 	"github.com/iancoleman/strcase"
 	"github.com/kaytu-io/cli-program/gen/config"
 	"github.com/kaytu-io/cli-program/gen/utils"
@@ -52,13 +53,23 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		apiName = strings.ReplaceAll(apiName, "ApiV", "APIV")
 		apiName = strings.ReplaceAll(apiName, "Id", "ID")
 
+		parentType := reflect.TypeOf(config.ParamModels[apiName]).Name()
+		typeName := strings.TrimPrefix(strings.Trim(parentType, "*[]"), "models.")
+		api := g.Swagger.GetAPI(typeName)
+		var apiDescription string
+		if api != nil {
+			apiDescription = strings.ReplaceAll(api.Description, "`", "'")
+		} else {
+			fmt.Println("failed to get api for:", typeName)
+		}
+
 		commandName := strings.ReplaceAll(name, "_", "-")
 		commandName = config.UrlNames[commandName]
 		if commandName == "" {
 			return errors.New("url name not found for cmd: " + name)
 		}
 
-		fv := utils.ExtractFields(g.Swagger, reflect.TypeOf(config.ParamModels[apiName]).Name(), false, reflect.TypeOf(config.ParamModels[apiName]))
+		fv := utils.ExtractFields(g.Swagger, parentType, false, reflect.TypeOf(config.ParamModels[apiName]))
 		output := utils.GenerateSetFieldsFromFlags(fv)
 		outputFlags := utils.GenerateFlagDefinitions(strcase.ToCamel(name), fv)
 
@@ -67,26 +78,16 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 			strings.HasPrefix(strings.ToLower(commandName), "insert") ||
 			strings.HasPrefix(strings.ToLower(commandName), "trigger") {
 			crud = "Create"
-			//commandName = strings.TrimPrefix(commandName, "create")
-			//commandName = strings.TrimPrefix(commandName, "insert")
-			//commandName = strings.TrimPrefix(commandName, "trigger")
 		} else if strings.HasPrefix(strings.ToLower(commandName), "delete") ||
 			strings.HasPrefix(strings.ToLower(commandName), "remove") {
 			crud = "Delete"
-			//commandName = strings.TrimPrefix(commandName, "remove")
-			//commandName = strings.TrimPrefix(commandName, "delete")
 		} else if strings.HasPrefix(strings.ToLower(commandName), "update") ||
 			strings.HasPrefix(strings.ToLower(commandName), "edit") {
 			crud = "Update"
-			//commandName = strings.TrimPrefix(commandName, "update")
-			//commandName = strings.TrimPrefix(commandName, "edit")
 		} else if strings.HasPrefix(strings.ToLower(commandName), "list") {
 			crud = "List"
-			//commandName = strings.TrimPrefix(commandName, "list")
 		} else {
-			//commandName = strings.TrimPrefix(commandName, "get")
 		}
-		//commandName = strings.Trim(commandName, "-")
 
 		tmpl := Child{
 			Parent:           g,
@@ -94,6 +95,7 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 			CommandNameSnake: strcase.ToSnake(name),
 			CommandName:      commandName,
 			APIName:          apiName,
+			APIDescription:   apiDescription,
 			ParamString:      output,
 			ParamFlags:       outputFlags,
 			HasPayload:       hasPayload[name],

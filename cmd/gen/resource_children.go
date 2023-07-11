@@ -13,7 +13,8 @@ import (
 )
 
 var PostInventoryApiV1ResourceCmd = &cobra.Command{
-	Use: "create-resource",
+	Use:   "create-resource",
+	Short: `Getting resource details by id and resource type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -42,7 +43,8 @@ var PostInventoryApiV1ResourceCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesRegionsCompositionCmd = &cobra.Command{
-	Use: "get-resource-composition-by-region",
+	Use:   "get-resource-composition-by-region",
+	Short: `Returns list of top regions per given connector type and connection IDs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -72,7 +74,8 @@ var GetInventoryApiV2ResourcesRegionsCompositionCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesCountCmd = &cobra.Command{
-	Use: "get-resource-count",
+	Use:   "get-resource-count",
+	Short: `Number of all resources`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -96,7 +99,8 @@ var GetInventoryApiV2ResourcesCountCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesRegionsSummaryCmd = &cobra.Command{
-	Use: "get-resource-summary-by-region",
+	Use:   "get-resource-summary-by-region",
+	Short: `Returns list of regions resources summary`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -128,7 +132,8 @@ var GetInventoryApiV2ResourcesRegionsSummaryCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2ResourcesRegionsTrendCmd = &cobra.Command{
-	Use: "get-resource-trend-by-region",
+	Use:   "get-resource-trend-by-region",
+	Short: `Returns list of regions resources summary`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -159,7 +164,8 @@ var GetInventoryApiV2ResourcesRegionsTrendCmd = &cobra.Command{
 }
 
 var PostInventoryApiV1ResourcesCmd = &cobra.Command{
-	Use: "list-all-resources",
+	Use:   "list-all-resources",
+	Short: `Getting all cloud providers resources by filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -204,7 +210,8 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 }
 
 var PostInventoryApiV1ResourcesFiltersCmd = &cobra.Command{
-	Use: "list-resources-by-filters",
+	Use:   "list-resources-by-filters",
+	Short: `Getting resource filters by filters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -243,7 +250,8 @@ var PostInventoryApiV1ResourcesFiltersCmd = &cobra.Command{
 }
 
 var GetInventoryApiV1ResourcesRegionsCmd = &cobra.Command{
-	Use: "regions-by-resources",
+	Use:   "regions-by-resources",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -274,7 +282,8 @@ var GetInventoryApiV1ResourcesRegionsCmd = &cobra.Command{
 }
 
 var GetInventoryApiV1ResourcesTopRegionsCmd = &cobra.Command{
-	Use: "top-regions-by-resources",
+	Use:   "top-regions-by-resources",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

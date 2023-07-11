@@ -15,8 +15,7 @@ var LocationCmd = &cobra.Command{
 func init() {
 
 	LocationCmd.AddCommand(GetInventoryApiV1LocationsConnectorCmd)
-	GetInventoryApiV1LocationsConnectorCmd.Flags().String("connector", "", "")
-	// GetInventoryApiV1LocationsConnectorCmd.MarkFlagRequired("connector")
+	GetInventoryApiV1LocationsConnectorCmd.Flags().String("connector", "", "Connector")
 	GetInventoryApiV1LocationsConnectorCmd.MarkFlagRequired("connector")
 
 }

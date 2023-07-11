@@ -13,6 +13,8 @@ import (
 
 var GetComplianceApiV1InsightInsightIdCmd = &cobra.Command{
 	Use: "get-insight",
+	Short: `This API returns the specified insight with ID. The API provides details of the insight, including results during the specified time period for the specified connection.
+Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -42,6 +44,8 @@ var GetComplianceApiV1InsightInsightIdCmd = &cobra.Command{
 
 var GetComplianceApiV1InsightGroupInsightGroupIdCmd = &cobra.Command{
 	Use: "get-insight-group",
+	Short: `This API returns the specified insight group with ID. The API provides details of the insight, including results during the specified time period for the specified connection.
+Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -71,6 +75,8 @@ var GetComplianceApiV1InsightGroupInsightGroupIdCmd = &cobra.Command{
 
 var GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd = &cobra.Command{
 	Use: "get-insight-group-trend",
+	Short: `This API allows users to retrieve insight group results datapoints for a specified connection during a specified time period.
+Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -100,7 +106,8 @@ var GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1MetadataInsightInsightIdCmd = &cobra.Command{
-	Use: "get-insight-metadata",
+	Use:   "get-insight-metadata",
+	Short: `Get insight metadata by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -127,6 +134,8 @@ var GetComplianceApiV1MetadataInsightInsightIdCmd = &cobra.Command{
 
 var GetComplianceApiV1InsightInsightIdTrendCmd = &cobra.Command{
 	Use: "get-insight-trend",
+	Short: `This API allows users to retrieve insight results datapoints for a specified connection during a specified time period.
+Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -157,6 +166,8 @@ var GetComplianceApiV1InsightInsightIdTrendCmd = &cobra.Command{
 
 var GetComplianceApiV1InsightGroupCmd = &cobra.Command{
 	Use: "list-insight-groups",
+	Short: `This API returns a list of insight groups based on specified filters. The API provides details of insights, including results during the specified time period for the specified connection.
+Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -187,6 +198,8 @@ var GetComplianceApiV1InsightGroupCmd = &cobra.Command{
 
 var GetComplianceApiV1InsightCmd = &cobra.Command{
 	Use: "list-insights",
+	Short: `This API returns a list of insights based on specified filters. The API provides details of insights, including results during the specified time period for the specified connection.
+Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -216,7 +229,8 @@ var GetComplianceApiV1InsightCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
-	Use: "list-insights-metadata",
+	Use:   "list-insights-metadata",
+	Short: `Retrieves all insights metadata.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -242,7 +256,8 @@ var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
-	Use: "list-insights-metadata-tag",
+	Use:   "list-insights-metadata-tag",
+	Short: `This API allows users to retrieve an insights tag key with the possible values for it.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -268,7 +283,8 @@ var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
-	Use: "list-insights-metadata-tags",
+	Use:   "list-insights-metadata-tags",
+	Short: `This API allows users to retrieve a list of insights tag keys with their possible values.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

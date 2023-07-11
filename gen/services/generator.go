@@ -31,6 +31,7 @@ type Child struct {
 	CommandNameSnake string
 	CommandName      string
 	APIName          string
+	APIDescription   string
 	ParamString      string
 	ParamFlags       string
 	HasPayload       bool

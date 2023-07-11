@@ -19,6 +19,9 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.Credential
 type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 
+	// config
+	Config interface{} `json:"config,omitempty"`
+
 	// connections
 	Connections []*GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection `json:"connections"`
 

@@ -16,6 +16,9 @@ import (
 
 var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
 	Use: "create-stack",
+	Short: `Create a stack by giving terraform statefile and additional resources
+Config structure for azure: {tenantId: string, objectId: string, secretId: string, clientId: string, clientSecret:string}
+Config structure for aws: {accessKey: string, secretKey: string}`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -46,7 +49,8 @@ var PostScheduleApiV1StacksCreateCmd = &cobra.Command{
 }
 
 var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "delete-stack",
+	Use:   "delete-stack",
+	Short: `Delete a stack by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -67,7 +71,8 @@ var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
-	Use: "get-stack",
+	Use:   "get-stack",
+	Short: `Get a stack details by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -93,7 +98,8 @@ var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1StacksCmd = &cobra.Command{
-	Use: "list-stacks",
+	Use:   "list-stacks",
+	Short: `Get list of stacks`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -120,7 +126,8 @@ var GetScheduleApiV1StacksCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1StacksResourceCmd = &cobra.Command{
-	Use: "resource-stacks",
+	Use:   "resource-stacks",
+	Short: `Get list of all stacks containing a resource`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -146,7 +153,8 @@ var GetScheduleApiV1StacksResourceCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1StacksStackIdFindingsCmd = &cobra.Command{
-	Use: "stack-findings",
+	Use:   "stack-findings",
+	Short: `Get all findings for a stack`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -185,7 +193,8 @@ var PostScheduleApiV1StacksStackIdFindingsCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
-	Use: "stack-insights",
+	Use:   "stack-insights",
+	Short: `Get Insight results for a stack in the given time period`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -214,7 +223,8 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
-	Use: "trigger-stack-benchmark",
+	Use:   "trigger-stack-benchmark",
+	Short: `Trigger defined benchmarks for a stack and save in the history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -244,6 +254,9 @@ var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
 
 var PostScheduleApiV1StacksDescriberTriggerCmd = &cobra.Command{
 	Use: "trigger-stack-describer",
+	Short: `Describe stack resources. This is needed before triggering insights and benchmarks
+Config structure for azure: {tenantId: string, objectId: string, secretId: string, clientId: string, clientSecret:string}
+Config structure for aws: {accessKey: string, secretKey: string}`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

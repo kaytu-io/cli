@@ -19,7 +19,7 @@ import (
 type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAzureRequest struct {
 
 	// config
-	Config *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure `json:"config,omitempty"`
+	Config *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig `json:"config,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`

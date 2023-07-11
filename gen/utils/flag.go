@@ -14,29 +14,20 @@ func GenerateFlagDefinitions(tempName string, fv Field) (output string) {
 				line = GenerateFlagDefinitions(tempName, param)
 			} else {
 				switch param.Type {
-				case "string":
-					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")
-// %[1]sCmd.MarkFlagRequired("%[2]s")`, tempName, flags.Name(param.Name))
-				case "*string":
-					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
-				case "int64":
-					line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "")
-// %[1]sCmd.MarkFlagRequired("%[2]s")`, tempName, flags.Name(param.Name))
-				case "*int64":
-					line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "")`, tempName, flags.Name(param.Name))
-				case "bool":
-					line = fmt.Sprintf(`%sCmd.Flags().Bool("%s", false, "")
-// %[1]sCmd.MarkFlagRequired("%[2]s")`, tempName, flags.Name(param.Name))
-				case "*bool":
-					line = fmt.Sprintf(`%sCmd.Flags().Bool("%s", false, "")`, tempName, flags.Name(param.Name))
+				case "string", "*string":
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
+				case "int64", "*int64":
+					line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "%s")`, tempName, flags.Name(param.Name), param.Description)
+				case "bool", "*bool":
+					line = fmt.Sprintf(`%sCmd.Flags().Bool("%s", false, "%s")`, tempName, flags.Name(param.Name), param.Description)
 				case "[]string":
-					line = fmt.Sprintf(`%sCmd.Flags().StringArray("%s", nil, "")`, tempName, flags.Name(param.Name))
+					line = fmt.Sprintf(`%sCmd.Flags().StringArray("%s", nil, "%s")`, tempName, flags.Name(param.Name), param.Description)
 				case "map[string]string":
-					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
 				case "map[string][]string":
-					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
 				default:
-					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "")`, tempName, flags.Name(param.Name))
+					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
 				}
 
 				if param.IsRequired {

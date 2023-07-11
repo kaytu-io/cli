@@ -13,7 +13,8 @@ import (
 )
 
 var GetInventoryApiV1QueryCmd = &cobra.Command{
-	Use: "get-queries",
+	Use:   "get-queries",
+	Short: `Listing smart queries by specified filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -43,7 +44,8 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 }
 
 var GetInventoryApiV1QueryCountCmd = &cobra.Command{
-	Use: "get-queries-count",
+	Use:   "get-queries-count",
+	Short: `Counting smart queries`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -74,6 +76,9 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 
 var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
 	Use: "get-query",
+	Short: `Run a specific smart query.
+In order to get the results in CSV format, Accepts header must be filled with 'text/csv' value.
+Note that csv output doesn't process pagination and returns first 5000 records.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

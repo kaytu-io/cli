@@ -12,7 +12,8 @@ import (
 )
 
 var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
-	Use: "list-connector-locations",
+	Use:   "list-connector-locations",
+	Short: `Getting locations by provider`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

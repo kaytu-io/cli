@@ -13,6 +13,8 @@ import (
 
 var GetScheduleApiV1SourcesSourceIdCmd = &cobra.Command{
 	Use: "get-source",
+	Short: `Retrieves Keibi source details by id
+Getting Keibi source by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -38,7 +40,8 @@ var GetScheduleApiV1SourcesSourceIdCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1ComplianceReportLastCompletedCmd = &cobra.Command{
-	Use: "last-compliance-jobs",
+	Use:   "last-compliance-jobs",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -62,7 +65,8 @@ var GetScheduleApiV1ComplianceReportLastCompletedCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1SourcesCmd = &cobra.Command{
-	Use: "list-sources",
+	Use:   "list-sources",
+	Short: `Retrieves list of all of Keibi sources`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -86,7 +90,8 @@ var GetScheduleApiV1SourcesCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1DescribeResourceJobsPendingCmd = &cobra.Command{
-	Use: "pending-describe-resource-jobs",
+	Use:   "pending-describe-resource-jobs",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -110,7 +115,8 @@ var GetScheduleApiV1DescribeResourceJobsPendingCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1DescribeSourceJobsPendingCmd = &cobra.Command{
-	Use: "pending-describe-source-jobs",
+	Use:   "pending-describe-source-jobs",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -134,7 +140,8 @@ var GetScheduleApiV1DescribeSourceJobsPendingCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1InsightJobsPendingCmd = &cobra.Command{
-	Use: "pending-insight-jobs",
+	Use:   "pending-insight-jobs",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -158,7 +165,8 @@ var GetScheduleApiV1InsightJobsPendingCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1SummarizeJobsPendingCmd = &cobra.Command{
-	Use: "pending-summarize-jobs",
+	Use:   "pending-summarize-jobs",
+	Short: ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -182,7 +190,8 @@ var GetScheduleApiV1SummarizeJobsPendingCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1ResourceTypeProviderCmd = &cobra.Command{
-	Use: "provider-resource-types",
+	Use:   "provider-resource-types",
+	Short: `get resource type by provider`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -208,7 +217,8 @@ var GetScheduleApiV1ResourceTypeProviderCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd = &cobra.Command{
-	Use: "refresh-source-compliance-jobs",
+	Use:   "refresh-source-compliance-jobs",
+	Short: `Run compliance report jobs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -229,7 +239,8 @@ var PostScheduleApiV1SourcesSourceIdJobsComplianceRefreshCmd = &cobra.Command{
 }
 
 var PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd = &cobra.Command{
-	Use: "refresh-source-describe-jobs",
+	Use:   "refresh-source-describe-jobs",
+	Short: `Run describe jobs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -250,7 +261,8 @@ var PostScheduleApiV1SourcesSourceIdJobsDescribeRefreshCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1SourcesSourceIdJobsComplianceCmd = &cobra.Command{
-	Use: "source-compliance-jobs",
+	Use:   "source-compliance-jobs",
+	Short: `Retrieves list of source compliance reports for a source by the given source id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -278,7 +290,8 @@ var GetScheduleApiV1SourcesSourceIdJobsComplianceCmd = &cobra.Command{
 }
 
 var GetScheduleApiV1SourcesSourceIdJobsDescribeCmd = &cobra.Command{
-	Use: "source-describe-jobs",
+	Use:   "source-describe-jobs",
+	Short: `Retrieves list of source describe jobs for a source by the given source id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

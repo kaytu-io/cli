@@ -13,7 +13,8 @@ import (
 )
 
 var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
-	Use: "get-config-metadata",
+	Use:   "get-config-metadata",
+	Short: `Returns the config metadata for the given key`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -39,7 +40,8 @@ var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
-	Use: "get-resource-type",
+	Use:   "get-resource-type",
+	Short: `Get a single resource type metadata and its details including service name and insights list. Specified by resource type name.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -65,7 +67,8 @@ var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
 }
 
 var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
-	Use: "get-service",
+	Use:   "get-service",
+	Short: `Gets a single cloud service details and its metadata and list of resource types.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -92,6 +95,8 @@ var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
 
 var GetInventoryApiV2MetadataResourcetypeCmd = &cobra.Command{
 	Use: "list-resource-types",
+	Short: `Gets a list of all resource types in workspace and their metadata including service name.
+The results could be filtered by provider name and service name.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -122,6 +127,8 @@ var GetInventoryApiV2MetadataResourcetypeCmd = &cobra.Command{
 
 var GetInventoryApiV2MetadataServicesCmd = &cobra.Command{
 	Use: "list-services",
+	Short: `Gets a list of all workspace cloud services and their metadata, and list of resource types.
+The results could be filtered by tags.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -150,7 +157,8 @@ var GetInventoryApiV2MetadataServicesCmd = &cobra.Command{
 }
 
 var PostMetadataApiV1MetadataCmd = &cobra.Command{
-	Use: "set-config-metadata",
+	Use:   "set-config-metadata",
+	Short: `Sets the config metadata for the given key`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

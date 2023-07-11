@@ -13,7 +13,8 @@ import (
 )
 
 var DeleteAuthApiV1UserInviteCmd = &cobra.Command{
-	Use: "delete-user-invite",
+	Use:   "delete-user-invite",
+	Short: `Revokes user's access to the workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -34,7 +35,8 @@ var DeleteAuthApiV1UserInviteCmd = &cobra.Command{
 }
 
 var DeleteAuthApiV1UserRoleBindingCmd = &cobra.Command{
-	Use: "delete-user-role-binding",
+	Use:   "delete-user-role-binding",
+	Short: `Revokes a user's access to the workspace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -55,7 +57,8 @@ var DeleteAuthApiV1UserRoleBindingCmd = &cobra.Command{
 }
 
 var GetAuthApiV1UserUserIdCmd = &cobra.Command{
-	Use: "get-user",
+	Use:   "get-user",
+	Short: `Returns user details by specified user id.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -81,7 +84,8 @@ var GetAuthApiV1UserUserIdCmd = &cobra.Command{
 }
 
 var PostAuthApiV1UserInviteCmd = &cobra.Command{
-	Use: "invite-user",
+	Use:   "invite-user",
+	Short: `Sends an invitation to a user to join the workspace with a designated role.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -105,7 +109,8 @@ var PostAuthApiV1UserInviteCmd = &cobra.Command{
 }
 
 var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
-	Use: "list-user-role-bindings",
+	Use:   "list-user-role-bindings",
+	Short: `Retrieves the roles that the user who sent the request has in all workspaces they are a member of.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -129,7 +134,8 @@ var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
 }
 
 var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
-	Use: "list-user-workspace-memberships",
+	Use:   "list-user-workspace-memberships",
+	Short: `Returns a list of workspaces that the specified user belongs to, along with their role in each workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -155,7 +161,8 @@ var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
 }
 
 var GetAuthApiV1UsersCmd = &cobra.Command{
-	Use: "list-users",
+	Use:   "list-users",
+	Short: `Retrieves a list of users who are members of the workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -185,7 +192,8 @@ var GetAuthApiV1UsersCmd = &cobra.Command{
 }
 
 var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
-	Use: "list-workspace-role-bindings",
+	Use:   "list-workspace-role-bindings",
+	Short: `Get all the RoleBindings of the workspace. RoleBinding defines the roles and actions a user can perform. There are currently three roles (admin, editor, viewer). The workspace path is based on the DNS such as (workspace1.app.keibi.io)`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -209,7 +217,8 @@ var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
 }
 
 var PutAuthApiV1UserRoleBindingCmd = &cobra.Command{
-	Use: "update-user-role-binding",
+	Use:   "update-user-role-binding",
+	Short: `Updates the role of a user in the workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

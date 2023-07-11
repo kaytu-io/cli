@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure github com kaytu io kaytu engine pkg onboard api source config azure
+// GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig github com kaytu io kaytu engine pkg onboard api azure credential config
 //
-// swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.SourceConfigAzure
-type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure struct {
+// swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.AzureCredentialConfig
+type GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig struct {
 
 	// client Id
 	// Required: true
@@ -43,8 +43,8 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure struct {
 	TenantID *string `json:"tenantId"`
 }
 
-// Validate validates this github com kaytu io kaytu engine pkg onboard api source config azure
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) Validate(formats strfmt.Registry) error {
+// Validate validates this github com kaytu io kaytu engine pkg onboard api azure credential config
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateClientID(formats); err != nil {
@@ -73,7 +73,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) Validate(for
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateClientID(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) validateClientID(formats strfmt.Registry) error {
 
 	if err := validate.Required("clientId", "body", m.ClientID); err != nil {
 		return err
@@ -82,7 +82,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateClie
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateClientSecret(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) validateClientSecret(formats strfmt.Registry) error {
 
 	if err := validate.Required("clientSecret", "body", m.ClientSecret); err != nil {
 		return err
@@ -91,7 +91,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateClie
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateObjectID(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) validateObjectID(formats strfmt.Registry) error {
 
 	if err := validate.Required("objectId", "body", m.ObjectID); err != nil {
 		return err
@@ -100,7 +100,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateObje
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateSecretID(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) validateSecretID(formats strfmt.Registry) error {
 
 	if err := validate.Required("secretId", "body", m.SecretID); err != nil {
 		return err
@@ -109,7 +109,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateSecr
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateTenantID(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) validateTenantID(formats strfmt.Registry) error {
 
 	if err := validate.Required("tenantId", "body", m.TenantID); err != nil {
 		return err
@@ -118,13 +118,13 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) validateTena
 	return nil
 }
 
-// ContextValidate validates this github com kaytu io kaytu engine pkg onboard api source config azure based on context it is used
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this github com kaytu io kaytu engine pkg onboard api azure credential config based on context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) MarshalBinary() ([]byte, error) {
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -132,8 +132,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) MarshalBinar
 }
 
 // UnmarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure) UnmarshalBinary(b []byte) error {
-	var res GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAzure
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig) UnmarshalBinary(b []byte) error {
+	var res GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

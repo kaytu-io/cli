@@ -15,22 +15,20 @@ var ServicesCmd = &cobra.Command{
 func init() {
 
 	ServicesCmd.AddCommand(GetInventoryApiV2ServicesSummaryServiceNameCmd)
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().StringArray("connector-id", nil, "")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("end-time", "", "")
-	// GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("end-time")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().StringArray("connector", nil, "filter: connector")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().StringArray("connector-id", nil, "filter: connectorId")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("end-time", "", "time for resource count in epoch seconds")
 	GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("end-time")
-	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("service-name", "", "")
-	// GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("service-name")
+	GetInventoryApiV2ServicesSummaryServiceNameCmd.Flags().String("service-name", "", "Service Name")
 	GetInventoryApiV2ServicesSummaryServiceNameCmd.MarkFlagRequired("service-name")
 
 	ServicesCmd.AddCommand(GetInventoryApiV2ServicesSummaryCmd)
-	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("connection-id", nil, "")
-	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("connector", nil, "")
-	GetInventoryApiV2ServicesSummaryCmd.Flags().String("end-time", "", "")
-	GetInventoryApiV2ServicesSummaryCmd.Flags().Int64("page-number", 0, "")
-	GetInventoryApiV2ServicesSummaryCmd.Flags().Int64("page-size", 0, "")
-	GetInventoryApiV2ServicesSummaryCmd.Flags().String("sort-by", "", "")
-	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("tag", nil, "")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("connection-id", nil, "filter: Connection ID")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("connector", nil, "filter: Connector")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().String("end-time", "", "time for resource count in epoch seconds")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().Int64("page-number", 0, "page number - default is 1")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().Int64("page-size", 0, "page size - default is 20")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().String("sort-by", "", "column to sort by - default is resourcecount")
+	GetInventoryApiV2ServicesSummaryCmd.Flags().StringArray("tag", nil, "filter: tag for the services")
 
 }

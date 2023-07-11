@@ -19,7 +19,7 @@ import (
 type GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest struct {
 
 	// config
-	Config *GithubComKaytuIoKaytuEnginePkgOnboardAPISourceConfigAWS `json:"config,omitempty"`
+	Config *GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig `json:"config,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`

@@ -9,8 +9,9 @@ import (
 )
 
 type Parameter struct {
-	Name     string
-	Required bool
+	Name        string
+	Description string
+	Required    bool
 }
 
 type Model struct {
@@ -19,8 +20,9 @@ type Model struct {
 }
 
 type API struct {
-	Name       string
-	Parameters []Parameter
+	Name        string
+	Description string
+	Parameters  []Parameter
 }
 
 type Swagger struct {
@@ -52,18 +54,41 @@ func (s *Swagger) GetModel(modelName string) *Model {
 		if models, ok := root["definitions"].(map[string]interface{}); ok {
 			for candidate, fields := range models {
 				snakeModelName := strcase.ToSnake(modelName)
+				snakeModelName = strings.ReplaceAll(snakeModelName, "apiaws", "api_aws")
 				snakeModel := strcase.ToSnake(strings.ReplaceAll(candidate, ".", "_"))
+				idx := 45
+				if len(snakeModel) < idx {
+					idx = len(snakeModel)
+				}
+				if len(snakeModelName) < idx {
+					idx = len(snakeModelName)
+				}
+
 				if snakeModel == snakeModelName {
 					modelFields := fields.(map[string]interface{})
 					requireds := modelFields["required"]
 					model := Model{Name: candidate}
 
+					descriptionMap := map[string]string{}
+					properties := modelFields["properties"]
+					if properties != nil {
+						propertiesMap := properties.(map[string]interface{})
+						for key, prop := range propertiesMap {
+							propMap := prop.(map[string]interface{})
+							if propMap["description"] != nil {
+								descriptionMap[key] = propMap["description"].(string)
+							}
+						}
+					}
+
 					if requireds != nil {
 						requiredArray := requireds.([]interface{})
 						for _, param := range requiredArray {
+							paramName := param.(string)
 							model.Parameters = append(model.Parameters, Parameter{
-								Name:     param.(string),
-								Required: true,
+								Name:        paramName,
+								Description: descriptionMap[paramName],
+								Required:    true,
 							})
 						}
 					}
@@ -91,14 +116,32 @@ func (s *Swagger) GetAPI(modelName string) *API {
 
 			if apiName == modelName {
 				reqsMap := reqs.(map[string]interface{})
-				params := reqsMap["parameters"].([]interface{})
-				api := &API{Name: candidate}
+				var params []interface{}
+				if reqsMap["parameters"] != nil {
+					params = reqsMap["parameters"].([]interface{})
+				}
+
+				apiDescription, apiDescriptionExists := reqsMap["description"]
+				var apiDesc string
+				if str, ok := apiDescription.(string); ok && apiDescriptionExists {
+					apiDesc = str
+				}
+
+				api := &API{Name: candidate, Description: apiDesc}
 				for _, param := range params {
 					paramMap := param.(map[string]interface{})
 					required, requiredExists := paramMap["required"]
+
+					description, descriptionExists := paramMap["description"]
+					var desc string
+					if str, ok := description.(string); ok && descriptionExists {
+						desc = str
+					}
+
 					api.Parameters = append(api.Parameters, Parameter{
-						Name:     paramMap["name"].(string),
-						Required: requiredExists && required.(bool),
+						Name:        paramMap["name"].(string),
+						Required:    requiredExists && required.(bool),
+						Description: desc,
 					})
 				}
 				return api
