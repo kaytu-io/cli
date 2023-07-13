@@ -182,21 +182,21 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetResourcesRequest{
 			Filters: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIFilters{
-				ConnectionID: flags.ReadStringArrayFlag(cmd, "ConnectionID"),
-				Connectors:   flags.ReadEnumArrayFlag[models.SourceType](cmd, "Connectors"),
-				Location:     flags.ReadStringArrayFlag(cmd, "Location"),
-				ResourceType: flags.ReadStringArrayFlag(cmd, "ResourceType"),
-				Service:      flags.ReadStringArrayFlag(cmd, "Service"),
+				Filters - ConnectionID: flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
+				Filters - Connectors:   flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connectors"),
+				Filters - Location:     flags.ReadStringArrayFlag(cmd, "Filters-Location"),
+				Filters - ResourceType: flags.ReadStringArrayFlag(cmd, "Filters-ResourceType"),
+				Filters - Service:      flags.ReadStringArrayFlag(cmd, "Filters-Service"),
 			},
 			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
-				No:   flags.ReadInt64Flag(cmd, "No"),
-				Size: flags.ReadInt64Flag(cmd, "Size"),
+				Page - No:   flags.ReadInt64Flag(cmd, "Page-No"),
+				Page - Size: flags.ReadInt64Flag(cmd, "Page-Size"),
 			},
 			Query: flags.ReadStringFlag(cmd, "Query"),
 			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceSortItem{
 				{
-					Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Direction")),
-					Field:     models.GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType(flags.ReadStringFlag(cmd, "Field")),
+					Sorts - Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
+					Sorts - Field:     models.GithubComKaytuIoKaytuEnginePkgInventoryAPISortFieldType(flags.ReadStringFlag(cmd, "Sorts-Field")),
 				},
 			},
 		})
@@ -230,14 +230,14 @@ var PostInventoryApiV1ResourcesFiltersCmd = &cobra.Command{
 		req.SetCommon(flags.ReadStringOptionalFlag(cmd, "Common"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIGetFiltersRequest{
 			Filters: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceFilters{
-				Category:     flags.ReadStringArrayFlag(cmd, "Category"),
-				Connections:  flags.ReadStringArrayFlag(cmd, "Connections"),
-				Location:     flags.ReadStringArrayFlag(cmd, "Location"),
-				Provider:     flags.ReadStringArrayFlag(cmd, "Provider"),
-				ResourceType: flags.ReadStringArrayFlag(cmd, "ResourceType"),
-				Service:      flags.ReadStringArrayFlag(cmd, "Service"),
-				TagKeys:      flags.ReadStringArrayFlag(cmd, "TagKeys"),
-				TagValues:    flags.ReadMapStringArrayFlag(cmd, "TagValues"),
+				Filters - Category:     flags.ReadStringArrayFlag(cmd, "Filters-Category"),
+				Filters - Connections:  flags.ReadStringArrayFlag(cmd, "Filters-Connections"),
+				Filters - Location:     flags.ReadStringArrayFlag(cmd, "Filters-Location"),
+				Filters - Provider:     flags.ReadStringArrayFlag(cmd, "Filters-Provider"),
+				Filters - ResourceType: flags.ReadStringArrayFlag(cmd, "Filters-ResourceType"),
+				Filters - Service:      flags.ReadStringArrayFlag(cmd, "Filters-Service"),
+				Filters - TagKeys:      flags.ReadStringArrayFlag(cmd, "Filters-TagKeys"),
+				Filters - TagValues:    flags.ReadMapStringArrayFlag(cmd, "Filters-TagValues"),
 			},
 			Query: flags.ReadStringFlag(cmd, "Query"),
 		})

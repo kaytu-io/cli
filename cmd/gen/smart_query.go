@@ -35,14 +35,14 @@ func init() {
 	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("accept")
 	PostInventoryApiV1QueryQueryIdCmd.Flags().String("query-id", "", "QueryID")
 	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("query-id")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("no", 0, "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("no")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("size", 0, "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("size")
+	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("page-no", 0, "")
+	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("page-no")
+	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("page-size", 0, "")
+	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("page-size")
 
-	PostInventoryApiV1QueryQueryIdCmd.Flags().String("direction", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("direction")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().String("field", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("field")
+	PostInventoryApiV1QueryQueryIdCmd.Flags().String("sorts-direction", "", "")
+	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("sorts-direction")
+	PostInventoryApiV1QueryQueryIdCmd.Flags().String("sorts-field", "", "")
+	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("sorts-field")
 
 }
