@@ -15,6 +15,7 @@ import (
 var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
 	Use:   "create-workspace",
 	Short: `Returns workspace created`,
+	Long:  `Returns workspace created`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -46,6 +47,7 @@ var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
 var DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd = &cobra.Command{
 	Use:   "delete-workspace",
 	Short: `Delete workspace with workspace id`,
+	Long:  `Delete workspace with workspace id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -68,6 +70,7 @@ var DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd = &cobra.Command{
 var GetWorkspaceApiV1WorkspaceCurrentCmd = &cobra.Command{
 	Use:   "get-current-workspace",
 	Short: `Returns all workspaces with owner id`,
+	Long:  `Returns all workspaces with owner id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -93,6 +96,7 @@ var GetWorkspaceApiV1WorkspaceCurrentCmd = &cobra.Command{
 var GetWorkspaceApiV1WorkspacesWorkspaceIdCmd = &cobra.Command{
 	Use:   "get-workspace",
 	Short: `Get workspace with workspace id`,
+	Long:  `Get workspace with workspace id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -115,6 +119,7 @@ var GetWorkspaceApiV1WorkspacesWorkspaceIdCmd = &cobra.Command{
 var GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd = &cobra.Command{
 	Use:   "get-workspace-by-id",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -142,6 +147,7 @@ var GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd = &cobra.Command{
 var GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd = &cobra.Command{
 	Use:   "get-workspace-limits",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -170,6 +176,7 @@ var GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd = &cobra.Command{
 var GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd = &cobra.Command{
 	Use:   "get-workspace-limits-by-id",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -197,6 +204,7 @@ var GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd = &cobra.Command{
 var GetWorkspaceApiV1WorkspacesCmd = &cobra.Command{
 	Use:   "list-workspaces",
 	Short: `Returns all workspaces with owner id`,
+	Long:  `Returns all workspaces with owner id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -222,6 +230,7 @@ var GetWorkspaceApiV1WorkspacesCmd = &cobra.Command{
 var PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd = &cobra.Command{
 	Use:   "resume-workspace",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -244,6 +253,7 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd = &cobra.Command{
 var PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd = &cobra.Command{
 	Use:   "suspend-workspace",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -266,6 +276,7 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd = &cobra.Command{
 var PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd = &cobra.Command{
 	Use:   "update-workspace-name",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -291,6 +302,7 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd = &cobra.Command{
 var PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd = &cobra.Command{
 	Use:   "update-workspace-organization",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -316,6 +328,7 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd = &cobra.Command{
 var PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd = &cobra.Command{
 	Use:   "update-workspace-owner",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -341,6 +354,7 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd = &cobra.Command{
 var PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd = &cobra.Command{
 	Use:   "update-workspace-tier",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

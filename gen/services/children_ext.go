@@ -62,6 +62,7 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		} else {
 			fmt.Println("failed to get api for:", typeName)
 		}
+		apiShortDescription := strings.Split(apiDescription, "\n")[0]
 
 		commandName := strings.ReplaceAll(name, "_", "-")
 		commandName = config.UrlNames[commandName]
@@ -90,16 +91,17 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		}
 
 		tmpl := Child{
-			Parent:           g,
-			CommandNameCamel: strcase.ToCamel(name),
-			CommandNameSnake: strcase.ToSnake(name),
-			CommandName:      commandName,
-			APIName:          apiName,
-			APIDescription:   apiDescription,
-			ParamString:      output,
-			ParamFlags:       outputFlags,
-			HasPayload:       hasPayload[name],
-			CRUD:             crud,
+			Parent:              g,
+			CommandNameCamel:    strcase.ToCamel(name),
+			CommandNameSnake:    strcase.ToSnake(name),
+			CommandName:         commandName,
+			APIName:             apiName,
+			APIShortDescription: apiShortDescription,
+			APILongDescription:  apiDescription,
+			ParamString:         output,
+			ParamFlags:          outputFlags,
+			HasPayload:          hasPayload[name],
+			CRUD:                crud,
 		}
 		g.Children = append(g.Children, tmpl)
 	}

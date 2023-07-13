@@ -26,16 +26,17 @@ type Generator struct {
 }
 
 type Child struct {
-	Parent           *Generator
-	CommandNameCamel string
-	CommandNameSnake string
-	CommandName      string
-	APIName          string
-	APIDescription   string
-	ParamString      string
-	ParamFlags       string
-	HasPayload       bool
-	CRUD             string
+	Parent              *Generator
+	CommandNameCamel    string
+	CommandNameSnake    string
+	CommandName         string
+	APIName             string
+	APIShortDescription string
+	APILongDescription  string
+	ParamString         string
+	ParamFlags          string
+	HasPayload          bool
+	CRUD                string
 }
 
 func (g Generator) Generate(root string) error {

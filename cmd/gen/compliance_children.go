@@ -15,6 +15,7 @@ import (
 var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 	Use:   "benchmark-findings-top-count",
 	Short: `This API enables users to retrieve the top field by finding count.`,
+	Long:  `This API enables users to retrieve the top field by finding count.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -44,6 +45,7 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
 	Use:   "benchmark-policies",
 	Short: `This API returns a list of all policies associated with a specific benchmark. Users can use this API to obtain a comprehensive overview of the policies related to a particular benchmark and their corresponding details, such as their names, descriptions, and IDs.`,
+	Long:  `This API returns a list of all policies associated with a specific benchmark. Users can use this API to obtain a comprehensive overview of the policies related to a particular benchmark and their corresponding details, such as their names, descriptions, and IDs.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -71,6 +73,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
 var GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd = &cobra.Command{
 	Use:   "benchmark-summary",
 	Short: `This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.`,
+	Long:  `This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -98,6 +101,7 @@ var GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd = &cobra.Command{
 var GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd = &cobra.Command{
 	Use:   "benchmark-summary-trend",
 	Short: `This API allows users to retrieve datapoints of compliance severities over a specified time period, enabling users to keep track of and monitor changes in compliance.`,
+	Long:  `This API allows users to retrieve datapoints of compliance severities over a specified time period, enabling users to keep track of and monitor changes in compliance.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -127,6 +131,7 @@ var GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd = &cobra.Command
 var GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd = &cobra.Command{
 	Use:   "benchmark-tree",
 	Short: `This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.`,
+	Long:  `This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -155,6 +160,7 @@ var GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd = &cobra.Command{
 var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 	Use:   "benchmarks-summary",
 	Short: `This API enables users to retrieve a summary of all benchmarks and their associated checks and results within a specified time interval. Users can use this API to obtain an overview of all benchmarks, including their names, descriptions, and other relevant information, as well as the checks and their corresponding results within the specified time period.`,
+	Long:  `This API enables users to retrieve a summary of all benchmarks and their associated checks and results within a specified time interval. Users can use this API to obtain an overview of all benchmarks, including their names, descriptions, and other relevant information, as well as the checks and their corresponding results within the specified time period.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -181,8 +187,9 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 }
 
 var GetComplianceApiV1FindingsMetricsCmd = &cobra.Command{
-	Use: "findings-metrics",
-	Short: `This API enables users to retrieve findings metrics for two given times, which includes the total number of findings, the number of passed findings, the number of failed findings, and the number of unknowns findings. Users can use this API to compare the compliance status of their resources between two different time periods.
+	Use:   "findings-metrics",
+	Short: `This API enables users to retrieve findings metrics for two given times, which includes the total number of findings, the number of passed findings, the number of failed findings, and the number of unknowns findings. Users can use this API to compare the compliance status of their resources between two different time periods.`,
+	Long: `This API enables users to retrieve findings metrics for two given times, which includes the total number of findings, the number of passed findings, the number of failed findings, and the number of unknowns findings. Users can use this API to compare the compliance status of their resources between two different time periods.
 The API will return the findings metrics for each time period separately, allowing users to easily compare the compliance status of their resources at each time period. This can be useful for monitoring the effectiveness of compliance measures over time and identifying any areas of improvement."`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
@@ -212,6 +219,7 @@ The API will return the findings metrics for each time period separately, allowi
 var GetComplianceApiV1BenchmarksBenchmarkIdCmd = &cobra.Command{
 	Use:   "get-benchmark",
 	Short: `This API enables users to retrieve benchmark details by specifying the benchmark ID. Users can use this API to obtain specific details about a particular benchmark, such as its name, description, and other relevant information.`,
+	Long:  `This API enables users to retrieve benchmark details by specifying the benchmark ID. Users can use this API to obtain specific details about a particular benchmark, such as its name, description, and other relevant information.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -239,6 +247,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdCmd = &cobra.Command{
 var PostComplianceApiV1FindingsCmd = &cobra.Command{
 	Use:   "get-findings",
 	Short: `This API enables users to retrieve all compliance run findings with respect to filters. Users can use this API to obtain a list of all compliance run findings that match specific filters, such as compliance run ID, resource ID, results, and other relevant parameters.`,
+	Long:  `This API enables users to retrieve all compliance run findings with respect to filters. Users can use this API to obtain a list of all compliance run findings that match specific filters, such as compliance run ID, resource ID, results, and other relevant parameters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -287,6 +296,7 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 var GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd = &cobra.Command{
 	Use:   "get-policy",
 	Short: `This API enables users to retrieve policy details by specifying the policy ID. Users can use this API to obtain specific details about a particular policy, such as its title, description, and other relevant information.`,
+	Long:  `This API enables users to retrieve policy details by specifying the policy ID. Users can use this API to obtain specific details about a particular policy, such as its title, description, and other relevant information.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -314,6 +324,7 @@ var GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd = &cobra.Command{
 var GetComplianceApiV1QueriesQueryIdCmd = &cobra.Command{
 	Use:   "get-query",
 	Short: `This API enables users to retrieve query details by specifying the query ID.`,
+	Long:  `This API enables users to retrieve query details by specifying the query ID.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -341,6 +352,7 @@ var GetComplianceApiV1QueriesQueryIdCmd = &cobra.Command{
 var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
 	Use:   "list-benchmarks",
 	Short: `This API returns a comprehensive list of all available benchmarks. Users can use this API to obtain an overview of the entire set of benchmarks and their corresponding details, such as their names, descriptions, and IDs.`,
+	Long:  `This API returns a comprehensive list of all available benchmarks. Users can use this API to obtain an overview of the entire set of benchmarks and their corresponding details, such as their names, descriptions, and IDs.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -366,6 +378,7 @@ var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
 var GetComplianceApiV1QueriesSyncCmd = &cobra.Command{
 	Use:   "sync-queries",
 	Short: `This API syncs queries with the git backend.`,
+	Long:  `This API syncs queries with the git backend.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -386,6 +399,7 @@ var GetComplianceApiV1QueriesSyncCmd = &cobra.Command{
 var PostComplianceApiV1AlarmsTopCmd = &cobra.Command{
 	Use:   "top-alarms",
 	Short: `Returns top field by alarm count with respect to filters`,
+	Long:  `Returns top field by alarm count with respect to filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

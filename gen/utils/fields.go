@@ -34,7 +34,7 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 				case "runtime.NamedReadCloser":
 					line = `reader, err := os.Open(flags.ReadStringFlag(cmd, "{{.Name}}"))
 		{{.Name}} := runtime.NamedReader("{{.Name}}", reader)
-		req.SetTerrafromFile({{.Name}})`
+		req.SetTerraformFile({{.Name}})`
 				default:
 					fmt.Println("Unknown type: " + param.Type)
 					line = `req.Set{{.Name}}(v)`
