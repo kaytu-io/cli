@@ -62,17 +62,11 @@ GetComplianceAPIV1BenchmarksSummaryParams contains all the parameters to send to
 */
 type GetComplianceAPIV1BenchmarksSummaryParams struct {
 
-	/* End.
+	/* ConnectionID.
 
-	   End Time
+	   Connection IDs to filter by
 	*/
-	End int64
-
-	/* Start.
-
-	   Start Time
-	*/
-	Start int64
+	ConnectionID []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -127,26 +121,15 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetHTTPClient(client *http.C
 	o.HTTPClient = client
 }
 
-// WithEnd adds the end to the get compliance API v1 benchmarks summary params
-func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithEnd(end int64) *GetComplianceAPIV1BenchmarksSummaryParams {
-	o.SetEnd(end)
+// WithConnectionID adds the connectionID to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithConnectionID(connectionID []string) *GetComplianceAPIV1BenchmarksSummaryParams {
+	o.SetConnectionID(connectionID)
 	return o
 }
 
-// SetEnd adds the end to the get compliance API v1 benchmarks summary params
-func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetEnd(end int64) {
-	o.End = end
-}
-
-// WithStart adds the start to the get compliance API v1 benchmarks summary params
-func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithStart(start int64) *GetComplianceAPIV1BenchmarksSummaryParams {
-	o.SetStart(start)
-	return o
-}
-
-// SetStart adds the start to the get compliance API v1 benchmarks summary params
-func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetStart(start int64) {
-	o.Start = start
+// SetConnectionID adds the connectionId to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetConnectionID(connectionID []string) {
+	o.ConnectionID = connectionID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -157,22 +140,13 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) WriteToRequest(r runtime.Cli
 	}
 	var res []error
 
-	// query param end
-	qrEnd := o.End
-	qEnd := swag.FormatInt64(qrEnd)
-	if qEnd != "" {
+	if o.ConnectionID != nil {
 
-		if err := r.SetQueryParam("end", qEnd); err != nil {
-			return err
-		}
-	}
+		// binding items for connectionId
+		joinedConnectionID := o.bindParamConnectionID(reg)
 
-	// query param start
-	qrStart := o.Start
-	qStart := swag.FormatInt64(qrStart)
-	if qStart != "" {
-
-		if err := r.SetQueryParam("start", qStart); err != nil {
+		// query array param connectionId
+		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
 			return err
 		}
 	}
@@ -181,4 +155,21 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) WriteToRequest(r runtime.Cli
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1BenchmarksSummary binds the parameter connectionId
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamConnectionID(formats strfmt.Registry) []string {
+	connectionIDIR := o.ConnectionID
+
+	var connectionIDIC []string
+	for _, connectionIDIIR := range connectionIDIR { // explode []string
+
+		connectionIDIIV := connectionIDIIR // string as string
+		connectionIDIC = append(connectionIDIC, connectionIDIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
+
+	return connectionIDIS
 }

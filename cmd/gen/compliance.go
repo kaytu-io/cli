@@ -26,29 +26,8 @@ func init() {
 	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.MarkFlagRequired("benchmark-id")
 
-	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd)
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd.Flags().String("benchmark-id", "", "Benchmark ID")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryCmd.MarkFlagRequired("benchmark-id")
-
-	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd)
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().String("benchmark-id", "", "Benchmark ID")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("benchmark-id")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().Int64("end", 0, "End time")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("end")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.Flags().Int64("start", 0, "Start time")
-	GetComplianceApiV1BenchmarkBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("start")
-
-	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd)
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.Flags().String("benchmark-id", "", "Benchmark ID")
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.MarkFlagRequired("benchmark-id")
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.Flags().StringArray("status", nil, "Status")
-	GetComplianceApiV1BenchmarkBenchmarkIdTreeCmd.MarkFlagRequired("status")
-
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksSummaryCmd)
-	GetComplianceApiV1BenchmarksSummaryCmd.Flags().Int64("end", 0, "End Time")
-	GetComplianceApiV1BenchmarksSummaryCmd.MarkFlagRequired("end")
-	GetComplianceApiV1BenchmarksSummaryCmd.Flags().Int64("start", 0, "Start Time")
-	GetComplianceApiV1BenchmarksSummaryCmd.MarkFlagRequired("start")
+	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1FindingsMetricsCmd)
 	GetComplianceApiV1FindingsMetricsCmd.Flags().Int64("end", 0, "unix seconds for the end time")
@@ -57,6 +36,25 @@ func init() {
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdCmd)
 	GetComplianceApiV1BenchmarksBenchmarkIdCmd.Flags().String("benchmark-id", "", "BenchmarkID")
 	GetComplianceApiV1BenchmarksBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
+
+	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd)
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
+
+	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd)
+	GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+	GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd.Flags().StringArray("status", nil, "Status")
+	GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd.MarkFlagRequired("status")
+
+	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd)
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd.Flags().Int64("end", 0, "End time")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("end")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd.Flags().Int64("start", 0, "Start time")
+	GetComplianceApiV1BenchmarksBenchmarkIdSummaryResultTrendCmd.MarkFlagRequired("start")
 
 	ComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-benchmark-id", nil, "")

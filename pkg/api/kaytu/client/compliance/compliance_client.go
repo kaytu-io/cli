@@ -30,17 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK, error)
-
-	GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK, error)
-
-	GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK, error)
-
 	GetComplianceAPIV1Benchmarks(params *GetComplianceAPIV1BenchmarksParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksOK, error)
 
 	GetComplianceAPIV1BenchmarksBenchmarkID(params *GetComplianceAPIV1BenchmarksBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDOK, error)
 
 	GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error)
+
+	GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error)
+
+	GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendOK, error)
+
+	GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error)
 
 	GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error)
 
@@ -59,129 +59,6 @@ type ClientService interface {
 	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-GetComplianceAPIV1BenchmarkBenchmarkIDSummary gets benchmark summary
-
-This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.
-*/
-func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1BenchmarkBenchmarkIDSummary",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/benchmark/{benchmark_id}/summary",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1BenchmarkBenchmarkIDSummaryReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarkBenchmarkIDSummary: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend gets compliance result trend
-
-This API allows users to retrieve datapoints of compliance severities over a specified time period, enabling users to keep track of and monitor changes in compliance.
-*/
-func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/benchmark/{benchmark_id}/summary/result/trend",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrendOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarkBenchmarkIDSummaryResultTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetComplianceAPIV1BenchmarkBenchmarkIDTree gets benchmark tree
-
-This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.
-*/
-func (a *Client) GetComplianceAPIV1BenchmarkBenchmarkIDTree(params *GetComplianceAPIV1BenchmarkBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1BenchmarkBenchmarkIDTreeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1BenchmarkBenchmarkIDTree",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/benchmark/{benchmark_id}/tree",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1BenchmarkBenchmarkIDTreeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1BenchmarkBenchmarkIDTreeOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarkBenchmarkIDTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -304,6 +181,129 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComp
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1BenchmarksBenchmarkIDSummary gets benchmark summary
+
+This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.
+*/
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDSummary",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/summary",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDSummaryReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDSummary: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend gets compliance result trend
+
+This API allows users to retrieve datapoints of compliance severities over a specified time period, enabling users to keep track of and monitor changes in compliance.
+*/
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/summary/result/trend",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1BenchmarksBenchmarkIDTree gets benchmark tree
+
+This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.
+*/
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDTreeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDTree",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/tree",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDTreeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
