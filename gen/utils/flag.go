@@ -26,6 +26,8 @@ func GenerateFlagDefinitions(tempName string, fv Field) (output string) {
 					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
 				case "map[string][]string":
 					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
+				case "[]int64", "[]int":
+					line = fmt.Sprintf(`%sCmd.Flags().Int64Slice("%s", nil, "%s")`, tempName, flags.Name(param.Name), param.Description)
 				default:
 					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
 				}

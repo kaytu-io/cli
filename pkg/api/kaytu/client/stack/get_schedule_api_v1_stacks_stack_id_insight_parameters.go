@@ -72,7 +72,7 @@ type GetScheduleAPIV1StacksStackIDInsightParams struct {
 
 	   InsightID
 	*/
-	InsightID string
+	InsightID int64
 
 	/* StackID.
 
@@ -151,13 +151,13 @@ func (o *GetScheduleAPIV1StacksStackIDInsightParams) SetEndTime(endTime *int64) 
 }
 
 // WithInsightID adds the insightID to the get schedule API v1 stacks stack ID insight params
-func (o *GetScheduleAPIV1StacksStackIDInsightParams) WithInsightID(insightID string) *GetScheduleAPIV1StacksStackIDInsightParams {
+func (o *GetScheduleAPIV1StacksStackIDInsightParams) WithInsightID(insightID int64) *GetScheduleAPIV1StacksStackIDInsightParams {
 	o.SetInsightID(insightID)
 	return o
 }
 
 // SetInsightID adds the insightId to the get schedule API v1 stacks stack ID insight params
-func (o *GetScheduleAPIV1StacksStackIDInsightParams) SetInsightID(insightID string) {
+func (o *GetScheduleAPIV1StacksStackIDInsightParams) SetInsightID(insightID int64) {
 	o.InsightID = insightID
 }
 
@@ -210,7 +210,7 @@ func (o *GetScheduleAPIV1StacksStackIDInsightParams) WriteToRequest(r runtime.Cl
 
 	// query param insightId
 	qrInsightID := o.InsightID
-	qInsightID := qrInsightID
+	qInsightID := swag.FormatInt64(qrInsightID)
 	if qInsightID != "" {
 
 		if err := r.SetQueryParam("insightId", qInsightID); err != nil {

@@ -28,7 +28,7 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 
 		req := stack.NewPostScheduleAPIV1StacksCreateParams()
 
-		req.SetConfig(flags.ReadStringOptionalFlag(cmd, "Config"))
+		req.SetConfig(flags.ReadStringFlag(cmd, "Config"))
 		req.SetTag(flags.ReadStringOptionalFlag(cmd, "Tag"))
 		reader, err := os.Open(flags.ReadStringFlag(cmd, "TerraformFile"))
 		TerraformFile := runtime.NamedReader("TerraformFile", reader)
@@ -112,7 +112,7 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 		req := stack.NewGetScheduleAPIV1StacksStackIDInsightParams()
 
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+		req.SetInsightID(flags.ReadInt64Flag(cmd, "InsightID"))
 		req.SetStackID(flags.ReadStringFlag(cmd, "StackID"))
 		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 
@@ -184,7 +184,7 @@ var GetScheduleApiV1StacksStackIdInsightsCmd = &cobra.Command{
 		req := stack.NewGetScheduleAPIV1StacksStackIDInsightsParams()
 
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetInsightIds(flags.ReadStringArrayFlag(cmd, "InsightIds"))
+		req.SetInsightIds(flags.ReadIntArrayFlag(cmd, "InsightIds"))
 		req.SetStackID(flags.ReadStringFlag(cmd, "StackID"))
 		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 

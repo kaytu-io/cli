@@ -35,6 +35,8 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 					line = `reader, err := os.Open(flags.ReadStringFlag(cmd, "{{.Name}}"))
 		{{.Name}} := runtime.NamedReader("{{.Name}}", reader)
 		req.SetTerraformFile({{.Name}})`
+				case "[]int64":
+					line = `req.Set{{.Name}}(flags.ReadIntArrayFlag(cmd, "{{.Name}}"))`
 				default:
 					fmt.Println("Unknown type: " + param.Type)
 					line = `req.Set{{.Name}}(v)`

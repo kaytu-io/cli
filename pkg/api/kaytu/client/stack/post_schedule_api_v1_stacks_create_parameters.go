@@ -65,7 +65,7 @@ type PostScheduleAPIV1StacksCreateParams struct {
 
 	   Config json structure
 	*/
-	Config *string
+	Config string
 
 	/* Tag.
 
@@ -133,13 +133,13 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetHTTPClient(client *http.Client)
 }
 
 // WithConfig adds the config to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) WithConfig(config *string) *PostScheduleAPIV1StacksCreateParams {
+func (o *PostScheduleAPIV1StacksCreateParams) WithConfig(config string) *PostScheduleAPIV1StacksCreateParams {
 	o.SetConfig(config)
 	return o
 }
 
 // SetConfig adds the config to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) SetConfig(config *string) {
+func (o *PostScheduleAPIV1StacksCreateParams) SetConfig(config string) {
 	o.Config = config
 }
 
@@ -173,18 +173,12 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 	}
 	var res []error
 
-	if o.Config != nil {
-
-		// form param config
-		var frConfig string
-		if o.Config != nil {
-			frConfig = *o.Config
-		}
-		fConfig := frConfig
-		if fConfig != "" {
-			if err := r.SetFormParam("config", fConfig); err != nil {
-				return err
-			}
+	// form param config
+	frConfig := o.Config
+	fConfig := frConfig
+	if fConfig != "" {
+		if err := r.SetFormParam("config", fConfig); err != nil {
+			return err
 		}
 	}
 
@@ -202,15 +196,9 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 			}
 		}
 	}
-
-	if o.TerraformFile != nil {
-
-		if o.TerraformFile != nil {
-			// form file param terraformFile
-			if err := r.SetFileParam("terraformFile", o.TerraformFile); err != nil {
-				return err
-			}
-		}
+	// form file param terraformFile
+	if err := r.SetFileParam("terraformFile", o.TerraformFile); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {
