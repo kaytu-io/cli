@@ -21,7 +21,7 @@ func fixParamName(name string) string {
 	return strings.ReplaceAll(strcase.ToCamel(name), "Id", "ID")
 }
 
-func ExtractFields(swag *swagger.Swagger, parentType string, parentRequired bool, x reflect.Type) (resp Field) {
+func ExtractFields(swag *swagger.Swagger, prefix, parentType string, parentRequired bool, x reflect.Type) (resp Field) {
 	for i := 0; i < x.NumField(); i++ {
 		field := x.Field(i)
 		fieldType := field.Type
@@ -40,8 +40,14 @@ func ExtractFields(swag *swagger.Swagger, parentType string, parentRequired bool
 			fieldType = fieldType.Elem()
 		}
 
+		fieldName := strings.TrimPrefix(prefix+"-"+field.Name, "-")
+		fieldName = strings.TrimPrefix(fieldName, "request-")
+		fieldName = strings.TrimPrefix(fieldName, "Request-")
+		fieldName = strings.TrimPrefix(fieldName, "req-")
+		fieldName = strings.TrimPrefix(fieldName, "Req-")
+
 		child := Field{
-			Name:     field.Name,
+			Name:     fieldName,
 			Type:     field.Type.String(),
 			Children: nil,
 		}
@@ -75,9 +81,15 @@ func ExtractFields(swag *swagger.Swagger, parentType string, parentRequired bool
 
 		if fieldType.Kind() == reflect.Struct {
 			if !field.Anonymous {
-				child.Children = append(child.Children, ExtractFields(swag, field.Type.String(), parentRequired || child.IsRequired, fieldType).Children...)
+				var newPrefix string
+				if prefix == "" {
+					newPrefix = field.Name
+				} else {
+					newPrefix = prefix + "-" + field.Name
+				}
+				child.Children = append(child.Children, ExtractFields(swag, newPrefix, field.Type.String(), parentRequired || child.IsRequired, fieldType).Children...)
 			} else {
-				resp.Children = append(resp.Children, ExtractFields(swag, field.Type.String(), parentRequired, fieldType).Children...)
+				resp.Children = append(resp.Children, ExtractFields(swag, prefix, field.Type.String(), parentRequired, fieldType).Children...)
 			}
 		}
 
