@@ -28,11 +28,10 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 		req := stack.NewPostScheduleAPIV1StacksCreateParams()
 
 		req.SetConfig(flags.ReadStringOptionalFlag(cmd, "Config"))
-		req.SetResources(flags.ReadStringArrayFlag(cmd, "Resources"))
 		req.SetTag(flags.ReadStringOptionalFlag(cmd, "Tag"))
-		reader, err := os.Open(flags.ReadStringFlag(cmd, "TerrafromFile"))
-		TerrafromFile := runtime.NamedReader("TerrafromFile", reader)
-		req.SetTerrafromFile(TerrafromFile)
+		reader, err := os.Open(flags.ReadStringFlag(cmd, "TerraformFile"))
+		TerraformFile := runtime.NamedReader("TerraformFile", reader)
+		req.SetTerrafromFile(TerraformFile)
 
 		resp, err := client.Stack.PostScheduleAPIV1StacksCreate(req, auth)
 		if err != nil {
@@ -222,57 +221,30 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 	},
 }
 
-var PostScheduleApiV1StacksBenchmarkTriggerCmd = &cobra.Command{
-	Use:   "trigger-stack-benchmark",
-	Short: `Trigger defined benchmarks for a stack and save in the history`,
+var GetScheduleApiV1StacksStackIdInsightsCmd = &cobra.Command{
+	Use:   "stack-insights",
+	Short: `Get all Insights results with the given filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
 
-		req := stack.NewPostScheduleAPIV1StacksBenchmarkTriggerParams()
+		req := stack.NewGetScheduleAPIV1StacksStackIDInsightsParams()
 
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgDescribeAPIStackBenchmarkRequest{
-			Benchmarks: flags.ReadStringArrayFlag(cmd, "Benchmarks"),
-			StackID:    flags.ReadStringOptionalFlag(cmd, "StackID"),
-		})
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetInsightIds(flags.ReadStringArrayFlag(cmd, "InsightIds"))
+		req.SetStackID(flags.ReadStringFlag(cmd, "StackID"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 
-		resp, err := client.Stack.PostScheduleAPIV1StacksBenchmarkTrigger(req, auth)
+		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsights(req, auth)
 		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
 
 		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_benchmark_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostScheduleApiV1StacksDescriberTriggerCmd = &cobra.Command{
-	Use: "trigger-stack-describer",
-	Short: `Describe stack resources. This is needed before triggering insights and benchmarks
-Config structure for azure: {tenantId: string, objectId: string, secretId: string, clientId: string, clientSecret:string}
-Config structure for aws: {accessKey: string, secretKey: string}`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_describer_trigger] : %v", err)
-		}
-
-		req := stack.NewPostScheduleAPIV1StacksDescriberTriggerParams()
-
-		req.SetReq(&models.GithubComKaytuIoKaytuEnginePkgDescribeAPIDescribeStackRequest{
-			Config:  interface{}(flags.ReadStringFlag(cmd, "Config")),
-			StackID: flags.ReadStringFlag(cmd, "StackID"),
-		})
-
-		_, err = client.Stack.PostScheduleAPIV1StacksDescriberTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_describer_trigger] : %v", err)
+			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
 
 		return nil

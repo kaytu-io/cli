@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewPostScheduleAPIV1StacksCreateParams creates a new PostScheduleAPIV1StacksCreateParams object,
@@ -68,23 +67,17 @@ type PostScheduleAPIV1StacksCreateParams struct {
 	*/
 	Config *string
 
-	/* Resources.
-
-	   Additional Resources
-	*/
-	Resources []string
-
 	/* Tag.
 
 	   Tags Map[string][]string
 	*/
 	Tag *string
 
-	/* TerrafromFile.
+	/* TerraformFile.
 
 	   File to upload
 	*/
-	TerrafromFile runtime.NamedReadCloser
+	TerraformFile runtime.NamedReadCloser
 
 	timeout    time.Duration
 	Context    context.Context
@@ -150,17 +143,6 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetConfig(config *string) {
 	o.Config = config
 }
 
-// WithResources adds the resources to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) WithResources(resources []string) *PostScheduleAPIV1StacksCreateParams {
-	o.SetResources(resources)
-	return o
-}
-
-// SetResources adds the resources to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) SetResources(resources []string) {
-	o.Resources = resources
-}
-
 // WithTag adds the tag to the post schedule API v1 stacks create params
 func (o *PostScheduleAPIV1StacksCreateParams) WithTag(tag *string) *PostScheduleAPIV1StacksCreateParams {
 	o.SetTag(tag)
@@ -172,15 +154,15 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetTag(tag *string) {
 	o.Tag = tag
 }
 
-// WithTerrafromFile adds the terrafromFile to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) WithTerrafromFile(terrafromFile runtime.NamedReadCloser) *PostScheduleAPIV1StacksCreateParams {
-	o.SetTerrafromFile(terrafromFile)
+// WithTerraformFile adds the terraformFile to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithTerraformFile(terraformFile runtime.NamedReadCloser) *PostScheduleAPIV1StacksCreateParams {
+	o.SetTerraformFile(terraformFile)
 	return o
 }
 
-// SetTerrafromFile adds the terrafromFile to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) SetTerrafromFile(terrafromFile runtime.NamedReadCloser) {
-	o.TerrafromFile = terrafromFile
+// SetTerraformFile adds the terraformFile to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetTerraformFile(terraformFile runtime.NamedReadCloser) {
+	o.TerraformFile = terraformFile
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -206,17 +188,6 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		}
 	}
 
-	if o.Resources != nil {
-
-		// binding items for resources
-		joinedResources := o.bindParamResources(reg)
-
-		// form array param resources
-		if err := r.SetFormParam("resources", joinedResources...); err != nil {
-			return err
-		}
-	}
-
 	if o.Tag != nil {
 
 		// form param tag
@@ -232,11 +203,11 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		}
 	}
 
-	if o.TerrafromFile != nil {
+	if o.TerraformFile != nil {
 
-		if o.TerrafromFile != nil {
-			// form file param terrafromFile
-			if err := r.SetFileParam("terrafromFile", o.TerrafromFile); err != nil {
+		if o.TerraformFile != nil {
+			// form file param terraformFile
+			if err := r.SetFileParam("terraformFile", o.TerraformFile); err != nil {
 				return err
 			}
 		}
@@ -246,21 +217,4 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
-}
-
-// bindParamPostScheduleAPIV1StacksCreate binds the parameter resources
-func (o *PostScheduleAPIV1StacksCreateParams) bindParamResources(formats strfmt.Registry) []string {
-	resourcesIR := o.Resources
-
-	var resourcesIC []string
-	for _, resourcesIIR := range resourcesIR { // explode []string
-
-		resourcesIIV := resourcesIIR // string as string
-		resourcesIC = append(resourcesIC, resourcesIIV)
-	}
-
-	// items.CollectionFormat: "csv"
-	resourcesIS := swag.JoinByFormat(resourcesIC, "csv")
-
-	return resourcesIS
 }

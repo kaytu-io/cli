@@ -72,10 +72,6 @@ func init() {
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
 	PutScheduleApiV1InsightEvaluationTriggerCmd.MarkFlagRequired("resource-i-ds")
 
-	DescribeCmd.AddCommand(PostScheduleApiV1StacksInsightTriggerCmd)
-	PostScheduleApiV1StacksInsightTriggerCmd.Flags().String("request", "", "Request Body")
-	PostScheduleApiV1StacksInsightTriggerCmd.MarkFlagRequired("request")
-
 	DescribeCmd.AddCommand(GetScheduleApiV0SummarizeTriggerCmd)
 
 }

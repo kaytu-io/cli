@@ -270,33 +270,6 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 	},
 }
 
-var PostScheduleApiV1StacksInsightTriggerCmd = &cobra.Command{
-	Use:   "run-stack-insight",
-	Short: `Trigger an insight evaluation to run immediately on a stack with given details`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_insight_trigger] : %v", err)
-		}
-
-		req := describe.NewPostScheduleAPIV1StacksInsightTriggerParams()
-
-		//req.SetRequest(v)
-
-		resp, err := client.Describe.PostScheduleAPIV1StacksInsightTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_insight_trigger] : %v", err)
-		}
-
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_schedule_api_v_1_stacks_insight_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetScheduleApiV0SummarizeTriggerCmd = &cobra.Command{
 	Use:   "run-summerize",
 	Short: `Triggers a summarize job to run immediately`,

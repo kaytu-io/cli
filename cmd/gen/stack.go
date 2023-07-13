@@ -16,9 +16,8 @@ func init() {
 
 	StackCmd.AddCommand(PostScheduleApiV1StacksCreateCmd)
 	PostScheduleApiV1StacksCreateCmd.Flags().String("config", "", "Config json structure")
-	PostScheduleApiV1StacksCreateCmd.Flags().StringArray("resources", nil, "Additional Resources")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("tag", "", "Tags Map[string][]string")
-	PostScheduleApiV1StacksCreateCmd.Flags().String("terrafrom-file", "", "File to upload")
+	PostScheduleApiV1StacksCreateCmd.Flags().String("terraform-file", "", "File to upload")
 
 	StackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
 	DeleteScheduleApiV1StacksStackIdCmd.Flags().String("stack-id", "", "StackID")
@@ -60,16 +59,11 @@ func init() {
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("stack-id")
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("start-time", 0, "unix seconds for the start time of the trend")
 
-	StackCmd.AddCommand(PostScheduleApiV1StacksBenchmarkTriggerCmd)
-	PostScheduleApiV1StacksBenchmarkTriggerCmd.Flags().StringArray("benchmarks", nil, "Benchmarks to add to the stack")
-	PostScheduleApiV1StacksBenchmarkTriggerCmd.MarkFlagRequired("benchmarks")
-	PostScheduleApiV1StacksBenchmarkTriggerCmd.Flags().String("stack-id", "", "Stack unique identifier")
-	PostScheduleApiV1StacksBenchmarkTriggerCmd.MarkFlagRequired("stack-id")
-
-	StackCmd.AddCommand(PostScheduleApiV1StacksDescriberTriggerCmd)
-	PostScheduleApiV1StacksDescriberTriggerCmd.Flags().String("config", "", "")
-	PostScheduleApiV1StacksDescriberTriggerCmd.MarkFlagRequired("config")
-	PostScheduleApiV1StacksDescriberTriggerCmd.Flags().String("stack-id", "", "")
-	PostScheduleApiV1StacksDescriberTriggerCmd.MarkFlagRequired("stack-id")
+	StackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightsCmd)
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64("end-time", 0, "unix seconds for the end time of the trend")
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().StringArray("insight-ids", nil, "")
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().String("stack-id", "", "Stack ID")
+	GetScheduleApiV1StacksStackIdInsightsCmd.MarkFlagRequired("stack-id")
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64("start-time", 0, "unix seconds for the start time of the trend")
 
 }
