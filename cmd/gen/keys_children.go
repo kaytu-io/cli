@@ -15,6 +15,7 @@ import (
 var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 	Use:   "activate-key",
 	Short: `Activates Workspace Key by ID`,
+	Long:  `Activates Workspace Key by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -42,6 +43,7 @@ var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 	Use:   "create-key",
 	Short: `Creates workspace key for the defined role with the defined name in the workspace.`,
+	Long:  `Creates workspace key for the defined role with the defined name in the workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -72,6 +74,7 @@ var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 var GetAuthApiV1KeyIdCmd = &cobra.Command{
 	Use:   "get-key",
 	Short: `Retrieves the details of a workspace key with specified ID.`,
+	Long:  `Retrieves the details of a workspace key with specified ID.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -99,6 +102,7 @@ var GetAuthApiV1KeyIdCmd = &cobra.Command{
 var GetAuthApiV1KeysCmd = &cobra.Command{
 	Use:   "list-keys",
 	Short: `Gets list of all keys in the workspace.`,
+	Long:  `Gets list of all keys in the workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -124,6 +128,7 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
 	Use:   "remove-key",
 	Short: `Deletes the specified workspace key by ID.`,
+	Long:  `Deletes the specified workspace key by ID.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -146,6 +151,7 @@ var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
 var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 	Use:   "suspend-key",
 	Short: `Suspends Workspace Key by ID`,
+	Long:  `Suspends Workspace Key by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -173,6 +179,7 @@ var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 var PostAuthApiV1KeyRoleCmd = &cobra.Command{
 	Use:   "update-key-role",
 	Short: `Updates the role of the specified key in workspace.`,
+	Long:  `Updates the role of the specified key in workspace.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

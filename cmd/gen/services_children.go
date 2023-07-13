@@ -14,6 +14,7 @@ import (
 var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
 	Use:   "service-summary",
 	Short: `Retrieves Cloud Service Summary for the specified service name. Including connector, the resource counts.`,
+	Long:  `Retrieves Cloud Service Summary for the specified service name. Including connector, the resource counts.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -44,6 +45,7 @@ var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
 var GetInventoryApiV2ServicesSummaryCmd = &cobra.Command{
 	Use:   "services-summary",
 	Short: `Retrieves list of summaries of the services including the number of them and the API filters and a list of services with more details. Including connector and the resource counts.`,
+	Long:  `Retrieves list of summaries of the services including the number of them and the API filters and a list of services with more details. Including connector and the resource counts.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

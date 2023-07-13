@@ -14,6 +14,7 @@ import (
 var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
 	Use:   "add-assignment",
 	Short: `Returns benchmark assignment which insert`,
+	Long:  `Returns benchmark assignment which insert`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -42,6 +43,7 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.
 var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	Use:   "benchmark-assignments",
 	Short: `Returns all benchmark assigned sources with benchmark id`,
+	Long:  `Returns all benchmark assigned sources with benchmark id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -69,6 +71,7 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 	Use:   "connection-assignments",
 	Short: `Returns all benchmark assignments with source id`,
+	Long:  `Returns all benchmark assignments with source id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -96,6 +99,7 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
 	Use:   "list-assignments",
 	Short: `Returns all assignments`,
+	Long:  `Returns all assignments`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -121,6 +125,7 @@ var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
 var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
 	Use:   "remove-assignment",
 	Short: `Delete benchmark assignment with source id and benchmark id`,
+	Long:  `Delete benchmark assignment with source id and benchmark id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

@@ -15,6 +15,7 @@ import (
 var PostOnboardApiV1CredentialCredentialIdAutoonboardCmd = &cobra.Command{
 	Use:   "auto-onboard-credential",
 	Short: `Onboard all available connections for a credential`,
+	Long:  `Onboard all available connections for a credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -42,6 +43,7 @@ var PostOnboardApiV1CredentialCredentialIdAutoonboardCmd = &cobra.Command{
 var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 	Use:   "create-aws-source",
 	Short: `Creating AWS source`,
+	Long:  `Creating AWS source`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -81,6 +83,7 @@ var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 var PostOnboardApiV1SourceAzureCmd = &cobra.Command{
 	Use:   "create-azure-source",
 	Short: `Creating Azure source`,
+	Long:  `Creating Azure source`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -119,6 +122,7 @@ var PostOnboardApiV1SourceAzureCmd = &cobra.Command{
 var PostOnboardApiV1CredentialCmd = &cobra.Command{
 	Use:   "create-credential",
 	Short: `Creating connection credentials`,
+	Long:  `Creating connection credentials`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -150,6 +154,7 @@ var PostOnboardApiV1CredentialCmd = &cobra.Command{
 var DeleteOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	Use:   "delete-credential",
 	Short: `Remove a credential by Id`,
+	Long:  `Remove a credential by Id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -172,6 +177,7 @@ var DeleteOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 var DeleteOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 	Use:   "delete-source",
 	Short: `Deleting a single source either AWS / Azure for the given source id.`,
+	Long:  `Deleting a single source either AWS / Azure for the given source id.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -194,6 +200,7 @@ var DeleteOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 var PostOnboardApiV1CredentialCredentialIdDisableCmd = &cobra.Command{
 	Use:   "disable-credential",
 	Short: `Disable credential`,
+	Long:  `Disable credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -216,6 +223,7 @@ var PostOnboardApiV1CredentialCredentialIdDisableCmd = &cobra.Command{
 var PostOnboardApiV1CredentialCredentialIdEnableCmd = &cobra.Command{
 	Use:   "enable-credential",
 	Short: `Enable credential`,
+	Long:  `Enable credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -238,6 +246,7 @@ var PostOnboardApiV1CredentialCredentialIdEnableCmd = &cobra.Command{
 var GetOnboardApiV1SourceAccountAccountIdCmd = &cobra.Command{
 	Use:   "get-account-source",
 	Short: `Returning account source either AWS / Azure.`,
+	Long:  `Returning account source either AWS / Azure.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -265,6 +274,7 @@ var GetOnboardApiV1SourceAccountAccountIdCmd = &cobra.Command{
 var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 	Use:   "get-catalog-metrics",
 	Short: `Returns the list of metrics for catalog page.`,
+	Long:  `Returns the list of metrics for catalog page.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -290,6 +300,7 @@ var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 var GetOnboardApiV1ConnectionsCountCmd = &cobra.Command{
 	Use:   "get-connections-count",
 	Short: `Returns a count of connections`,
+	Long:  `Returns a count of connections`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -320,6 +331,7 @@ var GetOnboardApiV1ConnectionsCountCmd = &cobra.Command{
 var GetOnboardApiV1ConnectorConnectorNameCmd = &cobra.Command{
 	Use:   "get-connector",
 	Short: `Returns connector details by name`,
+	Long:  `Returns connector details by name`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -347,6 +359,7 @@ var GetOnboardApiV1ConnectorConnectorNameCmd = &cobra.Command{
 var GetOnboardApiV1ConnectorCmd = &cobra.Command{
 	Use:   "get-connectors",
 	Short: `Returns list of all connectors`,
+	Long:  `Returns list of all connectors`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -372,6 +385,7 @@ var GetOnboardApiV1ConnectorCmd = &cobra.Command{
 var GetOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	Use:   "get-credential",
 	Short: `Retrieving credential details by credential ID`,
+	Long:  `Retrieving credential details by credential ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -399,6 +413,7 @@ var GetOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 var GetOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 	Use:   "get-source",
 	Short: `Returning single source either AWS / Azure.`,
+	Long:  `Returning single source either AWS / Azure.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -426,6 +441,7 @@ var GetOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 var GetOnboardApiV1CredentialCredentialIdHealthcheckCmd = &cobra.Command{
 	Use:   "healthcheck-credential",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -448,6 +464,7 @@ var GetOnboardApiV1CredentialCredentialIdHealthcheckCmd = &cobra.Command{
 var PostOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
 	Use:   "healthchek-source",
 	Short: `Get live source health status with given source ID.`,
+	Long:  `Get live source health status with given source ID.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -475,6 +492,7 @@ var PostOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
 var GetOnboardApiV1CredentialCmd = &cobra.Command{
 	Use:   "list-credentials",
 	Short: `Retrieving list of credentials with their details`,
+	Long:  `Retrieving list of credentials with their details`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -506,6 +524,7 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 var GetOnboardApiV1CredentialSourcesListCmd = &cobra.Command{
 	Use:   "list-credentials-sources",
 	Short: `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
+	Long:  `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -536,6 +555,7 @@ var GetOnboardApiV1CredentialSourcesListCmd = &cobra.Command{
 var GetOnboardApiV1SourcesCmd = &cobra.Command{
 	Use:   "list-sources",
 	Short: `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
+	Long:  `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -563,6 +583,7 @@ var GetOnboardApiV1SourcesCmd = &cobra.Command{
 var PutOnboardApiV1SourceSourceIdCredentialsCmd = &cobra.Command{
 	Use:   "put-source-credentials",
 	Short: `Update source credential`,
+	Long:  `Update source credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -583,8 +604,9 @@ var PutOnboardApiV1SourceSourceIdCredentialsCmd = &cobra.Command{
 }
 
 var GetOnboardApiV1SourceSourceIdCredentialsCmd = &cobra.Command{
-	Use: "source-credentials",
-	Short: `Returns credential for a source with given source ID.
+	Use:   "source-credentials",
+	Short: `Returns credential for a source with given source ID.`,
+	Long: `Returns credential for a source with given source ID.
 The responses are different for different source types.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
@@ -613,6 +635,7 @@ The responses are different for different source types.`,
 var GetOnboardApiV1SourcesCountCmd = &cobra.Command{
 	Use:   "sources-count",
 	Short: `Returning number of sources including both AWS and Azure unless filtered by Type.`,
+	Long:  `Returning number of sources including both AWS and Azure unless filtered by Type.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -640,6 +663,7 @@ var GetOnboardApiV1SourcesCountCmd = &cobra.Command{
 var PostOnboardApiV1ConnectionsConnectionIdStateCmd = &cobra.Command{
 	Use:   "update-connection-state",
 	Short: `Enabling a single source either with connection ID.`,
+	Long:  `Enabling a single source either with connection ID.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -665,6 +689,7 @@ var PostOnboardApiV1ConnectionsConnectionIdStateCmd = &cobra.Command{
 var PutOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	Use:   "update-credential",
 	Short: `Edit a credential by Id`,
+	Long:  `Edit a credential by Id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

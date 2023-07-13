@@ -14,6 +14,7 @@ import (
 var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 	Use:   "connection-summary",
 	Short: `Returns a connections summaries`,
+	Long:  `Returns a connections summaries`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -43,6 +44,7 @@ var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 	Use:   "connections-summary",
 	Short: `Returns a list of connections summaries`,
+	Long:  `Returns a list of connections summaries`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

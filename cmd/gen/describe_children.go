@@ -15,6 +15,7 @@ import (
 var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 	Use:   "benchmark-evaluations",
 	Short: `This API allows users to retrieve details of all benchmark evaluation jobs based on specified filters. The API returns information such as evaluation time, benchmark ID, connection ID, connector name, status, and failure message.`,
+	Long:  `This API allows users to retrieve details of all benchmark evaluation jobs based on specified filters. The API returns information such as evaluation time, benchmark ID, connection ID, connector name, status, and failure message.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -48,6 +49,7 @@ var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
 	Use:   "depricated-run-insight",
 	Short: `Triggers an insight job to run immediately`,
+	Long:  `Triggers an insight job to run immediately`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -68,6 +70,7 @@ var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
 var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 	Use:   "describe-resource",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -102,6 +105,7 @@ var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 var GetScheduleApiV0DescribeTriggerCmd = &cobra.Command{
 	Use:   "describe-trigger",
 	Short: `Triggers a describe job to run immediately`,
+	Long:  `Triggers a describe job to run immediately`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -122,6 +126,7 @@ var GetScheduleApiV0DescribeTriggerCmd = &cobra.Command{
 var GetScheduleApiV1InsightJobJobIdCmd = &cobra.Command{
 	Use:   "get-insight-job",
 	Short: `Get an Insight Job details by ID`,
+	Long:  `Get an Insight Job details by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -149,6 +154,7 @@ var GetScheduleApiV1InsightJobJobIdCmd = &cobra.Command{
 var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 	Use:   "run-benchmark-evaluation",
 	Short: `Triggers a benchmark evaluation job to run immediately`,
+	Long:  `Triggers a benchmark evaluation job to run immediately`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -180,6 +186,7 @@ var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
 	Use:   "run-compliance",
 	Short: `Triggers a compliance job to run immediately`,
+	Long:  `Triggers a compliance job to run immediately`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -200,6 +207,7 @@ var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
 var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
 	Use:   "run-compliance-summerizer",
 	Short: ``,
+	Long:  ``,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -220,6 +228,7 @@ var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
 var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 	Use:   "run-describe",
 	Short: `Triggers a describe job to run immediately`,
+	Long:  `Triggers a describe job to run immediately`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -242,6 +251,7 @@ var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 	Use:   "run-insight",
 	Short: `Trigger an insight evaluation to run immediately with given details`,
+	Long:  `Trigger an insight evaluation to run immediately with given details`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -273,6 +283,7 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 var GetScheduleApiV0SummarizeTriggerCmd = &cobra.Command{
 	Use:   "run-summerize",
 	Short: `Triggers a summarize job to run immediately`,
+	Long:  `Triggers a summarize job to run immediately`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
