@@ -16,8 +16,10 @@ func init() {
 
 	StackCmd.AddCommand(PostScheduleApiV1StacksCreateCmd)
 	PostScheduleApiV1StacksCreateCmd.Flags().String("config", "", "Config json structure")
+	PostScheduleApiV1StacksCreateCmd.MarkFlagRequired("config")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("tag", "", "Tags Map[string][]string")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("terraform-file", "", "File to upload")
+	PostScheduleApiV1StacksCreateCmd.MarkFlagRequired("terraform-file")
 
 	StackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
 	DeleteScheduleApiV1StacksStackIdCmd.Flags().String("stack-id", "", "StackID")
@@ -29,7 +31,7 @@ func init() {
 
 	StackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightCmd)
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("end-time", 0, "unix seconds for the end time of the trend")
-	GetScheduleApiV1StacksStackIdInsightCmd.Flags().StringArray("insight-id", nil, "InsightID")
+	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("insight-id", 0, "InsightID")
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("insight-id")
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().String("stack-id", "", "StackID")
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("stack-id")
@@ -53,7 +55,7 @@ func init() {
 
 	StackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightsCmd)
 	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64("end-time", 0, "unix seconds for the end time of the trend")
-	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().StringArray("insight-ids", nil, "")
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64Slice("insight-ids", nil, "")
 	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().String("stack-id", "", "Stack ID")
 	GetScheduleApiV1StacksStackIdInsightsCmd.MarkFlagRequired("stack-id")
 	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64("start-time", 0, "unix seconds for the start time of the trend")

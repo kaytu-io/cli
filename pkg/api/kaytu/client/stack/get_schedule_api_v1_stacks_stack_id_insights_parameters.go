@@ -72,7 +72,7 @@ type GetScheduleAPIV1StacksStackIDInsightsParams struct {
 
 	   Insight IDs to filter with. If empty, then all insights are returned
 	*/
-	InsightIds []string
+	InsightIds []int64
 
 	/* StackID.
 
@@ -151,13 +151,13 @@ func (o *GetScheduleAPIV1StacksStackIDInsightsParams) SetEndTime(endTime *int64)
 }
 
 // WithInsightIds adds the insightIds to the get schedule API v1 stacks stack ID insights params
-func (o *GetScheduleAPIV1StacksStackIDInsightsParams) WithInsightIds(insightIds []string) *GetScheduleAPIV1StacksStackIDInsightsParams {
+func (o *GetScheduleAPIV1StacksStackIDInsightsParams) WithInsightIds(insightIds []int64) *GetScheduleAPIV1StacksStackIDInsightsParams {
 	o.SetInsightIds(insightIds)
 	return o
 }
 
 // SetInsightIds adds the insightIds to the get schedule API v1 stacks stack ID insights params
-func (o *GetScheduleAPIV1StacksStackIDInsightsParams) SetInsightIds(insightIds []string) {
+func (o *GetScheduleAPIV1StacksStackIDInsightsParams) SetInsightIds(insightIds []int64) {
 	o.InsightIds = insightIds
 }
 
@@ -252,9 +252,9 @@ func (o *GetScheduleAPIV1StacksStackIDInsightsParams) bindParamInsightIds(format
 	insightIdsIR := o.InsightIds
 
 	var insightIdsIC []string
-	for _, insightIdsIIR := range insightIdsIR { // explode []string
+	for _, insightIdsIIR := range insightIdsIR { // explode []int64
 
-		insightIdsIIV := insightIdsIIR // string as string
+		insightIdsIIV := swag.FormatInt64(insightIdsIIR) // int64 as string
 		insightIdsIC = append(insightIdsIC, insightIdsIIV)
 	}
 
