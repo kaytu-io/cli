@@ -29,7 +29,7 @@ func init() {
 
 	StackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightCmd)
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("end-time", 0, "unix seconds for the end time of the trend")
-	GetScheduleApiV1StacksStackIdInsightCmd.Flags().String("insight-id", "", "InsightID")
+	GetScheduleApiV1StacksStackIdInsightCmd.Flags().StringArray("insight-id", nil, "InsightID")
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("insight-id")
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().String("stack-id", "", "StackID")
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("stack-id")
