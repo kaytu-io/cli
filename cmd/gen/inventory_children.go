@@ -342,6 +342,7 @@ var GetInventoryApiV2ResourcesMetricCmd = &cobra.Command{
 		req.SetMinCount(flags.ReadInt64OptionalFlag(cmd, "MinCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
+		req.SetResourceType(flags.ReadStringArrayFlag(cmd, "ResourceType"))
 		req.SetServicename(flags.ReadStringArrayFlag(cmd, "Servicename"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
 		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))

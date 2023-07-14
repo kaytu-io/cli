@@ -54,12 +54,12 @@ var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest{
 			Config: &models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
-				Config - AccessKey:      flags.ReadStringOptionalFlag(cmd, "Config-AccessKey"),
-				Config - AccountID:      flags.ReadStringFlag(cmd, "Config-AccountID"),
-				Config - AssumeRoleName: flags.ReadStringFlag(cmd, "Config-AssumeRoleName"),
-				Config - ExternalID:     flags.ReadStringFlag(cmd, "Config-ExternalID"),
-				Config - Regions:        flags.ReadStringArrayFlag(cmd, "Config-Regions"),
-				Config - SecretKey:      flags.ReadStringOptionalFlag(cmd, "Config-SecretKey"),
+				AccessKey:      flags.ReadStringOptionalFlag(cmd, "Config-AccessKey"),
+				AccountID:      flags.ReadStringFlag(cmd, "Config-AccountID"),
+				AssumeRoleName: flags.ReadStringFlag(cmd, "Config-AssumeRoleName"),
+				ExternalID:     flags.ReadStringFlag(cmd, "Config-ExternalID"),
+				Regions:        flags.ReadStringArrayFlag(cmd, "Config-Regions"),
+				SecretKey:      flags.ReadStringOptionalFlag(cmd, "Config-SecretKey"),
 			},
 			Description: flags.ReadStringFlag(cmd, "Description"),
 			Email:       flags.ReadStringFlag(cmd, "Email"),
@@ -94,12 +94,12 @@ var PostOnboardApiV1SourceAzureCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAzureRequest{
 			Config: &models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig{
-				Config - ClientID:       flags.ReadStringOptionalFlag(cmd, "Config-ClientID"),
-				Config - ClientSecret:   flags.ReadStringOptionalFlag(cmd, "Config-ClientSecret"),
-				Config - ObjectID:       flags.ReadStringOptionalFlag(cmd, "Config-ObjectID"),
-				Config - SecretID:       flags.ReadStringOptionalFlag(cmd, "Config-SecretID"),
-				Config - SubscriptionID: flags.ReadStringFlag(cmd, "Config-SubscriptionID"),
-				Config - TenantID:       flags.ReadStringOptionalFlag(cmd, "Config-TenantID"),
+				ClientID:       flags.ReadStringOptionalFlag(cmd, "Config-ClientID"),
+				ClientSecret:   flags.ReadStringOptionalFlag(cmd, "Config-ClientSecret"),
+				ObjectID:       flags.ReadStringOptionalFlag(cmd, "Config-ObjectID"),
+				SecretID:       flags.ReadStringOptionalFlag(cmd, "Config-SecretID"),
+				SubscriptionID: flags.ReadStringFlag(cmd, "Config-SubscriptionID"),
+				TenantID:       flags.ReadStringOptionalFlag(cmd, "Config-TenantID"),
 			},
 			Description: flags.ReadStringFlag(cmd, "Description"),
 			Name:        flags.ReadStringFlag(cmd, "Name"),
@@ -132,9 +132,9 @@ var PostOnboardApiV1CredentialCmd = &cobra.Command{
 		req := onboard.NewPostOnboardAPIV1CredentialParams()
 
 		req.SetConfig(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest{
-			Config - Config:     interface{}(flags.ReadStringFlag(cmd, "Config-Config")),
-			Config - Name:       flags.ReadStringFlag(cmd, "Config-Name"),
-			Config - SourceType: models.SourceType(flags.ReadStringFlag(cmd, "Config-SourceType")),
+			Config:     interface{}(flags.ReadStringFlag(cmd, "Config-Config")),
+			Name:       flags.ReadStringFlag(cmd, "Config-Name"),
+			SourceType: models.SourceType(flags.ReadStringFlag(cmd, "Config-SourceType")),
 		})
 
 		resp, err := client.Onboard.PostOnboardAPIV1Credential(req, auth)
@@ -310,8 +310,8 @@ var GetOnboardApiV1ConnectionsCountCmd = &cobra.Command{
 		req := onboard.NewGetOnboardAPIV1ConnectionsCountParams()
 
 		req.SetType(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionCountRequest{
-			Type - Connectors: flags.ReadStringArrayFlag(cmd, "Type-Connectors"),
-			Type - State:      models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState(flags.ReadStringFlag(cmd, "Type-State")),
+			Connectors: flags.ReadStringArrayFlag(cmd, "Type-Connectors"),
+			State:      models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState(flags.ReadStringFlag(cmd, "Type-State")),
 		})
 
 		resp, err := client.Onboard.GetOnboardAPIV1ConnectionsCount(req, auth)
@@ -699,9 +699,9 @@ var PutOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 		req := onboard.NewPutOnboardAPIV1CredentialCredentialIDParams()
 
 		req.SetConfig(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPIUpdateCredentialRequest{
-			Config - Config:    interface{}(flags.ReadStringFlag(cmd, "Config-Config")),
-			Config - Connector: models.SourceType(flags.ReadStringFlag(cmd, "Config-Connector")),
-			Config - Name:      flags.ReadStringFlag(cmd, "Config-Name"),
+			Config:    interface{}(flags.ReadStringFlag(cmd, "Config-Config")),
+			Connector: models.SourceType(flags.ReadStringFlag(cmd, "Config-Connector")),
+			Name:      flags.ReadStringFlag(cmd, "Config-Name"),
 		})
 		req.SetCredentialID(flags.ReadStringFlag(cmd, "CredentialID"))
 

@@ -59,7 +59,7 @@ func ExtractFields(swag *swagger.Swagger, prefix, parentType string, parentRequi
 				panic(fmt.Sprintf("failed to figure out api, %s", typeName))
 			}
 			for _, param := range api.Parameters {
-				if fixParamName(param.Name) == child.Name {
+				if fixParamName(param.Name) == field.Name {
 					child.IsRequired = param.Required
 					child.Description = param.Description
 				}
@@ -71,7 +71,7 @@ func ExtractFields(swag *swagger.Swagger, prefix, parentType string, parentRequi
 			}
 
 			for _, param := range model.Parameters {
-				if fixParamName(param.Name) == child.Name {
+				if fixParamName(param.Name) == field.Name {
 					child.IsRequired = param.Required
 					child.Description = param.Description
 				}

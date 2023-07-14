@@ -94,13 +94,13 @@ Note that csv output doesn't process pagination and returns first 5000 records.`
 		req.SetQueryID(flags.ReadStringFlag(cmd, "QueryID"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest{
 			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
-				Page - No:   flags.ReadInt64Flag(cmd, "Page-No"),
-				Page - Size: flags.ReadInt64Flag(cmd, "Page-Size"),
+				No:   flags.ReadInt64Flag(cmd, "Page-No"),
+				Size: flags.ReadInt64Flag(cmd, "Page-Size"),
 			},
 			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQuerySortItem{
 				{
-					Sorts - Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
-					Sorts - Field:     flags.ReadStringFlag(cmd, "Sorts-Field"),
+					Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
+					Field:     flags.ReadStringFlag(cmd, "Sorts-Field"),
 				},
 			},
 		})

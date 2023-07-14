@@ -90,6 +90,7 @@ func init() {
 	GetInventoryApiV2ResourcesMetricCmd.Flags().Int64("min-count", 0, "Minimum number of resources with this tag value, default 1")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().Int64("page-number", 0, "page number - default is 1")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().Int64("page-size", 0, "page size - default is 20")
+	GetInventoryApiV2ResourcesMetricCmd.Flags().StringArray("resource-type", nil, "ResourceType")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().StringArray("servicename", nil, "Service names to filter by")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().String("sort-by", "", "Sort by field - default is count")
 	GetInventoryApiV2ResourcesMetricCmd.Flags().String("start-time", "", "timestamp for resource count change comparison in epoch seconds")
