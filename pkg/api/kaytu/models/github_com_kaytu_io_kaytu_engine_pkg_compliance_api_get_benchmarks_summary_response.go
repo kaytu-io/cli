@@ -20,16 +20,13 @@ import (
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse struct {
 
 	// benchmark summary
-	BenchmarkSummary []*GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkSummary `json:"benchmarkSummary"`
+	BenchmarkSummary []*GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkEvaluationSummary `json:"benchmarkSummary"`
 
-	// failed resources
-	FailedResources int64 `json:"failedResources,omitempty"`
+	// total checks
+	TotalChecks *TypesSeverityResult `json:"totalChecks,omitempty"`
 
-	// passed resources
-	PassedResources int64 `json:"passedResources,omitempty"`
-
-	// total assets
-	TotalAssets int64 `json:"totalAssets,omitempty"`
+	// total result
+	TotalResult *TypesComplianceResultSummary `json:"totalResult,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api get benchmarks summary response
@@ -37,6 +34,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse
 	var res []error
 
 	if err := m.validateBenchmarkSummary(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalChecks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalResult(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -72,11 +77,57 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse) validateTotalChecks(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalChecks) { // not required
+		return nil
+	}
+
+	if m.TotalChecks != nil {
+		if err := m.TotalChecks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("totalChecks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("totalChecks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse) validateTotalResult(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalResult) { // not required
+		return nil
+	}
+
+	if m.TotalResult != nil {
+		if err := m.TotalResult.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("totalResult")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("totalResult")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this github com kaytu io kaytu engine pkg compliance api get benchmarks summary response based on the context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateBenchmarkSummary(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTotalChecks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTotalResult(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +157,48 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse) contextValidateTotalChecks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TotalChecks != nil {
+
+		if swag.IsZero(m.TotalChecks) { // not required
+			return nil
+		}
+
+		if err := m.TotalChecks.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("totalChecks")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("totalChecks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetBenchmarksSummaryResponse) contextValidateTotalResult(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TotalResult != nil {
+
+		if swag.IsZero(m.TotalResult) { // not required
+			return nil
+		}
+
+		if err := m.TotalResult.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("totalResult")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("totalResult")
+			}
+			return err
+		}
 	}
 
 	return nil
