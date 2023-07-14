@@ -98,6 +98,12 @@ type GetInventoryAPIV2ResourcesMetricParams struct {
 	*/
 	PageSize *int64
 
+	/* ResourceType.
+
+	   ResourceType
+	*/
+	ResourceType []string
+
 	/* Servicename.
 
 	   Service names to filter by
@@ -239,6 +245,17 @@ func (o *GetInventoryAPIV2ResourcesMetricParams) WithPageSize(pageSize *int64) *
 // SetPageSize adds the pageSize to the get inventory API v2 resources metric params
 func (o *GetInventoryAPIV2ResourcesMetricParams) SetPageSize(pageSize *int64) {
 	o.PageSize = pageSize
+}
+
+// WithResourceType adds the resourceType to the get inventory API v2 resources metric params
+func (o *GetInventoryAPIV2ResourcesMetricParams) WithResourceType(resourceType []string) *GetInventoryAPIV2ResourcesMetricParams {
+	o.SetResourceType(resourceType)
+	return o
+}
+
+// SetResourceType adds the resourceType to the get inventory API v2 resources metric params
+func (o *GetInventoryAPIV2ResourcesMetricParams) SetResourceType(resourceType []string) {
+	o.ResourceType = resourceType
 }
 
 // WithServicename adds the servicename to the get inventory API v2 resources metric params
@@ -383,6 +400,17 @@ func (o *GetInventoryAPIV2ResourcesMetricParams) WriteToRequest(r runtime.Client
 		}
 	}
 
+	if o.ResourceType != nil {
+
+		// binding items for resourceType
+		joinedResourceType := o.bindParamResourceType(reg)
+
+		// query array param resourceType
+		if err := r.SetQueryParam("resourceType", joinedResourceType...); err != nil {
+			return err
+		}
+	}
+
 	if o.Servicename != nil {
 
 		// binding items for servicename
@@ -477,6 +505,23 @@ func (o *GetInventoryAPIV2ResourcesMetricParams) bindParamConnector(formats strf
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetInventoryAPIV2ResourcesMetric binds the parameter resourceType
+func (o *GetInventoryAPIV2ResourcesMetricParams) bindParamResourceType(formats strfmt.Registry) []string {
+	resourceTypeIR := o.ResourceType
+
+	var resourceTypeIC []string
+	for _, resourceTypeIIR := range resourceTypeIR { // explode []string
+
+		resourceTypeIIV := resourceTypeIIR // string as string
+		resourceTypeIC = append(resourceTypeIC, resourceTypeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceTypeIS := swag.JoinByFormat(resourceTypeIC, "csv")
+
+	return resourceTypeIS
 }
 
 // bindParamGetInventoryAPIV2ResourcesMetric binds the parameter servicename

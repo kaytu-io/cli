@@ -258,23 +258,23 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest{
 			Filters: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters{
-				Filters - BenchmarkID:    flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
-				Filters - ConnectionID:   flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
-				Filters - Connector:      flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
-				Filters - PolicyID:       flags.ReadStringArrayFlag(cmd, "Filters-PolicyID"),
-				Filters - ResourceID:     flags.ReadStringArrayFlag(cmd, "Filters-ResourceID"),
-				Filters - ResourceTypeID: flags.ReadStringArrayFlag(cmd, "Filters-ResourceTypeID"),
-				Filters - Severity:       flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
-				Filters - Status:         flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
+				BenchmarkID:    flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
+				ConnectionID:   flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
+				Connector:      flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
+				PolicyID:       flags.ReadStringArrayFlag(cmd, "Filters-PolicyID"),
+				ResourceID:     flags.ReadStringArrayFlag(cmd, "Filters-ResourceID"),
+				ResourceTypeID: flags.ReadStringArrayFlag(cmd, "Filters-ResourceTypeID"),
+				Severity:       flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
+				Status:         flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
 			},
 			Page: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPage{
-				Page - No:   flags.ReadInt64Flag(cmd, "Page-No"),
-				Page - Size: flags.ReadInt64Flag(cmd, "Page-Size"),
+				No:   flags.ReadInt64Flag(cmd, "Page-No"),
+				Size: flags.ReadInt64Flag(cmd, "Page-Size"),
 			},
 			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem{
 				{
-					Sorts - Direction: models.GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
-					Sorts - Field:     models.GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType(flags.ReadStringFlag(cmd, "Sorts-Field")),
+					Direction: models.GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
+					Field:     models.GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType(flags.ReadStringFlag(cmd, "Sorts-Field")),
 				},
 			},
 		})
@@ -412,14 +412,14 @@ var PostComplianceApiV1AlarmsTopCmd = &cobra.Command{
 			Count: flags.ReadInt64Flag(cmd, "Count"),
 			Field: models.GithubComKaytuIoKaytuEnginePkgComplianceAPITopField(flags.ReadStringFlag(cmd, "Field")),
 			Filters: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters{
-				Filters - BenchmarkID:    flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
-				Filters - ConnectionID:   flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
-				Filters - Connector:      flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
-				Filters - PolicyID:       flags.ReadStringArrayFlag(cmd, "Filters-PolicyID"),
-				Filters - ResourceID:     flags.ReadStringArrayFlag(cmd, "Filters-ResourceID"),
-				Filters - ResourceTypeID: flags.ReadStringArrayFlag(cmd, "Filters-ResourceTypeID"),
-				Filters - Severity:       flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
-				Filters - Status:         flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
+				BenchmarkID:    flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
+				ConnectionID:   flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
+				Connector:      flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
+				PolicyID:       flags.ReadStringArrayFlag(cmd, "Filters-PolicyID"),
+				ResourceID:     flags.ReadStringArrayFlag(cmd, "Filters-ResourceID"),
+				ResourceTypeID: flags.ReadStringArrayFlag(cmd, "Filters-ResourceTypeID"),
+				Severity:       flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
+				Status:         flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
 			},
 		})
 

@@ -145,13 +145,13 @@ var PostScheduleApiV1StacksStackIdFindingsCmd = &cobra.Command{
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgDescribeAPIGetStackFindings{
 			BenchmarkIds: flags.ReadStringArrayFlag(cmd, "BenchmarkIds"),
 			Page: models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPage{
-				Page - No:   flags.ReadInt64Flag(cmd, "Page-No"),
-				Page - Size: flags.ReadInt64Flag(cmd, "Page-Size"),
+				No:   flags.ReadInt64Flag(cmd, "Page-No"),
+				Size: flags.ReadInt64Flag(cmd, "Page-Size"),
 			},
 			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem{
 				{
-					Sorts - Direction: models.GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
-					Sorts - Field:     models.GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType(flags.ReadStringFlag(cmd, "Sorts-Field")),
+					Direction: models.GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
+					Field:     models.GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType(flags.ReadStringFlag(cmd, "Sorts-Field")),
 				},
 			},
 		})

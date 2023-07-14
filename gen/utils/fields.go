@@ -53,7 +53,9 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 func GenerateSetStruct(param Field) string {
 	var children string
 	for _, child := range param.Children {
-		children += fmt.Sprintf("%s: %s,\n", child.Name, GenerateSetStruct(child))
+		name := strings.ReplaceAll(child.Name, "-", "")
+		name = strings.TrimPrefix(name, param.Name)
+		children += fmt.Sprintf("%s: %s,\n", name, GenerateSetStruct(child))
 	}
 
 	resp := GenerateReadingFlag(param)
