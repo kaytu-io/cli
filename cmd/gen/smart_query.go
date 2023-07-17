@@ -16,7 +16,6 @@ func init() {
 
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCmd)
 	GetInventoryApiV1QueryCmd.Flags().StringArray("labels", nil, "")
-	GetInventoryApiV1QueryCmd.MarkFlagRequired("labels")
 	GetInventoryApiV1QueryCmd.Flags().String("provider-filter", "", "")
 	GetInventoryApiV1QueryCmd.MarkFlagRequired("provider-filter")
 	GetInventoryApiV1QueryCmd.Flags().String("title-filter", "", "")
@@ -24,7 +23,6 @@ func init() {
 
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
 	GetInventoryApiV1QueryCountCmd.Flags().StringArray("labels", nil, "")
-	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("labels")
 	GetInventoryApiV1QueryCountCmd.Flags().String("provider-filter", "", "")
 	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("provider-filter")
 	GetInventoryApiV1QueryCountCmd.Flags().String("title-filter", "", "")

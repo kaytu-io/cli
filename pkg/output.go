@@ -134,7 +134,7 @@ func PrintTable(objJSON []byte) error {
 		return headersOrdered[i] < headersOrdered[j]
 	})
 
-	var headersSize int
+	headersSize := 5
 	var headers []interface{}
 	for _, item := range headersOrdered {
 		headers = append(headers, strcase.ToSnake(item))
@@ -144,7 +144,7 @@ func PrintTable(objJSON []byte) error {
 
 	var maxRowSize int
 	for _, item := range rows {
-		var rowSize int
+		rowSize := 5
 		var row []interface{}
 		for _, header := range headersOrdered {
 			value := item[header]

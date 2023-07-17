@@ -39,7 +39,6 @@ func init() {
 
 	StackCmd.AddCommand(PostScheduleApiV1StacksStackIdFindingsCmd)
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().StringArray("benchmark-ids", nil, "")
-	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("benchmark-ids")
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().Int64("page-no", 0, "")
 	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("page-no")
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().Int64("page-size", 0, "")

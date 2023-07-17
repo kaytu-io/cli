@@ -3,6 +3,20 @@ package config
 // Write the route as Key. The value is the name of the cli command.
 // use - instead of / in the route and remove : or {} signs.
 var UrlNames = map[string]string{
+	// stack
+	"delete-schedule-api-v1-stacks-stack-id":          "delete-stack",
+	"get-schedule-api-v1-stacks-findings-job-id":      "stack-findings",
+	"get-schedule-api-v1-stacks-stack-id":             "get-stack",
+	"get-schedule-api-v1-stacks":                      "list-stacks",
+	"get-schedule-api-v1-stacks-resource":             "resource-stacks",
+	"get-schedule-api-v1-stacks-stack-id-insights":    "list-stack-insights",
+	"post-schedule-api-v1-stacks-benchmark-trigger":   "trigger-stack-benchmark",
+	"post-schedule-api-v1-stacks-create":              "create-stack",
+	"post-schedule-api-v1-stacks-stack-id-findings":   "list-stack-findings",
+	"get-schedule-api-v1-stacks-stack-id-insight":     "get-stack-insight",
+	"get-schedule-api-v1-stacks-resource-resource-id": "resource-stacks",
+	"post-schedule-api-v1-stacks-describer-trigger":   "trigger-stack-describer",
+
 	// benchmarks
 	"get-inventory-api-v1-accounts-resource-count":        "accounts-resource-count",
 	"get-inventory-api-v1-resources-distribution":         "resources-distribution",
@@ -56,11 +70,11 @@ var UrlNames = map[string]string{
 	"get-inventory-api-v1-cost-top-services": "top-services-by-cost",
 
 	// describe
-	"get-schedule-api-v0-compliance-summarizer-trigger":  "run-compliance-summerizer",
-	"get-schedule-api-v0-compliance-trigger":             "run-compliance",
-	"get-schedule-api-v0-describe-trigger":               "describe-trigger",
-	"get-schedule-api-v0-insight-trigger":                "depricated-run-insight",
-	"get-schedule-api-v0-summarize-trigger":              "run-summerize",
+	"get-schedule-api-v0-compliance-summarizer-trigger":  "-",
+	"get-schedule-api-v0-compliance-trigger":             "-",
+	"get-schedule-api-v0-describe-trigger":               "-",
+	"get-schedule-api-v0-insight-trigger":                "-",
+	"get-schedule-api-v0-summarize-trigger":              "-",
 	"get-schedule-api-v1-insight-job-job-id":             "get-insight-job",
 	"post-schedule-api-v1-describe-resource":             "describe-resource",
 	"post-schedule-api-v1-stacks-insight-trigger":        "run-stack-insight",
@@ -201,20 +215,6 @@ var UrlNames = map[string]string{
 	"get-inventory-api-v1-query-count":     "get-queries-count",
 	"get-inventory-api-v1-query":           "get-queries",
 	"post-inventory-api-v1-query-query-id": "get-query",
-
-	// stack
-	"delete-schedule-api-v1-stacks-stack-id":          "delete-stack",
-	"get-schedule-api-v1-stacks-findings-job-id":      "stack-findings",
-	"get-schedule-api-v1-stacks-stack-id":             "get-stack",
-	"get-schedule-api-v1-stacks":                      "list-stacks",
-	"get-schedule-api-v1-stacks-resource":             "resource-stacks",
-	"get-schedule-api-v1-stacks-stack-id-insights":    "list-stack-insights",
-	"post-schedule-api-v1-stacks-benchmark-trigger":   "trigger-stack-benchmark",
-	"post-schedule-api-v1-stacks-create":              "create-stack",
-	"post-schedule-api-v1-stacks-stack-id-findings":   "list-stack-findings",
-	"get-schedule-api-v1-stacks-stack-id-insight":     "get-stack-insight",
-	"get-schedule-api-v1-stacks-resource-resource-id": "resource-stacks",
-	"post-schedule-api-v1-stacks-describer-trigger":   "trigger-stack-describer",
 
 	// users
 	"delete-auth-api-v1-user-invite":                    "delete-user-invite",

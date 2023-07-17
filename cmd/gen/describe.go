@@ -26,8 +26,6 @@ func init() {
 	GetScheduleApiV1BenchmarkEvaluationsCmd.Flags().Int64("evaluated-at-before", 0, "")
 	GetScheduleApiV1BenchmarkEvaluationsCmd.MarkFlagRequired("evaluated-at-before")
 
-	DescribeCmd.AddCommand(GetScheduleApiV0InsightTriggerCmd)
-
 	DescribeCmd.AddCommand(PostScheduleApiV1DescribeResourceCmd)
 	PostScheduleApiV1DescribeResourceCmd.Flags().String("access-key", "", "")
 	PostScheduleApiV1DescribeResourceCmd.MarkFlagRequired("access-key")
@@ -42,8 +40,6 @@ func init() {
 	PostScheduleApiV1DescribeResourceCmd.Flags().String("secret-key", "", "")
 	PostScheduleApiV1DescribeResourceCmd.MarkFlagRequired("secret-key")
 
-	DescribeCmd.AddCommand(GetScheduleApiV0DescribeTriggerCmd)
-
 	DescribeCmd.AddCommand(GetScheduleApiV1InsightJobJobIdCmd)
 	GetScheduleApiV1InsightJobJobIdCmd.Flags().String("job-id", "", "Job Id")
 	GetScheduleApiV1InsightJobJobIdCmd.MarkFlagRequired("job-id")
@@ -54,11 +50,6 @@ func init() {
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.Flags().String("connection-id", "", "")
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.MarkFlagRequired("connection-id")
 	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
-	PutScheduleApiV1BenchmarkEvaluationTriggerCmd.MarkFlagRequired("resource-i-ds")
-
-	DescribeCmd.AddCommand(GetScheduleApiV0ComplianceTriggerCmd)
-
-	DescribeCmd.AddCommand(GetScheduleApiV0ComplianceSummarizerTriggerCmd)
 
 	DescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
@@ -70,8 +61,5 @@ func init() {
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().Int64("insight-id", 0, "")
 	PutScheduleApiV1InsightEvaluationTriggerCmd.MarkFlagRequired("insight-id")
 	PutScheduleApiV1InsightEvaluationTriggerCmd.Flags().StringArray("resource-i-ds", nil, "")
-	PutScheduleApiV1InsightEvaluationTriggerCmd.MarkFlagRequired("resource-i-ds")
-
-	DescribeCmd.AddCommand(GetScheduleApiV0SummarizeTriggerCmd)
 
 }

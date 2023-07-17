@@ -28,7 +28,6 @@ func init() {
 
 	UsersCmd.AddCommand(PostAuthApiV1UserInviteCmd)
 	PostAuthApiV1UserInviteCmd.Flags().String("email", "", "User email address")
-	PostAuthApiV1UserInviteCmd.MarkFlagRequired("email")
 	PostAuthApiV1UserInviteCmd.Flags().String("role-name", "", "")
 	PostAuthApiV1UserInviteCmd.MarkFlagRequired("role-name")
 
@@ -52,6 +51,5 @@ func init() {
 	PutAuthApiV1UserRoleBindingCmd.Flags().String("role-name", "", "Name of the role")
 	PutAuthApiV1UserRoleBindingCmd.MarkFlagRequired("role-name")
 	PutAuthApiV1UserRoleBindingCmd.Flags().String("user-id", "", "Unique identifier for the User")
-	PutAuthApiV1UserRoleBindingCmd.MarkFlagRequired("user-id")
 
 }

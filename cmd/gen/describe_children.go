@@ -51,31 +51,6 @@ var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 	},
 }
 
-var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
-	Use:   "depricated-run-insight",
-	Short: `Triggers an insight job to run immediately`,
-	Long:  `Triggers an insight job to run immediately`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
-		}
-
-		req := describe.NewGetScheduleAPIV0InsightTriggerParams()
-
-		_, err = client.Describe.GetScheduleAPIV0InsightTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 	Use:   "describe-resource",
 	Short: ``,
@@ -109,31 +84,6 @@ var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "post-schedule-api-v1-describe-resource", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetScheduleApiV0DescribeTriggerCmd = &cobra.Command{
-	Use:   "describe-trigger",
-	Short: `Triggers a describe job to run immediately`,
-	Long:  `Triggers a describe job to run immediately`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
-		}
-
-		req := describe.NewGetScheduleAPIV0DescribeTriggerParams()
-
-		_, err = client.Describe.GetScheduleAPIV0DescribeTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
 		}
 
 		return nil
@@ -208,56 +158,6 @@ var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 	},
 }
 
-var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
-	Use:   "run-compliance",
-	Short: `Triggers a compliance job to run immediately`,
-	Long:  `Triggers a compliance job to run immediately`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_trigger] : %v", err)
-		}
-
-		req := describe.NewGetScheduleAPIV0ComplianceTriggerParams()
-
-		_, err = client.Describe.GetScheduleAPIV0ComplianceTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
-	Use:   "run-compliance-summerizer",
-	Short: ``,
-	Long:  ``,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
-		}
-
-		req := describe.NewGetScheduleAPIV0ComplianceSummarizerTriggerParams()
-
-		_, err = client.Describe.GetScheduleAPIV0ComplianceSummarizerTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 	Use:   "run-describe",
 	Short: `Triggers a describe job to run immediately`,
@@ -315,31 +215,6 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "put-schedule-api-v1-insight-evaluation-trigger", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetScheduleApiV0SummarizeTriggerCmd = &cobra.Command{
-	Use:   "run-summerize",
-	Short: `Triggers a summarize job to run immediately`,
-	Long:  `Triggers a summarize job to run immediately`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_schedule_api_v_0_summarize_trigger] : %v", err)
-		}
-
-		req := describe.NewGetScheduleAPIV0SummarizeTriggerParams()
-
-		_, err = client.Describe.GetScheduleAPIV0SummarizeTrigger(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_schedule_api_v_0_summarize_trigger] : %v", err)
 		}
 
 		return nil

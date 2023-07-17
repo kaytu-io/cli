@@ -9,12 +9,13 @@ import (
 )
 
 type Field struct {
-	Name        string
-	Description string
-	Type        string
-	Children    []Field
-	IsEnum      bool
-	IsRequired  bool
+	Name                string
+	Description         string
+	Type                string
+	Children            []Field
+	IsEnum              bool
+	IsRequired          bool
+	IsNestedRequirement bool
 }
 
 func fixParamName(name string) string {
@@ -77,6 +78,7 @@ func ExtractFields(swag *swagger.Swagger, prefix, parentType string, parentRequi
 				}
 			}
 		}
+		child.IsNestedRequirement = parentRequired
 		child.IsRequired = child.IsRequired || parentRequired
 
 		if fieldType.Kind() == reflect.Struct {

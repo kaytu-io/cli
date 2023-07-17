@@ -20,7 +20,6 @@ func init() {
 
 	OnboardCmd.AddCommand(PostOnboardApiV1SourceAwsCmd)
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-access-key", "", "")
-	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-access-key")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-account-id", "", "")
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-account-id")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-assume-role-name", "", "")
@@ -28,9 +27,7 @@ func init() {
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-external-id", "", "")
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-external-id")
 	PostOnboardApiV1SourceAwsCmd.Flags().StringArray("config-regions", nil, "")
-	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-regions")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-secret-key", "", "")
-	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-secret-key")
 
 	PostOnboardApiV1SourceAwsCmd.Flags().String("description", "", "")
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("description")
@@ -41,17 +38,12 @@ func init() {
 
 	OnboardCmd.AddCommand(PostOnboardApiV1SourceAzureCmd)
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-client-id", "", "")
-	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("config-client-id")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-client-secret", "", "")
-	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("config-client-secret")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-object-id", "", "")
-	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("config-object-id")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-secret-id", "", "")
-	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("config-secret-id")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-subscription-id", "", "")
 	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("config-subscription-id")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-tenant-id", "", "")
-	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("config-tenant-id")
 
 	PostOnboardApiV1SourceAzureCmd.Flags().String("description", "", "")
 	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("description")
@@ -90,7 +82,6 @@ func init() {
 
 	OnboardCmd.AddCommand(GetOnboardApiV1ConnectionsCountCmd)
 	GetOnboardApiV1ConnectionsCountCmd.Flags().StringArray("type-connectors", nil, "")
-	GetOnboardApiV1ConnectionsCountCmd.MarkFlagRequired("type-connectors")
 	GetOnboardApiV1ConnectionsCountCmd.Flags().String("type-state", "", "")
 	GetOnboardApiV1ConnectionsCountCmd.MarkFlagRequired("type-state")
 

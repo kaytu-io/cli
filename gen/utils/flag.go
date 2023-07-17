@@ -33,7 +33,13 @@ func GenerateFlagDefinitions(tempName string, fv Field) (output string) {
 				}
 
 				if param.IsRequired {
-					line += fmt.Sprintf("\n%[1]sCmd.MarkFlagRequired(\"%[2]s\")", tempName, flags.Name(param.Name))
+					if !param.IsNestedRequirement {
+						line += fmt.Sprintf("\n%[1]sCmd.MarkFlagRequired(\"%[2]s\")", tempName, flags.Name(param.Name))
+					} else {
+						if !strings.HasPrefix(param.Type, "*") && !strings.HasPrefix(param.Type, "[]") {
+							line += fmt.Sprintf("\n%[1]sCmd.MarkFlagRequired(\"%[2]s\")", tempName, flags.Name(param.Name))
+						}
+					}
 				}
 			}
 			line = strings.ReplaceAll(line, "{{.Name}}", param.Name)
