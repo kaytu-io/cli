@@ -39,7 +39,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-insight-insight-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
 		}
@@ -75,7 +75,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-insight-group-insight-group-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
 		}
@@ -112,7 +112,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-insight-group-insight-group-id-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id_trend] : %v", err)
 		}
@@ -144,7 +144,7 @@ var GetComplianceApiV1MetadataInsightInsightIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-metadata-insight-insight-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
 		}
@@ -181,7 +181,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-insight-insight-id-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
@@ -218,7 +218,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-insight-group", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
@@ -255,7 +255,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-insight", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight] : %v", err)
 		}
@@ -287,7 +287,7 @@ var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-metadata-insight", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight] : %v", err)
 		}
@@ -319,7 +319,7 @@ var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-metadata-tag-insight-key", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
 		}
@@ -349,7 +349,7 @@ var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-metadata-tag-insight", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
 		}

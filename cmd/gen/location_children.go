@@ -35,7 +35,7 @@ var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-locations-connector", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}

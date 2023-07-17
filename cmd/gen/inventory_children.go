@@ -39,7 +39,7 @@ var GetInventoryApiV2CostCompositionCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-cost-composition", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_cost_composition] : %v", err)
 		}
@@ -77,7 +77,7 @@ var GetInventoryApiV2CostMetricCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_cost_metric] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-cost-metric", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_cost_metric] : %v", err)
 		}
@@ -113,7 +113,7 @@ var GetInventoryApiV2CostTrendCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-cost-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_cost_trend] : %v", err)
 		}
@@ -149,7 +149,7 @@ var GetInventoryApiV2ResourcesTagKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_tag_key] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-tag-key", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_tag_key] : %v", err)
 		}
@@ -181,7 +181,7 @@ var GetInventoryApiV2ServicesTagKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-tag-key", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_tag_key] : %v", err)
 		}
@@ -216,7 +216,7 @@ var GetInventoryApiV2ResourcesTagCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_tag] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-tag", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_tag] : %v", err)
 		}
@@ -246,7 +246,7 @@ var GetInventoryApiV2ServicesTagCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-tag", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_tag] : %v", err)
 		}
@@ -281,7 +281,7 @@ var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-metric-resource-type", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
 		}
@@ -319,7 +319,7 @@ var GetInventoryApiV2ResourcesTrendCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_trend] : %v", err)
 		}
@@ -356,7 +356,7 @@ var GetInventoryApiV2ResourcesCompositionKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-composition-key", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_composition_key] : %v", err)
 		}
@@ -398,7 +398,7 @@ var GetInventoryApiV2ResourcesMetricCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_metric] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-metric", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_metric] : %v", err)
 		}
@@ -435,7 +435,7 @@ var GetInventoryApiV2ServicesCostTrendCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_cost_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-cost-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_cost_trend] : %v", err)
 		}
@@ -470,7 +470,7 @@ var GetInventoryApiV2ServicesMetricServiceNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-metric-service-name", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_metric_service_name] : %v", err)
 		}
@@ -509,7 +509,7 @@ var GetInventoryApiV2ServicesMetricCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_metric] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-metric", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_metric] : %v", err)
 		}

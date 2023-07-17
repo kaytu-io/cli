@@ -35,7 +35,7 @@ var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-roles-role-name", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
 		}
@@ -67,7 +67,7 @@ var GetAuthApiV1RoleRoleNameKeysCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_keys] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-role-role-name-keys", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_keys] : %v", err)
 		}
@@ -99,7 +99,7 @@ var GetAuthApiV1RoleRoleNameUsersCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_users] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-role-role-name-users", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_users] : %v", err)
 		}
@@ -129,7 +129,7 @@ var GetAuthApiV1RolesCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_roles] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-roles", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_roles] : %v", err)
 		}

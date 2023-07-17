@@ -42,7 +42,7 @@ var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-benchmark-evaluations", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
 		}
@@ -106,7 +106,7 @@ var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-schedule-api-v1-describe-resource", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
 		}
@@ -163,7 +163,7 @@ var GetScheduleApiV1InsightJobJobIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_insight_job_job_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-insight-job-job-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_insight_job_job_id] : %v", err)
 		}
@@ -199,7 +199,7 @@ var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "put-schedule-api-v1-benchmark-evaluation-trigger", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
@@ -312,7 +312,7 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "put-schedule-api-v1-insight-evaluation-trigger", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
 		}

@@ -38,7 +38,7 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-findings-benchmark-id-field-top-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
 		}
@@ -70,7 +70,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-policies", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
 		}
@@ -104,7 +104,7 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_summary] : %v", err)
 		}
@@ -136,7 +136,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
 		}
@@ -171,7 +171,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_summary] : %v", err)
 		}
@@ -207,7 +207,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_trend] : %v", err)
 		}
@@ -260,7 +260,7 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-compliance-api-v1-findings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
 		}
@@ -292,7 +292,7 @@ var GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_policies_policy_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-policies-policy-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_policies_policy_id] : %v", err)
 		}
@@ -324,7 +324,7 @@ var GetComplianceApiV1QueriesQueryIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_queries_query_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-queries-query-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_queries_query_id] : %v", err)
 		}
@@ -354,7 +354,7 @@ var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks] : %v", err)
 		}

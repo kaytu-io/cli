@@ -90,7 +90,7 @@ var GetAuthApiV1UserUserIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-user-user-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id] : %v", err)
 		}
@@ -150,7 +150,7 @@ var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-user-role-bindings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
 		}
@@ -182,7 +182,7 @@ var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-user-user-id-workspace-membership", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
 		}
@@ -218,7 +218,7 @@ var GetAuthApiV1UsersCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_users] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-users", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_users] : %v", err)
 		}
@@ -248,7 +248,7 @@ var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-auth-api-v1-workspace-role-bindings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
 		}

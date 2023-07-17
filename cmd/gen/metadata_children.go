@@ -36,7 +36,7 @@ var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-metadata-api-v1-metadata-key", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
 		}
@@ -68,7 +68,7 @@ var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-metadata-resourcetype-resource-type", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
 		}
@@ -100,7 +100,7 @@ var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-metadata-services-service-name", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
 		}
@@ -137,7 +137,7 @@ The results could be filtered by provider name and service name.`,
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-metadata-resourcetype", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype] : %v", err)
 		}
@@ -173,7 +173,7 @@ The results could be filtered by tags.`,
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-metadata-services", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services] : %v", err)
 		}

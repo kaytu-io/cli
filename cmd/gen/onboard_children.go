@@ -36,7 +36,7 @@ var PostOnboardApiV1CredentialCredentialIdAutoonboardCmd = &cobra.Command{
 			return fmt.Errorf("[post_onboard_api_v_1_credential_credential_id_autoonboard] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-onboard-api-v1-credential-credential-id-autoonboard", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_onboard_api_v_1_credential_credential_id_autoonboard] : %v", err)
 		}
@@ -80,7 +80,7 @@ var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 			return fmt.Errorf("[post_onboard_api_v_1_source_aws] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-onboard-api-v1-source-aws", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_onboard_api_v_1_source_aws] : %v", err)
 		}
@@ -123,7 +123,7 @@ var PostOnboardApiV1SourceAzureCmd = &cobra.Command{
 			return fmt.Errorf("[post_onboard_api_v_1_source_azure] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-onboard-api-v1-source-azure", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_onboard_api_v_1_source_azure] : %v", err)
 		}
@@ -159,7 +159,7 @@ var PostOnboardApiV1CredentialCmd = &cobra.Command{
 			return fmt.Errorf("[post_onboard_api_v_1_credential] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-onboard-api-v1-credential", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_onboard_api_v_1_credential] : %v", err)
 		}
@@ -299,7 +299,7 @@ var GetOnboardApiV1SourceAccountAccountIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_source_account_account_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-account-account-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_source_account_account_id] : %v", err)
 		}
@@ -329,7 +329,7 @@ var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_catalog_metrics] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-catalog-metrics", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_catalog_metrics] : %v", err)
 		}
@@ -364,7 +364,7 @@ var GetOnboardApiV1ConnectionsCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connections_count] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connections-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connections_count] : %v", err)
 		}
@@ -396,7 +396,7 @@ var GetOnboardApiV1ConnectorConnectorNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connector_connector_name] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connector-connector-name", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connector_connector_name] : %v", err)
 		}
@@ -426,7 +426,7 @@ var GetOnboardApiV1ConnectorCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connector] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connector", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connector] : %v", err)
 		}
@@ -458,7 +458,7 @@ var GetOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_credential_credential_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-credential-credential-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_credential_credential_id] : %v", err)
 		}
@@ -490,7 +490,7 @@ var GetOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-source-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
 		}
@@ -549,7 +549,7 @@ var PostOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
 			return fmt.Errorf("[post_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-onboard-api-v1-source-source-id-healthcheck", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
 		}
@@ -585,7 +585,7 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_credential] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-credential", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_credential] : %v", err)
 		}
@@ -620,7 +620,7 @@ var GetOnboardApiV1CredentialSourcesListCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_credential_sources_list] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-credential-sources-list", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_credential_sources_list] : %v", err)
 		}
@@ -652,7 +652,7 @@ var GetOnboardApiV1SourcesCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_sources] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-sources", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_sources] : %v", err)
 		}
@@ -712,7 +712,7 @@ The responses are different for different source types.`,
 			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_credentials] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-source-id-credentials", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_credentials] : %v", err)
 		}
@@ -744,7 +744,7 @@ var GetOnboardApiV1SourcesCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_sources_count] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-sources-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_sources_count] : %v", err)
 		}

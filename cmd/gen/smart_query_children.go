@@ -40,7 +40,7 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_query] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-query", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_query] : %v", err)
 		}
@@ -76,7 +76,7 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-query-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
 		}
@@ -123,7 +123,7 @@ Note that csv output doesn't process pagination and returns first 5000 records.`
 			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-inventory-api-v1-query-query-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
 		}

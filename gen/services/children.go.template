@@ -37,7 +37,7 @@ var {{ .CommandNameCamel }}Cmd = &cobra.Command{
 			return fmt.Errorf("[{{ .CommandNameSnake }}] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "{{ .URLCmd }}", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[{{ .CommandNameSnake }}] : %v", err)
 		}

@@ -44,7 +44,7 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-schedule-api-v1-stacks-create", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
@@ -103,7 +103,7 @@ var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-stacks-stack-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
@@ -138,7 +138,7 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-stacks-stack-id-insight", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
@@ -183,7 +183,7 @@ var PostScheduleApiV1StacksStackIdFindingsCmd = &cobra.Command{
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_stack_id_findings] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-schedule-api-v1-stacks-stack-id-findings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_stack_id_findings] : %v", err)
 		}
@@ -218,7 +218,7 @@ var GetScheduleApiV1StacksStackIdInsightsCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-stacks-stack-id-insights", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
@@ -251,7 +251,7 @@ var GetScheduleApiV1StacksCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-stacks", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
 		}
@@ -283,7 +283,7 @@ var GetScheduleApiV1StacksResourceCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-stacks-resource", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource] : %v", err)
 		}

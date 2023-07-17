@@ -26,5 +26,5 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().String("workspace-name", "", "")
-	rootCmd.PersistentFlags().String("output-type", "summary", "output type [summary, json, table]")
+	rootCmd.PersistentFlags().String("output-type", "summary", "output type [summary, json, csv, list, table]")
 }

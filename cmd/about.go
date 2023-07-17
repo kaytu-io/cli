@@ -26,7 +26,7 @@ var aboutCmd = &cobra.Command{
 			return fmt.Errorf("[about]: %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, bodyResponse)
+		err = pkg.PrintOutput(cmd, "about", bodyResponse)
 		if err != nil {
 			return fmt.Errorf("[about]: %v", err)
 		}

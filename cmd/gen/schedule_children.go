@@ -36,7 +36,7 @@ Getting Keibi source by id`,
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-sources-source-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id] : %v", err)
 		}
@@ -66,7 +66,7 @@ var GetScheduleApiV1ComplianceReportLastCompletedCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_compliance_report_last_completed] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-compliance-report-last-completed", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_compliance_report_last_completed] : %v", err)
 		}
@@ -96,7 +96,7 @@ var GetScheduleApiV1SourcesCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_sources] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-sources", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_sources] : %v", err)
 		}
@@ -126,7 +126,7 @@ var GetScheduleApiV1DescribeResourceJobsPendingCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-describe-resource-jobs-pending", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_describe_resource_jobs_pending] : %v", err)
 		}
@@ -156,7 +156,7 @@ var GetScheduleApiV1DescribeSourceJobsPendingCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_describe_source_jobs_pending] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-describe-source-jobs-pending", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_describe_source_jobs_pending] : %v", err)
 		}
@@ -186,7 +186,7 @@ var GetScheduleApiV1InsightJobsPendingCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-insight-jobs-pending", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_insight_jobs_pending] : %v", err)
 		}
@@ -216,7 +216,7 @@ var GetScheduleApiV1SummarizeJobsPendingCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_summarize_jobs_pending] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-summarize-jobs-pending", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_summarize_jobs_pending] : %v", err)
 		}
@@ -248,7 +248,7 @@ var GetScheduleApiV1ResourceTypeProviderCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_resource_type_provider] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-resource-type-provider", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_resource_type_provider] : %v", err)
 		}
@@ -336,7 +336,7 @@ var GetScheduleApiV1SourcesSourceIdJobsComplianceCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-sources-source-id-jobs-compliance", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_compliance] : %v", err)
 		}
@@ -368,7 +368,7 @@ var GetScheduleApiV1SourcesSourceIdJobsDescribeCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_describe] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-schedule-api-v1-sources-source-id-jobs-describe", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_sources_source_id_jobs_describe] : %v", err)
 		}

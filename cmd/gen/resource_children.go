@@ -39,7 +39,7 @@ var PostInventoryApiV1ResourceCmd = &cobra.Command{
 			return fmt.Errorf("[post_inventory_api_v_1_resource] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-inventory-api-v1-resource", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resource] : %v", err)
 		}
@@ -75,7 +75,7 @@ var GetInventoryApiV2ResourcesRegionsCompositionCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_composition] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-regions-composition", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_composition] : %v", err)
 		}
@@ -105,7 +105,7 @@ var GetInventoryApiV2ResourcesCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_count] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_count] : %v", err)
 		}
@@ -143,7 +143,7 @@ var GetInventoryApiV2ResourcesRegionsSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-regions-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_summary] : %v", err)
 		}
@@ -180,7 +180,7 @@ var GetInventoryApiV2ResourcesRegionsTrendCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-regions-trend", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_trend] : %v", err)
 		}
@@ -231,7 +231,7 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 			return fmt.Errorf("[post_inventory_api_v_1_resources] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-inventory-api-v1-resources", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resources] : %v", err)
 		}
@@ -276,7 +276,7 @@ var PostInventoryApiV1ResourcesFiltersCmd = &cobra.Command{
 			return fmt.Errorf("[post_inventory_api_v_1_resources_filters] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-inventory-api-v1-resources-filters", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resources_filters] : %v", err)
 		}
@@ -313,7 +313,7 @@ var GetInventoryApiV1ResourcesRegionsCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_resources_regions] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-resources-regions", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_resources_regions] : %v", err)
 		}
@@ -347,7 +347,7 @@ var GetInventoryApiV1ResourcesTopRegionsCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_resources_top_regions] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-resources-top-regions", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_resources_top_regions] : %v", err)
 		}

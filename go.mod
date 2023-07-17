@@ -3,6 +3,7 @@ module github.com/kaytu-io/cli-program
 go 1.20
 
 require (
+	github.com/fatih/color v1.15.0
 	github.com/go-openapi/errors v0.20.3
 	github.com/go-openapi/runtime v0.26.0
 	github.com/go-openapi/strfmt v0.21.7
@@ -13,6 +14,8 @@ require (
 	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/manifoldco/promptui v0.9.0
 	github.com/spf13/cobra v1.7.0
+	github.com/teambition/json-mask-go v1.2.0
+	golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1
 	k8s.io/apimachinery v0.27.2
 )
 
@@ -29,6 +32,8 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect

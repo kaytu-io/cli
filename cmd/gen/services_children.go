@@ -38,7 +38,7 @@ var GetInventoryApiV2ServicesSummaryServiceNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-summary-service-name", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_summary_service_name] : %v", err)
 		}
@@ -76,7 +76,7 @@ var GetInventoryApiV2ServicesSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_services_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-services-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_services_summary] : %v", err)
 		}

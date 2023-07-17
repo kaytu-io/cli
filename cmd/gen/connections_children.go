@@ -37,7 +37,7 @@ var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connections-summary-connection-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
 		}
@@ -76,7 +76,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connections-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary] : %v", err)
 		}
