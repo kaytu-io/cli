@@ -11,7 +11,7 @@ var UrlNames = map[string]string{
 	"get-inventory-api-v2-services-summary":               "services-summary",
 	"get-inventory-api-v2-services-summary-service-name":  "service-summary",
 
-	// benchmarks_assignment
+	// benchmarks-assignment
 	"delete-compliance-api-v1-assignments-benchmark-id-connection-connection-id": "remove-assignment",
 	"get-compliance-api-v1-assignments-benchmark-benchmark-id":                   "benchmark-assignments",
 	"get-compliance-api-v1-assignments-connection-connection-id":                 "connection-assignments",
@@ -36,8 +36,12 @@ var UrlNames = map[string]string{
 	"get-compliance-api-v1-benchmarks-policies-policy-id":                "get-policy",
 	"get-compliance-api-v1-queries-sync":                                 "sync-queries",
 	"get-compliance-api-v1-benchmarks-benchmark-id-summary":              "get-benchmark-summary",
-	"get-compliance-api-v1-benchmarks-benchmark-id-summary-result-trend": "get-benchmark-trend",
+	"get-compliance-api-v1-benchmarks-benchmark-id-summary-result-trend": "get-benchmark-summary-trend",
 	"get-compliance-api-v1-benchmarks-benchmark-id-tree":                 "get-benchmark-tree",
+	"get-compliance-api-v1-benchmarks-benchmark-id-trend":                "get-benchmark-trend",
+
+	// gpt
+	"post-ai-api-v1-gpt-run": "-",
 
 	// connection
 	"get-inventory-api-v2-connections-data-connection-id": "get-connection",
@@ -193,7 +197,7 @@ var UrlNames = map[string]string{
 	"post-schedule-api-v1-sources-source-id-jobs-compliance-refresh": "refresh-source-compliance-jobs",
 	"post-schedule-api-v1-sources-source-id-jobs-describe-refresh":   "refresh-source-describe-jobs",
 
-	// smart_query
+	// smart-query
 	"get-inventory-api-v1-query-count":     "get-queries-count",
 	"get-inventory-api-v1-query":           "get-queries",
 	"post-inventory-api-v1-query-query-id": "get-query",

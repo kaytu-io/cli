@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/auth0"
@@ -13,6 +14,10 @@ var aboutCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		cnf, err := pkg.GetConfig(cmd, false)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[about]: %v", err)
 		}
 

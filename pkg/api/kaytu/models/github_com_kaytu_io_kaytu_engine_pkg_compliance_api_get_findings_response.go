@@ -20,7 +20,7 @@ import (
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsResponse struct {
 
 	// findings
-	Findings []*GithubComKaytuIoKaytuEnginePkgComplianceEsFinding `json:"findings"`
+	Findings []*TypesFinding `json:"findings"`
 
 	// total count
 	// Example: 100

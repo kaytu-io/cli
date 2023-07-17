@@ -54,10 +54,6 @@ type DescribeComplianceReportJob struct {
 	// id
 	ID int64 `json:"id,omitempty"`
 
-	// schedule job Id
-	// Example: 1
-	ScheduleJobID int64 `json:"scheduleJobId,omitempty"`
-
 	// updated at
 	UpdatedAt string `json:"updatedAt,omitempty"`
 }

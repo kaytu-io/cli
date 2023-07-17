@@ -42,6 +42,8 @@ type ClientService interface {
 
 	GetInventoryAPIV2ResourcesRegionsTrend(params *GetInventoryAPIV2ResourcesRegionsTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesRegionsTrendOK, error)
 
+	PostAiAPIV1GptRun(params *PostAiAPIV1GptRunParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAiAPIV1GptRunOK, error)
+
 	PostInventoryAPIV1Resource(params *PostInventoryAPIV1ResourceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourceOK, error)
 
 	PostInventoryAPIV1Resources(params *PostInventoryAPIV1ResourcesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1ResourcesOK, error)
@@ -290,6 +292,45 @@ func (a *Client) GetInventoryAPIV2ResourcesRegionsTrend(params *GetInventoryAPIV
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesRegionsTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostAiAPIV1GptRun runs the query on kaytu g p t and returns the generated query
+*/
+func (a *Client) PostAiAPIV1GptRun(params *PostAiAPIV1GptRunParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAiAPIV1GptRunOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostAiAPIV1GptRunParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostAiAPIV1GptRun",
+		Method:             "POST",
+		PathPattern:        "/ai/api/v1/gpt/run",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostAiAPIV1GptRunReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostAiAPIV1GptRunOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostAiAPIV1GptRun: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_1_query] : %v", err)
 		}
 
@@ -35,7 +40,7 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_query] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_query] : %v", err)
 		}
@@ -51,6 +56,10 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
 		}
 
@@ -67,7 +76,7 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
 		}
@@ -85,6 +94,10 @@ Note that csv output doesn't process pagination and returns first 5000 records.`
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
 		}
 
@@ -110,7 +123,7 @@ Note that csv output doesn't process pagination and returns first 5000 records.`
 			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
 		}

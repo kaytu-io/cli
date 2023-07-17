@@ -13,10 +13,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GithubComKaytuIoKaytuEnginePkgComplianceEsFinding github com kaytu io kaytu engine pkg compliance es finding
+// TypesFinding types finding
 //
-// swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_es.Finding
-type GithubComKaytuIoKaytuEnginePkgComplianceEsFinding struct {
+// swagger:model types.Finding
+type TypesFinding struct {
 
 	// Finding ID
 	// Example: /subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1-azure_cis_v140_7_5
@@ -91,8 +91,8 @@ type GithubComKaytuIoKaytuEnginePkgComplianceEsFinding struct {
 	StateActive bool `json:"stateActive,omitempty"`
 }
 
-// Validate validates this github com kaytu io kaytu engine pkg compliance es finding
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) Validate(formats strfmt.Registry) error {
+// Validate validates this types finding
+func (m *TypesFinding) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConnector(formats); err != nil {
@@ -109,7 +109,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) Validate(formats str
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) validateConnector(formats strfmt.Registry) error {
+func (m *TypesFinding) validateConnector(formats strfmt.Registry) error {
 	if swag.IsZero(m.Connector) { // not required
 		return nil
 	}
@@ -117,7 +117,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) validateConnector(fo
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) validateResult(formats strfmt.Registry) error {
+func (m *TypesFinding) validateResult(formats strfmt.Registry) error {
 	if swag.IsZero(m.Result) { // not required
 		return nil
 	}
@@ -125,8 +125,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) validateResult(forma
 	return nil
 }
 
-// ContextValidate validate this github com kaytu io kaytu engine pkg compliance es finding based on the context it is used
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this types finding based on the context it is used
+func (m *TypesFinding) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConnector(ctx, formats); err != nil {
@@ -143,18 +143,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) ContextValidate(ctx 
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
+func (m *TypesFinding) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
+func (m *TypesFinding) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) MarshalBinary() ([]byte, error) {
+func (m *TypesFinding) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -162,8 +162,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) MarshalBinary() ([]b
 }
 
 // UnmarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceEsFinding) UnmarshalBinary(b []byte) error {
-	var res GithubComKaytuIoKaytuEnginePkgComplianceEsFinding
+func (m *TypesFinding) UnmarshalBinary(b []byte) error {
+	var res TypesFinding
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

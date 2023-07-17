@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -18,6 +19,10 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
@@ -31,7 +36,7 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.
 			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
@@ -47,6 +52,10 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_benchmark_benchmark_id] : %v", err)
 		}
 
@@ -59,7 +68,7 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_benchmark_benchmark_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_benchmark_benchmark_id] : %v", err)
 		}
@@ -75,6 +84,10 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
 		}
 
@@ -87,7 +100,7 @@ var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
 		}
@@ -103,6 +116,10 @@ var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
 		}
 
@@ -113,7 +130,7 @@ var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
 		}
@@ -129,6 +146,10 @@ var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobr
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
 		}
 

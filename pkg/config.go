@@ -14,6 +14,8 @@ type Config struct {
 	DefaultWorkspace string `json:"default_workspace"`
 }
 
+var ExpiredSession = fmt.Errorf("your session has expired, please login again using `kaytu login`")
+
 func GetConfig(cmd *cobra.Command, workspaceNameRequired bool) (*Config, error) {
 	home := os.Getenv("HOME")
 	data, err := os.ReadFile(home + "/.kaytu/config.json")
@@ -37,7 +39,7 @@ func GetConfig(cmd *cobra.Command, workspaceNameRequired bool) (*Config, error) 
 		return nil, fmt.Errorf("[getConfig] : %v", err)
 	}
 	if checkEXP == true {
-		return nil, fmt.Errorf("your session has expire, please login again")
+		return nil, ExpiredSession
 	}
 	if workspaceNameRequired {
 		workspaceName := cmd.Flags().Lookup("workspace-name").Value.String()

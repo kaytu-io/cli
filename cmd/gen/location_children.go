@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -18,6 +19,10 @@ var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}
 
@@ -30,7 +35,7 @@ var GetInventoryApiV1LocationsConnectorCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_locations_connector] : %v", err)
 		}

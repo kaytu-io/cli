@@ -20,6 +20,10 @@ var {{ .CommandNameCamel }}Cmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+            if errors.Is(err, pkg.ExpiredSession) {
+                fmt.Println(err.Error())
+                return nil
+            }
 			return fmt.Errorf("[{{ .CommandNameSnake }}] : %v", err)
 		}
 
@@ -33,7 +37,7 @@ var {{ .CommandNameCamel }}Cmd = &cobra.Command{
 			return fmt.Errorf("[{{ .CommandNameSnake }}] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[{{ .CommandNameSnake }}] : %v", err)
 		}

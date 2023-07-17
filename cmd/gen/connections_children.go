@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -18,6 +19,10 @@ var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
 		}
 
@@ -32,7 +37,7 @@ var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
 		}
@@ -48,6 +53,10 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary] : %v", err)
 		}
 
@@ -67,7 +76,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_connections_summary] : %v", err)
 		}

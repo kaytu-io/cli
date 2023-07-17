@@ -38,9 +38,7 @@ type ClientService interface {
 
 	GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error)
 
-	GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendOK, error)
-
-	GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error)
+	GetComplianceAPIV1BenchmarksBenchmarkIDTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTrendOK, error)
 
 	GetComplianceAPIV1BenchmarksPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksPoliciesPolicyIDOK, error)
 
@@ -48,13 +46,9 @@ type ClientService interface {
 
 	GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error)
 
-	GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error)
-
 	GetComplianceAPIV1QueriesQueryID(params *GetComplianceAPIV1QueriesQueryIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesQueryIDOK, error)
 
 	GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error)
-
-	PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error)
 
 	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
 
@@ -226,24 +220,24 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetCompl
 }
 
 /*
-GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend gets compliance result trend
+GetComplianceAPIV1BenchmarksBenchmarkIDTrend gets benchmark trend
 
-This API allows users to retrieve datapoints of compliance severities over a specified time period, enabling users to keep track of and monitor changes in compliance.
+This API enables users to retrieve a trend of a benchmark result and checks
 */
-func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendOK, error) {
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTrendOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendParams()
+		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDTrendParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend",
+		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDTrend",
 		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/summary/result/trend",
+		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/trend",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendReader{formats: a.formats},
+		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDTrendReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -256,54 +250,13 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend(param
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrendOK)
+	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDTrendOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDSummaryResultTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetComplianceAPIV1BenchmarksBenchmarkIDTree gets benchmark tree
-
-This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.
-*/
-func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDTreeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDTree",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/tree",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDTreeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -431,49 +384,6 @@ func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetC
 }
 
 /*
-	GetComplianceAPIV1FindingsMetrics returns findings metrics
-
-	This API enables users to retrieve findings metrics for two given times, which includes the total number of findings, the number of passed findings, the number of failed findings, and the number of unknowns findings. Users can use this API to compare the compliance status of their resources between two different time periods.
-
-The API will return the findings metrics for each time period separately, allowing users to easily compare the compliance status of their resources at each time period. This can be useful for monitoring the effectiveness of compliance measures over time and identifying any areas of improvement."
-*/
-func (a *Client) GetComplianceAPIV1FindingsMetrics(params *GetComplianceAPIV1FindingsMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsMetricsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1FindingsMetricsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1FindingsMetrics",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/findings/metrics",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1FindingsMetricsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1FindingsMetricsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1FindingsMetrics: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetComplianceAPIV1QueriesQueryID gets query
 
 This API enables users to retrieve query details by specifying the query ID.
@@ -552,47 +462,6 @@ func (a *Client) GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1Queries
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1QueriesSync: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostComplianceAPIV1AlarmsTop tops field by alarm count
-
-Returns top field by alarm count with respect to filters
-*/
-func (a *Client) PostComplianceAPIV1AlarmsTop(params *PostComplianceAPIV1AlarmsTopParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AlarmsTopOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostComplianceAPIV1AlarmsTopParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostComplianceAPIV1AlarmsTop",
-		Method:             "POST",
-		PathPattern:        "/compliance/api/v1/alarms/top",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostComplianceAPIV1AlarmsTopReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostComplianceAPIV1AlarmsTopOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostComplianceAPIV1AlarmsTop: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
 		}
 
@@ -31,7 +36,7 @@ var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
 		}
@@ -47,6 +52,10 @@ var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
 		}
 
@@ -59,7 +68,7 @@ var GetInventoryApiV2MetadataResourcetypeResourceTypeCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype_resource_type] : %v", err)
 		}
@@ -75,6 +84,10 @@ var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
 		}
 
@@ -87,7 +100,7 @@ var GetInventoryApiV2MetadataServicesServiceNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services_service_name] : %v", err)
 		}
@@ -104,6 +117,10 @@ The results could be filtered by provider name and service name.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype] : %v", err)
 		}
 
@@ -120,7 +137,7 @@ The results could be filtered by provider name and service name.`,
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_resourcetype] : %v", err)
 		}
@@ -137,6 +154,10 @@ The results could be filtered by tags.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services] : %v", err)
 		}
 
@@ -152,7 +173,7 @@ The results could be filtered by tags.`,
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_metadata_services] : %v", err)
 		}
@@ -168,6 +189,10 @@ var PostMetadataApiV1MetadataCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_metadata_api_v_1_metadata] : %v", err)
 		}
 

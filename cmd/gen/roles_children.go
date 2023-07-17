@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -18,6 +19,10 @@ var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
 		}
 
@@ -30,7 +35,7 @@ var GetAuthApiV1RolesRoleNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_roles_role_name] : %v", err)
 		}
@@ -46,6 +51,10 @@ var GetAuthApiV1RoleRoleNameKeysCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_keys] : %v", err)
 		}
 
@@ -58,7 +67,7 @@ var GetAuthApiV1RoleRoleNameKeysCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_keys] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_keys] : %v", err)
 		}
@@ -74,6 +83,10 @@ var GetAuthApiV1RoleRoleNameUsersCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_users] : %v", err)
 		}
 
@@ -86,7 +99,7 @@ var GetAuthApiV1RoleRoleNameUsersCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_users] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_role_role_name_users] : %v", err)
 		}
@@ -102,6 +115,10 @@ var GetAuthApiV1RolesCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_roles] : %v", err)
 		}
 
@@ -112,7 +129,7 @@ var GetAuthApiV1RolesCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_roles] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_roles] : %v", err)
 		}

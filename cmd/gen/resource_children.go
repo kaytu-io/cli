@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var PostInventoryApiV1ResourceCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_inventory_api_v_1_resource] : %v", err)
 		}
 
@@ -34,7 +39,7 @@ var PostInventoryApiV1ResourceCmd = &cobra.Command{
 			return fmt.Errorf("[post_inventory_api_v_1_resource] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resource] : %v", err)
 		}
@@ -50,6 +55,10 @@ var GetInventoryApiV2ResourcesRegionsCompositionCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_composition] : %v", err)
 		}
 
@@ -66,7 +75,7 @@ var GetInventoryApiV2ResourcesRegionsCompositionCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_composition] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_composition] : %v", err)
 		}
@@ -82,6 +91,10 @@ var GetInventoryApiV2ResourcesCountCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_resources_count] : %v", err)
 		}
 
@@ -92,7 +105,7 @@ var GetInventoryApiV2ResourcesCountCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_count] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_count] : %v", err)
 		}
@@ -108,6 +121,10 @@ var GetInventoryApiV2ResourcesRegionsSummaryCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_summary] : %v", err)
 		}
 
@@ -126,7 +143,7 @@ var GetInventoryApiV2ResourcesRegionsSummaryCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_summary] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_summary] : %v", err)
 		}
@@ -142,6 +159,10 @@ var GetInventoryApiV2ResourcesRegionsTrendCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_trend] : %v", err)
 		}
 
@@ -159,7 +180,7 @@ var GetInventoryApiV2ResourcesRegionsTrendCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_resources_regions_trend] : %v", err)
 		}
@@ -175,6 +196,10 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_inventory_api_v_1_resources] : %v", err)
 		}
 
@@ -206,7 +231,7 @@ var PostInventoryApiV1ResourcesCmd = &cobra.Command{
 			return fmt.Errorf("[post_inventory_api_v_1_resources] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resources] : %v", err)
 		}
@@ -222,6 +247,10 @@ var PostInventoryApiV1ResourcesFiltersCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_inventory_api_v_1_resources_filters] : %v", err)
 		}
 
@@ -247,7 +276,7 @@ var PostInventoryApiV1ResourcesFiltersCmd = &cobra.Command{
 			return fmt.Errorf("[post_inventory_api_v_1_resources_filters] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_inventory_api_v_1_resources_filters] : %v", err)
 		}
@@ -263,6 +292,10 @@ var GetInventoryApiV1ResourcesRegionsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_1_resources_regions] : %v", err)
 		}
 
@@ -280,7 +313,7 @@ var GetInventoryApiV1ResourcesRegionsCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_resources_regions] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_resources_regions] : %v", err)
 		}
@@ -296,6 +329,10 @@ var GetInventoryApiV1ResourcesTopRegionsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_inventory_api_v_1_resources_top_regions] : %v", err)
 		}
 
@@ -310,7 +347,7 @@ var GetInventoryApiV1ResourcesTopRegionsCmd = &cobra.Command{
 			return fmt.Errorf("[get_inventory_api_v_1_resources_top_regions] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_1_resources_top_regions] : %v", err)
 		}

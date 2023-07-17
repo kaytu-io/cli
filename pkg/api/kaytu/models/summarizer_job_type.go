@@ -30,9 +30,6 @@ func (m SummarizerJobType) Pointer() *SummarizerJobType {
 
 const (
 
-	// SummarizerJobTypeResourceSummarizer captures enum value "resourceSummarizer"
-	SummarizerJobTypeResourceSummarizer SummarizerJobType = "resourceSummarizer"
-
 	// SummarizerJobTypeResourceMustSummarizer captures enum value "resourceMustSummarizer"
 	SummarizerJobTypeResourceMustSummarizer SummarizerJobType = "resourceMustSummarizer"
 
@@ -45,7 +42,7 @@ var summarizerJobTypeEnum []interface{}
 
 func init() {
 	var res []SummarizerJobType
-	if err := json.Unmarshal([]byte(`["resourceSummarizer","resourceMustSummarizer","complianceSummarizer"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["resourceMustSummarizer","complianceSummarizer"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

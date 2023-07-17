@@ -11,7 +11,7 @@ var rootCmd = &cobra.Command{
 	Use: "kaytu",
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if cmd.Flags().ParseErrorsWhitelist.UnknownFlags {
-			return errors.New("Please enter right flag. ")
+			return errors.New("invalid flags")
 		}
 		return cmd.Help()
 	},
@@ -25,6 +25,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.PersistentFlags().String("workspace-name", "", "specifying the workspaces name ")
-	rootCmd.PersistentFlags().String("output-type", "json", "specifying the output type  [json, table]")
+	rootCmd.PersistentFlags().String("workspace-name", "", "")
+	rootCmd.PersistentFlags().String("output-type", "summary", "output type [summary, json, table]")
 }

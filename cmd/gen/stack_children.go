@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -23,6 +24,10 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
 
@@ -39,7 +44,7 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
 		}
@@ -55,6 +60,10 @@ var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[delete_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
@@ -78,6 +87,10 @@ var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
@@ -90,7 +103,7 @@ var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id] : %v", err)
 		}
@@ -106,6 +119,10 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
 
@@ -121,7 +138,7 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insight] : %v", err)
 		}
@@ -137,6 +154,10 @@ var PostScheduleApiV1StacksStackIdFindingsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_stack_id_findings] : %v", err)
 		}
 
@@ -162,7 +183,7 @@ var PostScheduleApiV1StacksStackIdFindingsCmd = &cobra.Command{
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_stack_id_findings] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_stacks_stack_id_findings] : %v", err)
 		}
@@ -178,6 +199,10 @@ var GetScheduleApiV1StacksStackIdInsightsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
 
@@ -193,7 +218,7 @@ var GetScheduleApiV1StacksStackIdInsightsCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_stack_id_insights] : %v", err)
 		}
@@ -209,6 +234,10 @@ var GetScheduleApiV1StacksCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
 		}
 
@@ -222,7 +251,7 @@ var GetScheduleApiV1StacksCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks] : %v", err)
 		}
@@ -238,6 +267,10 @@ var GetScheduleApiV1StacksResourceCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource] : %v", err)
 		}
 
@@ -250,7 +283,7 @@ var GetScheduleApiV1StacksResourceCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_stacks_resource] : %v", err)
 		}

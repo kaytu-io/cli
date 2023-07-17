@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var DeleteAuthApiV1UserInviteCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[delete_auth_api_v_1_user_invite] : %v", err)
 		}
 
@@ -42,6 +47,10 @@ var DeleteAuthApiV1UserRoleBindingCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[delete_auth_api_v_1_user_role_binding] : %v", err)
 		}
 
@@ -65,6 +74,10 @@ var GetAuthApiV1UserUserIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id] : %v", err)
 		}
 
@@ -77,7 +90,7 @@ var GetAuthApiV1UserUserIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id] : %v", err)
 		}
@@ -93,6 +106,10 @@ var PostAuthApiV1UserInviteCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_auth_api_v_1_user_invite] : %v", err)
 		}
 
@@ -119,6 +136,10 @@ var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
 		}
 
@@ -129,7 +150,7 @@ var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
 		}
@@ -145,6 +166,10 @@ var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
 		}
 
@@ -157,7 +182,7 @@ var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
 		}
@@ -173,6 +198,10 @@ var GetAuthApiV1UsersCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_users] : %v", err)
 		}
 
@@ -189,7 +218,7 @@ var GetAuthApiV1UsersCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_users] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_users] : %v", err)
 		}
@@ -205,6 +234,10 @@ var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
 		}
 
@@ -215,7 +248,7 @@ var GetAuthApiV1WorkspaceRoleBindingsCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_workspace_role_bindings] : %v", err)
 		}
@@ -231,6 +264,10 @@ var PutAuthApiV1UserRoleBindingCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[put_auth_api_v_1_user_role_binding] : %v", err)
 		}
 

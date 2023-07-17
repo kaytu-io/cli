@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
 		}
 
@@ -37,7 +42,7 @@ var GetScheduleApiV1BenchmarkEvaluationsCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_benchmark_evaluations] : %v", err)
 		}
@@ -53,6 +58,10 @@ var GetScheduleApiV0InsightTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_0_insight_trigger] : %v", err)
 		}
 
@@ -74,6 +83,10 @@ var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
 		}
 
@@ -93,7 +106,7 @@ var PostScheduleApiV1DescribeResourceCmd = &cobra.Command{
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_schedule_api_v_1_describe_resource] : %v", err)
 		}
@@ -109,6 +122,10 @@ var GetScheduleApiV0DescribeTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_0_describe_trigger] : %v", err)
 		}
 
@@ -130,6 +147,10 @@ var GetScheduleApiV1InsightJobJobIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_1_insight_job_job_id] : %v", err)
 		}
 
@@ -142,7 +163,7 @@ var GetScheduleApiV1InsightJobJobIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_schedule_api_v_1_insight_job_job_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_schedule_api_v_1_insight_job_job_id] : %v", err)
 		}
@@ -158,6 +179,10 @@ var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
 
@@ -174,7 +199,7 @@ var PutScheduleApiV1BenchmarkEvaluationTriggerCmd = &cobra.Command{
 			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[put_schedule_api_v_1_benchmark_evaluation_trigger] : %v", err)
 		}
@@ -190,6 +215,10 @@ var GetScheduleApiV0ComplianceTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_0_compliance_trigger] : %v", err)
 		}
 
@@ -211,6 +240,10 @@ var GetScheduleApiV0ComplianceSummarizerTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_0_compliance_summarizer_trigger] : %v", err)
 		}
 
@@ -232,6 +265,10 @@ var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[put_schedule_api_v_1_describe_trigger_connection_id] : %v", err)
 		}
 
@@ -255,6 +292,10 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
 		}
 
@@ -271,7 +312,7 @@ var PutScheduleApiV1InsightEvaluationTriggerCmd = &cobra.Command{
 			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[put_schedule_api_v_1_insight_evaluation_trigger] : %v", err)
 		}
@@ -287,6 +328,10 @@ var GetScheduleApiV0SummarizeTriggerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_schedule_api_v_0_summarize_trigger] : %v", err)
 		}
 

@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
 		}
 
@@ -35,7 +40,7 @@ var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
 			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_workspace_api_v_1_workspace] : %v", err)
 		}
@@ -51,6 +56,10 @@ var DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[delete_workspace_api_v_1_workspace_workspace_id] : %v", err)
 		}
 
@@ -74,6 +83,10 @@ var GetWorkspaceApiV1WorkspaceCurrentCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
 		}
 
@@ -84,7 +97,7 @@ var GetWorkspaceApiV1WorkspaceCurrentCmd = &cobra.Command{
 			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_workspace_api_v_1_workspace_current] : %v", err)
 		}
@@ -100,6 +113,10 @@ var GetWorkspaceApiV1WorkspacesWorkspaceIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_workspace_id] : %v", err)
 		}
 
@@ -123,6 +140,10 @@ var GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_byid_workspace_id] : %v", err)
 		}
 
@@ -135,7 +156,7 @@ var GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_byid_workspace_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_byid_workspace_id] : %v", err)
 		}
@@ -151,6 +172,10 @@ var GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
 		}
 
@@ -164,7 +189,7 @@ var GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd = &cobra.Command{
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_workspace_name] : %v", err)
 		}
@@ -180,6 +205,10 @@ var GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_byid_workspace_id] : %v", err)
 		}
 
@@ -192,7 +221,7 @@ var GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_byid_workspace_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces_limits_byid_workspace_id] : %v", err)
 		}
@@ -208,6 +237,10 @@ var GetWorkspaceApiV1WorkspacesCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
 		}
 
@@ -218,7 +251,7 @@ var GetWorkspaceApiV1WorkspacesCmd = &cobra.Command{
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_workspace_api_v_1_workspaces] : %v", err)
 		}
@@ -234,6 +267,10 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdResumeCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_resume] : %v", err)
 		}
 
@@ -257,6 +294,10 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdSuspendCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_suspend] : %v", err)
 		}
 
@@ -280,6 +321,10 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdNameCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_name] : %v", err)
 		}
 
@@ -306,6 +351,10 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdOrganizationCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_organization] : %v", err)
 		}
 
@@ -332,6 +381,10 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdOwnerCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_owner] : %v", err)
 		}
 
@@ -358,6 +411,10 @@ var PostWorkspaceApiV1WorkspaceWorkspaceIdTierCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_workspace_api_v_1_workspace_workspace_id_tier] : %v", err)
 		}
 

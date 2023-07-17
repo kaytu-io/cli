@@ -71,7 +71,7 @@ func init() {
 	DeleteOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
 
 	OnboardCmd.AddCommand(DeleteOnboardApiV1SourceSourceIdCmd)
-	DeleteOnboardApiV1SourceSourceIdCmd.Flags().Int64("source-id", 0, "Source ID")
+	DeleteOnboardApiV1SourceSourceIdCmd.Flags().String("source-id", "", "Source ID")
 	DeleteOnboardApiV1SourceSourceIdCmd.MarkFlagRequired("source-id")
 
 	OnboardCmd.AddCommand(PostOnboardApiV1CredentialCredentialIdDisableCmd)

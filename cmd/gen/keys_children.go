@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
 		}
 
@@ -31,7 +36,7 @@ var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
 			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
 		}
@@ -47,6 +52,10 @@ var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
 
@@ -62,7 +71,7 @@ var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
 		}
@@ -78,6 +87,10 @@ var GetAuthApiV1KeyIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
 		}
 
@@ -90,7 +103,7 @@ var GetAuthApiV1KeyIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
 		}
@@ -106,6 +119,10 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
 		}
 
@@ -116,7 +133,7 @@ var GetAuthApiV1KeysCmd = &cobra.Command{
 			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_keys] : %v", err)
 		}
@@ -132,6 +149,10 @@ var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
 		}
 
@@ -155,6 +176,10 @@ var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
 		}
 
@@ -167,7 +192,7 @@ var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
 			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
 		}
@@ -183,6 +208,10 @@ var PostAuthApiV1KeyRoleCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}
 
@@ -198,7 +227,7 @@ var PostAuthApiV1KeyRoleCmd = &cobra.Command{
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}

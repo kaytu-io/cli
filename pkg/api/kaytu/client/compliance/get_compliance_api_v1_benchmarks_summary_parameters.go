@@ -68,6 +68,18 @@ type GetComplianceAPIV1BenchmarksSummaryParams struct {
 	*/
 	ConnectionID []string
 
+	/* Connector.
+
+	   Connector type to filter by
+	*/
+	Connector []string
+
+	/* TimeAt.
+
+	   timestamp for values in epoch seconds
+	*/
+	TimeAt *int64
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -132,6 +144,28 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetConnectionID(connectionID
 	o.ConnectionID = connectionID
 }
 
+// WithConnector adds the connector to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithConnector(connector []string) *GetComplianceAPIV1BenchmarksSummaryParams {
+	o.SetConnector(connector)
+	return o
+}
+
+// SetConnector adds the connector to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetConnector(connector []string) {
+	o.Connector = connector
+}
+
+// WithTimeAt adds the timeAt to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithTimeAt(timeAt *int64) *GetComplianceAPIV1BenchmarksSummaryParams {
+	o.SetTimeAt(timeAt)
+	return o
+}
+
+// SetTimeAt adds the timeAt to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetTimeAt(timeAt *int64) {
+	o.TimeAt = timeAt
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetComplianceAPIV1BenchmarksSummaryParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -148,6 +182,34 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) WriteToRequest(r runtime.Cli
 		// query array param connectionId
 		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
 			return err
+		}
+	}
+
+	if o.Connector != nil {
+
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
+
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
+		}
+	}
+
+	if o.TimeAt != nil {
+
+		// query param timeAt
+		var qrTimeAt int64
+
+		if o.TimeAt != nil {
+			qrTimeAt = *o.TimeAt
+		}
+		qTimeAt := swag.FormatInt64(qrTimeAt)
+		if qTimeAt != "" {
+
+			if err := r.SetQueryParam("timeAt", qTimeAt); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -172,4 +234,21 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamConnectionID(format
 	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
+}
+
+// bindParamGetComplianceAPIV1BenchmarksSummary binds the parameter connector
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
 }

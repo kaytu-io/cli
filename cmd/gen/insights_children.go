@@ -2,6 +2,7 @@
 package gen
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -19,6 +20,10 @@ Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
 		}
 
@@ -34,7 +39,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id] : %v", err)
 		}
@@ -51,6 +56,10 @@ Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
 		}
 
@@ -66,7 +75,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id] : %v", err)
 		}
@@ -83,6 +92,10 @@ Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id_trend] : %v", err)
 		}
 
@@ -99,7 +112,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group_insight_group_id_trend] : %v", err)
 		}
@@ -115,6 +128,10 @@ var GetComplianceApiV1MetadataInsightInsightIdCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
 		}
 
@@ -127,7 +144,7 @@ var GetComplianceApiV1MetadataInsightInsightIdCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight_insight_id] : %v", err)
 		}
@@ -144,6 +161,10 @@ Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
 
@@ -160,7 +181,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_insight_id_trend] : %v", err)
 		}
@@ -177,6 +198,10 @@ Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
 
@@ -193,7 +218,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight_group] : %v", err)
 		}
@@ -210,6 +235,10 @@ Returns "all:provider" job results if connectionId is not defined.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_insight] : %v", err)
 		}
 
@@ -226,7 +255,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 			return fmt.Errorf("[get_compliance_api_v_1_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_insight] : %v", err)
 		}
@@ -242,6 +271,10 @@ var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight] : %v", err)
 		}
 
@@ -254,7 +287,7 @@ var GetComplianceApiV1MetadataInsightCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_insight] : %v", err)
 		}
@@ -270,6 +303,10 @@ var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
 		}
 
@@ -282,7 +319,7 @@ var GetComplianceApiV1MetadataTagInsightKeyCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight_key] : %v", err)
 		}
@@ -298,6 +335,10 @@ var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
 		}
 
@@ -308,7 +349,7 @@ var GetComplianceApiV1MetadataTagInsightCmd = &cobra.Command{
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
 		}
 
-		err = pkg.PrintOutputForTypeArray(cmd, resp.GetPayload())
+		err = pkg.PrintOutput(cmd, resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_metadata_tag_insight] : %v", err)
 		}

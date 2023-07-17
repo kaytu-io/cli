@@ -14,7 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // NewDeleteOnboardAPIV1SourceSourceIDParams creates a new DeleteOnboardAPIV1SourceSourceIDParams object,
@@ -66,7 +65,7 @@ type DeleteOnboardAPIV1SourceSourceIDParams struct {
 
 	   Source ID
 	*/
-	SourceID int64
+	SourceID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -122,13 +121,13 @@ func (o *DeleteOnboardAPIV1SourceSourceIDParams) SetHTTPClient(client *http.Clie
 }
 
 // WithSourceID adds the sourceID to the delete onboard API v1 source source ID params
-func (o *DeleteOnboardAPIV1SourceSourceIDParams) WithSourceID(sourceID int64) *DeleteOnboardAPIV1SourceSourceIDParams {
+func (o *DeleteOnboardAPIV1SourceSourceIDParams) WithSourceID(sourceID string) *DeleteOnboardAPIV1SourceSourceIDParams {
 	o.SetSourceID(sourceID)
 	return o
 }
 
 // SetSourceID adds the sourceId to the delete onboard API v1 source source ID params
-func (o *DeleteOnboardAPIV1SourceSourceIDParams) SetSourceID(sourceID int64) {
+func (o *DeleteOnboardAPIV1SourceSourceIDParams) SetSourceID(sourceID string) {
 	o.SourceID = sourceID
 }
 
@@ -141,7 +140,7 @@ func (o *DeleteOnboardAPIV1SourceSourceIDParams) WriteToRequest(r runtime.Client
 	var res []error
 
 	// path param sourceId
-	if err := r.SetPathParam("sourceId", swag.FormatInt64(o.SourceID)); err != nil {
+	if err := r.SetPathParam("sourceId", o.SourceID); err != nil {
 		return err
 	}
 
