@@ -56,16 +56,30 @@ jobs:
       with:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: stable
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 021976399abfae89a1c734df8e3fe78ddfdf4f68
     - name: commit
       run: |
         git commit -m "add new tag version "
         git tag -a ${{ steps.tag_version.outputs.new_tag }} HEAD -m "add new Tag "
+<<<<<<< HEAD
 
+=======
+        git config user.email "saberk@kaytu.io"
+        git config --global user.name "SaberKhazaei"
+    
+>>>>>>> 021976399abfae89a1c734df8e3fe78ddfdf4f68
     - name: Push
       uses: actions-js/push@v1.4
       with:
         github_token: ${{ secrets.GITHUBCI_TOKEN }}
+<<<<<<< HEAD
         branch: test
+=======
+        branch: test ${{ steps.tag_version.outputs.new_tag }}
+>>>>>>> 021976399abfae89a1c734df8e3fe78ddfdf4f68
         repository: Kaytu/homebrew-cli-tap
         tags: true
