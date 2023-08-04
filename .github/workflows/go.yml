@@ -56,7 +56,7 @@ jobs:
       with:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: stable
-
+        
     - name: commit
       run: |
         git commit -m "add new tag version "
