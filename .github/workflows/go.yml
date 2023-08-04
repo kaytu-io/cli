@@ -56,3 +56,16 @@ jobs:
       with:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: stable
+
+    - name: commit
+      run: |
+        git commit -m "add new tag version "
+        git tag -a ${{ steps.tag_version.outputs.new_tag }} HEAD -m "add new Tag "
+
+    - name: Push
+      uses: actions-js/push@v1.4
+      with:
+        github_token: ${{ secrets.GITHUBCI_TOKEN }}
+        branch: test
+        repository: Kaytu/homebrew-cli-tap
+        tags: true
