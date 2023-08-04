@@ -61,9 +61,7 @@ jobs:
       run: |
         git commit -m "add new tag version "
         git tag -a ${{ steps.tag_version.outputs.new_tag }} HEAD -m "add new Tag "
-        git config user.email "saberk@kaytu.io"
-        git config --global user.name "SaberKhazaei"
-    
+
     - name: Push
       uses: actions-js/push@v1.4
       with:
