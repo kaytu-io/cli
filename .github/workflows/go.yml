@@ -3,7 +3,7 @@ on:
   push:
     branches: [ "main" ]
 env:
-  HOMEBREW_CLI_TAP_FILE: https://github.com/kaytu-io/homebrew-cli-tap/blob/main/kaytu.rb
+  HOMEBREW_CLI_TAP_FILE: https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb
 
 jobs:
   build:
