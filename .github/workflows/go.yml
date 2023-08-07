@@ -84,8 +84,7 @@ jobs:
     - name: Push
       uses: actions-js/push@v1.4
       with:
-        github_token: ${{ secrets.GITHUBCI_TOKEN }}
+        github_token: ${{ secrets.CI_ACCESS_TOKEN }}
         branch: 'test'
         repository: kaytu-io/homebrew-cli-tap
         directory: '.'
-        
