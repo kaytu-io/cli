@@ -85,5 +85,7 @@ jobs:
       uses: actions-js/push@v1.4
       with:
         github_token: ${{ secrets.GITHUBCI_TOKEN }}
-        branch: test
+        branch: 'test'
         repository: kaytu-io/homebrew-cli-tap
+        directory: '.'
+        
