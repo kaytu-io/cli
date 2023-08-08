@@ -2,9 +2,6 @@ name: Build
 on:
   push:
     branches: [ "main" ]
-    env:
-      Pre_Ver: ""
-      Homebrew_CLI_Tap_File: ""
 
 jobs:
   build:
@@ -66,17 +63,13 @@ jobs:
         git config user.email 'dev@kaytu.io'
 
     - name: replace version && push change
+      working-directory: ./temp
       run: |
-        rm tmp/preVersion.txt; touch tmp/preVersion.txt    
         
-        git tag -l | sort -V --reverse | sed -n 2p >> tmp/preVersion.txt        
+        sed -i 's+ $(git tag -l | sort -V --reverse | sed -n 2p)+${{ steps.tag_version.outputs.new_tag }}+g' $HomebrewCliTap.txt
         
-        sed -i 's+ tmp/preVersion.txt+${{ steps.tag_version.outputs.new_tag }}+g' tmp/homebrewCliTap.txt >> tmp/homebrewCliTap.txt
-        
-        git add tmp/homebrewCliTap.txt
+        git add $HomebrewCliTap.txt
         git commit -m "update version "
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
-        git push origin main
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.6.0
