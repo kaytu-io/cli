@@ -34,6 +34,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkEvaluationSummary struc
 	// Example: true
 	Enabled bool `json:"enabled,omitempty"`
 
+	// Evaluated at
+	// Example: 2020-01-01T00:00:00Z
+	EvaluatedAt string `json:"evaluatedAt,omitempty"`
+
 	// Benchmark ID
 	// Example: azure_cis_v140
 	ID string `json:"id,omitempty"`

@@ -62,9 +62,15 @@ GetInventoryAPIV2ServicesCostTrendParams contains all the parameters to send to 
 */
 type GetInventoryAPIV2ServicesCostTrendParams struct {
 
+	/* ConnectionGroup.
+
+	   Connection group to filter by - mutually exclusive with connectionId
+	*/
+	ConnectionGroup *string
+
 	/* ConnectionID.
 
-	   Connection IDs to filter by
+	   Connection IDs to filter by - mutually exclusive with connectionGroup
 	*/
 	ConnectionID []string
 
@@ -151,6 +157,17 @@ func (o *GetInventoryAPIV2ServicesCostTrendParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
+// WithConnectionGroup adds the connectionGroup to the get inventory API v2 services cost trend params
+func (o *GetInventoryAPIV2ServicesCostTrendParams) WithConnectionGroup(connectionGroup *string) *GetInventoryAPIV2ServicesCostTrendParams {
+	o.SetConnectionGroup(connectionGroup)
+	return o
+}
+
+// SetConnectionGroup adds the connectionGroup to the get inventory API v2 services cost trend params
+func (o *GetInventoryAPIV2ServicesCostTrendParams) SetConnectionGroup(connectionGroup *string) {
+	o.ConnectionGroup = connectionGroup
+}
+
 // WithConnectionID adds the connectionID to the get inventory API v2 services cost trend params
 func (o *GetInventoryAPIV2ServicesCostTrendParams) WithConnectionID(connectionID []string) *GetInventoryAPIV2ServicesCostTrendParams {
 	o.SetConnectionID(connectionID)
@@ -224,6 +241,23 @@ func (o *GetInventoryAPIV2ServicesCostTrendParams) WriteToRequest(r runtime.Clie
 		return err
 	}
 	var res []error
+
+	if o.ConnectionGroup != nil {
+
+		// query param connectionGroup
+		var qrConnectionGroup string
+
+		if o.ConnectionGroup != nil {
+			qrConnectionGroup = *o.ConnectionGroup
+		}
+		qConnectionGroup := qrConnectionGroup
+		if qConnectionGroup != "" {
+
+			if err := r.SetQueryParam("connectionGroup", qConnectionGroup); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.ConnectionID != nil {
 

@@ -69,7 +69,7 @@ type DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams str
 
 	/* ConnectionID.
 
-	   Connection ID
+	   Connection ID or 'all' for everything
 	*/
 	ConnectionID string
 

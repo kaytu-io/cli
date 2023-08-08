@@ -12,12 +12,17 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgOnboardAPICredential github com kaytu io kaytu engine pkg onboard api credential
 //
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.Credential
 type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
+
+	// auto onboard enabled
+	// Example: false
+	AutoOnboardEnabled bool `json:"autoOnboardEnabled,omitempty"`
 
 	// config
 	Config interface{} `json:"config,omitempty"`
@@ -26,43 +31,68 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 	Connections []*GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection `json:"connections"`
 
 	// connector type
+	// Example: AWS
 	ConnectorType SourceType `json:"connectorType,omitempty"`
 
 	// credential type
-	CredentialType SourceCredentialType `json:"credentialType,omitempty"`
+	// Example: manual-aws-org
+	CredentialType GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType `json:"credentialType,omitempty"`
+
+	// discovered connections
+	// Example: 50
+	// Maximum: 100
+	// Minimum: 0
+	DiscoveredConnections *int64 `json:"discovered_connections,omitempty"`
 
 	// enabled
+	// Example: true
 	Enabled bool `json:"enabled,omitempty"`
 
 	// enabled connections
-	EnabledConnections int64 `json:"enabled_connections,omitempty"`
+	// Example: 250
+	// Maximum: 1000
+	// Minimum: 0
+	EnabledConnections *int64 `json:"enabled_connections,omitempty"`
 
 	// health reason
 	HealthReason string `json:"healthReason,omitempty"`
 
 	// health status
+	// Example: healthy
 	HealthStatus SourceHealthStatus `json:"healthStatus,omitempty"`
 
 	// id
+	// Example: 1028642a-b22e-26ha-c5h2-22nl254678m5
 	ID string `json:"id,omitempty"`
 
 	// last health check time
-	LastHealthCheckTime string `json:"lastHealthCheckTime,omitempty"`
+	// Example: 2023-06-03T12:21:33.406928Z
+	// Format: date-time
+	LastHealthCheckTime strfmt.DateTime `json:"lastHealthCheckTime,omitempty"`
 
 	// metadata
 	Metadata interface{} `json:"metadata,omitempty"`
 
 	// name
+	// Example: a-1mahsl7lzk
 	Name string `json:"name,omitempty"`
 
 	// onboard date
-	OnboardDate string `json:"onboardDate,omitempty"`
+	// Example: 2023-06-03T12:21:33.406928Z
+	// Format: date-time
+	OnboardDate strfmt.DateTime `json:"onboardDate,omitempty"`
 
 	// total connections
-	TotalConnections int64 `json:"total_connections,omitempty"`
+	// Example: 300
+	// Maximum: 1000
+	// Minimum: 0
+	TotalConnections *int64 `json:"total_connections,omitempty"`
 
 	// unhealthy connections
-	UnhealthyConnections int64 `json:"unhealthy_connections,omitempty"`
+	// Example: 50
+	// Maximum: 100
+	// Minimum: 0
+	UnhealthyConnections *int64 `json:"unhealthy_connections,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api credential
@@ -81,7 +111,31 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) Validate(formats st
 		res = append(res, err)
 	}
 
+	if err := m.validateDiscoveredConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnabledConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateHealthStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLastHealthCheckTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOnboardDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUnhealthyConnections(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -122,15 +176,6 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateConnectorTy
 		return nil
 	}
 
-	if err := m.ConnectorType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("connectorType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("connectorType")
-		}
-		return err
-	}
-
 	return nil
 }
 
@@ -139,12 +184,35 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateCredentialT
 		return nil
 	}
 
-	if err := m.CredentialType.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("credentialType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("credentialType")
-		}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateDiscoveredConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.DiscoveredConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("discovered_connections", "body", *m.DiscoveredConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("discovered_connections", "body", *m.DiscoveredConnections, 100, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateEnabledConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.EnabledConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("enabled_connections", "body", *m.EnabledConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("enabled_connections", "body", *m.EnabledConnections, 1000, false); err != nil {
 		return err
 	}
 
@@ -156,12 +224,59 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateHealthStatu
 		return nil
 	}
 
-	if err := m.HealthStatus.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("healthStatus")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("healthStatus")
-		}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateLastHealthCheckTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.LastHealthCheckTime) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("lastHealthCheckTime", "body", "date-time", m.LastHealthCheckTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateOnboardDate(formats strfmt.Registry) error {
+	if swag.IsZero(m.OnboardDate) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("onboardDate", "body", "date-time", m.OnboardDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateTotalConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("total_connections", "body", *m.TotalConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("total_connections", "body", *m.TotalConnections, 1000, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateUnhealthyConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.UnhealthyConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("unhealthy_connections", "body", *m.UnhealthyConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("unhealthy_connections", "body", *m.UnhealthyConnections, 100, false); err != nil {
 		return err
 	}
 
@@ -221,54 +336,15 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) contextValidateConn
 
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) contextValidateConnectorType(ctx context.Context, formats strfmt.Registry) error {
 
-	if swag.IsZero(m.ConnectorType) { // not required
-		return nil
-	}
-
-	if err := m.ConnectorType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("connectorType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("connectorType")
-		}
-		return err
-	}
-
 	return nil
 }
 
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) contextValidateCredentialType(ctx context.Context, formats strfmt.Registry) error {
 
-	if swag.IsZero(m.CredentialType) { // not required
-		return nil
-	}
-
-	if err := m.CredentialType.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("credentialType")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("credentialType")
-		}
-		return err
-	}
-
 	return nil
 }
 
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) contextValidateHealthStatus(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.HealthStatus) { // not required
-		return nil
-	}
-
-	if err := m.HealthStatus.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("healthStatus")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("healthStatus")
-		}
-		return err
-	}
 
 	return nil
 }

@@ -18,7 +18,7 @@ import (
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment struct {
 
 	// Unix timestamp
-	AssignedAt int64 `json:"assignedAt,omitempty"`
+	AssignedAt string `json:"assignedAt,omitempty"`
 
 	// Benchmark ID
 	// Example: azure_cis_v140

@@ -30,35 +30,191 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	GetInventoryAPIV2AnalyticsSpendComposition(params *GetInventoryAPIV2AnalyticsSpendCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendCompositionOK, error)
+
+	GetInventoryAPIV2AnalyticsSpendMetric(params *GetInventoryAPIV2AnalyticsSpendMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendMetricOK, error)
+
+	GetInventoryAPIV2AnalyticsSpendMetricsTrend(params *GetInventoryAPIV2AnalyticsSpendMetricsTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendMetricsTrendOK, error)
+
+	GetInventoryAPIV2AnalyticsSpendTrend(params *GetInventoryAPIV2AnalyticsSpendTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendTrendOK, error)
+
 	GetInventoryAPIV2CostComposition(params *GetInventoryAPIV2CostCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostCompositionOK, error)
 
 	GetInventoryAPIV2CostMetric(params *GetInventoryAPIV2CostMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostMetricOK, error)
 
 	GetInventoryAPIV2CostTrend(params *GetInventoryAPIV2CostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2CostTrendOK, error)
 
-	GetInventoryAPIV2ResourcesCompositionKey(params *GetInventoryAPIV2ResourcesCompositionKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesCompositionKeyOK, error)
-
-	GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error)
-
 	GetInventoryAPIV2ResourcesMetricResourceType(params *GetInventoryAPIV2ResourcesMetricResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricResourceTypeOK, error)
 
 	GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2ResourcesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagOK, error)
 
-	GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2ResourcesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagKeyOK, error)
-
-	GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error)
-
 	GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2ServicesCostTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesCostTrendOK, error)
 
-	GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error)
-
-	GetInventoryAPIV2ServicesMetricServiceName(params *GetInventoryAPIV2ServicesMetricServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricServiceNameOK, error)
-
-	GetInventoryAPIV2ServicesTag(params *GetInventoryAPIV2ServicesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagOK, error)
-
-	GetInventoryAPIV2ServicesTagKey(params *GetInventoryAPIV2ServicesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagKeyOK, error)
-
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+GetInventoryAPIV2AnalyticsSpendComposition lists cost composition
+
+This API allows users to retrieve the cost composition with respect to specified filters. The API returns information such as the total cost for the given time range, and the top services by cost.
+*/
+func (a *Client) GetInventoryAPIV2AnalyticsSpendComposition(params *GetInventoryAPIV2AnalyticsSpendCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendCompositionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2AnalyticsSpendCompositionParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2AnalyticsSpendComposition",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/analytics/spend/composition",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2AnalyticsSpendCompositionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2AnalyticsSpendCompositionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2AnalyticsSpendComposition: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2AnalyticsSpendMetric lists spend metrics
+
+This API allows users to retrieve cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.
+*/
+func (a *Client) GetInventoryAPIV2AnalyticsSpendMetric(params *GetInventoryAPIV2AnalyticsSpendMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendMetricOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2AnalyticsSpendMetricParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2AnalyticsSpendMetric",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/analytics/spend/metric",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2AnalyticsSpendMetricReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2AnalyticsSpendMetricOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2AnalyticsSpendMetric: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2AnalyticsSpendMetricsTrend gets cost trend
+
+This API allows users to retrieve a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.
+*/
+func (a *Client) GetInventoryAPIV2AnalyticsSpendMetricsTrend(params *GetInventoryAPIV2AnalyticsSpendMetricsTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendMetricsTrendOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2AnalyticsSpendMetricsTrendParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2AnalyticsSpendMetricsTrend",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/analytics/spend/metrics/trend",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2AnalyticsSpendMetricsTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2AnalyticsSpendMetricsTrendOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2AnalyticsSpendMetricsTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2AnalyticsSpendTrend gets cost trend
+
+This API allows users to retrieve a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.
+*/
+func (a *Client) GetInventoryAPIV2AnalyticsSpendTrend(params *GetInventoryAPIV2AnalyticsSpendTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendTrendOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2AnalyticsSpendTrendParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2AnalyticsSpendTrend",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/analytics/spend/trend",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2AnalyticsSpendTrendReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2AnalyticsSpendTrendOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2AnalyticsSpendTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -185,88 +341,6 @@ func (a *Client) GetInventoryAPIV2CostTrend(params *GetInventoryAPIV2CostTrendPa
 }
 
 /*
-GetInventoryAPIV2ResourcesCompositionKey lists resource type composition
-
-This API allows users to retrieve tag values with the most resources for the given key.
-*/
-func (a *Client) GetInventoryAPIV2ResourcesCompositionKey(params *GetInventoryAPIV2ResourcesCompositionKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesCompositionKeyOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ResourcesCompositionKeyParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ResourcesCompositionKey",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/resources/composition/{key}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ResourcesCompositionKeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ResourcesCompositionKeyOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesCompositionKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2ResourcesMetric lists resource metrics
-
-This API allows users to retrieve a list of resource types with metrics of each type based on the given input filters.
-*/
-func (a *Client) GetInventoryAPIV2ResourcesMetric(params *GetInventoryAPIV2ResourcesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesMetricOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ResourcesMetricParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ResourcesMetric",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/resources/metric",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ResourcesMetricReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ResourcesMetricOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesMetric: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetInventoryAPIV2ResourcesMetricResourceType gets resource metrics
 
 This API allows users to retrieve metrics for a specific resource type.
@@ -349,88 +423,6 @@ func (a *Client) GetInventoryAPIV2ResourcesTag(params *GetInventoryAPIV2Resource
 }
 
 /*
-GetInventoryAPIV2ResourcesTagKey gets resourcetype tag
-
-This API allows users to retrieve a list of possible values for a given tag key for all resource types.
-*/
-func (a *Client) GetInventoryAPIV2ResourcesTagKey(params *GetInventoryAPIV2ResourcesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTagKeyOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ResourcesTagKeyParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ResourcesTagKey",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/resources/tag/{key}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ResourcesTagKeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ResourcesTagKeyOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesTagKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2ResourcesTrend gets resource type trend
-
-This API allows users to retrieve a list of resource counts over the course of the specified time frame based on the given input filters
-*/
-func (a *Client) GetInventoryAPIV2ResourcesTrend(params *GetInventoryAPIV2ResourcesTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourcesTrendOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ResourcesTrendParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ResourcesTrend",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/resources/trend",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ResourcesTrendReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ResourcesTrendOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourcesTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetInventoryAPIV2ServicesCostTrend gets services cost trend
 
 This API allows users to retrieve a list of costs over the course of the specified time frame for the given services. If startTime and endTime are empty, the API returns the last month trend.
@@ -468,170 +460,6 @@ func (a *Client) GetInventoryAPIV2ServicesCostTrend(params *GetInventoryAPIV2Ser
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesCostTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2ServicesMetric lists services metrics
-
-This API allows users to retrieve a list of services with metrics of each type based on the given input filters.
-*/
-func (a *Client) GetInventoryAPIV2ServicesMetric(params *GetInventoryAPIV2ServicesMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ServicesMetricParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ServicesMetric",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/services/metric",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ServicesMetricReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ServicesMetricOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesMetric: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2ServicesMetricServiceName gets service metrics
-
-This API allows users to retrieve a service with metrics.
-*/
-func (a *Client) GetInventoryAPIV2ServicesMetricServiceName(params *GetInventoryAPIV2ServicesMetricServiceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesMetricServiceNameOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ServicesMetricServiceNameParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ServicesMetricServiceName",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/services/metric/{serviceName}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ServicesMetricServiceNameReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ServicesMetricServiceNameOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesMetricServiceName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2ServicesTag lists resourcetype tags
-
-This API allows users to retrieve a list of possible values for a given tag key for all services.
-*/
-func (a *Client) GetInventoryAPIV2ServicesTag(params *GetInventoryAPIV2ServicesTagParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ServicesTagParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ServicesTag",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/services/tag",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ServicesTagReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ServicesTagOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesTag: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetInventoryAPIV2ServicesTagKey gets resourcetype tag
-
-This API allows users to retrieve a list of possible values for a given tag key for all resource types.
-*/
-func (a *Client) GetInventoryAPIV2ServicesTagKey(params *GetInventoryAPIV2ServicesTagKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ServicesTagKeyOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetInventoryAPIV2ServicesTagKeyParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV2ServicesTagKey",
-		Method:             "GET",
-		PathPattern:        "/inventory/api/v2/services/tag/{key}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetInventoryAPIV2ServicesTagKeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetInventoryAPIV2ServicesTagKeyOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ServicesTagKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

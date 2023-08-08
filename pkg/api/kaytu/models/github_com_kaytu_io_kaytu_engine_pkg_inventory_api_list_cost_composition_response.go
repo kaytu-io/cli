@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostCompositionResponse github com kaytu io kaytu engine pkg inventory api list cost composition response
@@ -19,22 +21,78 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostCompositionResponse struc
 
 	// others
 	// Example: 100
-	Others float64 `json:"others,omitempty"`
+	// Minimum: 0
+	Others *float64 `json:"others,omitempty"`
 
 	// top values
 	TopValues map[string]float64 `json:"top_values,omitempty"`
 
 	// total cost value
 	// Example: 1000
-	TotalCostValue float64 `json:"total_cost_value,omitempty"`
+	// Minimum: 0
+	TotalCostValue *float64 `json:"total_cost_value,omitempty"`
 
 	// total count
 	// Example: 10
-	TotalCount int64 `json:"total_count,omitempty"`
+	// Minimum: 0
+	TotalCount *int64 `json:"total_count,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api list cost composition response
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostCompositionResponse) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOthers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCostValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostCompositionResponse) validateOthers(formats strfmt.Registry) error {
+	if swag.IsZero(m.Others) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("others", "body", *m.Others, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostCompositionResponse) validateTotalCostValue(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCostValue) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("total_cost_value", "body", *m.TotalCostValue, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostCompositionResponse) validateTotalCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("total_count", "body", *m.TotalCount, 0, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 

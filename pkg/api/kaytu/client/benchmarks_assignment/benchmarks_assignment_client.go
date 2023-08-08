@@ -32,11 +32,7 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
 
-	GetComplianceAPIV1Assignments(params *GetComplianceAPIV1AssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsOK, error)
-
 	GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error)
-
-	GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error)
 
 	PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
 
@@ -85,47 +81,6 @@ func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnection
 }
 
 /*
-GetComplianceAPIV1Assignments gets all assignments
-
-Returns all assignments
-*/
-func (a *Client) GetComplianceAPIV1Assignments(params *GetComplianceAPIV1AssignmentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1AssignmentsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1Assignments",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/assignments",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1AssignmentsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1AssignmentsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1Assignments: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID gets all benchmark assigned sources with benchmark id
 
 Returns all benchmark assigned sources with benchmark id
@@ -163,47 +118,6 @@ func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetCo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetComplianceAPIV1AssignmentsConnectionConnectionID gets all benchmark assignments with source id
-
-Returns all benchmark assignments with source id
-*/
-func (a *Client) GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1AssignmentsConnectionConnectionIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1AssignmentsConnectionConnectionID",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/assignments/connection/{connection_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1AssignmentsConnectionConnectionIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1AssignmentsConnectionConnectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

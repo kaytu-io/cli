@@ -32,9 +32,9 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	GetInventoryAPIV1Query(params *GetInventoryAPIV1QueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryOK, error)
 
-	GetInventoryAPIV1QueryCount(params *GetInventoryAPIV1QueryCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryCountOK, error)
+	GetInventoryAPIV1QueryRunHistory(params *GetInventoryAPIV1QueryRunHistoryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryRunHistoryOK, error)
 
-	PostInventoryAPIV1QueryQueryID(params *PostInventoryAPIV1QueryQueryIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1QueryQueryIDOK, error)
+	PostInventoryAPIV1QueryRun(params *PostInventoryAPIV1QueryRunParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1QueryRunOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -81,24 +81,24 @@ func (a *Client) GetInventoryAPIV1Query(params *GetInventoryAPIV1QueryParams, au
 }
 
 /*
-GetInventoryAPIV1QueryCount counts smart queries
+GetInventoryAPIV1QueryRunHistory gets recently ran queries
 
-Counting smart queries
+Get recently ran queries.
 */
-func (a *Client) GetInventoryAPIV1QueryCount(params *GetInventoryAPIV1QueryCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryCountOK, error) {
+func (a *Client) GetInventoryAPIV1QueryRunHistory(params *GetInventoryAPIV1QueryRunHistoryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryRunHistoryOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetInventoryAPIV1QueryCountParams()
+		params = NewGetInventoryAPIV1QueryRunHistoryParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetInventoryAPIV1QueryCount",
+		ID:                 "GetInventoryAPIV1QueryRunHistory",
 		Method:             "GET",
-		PathPattern:        "/inventory/api/v1/query/count",
+		PathPattern:        "/inventory/api/v1/query/run/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetInventoryAPIV1QueryCountReader{formats: a.formats},
+		Reader:             &GetInventoryAPIV1QueryRunHistoryReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -111,38 +111,35 @@ func (a *Client) GetInventoryAPIV1QueryCount(params *GetInventoryAPIV1QueryCount
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetInventoryAPIV1QueryCountOK)
+	success, ok := result.(*GetInventoryAPIV1QueryRunHistoryOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1QueryCount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV1QueryRunHistory: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-	PostInventoryAPIV1QueryQueryID runs a specific smart query
+PostInventoryAPIV1QueryRun runs provided smart query and returns the result
 
-	Run a specific smart query.
-
-In order to get the results in CSV format, Accepts header must be filled with `text/csv` value.
-Note that csv output doesn't process pagination and returns first 5000 records.
+Run provided smart query and returns the result.
 */
-func (a *Client) PostInventoryAPIV1QueryQueryID(params *PostInventoryAPIV1QueryQueryIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1QueryQueryIDOK, error) {
+func (a *Client) PostInventoryAPIV1QueryRun(params *PostInventoryAPIV1QueryRunParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostInventoryAPIV1QueryRunOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPostInventoryAPIV1QueryQueryIDParams()
+		params = NewPostInventoryAPIV1QueryRunParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "PostInventoryAPIV1QueryQueryID",
+		ID:                 "PostInventoryAPIV1QueryRun",
 		Method:             "POST",
-		PathPattern:        "/inventory/api/v1/query/{queryId}",
-		ProducesMediaTypes: []string{"application/json", "text/csv"},
+		PathPattern:        "/inventory/api/v1/query/run",
+		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PostInventoryAPIV1QueryQueryIDReader{formats: a.formats},
+		Reader:             &PostInventoryAPIV1QueryRunReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -155,13 +152,13 @@ func (a *Client) PostInventoryAPIV1QueryQueryID(params *PostInventoryAPIV1QueryQ
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*PostInventoryAPIV1QueryQueryIDOK)
+	success, ok := result.(*PostInventoryAPIV1QueryRunOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1QueryQueryID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PostInventoryAPIV1QueryRun: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

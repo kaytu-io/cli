@@ -18,27 +18,35 @@ import (
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceLimitsUsage struct {
 
 	// current connections
+	// Example: 100
 	CurrentConnections int64 `json:"currentConnections,omitempty"`
 
 	// current resources
+	// Example: 10000
 	CurrentResources int64 `json:"currentResources,omitempty"`
 
 	// current users
+	// Example: 10
 	CurrentUsers int64 `json:"currentUsers,omitempty"`
 
 	// id
+	// Example: ws-698542025141040315
 	ID string `json:"id,omitempty"`
 
 	// max connections
+	// Example: 1000
 	MaxConnections int64 `json:"maxConnections,omitempty"`
 
 	// max resources
+	// Example: 100000
 	MaxResources int64 `json:"maxResources,omitempty"`
 
 	// max users
+	// Example: 100
 	MaxUsers int64 `json:"maxUsers,omitempty"`
 
 	// name
+	// Example: keibi
 	Name string `json:"name,omitempty"`
 }
 

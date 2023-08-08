@@ -30,8 +30,11 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 		req := compliance.NewGetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams()
 
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetCount(flags.ReadInt64Flag(cmd, "Count"))
 		req.SetField(flags.ReadStringFlag(cmd, "Field"))
+		req.SetSeverities(flags.ReadStringArrayFlag(cmd, "Severities"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(req, auth)
 		if err != nil {
@@ -41,38 +44,6 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-findings-benchmark-id-field-top-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
-	Use:   "benchmark-policies",
-	Short: `This API returns a list of all policies associated with a specific benchmark. Users can use this API to obtain a comprehensive overview of the policies related to a particular benchmark and their corresponding details, such as their names, descriptions, and IDs.`,
-	Long:  `This API returns a list of all policies associated with a specific benchmark. Users can use this API to obtain a comprehensive overview of the policies related to a particular benchmark and their corresponding details, such as their names, descriptions, and IDs.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
-		}
-
-		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-policies", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
 		}
 
 		return nil
@@ -113,38 +84,6 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 	},
 }
 
-var GetComplianceApiV1BenchmarksBenchmarkIdCmd = &cobra.Command{
-	Use:   "get-benchmark",
-	Short: `This API enables users to retrieve benchmark details by specifying the benchmark ID. Users can use this API to obtain specific details about a particular benchmark, such as its name, description, and other relevant information.`,
-	Long:  `This API enables users to retrieve benchmark details by specifying the benchmark ID. Users can use this API to obtain specific details about a particular benchmark, such as its name, description, and other relevant information.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
-		}
-
-		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 	Use:   "get-benchmark-summary",
 	Short: `This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.`,
@@ -174,6 +113,38 @@ var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_summary] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd = &cobra.Command{
+	Use:   "get-benchmark-tree",
+	Short: `This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.`,
+	Long:  `This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_tree] : %v", err)
+		}
+
+		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDTreeParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTree(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_tree] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-tree", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_tree] : %v", err)
 		}
 
 		return nil
@@ -263,100 +234,6 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "post-compliance-api-v1-findings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1BenchmarksPoliciesPolicyIdCmd = &cobra.Command{
-	Use:   "get-policy",
-	Short: `This API enables users to retrieve policy details by specifying the policy ID. Users can use this API to obtain specific details about a particular policy, such as its title, description, and other relevant information.`,
-	Long:  `This API enables users to retrieve policy details by specifying the policy ID. Users can use this API to obtain specific details about a particular policy, such as its title, description, and other relevant information.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_policies_policy_id] : %v", err)
-		}
-
-		req := compliance.NewGetComplianceAPIV1BenchmarksPoliciesPolicyIDParams()
-
-		req.SetPolicyID(flags.ReadStringFlag(cmd, "PolicyID"))
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksPoliciesPolicyID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_policies_policy_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-policies-policy-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_policies_policy_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1QueriesQueryIdCmd = &cobra.Command{
-	Use:   "get-query",
-	Short: `This API enables users to retrieve query details by specifying the query ID.`,
-	Long:  `This API enables users to retrieve query details by specifying the query ID.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_queries_query_id] : %v", err)
-		}
-
-		req := compliance.NewGetComplianceAPIV1QueriesQueryIDParams()
-
-		req.SetQueryID(flags.ReadStringFlag(cmd, "QueryID"))
-
-		resp, err := client.Compliance.GetComplianceAPIV1QueriesQueryID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_queries_query_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-queries-query-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_queries_query_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1BenchmarksCmd = &cobra.Command{
-	Use:   "list-benchmarks",
-	Short: `This API returns a comprehensive list of all available benchmarks. Users can use this API to obtain an overview of the entire set of benchmarks and their corresponding details, such as their names, descriptions, and IDs.`,
-	Long:  `This API returns a comprehensive list of all available benchmarks. Users can use this API to obtain an overview of the entire set of benchmarks and their corresponding details, such as their names, descriptions, and IDs.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks] : %v", err)
-		}
-
-		req := compliance.NewGetComplianceAPIV1BenchmarksParams()
-
-		resp, err := client.Compliance.GetComplianceAPIV1Benchmarks(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks] : %v", err)
 		}
 
 		return nil

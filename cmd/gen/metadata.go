@@ -18,28 +18,6 @@ func init() {
 	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "Key")
 	GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
 
-	MetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeResourceTypeCmd)
-	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.Flags().String("resource-type", "", "ResourceType")
-	GetInventoryApiV2MetadataResourcetypeResourceTypeCmd.MarkFlagRequired("resource-type")
-
-	MetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesServiceNameCmd)
-	GetInventoryApiV2MetadataServicesServiceNameCmd.Flags().String("service-name", "", "ServiceName")
-	GetInventoryApiV2MetadataServicesServiceNameCmd.MarkFlagRequired("service-name")
-
-	MetadataCmd.AddCommand(GetInventoryApiV2MetadataResourcetypeCmd)
-	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("connector", nil, "Filter by Connector")
-	GetInventoryApiV2MetadataResourcetypeCmd.MarkFlagRequired("connector")
-	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-number", 0, "page number - default is 1")
-	GetInventoryApiV2MetadataResourcetypeCmd.Flags().Int64("page-size", 0, "page size - default is 20")
-	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("service", nil, "Filter by service name")
-	GetInventoryApiV2MetadataResourcetypeCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
-
-	MetadataCmd.AddCommand(GetInventoryApiV2MetadataServicesCmd)
-	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("connector", nil, "Connector")
-	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-number", 0, "page number - default is 1")
-	GetInventoryApiV2MetadataServicesCmd.Flags().Int64("page-size", 0, "page size - default is 20")
-	GetInventoryApiV2MetadataServicesCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
-
 	MetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
 	PostMetadataApiV1MetadataCmd.Flags().String("key", "", "")
 	PostMetadataApiV1MetadataCmd.MarkFlagRequired("key")

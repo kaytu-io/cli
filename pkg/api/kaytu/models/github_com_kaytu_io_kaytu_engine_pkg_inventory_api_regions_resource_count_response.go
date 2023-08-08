@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPIRegionsResourceCountResponse github com kaytu io kaytu engine pkg inventory api regions resource count response
@@ -23,7 +24,8 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIRegionsResourceCountResponse stru
 	Regions []*GithubComKaytuIoKaytuEnginePkgInventoryAPILocationResponse `json:"regions"`
 
 	// total count
-	TotalCount int64 `json:"totalCount,omitempty"`
+	// Minimum: 0
+	TotalCount *int64 `json:"totalCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api regions resource count response
@@ -31,6 +33,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIRegionsResourceCountResponse)
 	var res []error
 
 	if err := m.validateRegions(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,6 +67,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIRegionsResourceCountResponse)
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIRegionsResourceCountResponse) validateTotalCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalCount", "body", *m.TotalCount, 0, false); err != nil {
+		return err
 	}
 
 	return nil

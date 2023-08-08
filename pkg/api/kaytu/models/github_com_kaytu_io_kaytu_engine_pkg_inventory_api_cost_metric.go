@@ -7,10 +7,12 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric github com kaytu io kaytu engine pkg inventory api cost metric
@@ -19,20 +21,27 @@ import (
 type GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric struct {
 
 	// connector
-	// Example: azure
-	Connector SourceType `json:"connector,omitempty"`
+	// Example: ["Azure"]
+	Connector []SourceType `json:"connector"`
 
 	// cost dimension name
+	// Example: microsoft.compute/disks
 	CostDimensionName string `json:"cost_dimension_name,omitempty"`
 
 	// daily cost at end time
-	DailyCostAtEndTime float64 `json:"daily_cost_at_end_time,omitempty"`
+	// Example: 14118.81523108568
+	// Minimum: 0
+	DailyCostAtEndTime *float64 `json:"daily_cost_at_end_time,omitempty"`
 
 	// daily cost at start time
-	DailyCostAtStartTime float64 `json:"daily_cost_at_start_time,omitempty"`
+	// Example: 21232.10443638001
+	// Minimum: 0
+	DailyCostAtStartTime *float64 `json:"daily_cost_at_start_time,omitempty"`
 
 	// total cost
-	TotalCost float64 `json:"total_cost,omitempty"`
+	// Example: 621041.2436112489
+	// Minimum: 0
+	TotalCost *float64 `json:"total_cost,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api cost metric
@@ -40,6 +49,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) Validate(formats 
 	var res []error
 
 	if err := m.validateConnector(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDailyCostAtEndTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDailyCostAtStartTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCost(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,6 +73,55 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) Validate(formats 
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) validateConnector(formats strfmt.Registry) error {
 	if swag.IsZero(m.Connector) { // not required
 		return nil
+	}
+
+	for i := 0; i < len(m.Connector); i++ {
+
+		if err := m.Connector[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connector" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connector" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) validateDailyCostAtEndTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.DailyCostAtEndTime) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("daily_cost_at_end_time", "body", *m.DailyCostAtEndTime, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) validateDailyCostAtStartTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.DailyCostAtStartTime) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("daily_cost_at_start_time", "body", *m.DailyCostAtStartTime, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) validateTotalCost(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCost) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("total_cost", "body", *m.TotalCost, 0, false); err != nil {
+		return err
 	}
 
 	return nil
@@ -72,6 +142,23 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) ContextValidate(c
 }
 
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Connector); i++ {
+
+		if swag.IsZero(m.Connector[i]) { // not required
+			return nil
+		}
+
+		if err := m.Connector[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connector" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connector" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
 
 	return nil
 }

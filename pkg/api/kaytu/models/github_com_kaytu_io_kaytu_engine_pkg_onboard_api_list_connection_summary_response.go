@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse github com kaytu io kaytu engine pkg onboard api list connection summary response
@@ -21,47 +22,115 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse struc
 
 	// connection count
 	// Example: 10
-	ConnectionCount int64 `json:"connectionCount,omitempty"`
+	// Maximum: 1000
+	// Minimum: 0
+	ConnectionCount *int64 `json:"connectionCount,omitempty"`
 
 	// connections
 	Connections []*GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection `json:"connections"`
 
 	// old connection count
 	// Example: 10
-	OldConnectionCount int64 `json:"oldConnectionCount,omitempty"`
+	// Maximum: 1000
+	// Minimum: 0
+	OldConnectionCount *int64 `json:"oldConnectionCount,omitempty"`
 
 	// total cost
 	// Example: 1000
-	TotalCost float64 `json:"totalCost,omitempty"`
+	// Maximum: 1e+07
+	// Minimum: 0
+	TotalCost *float64 `json:"totalCost,omitempty"`
 
 	// total disabled count
 	// Example: 10
-	TotalDisabledCount int64 `json:"totalDisabledCount,omitempty"`
+	// Maximum: 100
+	// Minimum: 0
+	TotalDisabledCount *int64 `json:"totalDisabledCount,omitempty"`
+
+	// total discovered count
+	// Example: 10
+	// Maximum: 100
+	// Minimum: 0
+	TotalDiscoveredCount *int64 `json:"totalDiscoveredCount,omitempty"`
 
 	// total old resource count
 	// Example: 100
-	TotalOldResourceCount int64 `json:"totalOldResourceCount,omitempty"`
+	// Maximum: 1e+06
+	// Minimum: 0
+	TotalOldResourceCount *int64 `json:"totalOldResourceCount,omitempty"`
 
 	// total resource count
 	// Example: 100
-	TotalResourceCount int64 `json:"totalResourceCount,omitempty"`
+	// Maximum: 1e+06
+	// Minimum: 0
+	TotalResourceCount *int64 `json:"totalResourceCount,omitempty"`
 
 	// total unhealthy count
 	// Example: 10
-	TotalUnhealthyCount int64 `json:"totalUnhealthyCount,omitempty"`
+	// Maximum: 100
+	// Minimum: 0
+	TotalUnhealthyCount *int64 `json:"totalUnhealthyCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api list connection summary response
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateConnectionCount(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOldConnectionCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalDisabledCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalDiscoveredCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalOldResourceCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalResourceCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalUnhealthyCount(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateConnectionCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConnectionCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("connectionCount", "body", *m.ConnectionCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("connectionCount", "body", *m.ConnectionCount, 1000, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -86,6 +155,118 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) 
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateOldConnectionCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.OldConnectionCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("oldConnectionCount", "body", *m.OldConnectionCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("oldConnectionCount", "body", *m.OldConnectionCount, 1000, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalCost(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCost) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("totalCost", "body", *m.TotalCost, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.Maximum("totalCost", "body", *m.TotalCost, 1e+07, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalDisabledCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalDisabledCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalDisabledCount", "body", *m.TotalDisabledCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalDisabledCount", "body", *m.TotalDisabledCount, 100, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalDiscoveredCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalDiscoveredCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalDiscoveredCount", "body", *m.TotalDiscoveredCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalDiscoveredCount", "body", *m.TotalDiscoveredCount, 100, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalOldResourceCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalOldResourceCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalOldResourceCount", "body", *m.TotalOldResourceCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalOldResourceCount", "body", *m.TotalOldResourceCount, 1e+06, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalResourceCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalResourceCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalResourceCount", "body", *m.TotalResourceCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalResourceCount", "body", *m.TotalResourceCount, 1e+06, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalUnhealthyCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalUnhealthyCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalUnhealthyCount", "body", *m.TotalUnhealthyCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalUnhealthyCount", "body", *m.TotalUnhealthyCount, 100, false); err != nil {
+		return err
 	}
 
 	return nil

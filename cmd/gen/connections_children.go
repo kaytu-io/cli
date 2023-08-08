@@ -12,40 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var GetOnboardApiV1ConnectionsSummaryConnectionIdCmd = &cobra.Command{
-	Use:   "connection-summary",
-	Short: `Returns a connections summaries`,
-	Long:  `Returns a connections summaries`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
-		}
-
-		req := connections.NewGetOnboardAPIV1ConnectionsSummaryConnectionIDParams()
-
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Connections.GetOnboardAPIV1ConnectionsSummaryConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connections-summary-connection-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_connections_summary_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 	Use:   "connections-summary",
 	Short: `Returns a list of connections summaries`,
@@ -65,6 +31,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetHealthState(flags.ReadStringOptionalFlag(cmd, "HealthState"))
 		req.SetLifecycleState(flags.ReadStringOptionalFlag(cmd, "LifecycleState"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))

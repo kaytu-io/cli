@@ -32,8 +32,6 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	GetOnboardAPIV1ConnectionsSummary(params *GetOnboardAPIV1ConnectionsSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsSummaryOK, error)
 
-	GetOnboardAPIV1ConnectionsSummaryConnectionID(params *GetOnboardAPIV1ConnectionsSummaryConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsSummaryConnectionIDOK, error)
-
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -75,47 +73,6 @@ func (a *Client) GetOnboardAPIV1ConnectionsSummary(params *GetOnboardAPIV1Connec
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1ConnectionsSummary: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetOnboardAPIV1ConnectionsSummaryConnectionID gets connection summary
-
-Returns a connections summaries
-*/
-func (a *Client) GetOnboardAPIV1ConnectionsSummaryConnectionID(params *GetOnboardAPIV1ConnectionsSummaryConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsSummaryConnectionIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetOnboardAPIV1ConnectionsSummaryConnectionIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetOnboardAPIV1ConnectionsSummaryConnectionID",
-		Method:             "GET",
-		PathPattern:        "/onboard/api/v1/connections/summary/{connectionId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetOnboardAPIV1ConnectionsSummaryConnectionIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetOnboardAPIV1ConnectionsSummaryConnectionIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1ConnectionsSummaryConnectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

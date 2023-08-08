@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPutScheduleAPIV1DescribeTriggerConnectionIDParams creates a new PutScheduleAPIV1DescribeTriggerConnectionIDParams object,
@@ -66,6 +67,12 @@ type PutScheduleAPIV1DescribeTriggerConnectionIDParams struct {
 	   Connection ID
 	*/
 	ConnectionID string
+
+	/* ResourceType.
+
+	   Resource Type
+	*/
+	ResourceType []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,6 +138,17 @@ func (o *PutScheduleAPIV1DescribeTriggerConnectionIDParams) SetConnectionID(conn
 	o.ConnectionID = connectionID
 }
 
+// WithResourceType adds the resourceType to the put schedule API v1 describe trigger connection ID params
+func (o *PutScheduleAPIV1DescribeTriggerConnectionIDParams) WithResourceType(resourceType []string) *PutScheduleAPIV1DescribeTriggerConnectionIDParams {
+	o.SetResourceType(resourceType)
+	return o
+}
+
+// SetResourceType adds the resourceType to the put schedule API v1 describe trigger connection ID params
+func (o *PutScheduleAPIV1DescribeTriggerConnectionIDParams) SetResourceType(resourceType []string) {
+	o.ResourceType = resourceType
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PutScheduleAPIV1DescribeTriggerConnectionIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -144,8 +162,36 @@ func (o *PutScheduleAPIV1DescribeTriggerConnectionIDParams) WriteToRequest(r run
 		return err
 	}
 
+	if o.ResourceType != nil {
+
+		// binding items for resource_type
+		joinedResourceType := o.bindParamResourceType(reg)
+
+		// query array param resource_type
+		if err := r.SetQueryParam("resource_type", joinedResourceType...); err != nil {
+			return err
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamPutScheduleAPIV1DescribeTriggerConnectionID binds the parameter resource_type
+func (o *PutScheduleAPIV1DescribeTriggerConnectionIDParams) bindParamResourceType(formats strfmt.Registry) []string {
+	resourceTypeIR := o.ResourceType
+
+	var resourceTypeIC []string
+	for _, resourceTypeIIR := range resourceTypeIR { // explode []string
+
+		resourceTypeIIV := resourceTypeIIR // string as string
+		resourceTypeIC = append(resourceTypeIC, resourceTypeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceTypeIS := swag.JoinByFormat(resourceTypeIC, "csv")
+
+	return resourceTypeIS
 }

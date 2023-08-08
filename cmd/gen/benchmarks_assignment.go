@@ -17,23 +17,17 @@ func init() {
 	BenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
-	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
+	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID or 'all' for everything")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
 
 	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd)
 	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
 
-	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsConnectionConnectionIdCmd)
-	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
-	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
-
-	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsCmd)
-
 	BenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
 	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
+	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID or 'all' for everything")
 	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
 
 }

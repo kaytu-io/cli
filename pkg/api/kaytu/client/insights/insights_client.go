@@ -34,21 +34,13 @@ type ClientService interface {
 
 	GetComplianceAPIV1InsightGroup(params *GetComplianceAPIV1InsightGroupParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightGroupOK, error)
 
-	GetComplianceAPIV1InsightGroupInsightGroupID(params *GetComplianceAPIV1InsightGroupInsightGroupIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightGroupInsightGroupIDOK, error)
-
-	GetComplianceAPIV1InsightGroupInsightGroupIDTrend(params *GetComplianceAPIV1InsightGroupInsightGroupIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightGroupInsightGroupIDTrendOK, error)
-
 	GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1InsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDOK, error)
 
 	GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAPIV1InsightInsightIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightInsightIDTrendOK, error)
 
-	GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error)
-
 	GetComplianceAPIV1MetadataInsightInsightID(params *GetComplianceAPIV1MetadataInsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightInsightIDOK, error)
 
 	GetComplianceAPIV1MetadataTagInsight(params *GetComplianceAPIV1MetadataTagInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightOK, error)
-
-	GetComplianceAPIV1MetadataTagInsightKey(params *GetComplianceAPIV1MetadataTagInsightKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightKeyOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -140,92 +132,6 @@ func (a *Client) GetComplianceAPIV1InsightGroup(params *GetComplianceAPIV1Insigh
 }
 
 /*
-	GetComplianceAPIV1InsightGroupInsightGroupID gets insight group
-
-	This API returns the specified insight group with ID. The API provides details of the insight, including results during the specified time period for the specified connection.
-
-Returns "all:provider" job results if connectionId is not defined.
-*/
-func (a *Client) GetComplianceAPIV1InsightGroupInsightGroupID(params *GetComplianceAPIV1InsightGroupInsightGroupIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightGroupInsightGroupIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1InsightGroupInsightGroupIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1InsightGroupInsightGroupID",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/insight/group/{insightGroupId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1InsightGroupInsightGroupIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1InsightGroupInsightGroupIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1InsightGroupInsightGroupID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	GetComplianceAPIV1InsightGroupInsightGroupIDTrend gets insight group trend
-
-	This API allows users to retrieve insight group results datapoints for a specified connection during a specified time period.
-
-Returns "all:provider" job results if connectionId is not defined.
-*/
-func (a *Client) GetComplianceAPIV1InsightGroupInsightGroupIDTrend(params *GetComplianceAPIV1InsightGroupInsightGroupIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1InsightGroupInsightGroupIDTrendOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1InsightGroupInsightGroupIDTrendParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1InsightGroupInsightGroupIDTrend",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/insight/group/{insightGroupId}/trend",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1InsightGroupInsightGroupIDTrendReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1InsightGroupInsightGroupIDTrendOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1InsightGroupInsightGroupIDTrend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 	GetComplianceAPIV1InsightInsightID gets insight
 
 	This API returns the specified insight with ID. The API provides details of the insight, including results during the specified time period for the specified connection.
@@ -312,47 +218,6 @@ func (a *Client) GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAP
 }
 
 /*
-GetComplianceAPIV1MetadataInsight lists insights metadata
-
-Retrieves all insights metadata.
-*/
-func (a *Client) GetComplianceAPIV1MetadataInsight(params *GetComplianceAPIV1MetadataInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1MetadataInsightParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1MetadataInsight",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/metadata/insight",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1MetadataInsightReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1MetadataInsightOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1MetadataInsight: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetComplianceAPIV1MetadataInsightInsightID gets insight metadata
 
 Get insight metadata by id
@@ -431,47 +296,6 @@ func (a *Client) GetComplianceAPIV1MetadataTagInsight(params *GetComplianceAPIV1
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1MetadataTagInsight: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetComplianceAPIV1MetadataTagInsightKey gets insights tag key
-
-This API allows users to retrieve an insights tag key with the possible values for it.
-*/
-func (a *Client) GetComplianceAPIV1MetadataTagInsightKey(params *GetComplianceAPIV1MetadataTagInsightKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightKeyOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1MetadataTagInsightKeyParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1MetadataTagInsightKey",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/metadata/tag/insight/{key}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1MetadataTagInsightKeyReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1MetadataTagInsightKeyOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1MetadataTagInsightKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

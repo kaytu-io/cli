@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPILocationResponse github com kaytu io kaytu engine pkg inventory api location response
@@ -18,19 +20,59 @@ import (
 type GithubComKaytuIoKaytuEnginePkgInventoryAPILocationResponse struct {
 
 	// Region
+	// Example: na-west
 	Location string `json:"location,omitempty"`
 
 	// Number of resources in the region
 	// Example: 100
-	ResourceCount int64 `json:"resourceCount,omitempty"`
+	// Minimum: 0
+	ResourceCount *int64 `json:"resourceCount,omitempty"`
 
 	// resource old count
 	// Example: 50
-	ResourceOldCount int64 `json:"resourceOldCount,omitempty"`
+	// Minimum: 0
+	ResourceOldCount *int64 `json:"resourceOldCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api location response
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPILocationResponse) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateResourceCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResourceOldCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPILocationResponse) validateResourceCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("resourceCount", "body", *m.ResourceCount, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPILocationResponse) validateResourceOldCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceOldCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("resourceOldCount", "body", *m.ResourceOldCount, 0, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 

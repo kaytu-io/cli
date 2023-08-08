@@ -68,6 +68,18 @@ type GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams struct {
 	*/
 	BenchmarkID string
 
+	/* ConnectionID.
+
+	   Connection IDs to filter by
+	*/
+	ConnectionID []string
+
+	/* Connector.
+
+	   Connector type to filter by
+	*/
+	Connector []string
+
 	/* Count.
 
 	   Count
@@ -79,6 +91,12 @@ type GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams struct {
 	   Field
 	*/
 	Field string
+
+	/* Severities.
+
+	   Severities to filter by
+	*/
+	Severities []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,6 +162,28 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetBenchmarkI
 	o.BenchmarkID = benchmarkID
 }
 
+// WithConnectionID adds the connectionID to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithConnectionID(connectionID []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
+	o.SetConnectionID(connectionID)
+	return o
+}
+
+// SetConnectionID adds the connectionId to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetConnectionID(connectionID []string) {
+	o.ConnectionID = connectionID
+}
+
+// WithConnector adds the connector to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithConnector(connector []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
+	o.SetConnector(connector)
+	return o
+}
+
+// SetConnector adds the connector to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetConnector(connector []string) {
+	o.Connector = connector
+}
+
 // WithCount adds the count to the get compliance API v1 findings benchmark ID field top count params
 func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithCount(count int64) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
 	o.SetCount(count)
@@ -166,6 +206,17 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetField(fiel
 	o.Field = field
 }
 
+// WithSeverities adds the severities to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithSeverities(severities []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
+	o.SetSeverities(severities)
+	return o
+}
+
+// SetSeverities adds the severities to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetSeverities(severities []string) {
+	o.Severities = severities
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -179,6 +230,28 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WriteToReques
 		return err
 	}
 
+	if o.ConnectionID != nil {
+
+		// binding items for connectionId
+		joinedConnectionID := o.bindParamConnectionID(reg)
+
+		// query array param connectionId
+		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
+			return err
+		}
+	}
+
+	if o.Connector != nil {
+
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
+
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
+		}
+	}
+
 	// path param count
 	if err := r.SetPathParam("count", swag.FormatInt64(o.Count)); err != nil {
 		return err
@@ -189,8 +262,70 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WriteToReques
 		return err
 	}
 
+	if o.Severities != nil {
+
+		// binding items for severities
+		joinedSeverities := o.bindParamSeverities(reg)
+
+		// query array param severities
+		if err := r.SetQueryParam("severities", joinedSeverities...); err != nil {
+			return err
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter connectionId
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) bindParamConnectionID(formats strfmt.Registry) []string {
+	connectionIDIR := o.ConnectionID
+
+	var connectionIDIC []string
+	for _, connectionIDIIR := range connectionIDIR { // explode []string
+
+		connectionIDIIV := connectionIDIIR // string as string
+		connectionIDIC = append(connectionIDIC, connectionIDIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
+
+	return connectionIDIS
+}
+
+// bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter connector
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
+}
+
+// bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter severities
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) bindParamSeverities(formats strfmt.Registry) []string {
+	severitiesIR := o.Severities
+
+	var severitiesIC []string
+	for _, severitiesIIR := range severitiesIR { // explode []string
+
+		severitiesIIV := severitiesIIR // string as string
+		severitiesIC = append(severitiesIC, severitiesIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	severitiesIS := swag.JoinByFormat(severitiesIC, "csv")
+
+	return severitiesIS
 }
