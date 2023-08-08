@@ -29,6 +29,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig struct {
 	// assume role name
 	AssumeRoleName string `json:"assumeRoleName,omitempty"`
 
+	// assume role policy name
+	AssumeRolePolicyName string `json:"assumeRolePolicyName,omitempty"`
+
 	// external Id
 	ExternalID string `json:"externalId,omitempty"`
 

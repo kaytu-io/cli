@@ -32,17 +32,9 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	DeleteAuthAPIV1KeyIDDelete(params *DeleteAuthAPIV1KeyIDDeleteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthAPIV1KeyIDDeleteOK, error)
 
-	GetAuthAPIV1KeyID(params *GetAuthAPIV1KeyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1KeyIDOK, error)
-
 	GetAuthAPIV1Keys(params *GetAuthAPIV1KeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1KeysOK, error)
 
 	PostAuthAPIV1KeyCreate(params *PostAuthAPIV1KeyCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyCreateOK, error)
-
-	PostAuthAPIV1KeyIDActivate(params *PostAuthAPIV1KeyIDActivateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyIDActivateOK, error)
-
-	PostAuthAPIV1KeyIDSuspend(params *PostAuthAPIV1KeyIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyIDSuspendOK, error)
-
-	PostAuthAPIV1KeyRole(params *PostAuthAPIV1KeyRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyRoleOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -85,47 +77,6 @@ func (a *Client) DeleteAuthAPIV1KeyIDDelete(params *DeleteAuthAPIV1KeyIDDeletePa
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteAuthAPIV1KeyIDDelete: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetAuthAPIV1KeyID gets workspace key details
-
-Retrieves the details of a workspace key with specified ID.
-*/
-func (a *Client) GetAuthAPIV1KeyID(params *GetAuthAPIV1KeyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1KeyIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetAuthAPIV1KeyIDParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetAuthAPIV1KeyID",
-		Method:             "GET",
-		PathPattern:        "/auth/api/v1/key/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetAuthAPIV1KeyIDReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetAuthAPIV1KeyIDOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetAuthAPIV1KeyID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -208,129 +159,6 @@ func (a *Client) PostAuthAPIV1KeyCreate(params *PostAuthAPIV1KeyCreateParams, au
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostAuthAPIV1KeyCreate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostAuthAPIV1KeyIDActivate activates workspace key
-
-Activates Workspace Key by ID
-*/
-func (a *Client) PostAuthAPIV1KeyIDActivate(params *PostAuthAPIV1KeyIDActivateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyIDActivateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostAuthAPIV1KeyIDActivateParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostAuthAPIV1KeyIDActivate",
-		Method:             "POST",
-		PathPattern:        "/auth/api/v1/key/{id}/activate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostAuthAPIV1KeyIDActivateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostAuthAPIV1KeyIDActivateOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostAuthAPIV1KeyIDActivate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostAuthAPIV1KeyIDSuspend suspends workspace key
-
-Suspends Workspace Key by ID
-*/
-func (a *Client) PostAuthAPIV1KeyIDSuspend(params *PostAuthAPIV1KeyIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyIDSuspendOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostAuthAPIV1KeyIDSuspendParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostAuthAPIV1KeyIDSuspend",
-		Method:             "POST",
-		PathPattern:        "/auth/api/v1/key/{id}/suspend",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostAuthAPIV1KeyIDSuspendReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostAuthAPIV1KeyIDSuspendOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostAuthAPIV1KeyIDSuspend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostAuthAPIV1KeyRole updates workspace key role
-
-Updates the role of the specified key in workspace.
-*/
-func (a *Client) PostAuthAPIV1KeyRole(params *PostAuthAPIV1KeyRoleParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthAPIV1KeyRoleOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostAuthAPIV1KeyRoleParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostAuthAPIV1KeyRole",
-		Method:             "POST",
-		PathPattern:        "/auth/api/v1/key/role",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostAuthAPIV1KeyRoleReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostAuthAPIV1KeyRoleOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostAuthAPIV1KeyRole: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

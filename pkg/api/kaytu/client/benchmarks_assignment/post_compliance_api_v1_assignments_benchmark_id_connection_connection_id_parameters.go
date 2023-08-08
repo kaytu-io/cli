@@ -69,7 +69,7 @@ type PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams struc
 
 	/* ConnectionID.
 
-	   Connection ID
+	   Connection ID or 'all' for everything
 	*/
 	ConnectionID string
 

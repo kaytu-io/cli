@@ -77,68 +77,6 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	},
 }
 
-var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
-	Use:   "connection-assignments",
-	Short: `Returns all benchmark assignments with source id`,
-	Long:  `Returns all benchmark assignments with source id`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsConnectionConnectionIDParams()
-
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
-
-		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1AssignmentsConnectionConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-assignments-connection-connection-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1AssignmentsCmd = &cobra.Command{
-	Use:   "list-assignments",
-	Short: `Returns all assignments`,
-	Long:  `Returns all assignments`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsParams()
-
-		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1Assignments(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-assignments", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_assignments] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
 	Use:   "remove-assignment",
 	Short: `Delete benchmark assignment with source id and benchmark id`,

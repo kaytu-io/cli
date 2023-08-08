@@ -63,12 +63,13 @@ var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPISourceAwsRequest{
 			Config: &models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
-				AccessKey:      flags.ReadStringOptionalFlag(cmd, "Config-AccessKey"),
-				AccountID:      flags.ReadStringFlag(cmd, "Config-AccountID"),
-				AssumeRoleName: flags.ReadStringFlag(cmd, "Config-AssumeRoleName"),
-				ExternalID:     flags.ReadStringFlag(cmd, "Config-ExternalID"),
-				Regions:        flags.ReadStringArrayFlag(cmd, "Config-Regions"),
-				SecretKey:      flags.ReadStringOptionalFlag(cmd, "Config-SecretKey"),
+				AccessKey:            flags.ReadStringOptionalFlag(cmd, "Config-AccessKey"),
+				AccountID:            flags.ReadStringFlag(cmd, "Config-AccountID"),
+				AssumeRoleName:       flags.ReadStringFlag(cmd, "Config-AssumeRoleName"),
+				AssumeRolePolicyName: flags.ReadStringFlag(cmd, "Config-AssumeRolePolicyName"),
+				ExternalID:           flags.ReadStringFlag(cmd, "Config-ExternalID"),
+				Regions:              flags.ReadStringArrayFlag(cmd, "Config-Regions"),
+				SecretKey:            flags.ReadStringOptionalFlag(cmd, "Config-SecretKey"),
 			},
 			Description: flags.ReadStringFlag(cmd, "Description"),
 			Email:       flags.ReadStringFlag(cmd, "Email"),
@@ -150,7 +151,6 @@ var PostOnboardApiV1CredentialCmd = &cobra.Command{
 
 		req.SetConfig(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest{
 			Config:     interface{}(flags.ReadStringFlag(cmd, "Config-Config")),
-			Name:       flags.ReadStringFlag(cmd, "Config-Name"),
 			SourceType: models.SourceType(flags.ReadStringFlag(cmd, "Config-SourceType")),
 		})
 
@@ -222,92 +222,6 @@ var DeleteOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 	},
 }
 
-var PostOnboardApiV1CredentialCredentialIdDisableCmd = &cobra.Command{
-	Use:   "disable-credential",
-	Short: `Disable credential`,
-	Long:  `Disable credential`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_onboard_api_v_1_credential_credential_id_disable] : %v", err)
-		}
-
-		req := onboard.NewPostOnboardAPIV1CredentialCredentialIDDisableParams()
-
-		req.SetCredentialID(flags.ReadStringFlag(cmd, "CredentialID"))
-
-		_, err = client.Onboard.PostOnboardAPIV1CredentialCredentialIDDisable(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_onboard_api_v_1_credential_credential_id_disable] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostOnboardApiV1CredentialCredentialIdEnableCmd = &cobra.Command{
-	Use:   "enable-credential",
-	Short: `Enable credential`,
-	Long:  `Enable credential`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_onboard_api_v_1_credential_credential_id_enable] : %v", err)
-		}
-
-		req := onboard.NewPostOnboardAPIV1CredentialCredentialIDEnableParams()
-
-		req.SetCredentialID(flags.ReadStringFlag(cmd, "CredentialID"))
-
-		_, err = client.Onboard.PostOnboardAPIV1CredentialCredentialIDEnable(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_onboard_api_v_1_credential_credential_id_enable] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1SourceAccountAccountIdCmd = &cobra.Command{
-	Use:   "get-account-source",
-	Short: `Returning account source either AWS / Azure.`,
-	Long:  `Returning account source either AWS / Azure.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_source_account_account_id] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1SourceAccountAccountIDParams()
-
-		req.SetAccountID(flags.ReadInt64Flag(cmd, "AccountID"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1SourceAccountAccountID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_account_account_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-account-account-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_account_account_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 	Use:   "get-catalog-metrics",
 	Short: `Returns the list of metrics for catalog page.`,
@@ -332,73 +246,6 @@ var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-catalog-metrics", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_catalog_metrics] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1ConnectionsCountCmd = &cobra.Command{
-	Use:   "get-connections-count",
-	Short: `Returns a count of connections`,
-	Long:  `Returns a count of connections`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_connections_count] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1ConnectionsCountParams()
-
-		req.SetType(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionCountRequest{
-			Connectors: flags.ReadStringArrayFlag(cmd, "Type-Connectors"),
-			State:      models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState(flags.ReadStringFlag(cmd, "Type-State")),
-		})
-
-		resp, err := client.Onboard.GetOnboardAPIV1ConnectionsCount(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_connections_count] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connections-count", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_connections_count] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1ConnectorConnectorNameCmd = &cobra.Command{
-	Use:   "get-connector",
-	Short: `Returns connector details by name`,
-	Long:  `Returns connector details by name`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_connector_connector_name] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1ConnectorConnectorNameParams()
-
-		req.SetConnectorName(flags.ReadStringFlag(cmd, "ConnectorName"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1ConnectorConnectorName(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_connector_connector_name] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-connector-connector-name", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_connector_connector_name] : %v", err)
 		}
 
 		return nil
@@ -467,67 +314,8 @@ var GetOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	},
 }
 
-var GetOnboardApiV1SourceSourceIdCmd = &cobra.Command{
-	Use:   "get-source",
-	Short: `Returning single source either AWS / Azure.`,
-	Long:  `Returning single source either AWS / Azure.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1SourceSourceIDParams()
-
-		req.SetSourceID(flags.ReadInt64Flag(cmd, "SourceID"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1SourceSourceID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-source-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1CredentialCredentialIdHealthcheckCmd = &cobra.Command{
-	Use:   "healthcheck-credential",
-	Short: ``,
-	Long:  ``,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_credential_credential_id_healthcheck] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1CredentialCredentialIDHealthcheckParams()
-
-		req.SetCredentialID(flags.ReadStringFlag(cmd, "CredentialID"))
-
-		_, err = client.Onboard.GetOnboardAPIV1CredentialCredentialIDHealthcheck(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_credential_credential_id_healthcheck] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
-	Use:   "healthchek-source",
+var GetOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
+	Use:   "healthcheck-source",
 	Short: `Get live source health status with given source ID.`,
 	Long:  `Get live source health status with given source ID.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -537,21 +325,21 @@ var PostOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
 				fmt.Println(err.Error())
 				return nil
 			}
-			return fmt.Errorf("[post_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
+			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
 		}
 
-		req := onboard.NewPostOnboardAPIV1SourceSourceIDHealthcheckParams()
+		req := onboard.NewGetOnboardAPIV1SourceSourceIDHealthcheckParams()
 
 		req.SetSourceID(flags.ReadStringFlag(cmd, "SourceID"))
 
-		resp, err := client.Onboard.PostOnboardAPIV1SourceSourceIDHealthcheck(req, auth)
+		resp, err := client.Onboard.GetOnboardAPIV1SourceSourceIDHealthcheck(req, auth)
 		if err != nil {
-			return fmt.Errorf("[post_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
+			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, "post-onboard-api-v1-source-source-id-healthcheck", resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-source-id-healthcheck", resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[post_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
+			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_healthcheck] : %v", err)
 		}
 
 		return nil
@@ -575,7 +363,7 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 		req := onboard.NewGetOnboardAPIV1CredentialParams()
 
 		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
-		req.SetCredentialType(flags.ReadStringOptionalFlag(cmd, "CredentialType"))
+		req.SetCredentialType(flags.ReadStringArrayFlag(cmd, "CredentialType"))
 		req.SetHealth(flags.ReadStringOptionalFlag(cmd, "Health"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
@@ -588,195 +376,6 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-credential", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_credential] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1CredentialSourcesListCmd = &cobra.Command{
-	Use:   "list-credentials-sources",
-	Short: `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
-	Long:  `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_credential_sources_list] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1CredentialSourcesListParams()
-
-		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
-		req.SetCredentialType(flags.ReadStringOptionalFlag(cmd, "CredentialType"))
-		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
-		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1CredentialSourcesList(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_credential_sources_list] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-credential-sources-list", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_credential_sources_list] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1SourcesCmd = &cobra.Command{
-	Use:   "list-sources",
-	Short: `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
-	Long:  `Returning a list of sources including both AWS and Azure unless filtered by Type.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_sources] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1SourcesParams()
-
-		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1Sources(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_sources] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-sources", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_sources] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PutOnboardApiV1SourceSourceIdCredentialsCmd = &cobra.Command{
-	Use:   "put-source-credentials",
-	Short: `Update source credential`,
-	Long:  `Update source credential`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[put_onboard_api_v_1_source_source_id_credentials] : %v", err)
-		}
-
-		req := onboard.NewPutOnboardAPIV1SourceSourceIDCredentialsParams()
-
-		req.SetSourceID(flags.ReadStringFlag(cmd, "SourceID"))
-
-		_, err = client.Onboard.PutOnboardAPIV1SourceSourceIDCredentials(req, auth)
-		if err != nil {
-			return fmt.Errorf("[put_onboard_api_v_1_source_source_id_credentials] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1SourceSourceIdCredentialsCmd = &cobra.Command{
-	Use:   "source-credentials",
-	Short: `Returns credential for a source with given source ID.`,
-	Long: `Returns credential for a source with given source ID.
-The responses are different for different source types.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_credentials] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1SourceSourceIDCredentialsParams()
-
-		req.SetSourceID(flags.ReadStringFlag(cmd, "SourceID"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1SourceSourceIDCredentials(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_credentials] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-source-source-id-credentials", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_source_source_id_credentials] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetOnboardApiV1SourcesCountCmd = &cobra.Command{
-	Use:   "sources-count",
-	Short: `Returning number of sources including both AWS and Azure unless filtered by Type.`,
-	Long:  `Returning number of sources including both AWS and Azure unless filtered by Type.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_onboard_api_v_1_sources_count] : %v", err)
-		}
-
-		req := onboard.NewGetOnboardAPIV1SourcesCountParams()
-
-		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
-
-		resp, err := client.Onboard.GetOnboardAPIV1SourcesCount(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_sources_count] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-onboard-api-v1-sources-count", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_onboard_api_v_1_sources_count] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostOnboardApiV1ConnectionsConnectionIdStateCmd = &cobra.Command{
-	Use:   "update-connection-state",
-	Short: `Enabling a single source either with connection ID.`,
-	Long:  `Enabling a single source either with connection ID.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_onboard_api_v_1_connections_connection_id_state] : %v", err)
-		}
-
-		req := onboard.NewPostOnboardAPIV1ConnectionsConnectionIDStateParams()
-
-		req.SetConnectionID(flags.ReadInt64Flag(cmd, "ConnectionID"))
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest{
-			State: models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState(flags.ReadStringFlag(cmd, "State")),
-		})
-
-		_, err = client.Onboard.PostOnboardAPIV1ConnectionsConnectionIDState(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_onboard_api_v_1_connections_connection_id_state] : %v", err)
 		}
 
 		return nil

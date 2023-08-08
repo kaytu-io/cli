@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount github com kaytu io kaytu engine pkg onboard api connector count
@@ -19,15 +20,20 @@ import (
 type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount struct {
 
 	// allow new connections
+	// Example: true
 	AllowNewConnections bool `json:"allowNewConnections,omitempty"`
 
 	// auto onboard support
+	// Example: false
 	AutoOnboardSupport bool `json:"autoOnboardSupport,omitempty"`
 
 	// connection count
-	ConnectionCount int64 `json:"connection_count,omitempty"`
+	// Example: 1024
+	// Minimum: 0
+	ConnectionCount *int64 `json:"connection_count,omitempty"`
 
 	// description
+	// Example: This is a long volume of words for just showing the case of the description for the demo and checking value purposes only and has no meaning whatsoever
 	Description string `json:"description,omitempty"`
 
 	// direction
@@ -38,19 +44,24 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount struct {
 	Label string `json:"label,omitempty"`
 
 	// logo
+	// Example: https://kaytu.io/logo.png
 	Logo string `json:"logo,omitempty"`
 
 	// max connection limit
-	MaxConnectionLimit int64 `json:"maxConnectionLimit,omitempty"`
+	// Example: 10000
+	// Minimum: 0
+	MaxConnectionLimit *int64 `json:"maxConnectionLimit,omitempty"`
 
 	// name
 	// Example: Azure
 	Name SourceType `json:"name,omitempty"`
 
 	// short description
+	// Example: This is a short Description for this connector
 	ShortDescription string `json:"shortDescription,omitempty"`
 
 	// status
+	// Example: enabled
 	Status SourceConnectorStatus `json:"status,omitempty"`
 
 	// tags
@@ -61,7 +72,15 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount struct {
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateConnectionCount(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDirection(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaxConnectionLimit(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -76,6 +95,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) Validate(format
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) validateConnectionCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConnectionCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("connection_count", "body", *m.ConnectionCount, 0, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -96,6 +127,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) validateDirecti
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) validateMaxConnectionLimit(formats strfmt.Registry) error {
+	if swag.IsZero(m.MaxConnectionLimit) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("maxConnectionLimit", "body", *m.MaxConnectionLimit, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) validateName(formats strfmt.Registry) error {
 	if swag.IsZero(m.Name) { // not required
 		return nil
@@ -107,15 +150,6 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) validateName(fo
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
-	}
-
-	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("status")
-		}
-		return err
 	}
 
 	return nil
@@ -167,19 +201,6 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) contextValidate
 }
 
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Status) { // not required
-		return nil
-	}
-
-	if err := m.Status.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("status")
-		}
-		return err
-	}
 
 	return nil
 }

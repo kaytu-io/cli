@@ -14,33 +14,26 @@ var SmartQueryCmd = &cobra.Command{
 
 func init() {
 
+	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryRunHistoryCmd)
+
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCmd)
-	GetInventoryApiV1QueryCmd.Flags().StringArray("labels", nil, "")
-	GetInventoryApiV1QueryCmd.Flags().String("provider-filter", "", "")
-	GetInventoryApiV1QueryCmd.MarkFlagRequired("provider-filter")
+	GetInventoryApiV1QueryCmd.Flags().String("connectors-filter", "", "")
 	GetInventoryApiV1QueryCmd.Flags().String("title-filter", "", "")
 	GetInventoryApiV1QueryCmd.MarkFlagRequired("title-filter")
 
-	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCountCmd)
-	GetInventoryApiV1QueryCountCmd.Flags().StringArray("labels", nil, "")
-	GetInventoryApiV1QueryCountCmd.Flags().String("provider-filter", "", "")
-	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("provider-filter")
-	GetInventoryApiV1QueryCountCmd.Flags().String("title-filter", "", "")
-	GetInventoryApiV1QueryCountCmd.MarkFlagRequired("title-filter")
+	SmartQueryCmd.AddCommand(PostInventoryApiV1QueryRunCmd)
+	PostInventoryApiV1QueryRunCmd.Flags().String("accept", "", "Accept header")
+	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("accept")
+	PostInventoryApiV1QueryRunCmd.Flags().Int64("page-no", 0, "")
+	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("page-no")
+	PostInventoryApiV1QueryRunCmd.Flags().Int64("page-size", 0, "")
+	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("page-size")
 
-	SmartQueryCmd.AddCommand(PostInventoryApiV1QueryQueryIdCmd)
-	PostInventoryApiV1QueryQueryIdCmd.Flags().String("accept", "", "Accept header")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("accept")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().String("query-id", "", "QueryID")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("query-id")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("page-no", 0, "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("page-no")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().Int64("page-size", 0, "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("page-size")
-
-	PostInventoryApiV1QueryQueryIdCmd.Flags().String("sorts-direction", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("sorts-direction")
-	PostInventoryApiV1QueryQueryIdCmd.Flags().String("sorts-field", "", "")
-	PostInventoryApiV1QueryQueryIdCmd.MarkFlagRequired("sorts-field")
+	PostInventoryApiV1QueryRunCmd.Flags().String("query", "", "")
+	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("query")
+	PostInventoryApiV1QueryRunCmd.Flags().String("sorts-direction", "", "")
+	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("sorts-direction")
+	PostInventoryApiV1QueryRunCmd.Flags().String("sorts-field", "", "")
+	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("sorts-field")
 
 }

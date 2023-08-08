@@ -119,6 +119,9 @@ const (
 
 	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyQueriesGitURL captures enum value "queries_git_url"
 	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyQueriesGitURL GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "queries_git_url"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAnalyticsGitURL captures enum value "analytics_git_url"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAnalyticsGitURL GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "analytics_git_url"
 )
 
 // for schema
@@ -126,7 +129,7 @@ var githubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey
-	if err := json.Unmarshal([]byte(`["workspace_ownership","workspace_id","workspace_name","workspace_plan","workspace_creation_time","workspace_date_time_format","workspace_debug_mode","workspace_time_window","asset_management_enabled","compliance_enabled","product_management_enabled","custom_idp","resource_limit","connection_limit","user_limit","allow_invite","workspace_key_support","workspace_max_keys","allowed_email_domains","auto_discovery_method","describe_job_interval","full_discovery_job_interval","health_check_job_interval","insight_job_interval","metrics_job_interval","data_retention_duration","aws_compliance_git_url","azure_compliance_git_url","insights_git_url","queries_git_url"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["workspace_ownership","workspace_id","workspace_name","workspace_plan","workspace_creation_time","workspace_date_time_format","workspace_debug_mode","workspace_time_window","asset_management_enabled","compliance_enabled","product_management_enabled","custom_idp","resource_limit","connection_limit","user_limit","allow_invite","workspace_key_support","workspace_max_keys","allowed_email_domains","auto_discovery_method","describe_job_interval","full_discovery_job_interval","health_check_job_interval","insight_job_interval","metrics_job_interval","data_retention_duration","aws_compliance_git_url","azure_compliance_git_url","insights_git_url","queries_git_url","analytics_git_url"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

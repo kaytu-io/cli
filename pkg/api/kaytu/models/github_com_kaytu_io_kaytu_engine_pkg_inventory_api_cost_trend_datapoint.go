@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPICostTrendDatapoint github com kaytu io kaytu engine pkg inventory api cost trend datapoint
@@ -18,14 +20,53 @@ import (
 type GithubComKaytuIoKaytuEnginePkgInventoryAPICostTrendDatapoint struct {
 
 	// count
-	Count float64 `json:"count,omitempty"`
+	// Minimum: 0
+	Count *float64 `json:"count,omitempty"`
 
 	// date
-	Date string `json:"date,omitempty"`
+	// Format: date-time
+	Date strfmt.DateTime `json:"date,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api cost trend datapoint
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostTrendDatapoint) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostTrendDatapoint) validateCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.Count) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("count", "body", *m.Count, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICostTrendDatapoint) validateDate(formats strfmt.Registry) error {
+	if swag.IsZero(m.Date) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("date", "body", "date-time", m.Date.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

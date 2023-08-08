@@ -80,6 +80,12 @@ type GetOnboardAPIV1ConnectionsSummaryParams struct {
 	*/
 	EndTime *int64
 
+	/* HealthState.
+
+	   health state filter
+	*/
+	HealthState *string
+
 	/* LifecycleState.
 
 	   lifecycle state filter
@@ -196,6 +202,17 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetEndTime(endTime *int64) {
 	o.EndTime = endTime
 }
 
+// WithHealthState adds the healthState to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithHealthState(healthState *string) *GetOnboardAPIV1ConnectionsSummaryParams {
+	o.SetHealthState(healthState)
+	return o
+}
+
+// SetHealthState adds the healthState to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetHealthState(healthState *string) {
+	o.HealthState = healthState
+}
+
 // WithLifecycleState adds the lifecycleState to the get onboard API v1 connections summary params
 func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithLifecycleState(lifecycleState *string) *GetOnboardAPIV1ConnectionsSummaryParams {
 	o.SetLifecycleState(lifecycleState)
@@ -293,6 +310,23 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.HealthState != nil {
+
+		// query param healthState
+		var qrHealthState string
+
+		if o.HealthState != nil {
+			qrHealthState = *o.HealthState
+		}
+		qHealthState := qrHealthState
+		if qHealthState != "" {
+
+			if err := r.SetQueryParam("healthState", qHealthState); err != nil {
 				return err
 			}
 		}

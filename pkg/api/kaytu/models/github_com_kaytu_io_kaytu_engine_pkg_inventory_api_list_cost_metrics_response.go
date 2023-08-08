@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse github com kaytu io kaytu engine pkg inventory api list cost metrics response
@@ -24,11 +25,13 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse struct {
 
 	// total cost
 	// Example: 1000
-	TotalCost float64 `json:"total_cost,omitempty"`
+	// Minimum: 0
+	TotalCost *float64 `json:"total_cost,omitempty"`
 
 	// total count
 	// Example: 10
-	TotalCount int64 `json:"total_count,omitempty"`
+	// Minimum: 0
+	TotalCount *int64 `json:"total_count,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api list cost metrics response
@@ -36,6 +39,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse) Vali
 	var res []error
 
 	if err := m.validateMetrics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,6 +77,30 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse) vali
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse) validateTotalCost(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCost) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("total_cost", "body", *m.TotalCost, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListCostMetricsResponse) validateTotalCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("total_count", "body", *m.TotalCount, 0, false); err != nil {
+		return err
 	}
 
 	return nil

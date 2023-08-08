@@ -13,38 +13,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var PostAuthApiV1KeyIdActivateCmd = &cobra.Command{
-	Use:   "activate-key",
-	Short: `Activates Workspace Key by ID`,
-	Long:  `Activates Workspace Key by ID`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyIDActivateParams()
-
-		req.SetID(flags.ReadStringFlag(cmd, "ID"))
-
-		resp, err := client.Keys.PostAuthAPIV1KeyIDActivate(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "post-auth-api-v1-key-id-activate", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_activate] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 	Use:   "create-key",
 	Short: `Creates workspace key for the defined role with the defined name in the workspace.`,
@@ -74,38 +42,6 @@ var PostAuthApiV1KeyCreateCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "post-auth-api-v1-key-create", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_auth_api_v_1_key_create] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetAuthApiV1KeyIdCmd = &cobra.Command{
-	Use:   "get-key",
-	Short: `Retrieves the details of a workspace key with specified ID.`,
-	Long:  `Retrieves the details of a workspace key with specified ID.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
-		}
-
-		req := keys.NewGetAuthAPIV1KeyIDParams()
-
-		req.SetID(flags.ReadStringFlag(cmd, "ID"))
-
-		resp, err := client.Keys.GetAuthAPIV1KeyID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-auth-api-v1-key-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_key_id] : %v", err)
 		}
 
 		return nil
@@ -163,73 +99,6 @@ var DeleteAuthApiV1KeyIdDeleteCmd = &cobra.Command{
 		_, err = client.Keys.DeleteAuthAPIV1KeyIDDelete(req, auth)
 		if err != nil {
 			return fmt.Errorf("[delete_auth_api_v_1_key_id_delete] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostAuthApiV1KeyIdSuspendCmd = &cobra.Command{
-	Use:   "suspend-key",
-	Short: `Suspends Workspace Key by ID`,
-	Long:  `Suspends Workspace Key by ID`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyIDSuspendParams()
-
-		req.SetID(flags.ReadStringFlag(cmd, "ID"))
-
-		resp, err := client.Keys.PostAuthAPIV1KeyIDSuspend(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "post-auth-api-v1-key-id-suspend", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_id_suspend] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostAuthApiV1KeyRoleCmd = &cobra.Command{
-	Use:   "update-key-role",
-	Short: `Updates the role of the specified key in workspace.`,
-	Long:  `Updates the role of the specified key in workspace.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
-		}
-
-		req := keys.NewPostAuthAPIV1KeyRoleParams()
-
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAuthAPIUpdateKeyRoleRequest{
-			ID:       flags.ReadInt64Flag(cmd, "ID"),
-			RoleName: models.GithubComKaytuIoKaytuEnginePkgAuthAPIRole(flags.ReadStringFlag(cmd, "RoleName")),
-		})
-
-		resp, err := client.Keys.PostAuthAPIV1KeyRole(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "post-auth-api-v1-key-role", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_auth_api_v_1_key_role] : %v", err)
 		}
 
 		return nil

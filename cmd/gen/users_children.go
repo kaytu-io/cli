@@ -13,33 +13,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var DeleteAuthApiV1UserInviteCmd = &cobra.Command{
-	Use:   "delete-user-invite",
-	Short: `Revokes user's access to the workspace.`,
-	Long:  `Revokes user's access to the workspace.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[delete_auth_api_v_1_user_invite] : %v", err)
-		}
-
-		req := users.NewDeleteAuthAPIV1UserInviteParams()
-
-		req.SetUserID(flags.ReadStringFlag(cmd, "UserID"))
-
-		_, err = client.Users.DeleteAuthAPIV1UserInvite(req, auth)
-		if err != nil {
-			return fmt.Errorf("[delete_auth_api_v_1_user_invite] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var DeleteAuthApiV1UserRoleBindingCmd = &cobra.Command{
 	Use:   "delete-user-role-binding",
 	Short: `Revokes a user's access to the workspace`,
@@ -153,38 +126,6 @@ var GetAuthApiV1UserRoleBindingsCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-auth-api-v1-user-role-bindings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_auth_api_v_1_user_role_bindings] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetAuthApiV1UserUserIdWorkspaceMembershipCmd = &cobra.Command{
-	Use:   "list-user-workspace-memberships",
-	Short: `Returns a list of workspaces that the specified user belongs to, along with their role in each workspace.`,
-	Long:  `Returns a list of workspaces that the specified user belongs to, along with their role in each workspace.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
-		}
-
-		req := users.NewGetAuthAPIV1UserUserIDWorkspaceMembershipParams()
-
-		req.SetUserID(flags.ReadStringFlag(cmd, "UserID"))
-
-		resp, err := client.Users.GetAuthAPIV1UserUserIDWorkspaceMembership(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-auth-api-v1-user-user-id-workspace-membership", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_auth_api_v_1_user_user_id_workspace_membership] : %v", err)
 		}
 
 		return nil

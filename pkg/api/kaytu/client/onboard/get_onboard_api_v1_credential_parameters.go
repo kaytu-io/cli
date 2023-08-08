@@ -71,10 +71,8 @@ type GetOnboardAPIV1CredentialParams struct {
 	/* CredentialType.
 
 	   filter by credential type
-
-	   Default: "manual"
 	*/
-	CredentialType *string
+	CredentialType []string
 
 	/* Health.
 
@@ -116,17 +114,14 @@ func (o *GetOnboardAPIV1CredentialParams) WithDefaults() *GetOnboardAPIV1Credent
 // All values with no default are reset to their zero value.
 func (o *GetOnboardAPIV1CredentialParams) SetDefaults() {
 	var (
-		credentialTypeDefault = string("manual")
-
 		pageNumberDefault = int64(1)
 
 		pageSizeDefault = int64(50)
 	)
 
 	val := GetOnboardAPIV1CredentialParams{
-		CredentialType: &credentialTypeDefault,
-		PageNumber:     &pageNumberDefault,
-		PageSize:       &pageSizeDefault,
+		PageNumber: &pageNumberDefault,
+		PageSize:   &pageSizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -180,13 +175,13 @@ func (o *GetOnboardAPIV1CredentialParams) SetConnector(connector *string) {
 }
 
 // WithCredentialType adds the credentialType to the get onboard API v1 credential params
-func (o *GetOnboardAPIV1CredentialParams) WithCredentialType(credentialType *string) *GetOnboardAPIV1CredentialParams {
+func (o *GetOnboardAPIV1CredentialParams) WithCredentialType(credentialType []string) *GetOnboardAPIV1CredentialParams {
 	o.SetCredentialType(credentialType)
 	return o
 }
 
 // SetCredentialType adds the credentialType to the get onboard API v1 credential params
-func (o *GetOnboardAPIV1CredentialParams) SetCredentialType(credentialType *string) {
+func (o *GetOnboardAPIV1CredentialParams) SetCredentialType(credentialType []string) {
 	o.CredentialType = credentialType
 }
 
@@ -250,18 +245,12 @@ func (o *GetOnboardAPIV1CredentialParams) WriteToRequest(r runtime.ClientRequest
 
 	if o.CredentialType != nil {
 
-		// query param credentialType
-		var qrCredentialType string
+		// binding items for credentialType
+		joinedCredentialType := o.bindParamCredentialType(reg)
 
-		if o.CredentialType != nil {
-			qrCredentialType = *o.CredentialType
-		}
-		qCredentialType := qrCredentialType
-		if qCredentialType != "" {
-
-			if err := r.SetQueryParam("credentialType", qCredentialType); err != nil {
-				return err
-			}
+		// query array param credentialType
+		if err := r.SetQueryParam("credentialType", joinedCredentialType...); err != nil {
+			return err
 		}
 	}
 
@@ -320,4 +309,21 @@ func (o *GetOnboardAPIV1CredentialParams) WriteToRequest(r runtime.ClientRequest
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetOnboardAPIV1Credential binds the parameter credentialType
+func (o *GetOnboardAPIV1CredentialParams) bindParamCredentialType(formats strfmt.Registry) []string {
+	credentialTypeIR := o.CredentialType
+
+	var credentialTypeIC []string
+	for _, credentialTypeIIR := range credentialTypeIR { // explode []string
+
+		credentialTypeIIV := credentialTypeIIR // string as string
+		credentialTypeIC = append(credentialTypeIC, credentialTypeIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	credentialTypeIS := swag.JoinByFormat(credentialTypeIC, "csv")
+
+	return credentialTypeIS
 }

@@ -7,9 +7,13 @@ import (
 
 func init() {
 	
+    rootCmd.AddCommand(gen.AnalyticsCmd)
+	
     rootCmd.AddCommand(gen.BenchmarksAssignmentCmd)
 	
     rootCmd.AddCommand(gen.ComplianceCmd)
+	
+    rootCmd.AddCommand(gen.ConnectionGroupsCmd)
 	
     rootCmd.AddCommand(gen.ConnectionsCmd)
 	
@@ -21,19 +25,11 @@ func init() {
 	
     rootCmd.AddCommand(gen.KeysCmd)
 	
-    rootCmd.AddCommand(gen.LocationCmd)
-	
     rootCmd.AddCommand(gen.MetadataCmd)
 	
     rootCmd.AddCommand(gen.OnboardCmd)
 	
     rootCmd.AddCommand(gen.ResourceCmd)
-	
-    rootCmd.AddCommand(gen.RolesCmd)
-	
-    rootCmd.AddCommand(gen.ScheduleCmd)
-	
-    rootCmd.AddCommand(gen.ServicesCmd)
 	
     rootCmd.AddCommand(gen.SmartQueryCmd)
 	
