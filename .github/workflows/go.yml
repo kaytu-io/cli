@@ -2,8 +2,6 @@ name: Build
 on:
   push:
     branches: [ "main" ]
-env:
-  HOMEBREW_CLI_TAP_FILE: ""
 
 jobs:
   build:
@@ -63,13 +61,18 @@ jobs:
       run: |
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
-        git tag -l | sort -V --reverse | sed -n 2p >> version.txt
 
-    - name: replace version && push changes
-      run: |    
-        curl https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb >> ${{ env.HOMEBREW_CLI_TAP_FILE }}
+    - name: replace version && push change
+      env:
+        Pre_Ver: ""
+        Homebrew_CLI_Tap_File: ""
+
+      run: |
+        git tag -l | sort -V --reverse | sed -n 2p >> &Pre_Ver
+
+        curl https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb >> &Homebrew_CLI_Tap_File
         
-        sed -i 's+${{ env.PRE_VER }}+${{ steps.tag_version.outputs.new_tag }}+g' version.txt
+        sed -i 's+&Pre_Ver+${{ steps.tag_version.outputs.new_tag }}+g' &Homebrew_CLI_Tap_File
         
         git add version.txt
         git commit -m "update version "
