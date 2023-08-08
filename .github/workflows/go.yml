@@ -67,8 +67,10 @@ jobs:
 
     - name: replace version && push change
       run: |
-        rm 
+        rm ./tmp/preVersion.txt; touch ./tmp/preVersion.txt    
+        
         git tag -l | sort -V --reverse | sed -n 2p >> ./tmp/preVersion.txt        
+        
         sed -i 's+./tmp/preVersion.txt+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/homebrewCliTap.txt >> ./tmp/homebrewCliTap.txt
         
         git add ./tmp/homebrewCliTap.txt
