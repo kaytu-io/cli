@@ -2,9 +2,6 @@ name: Build
 on:
   push:
     branches: [ "main" ]
-    env:
-      Pre_Ver: ""
-      Homebrew_CLI_Tap_File: ""
 
 jobs:
   build:
