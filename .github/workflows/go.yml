@@ -73,7 +73,7 @@ jobs:
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
         
         git add ./tmp/HomebrewCliTap.txt
-        git commit -m "update version "
+        git commit -a -m "update version "
 
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.6.0
