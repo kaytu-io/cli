@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3.5.2
+      with:
+        fetch-depth: 0
 
     - name: Set up Go
       uses: actions/setup-go@v3
@@ -61,11 +63,14 @@ jobs:
       run: |
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
+    - name: Get Latest Tag
+      uses: WyriHaximus/github-action-get-previous-tag@v1
+      id: previousTag
 
     - name: replace version && push change
       run: |
         
-        sed -i 's+ $(git tag -l | sort -V --reverse | sed -n 2p)+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
+        sed -i 's+ ${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
         
         git add ./tmp/HomebrewCliTap.txt
         git commit -m "update version "
