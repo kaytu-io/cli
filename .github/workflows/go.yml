@@ -73,15 +73,8 @@ jobs:
         
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
         
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
+        git pull origin main
         git add ./tmp/HomebrewCliTap.txt
         git commit -a -m "update version "
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         git push origin ${{ github.ref }}
-
-#    - name: GitHub Push
-#      uses: ad-m/github-push-action@v0.6.0
-#      with:
-#        github_token: ${{ secrets.GITHUBCI_TOKEN }}
-#        repository: kaytu-io/homebrew-cli-tap
-#        branch: main
-#        force: true
