@@ -70,7 +70,7 @@ jobs:
     - name: replace version && push change
       run: |
         
-        sed -i 's+ ${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
+        sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
         
         git add ./tmp/HomebrewCliTap.txt
         git commit -m "update version "
