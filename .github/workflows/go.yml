@@ -75,7 +75,7 @@ jobs:
         
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         git config pull.rebase false
-        git pull origin main
+        git pull origin main --allow-unrelated-histories
         git add ./tmp/HomebrewCliTap.txt
         git commit -a -m "update version "
         git push origin ${{ github.ref }}
