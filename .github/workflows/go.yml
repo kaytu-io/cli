@@ -71,8 +71,8 @@ jobs:
         match: v*
 
     - name: replace version && push changes
-      run: |
-        grep -rl  ${{ steps.previousTag.outputs.previous-tag }} ${{ env.HOMEBREW_CLI_TAP_FILE }} | xargs sed -i 's/${{ steps.previousTag.outputs.previous-tag }}/${{ steps.tag_version.outputs.new_tag }}/g'    
+      run: |    
+        sed -i 's/${{ steps.previousTag.outputs.previous-tag }}/${{ steps.tag_version.outputs.new_tag }}/g' ${{ env.HOMEBREW_CLI_TAP_FILE }}
         git add ${{ env.HOMEBREW_CLI_TAP_FILE }}
         git commit -m "update version "
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
