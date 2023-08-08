@@ -68,13 +68,13 @@ jobs:
         Homebrew_CLI_Tap_File: ""
 
       run: |
-        git tag -l | sort -V --reverse | sed -n 2p >> &Pre_Ver
+        git tag -l | sort -V --reverse | sed -n 2p >> $Pre_Ver
 
-        curl https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb >> &Homebrew_CLI_Tap_File
+        curl https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb >> $Homebrew_CLI_Tap_File
         
-        sed -i 's+${{env.Pre_Ver}}+${{ steps.tag_version.outputs.new_tag }}+g' ${{env.Homebrew_CLI_Tap_File}}s
+        sed -i 's+$Pre_Ver+${{ steps.tag_version.outputs.new_tag }}+g' $Homebrew_CLI_Tap_File
         
-        git add version.txt
+        git add $Homebrew_CLI_Tap_File
         git commit -m "update version "
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         git push
