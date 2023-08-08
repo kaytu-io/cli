@@ -3,7 +3,7 @@ on:
   push:
     branches: [ "main" ]
 env:
-  HOMEBREW_CLI_TAP_FILE: https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb
+  HOMEBREW_CLI_TAP_FILE: ""
 
 jobs:
   build:
@@ -59,25 +59,19 @@ jobs:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: stable
 
-    - name: cURL AxiosJS
-      uses: indiesdev/curl@v1.1
-      id: homebrewText
-      with:
-        url: ${{ env.HOMEBREW_CLI_TAP_FILE }}
-
-    - name: Set git identity
+    - name: Set git identity && get previousTag
       run: |
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
-
-    - name: Get previous tag
-      uses: younited/get-previous-tag-action@v1.1.0
-      id : previousTag
+        git tag -l | sort -V --reverse | sed -n 2p >> version.txt
 
     - name: replace version && push changes
       run: |    
-        sed -i 's/${{ steps.previousTag.outputs.previous-tag }}/${{ steps.tag_version.outputs.new_tag }}/g' ${{ steps.homebrewText.outputs.response.data }}
-        git add ${{ steps.homebrewText.outputs.response.data }}
+        curl https://raw.githubusercontent.com/kaytu-io/homebrew-cli-tap/main/kaytu.rb >> ${{ env.HOMEBREW_CLI_TAP_FILE }}
+        
+        sed -i 's+${{ env.PRE_VER }}+${{ steps.tag_version.outputs.new_tag }}+g' version.txt
+        
+        git add version.txt
         git commit -m "update version "
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         git push
