@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection github com kaytu io kaytu engine pkg onboard api connection
@@ -28,7 +29,12 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// cost
 	// Example: 1000
-	Cost float64 `json:"cost,omitempty"`
+	// Maximum: 1e+07
+	// Minimum: 0
+	Cost *float64 `json:"cost,omitempty"`
+
+	// credential
+	Credential *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential `json:"credential,omitempty"`
 
 	// credential ID
 	// Example: 7r6123ac-ca1c-434f-b1a3-91w2w9d277c8
@@ -37,13 +43,21 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 	// credential name
 	CredentialName string `json:"credentialName,omitempty"`
 
+	// credential type
+	// Example: manual
+	CredentialType GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType `json:"credentialType,omitempty"`
+
 	// daily cost at end time
 	// Example: 1000
-	DailyCostAtEndTime float64 `json:"dailyCostAtEndTime,omitempty"`
+	// Maximum: 1e+07
+	// Minimum: 0
+	DailyCostAtEndTime *float64 `json:"dailyCostAtEndTime,omitempty"`
 
 	// daily cost at start time
 	// Example: 1000
-	DailyCostAtStartTime float64 `json:"dailyCostAtStartTime,omitempty"`
+	// Maximum: 1e+07
+	// Minimum: 0
+	DailyCostAtStartTime *float64 `json:"dailyCostAtStartTime,omitempty"`
 
 	// description
 	// Example: This is an example connection
@@ -55,6 +69,10 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// health reason
 	HealthReason string `json:"healthReason,omitempty"`
+
+	// health state
+	// Example: healthy
+	HealthState SourceHealthStatus `json:"healthState,omitempty"`
 
 	// id
 	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
@@ -77,7 +95,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// old resource count
 	// Example: 100
-	OldResourceCount int64 `json:"oldResourceCount,omitempty"`
+	// Maximum: 1e+06
+	// Minimum: 0
+	OldResourceCount *int64 `json:"oldResourceCount,omitempty"`
 
 	// onboard date
 	// Example: 2023-05-07T00:00:00Z
@@ -93,7 +113,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// resource count
 	// Example: 100
-	ResourceCount int64 `json:"resourceCount,omitempty"`
+	// Maximum: 1e+06
+	// Minimum: 0
+	ResourceCount *int64 `json:"resourceCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api connection
@@ -108,7 +130,39 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) Validate(formats st
 		res = append(res, err)
 	}
 
+	if err := m.validateCost(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCredential(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCredentialType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDailyCostAtEndTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDailyCostAtStartTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHealthState(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLifecycleState(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOldResourceCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResourceCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -134,9 +188,124 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateConnector(f
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateCost(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cost) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("cost", "body", *m.Cost, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.Maximum("cost", "body", *m.Cost, 1e+07, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateCredential(formats strfmt.Registry) error {
+	if swag.IsZero(m.Credential) { // not required
+		return nil
+	}
+
+	if m.Credential != nil {
+		if err := m.Credential.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credential")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credential")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateCredentialType(formats strfmt.Registry) error {
+	if swag.IsZero(m.CredentialType) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateDailyCostAtEndTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.DailyCostAtEndTime) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("dailyCostAtEndTime", "body", *m.DailyCostAtEndTime, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.Maximum("dailyCostAtEndTime", "body", *m.DailyCostAtEndTime, 1e+07, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateDailyCostAtStartTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.DailyCostAtStartTime) { // not required
+		return nil
+	}
+
+	if err := validate.Minimum("dailyCostAtStartTime", "body", *m.DailyCostAtStartTime, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.Maximum("dailyCostAtStartTime", "body", *m.DailyCostAtStartTime, 1e+07, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateHealthState(formats strfmt.Registry) error {
+	if swag.IsZero(m.HealthState) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateLifecycleState(formats strfmt.Registry) error {
 	if swag.IsZero(m.LifecycleState) { // not required
 		return nil
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateOldResourceCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.OldResourceCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("oldResourceCount", "body", *m.OldResourceCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("oldResourceCount", "body", *m.OldResourceCount, 1e+06, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) validateResourceCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("resourceCount", "body", *m.ResourceCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("resourceCount", "body", *m.ResourceCount, 1e+06, false); err != nil {
+		return err
 	}
 
 	return nil
@@ -151,6 +320,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) ContextValidate(ctx
 	}
 
 	if err := m.contextValidateConnector(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCredential(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCredentialType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHealthState(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -170,6 +351,37 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) contextValidateAsse
 }
 
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) contextValidateCredential(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Credential != nil {
+
+		if swag.IsZero(m.Credential) { // not required
+			return nil
+		}
+
+		if err := m.Credential.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credential")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credential")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) contextValidateCredentialType(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection) contextValidateHealthState(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

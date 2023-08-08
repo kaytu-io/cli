@@ -30,6 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	DeleteWorkspaceAPIV1OrganizationOrganizationID(params *DeleteWorkspaceAPIV1OrganizationOrganizationIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1OrganizationOrganizationIDAccepted, error)
+
 	DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
 
 	GetWorkspaceAPIV1WorkspaceCurrent(params *GetWorkspaceAPIV1WorkspaceCurrentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceCurrentOK, error)
@@ -43,6 +45,8 @@ type ClientService interface {
 	GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error)
 
 	GetWorkspaceAPIV1WorkspacesWorkspaceID(params *GetWorkspaceAPIV1WorkspacesWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesWorkspaceIDOK, error)
+
+	PostWorkspaceAPIV1Organization(params *PostWorkspaceAPIV1OrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1OrganizationCreated, error)
 
 	PostWorkspaceAPIV1Workspace(params *PostWorkspaceAPIV1WorkspaceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceOK, error)
 
@@ -59,6 +63,45 @@ type ClientService interface {
 	PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDTierOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+DeleteWorkspaceAPIV1OrganizationOrganizationID creates an organization
+*/
+func (a *Client) DeleteWorkspaceAPIV1OrganizationOrganizationID(params *DeleteWorkspaceAPIV1OrganizationOrganizationIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1OrganizationOrganizationIDAccepted, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteWorkspaceAPIV1OrganizationOrganizationIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteWorkspaceAPIV1OrganizationOrganizationID",
+		Method:             "DELETE",
+		PathPattern:        "/workspace/api/v1/organization/{organizationId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteWorkspaceAPIV1OrganizationOrganizationIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteWorkspaceAPIV1OrganizationOrganizationIDAccepted)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteWorkspaceAPIV1OrganizationOrganizationID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -339,6 +382,45 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesWorkspaceID(params *GetWorkspaceAPIV
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspacesWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostWorkspaceAPIV1Organization creates an organization
+*/
+func (a *Client) PostWorkspaceAPIV1Organization(params *PostWorkspaceAPIV1OrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1OrganizationCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostWorkspaceAPIV1OrganizationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostWorkspaceAPIV1Organization",
+		Method:             "POST",
+		PathPattern:        "/workspace/api/v1/organization",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostWorkspaceAPIV1OrganizationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostWorkspaceAPIV1OrganizationCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostWorkspaceAPIV1Organization: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

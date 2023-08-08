@@ -30,15 +30,11 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAuthAPIV1UserInvite(params *DeleteAuthAPIV1UserInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthAPIV1UserInviteOK, error)
-
 	DeleteAuthAPIV1UserRoleBinding(params *DeleteAuthAPIV1UserRoleBindingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthAPIV1UserRoleBindingOK, error)
 
 	GetAuthAPIV1UserRoleBindings(params *GetAuthAPIV1UserRoleBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserRoleBindingsOK, error)
 
 	GetAuthAPIV1UserUserID(params *GetAuthAPIV1UserUserIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserUserIDOK, error)
-
-	GetAuthAPIV1UserUserIDWorkspaceMembership(params *GetAuthAPIV1UserUserIDWorkspaceMembershipParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserUserIDWorkspaceMembershipOK, error)
 
 	GetAuthAPIV1Users(params *GetAuthAPIV1UsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UsersOK, error)
 
@@ -49,47 +45,6 @@ type ClientService interface {
 	PutAuthAPIV1UserRoleBinding(params *PutAuthAPIV1UserRoleBindingParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAuthAPIV1UserRoleBindingOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-DeleteAuthAPIV1UserInvite revokes invitation
-
-Revokes user's access to the workspace.
-*/
-func (a *Client) DeleteAuthAPIV1UserInvite(params *DeleteAuthAPIV1UserInviteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthAPIV1UserInviteOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteAuthAPIV1UserInviteParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "DeleteAuthAPIV1UserInvite",
-		Method:             "DELETE",
-		PathPattern:        "/auth/api/v1/user/invite",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteAuthAPIV1UserInviteReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DeleteAuthAPIV1UserInviteOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteAuthAPIV1UserInvite: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
 }
 
 /*
@@ -212,47 +167,6 @@ func (a *Client) GetAuthAPIV1UserUserID(params *GetAuthAPIV1UserUserIDParams, au
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetAuthAPIV1UserUserID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetAuthAPIV1UserUserIDWorkspaceMembership users workspaces
-
-Returns a list of workspaces that the specified user belongs to, along with their role in each workspace.
-*/
-func (a *Client) GetAuthAPIV1UserUserIDWorkspaceMembership(params *GetAuthAPIV1UserUserIDWorkspaceMembershipParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1UserUserIDWorkspaceMembershipOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetAuthAPIV1UserUserIDWorkspaceMembershipParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetAuthAPIV1UserUserIDWorkspaceMembership",
-		Method:             "GET",
-		PathPattern:        "/auth/api/v1/user/{userId}/workspace/membership",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetAuthAPIV1UserUserIDWorkspaceMembershipReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetAuthAPIV1UserUserIDWorkspaceMembershipOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetAuthAPIV1UserUserIDWorkspaceMembership: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

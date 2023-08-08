@@ -19,33 +19,42 @@ import (
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse struct {
 
 	// created at
+	// Example: 2023-05-17T14:39:02.707659Z
 	CreatedAt string `json:"createdAt,omitempty"`
 
 	// description
+	// Example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	Description string `json:"description,omitempty"`
 
 	// id
+	// Example: ws-698542025141040315
 	ID string `json:"id,omitempty"`
 
 	// name
+	// Example: kaytu
 	Name string `json:"name,omitempty"`
 
 	// organization
-	Organization *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIOrganizationResponse `json:"organization,omitempty"`
+	Organization *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIOrganization `json:"organization,omitempty"`
 
 	// owner Id
+	// Example: google-oauth2|204590896945502695694
 	OwnerID string `json:"ownerId,omitempty"`
 
 	// status
-	Status string `json:"status,omitempty"`
+	// Example: PROVISIONED
+	Status GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus `json:"status,omitempty"`
 
 	// tier
-	Tier string `json:"tier,omitempty"`
+	// Example: ENTERPRISE
+	Tier GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier `json:"tier,omitempty"`
 
 	// uri
+	// Example: https://app.kaytu.dev/kaytu
 	URI string `json:"uri,omitempty"`
 
 	// version
+	// Example: v0.45.4
 	Version string `json:"version,omitempty"`
 }
 
@@ -54,6 +63,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) Validate(f
 	var res []error
 
 	if err := m.validateOrganization(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTier(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,11 +99,35 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) validateOr
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) validateTier(formats strfmt.Registry) error {
+	if swag.IsZero(m.Tier) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 // ContextValidate validate this github com kaytu io kaytu engine pkg workspace api workspace response based on the context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTier(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -113,6 +154,16 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) contextVal
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) contextValidateTier(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

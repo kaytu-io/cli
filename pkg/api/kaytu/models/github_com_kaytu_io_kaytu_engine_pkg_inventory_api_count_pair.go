@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPICountPair github com kaytu io kaytu engine pkg inventory api count pair
@@ -18,14 +20,53 @@ import (
 type GithubComKaytuIoKaytuEnginePkgInventoryAPICountPair struct {
 
 	// count
-	Count int64 `json:"count,omitempty"`
+	// Minimum: 0
+	Count *int64 `json:"count,omitempty"`
 
 	// old count
-	OldCount int64 `json:"old_count,omitempty"`
+	// Minimum: 0
+	OldCount *int64 `json:"old_count,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api count pair
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICountPair) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOldCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICountPair) validateCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.Count) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("count", "body", *m.Count, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPICountPair) validateOldCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.OldCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("old_count", "body", *m.OldCount, 0, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 

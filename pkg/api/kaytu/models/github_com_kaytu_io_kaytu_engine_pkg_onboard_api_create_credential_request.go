@@ -21,9 +21,6 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest struct {
 	// config
 	Config interface{} `json:"config,omitempty"`
 
-	// name
-	Name string `json:"name,omitempty"`
-
 	// source type
 	// Example: Azure
 	SourceType SourceType `json:"source_type,omitempty"`

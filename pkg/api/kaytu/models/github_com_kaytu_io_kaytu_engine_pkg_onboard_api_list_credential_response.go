@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse github com kaytu io kaytu engine pkg onboard api list credential response
@@ -23,7 +24,10 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse struct {
 	Credentials []*GithubComKaytuIoKaytuEnginePkgOnboardAPICredential `json:"credentials"`
 
 	// total credential count
-	TotalCredentialCount int64 `json:"totalCredentialCount,omitempty"`
+	// Example: 5
+	// Maximum: 20
+	// Minimum: 0
+	TotalCredentialCount *int64 `json:"totalCredentialCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api list credential response
@@ -31,6 +35,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse) Validat
 	var res []error
 
 	if err := m.validateCredentials(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCredentialCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,6 +69,22 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse) validat
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListCredentialResponse) validateTotalCredentialCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCredentialCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalCredentialCount", "body", *m.TotalCredentialCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalCredentialCount", "body", *m.TotalCredentialCount, 20, false); err != nil {
+		return err
 	}
 
 	return nil

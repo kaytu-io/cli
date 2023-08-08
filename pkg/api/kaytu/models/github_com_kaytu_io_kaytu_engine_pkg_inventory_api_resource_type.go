@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType github com kaytu io kaytu engine pkg inventory api resource type
@@ -25,7 +26,8 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType struct {
 	Compliance []string `json:"compliance"`
 
 	// Number of Compliance that use this Resource Type - Metadata
-	ComplianceCount int64 `json:"compliance_count,omitempty"`
+	// Minimum: 0
+	ComplianceCount *int64 `json:"compliance_count,omitempty"`
 
 	// Cloud Provider
 	// Example: Azure
@@ -33,20 +35,24 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType struct {
 
 	// Number of Resources of this Resource Type - Metric
 	// Example: 100
-	Count int64 `json:"count,omitempty"`
+	// Minimum: 0
+	Count *int64 `json:"count,omitempty"`
 
 	// List of Insights that support this Resource Type - Metadata (GET only)
 	Insights []int64 `json:"insights"`
 
 	// Number of Insights that use this Resource Type - Metadata
-	InsightsCount int64 `json:"insights_count,omitempty"`
+	// Minimum: 0
+	InsightsCount *int64 `json:"insights_count,omitempty"`
 
 	// Logo URI
+	// Example: https://kaytu.io/logo.png
 	LogoURI string `json:"logo_uri,omitempty"`
 
 	// Number of Resources of this Resource Type in the past - Metric
 	// Example: 90
-	OldCount int64 `json:"old_count,omitempty"`
+	// Minimum: 0
+	OldCount *int64 `json:"old_count,omitempty"`
 
 	// Resource Name
 	// Example: VM
@@ -61,14 +67,31 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType struct {
 	ServiceName string `json:"service_name,omitempty"`
 
 	// Tags
-	Tags map[string][]string `json:"tags,omitempty"`
+	// Example: ["category:[Data and Analytics","Database","Integration","Management Governance","Storage]"]
+	Tags []string `json:"tags"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api resource type
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateComplianceCount(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConnector(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInsightsCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOldCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,9 +101,57 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) Validate(format
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) validateComplianceCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.ComplianceCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("compliance_count", "body", *m.ComplianceCount, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) validateConnector(formats strfmt.Registry) error {
 	if swag.IsZero(m.Connector) { // not required
 		return nil
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) validateCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.Count) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("count", "body", *m.Count, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) validateInsightsCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.InsightsCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("insights_count", "body", *m.InsightsCount, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType) validateOldCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.OldCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("old_count", "body", *m.OldCount, 0, false); err != nil {
+		return err
 	}
 
 	return nil

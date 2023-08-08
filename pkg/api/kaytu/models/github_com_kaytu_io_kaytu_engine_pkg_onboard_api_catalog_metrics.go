@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics github com kaytu io kaytu engine pkg onboard api catalog metrics
@@ -19,23 +21,96 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics struct {
 
 	// connections enabled
 	// Example: 20
-	ConnectionsEnabled int64 `json:"connectionsEnabled,omitempty"`
+	// Minimum: 0
+	ConnectionsEnabled *int64 `json:"connectionsEnabled,omitempty"`
 
 	// healthy connections
 	// Example: 15
-	HealthyConnections int64 `json:"healthyConnections,omitempty"`
+	// Minimum: 0
+	HealthyConnections *int64 `json:"healthyConnections,omitempty"`
 
 	// total connections
 	// Example: 20
-	TotalConnections int64 `json:"totalConnections,omitempty"`
+	// Minimum: 0
+	TotalConnections *int64 `json:"totalConnections,omitempty"`
 
 	// unhealthy connections
 	// Example: 5
-	UnhealthyConnections int64 `json:"unhealthyConnections,omitempty"`
+	// Minimum: 0
+	UnhealthyConnections *int64 `json:"unhealthyConnections,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api catalog metrics
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateConnectionsEnabled(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHealthyConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUnhealthyConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) validateConnectionsEnabled(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConnectionsEnabled) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("connectionsEnabled", "body", *m.ConnectionsEnabled, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) validateHealthyConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.HealthyConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("healthyConnections", "body", *m.HealthyConnections, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) validateTotalConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalConnections", "body", *m.TotalConnections, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) validateUnhealthyConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.UnhealthyConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("unhealthyConnections", "body", *m.UnhealthyConnections, 0, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 

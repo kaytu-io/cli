@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "embed"
+	"fmt"
 	"github.com/iancoleman/strcase"
 	"github.com/kaytu-io/cli-program/gen/crud"
 	"github.com/kaytu-io/cli-program/gen/services"
@@ -29,6 +30,7 @@ func main() {
 	os.Mkdir(root+"/cmd/gen", os.ModePerm)
 
 	crudGen := crud.Generator{}
+	var miss bool
 	err = filepath.Walk(root+"/pkg/api/kaytu/client", func(path string, info fs.FileInfo, err error) error {
 		if info == nil || !info.IsDir() || strings.HasSuffix(path, "/kaytu/client") {
 			return nil
@@ -44,6 +46,11 @@ func main() {
 
 		err = serviceGen.ExtractChildren(root, path)
 		if err != nil {
+			if strings.Contains(err.Error(), "url name not found for cmd:") {
+				miss = true
+				fmt.Println(err.Error())
+				return nil
+			}
 			return err
 		}
 
@@ -57,6 +64,9 @@ func main() {
 	})
 	if err != nil {
 		panic(err)
+	}
+	if miss {
+		panic("miss some services")
 	}
 
 	err = crudGen.Generate(root)

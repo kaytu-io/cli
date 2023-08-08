@@ -13,8 +13,38 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var GetInventoryApiV1QueryRunHistoryCmd = &cobra.Command{
+	Use:   "get-query-run-history",
+	Short: `Get recently ran queries.`,
+	Long:  `Get recently ran queries.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_1_query_run_history] : %v", err)
+		}
+
+		req := smart_query.NewGetInventoryAPIV1QueryRunHistoryParams()
+
+		resp, err := client.SmartQuery.GetInventoryAPIV1QueryRunHistory(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_query_run_history] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-query-run-history", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_1_query_run_history] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV1QueryCmd = &cobra.Command{
-	Use:   "get-queries",
+	Use:   "list-queries",
 	Short: `Listing smart queries by specified filters`,
 	Long:  `Listing smart queries by specified filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -30,9 +60,8 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 		req := smart_query.NewGetInventoryAPIV1QueryParams()
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
-			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.SourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
-			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
+			ConnectorsFilter: flags.ReadEnumArrayFlag[models.SourceType](cmd, "ConnectorsFilter"),
+			TitleFilter:      flags.ReadStringFlag(cmd, "TitleFilter"),
 		})
 
 		resp, err := client.SmartQuery.GetInventoryAPIV1Query(req, auth)
@@ -49,10 +78,10 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 	},
 }
 
-var GetInventoryApiV1QueryCountCmd = &cobra.Command{
-	Use:   "get-queries-count",
-	Short: `Counting smart queries`,
-	Long:  `Counting smart queries`,
+var PostInventoryApiV1QueryRunCmd = &cobra.Command{
+	Use:   "run-query",
+	Short: `Run provided smart query and returns the result.`,
+	Long:  `Run provided smart query and returns the result.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -60,56 +89,18 @@ var GetInventoryApiV1QueryCountCmd = &cobra.Command{
 				fmt.Println(err.Error())
 				return nil
 			}
-			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
+			return fmt.Errorf("[post_inventory_api_v_1_query_run] : %v", err)
 		}
 
-		req := smart_query.NewGetInventoryAPIV1QueryCountParams()
-
-		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
-			Labels:         flags.ReadStringArrayFlag(cmd, "Labels"),
-			ProviderFilter: models.SourceType(flags.ReadStringFlag(cmd, "ProviderFilter")),
-			TitleFilter:    flags.ReadStringFlag(cmd, "TitleFilter"),
-		})
-
-		resp, err := client.SmartQuery.GetInventoryAPIV1QueryCount(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-inventory-api-v1-query-count", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_1_query_count] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var PostInventoryApiV1QueryQueryIdCmd = &cobra.Command{
-	Use:   "get-query",
-	Short: `Run a specific smart query.`,
-	Long: `Run a specific smart query.
-In order to get the results in CSV format, Accepts header must be filled with 'text/csv' value.
-Note that csv output doesn't process pagination and returns first 5000 records.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
-		}
-
-		req := smart_query.NewPostInventoryAPIV1QueryQueryIDParams()
+		req := smart_query.NewPostInventoryAPIV1QueryRunParams()
 
 		req.SetAccept(flags.ReadStringFlag(cmd, "Accept"))
-		req.SetQueryID(flags.ReadStringFlag(cmd, "QueryID"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest{
 			Page: &models.GithubComKaytuIoKaytuEnginePkgInventoryAPIPage{
 				No:   flags.ReadInt64Flag(cmd, "Page-No"),
 				Size: flags.ReadInt64Flag(cmd, "Page-Size"),
 			},
+			Query: flags.ReadStringFlag(cmd, "Query"),
 			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQuerySortItem{
 				{
 					Direction: models.GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
@@ -118,14 +109,14 @@ Note that csv output doesn't process pagination and returns first 5000 records.`
 			},
 		})
 
-		resp, err := client.SmartQuery.PostInventoryAPIV1QueryQueryID(req, auth)
+		resp, err := client.SmartQuery.PostInventoryAPIV1QueryRun(req, auth)
 		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
+			return fmt.Errorf("[post_inventory_api_v_1_query_run] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, "post-inventory-api-v1-query-query-id", resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "post-inventory-api-v1-query-run", resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[post_inventory_api_v_1_query_query_id] : %v", err)
+			return fmt.Errorf("[post_inventory_api_v_1_query_run] : %v", err)
 		}
 
 		return nil

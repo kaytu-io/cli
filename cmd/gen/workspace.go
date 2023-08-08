@@ -14,6 +14,28 @@ var WorkspaceCmd = &cobra.Command{
 
 func init() {
 
+	WorkspaceCmd.AddCommand(PostWorkspaceApiV1OrganizationCmd)
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("address", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("address")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("city", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("city")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("company-name", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("company-name")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("contact-email", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("contact-email")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("contact-name", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("contact-name")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("contact-phone", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("contact-phone")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("country", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("country")
+	PostWorkspaceApiV1OrganizationCmd.Flags().Int64("id", 0, "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("id")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("state", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("state")
+	PostWorkspaceApiV1OrganizationCmd.Flags().String("url", "", "")
+	PostWorkspaceApiV1OrganizationCmd.MarkFlagRequired("url")
+
 	WorkspaceCmd.AddCommand(PostWorkspaceApiV1WorkspaceCmd)
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("description", "", "")
 	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("description")
@@ -21,6 +43,10 @@ func init() {
 	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("name")
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("tier", "", "")
 	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("tier")
+
+	WorkspaceCmd.AddCommand(DeleteWorkspaceApiV1OrganizationOrganizationIdCmd)
+	DeleteWorkspaceApiV1OrganizationOrganizationIdCmd.Flags().Int64("organization-id", 0, "Organization ID")
+	DeleteWorkspaceApiV1OrganizationOrganizationIdCmd.MarkFlagRequired("organization-id")
 
 	WorkspaceCmd.AddCommand(DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd)
 	DeleteWorkspaceApiV1WorkspaceWorkspaceIdCmd.Flags().String("workspace-id", "", "Workspace ID")
@@ -36,14 +62,14 @@ func init() {
 	GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd.Flags().String("workspace-id", "", "Workspace ID")
 	GetWorkspaceApiV1WorkspacesByidWorkspaceIdCmd.MarkFlagRequired("workspace-id")
 
+	WorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd)
+	GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd.Flags().String("workspace-id", "", "Workspace ID")
+	GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd.MarkFlagRequired("workspace-id")
+
 	WorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd)
 	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.Flags().Bool("ignore-usage", false, "Ignore usage")
 	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.Flags().String("workspace-name", "", "Workspace Name")
 	GetWorkspaceApiV1WorkspacesLimitsWorkspaceNameCmd.MarkFlagRequired("workspace-name")
-
-	WorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd)
-	GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd.Flags().String("workspace-id", "", "Workspace ID")
-	GetWorkspaceApiV1WorkspacesLimitsByidWorkspaceIdCmd.MarkFlagRequired("workspace-id")
 
 	WorkspaceCmd.AddCommand(GetWorkspaceApiV1WorkspacesCmd)
 

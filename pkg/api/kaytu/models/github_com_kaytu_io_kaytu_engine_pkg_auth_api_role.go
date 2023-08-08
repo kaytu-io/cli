@@ -30,6 +30,9 @@ func (m GithubComKaytuIoKaytuEnginePkgAuthAPIRole) Pointer() *GithubComKaytuIoKa
 
 const (
 
+	// GithubComKaytuIoKaytuEnginePkgAuthAPIRoleInternal captures enum value "internal"
+	GithubComKaytuIoKaytuEnginePkgAuthAPIRoleInternal GithubComKaytuIoKaytuEnginePkgAuthAPIRole = "internal"
+
 	// GithubComKaytuIoKaytuEnginePkgAuthAPIRoleAdmin captures enum value "admin"
 	GithubComKaytuIoKaytuEnginePkgAuthAPIRoleAdmin GithubComKaytuIoKaytuEnginePkgAuthAPIRole = "admin"
 
@@ -45,7 +48,7 @@ var githubComKaytuIoKaytuEnginePkgAuthApiRoleEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	if err := json.Unmarshal([]byte(`["admin","editor","viewer"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["internal","admin","editor","viewer"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

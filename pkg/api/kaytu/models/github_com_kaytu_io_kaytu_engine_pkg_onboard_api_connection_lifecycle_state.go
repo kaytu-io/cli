@@ -30,17 +30,17 @@ func (m GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState) Pointe
 
 const (
 
-	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateNOTONBOARD captures enum value "NOT_ONBOARD"
-	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateNOTONBOARD GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "NOT_ONBOARD"
-
-	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateINPROGRESS captures enum value "IN_PROGRESS"
-	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateINPROGRESS GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "IN_PROGRESS"
-
 	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateONBOARD captures enum value "ONBOARD"
 	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateONBOARD GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "ONBOARD"
 
-	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateUNHEALTHY captures enum value "UNHEALTHY"
-	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateUNHEALTHY GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "UNHEALTHY"
+	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateDISABLED captures enum value "DISABLED"
+	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateDISABLED GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "DISABLED"
+
+	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateDISCOVERED captures enum value "DISCOVERED"
+	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateDISCOVERED GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "DISCOVERED"
+
+	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateINPROGRESS captures enum value "IN_PROGRESS"
+	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateINPROGRESS GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "IN_PROGRESS"
 
 	// GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateARCHIVED captures enum value "ARCHIVED"
 	GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleStateARCHIVED GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState = "ARCHIVED"
@@ -51,7 +51,7 @@ var githubComKaytuIoKaytuEnginePkgOnboardApiConnectionLifecycleStateEnum []inter
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState
-	if err := json.Unmarshal([]byte(`["NOT_ONBOARD","IN_PROGRESS","ONBOARD","UNHEALTHY","ARCHIVED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ONBOARD","DISABLED","DISCOVERED","IN_PROGRESS","ARCHIVED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

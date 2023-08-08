@@ -24,7 +24,10 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIRunQueryRequest struct {
 	// Required: true
 	Page *GithubComKaytuIoKaytuEnginePkgInventoryAPIPage `json:"page"`
 
-	// NOTE: we don't support multi-field sort for now, if sort is empty, results would be sorted by first column
+	// query
+	Query string `json:"query,omitempty"`
+
+	// sorts
 	Sorts []*GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQuerySortItem `json:"sorts"`
 }
 

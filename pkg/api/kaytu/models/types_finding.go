@@ -84,7 +84,7 @@ type TypesFinding struct {
 
 	// Compliance severity
 	// Example: low
-	Severity string `json:"severity,omitempty"`
+	Severity TypesFindingSeverity `json:"severity,omitempty"`
 
 	// Whether the policy is active or not
 	// Example: true
@@ -100,6 +100,10 @@ func (m *TypesFinding) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateResult(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSeverity(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -125,6 +129,14 @@ func (m *TypesFinding) validateResult(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TypesFinding) validateSeverity(formats strfmt.Registry) error {
+	if swag.IsZero(m.Severity) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 // ContextValidate validate this types finding based on the context it is used
 func (m *TypesFinding) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -134,6 +146,10 @@ func (m *TypesFinding) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateResult(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSeverity(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -149,6 +165,11 @@ func (m *TypesFinding) contextValidateConnector(ctx context.Context, formats str
 }
 
 func (m *TypesFinding) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *TypesFinding) contextValidateSeverity(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

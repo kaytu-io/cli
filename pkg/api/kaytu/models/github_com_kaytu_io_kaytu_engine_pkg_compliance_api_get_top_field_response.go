@@ -21,6 +21,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse struct {
 
 	// records
 	Records []*GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord `json:"records"`
+
+	// total count
+	// Example: 100
+	TotalCount int64 `json:"totalCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api get top field response

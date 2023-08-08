@@ -45,7 +45,7 @@ PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK describes a re
 OK
 */
 type PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK struct {
-	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment
+	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment
 }
 
 // IsSuccess returns true when this post compliance Api v1 assignments benchmark Id connection connection Id o k response has a 2xx status code
@@ -86,16 +86,14 @@ func (o *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK) Stri
 	return fmt.Sprintf("[POST /compliance/api/v1/assignments/{benchmark_id}/connection/{connection_id}][%d] postComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdOK  %+v", 200, o.Payload)
 }
 
-func (o *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment {
+func (o *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment {
 	return o.Payload
 }
 
 func (o *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -26,10 +26,12 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionRespon
 	TopValues map[string]GithubComKaytuIoKaytuEnginePkgInventoryAPICountPair `json:"top_values,omitempty"`
 
 	// total count
-	TotalCount int64 `json:"total_count,omitempty"`
+	// Minimum: 0
+	TotalCount *int64 `json:"total_count,omitempty"`
 
 	// total value count
-	TotalValueCount int64 `json:"total_value_count,omitempty"`
+	// Minimum: 0
+	TotalValueCount *int64 `json:"total_value_count,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api list resource type composition response
@@ -41,6 +43,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionRe
 	}
 
 	if err := m.validateTopValues(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalValueCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,6 +100,30 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionRe
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionResponse) validateTotalCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("total_count", "body", *m.TotalCount, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListResourceTypeCompositionResponse) validateTotalValueCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalValueCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("total_value_count", "body", *m.TotalValueCount, 0, false); err != nil {
+		return err
 	}
 
 	return nil
