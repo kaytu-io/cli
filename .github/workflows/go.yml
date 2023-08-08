@@ -74,11 +74,13 @@ jobs:
         
         git add ./tmp/HomebrewCliTap.txt
         git commit -a -m "update version "
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
+        git push origin main
 
-    - name: GitHub Push
-      uses: ad-m/github-push-action@v0.6.0
-      with:
-        github_token: ${{ secrets.GITHUBCI_TOKEN }}
-        repository: kaytu-io/homebrew-cli-tap
-        branch: main
-        force: true
+#    - name: GitHub Push
+#      uses: ad-m/github-push-action@v0.6.0
+#      with:
+#        github_token: ${{ secrets.GITHUBCI_TOKEN }}
+#        repository: kaytu-io/homebrew-cli-tap
+#        branch: main
+#        force: true
