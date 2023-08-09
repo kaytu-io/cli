@@ -89,3 +89,4 @@ jobs:
         
         cd ..
         rm -rf homebrew-cli-tap
+        
