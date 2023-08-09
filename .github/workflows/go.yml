@@ -79,7 +79,7 @@ jobs:
         
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
         git add .
-        git commit -a -m "fix conflict"
+        git commit -a -m "update cli version"
         git push homebrew-cli-tap-origin main
         
         cd ..
