@@ -74,9 +74,12 @@ jobs:
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
         
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
-        git config pull.rebase false
-        git pull origin main --allow-unrelated-histories
+        git config pull.rebase true
         git add ./tmp/HomebrewCliTap.txt
-        git add README.md
         git commit -a -m "update version "       
+        git checkout test
+        git fetch origin main
+        git merge main
+        git checkout main
+        git commit -a -m "fix conflict"
         git push origin ${{ github.ref }}
