@@ -64,6 +64,7 @@ jobs:
       run: |
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
+
     - name: Get Latest Tag
       uses: WyriHaximus/github-action-get-previous-tag@v1
       id: previousTag
@@ -74,12 +75,13 @@ jobs:
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
         
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
+        git checkout ${{ github.ref }}
         git config pull.rebase true
+        
         git add ./tmp/HomebrewCliTap.txt
-        git commit -a -m "update version "       
-        git checkout test
-        git fetch origin main
-        git merge main
-        git checkout main
+        git commit -a -m "update version "    
+        
+        git pull --rebase origin main
         git commit -a -m "fix conflict"
+        
         git push origin ${{ github.ref }}
