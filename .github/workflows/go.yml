@@ -82,6 +82,8 @@ jobs:
         git commit -a -m "update version "    
         
         git pull --rebase origin main
-        git commit -a -m "fix conflict"
+        git add README.md
+        git rebase --continue
         
+        git commit -a -m "fix conflict"
         git push origin main
