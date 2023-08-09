@@ -82,23 +82,10 @@ jobs:
         
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
         
-        git checkout test
+        git checkout main
         git add .
         git commit -a -m "update cli version"
         git push homebrew-cli-tap-origin 
         
         cd ..
         rm -rf homebrew-cli-tap
-
-#        git checkout main
-#        git add ./tmp/kaytu.rb
-#        git config pull.rebase true
-#
-#        git commit -a -m "update version "
-#
-#        git pull --rebase origin main
-#        git add README.md
-#        git rebase --continue
-#
-#        git commit -a -m "fix conflict"
-#        git push homebrew-cli-tap-origin main
