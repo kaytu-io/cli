@@ -80,11 +80,11 @@ jobs:
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
         
-        NewVersion=$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')
-        PreVersion=$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')
+        newVersion=$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')
+        preVersion=$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')
         
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
-        sed -i 's+${{PreVersion}}+${{NewVersion}}+g' kaytu.rb
+        sed -i 's+${{preVersion}}+${{newVersion}}+g' kaytu.rb
 
         git checkout main
         git add .
