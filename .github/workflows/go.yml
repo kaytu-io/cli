@@ -73,7 +73,7 @@ jobs:
       run: |
         
         
-        git clone git@github.com:kaytu-io/homebrew-cli-tap.git
+        git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         cd homebrew-cli-tap
 
         git remote add homebrew-cli-tap-origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
