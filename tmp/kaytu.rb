@@ -5,7 +5,7 @@ class Kaytu < Formula
   license "MIT"
 
   if OS.mac? && Hardware::CPU.intel?
-    url "https://github.com/kaytu-io/cli-program/releases/download/v1.8.27/ktucli-macos-amd64"
+    url "https://github.com/kaytu-io/cli-program/releases/download/v1.8.28/ktucli-macos-amd64"
     sha256 "89f4ef14396b9dd75484281ebfac825dc39db335119df09391db9d9919cef11a"
     def install
       bin.install "ktucli-macos-amd64" => "kaytu"

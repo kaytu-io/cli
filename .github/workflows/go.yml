@@ -72,18 +72,28 @@ jobs:
     - name: replace version && push change
       run: |
         
-        sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/kaytu.rb
+        git remote add homebrew-cli-tap-origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
+
+        git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git homebrew-cli-tap
+        cd homebrew-cli-tap
         
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
-        git checkout main
-        git config pull.rebase true
-        
-        git add ./tmp/kaytu.rb
-        git commit -a -m "update version "    
-        
-        git pull --rebase origin main
-        git add README.md
-        git rebase --continue
-        
+        sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
+        git add .
         git commit -a -m "fix conflict"
-        git push origin main
+        git push homebrew-cli-tap-origin main
+        
+        cd ..
+        rm -rf homebrew-cli-tap
+
+#        git checkout main
+#        git add ./tmp/kaytu.rb
+#        git config pull.rebase true
+#
+#        git commit -a -m "update version "
+#
+#        git pull --rebase origin main
+#        git add README.md
+#        git rebase --continue
+#
+#        git commit -a -m "fix conflict"
+#        git push homebrew-cli-tap-origin main
