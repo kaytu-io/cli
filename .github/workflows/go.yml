@@ -72,18 +72,20 @@ jobs:
     - name: replace version && push change
       run: |
         
-        git remote add homebrew-cli-tap-origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
-
+        
         git clone git@github.com:kaytu-io/homebrew-cli-tap.git
         cd homebrew-cli-tap
+
+        git remote add homebrew-cli-tap-origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
         
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
         
+        git checkout test
         git add .
         git commit -a -m "update cli version"
-        git push homebrew-cli-tap-origin main
+        git push homebrew-cli-tap-origin 
         
         cd ..
         rm -rf homebrew-cli-tap
