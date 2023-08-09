@@ -72,13 +72,13 @@ jobs:
     - name: replace version && push change
       run: |
         
-        sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/HomebrewCliTap.txt
+        sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' ./tmp/kaytu.rb
         
         git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         git checkout main
         git config pull.rebase true
         
-        git add ./tmp/HomebrewCliTap.txt
+        git add ./tmp/kaytu.rb
         git commit -a -m "update version "    
         
         git pull --rebase origin main
