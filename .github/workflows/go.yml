@@ -102,7 +102,7 @@ jobs:
         sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
 
         sha256sum newUrl >> newHash
-        sed -i s/'\w*$'// newHash
+        sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "9s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
 
         rm -rf newHash && rm -rf newUrl
@@ -111,7 +111,7 @@ jobs:
         sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
 
         sha256sum newUrl >> newHash
-        sed -i s/'\w*$'// newHash
+        sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "17s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
 
         rm -rf newHash && rm -rf newUrl
@@ -120,7 +120,7 @@ jobs:
         sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
 
         sha256sum newUrl >> newHash
-        sed -i s/'\w*$'// newHash
+        sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "25s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
 
         rm -rf newHash && rm -rf newUrl
@@ -129,8 +129,8 @@ jobs:
         sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
 
         sha256sum newUrl >> newHash
-        sed -i s/'\w*$'// newHash
-        sed -i "33s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
+        sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
+        sed -i "33s/.*/$(printf '    sha256 "%s"\n' "$(cat newHash)") /" kaytu.rb
 
         rm -rf newHash && rm -rf newUrl
 
