@@ -79,7 +79,7 @@ jobs:
         git config user.email 'dev@kaytu.io'
         
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
-        sed -i 's+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g' kaytu.rb
+        sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" kaytu.rb
 
         git checkout main
         git add .
