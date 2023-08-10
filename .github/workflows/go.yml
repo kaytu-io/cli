@@ -48,6 +48,9 @@ jobs:
           artifacts : "release.tar.gz,foo/*.txt,./build/ktucli-linux-amd64,./build/ktucli-linux-arm64,./build/ktucli-windows-amd64,./build/ktucli-macos-amd64,./build/ktucli-macos-arm64"
           draft: false
           prerelease: false
+    - name: update cli version in snap
+      run: |
+        sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" ./snap/snapcraft.yaml
 
     - name: Create snap
       id: snapcraft
@@ -141,15 +144,3 @@ jobs:
 
         cd ..
         rm -rf homebrew-cli-tap
-
-    - name: update cli version in snap
-      run: |
-        
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/cli.git
-        git checkout main
-
-        sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" ./snap/snapcraft.yaml
-       
-        git add .
-        git commit -a -m "update snap version"
-        git push origin
