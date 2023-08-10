@@ -69,7 +69,7 @@ jobs:
       uses: WyriHaximus/github-action-get-previous-tag@v1
       id: previousTag
 
-    - name: replace version && push change
+    - name: update cli version in homebrew
       run: |
         git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         cd homebrew-cli-tap
@@ -89,7 +89,7 @@ jobs:
         cd ..
         rm -rf homebrew-cli-tap
 
-    - name: replace newHash with olderHash
+    - name: update hashes in homebrew
       run: |
         git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         cd homebrew-cli-tap
@@ -141,3 +141,15 @@ jobs:
 
         cd ..
         rm -rf homebrew-cli-tap
+
+    - name: update cli version in snap
+      run: |
+        
+        git remote add origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com:kaytu-io/cli.git
+
+        sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" ./snap/snapcraft.yaml
+       
+        git checkout main
+        git add .
+        git commit -a -m "update snap version"
+        git push origin
