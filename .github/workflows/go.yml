@@ -71,8 +71,6 @@ jobs:
 
     - name: replace version && push change
       run: |
-        
-        
         git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         cd homebrew-cli-tap
 
@@ -80,11 +78,8 @@ jobs:
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
         
-        echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//' >> preVersion.txt
-        echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//' >> newVersion.txt
-      
         sed -i 's+${{ steps.previousTag.outputs.tag }}+${{ steps.tag_version.outputs.new_tag }}+g' kaytu.rb
-        sed -i 's+preVersion.txt+newVersion.txt+g' kaytu.rb
+        sed -i 's+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g' kaytu.rb
 
         git checkout main
         git add .
@@ -93,3 +88,56 @@ jobs:
         
         cd ..
         rm -rf homebrew-cli-tap
+
+#    - name: replace new hash with older hash
+#      run: |
+#        git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
+#        cd homebrew-cli-tap
+#
+#        git remote add homebrew-cli-tap-origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
+#        git config user.name 'Kaytu Developer'
+#        git config user.email 'dev@kaytu.io'
+#
+#        sed -n '8p' kaytu.rb | sed 's/\s   [^ ]* //' >> newUrl
+#        sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
+#
+#        sha256sum newUrl >> newHash
+#        sed -i s/'\w*$'// newHash
+#        sed -i '9s/.*/$(echo "    sha256 $(cat newHash)")/' kaytu.rb
+#
+#        rm -rf newHash && rm -rf newUrl
+#
+#        sed -n '16p' kaytu.rb | sed 's/\s   [^ ]* //' >> newUrl
+#        sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
+#
+#        sha256sum newUrl >> newHash
+#        sed -i s/'\w*$'// newHash
+#        sed -i '17s/.*/$(echo "    sha256 $(cat newHash)")/' kaytu.rb
+#
+#        rm -rf newHash && rm -rf newUrl
+#
+#        sed -n '24p' kaytu.rb | sed 's/\s   [^ ]* //' >> newUrl
+#        sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
+#
+#        sha256sum newUrl >> newHash
+#        sed -i s/'\w*$'// newHash
+#        sed -i '25s/.*/$(echo "    sha256 $(cat newHash)")/' kaytu.rb
+#
+#        rm -rf newHash && rm -rf newUrl
+#
+#        sed -n '32p' kaytu.rb | sed 's/\s   [^ ]* //' >> newUrl
+#        sed -i 's/^./''/' newUrl && sed -i 's/.$/''/' newUrl
+#
+#        sha256sum newUrl >> newHash
+#        sed -i s/'\w*$'// newHash
+#        sed -i '33s/.*/$(echo "    sha256 $(cat newHash)")/' kaytu.rb
+#
+#        rm -rf newHash && rm -rf newUrl
+#
+#        git checkout main
+#        git add .
+#        git commit -a -m "update hashes "
+#        git push homebrew-cli-tap-origin
+#
+#        cd ..
+#        rm -rf homebrew-cli-tap
