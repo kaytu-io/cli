@@ -145,11 +145,11 @@ jobs:
     - name: update cli version in snap
       run: |
         
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com:kaytu-io/cli.git
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/cli.git
+        git checkout main
 
         sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" ./snap/snapcraft.yaml
        
-        git checkout main
         git add .
         git commit -a -m "update snap version"
         git push origin
