@@ -60,7 +60,7 @@ jobs:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: stable
 
-    - name: Set git identity && get previousTag
+    - name: Set git identity
       run: |
         git config user.name 'Kaytu Developer'
         git config user.email 'dev@kaytu.io'
@@ -145,7 +145,7 @@ jobs:
     - name: update cli version in snap
       run: |
         
-        git remote add origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com:kaytu-io/cli.git
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com:kaytu-io/cli.git
 
         sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" ./snap/snapcraft.yaml
        
