@@ -58,7 +58,7 @@ jobs:
         cd snap
         sed -i "s+$(echo "${{ steps.previousTag.outputs.tag }}" | sed 's/^.//')+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" snapcraft.yaml
         cd ..
-        
+
     - name: Create snap
       id: snapcraft
       uses: snapcore/action-build@v1
