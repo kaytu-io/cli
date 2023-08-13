@@ -6,28 +6,31 @@ import (
 )
 
 var BenchmarksAssignmentCmd = &cobra.Command{
-	Use: "benchmarks_assignment",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
+        Use: "benchmarks_assignment",
+        RunE: func(cmd *cobra.Command, args []string) error {
+        return cmd.Help()
+    },
 }
 
 func init() {
+    
+        BenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
+        PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
+PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID or 'all' for everything")
+PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
 
-	BenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
-	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
-	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
-	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID or 'all' for everything")
-	PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
+    
+        BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd)
+        GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
 
-	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd)
-	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
-	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
+    
+        BenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
+        DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
+DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID or 'all' for everything")
+DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
 
-	BenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd)
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("benchmark-id")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID or 'all' for everything")
-	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
-
+    
 }

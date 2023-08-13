@@ -6,20 +6,22 @@ import (
 )
 
 var ConnectionGroupsCmd = &cobra.Command{
-	Use: "connection_groups",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
+        Use: "connection_groups",
+        RunE: func(cmd *cobra.Command, args []string) error {
+        return cmd.Help()
+    },
 }
 
 func init() {
+    
+        ConnectionGroupsCmd.AddCommand(GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd)
+        GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.Flags().String("connection-group-name", "", "ConnectionGroupName")
+GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.MarkFlagRequired("connection-group-name")
+GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.Flags().Bool("populate-connections", false, "Populate connections")
 
-	ConnectionGroupsCmd.AddCommand(GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd)
-	GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.Flags().String("connection-group-name", "", "ConnectionGroupName")
-	GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.MarkFlagRequired("connection-group-name")
-	GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.Flags().Bool("populate-connections", false, "Populate connections")
+    
+        ConnectionGroupsCmd.AddCommand(GetOnboardApiV1ConnectionGroupsCmd)
+        GetOnboardApiV1ConnectionGroupsCmd.Flags().Bool("populate-connections", false, "Populate connections")
 
-	ConnectionGroupsCmd.AddCommand(GetOnboardApiV1ConnectionGroupsCmd)
-	GetOnboardApiV1ConnectionGroupsCmd.Flags().Bool("populate-connections", false, "Populate connections")
-
+    
 }

@@ -4,7 +4,6 @@ package gen
 import (
 	"errors"
 	"fmt"
-
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -14,8 +13,8 @@ import (
 
 var GetInventoryApiV2AnalyticsCompositionKeyCmd = &cobra.Command{
 	Use:   "get-analytics-composition-key",
-	Short: `This API allows users to retrieve tag values with the most resources for the given key.`,
-	Long:  `This API allows users to retrieve tag values with the most resources for the given key.`,
+	Short: `Retrieving tag values with the most resources for the given key.`,
+	Long:  `Retrieving tag values with the most resources for the given key.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -53,8 +52,8 @@ var GetInventoryApiV2AnalyticsCompositionKeyCmd = &cobra.Command{
 
 var GetInventoryApiV2AnalyticsMetricCmd = &cobra.Command{
 	Use:   "get-analytics-metric",
-	Short: `Get list of analytics with metrics of each type based on the given input filters.`,
-	Long:  `Get list of analytics with metrics of each type based on the given input filters.`,
+	Short: `Retrieving list of analytics with metrics of each type based on the given input filters.`,
+	Long:  `Retrieving list of analytics with metrics of each type based on the given input filters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -96,8 +95,8 @@ var GetInventoryApiV2AnalyticsMetricCmd = &cobra.Command{
 
 var GetInventoryApiV2AnalyticsRegionsSummaryCmd = &cobra.Command{
 	Use:   "get-analytics-regions-summary",
-	Short: `Returns list of regions analytics summary`,
-	Long:  `Returns list of regions analytics summary`,
+	Short: `Retrieving list of regions analytics summary`,
+	Long:  `Retrieving list of regions analytics summary`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -135,8 +134,8 @@ var GetInventoryApiV2AnalyticsRegionsSummaryCmd = &cobra.Command{
 
 var GetInventoryApiV2AnalyticsTagCmd = &cobra.Command{
 	Use:   "get-analytics-tags",
-	Short: `This API allows users to retrieve a list of tag keys with their possible values for all analytic metrics.`,
-	Long:  `This API allows users to retrieve a list of tag keys with their possible values for all analytic metrics.`,
+	Short: `Retrieving a list of tag keys with their possible values for all analytic metrics.`,
+	Long:  `Retrieving a list of tag keys with their possible values for all analytic metrics.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -173,8 +172,8 @@ var GetInventoryApiV2AnalyticsTagCmd = &cobra.Command{
 
 var GetInventoryApiV2AnalyticsTrendCmd = &cobra.Command{
 	Use:   "get-analytics-trend",
-	Short: `This API allows users to retrieve a list of resource counts over the course of the specified time frame based on the given input filters`,
-	Long:  `This API allows users to retrieve a list of resource counts over the course of the specified time frame based on the given input filters`,
+	Short: `Retrieving a list of resource counts over the course of the specified time frame based on the given input filters`,
+	Long:  `Retrieving a list of resource counts over the course of the specified time frame based on the given input filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -213,8 +212,8 @@ var GetInventoryApiV2AnalyticsTrendCmd = &cobra.Command{
 
 var GetInventoryApiV2AnalyticsCategoriesCmd = &cobra.Command{
 	Use:   "list-analytics-categories",
-	Short: `Returns list of categories for analytics summary`,
-	Long:  `Returns list of categories for analytics summary`,
+	Short: `Retrieving list of categories for analytics`,
+	Long:  `Retrieving list of categories for analytics`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

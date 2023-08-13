@@ -4,7 +4,6 @@ package gen
 import (
 	"errors"
 	"fmt"
-
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -14,8 +13,8 @@ import (
 
 var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
 	Use:   "add-assignment",
-	Short: `Returns benchmark assignment which insert`,
-	Long:  `Returns benchmark assignment which insert`,
+	Short: `Creating a benchmark assignment for a connection.`,
+	Long:  `Creating a benchmark assignment for a connection.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -47,8 +46,8 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.
 
 var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	Use:   "benchmark-assignments",
-	Short: `Returns all benchmark assigned sources with benchmark id`,
-	Long:  `Returns all benchmark assigned sources with benchmark id`,
+	Short: `Retrieving all benchmark assigned sources with benchmark id`,
+	Long:  `Retrieving all benchmark assigned sources with benchmark id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

@@ -4,7 +4,6 @@ package gen
 import (
 	"errors"
 	"fmt"
-
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -14,8 +13,8 @@ import (
 
 var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 	Use:   "run-describe",
-	Short: `Triggers a describe job to run immediately`,
-	Long:  `Triggers a describe job to run immediately`,
+	Short: `Triggers a describe job to run immediately for the given connection`,
+	Long:  `Triggers a describe job to run immediately for the given connection`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

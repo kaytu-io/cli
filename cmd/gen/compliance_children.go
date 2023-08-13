@@ -4,7 +4,6 @@ package gen
 import (
 	"errors"
 	"fmt"
-
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -15,8 +14,8 @@ import (
 
 var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 	Use:   "benchmark-findings-top-count",
-	Short: `This API enables users to retrieve the top field by finding count.`,
-	Long:  `This API enables users to retrieve the top field by finding count.`,
+	Short: `Retrieving the top field by finding count.`,
+	Long:  `Retrieving the top field by finding count.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -52,8 +51,8 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 
 var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 	Use:   "benchmarks-summary",
-	Short: `This API enables users to retrieve a summary of all benchmarks and their associated checks and results within a specified time interval. Users can use this API to obtain an overview of all benchmarks, including their names, descriptions, and other relevant information, as well as the checks and their corresponding results within the specified time period.`,
-	Long:  `This API enables users to retrieve a summary of all benchmarks and their associated checks and results within a specified time interval. Users can use this API to obtain an overview of all benchmarks, including their names, descriptions, and other relevant information, as well as the checks and their corresponding results within the specified time period.`,
+	Short: `Retrieving a summary of all benchmarks and their associated checks and results within a specified time interval.`,
+	Long:  `Retrieving a summary of all benchmarks and their associated checks and results within a specified time interval.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -86,8 +85,8 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 
 var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 	Use:   "get-benchmark-summary",
-	Short: `This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.`,
-	Long:  `This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.`,
+	Short: `Retrieving a summary of a benchmark and its associated checks and results.`,
+	Long:  `Retrieving a summary of a benchmark and its associated checks and results.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -121,8 +120,8 @@ var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 
 var GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd = &cobra.Command{
 	Use:   "get-benchmark-tree",
-	Short: `This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.`,
-	Long:  `This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.`,
+	Short: `Retrieving the benchmark tree, including all of its child benchmarks.`,
+	Long:  `Retrieving the benchmark tree, including all of its child benchmarks.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -153,8 +152,8 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd = &cobra.Command{
 
 var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 	Use:   "get-benchmark-trend",
-	Short: `This API enables users to retrieve a trend of a benchmark result and checks`,
-	Long:  `This API enables users to retrieve a trend of a benchmark result and checks`,
+	Short: `Retrieving a trend of a benchmark result and checks.`,
+	Long:  `Retrieving a trend of a benchmark result and checks.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -189,8 +188,8 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 
 var PostComplianceApiV1FindingsCmd = &cobra.Command{
 	Use:   "get-findings",
-	Short: `This API enables users to retrieve all compliance run findings with respect to filters. Users can use this API to obtain a list of all compliance run findings that match specific filters, such as compliance run ID, resource ID, results, and other relevant parameters.`,
-	Long:  `This API enables users to retrieve all compliance run findings with respect to filters. Users can use this API to obtain a list of all compliance run findings that match specific filters, such as compliance run ID, resource ID, results, and other relevant parameters.`,
+	Short: `Retrieving all compliance run findings with respect to filters.`,
+	Long:  `Retrieving all compliance run findings with respect to filters.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -242,8 +241,8 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 
 var GetComplianceApiV1QueriesSyncCmd = &cobra.Command{
 	Use:   "sync-queries",
-	Short: `This API syncs queries with the git backend.`,
-	Long:  `This API syncs queries with the git backend.`,
+	Short: `Syncs queries with the git backend.`,
+	Long:  `Syncs queries with the git backend.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

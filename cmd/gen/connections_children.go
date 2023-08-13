@@ -4,7 +4,6 @@ package gen
 import (
 	"errors"
 	"fmt"
-
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -14,8 +13,8 @@ import (
 
 var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 	Use:   "connections-summary",
-	Short: `Returns a list of connections summaries`,
-	Long:  `Returns a list of connections summaries`,
+	Short: `Retrieving a list of connections summaries`,
+	Long:  `Retrieving a list of connections summaries`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
