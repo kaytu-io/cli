@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func GetKaytuAuthClient(cmd *cobra.Command) (*apiclient.KeibiServiceAPI, runtime.ClientAuthInfoWriter, error) {
+func GetKaytuAuthClient(cmd *cobra.Command) (*apiclient.KaytuServiceAPI, runtime.ClientAuthInfoWriter, error) {
 	cnf, err := pkg.GetConfig(cmd, false)
 	if err != nil {
 		return nil, nil, err
@@ -19,7 +19,7 @@ func GetKaytuAuthClient(cmd *cobra.Command) (*apiclient.KeibiServiceAPI, runtime
 	return client, bearerTokenAuth, err
 }
 
-func GetKaytuAuthClientWithConfig(workspace, accessToken string) (*apiclient.KeibiServiceAPI, runtime.ClientAuthInfoWriter) {
+func GetKaytuAuthClientWithConfig(workspace, accessToken string) (*apiclient.KaytuServiceAPI, runtime.ClientAuthInfoWriter) {
 	client := apiclient.New(httptransport.New(pkg.KaytuHostname, "/"+workspace, []string{"https"}), strfmt.Default)
 	bearerTokenAuth := httptransport.BearerToken(accessToken)
 	return client, bearerTokenAuth
