@@ -170,8 +170,8 @@ var PostOnboardApiV1CredentialCmd = &cobra.Command{
 
 var DeleteOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	Use:   "delete-credential",
-	Short: `Remove a credential by Id`,
-	Long:  `Remove a credential by Id`,
+	Short: `Remove a credential by ID`,
+	Long:  `Remove a credential by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -224,8 +224,8 @@ var DeleteOnboardApiV1SourceSourceIdCmd = &cobra.Command{
 
 var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 	Use:   "get-catalog-metrics",
-	Short: `Returns the list of metrics for catalog page.`,
-	Long:  `Returns the list of metrics for catalog page.`,
+	Short: `Retrieving the list of metrics for catalog page.`,
+	Long:  `Retrieving the list of metrics for catalog page.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -384,8 +384,8 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 
 var PutOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	Use:   "update-credential",
-	Short: `Edit a credential by Id`,
-	Long:  `Edit a credential by Id`,
+	Short: `Edit a credential by ID`,
+	Long:  `Edit a credential by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

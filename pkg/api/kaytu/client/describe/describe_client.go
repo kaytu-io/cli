@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-PutScheduleAPIV1DescribeTriggerConnectionID triggers a describe job to run immediately
+PutScheduleAPIV1DescribeTriggerConnectionID triggers describer
 
-Triggers a describe job to run immediately
+Triggers a describe job to run immediately for the given connection
 */
 func (a *Client) PutScheduleAPIV1DescribeTriggerConnectionID(params *PutScheduleAPIV1DescribeTriggerConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1DescribeTriggerConnectionIDOK, error) {
 	// TODO: Validate the params before sending

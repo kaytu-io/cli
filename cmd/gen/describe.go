@@ -18,6 +18,5 @@ func init() {
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().StringArray("resource-type", nil, "Resource Type")
-	PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("resource-type")
 
 }

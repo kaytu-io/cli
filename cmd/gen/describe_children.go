@@ -14,8 +14,8 @@ import (
 
 var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 	Use:   "run-describe",
-	Short: `Triggers a describe job to run immediately`,
-	Long:  `Triggers a describe job to run immediately`,
+	Short: `Triggers a describe job to run immediately for the given connection`,
+	Long:  `Triggers a describe job to run immediately for the given connection`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

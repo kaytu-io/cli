@@ -14,8 +14,8 @@ import (
 
 var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 	Use:   "connections-summary",
-	Short: `Returns a list of connections summaries`,
-	Long:  `Returns a list of connections summaries`,
+	Short: `Retrieving a list of connections summaries`,
+	Long:  `Retrieving a list of connections summaries`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -33,6 +33,8 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
 		req.SetHealthState(flags.ReadStringOptionalFlag(cmd, "HealthState"))
 		req.SetLifecycleState(flags.ReadStringOptionalFlag(cmd, "LifecycleState"))
+		req.SetNeedCost(flags.ReadBooleanOptionalFlag(cmd, "NeedCost"))
+		req.SetNeedResourceCount(flags.ReadBooleanOptionalFlag(cmd, "NeedResourceCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))

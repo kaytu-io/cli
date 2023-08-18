@@ -14,8 +14,8 @@ import (
 
 var GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd = &cobra.Command{
 	Use:   "get-connection-group",
-	Short: `Returns a connection group`,
-	Long:  `Returns a connection group`,
+	Short: `Retrieving a connection group`,
+	Long:  `Retrieving a connection group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -47,8 +47,8 @@ var GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd = &cobra.Command{
 
 var GetOnboardApiV1ConnectionGroupsCmd = &cobra.Command{
 	Use:   "list-connection-groups",
-	Short: `Returns a list of connection groups`,
-	Long:  `Returns a list of connection groups`,
+	Short: `Retrieving a list of connection groups`,
+	Long:  `Retrieving a list of connection groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

@@ -15,8 +15,8 @@ import (
 
 var GetInventoryApiV1QueryRunHistoryCmd = &cobra.Command{
 	Use:   "get-query-run-history",
-	Short: `Get recently ran queries.`,
-	Long:  `Get recently ran queries.`,
+	Short: `List queries which have been run recently`,
+	Long:  `List queries which have been run recently`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -45,8 +45,8 @@ var GetInventoryApiV1QueryRunHistoryCmd = &cobra.Command{
 
 var GetInventoryApiV1QueryCmd = &cobra.Command{
 	Use:   "list-queries",
-	Short: `Listing smart queries by specified filters`,
-	Long:  `Listing smart queries by specified filters`,
+	Short: `Retrieving list of smart queries by specified filters`,
+	Long:  `Retrieving list of smart queries by specified filters`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

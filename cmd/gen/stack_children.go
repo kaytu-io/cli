@@ -82,8 +82,8 @@ var DeleteScheduleApiV1StacksStackIdCmd = &cobra.Command{
 
 var GetScheduleApiV1StacksStackIdCmd = &cobra.Command{
 	Use:   "get-stack",
-	Short: `Get a stack details by ID`,
-	Long:  `Get a stack details by ID`,
+	Short: `Get stack details by ID`,
+	Long:  `Get stack details by ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {

@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-GetMetadataAPIV1MetadataKey returns the config metadata for the given key
+GetMetadataAPIV1MetadataKey gets key metadata
 
 Returns the config metadata for the given key
 */
@@ -79,7 +79,7 @@ func (a *Client) GetMetadataAPIV1MetadataKey(params *GetMetadataAPIV1MetadataKey
 }
 
 /*
-PostMetadataAPIV1Metadata sets the config metadata for the given key
+PostMetadataAPIV1Metadata sets key metadata
 
 Sets the config metadata for the given key
 */
