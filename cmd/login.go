@@ -12,7 +12,7 @@ import (
 )
 
 const RetrySleep = 3
-const DefaultWorkspace = "keibi"
+const DefaultWorkspace = "kaytu"
 
 // loginCmd represents the login command
 var loginCmd = &cobra.Command{

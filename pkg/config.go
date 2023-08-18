@@ -46,7 +46,7 @@ func GetConfig(cmd *cobra.Command, workspaceNameRequired bool) (*Config, error) 
 		if workspaceName != "" {
 			config.DefaultWorkspace = workspaceName
 		} else {
-			config.DefaultWorkspace = "keibi"
+			config.DefaultWorkspace = "kaytu"
 		}
 	}
 
