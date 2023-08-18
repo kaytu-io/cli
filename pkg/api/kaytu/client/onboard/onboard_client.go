@@ -60,7 +60,7 @@ type ClientService interface {
 /*
 DeleteOnboardAPIV1CredentialCredentialID deletes credential
 
-Remove a credential by Id
+Remove a credential by ID
 */
 func (a *Client) DeleteOnboardAPIV1CredentialCredentialID(params *DeleteOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending
@@ -140,9 +140,9 @@ func (a *Client) DeleteOnboardAPIV1SourceSourceID(params *DeleteOnboardAPIV1Sour
 }
 
 /*
-GetOnboardAPIV1CatalogMetrics gets catalog metrics
+GetOnboardAPIV1CatalogMetrics lists catalog metrics
 
-Returns the list of metrics for catalog page.
+Retrieving the list of metrics for catalog page.
 */
 func (a *Client) GetOnboardAPIV1CatalogMetrics(params *GetOnboardAPIV1CatalogMetricsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1CatalogMetricsOK, error) {
 	// TODO: Validate the params before sending
@@ -386,7 +386,7 @@ func (a *Client) PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialPa
 }
 
 /*
-PostOnboardAPIV1CredentialCredentialIDAutoonboard onboards all available connections for a credential
+PostOnboardAPIV1CredentialCredentialIDAutoonboard onboards credential connections
 
 Onboard all available connections for a credential
 */
@@ -511,7 +511,7 @@ func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzure
 /*
 PutOnboardAPIV1CredentialCredentialID edits credential
 
-Edit a credential by Id
+Edit a credential by ID
 */
 func (a *Client) PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1CredentialCredentialIDOK, error) {
 	// TODO: Validate the params before sending

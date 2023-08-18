@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-DeleteScheduleAPIV1StacksStackID deletes a stack
+DeleteScheduleAPIV1StacksStackID deletes stack
 
 Delete a stack by ID
 */
@@ -173,9 +173,9 @@ func (a *Client) GetScheduleAPIV1StacksResource(params *GetScheduleAPIV1StacksRe
 }
 
 /*
-GetScheduleAPIV1StacksStackID gets a stack
+GetScheduleAPIV1StacksStackID gets stack
 
-Get a stack details by ID
+Get stack details by ID
 */
 func (a *Client) GetScheduleAPIV1StacksStackID(params *GetScheduleAPIV1StacksStackIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScheduleAPIV1StacksStackIDOK, error) {
 	// TODO: Validate the params before sending

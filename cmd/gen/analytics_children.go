@@ -4,6 +4,7 @@ package gen
 import (
 	"errors"
 	"fmt"
+
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -30,10 +31,10 @@ var GetInventoryApiV2AnalyticsCompositionKeyCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
 		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 		req.SetTop(flags.ReadInt64Flag(cmd, "Top"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsCompositionKey(req, auth)
@@ -69,14 +70,14 @@ var GetInventoryApiV2AnalyticsMetricCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
 		req.SetMetricIDs(flags.ReadStringArrayFlag(cmd, "MetricIDs"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
 		req.SetMinCount(flags.ReadInt64OptionalFlag(cmd, "MinCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsMetric(req, auth)
@@ -126,6 +127,158 @@ var GetInventoryApiV2AnalyticsRegionsSummaryCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-regions-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_analytics_regions_summary] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2AnalyticsSpendCompositionCmd = &cobra.Command{
+	Use:   "get-analytics-spend-composition",
+	Short: `Retrieving the cost composition with respect to specified filters. Retrieving information such as the total cost for the given time range, and the top services by cost.`,
+	Long:  `Retrieving the cost composition with respect to specified filters. Retrieving information such as the total cost for the given time range, and the top services by cost.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_composition] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsSpendCompositionParams()
+
+		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetTop(flags.ReadInt64OptionalFlag(cmd, "Top"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendComposition(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_composition] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-composition", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_composition] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2AnalyticsSpendMetricCmd = &cobra.Command{
+	Use:   "get-analytics-spend-metric",
+	Short: `Retrieving cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.`,
+	Long:  `Retrieving cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metric] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsSpendMetricParams()
+
+		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
+		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
+		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetric(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metric] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-metric", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metric] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2AnalyticsSpendMetricsTrendCmd = &cobra.Command{
+	Use:   "get-analytics-spend-metrics-trend",
+	Short: `Retrieving a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
+	Long:  `Retrieving a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metrics_trend] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsSpendMetricsTrendParams()
+
+		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
+		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetricsTrend(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metrics_trend] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-metrics-trend", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metrics_trend] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2AnalyticsSpendTrendCmd = &cobra.Command{
+	Use:   "get-analytics-spend-trend",
+	Short: `Retrieving a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
+	Long:  `Retrieving a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_trend] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsSpendTrendParams()
+
+		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
+		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendTrend(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_trend] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-trend", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_trend] : %v", err)
 		}
 
 		return nil
@@ -190,10 +343,10 @@ var GetInventoryApiV2AnalyticsTrendCmd = &cobra.Command{
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetDatapointCount(flags.ReadStringOptionalFlag(cmd, "DatapointCount"))
-		req.SetEndTime(flags.ReadStringOptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
 		req.SetIds(flags.ReadStringArrayFlag(cmd, "Ids"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
-		req.SetStartTime(flags.ReadStringOptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsTrend(req, auth)
@@ -236,6 +389,39 @@ var GetInventoryApiV2AnalyticsCategoriesCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-categories", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_analytics_categories] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2AnalyticsMetricsListCmd = &cobra.Command{
+	Use:   "list-analytics-metrics",
+	Short: `Returns list of metrics`,
+	Long:  `Returns list of metrics`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_metrics_list] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsMetricsListParams()
+
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsMetricsList(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_metrics_list] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-metrics-list", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_metrics_list] : %v", err)
 		}
 
 		return nil

@@ -6,18 +6,17 @@ import (
 )
 
 var DescribeCmd = &cobra.Command{
-        Use: "describe",
-        RunE: func(cmd *cobra.Command, args []string) error {
-        return cmd.Help()
-    },
+	Use: "describe",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return cmd.Help()
+	},
 }
 
 func init() {
-    
-        DescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
-        PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
-PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
-PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().StringArray("resource-type", nil, "Resource Type")
 
-    
+	DescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
+	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
+	PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
+	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().StringArray("resource-type", nil, "Resource Type")
+
 }

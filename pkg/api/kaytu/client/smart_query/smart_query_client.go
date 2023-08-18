@@ -42,7 +42,7 @@ type ClientService interface {
 /*
 GetInventoryAPIV1Query lists smart queries
 
-Listing smart queries by specified filters
+Retrieving list of smart queries by specified filters
 */
 func (a *Client) GetInventoryAPIV1Query(params *GetInventoryAPIV1QueryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryOK, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) GetInventoryAPIV1Query(params *GetInventoryAPIV1QueryParams, au
 }
 
 /*
-GetInventoryAPIV1QueryRunHistory gets recently ran queries
+GetInventoryAPIV1QueryRunHistory lists recently ran queries
 
-Get recently ran queries.
+List queries which have been run recently
 */
 func (a *Client) GetInventoryAPIV1QueryRunHistory(params *GetInventoryAPIV1QueryRunHistoryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV1QueryRunHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -122,7 +122,7 @@ func (a *Client) GetInventoryAPIV1QueryRunHistory(params *GetInventoryAPIV1Query
 }
 
 /*
-PostInventoryAPIV1QueryRun runs provided smart query and returns the result
+PostInventoryAPIV1QueryRun runs query
 
 Run provided smart query and returns the result.
 */

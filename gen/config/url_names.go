@@ -130,6 +130,9 @@ var UrlNames = map[string]string{
 	"get-inventory-api-v2-resources-regions-composition":  "get-resource-composition-by-region",
 	"get-inventory-api-v2-resources-regions-summary":      "get-resource-summary-by-region",
 	"get-inventory-api-v2-resources-count":                "get-resource-count",
+	"get_inventory_api_v2_analytics_metrics_list":         "list-analytics-metrics",
+	"get_inventory_api_v2_analytics_spend_table":          "list-spend-table",
+	"get_inventory_api_v2_analytics_table":                "list-resource-table",
 
 	// keys
 	"delete-auth-api-v1-key-id-delete": "remove-key",

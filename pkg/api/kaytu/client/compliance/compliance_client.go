@@ -50,7 +50,7 @@ type ClientService interface {
 /*
 GetComplianceAPIV1BenchmarksBenchmarkIDSummary gets benchmark summary
 
-This API enables users to retrieve a summary of a benchmark and its associated checks and results. Users can use this API to obtain an overview of the benchmark, including its name, description, and other relevant information, as well as the checks and their corresponding results.
+Retrieving a summary of a benchmark and its associated checks and results.
 */
 func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error) {
 	// TODO: Validate the params before sending
@@ -91,7 +91,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetCompl
 /*
 GetComplianceAPIV1BenchmarksBenchmarkIDTree gets benchmark tree
 
-This API retrieves the benchmark tree, including all of its child benchmarks. Users can use this API to obtain a comprehensive overview of the benchmarks within a particular category or hierarchy.
+Retrieving the benchmark tree, including all of its child benchmarks.
 */
 func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error) {
 	// TODO: Validate the params before sending
@@ -132,7 +132,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplian
 /*
 GetComplianceAPIV1BenchmarksBenchmarkIDTrend gets benchmark trend
 
-This API enables users to retrieve a trend of a benchmark result and checks
+Retrieving a trend of a benchmark result and checks.
 */
 func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTrendOK, error) {
 	// TODO: Validate the params before sending
@@ -173,7 +173,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTrend(params *GetComplia
 /*
 GetComplianceAPIV1BenchmarksSummary lists benchmarks summaries
 
-This API enables users to retrieve a summary of all benchmarks and their associated checks and results within a specified time interval. Users can use this API to obtain an overview of all benchmarks, including their names, descriptions, and other relevant information, as well as the checks and their corresponding results within the specified time period.
+Retrieving a summary of all benchmarks and their associated checks and results within a specified time interval.
 */
 func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error) {
 	// TODO: Validate the params before sending
@@ -214,7 +214,7 @@ func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1B
 /*
 GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount gets top field by finding count
 
-This API enables users to retrieve the top field by finding count.
+Retrieving the top field by finding count.
 */
 func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error) {
 	// TODO: Validate the params before sending
@@ -255,7 +255,7 @@ func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetC
 /*
 GetComplianceAPIV1QueriesSync syncs queries
 
-This API syncs queries with the git backend.
+Syncs queries with the git backend.
 */
 func (a *Client) GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error) {
 	// TODO: Validate the params before sending
@@ -296,7 +296,7 @@ func (a *Client) GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1Queries
 /*
 PostComplianceAPIV1Findings gets findings
 
-This API enables users to retrieve all compliance run findings with respect to filters. Users can use this API to obtain a list of all compliance run findings that match specific filters, such as compliance run ID, resource ID, results, and other relevant parameters.
+Retrieving all compliance run findings with respect to filters.
 */
 func (a *Client) PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error) {
 	// TODO: Validate the params before sending

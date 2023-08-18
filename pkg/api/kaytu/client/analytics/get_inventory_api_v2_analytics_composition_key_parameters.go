@@ -84,7 +84,7 @@ type GetInventoryAPIV2AnalyticsCompositionKeyParams struct {
 
 	   timestamp for resource count in epoch seconds
 	*/
-	EndTime *string
+	EndTime *int64
 
 	/* Key.
 
@@ -102,7 +102,7 @@ type GetInventoryAPIV2AnalyticsCompositionKeyParams struct {
 
 	   timestamp for resource count change comparison in epoch seconds
 	*/
-	StartTime *string
+	StartTime *int64
 
 	/* Top.
 
@@ -197,13 +197,13 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetConnector(connector 
 }
 
 // WithEndTime adds the endTime to the get inventory API v2 analytics composition key params
-func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WithEndTime(endTime *string) *GetInventoryAPIV2AnalyticsCompositionKeyParams {
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WithEndTime(endTime *int64) *GetInventoryAPIV2AnalyticsCompositionKeyParams {
 	o.SetEndTime(endTime)
 	return o
 }
 
 // SetEndTime adds the endTime to the get inventory API v2 analytics composition key params
-func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetEndTime(endTime *string) {
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetEndTime(endTime *int64) {
 	o.EndTime = endTime
 }
 
@@ -230,13 +230,13 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetMetricType(metricTyp
 }
 
 // WithStartTime adds the startTime to the get inventory API v2 analytics composition key params
-func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WithStartTime(startTime *string) *GetInventoryAPIV2AnalyticsCompositionKeyParams {
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WithStartTime(startTime *int64) *GetInventoryAPIV2AnalyticsCompositionKeyParams {
 	o.SetStartTime(startTime)
 	return o
 }
 
 // SetStartTime adds the startTime to the get inventory API v2 analytics composition key params
-func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetStartTime(startTime *string) {
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetStartTime(startTime *int64) {
 	o.StartTime = startTime
 }
 
@@ -301,12 +301,12 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WriteToRequest(r runtim
 	if o.EndTime != nil {
 
 		// query param endTime
-		var qrEndTime string
+		var qrEndTime int64
 
 		if o.EndTime != nil {
 			qrEndTime = *o.EndTime
 		}
-		qEndTime := qrEndTime
+		qEndTime := swag.FormatInt64(qrEndTime)
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
@@ -340,12 +340,12 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WriteToRequest(r runtim
 	if o.StartTime != nil {
 
 		// query param startTime
-		var qrStartTime string
+		var qrStartTime int64
 
 		if o.StartTime != nil {
 			qrStartTime = *o.StartTime
 		}
-		qStartTime := qrStartTime
+		qStartTime := swag.FormatInt64(qrStartTime)
 		if qStartTime != "" {
 
 			if err := r.SetQueryParam("startTime", qStartTime); err != nil {
