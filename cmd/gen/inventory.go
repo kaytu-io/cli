@@ -22,10 +22,12 @@ func init() {
 	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().StringArray("metric-ids", nil, "")
 	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().Int64("start-time", 0, "timestamp for start in epoch seconds")
 
-	InventoryCmd.AddCommand(GetInventoryApiV2AnalyticsTableCmd)
-	GetInventoryApiV2AnalyticsTableCmd.Flags().String("dimension", "", "Dimension of the table, default is metric")
-	GetInventoryApiV2AnalyticsTableCmd.Flags().Int64("end-time", 0, "timestamp for end in epoch seconds")
-	GetInventoryApiV2AnalyticsTableCmd.Flags().String("granularity", "", "Granularity of the table, default is daily")
-	GetInventoryApiV2AnalyticsTableCmd.Flags().Int64("start-time", 0, "timestamp for start in epoch seconds")
+	InventoryCmd.AddCommand(GetInventoryApiV2AnalyticsSpendTableCmd)
+	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
+	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().String("dimension", "", "Dimension of the table, default is metric")
+	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().Int64("end-time", 0, "timestamp for end in epoch seconds")
+	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().String("granularity", "", "Granularity of the table, default is daily")
+	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().StringArray("metric-ids", nil, "")
+	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().Int64("start-time", 0, "timestamp for start in epoch seconds")
 
 }
