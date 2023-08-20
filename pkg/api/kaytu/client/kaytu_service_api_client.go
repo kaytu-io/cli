@@ -28,13 +28,13 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/workspace"
 )
 
-// Default keibi service API HTTP client.
+// Default kaytu service API HTTP client.
 var Default = NewHTTPClient(nil)
 
 const (
 	// DefaultHost is the default Host
 	// found in Meta (info) section of spec file
-	DefaultHost string = "dev-cluster.keibi.io"
+	DefaultHost string = "dev-cluster.kaytu.io"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
 	DefaultBasePath string = "/"
@@ -43,14 +43,14 @@ const (
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"https"}
 
-// NewHTTPClient creates a new keibi service API HTTP client.
-func NewHTTPClient(formats strfmt.Registry) *KeibiServiceAPI {
+// NewHTTPClient creates a new kaytu service API HTTP client.
+func NewHTTPClient(formats strfmt.Registry) *KaytuServiceAPI {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
-// NewHTTPClientWithConfig creates a new keibi service API HTTP client,
+// NewHTTPClientWithConfig creates a new kaytu service API HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *KeibiServiceAPI {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *KaytuServiceAPI {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -61,14 +61,14 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Kei
 	return New(transport, formats)
 }
 
-// New creates a new keibi service API client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *KeibiServiceAPI {
+// New creates a new kaytu service API client
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *KaytuServiceAPI {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
 	}
 
-	cli := new(KeibiServiceAPI)
+	cli := new(KaytuServiceAPI)
 	cli.Transport = transport
 	cli.Analytics = analytics.New(transport, formats)
 	cli.BenchmarksAssignment = benchmarks_assignment.New(transport, formats)
@@ -128,8 +128,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
-// KeibiServiceAPI is a client for keibi service API
-type KeibiServiceAPI struct {
+// KaytuServiceAPI is a client for kaytu service API
+type KaytuServiceAPI struct {
 	Analytics analytics.ClientService
 
 	BenchmarksAssignment benchmarks_assignment.ClientService
@@ -166,7 +166,7 @@ type KeibiServiceAPI struct {
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *KeibiServiceAPI) SetTransport(transport runtime.ClientTransport) {
+func (c *KaytuServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Analytics.SetTransport(transport)
 	c.BenchmarksAssignment.SetTransport(transport)

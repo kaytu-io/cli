@@ -48,7 +48,7 @@ type ClientService interface {
 /*
 	GetComplianceAPIV1Insight lists insights
 
-	This API returns a list of insights based on specified filters. The API provides details of insights, including results during the specified time period for the specified connection.
+	Retrieving list of insights based on specified filters. Provides details of insights, including results during the specified time period for the specified connection.
 
 Returns "all:provider" job results if connectionId is not defined.
 */
@@ -91,7 +91,7 @@ func (a *Client) GetComplianceAPIV1Insight(params *GetComplianceAPIV1InsightPara
 /*
 	GetComplianceAPIV1InsightGroup lists insight groups
 
-	This API returns a list of insight groups based on specified filters. The API provides details of insights, including results during the specified time period for the specified connection.
+	Retrieving list of insight groups based on specified filters. The API provides details of insights, including results during the specified time period for the specified connection.
 
 Returns "all:provider" job results if connectionId is not defined.
 */
@@ -134,7 +134,7 @@ func (a *Client) GetComplianceAPIV1InsightGroup(params *GetComplianceAPIV1Insigh
 /*
 	GetComplianceAPIV1InsightInsightID gets insight
 
-	This API returns the specified insight with ID. The API provides details of the insight, including results during the specified time period for the specified connection.
+	Retrieving the specified insight with ID. Provides details of the insight, including results during the specified time period for the specified connection.
 
 Returns "all:provider" job results if connectionId is not defined.
 */
@@ -177,7 +177,7 @@ func (a *Client) GetComplianceAPIV1InsightInsightID(params *GetComplianceAPIV1In
 /*
 	GetComplianceAPIV1InsightInsightIDTrend gets insight trend
 
-	This API allows users to retrieve insight results datapoints for a specified connection during a specified time period.
+	Retrieving insight results datapoints for a specified connection during a specified time period.
 
 Returns "all:provider" job results if connectionId is not defined.
 */
@@ -220,7 +220,7 @@ func (a *Client) GetComplianceAPIV1InsightInsightIDTrend(params *GetComplianceAP
 /*
 GetComplianceAPIV1MetadataInsightInsightID gets insight metadata
 
-Get insight metadata by id
+Retrieving insight metadata by id
 */
 func (a *Client) GetComplianceAPIV1MetadataInsightInsightID(params *GetComplianceAPIV1MetadataInsightInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataInsightInsightIDOK, error) {
 	// TODO: Validate the params before sending
@@ -261,7 +261,7 @@ func (a *Client) GetComplianceAPIV1MetadataInsightInsightID(params *GetComplianc
 /*
 GetComplianceAPIV1MetadataTagInsight lists insights tag keys
 
-This API allows users to retrieve a list of insights tag keys with their possible values.
+Retrieving a list of insights tag keys with their possible values.
 */
 func (a *Client) GetComplianceAPIV1MetadataTagInsight(params *GetComplianceAPIV1MetadataTagInsightParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1MetadataTagInsightOK, error) {
 	// TODO: Validate the params before sending

@@ -92,6 +92,18 @@ type GetOnboardAPIV1ConnectionsSummaryParams struct {
 	*/
 	LifecycleState *string
 
+	/* NeedCost.
+
+	   for quicker inquiry send this parameter as false, default: true
+	*/
+	NeedCost *bool
+
+	/* NeedResourceCount.
+
+	   for quicker inquiry send this parameter as false, default: true
+	*/
+	NeedResourceCount *bool
+
 	/* PageNumber.
 
 	   page number - default is 1
@@ -224,6 +236,28 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetLifecycleState(lifecycleSta
 	o.LifecycleState = lifecycleState
 }
 
+// WithNeedCost adds the needCost to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithNeedCost(needCost *bool) *GetOnboardAPIV1ConnectionsSummaryParams {
+	o.SetNeedCost(needCost)
+	return o
+}
+
+// SetNeedCost adds the needCost to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetNeedCost(needCost *bool) {
+	o.NeedCost = needCost
+}
+
+// WithNeedResourceCount adds the needResourceCount to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithNeedResourceCount(needResourceCount *bool) *GetOnboardAPIV1ConnectionsSummaryParams {
+	o.SetNeedResourceCount(needResourceCount)
+	return o
+}
+
+// SetNeedResourceCount adds the needResourceCount to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetNeedResourceCount(needResourceCount *bool) {
+	o.NeedResourceCount = needResourceCount
+}
+
 // WithPageNumber adds the pageNumber to the get onboard API v1 connections summary params
 func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithPageNumber(pageNumber *int64) *GetOnboardAPIV1ConnectionsSummaryParams {
 	o.SetPageNumber(pageNumber)
@@ -344,6 +378,40 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		if qLifecycleState != "" {
 
 			if err := r.SetQueryParam("lifecycleState", qLifecycleState); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.NeedCost != nil {
+
+		// query param needCost
+		var qrNeedCost bool
+
+		if o.NeedCost != nil {
+			qrNeedCost = *o.NeedCost
+		}
+		qNeedCost := swag.FormatBool(qrNeedCost)
+		if qNeedCost != "" {
+
+			if err := r.SetQueryParam("needCost", qNeedCost); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.NeedResourceCount != nil {
+
+		// query param needResourceCount
+		var qrNeedResourceCount bool
+
+		if o.NeedResourceCount != nil {
+			qrNeedResourceCount = *o.NeedResourceCount
+		}
+		qNeedResourceCount := swag.FormatBool(qrNeedResourceCount)
+		if qNeedResourceCount != "" {
+
+			if err := r.SetQueryParam("needResourceCount", qNeedResourceCount); err != nil {
 				return err
 			}
 		}

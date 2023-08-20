@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID deletes benchmark assignment for inventory service
+DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID deletes benchmark assignment
 
 Delete benchmark assignment with source id and benchmark id
 */
@@ -81,9 +81,9 @@ func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnection
 }
 
 /*
-GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID gets all benchmark assigned sources with benchmark id
+GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID gets benchmark assigned sources
 
-Returns all benchmark assigned sources with benchmark id
+Retrieving all benchmark assigned sources with benchmark id
 */
 func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error) {
 	// TODO: Validate the params before sending
@@ -122,9 +122,9 @@ func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetCo
 }
 
 /*
-PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID creates benchmark assignment for inventory service
+PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID creates benchmark assignment
 
-Returns benchmark assignment which insert
+Creating a benchmark assignment for a connection.
 */
 func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
 	// TODO: Validate the params before sending

@@ -40,7 +40,7 @@ type ClientService interface {
 /*
 GetOnboardAPIV1ConnectionGroups lists connection groups
 
-Returns a list of connection groups
+Retrieving a list of connection groups
 */
 func (a *Client) GetOnboardAPIV1ConnectionGroups(params *GetOnboardAPIV1ConnectionGroupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionGroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -81,7 +81,7 @@ func (a *Client) GetOnboardAPIV1ConnectionGroups(params *GetOnboardAPIV1Connecti
 /*
 GetOnboardAPIV1ConnectionGroupsConnectionGroupName gets connection group
 
-Returns a connection group
+Retrieving a connection group
 */
 func (a *Client) GetOnboardAPIV1ConnectionGroupsConnectionGroupName(params *GetOnboardAPIV1ConnectionGroupsConnectionGroupNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionGroupsConnectionGroupNameOK, error) {
 	// TODO: Validate the params before sending

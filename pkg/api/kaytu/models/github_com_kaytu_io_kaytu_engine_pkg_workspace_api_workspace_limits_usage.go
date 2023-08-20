@@ -46,7 +46,7 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceLimitsUsage struct {
 	MaxUsers int64 `json:"maxUsers,omitempty"`
 
 	// name
-	// Example: keibi
+	// Example: kaytu
 	Name string `json:"name,omitempty"`
 }
 

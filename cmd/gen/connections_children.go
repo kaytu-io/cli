@@ -4,6 +4,7 @@ package gen
 import (
 	"errors"
 	"fmt"
+
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
@@ -32,6 +33,8 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
 		req.SetHealthState(flags.ReadStringOptionalFlag(cmd, "HealthState"))
 		req.SetLifecycleState(flags.ReadStringOptionalFlag(cmd, "LifecycleState"))
+		req.SetNeedCost(flags.ReadBooleanOptionalFlag(cmd, "NeedCost"))
+		req.SetNeedResourceCount(flags.ReadBooleanOptionalFlag(cmd, "NeedResourceCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))

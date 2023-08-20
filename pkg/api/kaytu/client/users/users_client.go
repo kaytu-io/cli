@@ -214,7 +214,7 @@ func (a *Client) GetAuthAPIV1Users(params *GetAuthAPIV1UsersParams, authInfo run
 /*
 GetAuthAPIV1WorkspaceRoleBindings workspaces user role bindings
 
-Get all the RoleBindings of the workspace. RoleBinding defines the roles and actions a user can perform. There are currently three roles (admin, editor, viewer). The workspace path is based on the DNS such as (workspace1.app.keibi.io)
+Get all the RoleBindings of the workspace. RoleBinding defines the roles and actions a user can perform. There are currently three roles (admin, editor, viewer). The workspace path is based on the DNS such as (workspace1.app.kaytu.io)
 */
 func (a *Client) GetAuthAPIV1WorkspaceRoleBindings(params *GetAuthAPIV1WorkspaceRoleBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthAPIV1WorkspaceRoleBindingsOK, error) {
 	// TODO: Validate the params before sending

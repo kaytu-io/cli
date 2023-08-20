@@ -38,7 +38,7 @@ type ClientService interface {
 /*
 GetOnboardAPIV1ConnectionsSummary lists connections summaries
 
-Returns a list of connections summaries
+Retrieving a list of connections summaries
 */
 func (a *Client) GetOnboardAPIV1ConnectionsSummary(params *GetOnboardAPIV1ConnectionsSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1ConnectionsSummaryOK, error) {
 	// TODO: Validate the params before sending

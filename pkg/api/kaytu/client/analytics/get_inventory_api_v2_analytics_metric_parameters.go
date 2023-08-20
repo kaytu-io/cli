@@ -84,7 +84,7 @@ type GetInventoryAPIV2AnalyticsMetricParams struct {
 
 	   timestamp for resource count in epoch seconds
 	*/
-	EndTime *string
+	EndTime *int64
 
 	/* MetricIDs.
 
@@ -126,7 +126,7 @@ type GetInventoryAPIV2AnalyticsMetricParams struct {
 
 	   timestamp for resource count change comparison in epoch seconds
 	*/
-	StartTime *string
+	StartTime *int64
 
 	/* Tag.
 
@@ -221,13 +221,13 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) SetConnector(connector []string
 }
 
 // WithEndTime adds the endTime to the get inventory API v2 analytics metric params
-func (o *GetInventoryAPIV2AnalyticsMetricParams) WithEndTime(endTime *string) *GetInventoryAPIV2AnalyticsMetricParams {
+func (o *GetInventoryAPIV2AnalyticsMetricParams) WithEndTime(endTime *int64) *GetInventoryAPIV2AnalyticsMetricParams {
 	o.SetEndTime(endTime)
 	return o
 }
 
 // SetEndTime adds the endTime to the get inventory API v2 analytics metric params
-func (o *GetInventoryAPIV2AnalyticsMetricParams) SetEndTime(endTime *string) {
+func (o *GetInventoryAPIV2AnalyticsMetricParams) SetEndTime(endTime *int64) {
 	o.EndTime = endTime
 }
 
@@ -298,13 +298,13 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) SetSortBy(sortBy *string) {
 }
 
 // WithStartTime adds the startTime to the get inventory API v2 analytics metric params
-func (o *GetInventoryAPIV2AnalyticsMetricParams) WithStartTime(startTime *string) *GetInventoryAPIV2AnalyticsMetricParams {
+func (o *GetInventoryAPIV2AnalyticsMetricParams) WithStartTime(startTime *int64) *GetInventoryAPIV2AnalyticsMetricParams {
 	o.SetStartTime(startTime)
 	return o
 }
 
 // SetStartTime adds the startTime to the get inventory API v2 analytics metric params
-func (o *GetInventoryAPIV2AnalyticsMetricParams) SetStartTime(startTime *string) {
+func (o *GetInventoryAPIV2AnalyticsMetricParams) SetStartTime(startTime *int64) {
 	o.StartTime = startTime
 }
 
@@ -369,12 +369,12 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) WriteToRequest(r runtime.Client
 	if o.EndTime != nil {
 
 		// query param endTime
-		var qrEndTime string
+		var qrEndTime int64
 
 		if o.EndTime != nil {
 			qrEndTime = *o.EndTime
 		}
-		qEndTime := qrEndTime
+		qEndTime := swag.FormatInt64(qrEndTime)
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
@@ -482,12 +482,12 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) WriteToRequest(r runtime.Client
 	if o.StartTime != nil {
 
 		// query param startTime
-		var qrStartTime string
+		var qrStartTime int64
 
 		if o.StartTime != nil {
 			qrStartTime = *o.StartTime
 		}
-		qStartTime := qrStartTime
+		qStartTime := swag.FormatInt64(qrStartTime)
 		if qStartTime != "" {
 
 			if err := r.SetQueryParam("startTime", qStartTime); err != nil {
