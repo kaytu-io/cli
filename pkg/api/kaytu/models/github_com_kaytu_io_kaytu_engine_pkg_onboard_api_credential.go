@@ -20,6 +20,12 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.Credential
 type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 
+	// archived connections
+	// Example: 0
+	// Maximum: 1000
+	// Minimum: 0
+	ArchivedConnections *int64 `json:"archived_connections,omitempty"`
+
 	// auto onboard enabled
 	// Example: false
 	AutoOnboardEnabled bool `json:"autoOnboardEnabled,omitempty"`
@@ -38,6 +44,12 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 	// Example: manual-aws-org
 	CredentialType GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType `json:"credentialType,omitempty"`
 
+	// disabled connections
+	// Example: 0
+	// Maximum: 1000
+	// Minimum: 0
+	DisabledConnections *int64 `json:"disabled_connections,omitempty"`
+
 	// discovered connections
 	// Example: 50
 	// Maximum: 100
@@ -47,12 +59,6 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 	// enabled
 	// Example: true
 	Enabled bool `json:"enabled,omitempty"`
-
-	// enabled connections
-	// Example: 250
-	// Maximum: 1000
-	// Minimum: 0
-	EnabledConnections *int64 `json:"enabled_connections,omitempty"`
 
 	// health reason
 	HealthReason string `json:"healthReason,omitempty"`
@@ -82,6 +88,12 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 	// Format: date-time
 	OnboardDate strfmt.DateTime `json:"onboardDate,omitempty"`
 
+	// onboard connections
+	// Example: 250
+	// Maximum: 1000
+	// Minimum: 0
+	OnboardConnections *int64 `json:"onboard_connections,omitempty"`
+
 	// total connections
 	// Example: 300
 	// Maximum: 1000
@@ -99,6 +111,10 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateArchivedConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConnections(formats); err != nil {
 		res = append(res, err)
 	}
@@ -111,11 +127,11 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) Validate(formats st
 		res = append(res, err)
 	}
 
-	if err := m.validateDiscoveredConnections(formats); err != nil {
+	if err := m.validateDisabledConnections(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateEnabledConnections(formats); err != nil {
+	if err := m.validateDiscoveredConnections(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -131,6 +147,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) Validate(formats st
 		res = append(res, err)
 	}
 
+	if err := m.validateOnboardConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTotalConnections(formats); err != nil {
 		res = append(res, err)
 	}
@@ -142,6 +162,22 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) Validate(formats st
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateArchivedConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.ArchivedConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("archived_connections", "body", *m.ArchivedConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("archived_connections", "body", *m.ArchivedConnections, 1000, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -187,6 +223,22 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateCredentialT
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateDisabledConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.DisabledConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("disabled_connections", "body", *m.DisabledConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("disabled_connections", "body", *m.DisabledConnections, 1000, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateDiscoveredConnections(formats strfmt.Registry) error {
 	if swag.IsZero(m.DiscoveredConnections) { // not required
 		return nil
@@ -197,22 +249,6 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateDiscoveredC
 	}
 
 	if err := validate.MaximumInt("discovered_connections", "body", *m.DiscoveredConnections, 100, false); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateEnabledConnections(formats strfmt.Registry) error {
-	if swag.IsZero(m.EnabledConnections) { // not required
-		return nil
-	}
-
-	if err := validate.MinimumInt("enabled_connections", "body", *m.EnabledConnections, 0, false); err != nil {
-		return err
-	}
-
-	if err := validate.MaximumInt("enabled_connections", "body", *m.EnabledConnections, 1000, false); err != nil {
 		return err
 	}
 
@@ -245,6 +281,22 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateOnboardDate
 	}
 
 	if err := validate.FormatOf("onboardDate", "body", "date-time", m.OnboardDate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICredential) validateOnboardConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.OnboardConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("onboard_connections", "body", *m.OnboardConnections, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("onboard_connections", "body", *m.OnboardConnections, 1000, false); err != nil {
 		return err
 	}
 

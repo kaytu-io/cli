@@ -29,11 +29,11 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse struc
 	// connections
 	Connections []*GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection `json:"connections"`
 
-	// old connection count
+	// total archived count
 	// Example: 10
-	// Maximum: 1000
+	// Maximum: 100
 	// Minimum: 0
-	OldConnectionCount *int64 `json:"oldConnectionCount,omitempty"`
+	TotalArchivedCount *int64 `json:"totalArchivedCount,omitempty"`
 
 	// total cost
 	// Example: 1000
@@ -58,6 +58,12 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse struc
 	// Maximum: 1e+06
 	// Minimum: 0
 	TotalOldResourceCount *int64 `json:"totalOldResourceCount,omitempty"`
+
+	// Also includes in-progress
+	// Example: 10
+	// Maximum: 100
+	// Minimum: 0
+	TotalOnboardedCount *int64 `json:"totalOnboardedCount,omitempty"`
 
 	// total resource count
 	// Example: 100
@@ -84,7 +90,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) 
 		res = append(res, err)
 	}
 
-	if err := m.validateOldConnectionCount(formats); err != nil {
+	if err := m.validateTotalArchivedCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -101,6 +107,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) 
 	}
 
 	if err := m.validateTotalOldResourceCount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalOnboardedCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -160,16 +170,16 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) 
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateOldConnectionCount(formats strfmt.Registry) error {
-	if swag.IsZero(m.OldConnectionCount) { // not required
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalArchivedCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalArchivedCount) { // not required
 		return nil
 	}
 
-	if err := validate.MinimumInt("oldConnectionCount", "body", *m.OldConnectionCount, 0, false); err != nil {
+	if err := validate.MinimumInt("totalArchivedCount", "body", *m.TotalArchivedCount, 0, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("oldConnectionCount", "body", *m.OldConnectionCount, 1000, false); err != nil {
+	if err := validate.MaximumInt("totalArchivedCount", "body", *m.TotalArchivedCount, 100, false); err != nil {
 		return err
 	}
 
@@ -234,6 +244,22 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) 
 	}
 
 	if err := validate.MaximumInt("totalOldResourceCount", "body", *m.TotalOldResourceCount, 1e+06, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPIListConnectionSummaryResponse) validateTotalOnboardedCount(formats strfmt.Registry) error {
+	if swag.IsZero(m.TotalOnboardedCount) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("totalOnboardedCount", "body", *m.TotalOnboardedCount, 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("totalOnboardedCount", "body", *m.TotalOnboardedCount, 100, false); err != nil {
 		return err
 	}
 
