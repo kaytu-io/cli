@@ -225,7 +225,12 @@ func PrintList(objJSON []byte) error {
 			value := item[header]
 			row = append(row, value)
 			spaces := strings.Repeat(" ", maxSize-len(header)+2)
-			record += fmt.Sprintf("%s %s%s\n", color.CyanString(strcase.ToCamel(header)+":"), spaces, value)
+			if value[0] == '[' {
+				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
+				PrintTable([]byte(value))
+			} else {
+				record += fmt.Sprintf("%s %s%s\n", color.CyanString(strcase.ToCamel(header)+":"), spaces, value)
+			}
 		}
 		array = append(array, record)
 	}
@@ -257,7 +262,6 @@ func extractRows(objJSON []byte) ([]map[string]string, error) {
 			case float32:
 				row[k] = fmt.Sprintf("%v", float32(int(v.(float64)*100))/100)
 			case int, int32, int64, string, bool:
-				fmt.Println("string")
 				row[k] = fmt.Sprintf("%v", t)
 			default:
 				v = keepTwoDigits(v)
