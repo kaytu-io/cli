@@ -6,6 +6,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/spf13/cobra"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -20,8 +21,10 @@ func GetConfig(cmd *cobra.Command, workspaceNameRequired bool) (*Config, error) 
 	home := os.Getenv("HOME")
 	data, err := os.ReadFile(home + "/.kaytu/config.json")
 	if err != nil {
-		return nil, fmt.Errorf("[getConfig] : %v", err)
-
+		if strings.Contains(err.Error(), "no such file or directory") {
+			return nil, fmt.Errorf("credentials not found! please login to your account")
+		}
+		return nil, fmt.Errorf("[CredentialsFile] : %v", err)
 	}
 
 	var config Config
