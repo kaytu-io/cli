@@ -16,12 +16,29 @@ import (
 	"strings"
 )
 
+func keepTwoDigits(v interface{}) interface{} {
+	switch v.(type) {
+	case []interface{}:
+		for key, value := range v.([]interface{}) {
+			v.([]interface{})[key] = keepTwoDigits(value)
+		}
+	case map[string]interface{}:
+		for key, value := range v.(map[string]interface{}) {
+			v.(map[string]interface{})[key] = keepTwoDigits(value)
+		}
+	case float64:
+		v = fmt.Sprintf("%v", float64(int(v.(float64)*100))/100)
+	case float32:
+		v = fmt.Sprintf("%v", float32(int(v.(float64)*100))/100)
+	}
+	return v
+}
+
 func PrintOutput(cmd *cobra.Command, commandName string, obj interface{}) error {
 	bytes, err := json.MarshalIndent(obj, "", "  ")
 	if err != nil {
 		return fmt.Errorf("[output]: %v", err)
 	}
-
 	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
 	switch typeOutput {
 	case "summary":
@@ -208,7 +225,12 @@ func PrintList(objJSON []byte) error {
 			value := item[header]
 			row = append(row, value)
 			spaces := strings.Repeat(" ", maxSize-len(header)+2)
-			record += fmt.Sprintf("%s %s%s\n", color.CyanString(strcase.ToCamel(header)+":"), spaces, value)
+			if value[0] == '[' {
+				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
+				PrintTable([]byte(value))
+			} else {
+				record += fmt.Sprintf("%s %s%s\n", color.CyanString(strcase.ToCamel(header)+":"), spaces, value)
+			}
 		}
 		array = append(array, record)
 	}
@@ -235,9 +257,14 @@ func extractRows(objJSON []byte) ([]map[string]string, error) {
 		row := map[string]string{}
 		for k, v := range item {
 			switch t := v.(type) {
-			case int, int32, int64, float64, float32, string, bool:
+			case float64:
+				row[k] = fmt.Sprintf("%v", float64(int(v.(float64)*100))/100)
+			case float32:
+				row[k] = fmt.Sprintf("%v", float32(int(v.(float64)*100))/100)
+			case int, int32, int64, string, bool:
 				row[k] = fmt.Sprintf("%v", t)
 			default:
+				v = keepTwoDigits(v)
 				js, err := json.Marshal(v)
 				if err != nil {
 					return nil, err
