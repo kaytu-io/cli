@@ -9,6 +9,7 @@ import (
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/kaytu-io/cli-program/gen/config"
 	"github.com/spf13/cobra"
+	"github.com/teacat/jsonfilter"
 	jsonmask "github.com/teambition/json-mask-go"
 	"golang.org/x/term"
 	"os"
@@ -40,6 +41,15 @@ func PrintOutput(cmd *cobra.Command, commandName string, obj interface{}) error 
 		return fmt.Errorf("[output]: %v", err)
 	}
 	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
+	filter := cmd.Flags().Lookup("filter").Value.String()
+
+	if filter != "" {
+		bytes, err = jsonfilter.Filter(bytes, filter)
+		if err != nil {
+			return fmt.Errorf("[output]: %v", err)
+		}
+	}
+
 	switch typeOutput {
 	case "summary":
 		return PrintSummary(bytes, commandName)
@@ -225,9 +235,15 @@ func PrintList(objJSON []byte) error {
 			value := item[header]
 			row = append(row, value)
 			spaces := strings.Repeat(" ", maxSize-len(header)+2)
+			if len(value) == 0 {
+				continue
+			}
 			if value[0] == '[' {
 				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
+				divider := fmt.Sprintf("\n%s\n\n", strings.Repeat("=", maxSize))
+				fmt.Print(color.CyanString(divider))
 				PrintTable([]byte(value))
+				fmt.Print(color.CyanString(divider))
 			} else {
 				record += fmt.Sprintf("%s %s%s\n", color.CyanString(strcase.ToCamel(header)+":"), spaces, value)
 			}

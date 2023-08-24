@@ -27,4 +27,5 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().String("workspace-name", "", "")
 	rootCmd.PersistentFlags().String("output-type", "summary", "output type [summary, json, csv, list, table]")
+	rootCmd.PersistentFlags().String("filter", "", "columns to display. syntax: https://github.com/teacat/jsonfilter#syntax")
 }
