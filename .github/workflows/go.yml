@@ -62,7 +62,7 @@ jobs:
     - name: update cli version in snap
       run: |
         cd snap
-        sed -i "s/VERSION_LINUX_X64/$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" snapcraft.yaml
+        sed -i "s+VERSION_LINUX_X64+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" snapcraft.yaml
         cd ..
 
     - name: Create snap
