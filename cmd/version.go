@@ -11,10 +11,9 @@ import (
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "A brief description of your command",
+	Use: "version",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("v1.8.49")
+		fmt.Println("NEW_VERSION_CLI")
 	},
 }
 

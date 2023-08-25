@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetOnboardAPIV1SourceSourceIDHealthcheckParams creates a new GetOnboardAPIV1SourceSourceIDHealthcheckParams object,
@@ -67,6 +68,14 @@ type GetOnboardAPIV1SourceSourceIDHealthcheckParams struct {
 	*/
 	SourceID string
 
+	/* UpdateMetadata.
+
+	   Whether to update metadata or not
+
+	   Default: true
+	*/
+	UpdateMetadata *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -84,7 +93,18 @@ func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) WithDefaults() *GetOnbo
 //
 // All values with no default are reset to their zero value.
 func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		updateMetadataDefault = bool(true)
+	)
+
+	val := GetOnboardAPIV1SourceSourceIDHealthcheckParams{
+		UpdateMetadata: &updateMetadataDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get onboard API v1 source source ID healthcheck params
@@ -131,6 +151,17 @@ func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) SetSourceID(sourceID st
 	o.SourceID = sourceID
 }
 
+// WithUpdateMetadata adds the updateMetadata to the get onboard API v1 source source ID healthcheck params
+func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) WithUpdateMetadata(updateMetadata *bool) *GetOnboardAPIV1SourceSourceIDHealthcheckParams {
+	o.SetUpdateMetadata(updateMetadata)
+	return o
+}
+
+// SetUpdateMetadata adds the updateMetadata to the get onboard API v1 source source ID healthcheck params
+func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) SetUpdateMetadata(updateMetadata *bool) {
+	o.UpdateMetadata = updateMetadata
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,6 +173,23 @@ func (o *GetOnboardAPIV1SourceSourceIDHealthcheckParams) WriteToRequest(r runtim
 	// path param sourceId
 	if err := r.SetPathParam("sourceId", o.SourceID); err != nil {
 		return err
+	}
+
+	if o.UpdateMetadata != nil {
+
+		// query param updateMetadata
+		var qrUpdateMetadata bool
+
+		if o.UpdateMetadata != nil {
+			qrUpdateMetadata = *o.UpdateMetadata
+		}
+		qUpdateMetadata := swag.FormatBool(qrUpdateMetadata)
+		if qUpdateMetadata != "" {
+
+			if err := r.SetQueryParam("updateMetadata", qUpdateMetadata); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

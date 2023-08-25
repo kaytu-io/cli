@@ -331,6 +331,7 @@ var GetOnboardApiV1SourceSourceIdHealthcheckCmd = &cobra.Command{
 		req := onboard.NewGetOnboardAPIV1SourceSourceIDHealthcheckParams()
 
 		req.SetSourceID(flags.ReadStringFlag(cmd, "SourceID"))
+		req.SetUpdateMetadata(flags.ReadBooleanOptionalFlag(cmd, "UpdateMetadata"))
 
 		resp, err := client.Onboard.GetOnboardAPIV1SourceSourceIDHealthcheck(req, auth)
 		if err != nil {

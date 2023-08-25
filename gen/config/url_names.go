@@ -255,7 +255,6 @@ var UrlNames = map[string]string{
 	// analytics
 	"get_inventory_api_v2_analytics_trend":               "get-analytics-trend",
 	"get_inventory_api_v2_analytics_categories":          "list-analytics-categories",
-	"get_inventory_api_v2_analytics_metrics":             "list-analytics-metrics",
 	"get_inventory_api_v2_analytics_metric":              "get-analytics-metric",
 	"get_inventory_api_v2_analytics_spend_composition":   "get-analytics-spend-composition",
 	"get_inventory_api_v2_analytics_regions_summary":     "get-analytics-regions-summary",

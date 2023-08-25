@@ -77,6 +77,7 @@ func init() {
 	OnboardCmd.AddCommand(GetOnboardApiV1SourceSourceIdHealthcheckCmd)
 	GetOnboardApiV1SourceSourceIdHealthcheckCmd.Flags().String("source-id", "", "Source ID")
 	GetOnboardApiV1SourceSourceIdHealthcheckCmd.MarkFlagRequired("source-id")
+	GetOnboardApiV1SourceSourceIdHealthcheckCmd.Flags().Bool("update-metadata", false, "Whether to update metadata or not")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1CredentialCmd)
 	GetOnboardApiV1CredentialCmd.Flags().String("connector", "", "filter by connector type")
