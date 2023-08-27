@@ -227,10 +227,8 @@ func PrintList(objJSON []byte) error {
 		return headersOrdered[i] < headersOrdered[j]
 	})
 
-	var array []string
 	for _, item := range rows {
 		var row []interface{}
-		var record string
 		for _, header := range headersOrdered {
 			value := item[header]
 			row = append(row, value)
@@ -239,19 +237,23 @@ func PrintList(objJSON []byte) error {
 				continue
 			}
 			if value[0] == '[' {
+				var strList []string
+				if err = json.Unmarshal([]byte(value), &strList); err == nil {
+					fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(strcase.ToCamel(header)+":"), spaces, strList))
+					continue
+				}
 				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
-				divider := fmt.Sprintf("\n%s\n\n", strings.Repeat("=", maxSize))
+				divider := fmt.Sprintf("\n%s\n", strings.Repeat("=", maxSize))
 				fmt.Print(color.CyanString(divider))
 				PrintTable([]byte(value))
 				fmt.Print(color.CyanString(divider))
 			} else {
-				record += fmt.Sprintf("%s %s%s\n", color.CyanString(strcase.ToCamel(header)+":"), spaces, value)
+				fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(strcase.ToCamel(header)+":"), spaces, value))
 			}
 		}
-		array = append(array, record)
+		divider := fmt.Sprintf("\n%s\n", strings.Repeat("-", maxSize+10))
+		fmt.Println(color.CyanString(divider))
 	}
-	divider := fmt.Sprintf("\n%s\n\n", strings.Repeat("-", maxSize+50))
-	fmt.Println(strings.Join(array, color.CyanString(divider)))
 	return nil
 }
 
