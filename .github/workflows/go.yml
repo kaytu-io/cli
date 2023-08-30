@@ -115,7 +115,6 @@ jobs:
         sed -i 's/ *$//' newHash
         sed -i "9s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
-        rm -rf url
         
         sha256sum ../build/ktucli-macos-arm64 >> newHash
         cat newHash | rev | cut -c 27- | rev >> newHash 
@@ -123,7 +122,6 @@ jobs:
         sed -i 's/ *$//' newHash
         sed -i "17s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
-        rm -rf url
 
         sha256sum ../build/ktucli-linux-arm64 >> newHash
         cat newHash | rev | cut -c 27- | rev >> newHash 
@@ -131,7 +129,6 @@ jobs:
         sed -i 's/ *$//' newHash
         sed -i "25s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
-        rm -rf url
         
         sha256sum ../build/ktucli-linux-amd64 >> newHash
         cat newHash | rev | cut -c 27- | rev >> newHash 
@@ -139,7 +136,6 @@ jobs:
         sed -i 's/ *$//' newHash
         sed -i "33s/.*/$(printf '    sha256 "%s"\n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
-        rm url
         
         cd ..
         
