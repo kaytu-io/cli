@@ -109,29 +109,25 @@ jobs:
       run: |        
         cd homebrew
         
-        echo "https://github.com/kaytu-io/cli-program/releases/download/${{ steps.tag_version.outputs.new_tag }}/ktucli-macos-amd64" >> url
-        sha256sum url >> newHash
+        sha256sum ./build/ktucli-macos-amd64 >> newHash
         sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "9s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
         rm -rf url
         
-        echo "https://github.com/kaytu-io/cli-program/releases/download/${{ steps.tag_version.outputs.new_tag }}/ktucli-macos-arm64" >> url
-        sha256sum url >> newHash
+        sha256sum ./build/ktucli-macos-arm64 >> newHash
         sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "17s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
         rm -rf url
 
-        echo "https://github.com/kaytu-io/cli-program/releases/download/${{ steps.tag_version.outputs.new_tag }}/ktucli-linux-arm64" >> url
-        sha256sum url >> newHash
+        sha256sum ./build/ktucli-linux-arm64 >> newHash
         sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "25s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
         rm -rf url
         
-        echo "https://github.com/kaytu-io/cli-program/releases/download/${{ steps.tag_version.outputs.new_tag }}/ktucli-linux-amd64" >> url
-        sha256sum url >> newHash
+        sha256sum ./build/ktucli-linux-amd64 >> newHash
         sed -i s/'\w*$'// newHash && sed -i 's/ *$//' newHash
         sed -i "33s/.*/$(printf '    sha256 "%s"\n' "$(cat newHash)") /" kaytu.rb
         rm -rf newHash
