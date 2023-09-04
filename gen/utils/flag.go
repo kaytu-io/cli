@@ -17,7 +17,11 @@ func GenerateFlagDefinitions(tempName string, fv Field) (output string) {
 				case "string", "*string":
 					line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
 				case "int64", "*int64":
-					line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "%s")`, tempName, flags.Name(param.Name), param.Description)
+					if param.Name == "StartTime" || param.Name == "EndTime" {
+						line = fmt.Sprintf(`%sCmd.Flags().String("%s", "", "%s")`, tempName, flags.Name(param.Name), param.Description)
+					} else {
+						line = fmt.Sprintf(`%sCmd.Flags().Int64("%s", 0, "%s")`, tempName, flags.Name(param.Name), param.Description)
+					}
 				case "bool", "*bool":
 					line = fmt.Sprintf(`%sCmd.Flags().Bool("%s", false, "%s")`, tempName, flags.Name(param.Name), param.Description)
 				case "[]string":

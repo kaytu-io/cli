@@ -82,6 +82,9 @@ func GenerateReadingFlag(param Field) string {
 	case "*string":
 		return fmt.Sprintf(`flags.ReadStringOptionalFlag(cmd, "%s")`, param.Name)
 	case "int64":
+		if param.Name == "StartTime" || param.Name == "EndTime" {
+			return fmt.Sprintf(`flags.ReadTimeOptionalFlag(cmd, "%s")`, param.Name)
+		}
 		return fmt.Sprintf(`flags.ReadInt64Flag(cmd, "%s")`, param.Name)
 	case "*int64":
 		return fmt.Sprintf(`flags.ReadInt64OptionalFlag(cmd, "%s")`, param.Name)
