@@ -481,16 +481,14 @@ var GetInventoryApiV2AnalyticsSpendTableCmd = &cobra.Command{
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
 		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
-
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendTable(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_table] : %v", err)
 		}
-
 		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-table", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_table] : %v", err)

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/iancoleman/strcase"
 	"github.com/spf13/cobra"
@@ -36,6 +37,28 @@ func ReadInt64OptionalFlag(cmd *cobra.Command, name string) *int64 {
 	if str != nil {
 		i, _ := strconv.ParseInt(*str, 10, 64)
 		return &i
+	}
+	return nil
+}
+
+func ReadTimeOptionalFlag(cmd *cobra.Command, name string) *int64 {
+	str := ReadStringOptionalFlag(cmd, name)
+	if str != nil {
+		i, err := strconv.ParseInt(*str, 10, 64)
+		if err != nil {
+			layout := "2006-01-02"
+			t, err := time.Parse(layout, *str)
+			if err != nil {
+				panic(err)
+			}
+			if name == "EndTime" {
+				t = t.AddDate(0, 0, 1).Add((-1) * time.Duration(1) * time.Second)
+			}
+			epochTime := t.Unix()
+			return &epochTime
+		} else {
+			return &i
+		}
 	}
 	return nil
 }
