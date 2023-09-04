@@ -46,8 +46,8 @@ func init() {
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.MarkFlagRequired("benchmark-id")
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
-	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().Int64("end-time", 0, "timestamp for end of the chart in epoch seconds")
-	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().Int64("start-time", 0, "timestamp for start of the chart in epoch seconds")
+	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().String("end-time", "", "timestamp for end of the chart in epoch seconds")
+	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().String("start-time", "", "timestamp for start of the chart in epoch seconds")
 
 	ComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-benchmark-id", nil, "")

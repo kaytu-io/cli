@@ -63,6 +63,25 @@ func ReadTimeOptionalFlag(cmd *cobra.Command, name string) *int64 {
 	return nil
 }
 
+func ReadTimeFlag(cmd *cobra.Command, name string) int64 {
+	str := ReadStringFlag(cmd, name)
+	i, err := strconv.ParseInt(str, 10, 64)
+	if err != nil {
+		layout := "2006-01-02"
+		t, err := time.Parse(layout, str)
+		if err != nil {
+			panic(err)
+		}
+		if name == "EndTime" {
+			t = t.AddDate(0, 0, 1).Add((-1) * time.Duration(1) * time.Second)
+		}
+		epochTime := t.Unix()
+		return epochTime
+	} else {
+		return i
+	}
+}
+
 func ReadBooleanFlag(cmd *cobra.Command, name string) bool {
 	str := ReadStringFlag(cmd, name)
 	i, _ := strconv.ParseBool(str)
