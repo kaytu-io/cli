@@ -7,6 +7,8 @@ import (
 	"github.com/fatih/color"
 	"github.com/iancoleman/strcase"
 	"github.com/jedib0t/go-pretty/v6/table"
+	"github.com/leekchan/accounting"
+
 	"github.com/kaytu-io/cli-program/gen/config"
 	jsonmask "github.com/teambition/json-mask-go"
 	"golang.org/x/term"
@@ -15,20 +17,25 @@ import (
 	"strings"
 )
 
-func keepTwoDigits(v interface{}) interface{} {
+func keepTwoDigits(v interface{}, k string) interface{} {
+	ac := accounting.Accounting{Symbol: "$", Precision: 2}
 	switch v.(type) {
 	case []interface{}:
 		for key, value := range v.([]interface{}) {
-			v.([]interface{})[key] = keepTwoDigits(value)
+			v.([]interface{})[key] = keepTwoDigits(value, k)
 		}
 	case map[string]interface{}:
 		for key, value := range v.(map[string]interface{}) {
-			v.(map[string]interface{})[key] = keepTwoDigits(value)
+			v.(map[string]interface{})[key] = keepTwoDigits(value, key)
 		}
-	case float64:
-		v = fmt.Sprintf("%v", float64(int(v.(float64)*100))/100)
-	case float32:
-		v = fmt.Sprintf("%v", float32(int(v.(float64)*100))/100)
+	case float64, float32:
+		if strings.Contains(k, "cost") {
+			v = fmt.Sprint(ac.FormatMoney(v))
+		} else if strings.Contains(k, "count") {
+			v = fmt.Sprintf("%.0f", v)
+		} else {
+			v = fmt.Sprintf("%.2f", v)
+		}
 	}
 	return v
 }
@@ -276,20 +283,24 @@ func extractRows(objJSON []byte) ([]map[string]string, error) {
 	} else {
 		rowsInterface = append(rowsInterface, fields)
 	}
-
+	ac := accounting.Accounting{Symbol: "$", Precision: 2}
 	var rows []map[string]string
 	for _, item := range rowsInterface {
 		row := map[string]string{}
 		for k, v := range item {
 			switch t := v.(type) {
-			case float64:
-				row[k] = fmt.Sprintf("%v", float64(int(v.(float64)*100))/100)
-			case float32:
-				row[k] = fmt.Sprintf("%v", float32(int(v.(float64)*100))/100)
+			case float64, float32:
+				if strings.Contains(k, "cost") {
+					row[k] = fmt.Sprint(ac.FormatMoney(v))
+				} else if strings.Contains(k, "count") {
+					row[k] = fmt.Sprintf("%.0f", v)
+				} else {
+					row[k] = fmt.Sprintf("%.2f", v)
+				}
 			case int, int32, int64, string, bool:
 				row[k] = fmt.Sprintf("%v", t)
 			default:
-				v = keepTwoDigits(v)
+				v = keepTwoDigits(v, k)
 				js, err := json.Marshal(v)
 				if err != nil {
 					return nil, err

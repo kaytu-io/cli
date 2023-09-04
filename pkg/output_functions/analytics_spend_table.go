@@ -3,8 +3,10 @@ package output_functions
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/fatih/color"
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
+	"github.com/leekchan/accounting"
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 	"sort"
@@ -16,6 +18,12 @@ func AnalyticsSpendTable(cmd *cobra.Command, commandName string, obj interface{}
 		temp := ""
 		dimension = &temp
 	}
+	filter := cmd.Flags().Lookup("filter").Value.String()
+
+	if filter != "" {
+		fmt.Println(color.YellowString("No filter for this command!"))
+	}
+
 	if *dimension == "metric" || *dimension == "" {
 		return AnalyticsSpendTableMetric(cmd, commandName, obj)
 	} else if *dimension == "connection" {
@@ -42,7 +50,8 @@ func AnalyticsSpendTableMetric(cmd *cobra.Command, commandName string, obj inter
 		hasMonth := monthsMap
 		for t, c := range v.CostValue {
 			hasMonth[t] = false
-			o[t] = fmt.Sprintf("%v", float64(int(c*100))/100)
+			ac := accounting.Accounting{Symbol: "$", Precision: 2}
+			o[t] = ac.FormatMoney(c)
 		}
 		for t, b := range hasMonth {
 			if b {
