@@ -30,7 +30,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetHealthState(flags.ReadStringOptionalFlag(cmd, "HealthState"))
 		req.SetLifecycleState(flags.ReadStringOptionalFlag(cmd, "LifecycleState"))
 		req.SetNeedCost(flags.ReadBooleanOptionalFlag(cmd, "NeedCost"))
@@ -38,7 +38,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Connections.GetOnboardAPIV1ConnectionsSummary(req, auth)
 		if err != nil {

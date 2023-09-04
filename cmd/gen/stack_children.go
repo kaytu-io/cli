@@ -128,10 +128,10 @@ var GetScheduleApiV1StacksStackIdInsightCmd = &cobra.Command{
 
 		req := stack.NewGetScheduleAPIV1StacksStackIDInsightParams()
 
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightID(flags.ReadInt64Flag(cmd, "InsightID"))
 		req.SetStackID(flags.ReadStringFlag(cmd, "StackID"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsight(req, auth)
 		if err != nil {
@@ -208,10 +208,10 @@ var GetScheduleApiV1StacksStackIdInsightsCmd = &cobra.Command{
 
 		req := stack.NewGetScheduleAPIV1StacksStackIDInsightsParams()
 
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightIds(flags.ReadIntArrayFlag(cmd, "InsightIds"))
 		req.SetStackID(flags.ReadStringFlag(cmd, "StackID"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Stack.GetScheduleAPIV1StacksStackIDInsights(req, auth)
 		if err != nil {

@@ -70,14 +70,16 @@ func PrintCSV(objJSON []byte, customOrder *map[string]int) error {
 	sort.Slice(headersOrdered, func(i, j int) bool {
 		a, b := headersOrdered[i], headersOrdered[j]
 
-		if _, ok := (*customOrder)[a]; ok {
-			if _, ok := (*customOrder)[b]; ok {
-				return (*customOrder)[a] < (*customOrder)[b]
-			} else {
-				return true // Place 'a' before 'b'
+		if customOrder != nil {
+			if _, ok := (*customOrder)[a]; ok {
+				if _, ok := (*customOrder)[b]; ok {
+					return (*customOrder)[a] < (*customOrder)[b]
+				} else {
+					return true // Place 'a' before 'b'
+				}
+			} else if _, ok := (*customOrder)[b]; ok {
+				return false // Place 'b' before 'a'
 			}
-		} else if _, ok := (*customOrder)[b]; ok {
-			return false // Place 'b' before 'a'
 		}
 
 		return a < b // Use default sorting for other elements
@@ -135,15 +137,16 @@ func PrintTable(objJSON []byte, customOrder *map[string]int) error {
 	}
 	sort.Slice(headersOrdered, func(i, j int) bool {
 		a, b := headersOrdered[i], headersOrdered[j]
-
-		if _, ok := (*customOrder)[a]; ok {
-			if _, ok := (*customOrder)[b]; ok {
-				return (*customOrder)[a] < (*customOrder)[b]
-			} else {
-				return true // Place 'a' before 'b'
+		if customOrder != nil {
+			if _, ok := (*customOrder)[a]; ok {
+				if _, ok := (*customOrder)[b]; ok {
+					return (*customOrder)[a] < (*customOrder)[b]
+				} else {
+					return true // Place 'a' before 'b'
+				}
+			} else if _, ok := (*customOrder)[b]; ok {
+				return false // Place 'b' before 'a'
 			}
-		} else if _, ok := (*customOrder)[b]; ok {
-			return false // Place 'b' before 'a'
 		}
 
 		return a < b // Use default sorting for other elements
@@ -214,14 +217,16 @@ func PrintList(objJSON []byte, customOrder *map[string]int) error {
 	sort.Slice(headersOrdered, func(i, j int) bool {
 		a, b := headersOrdered[i], headersOrdered[j]
 
-		if _, ok := (*customOrder)[a]; ok {
-			if _, ok := (*customOrder)[b]; ok {
-				return (*customOrder)[a] < (*customOrder)[b]
-			} else {
-				return true // Place 'a' before 'b'
+		if customOrder != nil {
+			if _, ok := (*customOrder)[a]; ok {
+				if _, ok := (*customOrder)[b]; ok {
+					return (*customOrder)[a] < (*customOrder)[b]
+				} else {
+					return true // Place 'a' before 'b'
+				}
+			} else if _, ok := (*customOrder)[b]; ok {
+				return false // Place 'b' before 'a'
 			}
-		} else if _, ok := (*customOrder)[b]; ok {
-			return false // Place 'b' before 'a'
 		}
 
 		return a < b // Use default sorting for other elements

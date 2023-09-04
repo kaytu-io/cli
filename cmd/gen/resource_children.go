@@ -30,9 +30,9 @@ var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
 
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetResourceType(flags.ReadStringFlag(cmd, "ResourceType"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Resource.GetInventoryAPIV2ResourcesMetricResourceType(req, auth)
 		if err != nil {

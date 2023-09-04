@@ -18,9 +18,17 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 				case "*string":
 					line = `req.Set{{.Name}}(flags.ReadStringOptionalFlag(cmd, "{{.Name}}"))`
 				case "int64":
-					line = `req.Set{{.Name}}(flags.ReadInt64Flag(cmd, "{{.Name}}"))`
+					if param.Name == "StartTime" || param.Name == "EndTime" {
+						line = `req.Set{{.Name}}(flags.ReadTimeFlag(cmd, "{{.Name}}"))`
+					} else {
+						line = `req.Set{{.Name}}(flags.ReadInt64Flag(cmd, "{{.Name}}"))`
+					}
 				case "*int64":
-					line = `req.Set{{.Name}}(flags.ReadInt64OptionalFlag(cmd, "{{.Name}}"))`
+					if param.Name == "StartTime" || param.Name == "EndTime" {
+						line = `req.Set{{.Name}}(flags.ReadTimeOptionalFlag(cmd, "{{.Name}}"))`
+					} else {
+						line = `req.Set{{.Name}}(flags.ReadInt64OptionalFlag(cmd, "{{.Name}}"))`
+					}
 				case "bool":
 					line = `req.Set{{.Name}}(flags.ReadBooleanFlag(cmd, "{{.Name}}"))`
 				case "*bool":
@@ -82,9 +90,17 @@ func GenerateReadingFlag(param Field) string {
 	case "*string":
 		return fmt.Sprintf(`flags.ReadStringOptionalFlag(cmd, "%s")`, param.Name)
 	case "int64":
-		return fmt.Sprintf(`flags.ReadInt64Flag(cmd, "%s")`, param.Name)
+		if param.Name == "StartTime" || param.Name == "EndTime" {
+			return fmt.Sprintf(`flags.ReadTimeFlag(cmd, "%s")`, param.Name)
+		} else {
+			return fmt.Sprintf(`flags.ReadInt64Flag(cmd, "%s")`, param.Name)
+		}
 	case "*int64":
-		return fmt.Sprintf(`flags.ReadInt64OptionalFlag(cmd, "%s")`, param.Name)
+		if param.Name == "StartTime" || param.Name == "EndTime" {
+			return fmt.Sprintf(`flags.ReadTimeOptionalFlag(cmd, "%s")`, param.Name)
+		} else {
+			return fmt.Sprintf(`flags.ReadInt64OptionalFlag(cmd, "%s")`, param.Name)
+		}
 	case "bool":
 		return fmt.Sprintf(`flags.ReadBooleanFlag(cmd, "%s")`, param.Name)
 	case "*bool":

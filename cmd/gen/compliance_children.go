@@ -170,8 +170,8 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTrend(req, auth)
 		if err != nil {

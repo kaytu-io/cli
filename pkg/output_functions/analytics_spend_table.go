@@ -11,10 +11,14 @@ import (
 )
 
 func AnalyticsSpendTable(cmd *cobra.Command, commandName string, obj interface{}) error {
-	dimension := *flags.ReadStringOptionalFlag(cmd, "Dimension")
-	if dimension == "metric" {
+	dimension := flags.ReadStringOptionalFlag(cmd, "Dimension")
+	if dimension == nil {
+		temp := ""
+		dimension = &temp
+	}
+	if *dimension == "metric" || *dimension == "" {
 		return AnalyticsSpendTableMetric(cmd, commandName, obj)
-	} else if dimension == "connection" {
+	} else if *dimension == "connection" {
 		return AnalyticsSpendTableConnection(cmd, commandName, obj)
 	}
 	return fmt.Errorf("invalid Dimension: %v", dimension)
@@ -55,6 +59,8 @@ func AnalyticsSpendTableMetric(cmd *cobra.Command, commandName string, obj inter
 		}
 		return PrintCSV(bytes, &map[string]int{"category": 1, "name": 2})
 	}
+
+	hasContent := false
 	var slicedOutput []map[string]string
 	var rowsWidth []int
 	screenWidth, _, _ := term.GetSize(0)
@@ -77,6 +83,7 @@ func AnalyticsSpendTableMetric(cmd *cobra.Command, commandName string, obj inter
 		for i, row := range output {
 			rowsWidth[i] += max(len(month), len(row[month]))
 			slicedOutput[i][month] = row[month]
+			hasContent = true
 			if rowsWidth[i] > maxWidth {
 				maxWidth = rowsWidth[i]
 			}
@@ -100,13 +107,17 @@ func AnalyticsSpendTableMetric(cmd *cobra.Command, commandName string, obj inter
 				})
 				rowsWidth = append(rowsWidth, width)
 			}
+			hasContent = false
 		}
 	}
-	bytes, err := json.MarshalIndent(slicedOutput, "", "  ")
-	if err != nil {
-		return fmt.Errorf("[output]: %v", err)
+	if hasContent {
+		bytes, err := json.MarshalIndent(slicedOutput, "", "  ")
+		if err != nil {
+			return fmt.Errorf("[output]: %v", err)
+		}
+		return PrintTable(bytes, &map[string]int{"category": 1, "name": 2})
 	}
-	return PrintTable(bytes, &map[string]int{"category": 1, "name": 2})
+	return nil
 }
 
 func AnalyticsSpendTableConnection(cmd *cobra.Command, commandName string, obj interface{}) error {
@@ -145,6 +156,7 @@ func AnalyticsSpendTableConnection(cmd *cobra.Command, commandName string, obj i
 		return PrintCSV(bytes, &map[string]int{"connector": 1, "account_name": 2})
 	}
 
+	hasContent := false
 	var slicedOutput []map[string]string
 	var rowsWidth []int
 	screenWidth, _, _ := term.GetSize(0)
@@ -167,6 +179,7 @@ func AnalyticsSpendTableConnection(cmd *cobra.Command, commandName string, obj i
 		for i, row := range output {
 			rowsWidth[i] += max(len(month), len(row[month]))
 			slicedOutput[i][month] = row[month]
+			hasContent = true
 			if rowsWidth[i] > maxWidth {
 				maxWidth = rowsWidth[i]
 			}
@@ -190,11 +203,15 @@ func AnalyticsSpendTableConnection(cmd *cobra.Command, commandName string, obj i
 				})
 				rowsWidth = append(rowsWidth, width)
 			}
+			hasContent = false
 		}
 	}
-	bytes, err := json.MarshalIndent(slicedOutput, "", "  ")
-	if err != nil {
-		return fmt.Errorf("[output]: %v", err)
+	if hasContent {
+		bytes, err := json.MarshalIndent(slicedOutput, "", "  ")
+		if err != nil {
+			return fmt.Errorf("[output]: %v", err)
+		}
+		return PrintTable(bytes, &map[string]int{"connector": 1, "account_name": 2})
 	}
-	return PrintTable(bytes, &map[string]int{"connector": 1, "account_name": 2})
+	return nil
 }

@@ -17,7 +17,7 @@ func init() {
 	ConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryCmd)
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connector", nil, "Connector")
-	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("end-time", 0, "end time in unix seconds")
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("end-time", "", "end time in unix seconds")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("health-state", "", "health state filter")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("lifecycle-state", "", "lifecycle state filter")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Bool("need-cost", false, "for quicker inquiry send this parameter as false, default: true")
@@ -25,6 +25,6 @@ func init() {
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("page-number", 0, "page number - default is 1")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("page-size", 0, "page size - default is 20")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("sort-by", "", "column to sort by - default is cost")
-	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("start-time", 0, "start time in unix seconds")
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("start-time", "", "start time in unix seconds")
 
 }

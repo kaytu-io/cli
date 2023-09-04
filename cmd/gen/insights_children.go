@@ -30,9 +30,9 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req := insights.NewGetComplianceAPIV1InsightInsightIDParams()
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightInsightID(req, auth)
 		if err != nil {
@@ -99,9 +99,9 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetDatapointCount(flags.ReadInt64OptionalFlag(cmd, "DatapointCount"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightInsightIDTrend(req, auth)
 		if err != nil {
@@ -136,8 +136,8 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightGroup(req, auth)
@@ -173,8 +173,8 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
 		resp, err := client.Insights.GetComplianceAPIV1Insight(req, auth)

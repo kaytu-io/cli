@@ -31,10 +31,10 @@ var GetInventoryApiV2AnalyticsCompositionKeyCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTop(flags.ReadInt64Flag(cmd, "Top"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsCompositionKey(req, auth)
@@ -70,14 +70,14 @@ var GetInventoryApiV2AnalyticsMetricCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetMetricIDs(flags.ReadStringArrayFlag(cmd, "MetricIDs"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
 		req.SetMinCount(flags.ReadInt64OptionalFlag(cmd, "MinCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsMetric(req, auth)
@@ -113,11 +113,11 @@ var GetInventoryApiV2AnalyticsRegionsSummaryCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsRegionsSummary(req, auth)
 		if err != nil {
@@ -152,8 +152,8 @@ var GetInventoryApiV2AnalyticsSpendCompositionCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTop(flags.ReadInt64OptionalFlag(cmd, "Top"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendComposition(req, auth)
@@ -189,11 +189,11 @@ var GetInventoryApiV2AnalyticsSpendMetricCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetric(req, auth)
 		if err != nil {
@@ -228,10 +228,10 @@ var GetInventoryApiV2AnalyticsSpendMetricsTrendCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
 		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetricsTrend(req, auth)
 		if err != nil {
@@ -266,10 +266,10 @@ var GetInventoryApiV2AnalyticsSpendTrendCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
 		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendTrend(req, auth)
 		if err != nil {
@@ -304,10 +304,10 @@ var GetInventoryApiV2AnalyticsTagCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
 		req.SetMinCount(flags.ReadInt64OptionalFlag(cmd, "MinCount"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsTag(req, auth)
 		if err != nil {
@@ -343,10 +343,10 @@ var GetInventoryApiV2AnalyticsTrendCmd = &cobra.Command{
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetDatapointCount(flags.ReadStringOptionalFlag(cmd, "DatapointCount"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetIds(flags.ReadStringArrayFlag(cmd, "Ids"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsTrend(req, auth)
@@ -445,9 +445,9 @@ var GetInventoryApiV2AnalyticsTableCmd = &cobra.Command{
 		req := analytics.NewGetInventoryAPIV2AnalyticsTableParams()
 
 		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsTable(req, auth)
 		if err != nil {
@@ -481,10 +481,10 @@ var GetInventoryApiV2AnalyticsSpendTableCmd = &cobra.Command{
 
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
-		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
 		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
-		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendTable(req, auth)
 		if err != nil {

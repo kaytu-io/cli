@@ -30,12 +30,12 @@ func init() {
 	GetScheduleApiV1StacksStackIdCmd.MarkFlagRequired("stack-id")
 
 	StackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightCmd)
-	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("end-time", 0, "unix seconds for the end time of the trend")
+	GetScheduleApiV1StacksStackIdInsightCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("insight-id", 0, "InsightID")
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("insight-id")
 	GetScheduleApiV1StacksStackIdInsightCmd.Flags().String("stack-id", "", "StackID")
 	GetScheduleApiV1StacksStackIdInsightCmd.MarkFlagRequired("stack-id")
-	GetScheduleApiV1StacksStackIdInsightCmd.Flags().Int64("start-time", 0, "unix seconds for the start time of the trend")
+	GetScheduleApiV1StacksStackIdInsightCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	StackCmd.AddCommand(PostScheduleApiV1StacksStackIdFindingsCmd)
 	PostScheduleApiV1StacksStackIdFindingsCmd.Flags().StringArray("benchmark-ids", nil, "")
@@ -53,11 +53,11 @@ func init() {
 	PostScheduleApiV1StacksStackIdFindingsCmd.MarkFlagRequired("stack-id")
 
 	StackCmd.AddCommand(GetScheduleApiV1StacksStackIdInsightsCmd)
-	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64("end-time", 0, "unix seconds for the end time of the trend")
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
 	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64Slice("insight-ids", nil, "")
 	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().String("stack-id", "", "Stack ID")
 	GetScheduleApiV1StacksStackIdInsightsCmd.MarkFlagRequired("stack-id")
-	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().Int64("start-time", 0, "unix seconds for the start time of the trend")
+	GetScheduleApiV1StacksStackIdInsightsCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	StackCmd.AddCommand(GetScheduleApiV1StacksCmd)
 	GetScheduleApiV1StacksCmd.Flags().StringArray("account-ids", nil, "")
