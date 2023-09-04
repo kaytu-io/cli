@@ -36,6 +36,15 @@ func keepTwoDigits(v interface{}) interface{} {
 }
 
 func PrintOutput(cmd *cobra.Command, commandName string, obj interface{}) error {
+	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
+	if function, ok := outputFunctions[commandName]; ok && typeOutput != "csv" && typeOutput != "json" {
+		return function(cmd, commandName, obj)
+	} else {
+		return PrintOutputDefault(cmd, commandName, obj)
+	}
+}
+
+func PrintOutputDefault(cmd *cobra.Command, commandName string, obj interface{}) error {
 	bytes, err := json.MarshalIndent(obj, "", "  ")
 	if err != nil {
 		return fmt.Errorf("[output]: %v", err)
@@ -55,7 +64,7 @@ func PrintOutput(cmd *cobra.Command, commandName string, obj interface{}) error 
 		return PrintSummary(bytes, commandName)
 
 	case "table":
-		return PrintTable(bytes)
+		return PrintTable(bytes, nil)
 
 	case "list":
 		return PrintList(bytes)
@@ -82,7 +91,7 @@ func PrintSummary(objJSON []byte, commandName string) error {
 
 func PrintObject(objJSON []byte) error {
 	if objJSON[0] == '[' {
-		return PrintTable(objJSON)
+		return PrintTable(objJSON, nil)
 	}
 	return PrintList(objJSON)
 }
@@ -130,7 +139,7 @@ func PrintCSV(objJSON []byte) error {
 	return nil
 }
 
-func PrintTable(objJSON []byte) error {
+func PrintTable(objJSON []byte, customOrder *map[string]int) error {
 	rows, err := extractRows(objJSON)
 	if err != nil {
 		return fmt.Errorf("[output]: %v", err)
@@ -158,7 +167,19 @@ func PrintTable(objJSON []byte) error {
 		}
 	}
 	sort.Slice(headersOrdered, func(i, j int) bool {
-		return headersOrdered[i] < headersOrdered[j]
+		a, b := headersOrdered[i], headersOrdered[j]
+
+		if _, ok := (*customOrder)[a]; ok {
+			if _, ok := (*customOrder)[b]; ok {
+				return (*customOrder)[a] < (*customOrder)[b]
+			} else {
+				return true // Place 'a' before 'b'
+			}
+		} else if _, ok := (*customOrder)[b]; ok {
+			return false // Place 'b' before 'a'
+		}
+
+		return a < b // Use default sorting for other elements
 	})
 
 	headersSize := 5
@@ -245,7 +266,7 @@ func PrintList(objJSON []byte) error {
 				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
 				divider := fmt.Sprintf("%s\n", strings.Repeat("=", maxSize))
 				fmt.Print(color.CyanString(divider))
-				PrintTable([]byte(value))
+				PrintTable([]byte(value), nil)
 				fmt.Print(color.CyanString(divider))
 			} else {
 				fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(strcase.ToCamel(header)+":"), spaces, value))
