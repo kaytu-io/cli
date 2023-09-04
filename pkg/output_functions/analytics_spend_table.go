@@ -47,7 +47,14 @@ func AnalyticsSpendTableMetric(cmd *cobra.Command, commandName string, obj inter
 		}
 		output = append(output, o)
 	}
-
+	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
+	if typeOutput == "csv" {
+		bytes, err := json.MarshalIndent(output, "", "  ")
+		if err != nil {
+			return fmt.Errorf("[output]: %v", err)
+		}
+		return PrintCSV(bytes, &map[string]int{"category": 1, "name": 2})
+	}
 	var slicedOutput []map[string]string
 	var rowsWidth []int
 	screenWidth, _, _ := term.GetSize(0)
@@ -128,6 +135,14 @@ func AnalyticsSpendTableConnection(cmd *cobra.Command, commandName string, obj i
 			}
 		}
 		output = append(output, o)
+	}
+	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
+	if typeOutput == "csv" {
+		bytes, err := json.MarshalIndent(output, "", "  ")
+		if err != nil {
+			return fmt.Errorf("[output]: %v", err)
+		}
+		return PrintCSV(bytes, &map[string]int{"connector": 1, "account_name": 2})
 	}
 
 	var slicedOutput []map[string]string

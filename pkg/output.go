@@ -9,7 +9,9 @@ import (
 )
 
 func PrintOutput(cmd *cobra.Command, commandName string, obj interface{}) error {
-	if function, ok := outputFunctions[commandName]; ok {
+	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
+
+	if function, ok := outputFunctions[commandName]; ok && typeOutput != "json" {
 		return function(cmd, commandName, obj)
 	} else {
 		return PrintOutputDefault(cmd, commandName, obj)
@@ -39,10 +41,10 @@ func PrintOutputDefault(cmd *cobra.Command, commandName string, obj interface{})
 		return output.PrintTable(bytes, nil)
 
 	case "list":
-		return output.PrintList(bytes)
+		return output.PrintList(bytes, nil)
 
 	case "csv":
-		return output.PrintCSV(bytes)
+		return output.PrintCSV(bytes, nil)
 
 	default:
 		fmt.Println(string(bytes))
