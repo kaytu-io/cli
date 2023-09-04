@@ -1,7 +1,7 @@
 package pkg
 
 import (
-	output "github.com/kaytu-io/cli/pkg/output_functions"
+	output "github.com/kaytu-io/cli-program/pkg/output_functions"
 	"github.com/spf13/cobra"
 )
 
