@@ -153,6 +153,8 @@ var UrlNames = map[string]string{
 	"get-inventory-api-v2-metadata-services-service-name":      "get-service",
 	"get-metadata-api-v1-metadata-key":                         "get-config-metadata",
 	"post-metadata-api-v1-metadata":                            "set-config-metadata",
+	"get-metadata-api-v1-filter":                               "list-filters",
+	"post_metadata_api_v1_filter":                              "add-filter",
 
 	// onboard
 	"delete-onboard-api-v1-credential-credential-id":             "delete-credential",

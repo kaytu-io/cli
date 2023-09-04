@@ -13,6 +13,36 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var PostMetadataApiV1FilterCmd = &cobra.Command{
+	Use:   "add-filter",
+	Short: ``,
+	Long:  ``,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[post_metadata_api_v_1_filter] : %v", err)
+		}
+
+		req := metadata.NewPostMetadataAPIV1FilterParams()
+
+		req.SetReq(&models.GithubComKaytuIoKaytuEnginePkgMetadataModelsFilter{
+			KayValue: flags.ReadMapStringFlag(cmd, "KayValue"),
+			Name:     flags.ReadStringFlag(cmd, "Name"),
+		})
+
+		_, err = client.Metadata.PostMetadataAPIV1Filter(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_metadata_api_v_1_filter] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 	Use:   "get-config-metadata",
 	Short: `Returns the config metadata for the given key`,
@@ -39,6 +69,36 @@ var GetMetadataApiV1MetadataKeyCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-metadata-api-v1-metadata-key", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_metadata_api_v_1_metadata_key] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetMetadataApiV1FilterCmd = &cobra.Command{
+	Use:   "list-filters",
+	Short: ``,
+	Long:  ``,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_metadata_api_v_1_filter] : %v", err)
+		}
+
+		req := metadata.NewGetMetadataAPIV1FilterParams()
+
+		resp, err := client.Metadata.GetMetadataAPIV1Filter(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_metadata_api_v_1_filter] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-metadata-api-v1-filter", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_metadata_api_v_1_filter] : %v", err)
 		}
 
 		return nil

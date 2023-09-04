@@ -17,7 +17,6 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/inventory"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/metadata"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/onboard"
@@ -77,7 +76,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KaytuServi
 	cli.Connections = connections.New(transport, formats)
 	cli.Describe = describe.New(transport, formats)
 	cli.Insights = insights.New(transport, formats)
-	cli.Inventory = inventory.New(transport, formats)
 	cli.Keys = keys.New(transport, formats)
 	cli.Metadata = metadata.New(transport, formats)
 	cli.Onboard = onboard.New(transport, formats)
@@ -144,8 +142,6 @@ type KaytuServiceAPI struct {
 
 	Insights insights.ClientService
 
-	Inventory inventory.ClientService
-
 	Keys keys.ClientService
 
 	Metadata metadata.ClientService
@@ -175,7 +171,6 @@ func (c *KaytuServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Connections.SetTransport(transport)
 	c.Describe.SetTransport(transport)
 	c.Insights.SetTransport(transport)
-	c.Inventory.SetTransport(transport)
 	c.Keys.SetTransport(transport)
 	c.Metadata.SetTransport(transport)
 	c.Onboard.SetTransport(transport)

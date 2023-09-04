@@ -238,6 +238,8 @@ var GetOnboardApiV1CatalogMetricsCmd = &cobra.Command{
 
 		req := onboard.NewGetOnboardAPIV1CatalogMetricsParams()
 
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+
 		resp, err := client.Onboard.GetOnboardAPIV1CatalogMetrics(req, auth)
 		if err != nil {
 			return fmt.Errorf("[get_onboard_api_v_1_catalog_metrics] : %v", err)

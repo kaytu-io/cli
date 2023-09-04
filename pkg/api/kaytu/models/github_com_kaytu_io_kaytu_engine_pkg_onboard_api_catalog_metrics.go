@@ -29,6 +29,11 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics struct {
 	// Minimum: 0
 	HealthyConnections *int64 `json:"healthyConnections,omitempty"`
 
+	// in progress connections
+	// Example: 5
+	// Minimum: 0
+	InProgressConnections *int64 `json:"inProgressConnections,omitempty"`
+
 	// total connections
 	// Example: 20
 	// Minimum: 0
@@ -49,6 +54,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) Validate(format
 	}
 
 	if err := m.validateHealthyConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInProgressConnections(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -84,6 +93,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) validateHealthy
 	}
 
 	if err := validate.MinimumInt("healthyConnections", "body", *m.HealthyConnections, 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgOnboardAPICatalogMetrics) validateInProgressConnections(formats strfmt.Registry) error {
+	if swag.IsZero(m.InProgressConnections) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("inProgressConnections", "body", *m.InProgressConnections, 0, false); err != nil {
 		return err
 	}
 

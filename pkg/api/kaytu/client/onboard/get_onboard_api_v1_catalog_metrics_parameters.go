@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetOnboardAPIV1CatalogMetricsParams creates a new GetOnboardAPIV1CatalogMetricsParams object,
@@ -60,6 +61,13 @@ GetOnboardAPIV1CatalogMetricsParams contains all the parameters to send to the A
 	Typically these are written to a http.Request.
 */
 type GetOnboardAPIV1CatalogMetricsParams struct {
+
+	/* Connector.
+
+	   Connector
+	*/
+	Connector []string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +121,17 @@ func (o *GetOnboardAPIV1CatalogMetricsParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// WithConnector adds the connector to the get onboard API v1 catalog metrics params
+func (o *GetOnboardAPIV1CatalogMetricsParams) WithConnector(connector []string) *GetOnboardAPIV1CatalogMetricsParams {
+	o.SetConnector(connector)
+	return o
+}
+
+// SetConnector adds the connector to the get onboard API v1 catalog metrics params
+func (o *GetOnboardAPIV1CatalogMetricsParams) SetConnector(connector []string) {
+	o.Connector = connector
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetOnboardAPIV1CatalogMetricsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -121,8 +140,36 @@ func (o *GetOnboardAPIV1CatalogMetricsParams) WriteToRequest(r runtime.ClientReq
 	}
 	var res []error
 
+	if o.Connector != nil {
+
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
+
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetOnboardAPIV1CatalogMetrics binds the parameter connector
+func (o *GetOnboardAPIV1CatalogMetricsParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
 }
