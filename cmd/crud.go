@@ -21,8 +21,6 @@ func init() {
 	
     rootCmd.AddCommand(gen.InsightsCmd)
 	
-    rootCmd.AddCommand(gen.InventoryCmd)
-	
     rootCmd.AddCommand(gen.KeysCmd)
 	
     rootCmd.AddCommand(gen.MetadataCmd)

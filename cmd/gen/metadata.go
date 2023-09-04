@@ -14,9 +14,17 @@ var MetadataCmd = &cobra.Command{
 
 func init() {
 
+	MetadataCmd.AddCommand(PostMetadataApiV1FilterCmd)
+	PostMetadataApiV1FilterCmd.Flags().String("kay-value", "", "")
+	PostMetadataApiV1FilterCmd.MarkFlagRequired("kay-value")
+	PostMetadataApiV1FilterCmd.Flags().String("name", "", "")
+	PostMetadataApiV1FilterCmd.MarkFlagRequired("name")
+
 	MetadataCmd.AddCommand(GetMetadataApiV1MetadataKeyCmd)
 	GetMetadataApiV1MetadataKeyCmd.Flags().String("key", "", "Key")
 	GetMetadataApiV1MetadataKeyCmd.MarkFlagRequired("key")
+
+	MetadataCmd.AddCommand(GetMetadataApiV1FilterCmd)
 
 	MetadataCmd.AddCommand(PostMetadataApiV1MetadataCmd)
 	PostMetadataApiV1MetadataCmd.Flags().String("key", "", "")

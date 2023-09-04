@@ -67,6 +67,7 @@ func init() {
 	DeleteOnboardApiV1SourceSourceIdCmd.MarkFlagRequired("source-id")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1CatalogMetricsCmd)
+	GetOnboardApiV1CatalogMetricsCmd.Flags().StringArray("connector", nil, "Connector")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1ConnectorCmd)
 

@@ -427,3 +427,75 @@ var GetInventoryApiV2AnalyticsMetricsListCmd = &cobra.Command{
 		return nil
 	},
 }
+
+var GetInventoryApiV2AnalyticsTableCmd = &cobra.Command{
+	Use:   "list-resource-table",
+	Short: `Returns asset table with respect to the dimension and granularity`,
+	Long:  `Returns asset table with respect to the dimension and granularity`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_table] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsTableParams()
+
+		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsTable(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_table] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-table", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_table] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetInventoryApiV2AnalyticsSpendTableCmd = &cobra.Command{
+	Use:   "list-spend-table",
+	Short: `Returns spend table with respect to the dimension and granularity`,
+	Long:  `Returns spend table with respect to the dimension and granularity`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_table] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsSpendTableParams()
+
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
+		req.SetEndTime(flags.ReadInt64OptionalFlag(cmd, "EndTime"))
+		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
+		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
+		req.SetStartTime(flags.ReadInt64OptionalFlag(cmd, "StartTime"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendTable(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_table] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-table", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_table] : %v", err)
+		}
+
+		return nil
+	},
+}

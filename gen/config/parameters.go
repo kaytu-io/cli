@@ -8,7 +8,6 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/inventory"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/metadata"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/onboard"
@@ -28,7 +27,9 @@ var ParamModels = map[string]interface{}{
 	"GetInventoryAPIV2AnalyticsSpendComposition":                        analytics.GetInventoryAPIV2AnalyticsSpendCompositionParams{},
 	"GetInventoryAPIV2AnalyticsSpendMetric":                             analytics.GetInventoryAPIV2AnalyticsSpendMetricParams{},
 	"GetInventoryAPIV2AnalyticsSpendMetricsTrend":                       analytics.GetInventoryAPIV2AnalyticsSpendMetricsTrendParams{},
+	"GetInventoryAPIV2AnalyticsSpendTable":                              analytics.GetInventoryAPIV2AnalyticsSpendTableParams{},
 	"GetInventoryAPIV2AnalyticsSpendTrend":                              analytics.GetInventoryAPIV2AnalyticsSpendTrendParams{},
+	"GetInventoryAPIV2AnalyticsTable":                                   analytics.GetInventoryAPIV2AnalyticsTableParams{},
 	"GetInventoryAPIV2AnalyticsTag":                                     analytics.GetInventoryAPIV2AnalyticsTagParams{},
 	"GetInventoryAPIV2AnalyticsTrend":                                   analytics.GetInventoryAPIV2AnalyticsTrendParams{},
 	"DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID": benchmarks_assignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams{},
@@ -51,12 +52,12 @@ var ParamModels = map[string]interface{}{
 	"GetComplianceAPIV1Insight":                                         insights.GetComplianceAPIV1InsightParams{},
 	"GetComplianceAPIV1MetadataInsightInsightID":                        insights.GetComplianceAPIV1MetadataInsightInsightIDParams{},
 	"GetComplianceAPIV1MetadataTagInsight":                              insights.GetComplianceAPIV1MetadataTagInsightParams{},
-	"GetInventoryAPIV2AnalyticsSpendTable":                              inventory.GetInventoryAPIV2AnalyticsSpendTableParams{},
-	"GetInventoryAPIV2AnalyticsTable":                                   inventory.GetInventoryAPIV2AnalyticsTableParams{},
 	"DeleteAuthAPIV1KeyIDDelete":                                        keys.DeleteAuthAPIV1KeyIDDeleteParams{},
 	"GetAuthAPIV1Keys":                                                  keys.GetAuthAPIV1KeysParams{},
 	"PostAuthAPIV1KeyCreate":                                            keys.PostAuthAPIV1KeyCreateParams{},
+	"GetMetadataAPIV1Filter":                                            metadata.GetMetadataAPIV1FilterParams{},
 	"GetMetadataAPIV1MetadataKey":                                       metadata.GetMetadataAPIV1MetadataKeyParams{},
+	"PostMetadataAPIV1Filter":                                           metadata.PostMetadataAPIV1FilterParams{},
 	"PostMetadataAPIV1Metadata":                                         metadata.PostMetadataAPIV1MetadataParams{},
 	"DeleteOnboardAPIV1CredentialCredentialID":                          onboard.DeleteOnboardAPIV1CredentialCredentialIDParams{},
 	"DeleteOnboardAPIV1SourceSourceID":                                  onboard.DeleteOnboardAPIV1SourceSourceIDParams{},
