@@ -48,10 +48,10 @@ func PrintObject(objJSON []byte) error {
 	if objJSON[0] == '[' {
 		return PrintTable(objJSON, nil)
 	}
-	return PrintList(objJSON)
+	return PrintList(objJSON, nil)
 }
 
-func PrintCSV(objJSON []byte) error {
+func PrintCSV(objJSON []byte, customOrder *map[string]int) error {
 	rows, err := extractRows(objJSON)
 	if err != nil {
 		return fmt.Errorf("[output]: %v", err)
@@ -68,7 +68,19 @@ func PrintCSV(objJSON []byte) error {
 		headersOrdered = append(headersOrdered, key)
 	}
 	sort.Slice(headersOrdered, func(i, j int) bool {
-		return headersOrdered[i] < headersOrdered[j]
+		a, b := headersOrdered[i], headersOrdered[j]
+
+		if _, ok := (*customOrder)[a]; ok {
+			if _, ok := (*customOrder)[b]; ok {
+				return (*customOrder)[a] < (*customOrder)[b]
+			} else {
+				return true // Place 'a' before 'b'
+			}
+		} else if _, ok := (*customOrder)[b]; ok {
+			return false // Place 'b' before 'a'
+		}
+
+		return a < b // Use default sorting for other elements
 	})
 
 	var headers []string
@@ -165,13 +177,13 @@ func PrintTable(objJSON []byte, customOrder *map[string]int) error {
 
 	width, _, _ := term.GetSize(0)
 	if maxRowSize > width {
-		return PrintList(objJSON)
+		return PrintList(objJSON, customOrder)
 	}
 	printTable.Render()
 	return nil
 }
 
-func PrintList(objJSON []byte) error {
+func PrintList(objJSON []byte, customOrder *map[string]int) error {
 	rows, err := extractRows(objJSON)
 	if err != nil {
 		return fmt.Errorf("[output]: %v", err)
@@ -200,7 +212,19 @@ func PrintList(objJSON []byte) error {
 		}
 	}
 	sort.Slice(headersOrdered, func(i, j int) bool {
-		return headersOrdered[i] < headersOrdered[j]
+		a, b := headersOrdered[i], headersOrdered[j]
+
+		if _, ok := (*customOrder)[a]; ok {
+			if _, ok := (*customOrder)[b]; ok {
+				return (*customOrder)[a] < (*customOrder)[b]
+			} else {
+				return true // Place 'a' before 'b'
+			}
+		} else if _, ok := (*customOrder)[b]; ok {
+			return false // Place 'b' before 'a'
+		}
+
+		return a < b // Use default sorting for other elements
 	})
 
 	for i, item := range rows {
