@@ -68,6 +68,12 @@ type GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams struct {
 	*/
 	BenchmarkID string
 
+	/* ConnectionGroup.
+
+	   Connection groups to filter by
+	*/
+	ConnectionGroup []string
+
 	/* ConnectionID.
 
 	   Connection IDs to filter by
@@ -162,6 +168,17 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetBenchmarkI
 	o.BenchmarkID = benchmarkID
 }
 
+// WithConnectionGroup adds the connectionGroup to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithConnectionGroup(connectionGroup []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
+	o.SetConnectionGroup(connectionGroup)
+	return o
+}
+
+// SetConnectionGroup adds the connectionGroup to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetConnectionGroup(connectionGroup []string) {
+	o.ConnectionGroup = connectionGroup
+}
+
 // WithConnectionID adds the connectionID to the get compliance API v1 findings benchmark ID field top count params
 func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithConnectionID(connectionID []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
 	o.SetConnectionID(connectionID)
@@ -230,6 +247,17 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WriteToReques
 		return err
 	}
 
+	if o.ConnectionGroup != nil {
+
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
+
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
+		}
+	}
+
 	if o.ConnectionID != nil {
 
 		// binding items for connectionId
@@ -277,6 +305,23 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WriteToReques
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter connectionGroup
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
 }
 
 // bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter connectionId

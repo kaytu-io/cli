@@ -37,11 +37,13 @@ func GenerateFlagDefinitions(tempName string, fv Field) (output string) {
 				}
 
 				if param.IsRequired {
-					if !param.IsNestedRequirement {
-						line += fmt.Sprintf("\n%[1]sCmd.MarkFlagRequired(\"%[2]s\")", tempName, flags.Name(param.Name))
-					} else {
-						if !strings.HasPrefix(param.Type, "*") && !strings.HasPrefix(param.Type, "[]") {
+					if flags.Name(param.Name) != "terraform-file" {
+						if !param.IsNestedRequirement {
 							line += fmt.Sprintf("\n%[1]sCmd.MarkFlagRequired(\"%[2]s\")", tempName, flags.Name(param.Name))
+						} else {
+							if !strings.HasPrefix(param.Type, "*") && !strings.HasPrefix(param.Type, "[]") {
+								line += fmt.Sprintf("\n%[1]sCmd.MarkFlagRequired(\"%[2]s\")", tempName, flags.Name(param.Name))
+							}
 						}
 					}
 				}

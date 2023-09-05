@@ -30,6 +30,7 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 		req := compliance.NewGetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams()
 
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetCount(flags.ReadInt64Flag(cmd, "Count"))
@@ -66,6 +67,7 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 
 		req := compliance.NewGetComplianceAPIV1BenchmarksSummaryParams()
 
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetTimeAt(flags.ReadInt64OptionalFlag(cmd, "TimeAt"))
@@ -101,6 +103,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams()
 
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetTimeAt(flags.ReadInt64OptionalFlag(cmd, "TimeAt"))
@@ -168,6 +171,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDTrendParams()
 
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))

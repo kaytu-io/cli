@@ -29,6 +29,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req := insights.NewGetComplianceAPIV1InsightInsightIDParams()
 
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
@@ -97,6 +98,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req := insights.NewGetComplianceAPIV1InsightInsightIDTrendParams()
 
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetDatapointCount(flags.ReadInt64OptionalFlag(cmd, "DatapointCount"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -134,6 +136,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req := insights.NewGetComplianceAPIV1InsightGroupParams()
 
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -171,6 +174,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 
 		req := insights.NewGetComplianceAPIV1InsightParams()
 
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))

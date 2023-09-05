@@ -19,7 +19,6 @@ func init() {
 	PostScheduleApiV1StacksCreateCmd.MarkFlagRequired("config")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("tag", "", "Tags Map[string][]string")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("terraform-file", "", "File to upload")
-	PostScheduleApiV1StacksCreateCmd.MarkFlagRequired("terraform-file")
 
 	StackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
 	DeleteScheduleApiV1StacksStackIdCmd.Flags().String("stack-id", "", "StackID")

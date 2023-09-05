@@ -31,6 +31,8 @@ var UrlNames = map[string]string{
 	"get-compliance-api-v1-assignments-connection-connection-id":                 "connection-assignments",
 	"get-compliance-api-v1-assignments":                                          "list-assignments",
 	"post-compliance-api-v1-assignments-benchmark-id-connection-connection-id":   "add-assignment",
+	"delete-compliance-api-v1-assignments-benchmark-id-connection":               "remove-benchmark-assignment",
+	"post-compliance-api-v1-assignments-benchmark-id-connection":                 "create-benchmark-assignment",
 
 	// compliance
 	"get-compliance-api-v1-benchmark-benchmark-id-summary":               "benchmark-summary",
