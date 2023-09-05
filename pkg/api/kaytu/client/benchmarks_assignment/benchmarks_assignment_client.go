@@ -30,34 +30,34 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
+	DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionOK, error)
 
 	GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK, error)
 
-	PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error)
+	PostComplianceAPIV1AssignmentsBenchmarkIDConnection(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID deletes benchmark assignment
+DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection deletes benchmark assignment
 
 Delete benchmark assignment with source id and benchmark id
 */
-func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
+func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection(params *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
+		params = NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID",
+		ID:                 "DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection",
 		Method:             "DELETE",
-		PathPattern:        "/compliance/api/v1/assignments/{benchmark_id}/connection/{connection_id}",
+		PathPattern:        "/compliance/api/v1/assignments/{benchmark_id}/connection",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDReader{formats: a.formats},
+		Reader:             &DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -70,13 +70,13 @@ func (a *Client) DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnection
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK)
+	success, ok := result.(*DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -122,24 +122,24 @@ func (a *Client) GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID(params *GetCo
 }
 
 /*
-PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID creates benchmark assignment
+PostComplianceAPIV1AssignmentsBenchmarkIDConnection creates benchmark assignment
 
 Creating a benchmark assignment for a connection.
 */
-func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK, error) {
+func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnection(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
+		params = NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID",
+		ID:                 "PostComplianceAPIV1AssignmentsBenchmarkIDConnection",
 		Method:             "POST",
-		PathPattern:        "/compliance/api/v1/assignments/{benchmark_id}/connection/{connection_id}",
+		PathPattern:        "/compliance/api/v1/assignments/{benchmark_id}/connection",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDReader{formats: a.formats},
+		Reader:             &PostComplianceAPIV1AssignmentsBenchmarkIDConnectionReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -152,13 +152,13 @@ func (a *Client) PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDOK)
+	success, ok := result.(*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for PostComplianceAPIV1AssignmentsBenchmarkIDConnection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

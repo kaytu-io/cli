@@ -68,6 +68,12 @@ type GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams struct {
 	*/
 	BenchmarkID string
 
+	/* ConnectionGroup.
+
+	   Connection groups to filter by
+	*/
+	ConnectionGroup []string
+
 	/* ConnectionID.
 
 	   Connection IDs to filter by
@@ -150,6 +156,17 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) SetBenchmarkID(be
 	o.BenchmarkID = benchmarkID
 }
 
+// WithConnectionGroup adds the connectionGroup to the get compliance API v1 benchmarks benchmark ID summary params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) WithConnectionGroup(connectionGroup []string) *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams {
+	o.SetConnectionGroup(connectionGroup)
+	return o
+}
+
+// SetConnectionGroup adds the connectionGroup to the get compliance API v1 benchmarks benchmark ID summary params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) SetConnectionGroup(connectionGroup []string) {
+	o.ConnectionGroup = connectionGroup
+}
+
 // WithConnectionID adds the connectionID to the get compliance API v1 benchmarks benchmark ID summary params
 func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) WithConnectionID(connectionID []string) *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams {
 	o.SetConnectionID(connectionID)
@@ -196,6 +213,17 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) WriteToRequest(r 
 		return err
 	}
 
+	if o.ConnectionGroup != nil {
+
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
+
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
+		}
+	}
+
 	if o.ConnectionID != nil {
 
 		// binding items for connectionId
@@ -239,6 +267,23 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) WriteToRequest(r 
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1BenchmarksBenchmarkIDSummary binds the parameter connectionGroup
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
 }
 
 // bindParamGetComplianceAPIV1BenchmarksBenchmarkIDSummary binds the parameter connectionId

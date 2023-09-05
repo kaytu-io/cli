@@ -12,39 +12,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var PostComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use:   "add-assignment",
-	Short: `Creating a benchmark assignment for a connection.`,
-	Long:  `Creating a benchmark assignment for a connection.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
-
-		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "post-compliance-api-v1-assignments-benchmark-id-connection-connection-id", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	Use:   "benchmark-assignments",
 	Short: `Retrieving all benchmark assigned sources with benchmark id`,
@@ -77,8 +44,42 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	},
 }
 
-var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobra.Command{
-	Use:   "remove-assignment",
+var PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd = &cobra.Command{
+	Use:   "create-benchmark-assignment",
+	Short: `Creating a benchmark assignment for a connection.`,
+	Long:  `Creating a benchmark assignment for a connection.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection] : %v", err)
+		}
+
+		req := benchmarks_assignment.NewPostComplianceAPIV1AssignmentsBenchmarkIDConnectionParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+
+		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnection(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "post-compliance-api-v1-assignments-benchmark-id-connection", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_assignments_benchmark_id_connection] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd = &cobra.Command{
+	Use:   "remove-benchmark-assignment",
 	Short: `Delete benchmark assignment with source id and benchmark id`,
 	Long:  `Delete benchmark assignment with source id and benchmark id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -88,17 +89,18 @@ var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionConnectionIdCmd = &cobr
 				fmt.Println(err.Error())
 				return nil
 			}
-			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection] : %v", err)
 		}
 
-		req := benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionIDParams()
+		req := benchmarks_assignment.NewDeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams()
 
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 
-		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionConnectionID(req, auth)
+		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection(req, auth)
 		if err != nil {
-			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection_connection_id] : %v", err)
+			return fmt.Errorf("[delete_compliance_api_v_1_assignments_benchmark_id_connection] : %v", err)
 		}
 
 		return nil

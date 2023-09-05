@@ -62,6 +62,12 @@ GetComplianceAPIV1InsightGroupParams contains all the parameters to send to the 
 */
 type GetComplianceAPIV1InsightGroupParams struct {
 
+	/* ConnectionGroup.
+
+	   filter the result by connection group
+	*/
+	ConnectionGroup []string
+
 	/* ConnectionID.
 
 	   filter the result by source id
@@ -145,6 +151,17 @@ func (o *GetComplianceAPIV1InsightGroupParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// WithConnectionGroup adds the connectionGroup to the get compliance API v1 insight group params
+func (o *GetComplianceAPIV1InsightGroupParams) WithConnectionGroup(connectionGroup []string) *GetComplianceAPIV1InsightGroupParams {
+	o.SetConnectionGroup(connectionGroup)
+	return o
+}
+
+// SetConnectionGroup adds the connectionGroup to the get compliance API v1 insight group params
+func (o *GetComplianceAPIV1InsightGroupParams) SetConnectionGroup(connectionGroup []string) {
+	o.ConnectionGroup = connectionGroup
+}
+
 // WithConnectionID adds the connectionID to the get compliance API v1 insight group params
 func (o *GetComplianceAPIV1InsightGroupParams) WithConnectionID(connectionID []string) *GetComplianceAPIV1InsightGroupParams {
 	o.SetConnectionID(connectionID)
@@ -207,6 +224,17 @@ func (o *GetComplianceAPIV1InsightGroupParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.ConnectionGroup != nil {
+
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
+
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
+		}
+	}
 
 	if o.ConnectionID != nil {
 
@@ -279,6 +307,23 @@ func (o *GetComplianceAPIV1InsightGroupParams) WriteToRequest(r runtime.ClientRe
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1InsightGroup binds the parameter connectionGroup
+func (o *GetComplianceAPIV1InsightGroupParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
 }
 
 // bindParamGetComplianceAPIV1InsightGroup binds the parameter connectionId

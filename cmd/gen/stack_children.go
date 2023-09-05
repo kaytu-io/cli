@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/go-openapi/runtime"
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -35,7 +36,27 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 
 		req.SetConfig(flags.ReadStringFlag(cmd, "Config"))
 		req.SetTag(flags.ReadStringOptionalFlag(cmd, "Tag"))
-		reader, err := os.Open(flags.ReadStringFlag(cmd, "TerraformFile"))
+		tfstateFile := flags.ReadStringFlag(cmd, "TerraformFile")
+		if tfstateFile == "" {
+			dir, err := os.Getwd()
+			if err != nil {
+				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
+			}
+			files, err := filepath.Glob(filepath.Join(dir, "*.tfstate"))
+			if err != nil {
+				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
+			}
+
+			if len(files) == 0 {
+				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : No tfstate file found")
+			}
+
+			if len(files) > 1 {
+				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : Multiple .tfstate files found. Please specify one")
+			}
+			tfstateFile = files[0]
+		}
+		reader, err := os.Open(tfstateFile)
 		TerraformFile := runtime.NamedReader("TerraformFile", reader)
 		req.SetTerraformFile(TerraformFile)
 
