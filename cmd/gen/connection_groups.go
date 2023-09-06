@@ -15,11 +15,13 @@ var ConnectionGroupsCmd = &cobra.Command{
 func init() {
 
 	ConnectionGroupsCmd.AddCommand(GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd)
+
 	GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.Flags().String("connection-group-name", "", "ConnectionGroupName")
 	GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.MarkFlagRequired("connection-group-name")
 	GetOnboardApiV1ConnectionGroupsConnectionGroupNameCmd.Flags().Bool("populate-connections", false, "Populate connections")
 
 	ConnectionGroupsCmd.AddCommand(GetOnboardApiV1ConnectionGroupsCmd)
+
 	GetOnboardApiV1ConnectionGroupsCmd.Flags().Bool("populate-connections", false, "Populate connections")
 
 }

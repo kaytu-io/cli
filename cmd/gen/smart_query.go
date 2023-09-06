@@ -17,11 +17,13 @@ func init() {
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryRunHistoryCmd)
 
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCmd)
+
 	GetInventoryApiV1QueryCmd.Flags().String("connectors-filter", "", "")
 	GetInventoryApiV1QueryCmd.Flags().String("title-filter", "", "")
 	GetInventoryApiV1QueryCmd.MarkFlagRequired("title-filter")
 
 	SmartQueryCmd.AddCommand(PostInventoryApiV1QueryRunCmd)
+
 	PostInventoryApiV1QueryRunCmd.Flags().String("accept", "", "Accept header")
 	PostInventoryApiV1QueryRunCmd.MarkFlagRequired("accept")
 	PostInventoryApiV1QueryRunCmd.Flags().Int64("page-no", 0, "")

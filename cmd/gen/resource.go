@@ -14,7 +14,13 @@ var ResourceCmd = &cobra.Command{
 
 func init() {
 
+	ResourceCmd.AddCommand(PostAiApiV1GptRunCmd)
+
+	PostAiApiV1GptRunCmd.Flags().String("query", "", "Description of query for KaytuGPT")
+	PostAiApiV1GptRunCmd.MarkFlagRequired("query")
+
 	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesMetricResourceTypeCmd)
+
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("connection-group", "", "Connection group to filter by - mutually exclusive with connectionId")
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
 	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("end-time", "", "timestamp for resource count in epoch seconds")

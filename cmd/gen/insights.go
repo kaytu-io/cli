@@ -15,6 +15,7 @@ var InsightsCmd = &cobra.Command{
 func init() {
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdCmd)
+
 	GetComplianceApiV1InsightInsightIdCmd.Flags().StringArray("connection-group", nil, "filter the result by connection group")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
@@ -23,10 +24,12 @@ func init() {
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightInsightIdCmd)
+
 	GetComplianceApiV1MetadataInsightInsightIdCmd.Flags().String("insight-id", "", "Insight ID")
 	GetComplianceApiV1MetadataInsightInsightIdCmd.MarkFlagRequired("insight-id")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightInsightIdTrendCmd)
+
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().StringArray("connection-group", nil, "filter the result by connection group")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().Int64("datapoint-count", 0, "number of datapoints to return")
@@ -36,6 +39,7 @@ func init() {
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupCmd)
+
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connection-group", nil, "filter the result by connection group")
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connector", nil, "filter insights by connector")
@@ -44,6 +48,7 @@ func init() {
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightCmd)
+
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connection-group", nil, "filter the result by connection group ")
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connector", nil, "filter insights by connector")

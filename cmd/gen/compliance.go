@@ -15,6 +15,7 @@ var ComplianceCmd = &cobra.Command{
 func init() {
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd)
+
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().String("benchmark-id", "", "BenchmarkID")
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.MarkFlagRequired("benchmark-id")
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
@@ -27,12 +28,14 @@ func init() {
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().StringArray("severities", nil, "Severities to filter by")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksSummaryCmd)
+
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().Int64("time-at", 0, "timestamp for values in epoch seconds")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd)
+
 	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.MarkFlagRequired("benchmark-id")
 	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
@@ -41,10 +44,12 @@ func init() {
 	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.Flags().Int64("time-at", 0, "timestamp for values in epoch seconds")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd)
+
 	GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd.MarkFlagRequired("benchmark-id")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd)
+
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.MarkFlagRequired("benchmark-id")
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
@@ -54,6 +59,7 @@ func init() {
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().String("start-time", "", "timestamp for start of the chart in epoch seconds")
 
 	ComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
+
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-benchmark-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-connection-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().String("filters-connector", "", "")

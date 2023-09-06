@@ -59,7 +59,17 @@ func main() {
 			return err
 		}
 
-		crudGen.Services = append(crudGen.Services, strcase.ToCamel(info.Name()))
+		for _, service := range serviceGen.PreferredServices {
+			has := false
+			for _, s := range crudGen.Services {
+				if s == service.NameCamel {
+					has = true
+				}
+			}
+			if !has {
+				crudGen.Services = append(crudGen.Services, service.NameCamel)
+			}
+		}
 		return nil
 	})
 	if err != nil {

@@ -15,6 +15,7 @@ var DescribeCmd = &cobra.Command{
 func init() {
 
 	DescribeCmd.AddCommand(PutScheduleApiV1DescribeTriggerConnectionIdCmd)
+
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().StringArray("resource-type", nil, "Resource Type")

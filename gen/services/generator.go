@@ -19,15 +19,24 @@ type Generator struct {
 	ServiceNameCamel string
 	ServiceNameSnake string
 
+	PreferredServices []PreferredService
+
 	DefaultChildren *Child
 	Children        []Child
 
 	Swagger *swagger.Swagger
 }
 
+type PreferredService struct {
+	Parent    *Child
+	NameCamel string
+	NameSnake string
+}
+
 type Child struct {
 	Parent              *Generator
 	CommandNameCamel    string
+	PreferredServices   []PreferredService
 	CommandNameSnake    string
 	CommandName         string
 	APIName             string

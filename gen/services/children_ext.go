@@ -66,12 +66,10 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 
 		commandName := strings.ReplaceAll(name, "_", "-")
 		urlCmd := commandName
-		commandName = config.UrlNames[commandName]
+
+		commandName = config.UrlNames[name]
 		if commandName == "" {
-			commandName = config.UrlNames[name]
-			if commandName == "" {
-				return errors.New("url name not found for cmd: " + name + " please add it in gen/config/url-names.go")
-			}
+			return errors.New("url name not found for cmd: " + name + " please add it in gen/config/url-names.go")
 		}
 		if commandName == "-" {
 			continue
@@ -110,6 +108,32 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 			ParamFlags:          outputFlags,
 			HasPayload:          hasPayload[name],
 			CRUD:                crud,
+		}
+
+		if preferredServices := config.PreferredService[name]; preferredServices != nil {
+			for _, service := range preferredServices {
+				tmpl.PreferredServices = append(tmpl.PreferredServices, PreferredService{NameCamel: service, NameSnake: strcase.ToSnake(service), Parent: &tmpl})
+				has := false
+				for _, parentService := range g.PreferredServices {
+					if service == parentService.NameCamel {
+						has = true
+					}
+				}
+				if !has {
+					g.PreferredServices = append(g.PreferredServices, PreferredService{NameCamel: service, NameSnake: strcase.ToSnake(service)})
+				}
+			}
+		} else {
+			tmpl.PreferredServices = []PreferredService{{NameCamel: g.ServiceNameCamel, NameSnake: strcase.ToSnake(g.ServiceNameCamel), Parent: &tmpl}}
+			has := false
+			for _, parentService := range g.PreferredServices {
+				if g.ServiceNameCamel == parentService.NameCamel {
+					has = true
+				}
+			}
+			if !has {
+				g.PreferredServices = append(g.PreferredServices, PreferredService{NameCamel: g.ServiceNameCamel, NameSnake: strcase.ToSnake(g.ServiceNameCamel)})
+			}
 		}
 		g.Children = append(g.Children, tmpl)
 	}
