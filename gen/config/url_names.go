@@ -1,7 +1,7 @@
 package config
 
 // Write the route as Key. The value is the name of the cli command.
-// use _ or _ instead of / in the route and remove : or {} signs.
+// use or _ instead of / in the route and remove : or {} signs.
 var UrlNames = map[string]string{
 	// stack
 	"delete_schedule_api_v1_stacks_stack_id":          "delete-stack",
@@ -263,7 +263,7 @@ var UrlNames = map[string]string{
 	"get_inventory_api_v2_analytics_spend_composition":   "get-spend-composition",
 	"get_inventory_api_v2_analytics_regions_summary":     "get-assets-by-regions",
 	"get_inventory_api_v2_analytics_spend_metrics":       "list-analytics-spend-metrics",
-	"get_inventory_api_v2_analytics_spend_metric":        "get-spend-by-metric",
+	"get_inventory_api_v2_analytics_spend_metric":        "-",
 	"get_inventory_api_v2_analytics_composition_keys":    "list-analytics-composition-keys",
 	"get_inventory_api_v2_analytics_composition_key":     "get-assets-composition",
 	"get_inventory_api_v2_analytics_spend_trend":         "get-costs-trend",
@@ -271,6 +271,7 @@ var UrlNames = map[string]string{
 	"get_inventory_api_v2_analytics_spend_metrics_trend": "get-spend-trend-by-metrics",
 }
 
+// add preferred services instead of the main ones
 var PreferredService = map[string][]string{
 	"get_inventory_api_v2_analytics_spend_trend":         {"Spend"},
 	"get_inventory_api_v2_analytics_composition_key":     {"Assets"},
