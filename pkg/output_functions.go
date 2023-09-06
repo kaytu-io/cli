@@ -10,4 +10,6 @@ type outputFunction func(cmd *cobra.Command, commandName string, obj interface{}
 var outputFunctions = map[string]outputFunction{
 	"get-inventory-api-v2-analytics-spend-table": output.AnalyticsSpendTable,
 	"get-inventory-api-v2-analytics-trend":       output.AnalyticsTrend,
+	"get-inventory-api-v2-analytics-spend-trend": output.CostsTrend,
+	"get_costs": output.GetCosts,
 }

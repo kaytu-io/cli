@@ -29,9 +29,9 @@ func keepTwoDigits(v interface{}, k string) interface{} {
 			v.(map[string]interface{})[key] = keepTwoDigits(value, key)
 		}
 	case float64, float32:
-		if strings.Contains(k, "cost") {
+		if strings.Contains(strings.ToLower(k), "cost") {
 			v = fmt.Sprint(ac.FormatMoney(v))
-		} else if strings.Contains(k, "count") {
+		} else if strings.Contains(strings.ToLower(k), "count") {
 			v = fmt.Sprintf("%.0f", v)
 		} else {
 			v = fmt.Sprintf("%.2f", v)
@@ -257,7 +257,7 @@ func PrintList(objJSON []byte, customOrder *map[string]int) error {
 				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
 				divider := fmt.Sprintf("%s\n", strings.Repeat("=", maxSize))
 				fmt.Print(color.CyanString(divider))
-				PrintTable([]byte(value), nil)
+				PrintTable([]byte(value), customOrder)
 				fmt.Print(color.CyanString(divider))
 			} else {
 				fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(strcase.ToCamel(header)+":"), spaces, value))
@@ -290,9 +290,9 @@ func extractRows(objJSON []byte) ([]map[string]string, error) {
 		for k, v := range item {
 			switch t := v.(type) {
 			case float64, float32:
-				if strings.Contains(k, "cost") {
+				if strings.Contains(strings.ToLower(k), "cost") {
 					row[k] = fmt.Sprint(ac.FormatMoney(v))
-				} else if strings.Contains(k, "count") {
+				} else if strings.Contains(strings.ToLower(k), "count") {
 					row[k] = fmt.Sprintf("%.0f", v)
 				} else {
 					row[k] = fmt.Sprintf("%.2f", v)
