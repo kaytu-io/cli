@@ -15,6 +15,7 @@ var KeysCmd = &cobra.Command{
 func init() {
 
 	KeysCmd.AddCommand(PostAuthApiV1KeyCreateCmd)
+
 	PostAuthApiV1KeyCreateCmd.Flags().String("name", "", "")
 	PostAuthApiV1KeyCreateCmd.MarkFlagRequired("name")
 	PostAuthApiV1KeyCreateCmd.Flags().String("role-name", "", "")
@@ -23,6 +24,7 @@ func init() {
 	KeysCmd.AddCommand(GetAuthApiV1KeysCmd)
 
 	KeysCmd.AddCommand(DeleteAuthApiV1KeyIdDeleteCmd)
+
 	DeleteAuthApiV1KeyIdDeleteCmd.Flags().String("id", "", "Key ID")
 	DeleteAuthApiV1KeyIdDeleteCmd.MarkFlagRequired("id")
 

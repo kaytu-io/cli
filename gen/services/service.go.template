@@ -5,16 +5,20 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var {{ .ServiceNameCamel }}Cmd = &cobra.Command{
-        Use: "{{ .ServiceNameSnake }}",
-        RunE: func(cmd *cobra.Command, args []string) error {
-        return cmd.Help()
-    },
-}
+{{ range .PreferredServices }}
+    var {{ .NameCamel }}Cmd = &cobra.Command{
+            Use: "{{ .NameSnake }}",
+            RunE: func(cmd *cobra.Command, args []string) error {
+            return cmd.Help()
+        },
+    }
+{{ end }}
 
 func init() {
     {{ range .Children }}
-        {{ .Parent.ServiceNameCamel }}Cmd.AddCommand({{ .CommandNameCamel }}Cmd)
+        {{ range .PreferredServices }}
+            {{ .NameCamel }}Cmd.AddCommand({{ .Parent.CommandNameCamel }}Cmd)
+        {{ end }}
         {{ .ParamFlags }}
     {{ end }}
 }

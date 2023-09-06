@@ -15,14 +15,17 @@ var UsersCmd = &cobra.Command{
 func init() {
 
 	UsersCmd.AddCommand(DeleteAuthApiV1UserRoleBindingCmd)
+
 	DeleteAuthApiV1UserRoleBindingCmd.Flags().String("user-id", "", "User ID")
 	DeleteAuthApiV1UserRoleBindingCmd.MarkFlagRequired("user-id")
 
 	UsersCmd.AddCommand(GetAuthApiV1UserUserIdCmd)
+
 	GetAuthApiV1UserUserIdCmd.Flags().String("user-id", "", "User ID")
 	GetAuthApiV1UserUserIdCmd.MarkFlagRequired("user-id")
 
 	UsersCmd.AddCommand(PostAuthApiV1UserInviteCmd)
+
 	PostAuthApiV1UserInviteCmd.Flags().String("email", "", "User email address")
 	PostAuthApiV1UserInviteCmd.Flags().String("role-name", "", "")
 	PostAuthApiV1UserInviteCmd.MarkFlagRequired("role-name")
@@ -30,6 +33,7 @@ func init() {
 	UsersCmd.AddCommand(GetAuthApiV1UserRoleBindingsCmd)
 
 	UsersCmd.AddCommand(GetAuthApiV1UsersCmd)
+
 	GetAuthApiV1UsersCmd.Flags().String("email", "", "")
 	GetAuthApiV1UsersCmd.Flags().Bool("email-verified", false, "")
 	GetAuthApiV1UsersCmd.Flags().String("role-name", "", "")
@@ -37,6 +41,7 @@ func init() {
 	UsersCmd.AddCommand(GetAuthApiV1WorkspaceRoleBindingsCmd)
 
 	UsersCmd.AddCommand(PutAuthApiV1UserRoleBindingCmd)
+
 	PutAuthApiV1UserRoleBindingCmd.Flags().String("role-name", "", "Name of the role")
 	PutAuthApiV1UserRoleBindingCmd.MarkFlagRequired("role-name")
 	PutAuthApiV1UserRoleBindingCmd.Flags().String("user-id", "", "Unique identifier for the User")

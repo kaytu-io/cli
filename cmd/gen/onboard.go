@@ -15,10 +15,12 @@ var OnboardCmd = &cobra.Command{
 func init() {
 
 	OnboardCmd.AddCommand(PostOnboardApiV1CredentialCredentialIdAutoonboardCmd)
+
 	PostOnboardApiV1CredentialCredentialIdAutoonboardCmd.Flags().String("credential-id", "", "CredentialID")
 	PostOnboardApiV1CredentialCredentialIdAutoonboardCmd.MarkFlagRequired("credential-id")
 
 	OnboardCmd.AddCommand(PostOnboardApiV1SourceAwsCmd)
+
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-access-key", "", "")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-account-id", "", "")
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-account-id")
@@ -39,6 +41,7 @@ func init() {
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("name")
 
 	OnboardCmd.AddCommand(PostOnboardApiV1SourceAzureCmd)
+
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-client-id", "", "")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-client-secret", "", "")
 	PostOnboardApiV1SourceAzureCmd.Flags().String("config-object-id", "", "")
@@ -53,34 +56,41 @@ func init() {
 	PostOnboardApiV1SourceAzureCmd.MarkFlagRequired("name")
 
 	OnboardCmd.AddCommand(PostOnboardApiV1CredentialCmd)
+
 	PostOnboardApiV1CredentialCmd.Flags().String("config-config", "", "")
 	PostOnboardApiV1CredentialCmd.MarkFlagRequired("config-config")
 	PostOnboardApiV1CredentialCmd.Flags().String("config-source-type", "", "")
 	PostOnboardApiV1CredentialCmd.MarkFlagRequired("config-source-type")
 
 	OnboardCmd.AddCommand(DeleteOnboardApiV1CredentialCredentialIdCmd)
+
 	DeleteOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "CredentialID")
 	DeleteOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
 
 	OnboardCmd.AddCommand(DeleteOnboardApiV1SourceSourceIdCmd)
+
 	DeleteOnboardApiV1SourceSourceIdCmd.Flags().String("source-id", "", "Source ID")
 	DeleteOnboardApiV1SourceSourceIdCmd.MarkFlagRequired("source-id")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1CatalogMetricsCmd)
+
 	GetOnboardApiV1CatalogMetricsCmd.Flags().StringArray("connector", nil, "Connector")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1ConnectorCmd)
 
 	OnboardCmd.AddCommand(GetOnboardApiV1CredentialCredentialIdCmd)
+
 	GetOnboardApiV1CredentialCredentialIdCmd.Flags().String("credential-id", "", "Credential ID")
 	GetOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("credential-id")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1SourceSourceIdHealthcheckCmd)
+
 	GetOnboardApiV1SourceSourceIdHealthcheckCmd.Flags().String("source-id", "", "Source ID")
 	GetOnboardApiV1SourceSourceIdHealthcheckCmd.MarkFlagRequired("source-id")
 	GetOnboardApiV1SourceSourceIdHealthcheckCmd.Flags().Bool("update-metadata", false, "Whether to update metadata or not")
 
 	OnboardCmd.AddCommand(GetOnboardApiV1CredentialCmd)
+
 	GetOnboardApiV1CredentialCmd.Flags().String("connector", "", "filter by connector type")
 	GetOnboardApiV1CredentialCmd.Flags().StringArray("credential-type", nil, "filter by credential type")
 	GetOnboardApiV1CredentialCmd.Flags().String("health", "", "filter by health status")
@@ -88,6 +98,7 @@ func init() {
 	GetOnboardApiV1CredentialCmd.Flags().Int64("page-size", 0, "page size")
 
 	OnboardCmd.AddCommand(PutOnboardApiV1CredentialCredentialIdCmd)
+
 	PutOnboardApiV1CredentialCredentialIdCmd.Flags().String("config-config", "", "")
 	PutOnboardApiV1CredentialCredentialIdCmd.MarkFlagRequired("config-config")
 	PutOnboardApiV1CredentialCredentialIdCmd.Flags().String("config-connector", "", "")

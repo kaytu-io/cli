@@ -7,7 +7,9 @@ import (
 
 func init() {
 	
-    rootCmd.AddCommand(gen.AnalyticsCmd)
+    rootCmd.AddCommand(gen.AssetsCmd)
+	
+    rootCmd.AddCommand(gen.SpendCmd)
 	
     rootCmd.AddCommand(gen.BenchmarksAssignmentCmd)
 	
