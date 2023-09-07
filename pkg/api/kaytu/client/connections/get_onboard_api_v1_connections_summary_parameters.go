@@ -62,6 +62,12 @@ GetOnboardAPIV1ConnectionsSummaryParams contains all the parameters to send to t
 */
 type GetOnboardAPIV1ConnectionsSummaryParams struct {
 
+	/* ConnectionGroups.
+
+	   Connection Groups
+	*/
+	ConnectionGroups []string
+
 	/* ConnectionID.
 
 	   Connection IDs
@@ -179,6 +185,17 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithHTTPClient(client *http.Cl
 // SetHTTPClient adds the HTTPClient to the get onboard API v1 connections summary params
 func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithConnectionGroups adds the connectionGroups to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithConnectionGroups(connectionGroups []string) *GetOnboardAPIV1ConnectionsSummaryParams {
+	o.SetConnectionGroups(connectionGroups)
+	return o
+}
+
+// SetConnectionGroups adds the connectionGroups to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetConnectionGroups(connectionGroups []string) {
+	o.ConnectionGroups = connectionGroups
 }
 
 // WithConnectionID adds the connectionID to the get onboard API v1 connections summary params
@@ -309,6 +326,17 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 	var res []error
+
+	if o.ConnectionGroups != nil {
+
+		// binding items for connectionGroups
+		joinedConnectionGroups := o.bindParamConnectionGroups(reg)
+
+		// query array param connectionGroups
+		if err := r.SetQueryParam("connectionGroups", joinedConnectionGroups...); err != nil {
+			return err
+		}
+	}
 
 	if o.ConnectionID != nil {
 
@@ -489,6 +517,23 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetOnboardAPIV1ConnectionsSummary binds the parameter connectionGroups
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) bindParamConnectionGroups(formats strfmt.Registry) []string {
+	connectionGroupsIR := o.ConnectionGroups
+
+	var connectionGroupsIC []string
+	for _, connectionGroupsIIR := range connectionGroupsIR { // explode []string
+
+		connectionGroupsIIV := connectionGroupsIIR // string as string
+		connectionGroupsIC = append(connectionGroupsIC, connectionGroupsIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupsIS := swag.JoinByFormat(connectionGroupsIC, "csv")
+
+	return connectionGroupsIS
 }
 
 // bindParamGetOnboardAPIV1ConnectionsSummary binds the parameter connectionId

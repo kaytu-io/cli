@@ -16,6 +16,7 @@ func init() {
 
 	ConnectionsCmd.AddCommand(GetOnboardApiV1ConnectionsSummaryCmd)
 
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connection-groups", nil, "Connection Groups")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connector", nil, "Connector")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("end-time", "", "end time in unix seconds")

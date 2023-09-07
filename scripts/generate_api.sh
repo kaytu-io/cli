@@ -8,7 +8,7 @@ set -x
 #curl -o /usr/local/bin/swagger -L'#' "$download_url"
 #chmod +x /usr/local/bin/swagger
 
-rm -rf cmd/gen pkg/api/kaytu/client pkg/api/kaytu/models
+rm -rf pkg/api/kaytu/client pkg/api/kaytu/models
 
 swagger generate client --spec https://app.kaytu.dev/docs/api/1.0/swagger.yaml --target ./pkg/api/kaytu/
 go run scripts/fix_api.go
