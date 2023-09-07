@@ -3,6 +3,7 @@ package manual_commands
 import (
 	"errors"
 	"fmt"
+
 	"github.com/go-openapi/runtime"
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"

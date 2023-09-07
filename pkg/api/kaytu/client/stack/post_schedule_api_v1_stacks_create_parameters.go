@@ -75,7 +75,7 @@ type PostScheduleAPIV1StacksCreateParams struct {
 
 	/* TerraformFile.
 
-	   File to upload
+	   ُTerraform StateFile full path
 	*/
 	TerraformFile runtime.NamedReadCloser
 

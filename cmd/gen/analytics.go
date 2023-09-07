@@ -36,17 +36,6 @@ func init() {
 	GetInventoryApiV2AnalyticsMetricCmd.Flags().String("start-time", "", "timestamp for resource count change comparison in epoch seconds")
 	GetInventoryApiV2AnalyticsMetricCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
 
-	AssetsCmd.AddCommand(GetInventoryApiV2AnalyticsRegionsSummaryCmd)
-
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().String("connection-group", "", "Connection group to filter by - mutually exclusive with connectionId")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().String("end-time", "", "end time in unix seconds - default is one week ago")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().Int64("page-number", 0, "page number - default is 1")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().Int64("page-size", 0, "page size - default is 20")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().String("sort-by", "", "column to sort by - default is resource_count")
-	GetInventoryApiV2AnalyticsRegionsSummaryCmd.Flags().String("start-time", "", "start time in unix seconds - default is now")
-
 	AssetsCmd.AddCommand(GetInventoryApiV2AnalyticsCompositionKeyCmd)
 
 	GetInventoryApiV2AnalyticsCompositionKeyCmd.Flags().String("connection-group", "", "Connection group to filter by - mutually exclusive with connectionId")
@@ -81,17 +70,6 @@ func init() {
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().String("granularity", "", "Granularity of the table, default is daily")
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().StringArray("metric-ids", nil, "")
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().String("start-time", "", "timestamp for start in epoch seconds")
-
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendMetricCmd)
-
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().String("connection-group", "", "Connection group to filter by - mutually exclusive with connectionId")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().String("end-time", "", "timestamp for end in epoch seconds")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().Int64("page-number", 0, "page number - default is 1")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().Int64("page-size", 0, "page size - default is 20")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().String("sort-by", "", "Sort by field - default is cost")
-	GetInventoryApiV2AnalyticsSpendMetricCmd.Flags().String("start-time", "", "timestamp for start in epoch seconds")
 
 	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendCompositionCmd)
 

@@ -28,6 +28,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 
 		req := connections.NewGetOnboardAPIV1ConnectionsSummaryParams()
 
+		req.SetConnectionGroups(flags.ReadStringArrayFlag(cmd, "ConnectionGroups"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))

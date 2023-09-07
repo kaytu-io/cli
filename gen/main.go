@@ -26,9 +26,27 @@ func main() {
 	if err != nil {
 		root = ".."
 	}
-	os.RemoveAll(root + "/cmd/gen")
-	os.Mkdir(root+"/cmd/gen", os.ModePerm)
+	err = filepath.Walk(root+"/cmd/gen", func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
 
+		if info.IsDir() && info.Name() == "manual_commands" {
+			return filepath.SkipDir
+		}
+
+		if !info.IsDir() && strings.HasPrefix(info.Name(), "manual") {
+			return nil
+		}
+		fmt.Println("PATHHH:", path)
+		if path != "./cmd/gen" {
+			return os.RemoveAll(path)
+		}
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
 	crudGen := crud.Generator{}
 	var miss bool
 	err = filepath.Walk(root+"/pkg/api/kaytu/client", func(path string, info fs.FileInfo, err error) error {
