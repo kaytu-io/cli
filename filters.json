@@ -1,0 +1,1 @@
+{"AND":[{"Match":{"Key":"ConnectionName","Values":["Software"],"MatchOption":"CONTAINS"}},{"Match":{"Key":"ConnectionName","Values":["T"],"MatchOption":"~STARTS_WITH"}}]}

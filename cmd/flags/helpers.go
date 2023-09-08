@@ -2,6 +2,9 @@ package flags
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -15,12 +18,25 @@ func ReadStringFlag(cmd *cobra.Command, name string) string {
 	if cmd.Flags().Lookup(name) == nil {
 		fmt.Println("cant find", name)
 	}
-	return cmd.Flags().Lookup(name).Value.String()
+	value := cmd.Flags().Lookup(name).Value.String()
+	if strings.HasPrefix(value, "@") {
+		return readFile(value[1:])
+	} else if strings.HasPrefix(value, "file://") {
+		return readFile(value[7:])
+	}
+	return value
 }
 
 func ReadStringOptionalFlag(cmd *cobra.Command, name string) *string {
 	name = strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
 	if v := cmd.Flags().Lookup(name).Value.String(); len(v) > 0 && (cmd.Flags().Lookup(name).Changed == true) {
+		if strings.HasPrefix(v, "@") {
+			content := readFile(v[1:])
+			return &content
+		} else if strings.HasPrefix(v, "file://") {
+			content := readFile(v[7:])
+			return &content
+		}
 		return &v
 	}
 	return nil
@@ -144,4 +160,25 @@ func ReadIntArrayFlag(cmd *cobra.Command, name string) []int64 {
 	}
 
 	return intArr
+}
+
+func readFile(path string) string {
+	var fullPath string
+
+	if filepath.IsAbs(path) {
+		fullPath = path
+	} else {
+		wd, err := os.Getwd()
+		if err != nil {
+			panic(err)
+		}
+		fullPath = filepath.Join(wd, path)
+	}
+
+	content, err := ioutil.ReadFile(fullPath)
+	if err != nil {
+		panic(err)
+	}
+
+	return string(content)
 }
