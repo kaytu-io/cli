@@ -16,8 +16,8 @@ import (
 
 var GetCostsCmd = &cobra.Command{
 	Use:   "get-costs",
-	Short: `Retrieving cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.`,
-	Long:  `Retrieving cost metrics with respect to specified filters. The API returns information such as the total cost and costs per each service based on the specified filters.`,
+	Short: `Retrieving costs by the give filters grouped by services or connections.`,
+	Long:  `Retrieving costs by the give filters grouped by services or connections.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
