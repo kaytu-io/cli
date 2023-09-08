@@ -19,5 +19,6 @@ func init() {
 		"\t- AND: Array. Return results that match all Dimension objects.\n"+
 		"\t- OR: Array. Return results that match either Dimension object.\n"+
 		"Example:\n"+
-		"\t {\"AND\":[{\"Match\":{\"Key\":\"ConnectionName\",\"Values\":[\"Software\"],\"MatchOption\":\"CONTAINS\"}},{\"Match\":{\"Key\":\"ConnectionName\",\"Values\":[\"T\"],\"MatchOption\":\"~STARTS_WITH\"}}]}")
+		"\t {\"AND\":[{\"Match\":{\"Key\":\"ConnectionName\",\"Values\":[\"Software\"],\"MatchOption\":\"CONTAINS\"}},{\"Match\":{\"Key\":\"ConnectionName\",\"Values\":[\"T\"],\"MatchOption\":\"~STARTS_WITH\"}}]}\n"+
+		"Give file by @ or file:// prefix")
 }
