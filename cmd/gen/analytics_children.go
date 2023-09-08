@@ -28,7 +28,7 @@ var GetInventoryApiV2AnalyticsMetricCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsMetricParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -71,7 +71,7 @@ var GetInventoryApiV2AnalyticsCompositionKeyCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsCompositionKeyParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -110,7 +110,7 @@ var GetInventoryApiV2AnalyticsTrendCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsTrendParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetDatapointCount(flags.ReadStringOptionalFlag(cmd, "DatapointCount"))
@@ -150,7 +150,7 @@ var GetInventoryApiV2AnalyticsSpendTrendCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsSpendTrendParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -188,7 +188,7 @@ var GetInventoryApiV2AnalyticsSpendCompositionCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsSpendCompositionParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -225,7 +225,7 @@ var GetInventoryApiV2AnalyticsSpendMetricsTrendCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsSpendMetricsTrendParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
@@ -263,7 +263,7 @@ var GetInventoryApiV2AnalyticsTagCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsTagParams()
 
-		req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))

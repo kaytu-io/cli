@@ -86,6 +86,12 @@ type GetOnboardAPIV1ConnectionsSummaryParams struct {
 	*/
 	EndTime *int64
 
+	/* Filter.
+
+	   Filter costs
+	*/
+	Filter *string
+
 	/* HealthState.
 
 	   health state filter
@@ -231,6 +237,17 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetEndTime(endTime *int64) {
 	o.EndTime = endTime
 }
 
+// WithFilter adds the filter to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithFilter(filter *string) *GetOnboardAPIV1ConnectionsSummaryParams {
+	o.SetFilter(filter)
+	return o
+}
+
+// SetFilter adds the filter to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetFilter(filter *string) {
+	o.Filter = filter
+}
+
 // WithHealthState adds the healthState to the get onboard API v1 connections summary params
 func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithHealthState(healthState *string) *GetOnboardAPIV1ConnectionsSummaryParams {
 	o.SetHealthState(healthState)
@@ -372,6 +389,23 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Filter != nil {
+
+		// query param filter
+		var qrFilter string
+
+		if o.Filter != nil {
+			qrFilter = *o.Filter
+		}
+		qFilter := qrFilter
+		if qFilter != "" {
+
+			if err := r.SetQueryParam("filter", qFilter); err != nil {
 				return err
 			}
 		}

@@ -20,6 +20,7 @@ func init() {
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("connector", nil, "Connector")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("end-time", "", "end time in unix seconds")
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("filter", "", "Filter costs")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("health-state", "", "health state filter")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("lifecycle-state", "", "lifecycle state filter")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Bool("need-cost", false, "for quicker inquiry send this parameter as false, default: true")
