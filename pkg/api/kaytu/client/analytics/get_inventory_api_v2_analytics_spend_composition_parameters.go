@@ -66,7 +66,7 @@ type GetInventoryAPIV2AnalyticsSpendCompositionParams struct {
 
 	   Connection group to filter by - mutually exclusive with connectionId
 	*/
-	ConnectionGroup *string
+	ConnectionGroup []string
 
 	/* ConnectionID.
 
@@ -152,13 +152,13 @@ func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) SetHTTPClient(client 
 }
 
 // WithConnectionGroup adds the connectionGroup to the get inventory API v2 analytics spend composition params
-func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) WithConnectionGroup(connectionGroup *string) *GetInventoryAPIV2AnalyticsSpendCompositionParams {
+func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) WithConnectionGroup(connectionGroup []string) *GetInventoryAPIV2AnalyticsSpendCompositionParams {
 	o.SetConnectionGroup(connectionGroup)
 	return o
 }
 
 // SetConnectionGroup adds the connectionGroup to the get inventory API v2 analytics spend composition params
-func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) SetConnectionGroup(connectionGroup *string) {
+func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) SetConnectionGroup(connectionGroup []string) {
 	o.ConnectionGroup = connectionGroup
 }
 
@@ -227,18 +227,12 @@ func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) WriteToRequest(r runt
 
 	if o.ConnectionGroup != nil {
 
-		// query param connectionGroup
-		var qrConnectionGroup string
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
 
-		if o.ConnectionGroup != nil {
-			qrConnectionGroup = *o.ConnectionGroup
-		}
-		qConnectionGroup := qrConnectionGroup
-		if qConnectionGroup != "" {
-
-			if err := r.SetQueryParam("connectionGroup", qConnectionGroup); err != nil {
-				return err
-			}
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
 		}
 	}
 
@@ -319,6 +313,23 @@ func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) WriteToRequest(r runt
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetInventoryAPIV2AnalyticsSpendComposition binds the parameter connectionGroup
+func (o *GetInventoryAPIV2AnalyticsSpendCompositionParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
 }
 
 // bindParamGetInventoryAPIV2AnalyticsSpendComposition binds the parameter connectionId

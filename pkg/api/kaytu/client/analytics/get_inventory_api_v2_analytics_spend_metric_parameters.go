@@ -86,6 +86,12 @@ type GetInventoryAPIV2AnalyticsSpendMetricParams struct {
 	*/
 	EndTime *int64
 
+	/* Filter.
+
+	   Filter costs
+	*/
+	Filter *string
+
 	/* PageNumber.
 
 	   page number - default is 1
@@ -207,6 +213,17 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetEndTime(endTime *int64)
 	o.EndTime = endTime
 }
 
+// WithFilter adds the filter to the get inventory API v2 analytics spend metric params
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WithFilter(filter *string) *GetInventoryAPIV2AnalyticsSpendMetricParams {
+	o.SetFilter(filter)
+	return o
+}
+
+// SetFilter adds the filter to the get inventory API v2 analytics spend metric params
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetFilter(filter *string) {
+	o.Filter = filter
+}
+
 // WithPageNumber adds the pageNumber to the get inventory API v2 analytics spend metric params
 func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WithPageNumber(pageNumber *int64) *GetInventoryAPIV2AnalyticsSpendMetricParams {
 	o.SetPageNumber(pageNumber)
@@ -310,6 +327,23 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WriteToRequest(r runtime.C
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Filter != nil {
+
+		// query param filter
+		var qrFilter string
+
+		if o.Filter != nil {
+			qrFilter = *o.Filter
+		}
+		qFilter := qrFilter
+		if qFilter != "" {
+
+			if err := r.SetQueryParam("filter", qFilter); err != nil {
 				return err
 			}
 		}

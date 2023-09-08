@@ -66,7 +66,7 @@ type GetInventoryAPIV2AnalyticsMetricParams struct {
 
 	   Connection group to filter by - mutually exclusive with connectionId
 	*/
-	ConnectionGroup *string
+	ConnectionGroup []string
 
 	/* ConnectionID.
 
@@ -188,13 +188,13 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) SetHTTPClient(client *http.Clie
 }
 
 // WithConnectionGroup adds the connectionGroup to the get inventory API v2 analytics metric params
-func (o *GetInventoryAPIV2AnalyticsMetricParams) WithConnectionGroup(connectionGroup *string) *GetInventoryAPIV2AnalyticsMetricParams {
+func (o *GetInventoryAPIV2AnalyticsMetricParams) WithConnectionGroup(connectionGroup []string) *GetInventoryAPIV2AnalyticsMetricParams {
 	o.SetConnectionGroup(connectionGroup)
 	return o
 }
 
 // SetConnectionGroup adds the connectionGroup to the get inventory API v2 analytics metric params
-func (o *GetInventoryAPIV2AnalyticsMetricParams) SetConnectionGroup(connectionGroup *string) {
+func (o *GetInventoryAPIV2AnalyticsMetricParams) SetConnectionGroup(connectionGroup []string) {
 	o.ConnectionGroup = connectionGroup
 }
 
@@ -329,18 +329,12 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) WriteToRequest(r runtime.Client
 
 	if o.ConnectionGroup != nil {
 
-		// query param connectionGroup
-		var qrConnectionGroup string
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
 
-		if o.ConnectionGroup != nil {
-			qrConnectionGroup = *o.ConnectionGroup
-		}
-		qConnectionGroup := qrConnectionGroup
-		if qConnectionGroup != "" {
-
-			if err := r.SetQueryParam("connectionGroup", qConnectionGroup); err != nil {
-				return err
-			}
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
 		}
 	}
 
@@ -511,6 +505,23 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) WriteToRequest(r runtime.Client
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetInventoryAPIV2AnalyticsMetric binds the parameter connectionGroup
+func (o *GetInventoryAPIV2AnalyticsMetricParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
 }
 
 // bindParamGetInventoryAPIV2AnalyticsMetric binds the parameter connectionId

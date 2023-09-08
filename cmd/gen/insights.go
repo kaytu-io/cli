@@ -23,6 +23,25 @@ func init() {
 	GetComplianceApiV1InsightInsightIdCmd.MarkFlagRequired("insight-id")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdCmd)
+
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().StringArray("connection-group", nil, "filter the result by connection group")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("insight-group-id", "", "Insight Group ID")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.MarkFlagRequired("insight-group-id")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
+
+	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd)
+
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().StringArray("connection-group", nil, "filter the result by connection group")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().Int64("datapoint-count", 0, "number of datapoints to return")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().String("insight-group-id", "", "Insight Group ID")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.MarkFlagRequired("insight-group-id")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
+
 	InsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightInsightIdCmd)
 
 	GetComplianceApiV1MetadataInsightInsightIdCmd.Flags().String("insight-id", "", "Insight ID")

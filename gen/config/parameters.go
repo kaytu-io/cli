@@ -45,6 +45,8 @@ var ParamModels = map[string]interface{}{
 	"GetOnboardAPIV1ConnectionGroups":                       connection_groups.GetOnboardAPIV1ConnectionGroupsParams{},
 	"GetOnboardAPIV1ConnectionsSummary":                     connections.GetOnboardAPIV1ConnectionsSummaryParams{},
 	"PutScheduleAPIV1DescribeTriggerConnectionID":           describe.PutScheduleAPIV1DescribeTriggerConnectionIDParams{},
+	"GetComplianceAPIV1InsightGroupInsightGroupID":          insights.GetComplianceAPIV1InsightGroupInsightGroupIDParams{},
+	"GetComplianceAPIV1InsightGroupInsightGroupIDTrend":     insights.GetComplianceAPIV1InsightGroupInsightGroupIDTrendParams{},
 	"GetComplianceAPIV1InsightGroup":                        insights.GetComplianceAPIV1InsightGroupParams{},
 	"GetComplianceAPIV1InsightInsightID":                    insights.GetComplianceAPIV1InsightInsightIDParams{},
 	"GetComplianceAPIV1InsightInsightIDTrend":               insights.GetComplianceAPIV1InsightInsightIDTrendParams{},

@@ -41,14 +41,12 @@ var GetCostsCmd = &cobra.Command{
 func getByMetrics(cmd *cobra.Command, client *client.KaytuServiceAPI, auth runtime.ClientAuthInfoWriter) error {
 	req := analytics.NewGetInventoryAPIV2AnalyticsSpendMetricParams()
 
-	req.SetConnectionGroup(flags.ReadStringOptionalFlag(cmd, "ConnectionGroup"))
-	req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-	req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 	req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 	req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 	req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 	req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
 	req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
+	req.SetFilter(flags.ReadStringOptionalFlag(cmd, "Filter"))
 
 	resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetric(req, auth)
 	if err != nil {
@@ -66,8 +64,6 @@ func getByMetrics(cmd *cobra.Command, client *client.KaytuServiceAPI, auth runti
 func getByConnections(cmd *cobra.Command, client *client.KaytuServiceAPI, auth runtime.ClientAuthInfoWriter) error {
 	req := connections.NewGetOnboardAPIV1ConnectionsSummaryParams()
 
-	req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-	req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 	req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 	needResourceCount := false
 	req.SetNeedResourceCount(&needResourceCount)
@@ -75,6 +71,7 @@ func getByConnections(cmd *cobra.Command, client *client.KaytuServiceAPI, auth r
 	req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
 	req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
 	req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
+	req.SetFilter(flags.ReadStringOptionalFlag(cmd, "Filter"))
 
 	resp, err := client.Connections.GetOnboardAPIV1ConnectionsSummary(req, auth)
 	if err != nil {
