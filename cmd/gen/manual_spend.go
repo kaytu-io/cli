@@ -15,9 +15,9 @@ func init() {
 		"\t\t- Key: String. Specifies the filter dimension key. Valid values are [ConnectionID|Provider|ConnectionGroup|ConnectionName]\n"+
 		"\t\t- Value: String Array. Specifies the filter value.\n"+
 		"\t\t- MatchOption: String. Specifies the match option. Valid values are [EQUAL|STARTS_WITH|ENDS_WITH|CONTAINS]. (Default EQUAL).\n"+
-		"\t\t-              NOT the match by ~ character: [~EQUAL|~STARTS_WITH|~ENDS_WITH|~CONTAINS]\n"+
-		"\t- AND: Array. Return results that match all Dimension objects.\n"+
-		"\t- OR: Array. Return results that match either Dimension object.\n"+
+		"\t\t              NOT the match by ~ character: [~EQUAL|~STARTS_WITH|~ENDS_WITH|~CONTAINS]\n"+
+		"\t- AND: Array. Return results that match all Match objects.\n"+
+		"\t- OR: Array. Return results that match either Match object.\n"+
 		"Example:\n"+
 		"\t {\"AND\":[{\"Match\":{\"Key\":\"ConnectionName\",\"Values\":[\"Software\"],\"MatchOption\":\"CONTAINS\"}},{\"Match\":{\"Key\":\"ConnectionName\",\"Values\":[\"T\"],\"MatchOption\":\"~STARTS_WITH\"}}]}\n"+
 		"Give file by @ or file:// prefix")
