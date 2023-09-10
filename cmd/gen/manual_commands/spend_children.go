@@ -3,6 +3,7 @@ package manual_commands
 import (
 	"errors"
 	"fmt"
+	"time"
 
 	"github.com/go-openapi/runtime"
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -48,6 +49,14 @@ func getByMetrics(cmd *cobra.Command, client *client.KaytuServiceAPI, auth runti
 	req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 	req.SetFilter(flags.ReadStringOptionalFlag(cmd, "Filter"))
 
+	endTime := flags.ReadTimeOptionalFlag(cmd, "EndTime")
+	if endTime != nil {
+		t := time.Unix(*endTime, 0).UTC()
+		if (t.Year() == time.Now().Year() && t.Month() == time.Now().Month()) && (t.Day() == time.Now().Day() || t.Day() == (time.Now().Day()-1)) {
+			return fmt.Errorf("[get_costs] : No accurate data for last two days")
+		}
+	}
+
 	resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetric(req, auth)
 	if err != nil {
 		return fmt.Errorf("[get_costs] : %v", err)
@@ -72,6 +81,14 @@ func getByConnections(cmd *cobra.Command, client *client.KaytuServiceAPI, auth r
 	req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
 	req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 	req.SetFilter(flags.ReadStringOptionalFlag(cmd, "Filter"))
+
+	endTime := flags.ReadTimeOptionalFlag(cmd, "EndTime")
+	if endTime != nil {
+		t := time.Unix(*endTime, 0).UTC()
+		if (t.Year() == time.Now().Year() && t.Month() == time.Now().Month()) && (t.Day() == time.Now().Day() || t.Day() == (time.Now().Day()-1)) {
+			return fmt.Errorf("[get_costs] : No accurate data for last two days")
+		}
+	}
 
 	resp, err := client.Connections.GetOnboardAPIV1ConnectionsSummary(req, auth)
 	if err != nil {
