@@ -1,11 +1,15 @@
 package gen
 
-import "github.com/kaytu-io/cli-program/cmd/gen/manual_commands"
+import (
+	"fmt"
+	"github.com/kaytu-io/cli-program/cmd/gen/manual_commands"
+	"time"
+)
 
 func init() {
 	SpendCmd.AddCommand(manual_commands.GetCostsCmd)
-	manual_commands.GetCostsCmd.Flags().String("start-time", "", "timestamp for start time (Default one month ago)")
-	manual_commands.GetCostsCmd.Flags().String("end-time", "", "timestamp for end time - (Default now)")
+	manual_commands.GetCostsCmd.Flags().String("start-time", fmt.Sprintf("%v", time.Now().AddDate(0, -1, 0).Format("2006-01-02")), "timestamp for start time")
+	manual_commands.GetCostsCmd.Flags().String("end-time", fmt.Sprintf("%v", time.Now().AddDate(0, 0, -2).Format("2006-01-02")), "timestamp for end time")
 	manual_commands.GetCostsCmd.Flags().Int64("page-number", 0, "page number - (Default 1)")
 	manual_commands.GetCostsCmd.Flags().Int64("page-size", 0, "page size - (Default 20)")
 	manual_commands.GetCostsCmd.Flags().String("sort-by", "", "Sort by field - (Default cost)")

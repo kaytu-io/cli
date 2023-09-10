@@ -61,7 +61,7 @@ func init() {
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().String("start-time", "", "timestamp for start in epoch seconds")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendTrendCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendTrendCmd)
 
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().StringArray("connection-group", nil, "Connection group to filter by - mutually exclusive with connectionId")
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
@@ -71,7 +71,7 @@ func init() {
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().StringArray("metric-ids", nil, "")
 	GetInventoryApiV2AnalyticsSpendTrendCmd.Flags().String("start-time", "", "timestamp for start in epoch seconds")
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendCompositionCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendCompositionCmd)
 
 	GetInventoryApiV2AnalyticsSpendCompositionCmd.Flags().StringArray("connection-group", nil, "Connection group to filter by - mutually exclusive with connectionId")
 	GetInventoryApiV2AnalyticsSpendCompositionCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
@@ -80,7 +80,7 @@ func init() {
 	GetInventoryApiV2AnalyticsSpendCompositionCmd.Flags().String("start-time", "", "timestamp for start in epoch seconds")
 	GetInventoryApiV2AnalyticsSpendCompositionCmd.Flags().Int64("top", 0, "How many top values to return default is 5")
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendMetricsTrendCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendMetricsTrendCmd)
 
 	GetInventoryApiV2AnalyticsSpendMetricsTrendCmd.Flags().StringArray("connection-group", nil, "Connection group to filter by - mutually exclusive with connectionId")
 	GetInventoryApiV2AnalyticsSpendMetricsTrendCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
@@ -90,7 +90,7 @@ func init() {
 	GetInventoryApiV2AnalyticsSpendMetricsTrendCmd.Flags().StringArray("metric-ids", nil, "")
 	GetInventoryApiV2AnalyticsSpendMetricsTrendCmd.Flags().String("start-time", "", "timestamp for start in epoch seconds")
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsTagCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsTagCmd)
 
 	AssetsCmd.AddCommand(GetInventoryApiV2AnalyticsTagCmd)
 
@@ -104,7 +104,7 @@ func init() {
 
 	AssetsCmd.AddCommand(GetInventoryApiV2AnalyticsCategoriesCmd)
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsCategoriesCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsCategoriesCmd)
 
 	GetInventoryApiV2AnalyticsCategoriesCmd.Flags().String("metric-type", "", "Metric type, default: assets")
 
@@ -117,12 +117,12 @@ func init() {
 
 	AssetsCmd.AddCommand(GetInventoryApiV2AnalyticsMetricsListCmd)
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsMetricsListCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsMetricsListCmd)
 
 	GetInventoryApiV2AnalyticsMetricsListCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
 	GetInventoryApiV2AnalyticsMetricsListCmd.Flags().String("metric-type", "", "Metric type, default: assets")
 
-	SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendTableCmd)
+	//SpendCmd.AddCommand(GetInventoryApiV2AnalyticsSpendTableCmd)
 
 	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
 	GetInventoryApiV2AnalyticsSpendTableCmd.Flags().String("dimension", "", "Dimension of the table, default is metric")
