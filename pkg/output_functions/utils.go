@@ -7,14 +7,14 @@ import (
 	"github.com/fatih/color"
 	"github.com/iancoleman/strcase"
 	"github.com/jedib0t/go-pretty/v6/table"
-	"github.com/leekchan/accounting"
-
 	"github.com/kaytu-io/cli-program/gen/config"
+	"github.com/leekchan/accounting"
 	jsonmask "github.com/teambition/json-mask-go"
 	"golang.org/x/term"
 	"os"
 	"sort"
 	"strings"
+	"time"
 )
 
 func keepTwoDigits(v interface{}, k string) interface{} {
@@ -297,7 +297,18 @@ func extractRows(objJSON []byte) ([]map[string]string, error) {
 				} else {
 					row[k] = fmt.Sprintf("%.2f", v)
 				}
-			case int, int32, int64, string, bool:
+			case string:
+				row[k] = fmt.Sprintf("%v", t)
+				if strings.Contains(strings.ToLower(k), "date") {
+					time, err := time.Parse(time.RFC3339, v.(string))
+					if err == nil {
+						if time.Hour() == 0 && time.Minute() == 0 && time.Second() == 0 && time.Nanosecond() == 0 {
+							date := time.Format("2006-01-02")
+							row[k] = fmt.Sprintf("%v", date)
+						}
+					}
+				}
+			case int, int32, int64, bool:
 				row[k] = fmt.Sprintf("%v", t)
 			default:
 				v = keepTwoDigits(v, k)
