@@ -24,6 +24,10 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric struct {
 	// Example: ["Azure"]
 	Connector []SourceType `json:"connector"`
 
+	// cost dimension id
+	// Example: microsoft_compute_disks
+	CostDimensionID string `json:"cost_dimension_id,omitempty"`
+
 	// cost dimension name
 	// Example: microsoft.compute/disks
 	CostDimensionName string `json:"cost_dimension_name,omitempty"`

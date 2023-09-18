@@ -269,6 +269,7 @@ var UrlNames = map[string]string{
 	"get_inventory_api_v2_analytics_spend_trend":         "get-costs-trend",
 	"get_inventory_api_v2_analytics_tag":                 "get-tags",
 	"get_inventory_api_v2_analytics_spend_metrics_trend": "get-spend-trend-by-metrics",
+	"get_inventory_api_v2_analytics_metrics_metric_id":   "get-metric",
 }
 
 // add preferred services instead of the main ones

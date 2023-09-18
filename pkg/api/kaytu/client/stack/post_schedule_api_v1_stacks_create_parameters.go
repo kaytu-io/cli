@@ -67,17 +67,23 @@ type PostScheduleAPIV1StacksCreateParams struct {
 	*/
 	Config string
 
+	/* RemoteStateConfig.
+
+	   Config json structure for terraform remote state backend
+	*/
+	RemoteStateConfig *string
+
+	/* StateFile.
+
+	   ُTerraform StateFile full path
+	*/
+	StateFile runtime.NamedReadCloser
+
 	/* Tag.
 
 	   Tags Map[string][]string
 	*/
 	Tag *string
-
-	/* TerraformFile.
-
-	   ُTerraform StateFile full path
-	*/
-	TerraformFile runtime.NamedReadCloser
 
 	timeout    time.Duration
 	Context    context.Context
@@ -143,6 +149,28 @@ func (o *PostScheduleAPIV1StacksCreateParams) SetConfig(config string) {
 	o.Config = config
 }
 
+// WithRemoteStateConfig adds the remoteStateConfig to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithRemoteStateConfig(remoteStateConfig *string) *PostScheduleAPIV1StacksCreateParams {
+	o.SetRemoteStateConfig(remoteStateConfig)
+	return o
+}
+
+// SetRemoteStateConfig adds the remoteStateConfig to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetRemoteStateConfig(remoteStateConfig *string) {
+	o.RemoteStateConfig = remoteStateConfig
+}
+
+// WithStateFile adds the stateFile to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) WithStateFile(stateFile runtime.NamedReadCloser) *PostScheduleAPIV1StacksCreateParams {
+	o.SetStateFile(stateFile)
+	return o
+}
+
+// SetStateFile adds the stateFile to the post schedule API v1 stacks create params
+func (o *PostScheduleAPIV1StacksCreateParams) SetStateFile(stateFile runtime.NamedReadCloser) {
+	o.StateFile = stateFile
+}
+
 // WithTag adds the tag to the post schedule API v1 stacks create params
 func (o *PostScheduleAPIV1StacksCreateParams) WithTag(tag *string) *PostScheduleAPIV1StacksCreateParams {
 	o.SetTag(tag)
@@ -152,17 +180,6 @@ func (o *PostScheduleAPIV1StacksCreateParams) WithTag(tag *string) *PostSchedule
 // SetTag adds the tag to the post schedule API v1 stacks create params
 func (o *PostScheduleAPIV1StacksCreateParams) SetTag(tag *string) {
 	o.Tag = tag
-}
-
-// WithTerraformFile adds the terraformFile to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) WithTerraformFile(terraformFile runtime.NamedReadCloser) *PostScheduleAPIV1StacksCreateParams {
-	o.SetTerraformFile(terraformFile)
-	return o
-}
-
-// SetTerraformFile adds the terraformFile to the post schedule API v1 stacks create params
-func (o *PostScheduleAPIV1StacksCreateParams) SetTerraformFile(terraformFile runtime.NamedReadCloser) {
-	o.TerraformFile = terraformFile
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -182,6 +199,31 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 		}
 	}
 
+	if o.RemoteStateConfig != nil {
+
+		// form param remoteStateConfig
+		var frRemoteStateConfig string
+		if o.RemoteStateConfig != nil {
+			frRemoteStateConfig = *o.RemoteStateConfig
+		}
+		fRemoteStateConfig := frRemoteStateConfig
+		if fRemoteStateConfig != "" {
+			if err := r.SetFormParam("remoteStateConfig", fRemoteStateConfig); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.StateFile != nil {
+
+		if o.StateFile != nil {
+			// form file param stateFile
+			if err := r.SetFileParam("stateFile", o.StateFile); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Tag != nil {
 
 		// form param tag
@@ -195,10 +237,6 @@ func (o *PostScheduleAPIV1StacksCreateParams) WriteToRequest(r runtime.ClientReq
 				return err
 			}
 		}
-	}
-	// form file param terraformFile
-	if err := r.SetFileParam("terraformFile", o.TerraformFile); err != nil {
-		return err
 	}
 
 	if len(res) > 0 {

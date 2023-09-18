@@ -38,6 +38,8 @@ type ClientService interface {
 
 	GetInventoryAPIV2AnalyticsMetricsList(params *GetInventoryAPIV2AnalyticsMetricsListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsMetricsListOK, error)
 
+	GetInventoryAPIV2AnalyticsMetricsMetricID(params *GetInventoryAPIV2AnalyticsMetricsMetricIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsMetricsMetricIDOK, error)
+
 	GetInventoryAPIV2AnalyticsSpendComposition(params *GetInventoryAPIV2AnalyticsSpendCompositionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendCompositionOK, error)
 
 	GetInventoryAPIV2AnalyticsSpendMetric(params *GetInventoryAPIV2AnalyticsSpendMetricParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsSpendMetricOK, error)
@@ -218,6 +220,47 @@ func (a *Client) GetInventoryAPIV2AnalyticsMetricsList(params *GetInventoryAPIV2
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2AnalyticsMetricsList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2AnalyticsMetricsMetricID lists metrics
+
+Returns list of metrics
+*/
+func (a *Client) GetInventoryAPIV2AnalyticsMetricsMetricID(params *GetInventoryAPIV2AnalyticsMetricsMetricIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2AnalyticsMetricsMetricIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2AnalyticsMetricsMetricIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2AnalyticsMetricsMetricID",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/analytics/metrics/{metric_id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2AnalyticsMetricsMetricIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2AnalyticsMetricsMetricIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2AnalyticsMetricsMetricID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

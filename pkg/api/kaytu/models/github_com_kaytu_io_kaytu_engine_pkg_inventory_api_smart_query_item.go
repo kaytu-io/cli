@@ -7,7 +7,9 @@ package models
 
 import (
 	"context"
+	"strconv"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -20,14 +22,11 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem struct {
 	// Category (Tags[category])
 	Category string `json:"category,omitempty"`
 
-	// Description
-	Description string `json:"description,omitempty"`
+	// Provider
+	Connectors []SourceType `json:"connectors"`
 
 	// Query Id
-	ID int64 `json:"id,omitempty"`
-
-	// Provider
-	Provider string `json:"provider,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// Query
 	Query string `json:"query,omitempty"`
@@ -41,11 +40,72 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem struct {
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api smart query item
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateConnectors(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this github com kaytu io kaytu engine pkg inventory api smart query item based on context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem) validateConnectors(formats strfmt.Registry) error {
+	if swag.IsZero(m.Connectors) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Connectors); i++ {
+
+		if err := m.Connectors[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connectors" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connectors" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this github com kaytu io kaytu engine pkg inventory api smart query item based on the context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConnectors(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQueryItem) contextValidateConnectors(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Connectors); i++ {
+
+		if swag.IsZero(m.Connectors[i]) { // not required
+			return nil
+		}
+
+		if err := m.Connectors[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connectors" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connectors" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 

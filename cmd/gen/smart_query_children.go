@@ -60,8 +60,7 @@ var GetInventoryApiV1QueryCmd = &cobra.Command{
 		req := smart_query.NewGetInventoryAPIV1QueryParams()
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest{
-			ConnectorsFilter: flags.ReadEnumArrayFlag[models.SourceType](cmd, "ConnectorsFilter"),
-			TitleFilter:      flags.ReadStringFlag(cmd, "TitleFilter"),
+			TitleFilter: flags.ReadStringFlag(cmd, "TitleFilter"),
 		})
 
 		resp, err := client.SmartQuery.GetInventoryAPIV1Query(req, auth)

@@ -38,7 +38,6 @@ func main() {
 		if !info.IsDir() && strings.HasPrefix(info.Name(), "manual") {
 			return nil
 		}
-		fmt.Println("PATHHH:", path)
 		if path != "./cmd/gen" {
 			return os.RemoveAll(path)
 		}

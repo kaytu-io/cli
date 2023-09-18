@@ -66,7 +66,7 @@ type GetInventoryAPIV2AnalyticsSpendMetricParams struct {
 
 	   Connection group to filter by - mutually exclusive with connectionId
 	*/
-	ConnectionGroup *string
+	ConnectionGroup []string
 
 	/* ConnectionID.
 
@@ -91,6 +91,12 @@ type GetInventoryAPIV2AnalyticsSpendMetricParams struct {
 	   Filter costs
 	*/
 	Filter *string
+
+	/* MetricIDs.
+
+	   Metric IDs
+	*/
+	MetricIDs []string
 
 	/* PageNumber.
 
@@ -170,13 +176,13 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetHTTPClient(client *http
 }
 
 // WithConnectionGroup adds the connectionGroup to the get inventory API v2 analytics spend metric params
-func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WithConnectionGroup(connectionGroup *string) *GetInventoryAPIV2AnalyticsSpendMetricParams {
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WithConnectionGroup(connectionGroup []string) *GetInventoryAPIV2AnalyticsSpendMetricParams {
 	o.SetConnectionGroup(connectionGroup)
 	return o
 }
 
 // SetConnectionGroup adds the connectionGroup to the get inventory API v2 analytics spend metric params
-func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetConnectionGroup(connectionGroup *string) {
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetConnectionGroup(connectionGroup []string) {
 	o.ConnectionGroup = connectionGroup
 }
 
@@ -222,6 +228,17 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WithFilter(filter *string)
 // SetFilter adds the filter to the get inventory API v2 analytics spend metric params
 func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetFilter(filter *string) {
 	o.Filter = filter
+}
+
+// WithMetricIDs adds the metricIDs to the get inventory API v2 analytics spend metric params
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WithMetricIDs(metricIDs []string) *GetInventoryAPIV2AnalyticsSpendMetricParams {
+	o.SetMetricIDs(metricIDs)
+	return o
+}
+
+// SetMetricIDs adds the metricIDs to the get inventory API v2 analytics spend metric params
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) SetMetricIDs(metricIDs []string) {
+	o.MetricIDs = metricIDs
 }
 
 // WithPageNumber adds the pageNumber to the get inventory API v2 analytics spend metric params
@@ -278,18 +295,12 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WriteToRequest(r runtime.C
 
 	if o.ConnectionGroup != nil {
 
-		// query param connectionGroup
-		var qrConnectionGroup string
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
 
-		if o.ConnectionGroup != nil {
-			qrConnectionGroup = *o.ConnectionGroup
-		}
-		qConnectionGroup := qrConnectionGroup
-		if qConnectionGroup != "" {
-
-			if err := r.SetQueryParam("connectionGroup", qConnectionGroup); err != nil {
-				return err
-			}
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
 		}
 	}
 
@@ -346,6 +357,17 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WriteToRequest(r runtime.C
 			if err := r.SetQueryParam("filter", qFilter); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.MetricIDs != nil {
+
+		// binding items for metricIDs
+		joinedMetricIDs := o.bindParamMetricIDs(reg)
+
+		// query array param metricIDs
+		if err := r.SetQueryParam("metricIDs", joinedMetricIDs...); err != nil {
+			return err
 		}
 	}
 
@@ -423,6 +445,23 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) WriteToRequest(r runtime.C
 	return nil
 }
 
+// bindParamGetInventoryAPIV2AnalyticsSpendMetric binds the parameter connectionGroup
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
+}
+
 // bindParamGetInventoryAPIV2AnalyticsSpendMetric binds the parameter connectionId
 func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) bindParamConnectionID(formats strfmt.Registry) []string {
 	connectionIDIR := o.ConnectionID
@@ -455,4 +494,21 @@ func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) bindParamConnector(formats
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetInventoryAPIV2AnalyticsSpendMetric binds the parameter metricIDs
+func (o *GetInventoryAPIV2AnalyticsSpendMetricParams) bindParamMetricIDs(formats strfmt.Registry) []string {
+	metricIDsIR := o.MetricIDs
+
+	var metricIDsIC []string
+	for _, metricIDsIIR := range metricIDsIR { // explode []string
+
+		metricIDsIIV := metricIDsIIR // string as string
+		metricIDsIC = append(metricIDsIC, metricIDsIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	metricIDsIS := swag.JoinByFormat(metricIDsIC, "csv")
+
+	return metricIDsIS
 }

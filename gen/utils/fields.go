@@ -62,7 +62,7 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 		}
 		reader, err := os.Open(tfstateFile)
 		{{.Name}} := runtime.NamedReader("{{.Name}}", reader)
-		req.SetTerraformFile({{.Name}})`
+		req.SetStateFile({{.Name}})`
 				case "[]int64":
 					line = `req.Set{{.Name}}(flags.ReadIntArrayFlag(cmd, "{{.Name}}"))`
 				default:
