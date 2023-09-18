@@ -7,9 +7,7 @@ package models
 
 import (
 	"context"
-	"strconv"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,81 +17,17 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_inventory_api.ListQueryRequest
 type GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest struct {
 
-	// Specifies the Connectors
-	ConnectorsFilter []SourceType `json:"connectorsFilter"`
-
 	// Specifies the Title
 	TitleFilter string `json:"titleFilter,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api list query request
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateConnectorsFilter(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest) validateConnectorsFilter(formats strfmt.Registry) error {
-	if swag.IsZero(m.ConnectorsFilter) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.ConnectorsFilter); i++ {
-
-		if err := m.ConnectorsFilter[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("connectorsFilter" + "." + strconv.Itoa(i))
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("connectorsFilter" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-// ContextValidate validate this github com kaytu io kaytu engine pkg inventory api list query request based on the context it is used
+// ContextValidate validates this github com kaytu io kaytu engine pkg inventory api list query request based on context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateConnectorsFilter(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIListQueryRequest) contextValidateConnectorsFilter(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.ConnectorsFilter); i++ {
-
-		if swag.IsZero(m.ConnectorsFilter[i]) { // not required
-			return nil
-		}
-
-		if err := m.ConnectorsFilter[i].ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("connectorsFilter" + "." + strconv.Itoa(i))
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("connectorsFilter" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
 	return nil
 }
 

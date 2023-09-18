@@ -26,6 +26,12 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPICostTrendDatapoint struct {
 	// date
 	// Format: date-time
 	Date strfmt.DateTime `json:"date,omitempty"`
+
+	// total connection count
+	TotalConnectionCount int64 `json:"totalConnectionCount,omitempty"`
+
+	// total successful described connection count
+	TotalSuccessfulDescribedConnectionCount int64 `json:"totalSuccessfulDescribedConnectionCount,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg inventory api cost trend datapoint

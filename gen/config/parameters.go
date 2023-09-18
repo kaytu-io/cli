@@ -23,6 +23,7 @@ var ParamModels = map[string]interface{}{
 	"GetInventoryAPIV2AnalyticsCompositionKey":              analytics.GetInventoryAPIV2AnalyticsCompositionKeyParams{},
 	"GetInventoryAPIV2AnalyticsMetric":                      analytics.GetInventoryAPIV2AnalyticsMetricParams{},
 	"GetInventoryAPIV2AnalyticsMetricsList":                 analytics.GetInventoryAPIV2AnalyticsMetricsListParams{},
+	"GetInventoryAPIV2AnalyticsMetricsMetricID":             analytics.GetInventoryAPIV2AnalyticsMetricsMetricIDParams{},
 	"GetInventoryAPIV2AnalyticsSpendComposition":            analytics.GetInventoryAPIV2AnalyticsSpendCompositionParams{},
 	"GetInventoryAPIV2AnalyticsSpendMetric":                 analytics.GetInventoryAPIV2AnalyticsSpendMetricParams{},
 	"GetInventoryAPIV2AnalyticsSpendMetricsTrend":           analytics.GetInventoryAPIV2AnalyticsSpendMetricsTrendParams{},

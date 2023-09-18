@@ -35,9 +35,10 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 		req := stack.NewPostScheduleAPIV1StacksCreateParams()
 
 		req.SetConfig(flags.ReadStringFlag(cmd, "Config"))
-		req.SetTag(flags.ReadStringOptionalFlag(cmd, "Tag"))
-		tfstateFile := flags.ReadStringFlag(cmd, "TerraformFile")
-		if tfstateFile == "" {
+		remoteStateConfig := flags.ReadStringOptionalFlag(cmd, "RemoteStateConfig")
+		req.SetRemoteStateConfig(remoteStateConfig)
+		tfstateFile := flags.ReadStringFlag(cmd, "StateFile")
+		if tfstateFile == "" && remoteStateConfig == nil {
 			dir, err := os.Getwd()
 			if err != nil {
 				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
@@ -48,7 +49,9 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 			}
 
 			if len(files) == 0 {
-				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : No tfstate file found")
+				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : No tfstate file found.\n" +
+					"\tPlease provide a remote tfstate file by assigning remote-state-config tag\n" +
+					"\tor provide a local tfstate file by locating one in the directory or assigning it to state-file tag")
 			}
 
 			if len(files) > 1 {
@@ -57,8 +60,9 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 			tfstateFile = files[0]
 		}
 		reader, err := os.Open(tfstateFile)
-		TerraformFile := runtime.NamedReader("TerraformFile", reader)
-		req.SetTerraformFile(TerraformFile)
+		StateFile := runtime.NamedReader("StateFile", reader)
+		req.SetStateFile(StateFile)
+		req.SetTag(flags.ReadStringOptionalFlag(cmd, "Tag"))
 
 		resp, err := client.Stack.PostScheduleAPIV1StacksCreate(req, auth)
 		if err != nil {

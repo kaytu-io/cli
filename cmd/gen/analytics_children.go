@@ -172,6 +172,38 @@ var GetInventoryApiV2AnalyticsSpendTrendCmd = &cobra.Command{
 	},
 }
 
+var GetInventoryApiV2AnalyticsMetricsMetricIdCmd = &cobra.Command{
+	Use:   "get-metric",
+	Short: `Returns list of metrics`,
+	Long:  `Returns list of metrics`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_metrics_metric_id] : %v", err)
+		}
+
+		req := analytics.NewGetInventoryAPIV2AnalyticsMetricsMetricIDParams()
+
+		req.SetMetricID(flags.ReadStringFlag(cmd, "MetricID"))
+
+		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsMetricsMetricID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_metrics_metric_id] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-metrics-metric-id", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_inventory_api_v_2_analytics_metrics_metric_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetInventoryApiV2AnalyticsSpendCompositionCmd = &cobra.Command{
 	Use:   "get-spend-composition",
 	Short: `Retrieving the cost composition with respect to specified filters. Retrieving information such as the total cost for the given time range, and the top services by cost.`,
@@ -401,7 +433,9 @@ var GetInventoryApiV2AnalyticsSpendTableCmd = &cobra.Command{
 
 		req := analytics.NewGetInventoryAPIV2AnalyticsSpendTableParams()
 
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
 		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))

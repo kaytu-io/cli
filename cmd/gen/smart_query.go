@@ -18,7 +18,6 @@ func init() {
 
 	SmartQueryCmd.AddCommand(GetInventoryApiV1QueryCmd)
 
-	GetInventoryApiV1QueryCmd.Flags().String("connectors-filter", "", "")
 	GetInventoryApiV1QueryCmd.Flags().String("title-filter", "", "")
 	GetInventoryApiV1QueryCmd.MarkFlagRequired("title-filter")
 

@@ -62,11 +62,23 @@ GetInventoryAPIV2AnalyticsSpendTableParams contains all the parameters to send t
 */
 type GetInventoryAPIV2AnalyticsSpendTableParams struct {
 
+	/* ConnectionGroup.
+
+	   Connection group to filter by - mutually exclusive with connectionId
+	*/
+	ConnectionGroup []string
+
 	/* ConnectionID.
 
 	   Connection IDs to filter by - mutually exclusive with connectionGroup
 	*/
 	ConnectionID []string
+
+	/* Connector.
+
+	   Connector
+	*/
+	Connector *string
 
 	/* Dimension.
 
@@ -151,6 +163,17 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetHTTPClient(client *http.
 	o.HTTPClient = client
 }
 
+// WithConnectionGroup adds the connectionGroup to the get inventory API v2 analytics spend table params
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WithConnectionGroup(connectionGroup []string) *GetInventoryAPIV2AnalyticsSpendTableParams {
+	o.SetConnectionGroup(connectionGroup)
+	return o
+}
+
+// SetConnectionGroup adds the connectionGroup to the get inventory API v2 analytics spend table params
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetConnectionGroup(connectionGroup []string) {
+	o.ConnectionGroup = connectionGroup
+}
+
 // WithConnectionID adds the connectionID to the get inventory API v2 analytics spend table params
 func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WithConnectionID(connectionID []string) *GetInventoryAPIV2AnalyticsSpendTableParams {
 	o.SetConnectionID(connectionID)
@@ -160,6 +183,17 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WithConnectionID(connection
 // SetConnectionID adds the connectionId to the get inventory API v2 analytics spend table params
 func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetConnectionID(connectionID []string) {
 	o.ConnectionID = connectionID
+}
+
+// WithConnector adds the connector to the get inventory API v2 analytics spend table params
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WithConnector(connector *string) *GetInventoryAPIV2AnalyticsSpendTableParams {
+	o.SetConnector(connector)
+	return o
+}
+
+// SetConnector adds the connector to the get inventory API v2 analytics spend table params
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetConnector(connector *string) {
+	o.Connector = connector
 }
 
 // WithDimension adds the dimension to the get inventory API v2 analytics spend table params
@@ -225,6 +259,17 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WriteToRequest(r runtime.Cl
 	}
 	var res []error
 
+	if o.ConnectionGroup != nil {
+
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
+
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
+		}
+	}
+
 	if o.ConnectionID != nil {
 
 		// binding items for connectionId
@@ -233,6 +278,23 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WriteToRequest(r runtime.Cl
 		// query array param connectionId
 		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
 			return err
+		}
+	}
+
+	if o.Connector != nil {
+
+		// query param connector
+		var qrConnector string
+
+		if o.Connector != nil {
+			qrConnector = *o.Connector
+		}
+		qConnector := qrConnector
+		if qConnector != "" {
+
+			if err := r.SetQueryParam("connector", qConnector); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -319,6 +381,23 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WriteToRequest(r runtime.Cl
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetInventoryAPIV2AnalyticsSpendTable binds the parameter connectionGroup
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
 }
 
 // bindParamGetInventoryAPIV2AnalyticsSpendTable binds the parameter connectionId

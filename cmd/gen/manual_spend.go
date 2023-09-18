@@ -2,8 +2,9 @@ package gen
 
 import (
 	"fmt"
-	"github.com/kaytu-io/cli-program/cmd/gen/manual_commands"
 	"time"
+
+	"github.com/kaytu-io/cli-program/cmd/gen/manual_commands"
 )
 
 func init() {
