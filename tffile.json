@@ -1,0 +1,9 @@
+{
+"type": "s3",
+"config":{
+  "region":         "us-east-2",
+  "bucket":         "kaytu-sandbox-terraform-backend",
+  "key":            "state/terraform.tfstate",
+  "dynamodb_table": "terraform-state"
+}
+}

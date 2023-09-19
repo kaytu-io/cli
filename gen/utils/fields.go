@@ -41,7 +41,7 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 					line = `req.Set{{.Name}}(flags.ReadMapStringArrayFlag(cmd, "{{.Name}}"))`
 				case "runtime.NamedReadCloser":
 					line = `tfstateFile := flags.ReadStringFlag(cmd, "{{.Name}}")
-		if tfstateFile == "" {
+		if tfstateFile == "" && (*(flags.ReadStringOptionalFlag(cmd, "RemoteStateConfig")) == "") {
 			dir, err := os.Getwd()
 			if err != nil {
 				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
@@ -62,6 +62,10 @@ func GenerateSetFieldsFromFlags(fv Field) (output string) {
 		}
 		reader, err := os.Open(tfstateFile)
 		{{.Name}} := runtime.NamedReader("{{.Name}}", reader)
+		if tfstateFile == "" {
+			buf := strings.NewReader("{}")
+			{{.Name}} = runtime.NamedReader("{{.Name}}", buf)
+		}
 		req.SetStateFile({{.Name}})`
 				case "[]int64":
 					line = `req.Set{{.Name}}(flags.ReadIntArrayFlag(cmd, "{{.Name}}"))`
