@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/go-openapi/runtime"
 	"github.com/kaytu-io/cli-program/cmd/flags"
@@ -35,10 +36,9 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 		req := stack.NewPostScheduleAPIV1StacksCreateParams()
 
 		req.SetConfig(flags.ReadStringFlag(cmd, "Config"))
-		remoteStateConfig := flags.ReadStringOptionalFlag(cmd, "RemoteStateConfig")
-		req.SetRemoteStateConfig(remoteStateConfig)
+		req.SetRemoteStateConfig(flags.ReadStringOptionalFlag(cmd, "RemoteStateConfig"))
 		tfstateFile := flags.ReadStringFlag(cmd, "StateFile")
-		if tfstateFile == "" && remoteStateConfig == nil {
+		if tfstateFile == "" && (*(flags.ReadStringOptionalFlag(cmd, "RemoteStateConfig")) == "") {
 			dir, err := os.Getwd()
 			if err != nil {
 				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : %v", err)
@@ -49,9 +49,7 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 			}
 
 			if len(files) == 0 {
-				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : No tfstate file found.\n" +
-					"\tPlease provide a remote tfstate file by assigning remote-state-config tag\n" +
-					"\tor provide a local tfstate file by locating one in the directory or assigning it to state-file tag")
+				return fmt.Errorf("[post_schedule_api_v_1_stacks_create] : No tfstate file found")
 			}
 
 			if len(files) > 1 {
@@ -61,6 +59,10 @@ Config structure for aws: {accessKey: string, secretKey: string}`,
 		}
 		reader, err := os.Open(tfstateFile)
 		StateFile := runtime.NamedReader("StateFile", reader)
+		if tfstateFile == "" {
+			buf := strings.NewReader("{}")
+			StateFile = runtime.NamedReader("StateFile", buf)
+		}
 		req.SetStateFile(StateFile)
 		req.SetTag(flags.ReadStringOptionalFlag(cmd, "Tag"))
 
