@@ -19,7 +19,7 @@ func init() {
 	PostScheduleApiV1StacksCreateCmd.Flags().String("config", "", "Config json structure")
 	PostScheduleApiV1StacksCreateCmd.MarkFlagRequired("config")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("remote-state-config", "", "Config json structure for terraform remote state backend")
-	PostScheduleApiV1StacksCreateCmd.Flags().String("state-file", "", "ُTerraform StateFile full path")
+	PostScheduleApiV1StacksCreateCmd.Flags().String("state-file", "", "Terraform statefile full path")
 	PostScheduleApiV1StacksCreateCmd.Flags().String("tag", "", "Tags Map[string][]string")
 
 	StackCmd.AddCommand(DeleteScheduleApiV1StacksStackIdCmd)
