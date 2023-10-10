@@ -36,7 +36,9 @@ type TypesFinding struct {
 
 	// Cloud provider
 	// Example: Azure
-	Connector SourceType `json:"connector,omitempty"`
+	Connector struct {
+		SourceType
+	} `json:"connector,omitempty"`
 
 	// Timestamp of the policy description
 	// Example: 1589395200
@@ -58,6 +60,9 @@ type TypesFinding struct {
 	// Example: The VM is not using managed disks
 	Reason string `json:"reason,omitempty"`
 
+	// Resource collection
+	ResourceCollection string `json:"resourceCollection,omitempty"`
+
 	// Resource ID
 	// Example: /subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1
 	ResourceID string `json:"resourceID,omitempty"`
@@ -76,7 +81,9 @@ type TypesFinding struct {
 
 	// Compliance result
 	// Example: alarm
-	Result TypesComplianceResult `json:"result,omitempty"`
+	Result struct {
+		TypesComplianceResult
+	} `json:"result,omitempty"`
 
 	// Schedule job ID
 	// Example: 1
@@ -84,7 +91,9 @@ type TypesFinding struct {
 
 	// Compliance severity
 	// Example: low
-	Severity TypesFindingSeverity `json:"severity,omitempty"`
+	Severity struct {
+		TypesFindingSeverity
+	} `json:"severity,omitempty"`
 
 	// Whether the policy is active or not
 	// Example: true

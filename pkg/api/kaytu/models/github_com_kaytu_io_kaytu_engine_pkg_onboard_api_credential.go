@@ -38,11 +38,15 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 
 	// connector type
 	// Example: AWS
-	ConnectorType SourceType `json:"connectorType,omitempty"`
+	ConnectorType struct {
+		SourceType
+	} `json:"connectorType,omitempty"`
 
 	// credential type
 	// Example: manual-aws-org
-	CredentialType GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType `json:"credentialType,omitempty"`
+	CredentialType struct {
+		GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType
+	} `json:"credentialType,omitempty"`
 
 	// disabled connections
 	// Example: 0
@@ -65,7 +69,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 
 	// health status
 	// Example: healthy
-	HealthStatus SourceHealthStatus `json:"healthStatus,omitempty"`
+	HealthStatus struct {
+		SourceHealthStatus
+	} `json:"healthStatus,omitempty"`
 
 	// id
 	// Example: 1028642a-b22e-26ha-c5h2-22nl254678m5

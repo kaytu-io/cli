@@ -23,7 +23,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIUpdateCredentialRequest struct {
 
 	// connector
 	// Example: Azure
-	Connector SourceType `json:"connector,omitempty"`
+	Connector struct {
+		SourceType
+	} `json:"connector,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`

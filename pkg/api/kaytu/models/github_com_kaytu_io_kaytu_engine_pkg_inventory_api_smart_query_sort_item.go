@@ -22,7 +22,9 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQuerySortItem struct {
 
 	// direction
 	// Enum: [asc desc]
-	Direction GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType `json:"direction,omitempty"`
+	Direction struct {
+		GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType
+	} `json:"direction,omitempty"`
 
 	// fill this with column name
 	Field string `json:"field,omitempty"`
@@ -45,7 +47,9 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPISmartQuerySortItem) Validate(
 var githubComKaytuIoKaytuEnginePkgInventoryApiSmartQuerySortItemTypeDirectionPropEnum []interface{}
 
 func init() {
-	var res []GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType
+	var res []struct {
+		GithubComKaytuIoKaytuEnginePkgInventoryAPIDirectionType
+	}
 	if err := json.Unmarshal([]byte(`["asc","desc"]`), &res); err != nil {
 		panic(err)
 	}

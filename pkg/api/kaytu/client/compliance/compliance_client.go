@@ -42,6 +42,8 @@ type ClientService interface {
 
 	GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error)
 
+	PostComplianceAPIV1AiPolicyPolicyIDRemediation(params *PostComplianceAPIV1AiPolicyPolicyIDRemediationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AiPolicyPolicyIDRemediationOK, error)
+
 	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -290,6 +292,45 @@ func (a *Client) GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1Queries
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1QueriesSync: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostComplianceAPIV1AiPolicyPolicyIDRemediation gets policy remediation using a i
+*/
+func (a *Client) PostComplianceAPIV1AiPolicyPolicyIDRemediation(params *PostComplianceAPIV1AiPolicyPolicyIDRemediationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AiPolicyPolicyIDRemediationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostComplianceAPIV1AiPolicyPolicyIDRemediationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostComplianceAPIV1AiPolicyPolicyIDRemediation",
+		Method:             "POST",
+		PathPattern:        "/compliance/api/v1/ai/policy/{policyID}/remediation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostComplianceAPIV1AiPolicyPolicyIDRemediationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostComplianceAPIV1AiPolicyPolicyIDRemediationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostComplianceAPIV1AiPolicyPolicyIDRemediation: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

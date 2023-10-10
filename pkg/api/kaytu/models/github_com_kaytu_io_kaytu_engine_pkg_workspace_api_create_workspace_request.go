@@ -23,6 +23,9 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest struct {
 	// name
 	Name string `json:"name,omitempty"`
 
+	// organization id
+	OrganizationID int64 `json:"organization_id,omitempty"`
+
 	// tier
 	Tier string `json:"tier,omitempty"`
 }

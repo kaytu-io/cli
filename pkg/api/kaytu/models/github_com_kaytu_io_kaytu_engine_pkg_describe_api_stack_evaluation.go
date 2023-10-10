@@ -35,7 +35,9 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIStackEvaluation struct {
 
 	// BENCHMARK or INSIGHT
 	// Example: BENCHMARK
-	Type GithubComKaytuIoKaytuEnginePkgDescribeAPIEvaluationType `json:"type,omitempty"`
+	Type struct {
+		GithubComKaytuIoKaytuEnginePkgDescribeAPIEvaluationType
+	} `json:"type,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg describe api stack evaluation
