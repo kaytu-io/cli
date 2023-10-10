@@ -30,9 +30,95 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	PutScheduleAPIV1ComplianceTriggerBenchmarkID(params *PutScheduleAPIV1ComplianceTriggerBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1ComplianceTriggerBenchmarkIDOK, error)
+
+	PutScheduleAPIV1DescribeConnectionStatus(params *PutScheduleAPIV1DescribeConnectionStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1DescribeConnectionStatusOK, error)
+
 	PutScheduleAPIV1DescribeTriggerConnectionID(params *PutScheduleAPIV1DescribeTriggerConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1DescribeTriggerConnectionIDOK, error)
 
+	PutScheduleAPIV1InsightTriggerInsightID(params *PutScheduleAPIV1InsightTriggerInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1InsightTriggerInsightIDOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+PutScheduleAPIV1ComplianceTriggerBenchmarkID triggers compliance job
+
+Triggers a compliance job to run immediately for the given benchmark
+*/
+func (a *Client) PutScheduleAPIV1ComplianceTriggerBenchmarkID(params *PutScheduleAPIV1ComplianceTriggerBenchmarkIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1ComplianceTriggerBenchmarkIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutScheduleAPIV1ComplianceTriggerBenchmarkIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PutScheduleAPIV1ComplianceTriggerBenchmarkID",
+		Method:             "PUT",
+		PathPattern:        "/schedule/api/v1/compliance/trigger/{benchmark_id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutScheduleAPIV1ComplianceTriggerBenchmarkIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutScheduleAPIV1ComplianceTriggerBenchmarkIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutScheduleAPIV1ComplianceTriggerBenchmarkID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PutScheduleAPIV1DescribeConnectionStatus gets connection describe status
+*/
+func (a *Client) PutScheduleAPIV1DescribeConnectionStatus(params *PutScheduleAPIV1DescribeConnectionStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1DescribeConnectionStatusOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutScheduleAPIV1DescribeConnectionStatusParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PutScheduleAPIV1DescribeConnectionStatus",
+		Method:             "PUT",
+		PathPattern:        "/schedule/api/v1/describe/connection/status",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutScheduleAPIV1DescribeConnectionStatusReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutScheduleAPIV1DescribeConnectionStatusOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutScheduleAPIV1DescribeConnectionStatus: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -73,6 +159,47 @@ func (a *Client) PutScheduleAPIV1DescribeTriggerConnectionID(params *PutSchedule
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PutScheduleAPIV1DescribeTriggerConnectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PutScheduleAPIV1InsightTriggerInsightID triggers insight job
+
+Triggers a insight job to run immediately for the given insight
+*/
+func (a *Client) PutScheduleAPIV1InsightTriggerInsightID(params *PutScheduleAPIV1InsightTriggerInsightIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutScheduleAPIV1InsightTriggerInsightIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutScheduleAPIV1InsightTriggerInsightIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PutScheduleAPIV1InsightTriggerInsightID",
+		Method:             "PUT",
+		PathPattern:        "/schedule/api/v1/insight/trigger/{insight_id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutScheduleAPIV1InsightTriggerInsightIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutScheduleAPIV1InsightTriggerInsightIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutScheduleAPIV1InsightTriggerInsightID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

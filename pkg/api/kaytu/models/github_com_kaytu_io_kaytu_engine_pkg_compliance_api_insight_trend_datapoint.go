@@ -17,6 +17,10 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.InsightTrendDatapoint
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightTrendDatapoint struct {
 
+	// Connection Count
+	// Example: 10
+	ConnectionCount int64 `json:"connectionCount,omitempty"`
+
 	// Time
 	// Example: 1686346668
 	Timestamp int64 `json:"timestamp,omitempty"`

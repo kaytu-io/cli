@@ -54,7 +54,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount struct {
 
 	// name
 	// Example: Azure
-	Name SourceType `json:"name,omitempty"`
+	Name struct {
+		SourceType
+	} `json:"name,omitempty"`
 
 	// short description
 	// Example: This is a short Description for this connector
@@ -62,7 +64,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectorCount struct {
 
 	// status
 	// Example: enabled
-	Status SourceConnectorStatus `json:"status,omitempty"`
+	Status struct {
+		SourceConnectorStatus
+	} `json:"status,omitempty"`
 
 	// tags
 	Tags interface{} `json:"tags,omitempty"`

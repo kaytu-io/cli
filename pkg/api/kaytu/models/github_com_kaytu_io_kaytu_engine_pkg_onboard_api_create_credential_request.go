@@ -23,7 +23,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest struct {
 
 	// source type
 	// Example: Azure
-	SourceType SourceType `json:"source_type,omitempty"`
+	SourceType struct {
+		SourceType
+	} `json:"source_type,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api create credential request

@@ -27,7 +27,9 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightResult struct {
 	Connections []*GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightConnection `json:"connections"`
 
 	// Insight Details
-	Details GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightDetail `json:"details,omitempty"`
+	Details struct {
+		GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightDetail
+	} `json:"details,omitempty"`
 
 	// Time of Execution
 	// Example: 2023-04-21T08:53:09.928Z

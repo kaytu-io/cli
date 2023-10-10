@@ -28,7 +28,9 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPISpendTableRow struct {
 
 	// connector
 	// Example: AWS
-	Connector SourceType `json:"connector,omitempty"`
+	Connector struct {
+		SourceType
+	} `json:"connector,omitempty"`
 
 	// cost value
 	CostValue map[string]float64 `json:"costValue,omitempty"`

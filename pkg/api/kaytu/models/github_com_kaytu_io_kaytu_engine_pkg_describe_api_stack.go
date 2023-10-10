@@ -45,7 +45,9 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIStack struct {
 
 	// Source type
 	// Example: Azure
-	SourceType SourceType `json:"sourceType,omitempty"`
+	SourceType struct {
+		SourceType
+	} `json:"sourceType,omitempty"`
 
 	// Stack unique identifier
 	// Example: stack-twr32a5d-5as5-4ffe-b1cc-e32w1ast87s0
@@ -54,7 +56,9 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIStack struct {
 
 	// Stack status. CREATED, EVALUATED, IN_PROGRESS, FAILED
 	// Example: CREATED
-	Status GithubComKaytuIoKaytuEnginePkgDescribeAPIStackStatus `json:"status,omitempty"`
+	Status struct {
+		GithubComKaytuIoKaytuEnginePkgDescribeAPIStackStatus
+	} `json:"status,omitempty"`
 
 	// Stack tags
 	Tags map[string][]string `json:"tags,omitempty"`

@@ -41,13 +41,23 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse struct {
 	// Example: google-oauth2|204590896945502695694
 	OwnerID string `json:"ownerId,omitempty"`
 
+	// size
+	// Example: sm
+	Size struct {
+		GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceSize
+	} `json:"size,omitempty"`
+
 	// status
 	// Example: PROVISIONED
-	Status GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus `json:"status,omitempty"`
+	Status struct {
+		GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus
+	} `json:"status,omitempty"`
 
 	// tier
 	// Example: ENTERPRISE
-	Tier GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier `json:"tier,omitempty"`
+	Tier struct {
+		GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier
+	} `json:"tier,omitempty"`
 
 	// uri
 	// Example: https://app.kaytu.dev/kaytu
@@ -63,6 +73,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) Validate(f
 	var res []error
 
 	if err := m.validateOrganization(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -99,6 +113,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) validateOr
 	return nil
 }
 
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) validateSize(formats strfmt.Registry) error {
+	if swag.IsZero(m.Size) { // not required
+		return nil
+	}
+
+	return nil
+}
+
 func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) validateStatus(formats strfmt.Registry) error {
 	if swag.IsZero(m.Status) { // not required
 		return nil
@@ -120,6 +142,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) ContextVal
 	var res []error
 
 	if err := m.contextValidateOrganization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSize(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -154,6 +180,11 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) contextVal
 			return err
 		}
 	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse) contextValidateSize(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }

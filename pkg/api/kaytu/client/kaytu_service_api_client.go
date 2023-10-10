@@ -10,6 +10,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/alerting"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/analytics"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
@@ -69,6 +70,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KaytuServi
 
 	cli := new(KaytuServiceAPI)
 	cli.Transport = transport
+	cli.Alerting = alerting.New(transport, formats)
 	cli.Analytics = analytics.New(transport, formats)
 	cli.BenchmarksAssignment = benchmarks_assignment.New(transport, formats)
 	cli.Compliance = compliance.New(transport, formats)
@@ -128,6 +130,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // KaytuServiceAPI is a client for kaytu service API
 type KaytuServiceAPI struct {
+	Alerting alerting.ClientService
+
 	Analytics analytics.ClientService
 
 	BenchmarksAssignment benchmarks_assignment.ClientService
@@ -164,6 +168,7 @@ type KaytuServiceAPI struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *KaytuServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Alerting.SetTransport(transport)
 	c.Analytics.SetTransport(transport)
 	c.BenchmarksAssignment.SetTransport(transport)
 	c.Compliance.SetTransport(transport)

@@ -28,11 +28,15 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree struct {
 
 	// Severity
 	// Example: low
-	Severity TypesFindingSeverity `json:"severity,omitempty"`
+	Severity struct {
+		TypesFindingSeverity
+	} `json:"severity,omitempty"`
 
 	// Status
 	// Example: passed
-	Status TypesPolicyStatus `json:"status,omitempty"`
+	Status struct {
+		TypesPolicyStatus
+	} `json:"status,omitempty"`
 
 	// Policy title
 	// Example: 7.5 Ensure that the latest OS Patches for all Virtual Machines are applied

@@ -21,11 +21,15 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// asset discovery method
 	// Example: scheduled
-	AssetDiscoveryMethod SourceAssetDiscoveryMethodType `json:"assetDiscoveryMethod,omitempty"`
+	AssetDiscoveryMethod struct {
+		SourceAssetDiscoveryMethodType
+	} `json:"assetDiscoveryMethod,omitempty"`
 
 	// connector
 	// Example: Azure
-	Connector SourceType `json:"connector,omitempty"`
+	Connector struct {
+		SourceType
+	} `json:"connector,omitempty"`
 
 	// cost
 	// Example: 1000
@@ -45,7 +49,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// credential type
 	// Example: manual
-	CredentialType GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType `json:"credentialType,omitempty"`
+	CredentialType struct {
+		GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType
+	} `json:"credentialType,omitempty"`
 
 	// daily cost at end time
 	// Example: 1000
@@ -58,6 +64,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 	// Maximum: 1e+07
 	// Minimum: 0
 	DailyCostAtStartTime *float64 `json:"dailyCostAtStartTime,omitempty"`
+
+	// describe job running
+	DescribeJobRunning bool `json:"describeJobRunning,omitempty"`
 
 	// description
 	// Example: This is an example connection
@@ -72,7 +81,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// health state
 	// Example: healthy
-	HealthState SourceHealthStatus `json:"healthState,omitempty"`
+	HealthState struct {
+		SourceHealthStatus
+	} `json:"healthState,omitempty"`
 
 	// id
 	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
@@ -88,7 +99,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// lifecycle state
 	// Example: enabled
-	LifecycleState GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState `json:"lifecycleState,omitempty"`
+	LifecycleState struct {
+		GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState
+	} `json:"lifecycleState,omitempty"`
 
 	// metadata
 	Metadata interface{} `json:"metadata,omitempty"`

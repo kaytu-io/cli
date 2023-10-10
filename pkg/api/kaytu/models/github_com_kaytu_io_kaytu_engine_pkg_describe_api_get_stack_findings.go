@@ -25,7 +25,9 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIGetStackFindings struct {
 
 	// Pages count to retrieve
 	// Required: true
-	Page GithubComKaytuIoKaytuEnginePkgComplianceAPIPage `json:"page"`
+	Page struct {
+		GithubComKaytuIoKaytuEnginePkgComplianceAPIPage
+	} `json:"page"`
 
 	// Sorts to apply
 	Sorts []*GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem `json:"sorts"`
