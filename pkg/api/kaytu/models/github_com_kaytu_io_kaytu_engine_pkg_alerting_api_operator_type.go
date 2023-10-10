@@ -31,16 +31,16 @@ func (m GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType) Pointer() *Github
 const (
 
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value ">"
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = ">"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThansign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = ">"
 
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value "<"
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "<"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThanSign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "<"
 
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value "<="
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "<="
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThanOrEqual GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "<="
 
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value ">="
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = ">="
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThanOrEqualSign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = ">="
 
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeEqualSign captures enum value "="
 	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeEqualSign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "="
