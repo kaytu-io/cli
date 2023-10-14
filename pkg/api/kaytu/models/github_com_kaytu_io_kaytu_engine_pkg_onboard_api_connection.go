@@ -21,15 +21,11 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// asset discovery method
 	// Example: scheduled
-	AssetDiscoveryMethod struct {
-		SourceAssetDiscoveryMethodType
-	} `json:"assetDiscoveryMethod,omitempty"`
+	AssetDiscoveryMethod SourceAssetDiscoveryMethodType `json:"assetDiscoveryMethod,omitempty"`
 
 	// connector
 	// Example: Azure
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// cost
 	// Example: 1000
@@ -49,9 +45,7 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// credential type
 	// Example: manual
-	CredentialType struct {
-		GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType
-	} `json:"credentialType,omitempty"`
+	CredentialType GithubComKaytuIoKaytuEnginePkgOnboardAPICredentialType `json:"credentialType,omitempty"`
 
 	// daily cost at end time
 	// Example: 1000
@@ -81,9 +75,7 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// health state
 	// Example: healthy
-	HealthState struct {
-		SourceHealthStatus
-	} `json:"healthState,omitempty"`
+	HealthState SourceHealthStatus `json:"healthState,omitempty"`
 
 	// id
 	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
@@ -99,9 +91,7 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
 	// lifecycle state
 	// Example: enabled
-	LifecycleState struct {
-		GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState
-	} `json:"lifecycleState,omitempty"`
+	LifecycleState GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState `json:"lifecycleState,omitempty"`
 
 	// metadata
 	Metadata interface{} `json:"metadata,omitempty"`

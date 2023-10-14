@@ -24,9 +24,7 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignedSource struct {
 
 	// Clout Provider
 	// Example: Azure
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// Provider Connection ID
 	// Example: 1283192749

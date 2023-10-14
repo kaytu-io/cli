@@ -24,9 +24,7 @@ type GithubComKaytuIoKaytuEnginePkgAuthAPIPutRoleBindingRequest struct {
 	// Example: admin
 	// Required: true
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	} `json:"roleName"`
+	RoleName GithubComKaytuIoKaytuEnginePkgAuthAPIRole `json:"roleName"`
 
 	// Unique identifier for the User
 	// Example: auth|123456789
@@ -55,9 +53,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAuthAPIPutRoleBindingRequest) Validate(fo
 var githubComKaytuIoKaytuEnginePkgAuthApiPutRoleBindingRequestTypeRoleNamePropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIRole
 	if err := json.Unmarshal([]byte(`["admin","editor","viewer"]`), &res); err != nil {
 		panic(err)
 	}

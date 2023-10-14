@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/alerting"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/analytics"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/benchmarks_assignment"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
@@ -19,6 +20,15 @@ import (
 )
 
 var ParamModels = map[string]interface{}{
+	"DeleteAlertingAPIV1ActionDeleteActionID":               alerting.DeleteAlertingAPIV1ActionDeleteActionIDParams{},
+	"DeleteAlertingAPIV1RuleDeleteRuleID":                   alerting.DeleteAlertingAPIV1RuleDeleteRuleIDParams{},
+	"GetAlertingAPIV1ActionList":                            alerting.GetAlertingAPIV1ActionListParams{},
+	"GetAlertingAPIV1ActionUpdate":                          alerting.GetAlertingAPIV1ActionUpdateParams{},
+	"GetAlertingAPIV1RuleList":                              alerting.GetAlertingAPIV1RuleListParams{},
+	"GetAlertingAPIV1RuleRuleIDTrigger":                     alerting.GetAlertingAPIV1RuleRuleIDTriggerParams{},
+	"GetAlertingAPIV1RuleUpdate":                            alerting.GetAlertingAPIV1RuleUpdateParams{},
+	"PostAlertingAPIV1ActionCreate":                         alerting.PostAlertingAPIV1ActionCreateParams{},
+	"PostAlertingAPIV1RuleCreate":                           alerting.PostAlertingAPIV1RuleCreateParams{},
 	"GetInventoryAPIV2AnalyticsCategories":                  analytics.GetInventoryAPIV2AnalyticsCategoriesParams{},
 	"GetInventoryAPIV2AnalyticsCompositionKey":              analytics.GetInventoryAPIV2AnalyticsCompositionKeyParams{},
 	"GetInventoryAPIV2AnalyticsMetric":                      analytics.GetInventoryAPIV2AnalyticsMetricParams{},
@@ -39,13 +49,18 @@ var ParamModels = map[string]interface{}{
 	"GetComplianceAPIV1BenchmarksBenchmarkIDTree":           compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams{},
 	"GetComplianceAPIV1BenchmarksBenchmarkIDTrend":          compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams{},
 	"GetComplianceAPIV1BenchmarksSummary":                   compliance.GetComplianceAPIV1BenchmarksSummaryParams{},
+	"GetComplianceAPIV1FindingsBenchmarkIDFieldCount":       compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldCountParams{},
 	"GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount":    compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams{},
 	"GetComplianceAPIV1QueriesSync":                         compliance.GetComplianceAPIV1QueriesSyncParams{},
+	"PostComplianceAPIV1AiPolicyPolicyIDRemediation":        compliance.PostComplianceAPIV1AiPolicyPolicyIDRemediationParams{},
 	"PostComplianceAPIV1Findings":                           compliance.PostComplianceAPIV1FindingsParams{},
 	"GetOnboardAPIV1ConnectionGroupsConnectionGroupName":    connection_groups.GetOnboardAPIV1ConnectionGroupsConnectionGroupNameParams{},
 	"GetOnboardAPIV1ConnectionGroups":                       connection_groups.GetOnboardAPIV1ConnectionGroupsParams{},
 	"GetOnboardAPIV1ConnectionsSummary":                     connections.GetOnboardAPIV1ConnectionsSummaryParams{},
+	"PutScheduleAPIV1ComplianceTriggerBenchmarkID":          describe.PutScheduleAPIV1ComplianceTriggerBenchmarkIDParams{},
+	"PutScheduleAPIV1DescribeConnectionStatus":              describe.PutScheduleAPIV1DescribeConnectionStatusParams{},
 	"PutScheduleAPIV1DescribeTriggerConnectionID":           describe.PutScheduleAPIV1DescribeTriggerConnectionIDParams{},
+	"PutScheduleAPIV1InsightTriggerInsightID":               describe.PutScheduleAPIV1InsightTriggerInsightIDParams{},
 	"GetComplianceAPIV1InsightGroupInsightGroupID":          insights.GetComplianceAPIV1InsightGroupInsightGroupIDParams{},
 	"GetComplianceAPIV1InsightGroupInsightGroupIDTrend":     insights.GetComplianceAPIV1InsightGroupInsightGroupIDTrendParams{},
 	"GetComplianceAPIV1InsightGroup":                        insights.GetComplianceAPIV1InsightGroupParams{},

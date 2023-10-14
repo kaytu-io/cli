@@ -23,16 +23,12 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem struct {
 	// Sort direction
 	// Example: asc
 	// Enum: [asc desc]
-	Direction struct {
-		GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType
-	} `json:"direction,omitempty"`
+	Direction GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType `json:"direction,omitempty"`
 
 	// Field to sort by
 	// Example: status
 	// Enum: [resourceID resourceName resourceType serviceName category resourceLocation status describedAt evaluatedAt sourceID connectionProviderID connectionProviderName sourceType benchmarkID policyID policySeverity]
-	Field struct {
-		GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType
-	} `json:"field,omitempty"`
+	Field GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType `json:"field,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api finding sort item
@@ -56,9 +52,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem) Validate(fo
 var githubComKaytuIoKaytuEnginePkgComplianceApiFindingSortItemTypeDirectionPropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType
 	if err := json.Unmarshal([]byte(`["asc","desc"]`), &res); err != nil {
 		panic(err)
 	}
@@ -88,9 +82,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem) validateDir
 var githubComKaytuIoKaytuEnginePkgComplianceApiFindingSortItemTypeFieldPropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType
 	if err := json.Unmarshal([]byte(`["resourceID","resourceName","resourceType","serviceName","category","resourceLocation","status","describedAt","evaluatedAt","sourceID","connectionProviderID","connectionProviderName","sourceType","benchmarkID","policyID","policySeverity"]`), &res); err != nil {
 		panic(err)
 	}

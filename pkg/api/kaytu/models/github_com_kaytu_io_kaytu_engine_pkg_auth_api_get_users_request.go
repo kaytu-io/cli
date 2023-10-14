@@ -31,9 +31,7 @@ type GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersRequest struct {
 	// Filter by role name
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GithubComKaytuIoKaytuEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg auth api get users request
@@ -53,9 +51,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAuthAPIGetUsersRequest) Validate(formats 
 var githubComKaytuIoKaytuEnginePkgAuthApiGetUsersRequestTypeRoleNamePropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIRole
 	if err := json.Unmarshal([]byte(`["admin","editor","viewer"]`), &res); err != nil {
 		panic(err)
 	}

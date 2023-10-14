@@ -39,3 +39,57 @@ var PutScheduleApiV1DescribeTriggerConnectionIdCmd = &cobra.Command{
 		return nil
 	},
 }
+
+var PutScheduleApiV1ComplianceTriggerBenchmarkIdCmd = &cobra.Command{
+	Use:   "trigger-benchmark",
+	Short: `Triggers a compliance job to run immediately for the given benchmark`,
+	Long:  `Triggers a compliance job to run immediately for the given benchmark`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger_benchmark_id] : %v", err)
+		}
+
+		req := describe.NewPutScheduleAPIV1ComplianceTriggerBenchmarkIDParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+
+		_, err = client.Describe.PutScheduleAPIV1ComplianceTriggerBenchmarkID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_compliance_trigger_benchmark_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PutScheduleApiV1InsightTriggerInsightIdCmd = &cobra.Command{
+	Use:   "trigger-insight",
+	Short: `Triggers a insight job to run immediately for the given insight`,
+	Long:  `Triggers a insight job to run immediately for the given insight`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[put_schedule_api_v_1_insight_trigger_insight_id] : %v", err)
+		}
+
+		req := describe.NewPutScheduleAPIV1InsightTriggerInsightIDParams()
+
+		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+
+		_, err = client.Describe.PutScheduleAPIV1InsightTriggerInsightID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_insight_trigger_insight_id] : %v", err)
+		}
+
+		return nil
+	},
+}

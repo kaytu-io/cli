@@ -43,21 +43,15 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse struct {
 
 	// size
 	// Example: sm
-	Size struct {
-		GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceSize
-	} `json:"size,omitempty"`
+	Size GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceSize `json:"size,omitempty"`
 
 	// status
 	// Example: PROVISIONED
-	Status struct {
-		GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus
-	} `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus `json:"status,omitempty"`
 
 	// tier
 	// Example: ENTERPRISE
-	Tier struct {
-		GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier
-	} `json:"tier,omitempty"`
+	Tier GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier `json:"tier,omitempty"`
 
 	// uri
 	// Example: https://app.kaytu.dev/kaytu

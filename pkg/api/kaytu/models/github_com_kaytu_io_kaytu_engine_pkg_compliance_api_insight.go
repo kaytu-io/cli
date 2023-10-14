@@ -21,9 +21,7 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight struct {
 
 	// Cloud Provider
 	// Example: Azure
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// Description
 	// Example: List clusters that have role-based access control (RBAC) disabled
@@ -59,9 +57,7 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIInsight struct {
 	OldTotalResultValue int64 `json:"oldTotalResultValue,omitempty"`
 
 	// Query
-	Query struct {
-		GithubComKaytuIoKaytuEnginePkgComplianceAPIQuery
-	} `json:"query,omitempty"`
+	Query GithubComKaytuIoKaytuEnginePkgComplianceAPIQuery `json:"query,omitempty"`
 
 	// Insight Results
 	Result []*GithubComKaytuIoKaytuEnginePkgComplianceAPIInsightResult `json:"result"`

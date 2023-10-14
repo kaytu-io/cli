@@ -38,6 +38,8 @@ type ClientService interface {
 
 	GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1BenchmarksSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksSummaryOK, error)
 
+	GetComplianceAPIV1FindingsBenchmarkIDFieldCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldCountOK, error)
+
 	GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error)
 
 	GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error)
@@ -210,6 +212,47 @@ func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1B
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksSummary: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1FindingsBenchmarkIDFieldCount gets findings field count by policies
+
+Retrieving the number of findings field count by policies.
+*/
+func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldCountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1FindingsBenchmarkIDFieldCountParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1FindingsBenchmarkIDFieldCount",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/findings/{benchmarkId}/{field}/count",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1FindingsBenchmarkIDFieldCountReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1FindingsBenchmarkIDFieldCountOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1FindingsBenchmarkIDFieldCount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

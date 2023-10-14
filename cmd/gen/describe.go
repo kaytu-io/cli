@@ -20,4 +20,14 @@ func init() {
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.MarkFlagRequired("connection-id")
 	PutScheduleApiV1DescribeTriggerConnectionIdCmd.Flags().StringArray("resource-type", nil, "Resource Type")
 
+	DescribeCmd.AddCommand(PutScheduleApiV1ComplianceTriggerBenchmarkIdCmd)
+
+	PutScheduleApiV1ComplianceTriggerBenchmarkIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
+	PutScheduleApiV1ComplianceTriggerBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
+
+	DescribeCmd.AddCommand(PutScheduleApiV1InsightTriggerInsightIdCmd)
+
+	PutScheduleApiV1InsightTriggerInsightIdCmd.Flags().String("insight-id", "", "Insight ID")
+	PutScheduleApiV1InsightTriggerInsightIdCmd.MarkFlagRequired("insight-id")
+
 }

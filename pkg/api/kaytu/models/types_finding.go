@@ -36,9 +36,7 @@ type TypesFinding struct {
 
 	// Cloud provider
 	// Example: Azure
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// Timestamp of the policy description
 	// Example: 1589395200
@@ -81,9 +79,7 @@ type TypesFinding struct {
 
 	// Compliance result
 	// Example: alarm
-	Result struct {
-		TypesComplianceResult
-	} `json:"result,omitempty"`
+	Result TypesComplianceResult `json:"result,omitempty"`
 
 	// Schedule job ID
 	// Example: 1
@@ -91,9 +87,7 @@ type TypesFinding struct {
 
 	// Compliance severity
 	// Example: low
-	Severity struct {
-		TypesFindingSeverity
-	} `json:"severity,omitempty"`
+	Severity TypesFindingSeverity `json:"severity,omitempty"`
 
 	// Whether the policy is active or not
 	// Example: true

@@ -20,9 +20,7 @@ import (
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkEvaluationSummary struct {
 
 	// Checks summary
-	Checks struct {
-		TypesSeverityResult
-	} `json:"checks,omitempty"`
+	Checks TypesSeverityResult `json:"checks,omitempty"`
 
 	// Cloud providers
 	// Example: ["[Azure]"]
@@ -45,9 +43,7 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkEvaluationSummary struc
 	ID string `json:"id,omitempty"`
 
 	// Compliance result summary
-	Result struct {
-		TypesComplianceResultSummary
-	} `json:"result,omitempty"`
+	Result TypesComplianceResultSummary `json:"result,omitempty"`
 
 	// Tags
 	Tags map[string][]string `json:"tags,omitempty"`

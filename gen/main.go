@@ -70,7 +70,7 @@ func main() {
 			}
 			return err
 		}
-
+		fmt.Println("ROOT: ", root)
 		err = serviceGen.Generate(root)
 		if err != nil {
 			return err
@@ -86,6 +86,7 @@ func main() {
 			if !has {
 				crudGen.Services = append(crudGen.Services, service.NameCamel)
 			}
+			fmt.Println("Service: ", service.NameCamel)
 		}
 		return nil
 	})

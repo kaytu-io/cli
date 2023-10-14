@@ -43,6 +43,8 @@ func init() {
 	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("description")
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("name", "", "")
 	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("name")
+	PostWorkspaceApiV1WorkspaceCmd.Flags().Int64("organization-id", 0, "")
+	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("organization-id")
 	PostWorkspaceApiV1WorkspaceCmd.Flags().String("tier", "", "")
 	PostWorkspaceApiV1WorkspaceCmd.MarkFlagRequired("tier")
 

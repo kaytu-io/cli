@@ -58,8 +58,21 @@ func init() {
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().String("end-time", "", "timestamp for end of the chart in epoch seconds")
 	GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd.Flags().String("start-time", "", "timestamp for start of the chart in epoch seconds")
 
+	ComplianceCmd.AddCommand(GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd)
+
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().String("benchmark-id", "", "BenchmarkID")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().String("field", "", "Field")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.MarkFlagRequired("field")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("severities", nil, "Severities to filter by")
+
 	ComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
 
+	PostComplianceApiV1FindingsCmd.Flags().Bool("filters-active-only", false, "")
+	PostComplianceApiV1FindingsCmd.MarkFlagRequired("filters-active-only")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-benchmark-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-connection-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().String("filters-connector", "", "")
@@ -78,6 +91,11 @@ func init() {
 	PostComplianceApiV1FindingsCmd.MarkFlagRequired("sorts-direction")
 	PostComplianceApiV1FindingsCmd.Flags().String("sorts-field", "", "")
 	PostComplianceApiV1FindingsCmd.MarkFlagRequired("sorts-field")
+
+	ComplianceCmd.AddCommand(PostComplianceApiV1AiPolicyPolicyIdRemediationCmd)
+
+	PostComplianceApiV1AiPolicyPolicyIdRemediationCmd.Flags().String("policy-id", "", "PolicyID")
+	PostComplianceApiV1AiPolicyPolicyIdRemediationCmd.MarkFlagRequired("policy-id")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1QueriesSyncCmd)
 
