@@ -31,9 +31,7 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType struct {
 
 	// Cloud Provider
 	// Example: Azure
-	Connector struct {
-		SourceType
-	} `json:"connector,omitempty"`
+	Connector SourceType `json:"connector,omitempty"`
 
 	// Number of Resources of this Resource Type - Metric
 	// Example: 100

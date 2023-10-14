@@ -30,23 +30,23 @@ func (m GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType) Pointer() *Github
 
 const (
 
-	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value ">"
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThansign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = ">"
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThan captures enum value "GreaterThan"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThan GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "GreaterThan"
 
-	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value "<"
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThanSign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "<"
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThan captures enum value "LessThan"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThan GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "LessThan"
 
-	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value "<="
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThanOrEqual GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "<="
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThanOrEqual captures enum value "LessThanOrEqual"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeLessThanOrEqual GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "LessThanOrEqual"
 
-	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType captures enum value ">="
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThanOrEqualSign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = ">="
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThanOrEqual captures enum value "GreaterThanOrEqual"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeGreaterThanOrEqual GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "GreaterThanOrEqual"
 
-	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeEqualSign captures enum value "="
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeEqualSign GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "="
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeEqual captures enum value "Equal"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeEqual GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "Equal"
 
-	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeBang captures enum value "!="
-	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeBang GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "!="
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeDoesNotEqual captures enum value "DoesNotEqual"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorTypeDoesNotEqual GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType = "DoesNotEqual"
 )
 
 // for schema
@@ -54,7 +54,7 @@ var githubComKaytuIoKaytuEnginePkgAlertingApiOperatorTypeEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType
-	if err := json.Unmarshal([]byte(`["\u003e","\u003c","\u003c=","\u003e=","=","!="]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["GreaterThan","LessThan","LessThanOrEqual","GreaterThanOrEqual","Equal","DoesNotEqual"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

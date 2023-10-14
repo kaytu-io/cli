@@ -7,6 +7,8 @@ import (
 
 func init() {
 	
+    rootCmd.AddCommand(gen.AlertingCmd)
+	
     rootCmd.AddCommand(gen.AssetsCmd)
 	
     rootCmd.AddCommand(gen.SpendCmd)

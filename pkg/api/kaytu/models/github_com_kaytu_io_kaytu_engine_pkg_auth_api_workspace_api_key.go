@@ -47,9 +47,7 @@ type GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey struct {
 	// Name of the role
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GithubComKaytuIoKaytuEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 
 	// Last update timestamp in UTC
 	// Example: 2023-04-21T08:53:09.928Z
@@ -73,9 +71,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAuthAPIWorkspaceAPIKey) Validate(formats 
 var githubComKaytuIoKaytuEnginePkgAuthApiWorkspaceApiKeyTypeRoleNamePropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIRole
 	if err := json.Unmarshal([]byte(`["admin","editor","viewer"]`), &res); err != nil {
 		panic(err)
 	}

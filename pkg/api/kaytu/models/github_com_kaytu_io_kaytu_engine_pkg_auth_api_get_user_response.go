@@ -43,16 +43,12 @@ type GithubComKaytuIoKaytuEnginePkgAuthAPIGetUserResponse struct {
 	// Name of the role
 	// Example: admin
 	// Enum: [admin editor viewer]
-	RoleName struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	} `json:"roleName,omitempty"`
+	RoleName GithubComKaytuIoKaytuEnginePkgAuthAPIRole `json:"roleName,omitempty"`
 
 	// Invite status
 	// Example: accepted
 	// Enum: [accepted pending]
-	Status struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIInviteStatus
-	} `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgAuthAPIInviteStatus `json:"status,omitempty"`
 
 	// Unique identifier for the user
 	// Example: auth|123456789
@@ -84,9 +80,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAuthAPIGetUserResponse) Validate(formats 
 var githubComKaytuIoKaytuEnginePkgAuthApiGetUserResponseTypeRoleNamePropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIRole
 	if err := json.Unmarshal([]byte(`["admin","editor","viewer"]`), &res); err != nil {
 		panic(err)
 	}
@@ -116,9 +110,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAuthAPIGetUserResponse) validateRoleName(
 var githubComKaytuIoKaytuEnginePkgAuthApiGetUserResponseTypeStatusPropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIInviteStatus
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIInviteStatus
 	if err := json.Unmarshal([]byte(`["accepted","pending"]`), &res); err != nil {
 		panic(err)
 	}

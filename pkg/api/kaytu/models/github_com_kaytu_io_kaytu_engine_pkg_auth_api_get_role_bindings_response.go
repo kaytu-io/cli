@@ -24,9 +24,7 @@ type GithubComKaytuIoKaytuEnginePkgAuthAPIGetRoleBindingsResponse struct {
 	// Global Access
 	// Example: admin
 	// Enum: [admin editor viewer]
-	GlobalRoles struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	} `json:"globalRoles,omitempty"`
+	GlobalRoles GithubComKaytuIoKaytuEnginePkgAuthAPIRole `json:"globalRoles,omitempty"`
 
 	// List of user roles in each workspace
 	RoleBindings []*GithubComKaytuIoKaytuEnginePkgAuthAPIUserRoleBinding `json:"roleBindings"`
@@ -53,9 +51,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAuthAPIGetRoleBindingsResponse) Validate(
 var githubComKaytuIoKaytuEnginePkgAuthApiGetRoleBindingsResponseTypeGlobalRolesPropEnum []interface{}
 
 func init() {
-	var res []struct {
-		GithubComKaytuIoKaytuEnginePkgAuthAPIRole
-	}
+	var res []GithubComKaytuIoKaytuEnginePkgAuthAPIRole
 	if err := json.Unmarshal([]byte(`["admin","editor","viewer"]`), &res); err != nil {
 		panic(err)
 	}

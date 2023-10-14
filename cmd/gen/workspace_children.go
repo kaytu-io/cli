@@ -73,9 +73,10 @@ var PostWorkspaceApiV1WorkspaceCmd = &cobra.Command{
 		req := workspace.NewPostWorkspaceAPIV1WorkspaceParams()
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest{
-			Description: flags.ReadStringFlag(cmd, "Description"),
-			Name:        flags.ReadStringFlag(cmd, "Name"),
-			Tier:        flags.ReadStringFlag(cmd, "Tier"),
+			Description:    flags.ReadStringFlag(cmd, "Description"),
+			Name:           flags.ReadStringFlag(cmd, "Name"),
+			OrganizationID: flags.ReadInt64Flag(cmd, "OrganizationID"),
+			Tier:           flags.ReadStringFlag(cmd, "Tier"),
 		})
 
 		resp, err := client.Workspace.PostWorkspaceAPIV1Workspace(req, auth)

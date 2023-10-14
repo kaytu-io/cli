@@ -191,6 +191,43 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 	},
 }
 
+var GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd = &cobra.Command{
+	Use:   "get-field-findings-count",
+	Short: `Retrieving the number of findings field count by policies.`,
+	Long:  `Retrieving the number of findings field count by policies.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_count] : %v", err)
+		}
+
+		req := compliance.NewGetComplianceAPIV1FindingsBenchmarkIDFieldCountParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetField(flags.ReadStringFlag(cmd, "Field"))
+		req.SetSeverities(flags.ReadStringArrayFlag(cmd, "Severities"))
+
+		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldCount(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_count] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-findings-benchmark-id-field-count", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_count] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var PostComplianceApiV1FindingsCmd = &cobra.Command{
 	Use:   "get-findings",
 	Short: `Retrieving all compliance run findings with respect to filters.`,
@@ -209,6 +246,7 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest{
 			Filters: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters{
+				ActiveOnly:     flags.ReadBooleanFlag(cmd, "Filters-ActiveOnly"),
 				BenchmarkID:    flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
 				ConnectionID:   flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
 				Connector:      flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
@@ -238,6 +276,38 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "post-compliance-api-v1-findings", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[post_compliance_api_v_1_findings] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var PostComplianceApiV1AiPolicyPolicyIdRemediationCmd = &cobra.Command{
+	Use:   "remediate-policy",
+	Short: ``,
+	Long:  ``,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[post_compliance_api_v_1_ai_policy_policy_id_remediation] : %v", err)
+		}
+
+		req := compliance.NewPostComplianceAPIV1AiPolicyPolicyIDRemediationParams()
+
+		req.SetPolicyID(flags.ReadStringFlag(cmd, "PolicyID"))
+
+		resp, err := client.Compliance.PostComplianceAPIV1AiPolicyPolicyIDRemediation(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_ai_policy_policy_id_remediation] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "post-compliance-api-v1-ai-policy-policy-id-remediation", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[post_compliance_api_v_1_ai_policy_policy_id_remediation] : %v", err)
 		}
 
 		return nil

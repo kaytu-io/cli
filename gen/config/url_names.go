@@ -55,6 +55,9 @@ var UrlNames = map[string]string{
 	"get_compliance_api_v1_benchmarks_benchmark_id_summary_result_trend": "get-benchmark-summary-trend",
 	"get_compliance_api_v1_benchmarks_benchmark_id_tree":                 "get-benchmark-tree",
 	"get_compliance_api_v1_benchmarks_benchmark_id_trend":                "get-benchmark-trend",
+	"post_compliance_api_v1_ai_policy_policy_id_remediation":             "remediate-policy",
+	"put_schedule_api_v1_compliance_trigger_benchmark_id":                "trigger-benchmark",
+	"get_compliance_api_v1_findings_benchmark_id_field_count":            "get-field-findings-count",
 
 	// gpt
 	"post_ai_api_v1_gpt_run": "_",
@@ -84,6 +87,8 @@ var UrlNames = map[string]string{
 	"put_schedule_api_v1_compliance_trigger":             "run-compliance",
 	"put_schedule_api_v1_describe_trigger_connection_id": "run-describe",
 	"put_schedule_api_v1_insight_evaluation_trigger":     "run-insight",
+	"put_schedule_api_v1_describe_connection_status":     "-",
+	"get_schedule_api_v1_describe_connection_status":     "get-connection-status",
 
 	// insight
 	"get_compliance_api_v2_insights_insight_id":                  "get-insight",
@@ -96,6 +101,7 @@ var UrlNames = map[string]string{
 	"get_inventory_api_v2_insights_insight_id_trend":             "old-get-insight-trend",
 	"get_inventory_api_v2_insights_job_job_id":                   "old-get-insight-job",
 	"get_inventory_api_v2_insights_insight_id":                   "old-get-insight",
+	"put_schedule_api_v1_insight_trigger_insight_id":             "trigger-insight",
 
 	// insights
 	"get_compliance_api_v1_insight_insight_id":       "get-insight",
@@ -104,6 +110,8 @@ var UrlNames = map[string]string{
 	"get_compliance_api_v1_metadata_insight":         "list-insights-metadata",
 	"get_compliance_api_v1_metadata_tag_insight":     "list-insights-metadata-tags",
 	"get_compliance_api_v1_metadata_tag_insight_key": "list-insights-metadata-tag",
+	"get_compliance_api_v2_insight_insight_id":       "get-insight",
+	"get_compliance_api_v2_insight_insight_id_trend": "get-insight-trend",
 
 	// inventory
 	"get_inventory_api_v1_resources_count":                "all-resources-count",
@@ -270,6 +278,17 @@ var UrlNames = map[string]string{
 	"get_inventory_api_v2_analytics_tag":                 "get-tags",
 	"get_inventory_api_v2_analytics_spend_metrics_trend": "get-spend-trend-by-metrics",
 	"get_inventory_api_v2_analytics_metrics_metric_id":   "get-metric",
+
+	// alerting service
+	"delete_alerting_api_v1_action_delete_action_id": "delete-action",
+	"get_alerting_api_v1_action_list":                "list-actions",
+	"delete_alerting_api_v1_rule_delete_rule_id":     "delete-rule",
+	"get_alerting_api_v1_rule_list":                  "list-rules",
+	"post_alerting_api_v1_rule_create":               "-",
+	"post_alerting_api_v1_action_create":             "create-action",
+	"get_alerting_api_v1_rule_rule_id_trigger":       "trigger-rule",
+	"get_alerting_api_v1_action_update":              "update-action",
+	"get_alerting_api_v1_rule_update":                "-",
 }
 
 // add preferred services instead of the main ones

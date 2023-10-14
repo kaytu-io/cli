@@ -66,7 +66,7 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 
 		commandName := strings.ReplaceAll(name, "_", "-")
 		urlCmd := commandName
-
+		fmt.Println("name:", name)
 		commandName = config.UrlNames[name]
 		if commandName == "" {
 			return errors.New("url name not found for cmd: " + name + " please add it in gen/config/url-names.go")
