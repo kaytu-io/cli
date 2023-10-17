@@ -16,7 +16,7 @@ func init() {
 	manual_commands.PUTAlertingApiV1RuleUpdateCmd.MarkFlagsMutuallyExclusive("connection-id", "connection-group")
 
 	manual_commands.PUTAlertingApiV1RuleUpdateCmd.Flags().String("connector", "", "")
-	manual_commands.PUTAlertingApiV1RuleUpdateCmd.Flags().String("operator", "", "")
+	manual_commands.PUTAlertingApiV1RuleUpdateCmd.Flags().String("operator", "", "examples: \nvalue > 100 and value < 200 \nvalue > 100 and ( value < 1000 or value > 1200) \n( value > 10 and value < 100 ) or ( value > 130 and value < 200)")
 	manual_commands.PUTAlertingApiV1RuleUpdateCmd.Flags().String("action-id", "", "")
 
 	AlertingCmd.AddCommand(manual_commands.POSTAlertingApiV1RuleCreateCmd)
