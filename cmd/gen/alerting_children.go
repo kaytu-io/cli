@@ -28,8 +28,6 @@ var PostAlertingApiV1ActionCreateCmd = &cobra.Command{
 		}
 
 		req := alerting.NewPostAlertingAPIV1ActionCreateParams()
-		fmt.Println("TEST1")
-		fmt.Println(flags.ReadMapStringFlag(cmd, "Headers"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAlertingAPICreateActionReq{
 			Body:    flags.ReadStringFlag(cmd, "Body"),
 			Headers: flags.ReadMapStringFlag(cmd, "Headers"),
