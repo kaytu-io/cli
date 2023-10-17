@@ -23,9 +23,6 @@ type GithubComKaytuIoKaytuEnginePkgAlertingAPIUpdateActionRequest struct {
 	// headers
 	Headers map[string]string `json:"headers,omitempty"`
 
-	// id
-	ID int64 `json:"id,omitempty"`
-
 	// method
 	Method string `json:"method,omitempty"`
 

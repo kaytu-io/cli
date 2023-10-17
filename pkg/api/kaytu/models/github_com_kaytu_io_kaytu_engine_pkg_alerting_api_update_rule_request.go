@@ -24,9 +24,6 @@ type GithubComKaytuIoKaytuEnginePkgAlertingAPIUpdateRuleRequest struct {
 	// event type
 	EventType *GithubComKaytuIoKaytuEnginePkgAlertingAPIEventType `json:"event_type,omitempty"`
 
-	// id
-	ID int64 `json:"id,omitempty"`
-
 	// operator
 	Operator *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct `json:"operator,omitempty"`
 

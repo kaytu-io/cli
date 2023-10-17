@@ -34,6 +34,14 @@ func init() {
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().Int64("time-at", 0, "timestamp for values in epoch seconds")
 
+	ComplianceCmd.AddCommand(GetComplianceApiV1FindingsBenchmarkIdAccountsCmd)
+
+	GetComplianceApiV1FindingsBenchmarkIdAccountsCmd.Flags().String("benchmark-id", "", "BenchmarkID")
+	GetComplianceApiV1FindingsBenchmarkIdAccountsCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1FindingsBenchmarkIdAccountsCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
+	GetComplianceApiV1FindingsBenchmarkIdAccountsCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
+	GetComplianceApiV1FindingsBenchmarkIdAccountsCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
+
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd)
 
 	GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd.Flags().String("benchmark-id", "", "Benchmark ID")

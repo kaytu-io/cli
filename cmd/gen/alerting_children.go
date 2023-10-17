@@ -28,7 +28,8 @@ var PostAlertingApiV1ActionCreateCmd = &cobra.Command{
 		}
 
 		req := alerting.NewPostAlertingAPIV1ActionCreateParams()
-
+		fmt.Println("TEST1")
+		fmt.Println(flags.ReadMapStringFlag(cmd, "Headers"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAlertingAPICreateActionReq{
 			Body:    flags.ReadStringFlag(cmd, "Body"),
 			Headers: flags.ReadMapStringFlag(cmd, "Headers"),
@@ -206,7 +207,7 @@ var GetAlertingApiV1RuleRuleIdTriggerCmd = &cobra.Command{
 	},
 }
 
-var GetAlertingApiV1ActionUpdateCmd = &cobra.Command{
+var PutAlertingApiV1ActionUpdateActionIdCmd = &cobra.Command{
 	Use:   "update-action",
 	Short: `Retrieving an action by the specified input`,
 	Long:  `Retrieving an action by the specified input`,
@@ -217,27 +218,27 @@ var GetAlertingApiV1ActionUpdateCmd = &cobra.Command{
 				fmt.Println(err.Error())
 				return nil
 			}
-			return fmt.Errorf("[get_alerting_api_v_1_action_update] : %v", err)
+			return fmt.Errorf("[put_alerting_api_v_1_action_update_action_id] : %v", err)
 		}
 
-		req := alerting.NewGetAlertingAPIV1ActionUpdateParams()
+		req := alerting.NewPutAlertingAPIV1ActionUpdateActionIDParams()
 
+		req.SetActionID(flags.ReadStringFlag(cmd, "ActionID"))
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAlertingAPIUpdateActionRequest{
 			Body:    flags.ReadStringFlag(cmd, "Body"),
 			Headers: flags.ReadMapStringFlag(cmd, "Headers"),
-			ID:      flags.ReadInt64Flag(cmd, "ID"),
 			Method:  flags.ReadStringFlag(cmd, "Method"),
 			URL:     flags.ReadStringFlag(cmd, "URL"),
 		})
 
-		resp, err := client.Alerting.GetAlertingAPIV1ActionUpdate(req, auth)
+		resp, err := client.Alerting.PutAlertingAPIV1ActionUpdateActionID(req, auth)
 		if err != nil {
-			return fmt.Errorf("[get_alerting_api_v_1_action_update] : %v", err)
+			return fmt.Errorf("[put_alerting_api_v_1_action_update_action_id] : %v", err)
 		}
 
-		err = pkg.PrintOutput(cmd, "get-alerting-api-v1-action-update", resp.GetPayload())
+		err = pkg.PrintOutput(cmd, "put-alerting-api-v1-action-update-action-id", resp.GetPayload())
 		if err != nil {
-			return fmt.Errorf("[get_alerting_api_v_1_action_update] : %v", err)
+			return fmt.Errorf("[put_alerting_api_v_1_action_update_action_id] : %v", err)
 		}
 
 		return nil

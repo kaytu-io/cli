@@ -1,5 +1,5 @@
 package pkg
 
-const Auth0Hostname = "kaytu-dev.us.auth0.com"
-const KaytuHostname = "api.kaytu.dev"
-const Auth0ClientID = "5LtrfAo3LVTkds7zOhRbIVQrBx98bfP6"
+const Auth0Hostname = "kaytu.us.auth0.com"
+const KaytuHostname = "api.kaytu.io"
+const Auth0ClientID = "KMGDtnoz3Zefa0MaxcOTqbdh1pon24Mx"

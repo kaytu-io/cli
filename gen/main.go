@@ -66,7 +66,7 @@ func main() {
 			if strings.Contains(err.Error(), "url name not found for cmd:") {
 				miss = true
 				fmt.Println(err.Error())
-				return nil
+				return fmt.Errorf("path : %v ", path)
 			}
 			return err
 		}
