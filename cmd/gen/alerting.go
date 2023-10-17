@@ -44,17 +44,13 @@ func init() {
 	GetAlertingApiV1RuleRuleIdTriggerCmd.Flags().String("rule-id", "", "RuleID")
 	GetAlertingApiV1RuleRuleIdTriggerCmd.MarkFlagRequired("rule-id")
 
-	AlertingCmd.AddCommand(GetAlertingApiV1ActionUpdateCmd)
+	AlertingCmd.AddCommand(PutAlertingApiV1ActionUpdateActionIdCmd)
 
-	GetAlertingApiV1ActionUpdateCmd.Flags().String("body", "", "")
-	GetAlertingApiV1ActionUpdateCmd.MarkFlagRequired("body")
-	GetAlertingApiV1ActionUpdateCmd.Flags().String("headers", "", "")
-	GetAlertingApiV1ActionUpdateCmd.MarkFlagRequired("headers")
-	GetAlertingApiV1ActionUpdateCmd.Flags().Int64("id", 0, "")
-	GetAlertingApiV1ActionUpdateCmd.MarkFlagRequired("id")
-	GetAlertingApiV1ActionUpdateCmd.Flags().String("method", "", "")
-	GetAlertingApiV1ActionUpdateCmd.MarkFlagRequired("method")
-	GetAlertingApiV1ActionUpdateCmd.Flags().String("url", "", "")
-	GetAlertingApiV1ActionUpdateCmd.MarkFlagRequired("url")
+	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("action-id", "", "actionId")
+	PutAlertingApiV1ActionUpdateActionIdCmd.MarkFlagRequired("action-id")
+	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("body", "", "")
+	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("headers", "", "")
+	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("method", "", "")
+	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("url", "", "")
 
 }

@@ -36,17 +36,17 @@ type ClientService interface {
 
 	GetAlertingAPIV1ActionList(params *GetAlertingAPIV1ActionListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1ActionListOK, error)
 
-	GetAlertingAPIV1ActionUpdate(params *GetAlertingAPIV1ActionUpdateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1ActionUpdateOK, error)
-
 	GetAlertingAPIV1RuleList(params *GetAlertingAPIV1RuleListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1RuleListOK, error)
 
 	GetAlertingAPIV1RuleRuleIDTrigger(params *GetAlertingAPIV1RuleRuleIDTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1RuleRuleIDTriggerOK, error)
 
-	GetAlertingAPIV1RuleUpdate(params *GetAlertingAPIV1RuleUpdateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1RuleUpdateOK, error)
-
 	PostAlertingAPIV1ActionCreate(params *PostAlertingAPIV1ActionCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1ActionCreateOK, error)
 
 	PostAlertingAPIV1RuleCreate(params *PostAlertingAPIV1RuleCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1RuleCreateOK, error)
+
+	PutAlertingAPIV1ActionUpdateActionID(params *PutAlertingAPIV1ActionUpdateActionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertingAPIV1ActionUpdateActionIDOK, error)
+
+	PutAlertingAPIV1RuleUpdateRuleID(params *PutAlertingAPIV1RuleUpdateRuleIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertingAPIV1RuleUpdateRuleIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -175,47 +175,6 @@ func (a *Client) GetAlertingAPIV1ActionList(params *GetAlertingAPIV1ActionListPa
 }
 
 /*
-GetAlertingAPIV1ActionUpdate updates action
-
-Retrieving an action by the specified input
-*/
-func (a *Client) GetAlertingAPIV1ActionUpdate(params *GetAlertingAPIV1ActionUpdateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1ActionUpdateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetAlertingAPIV1ActionUpdateParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetAlertingAPIV1ActionUpdate",
-		Method:             "GET",
-		PathPattern:        "/alerting/api/v1/action/update",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetAlertingAPIV1ActionUpdateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetAlertingAPIV1ActionUpdateOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetAlertingAPIV1ActionUpdate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 GetAlertingAPIV1RuleList lists rules
 
 returns list of all rules
@@ -298,47 +257,6 @@ func (a *Client) GetAlertingAPIV1RuleRuleIDTrigger(params *GetAlertingAPIV1RuleR
 }
 
 /*
-GetAlertingAPIV1RuleUpdate updates rule
-
-Retrieving a rule by the specified input
-*/
-func (a *Client) GetAlertingAPIV1RuleUpdate(params *GetAlertingAPIV1RuleUpdateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1RuleUpdateOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetAlertingAPIV1RuleUpdateParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetAlertingAPIV1RuleUpdate",
-		Method:             "GET",
-		PathPattern:        "/alerting/api/v1/rule/update",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetAlertingAPIV1RuleUpdateReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetAlertingAPIV1RuleUpdateOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetAlertingAPIV1RuleUpdate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
 PostAlertingAPIV1ActionCreate creates action
 
 create an action by the specified input
@@ -417,6 +335,88 @@ func (a *Client) PostAlertingAPIV1RuleCreate(params *PostAlertingAPIV1RuleCreate
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostAlertingAPIV1RuleCreate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PutAlertingAPIV1ActionUpdateActionID updates action
+
+Retrieving an action by the specified input
+*/
+func (a *Client) PutAlertingAPIV1ActionUpdateActionID(params *PutAlertingAPIV1ActionUpdateActionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertingAPIV1ActionUpdateActionIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutAlertingAPIV1ActionUpdateActionIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PutAlertingAPIV1ActionUpdateActionID",
+		Method:             "PUT",
+		PathPattern:        "/alerting/api/v1/action/update/{actionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutAlertingAPIV1ActionUpdateActionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutAlertingAPIV1ActionUpdateActionIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutAlertingAPIV1ActionUpdateActionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PutAlertingAPIV1RuleUpdateRuleID updates rule
+
+Retrieving a rule by the specified input
+*/
+func (a *Client) PutAlertingAPIV1RuleUpdateRuleID(params *PutAlertingAPIV1RuleUpdateRuleIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutAlertingAPIV1RuleUpdateRuleIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutAlertingAPIV1RuleUpdateRuleIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PutAlertingAPIV1RuleUpdateRuleID",
+		Method:             "PUT",
+		PathPattern:        "/alerting/api/v1/rule/update/{ruleId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PutAlertingAPIV1RuleUpdateRuleIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutAlertingAPIV1RuleUpdateRuleIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutAlertingAPIV1RuleUpdateRuleID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

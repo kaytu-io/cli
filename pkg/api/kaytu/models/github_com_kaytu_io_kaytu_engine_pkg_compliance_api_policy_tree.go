@@ -18,6 +18,9 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.PolicyTree
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree struct {
 
+	// accounts
+	Accounts *TypesComplianceResultShortSummary `json:"accounts,omitempty"`
+
 	// Policy ID
 	// Example: azure_cis_v140_7_5
 	ID string `json:"id,omitempty"`
@@ -25,6 +28,9 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree struct {
 	// Last checked
 	// Example: 0
 	LastChecked int64 `json:"lastChecked,omitempty"`
+
+	// resources
+	Resources *TypesComplianceResultShortSummary `json:"resources,omitempty"`
 
 	// Severity
 	// Example: low
@@ -43,6 +49,14 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree struct {
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccounts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResources(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSeverity(formats); err != nil {
 		res = append(res, err)
 	}
@@ -54,6 +68,44 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) Validate(formats
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) validateAccounts(formats strfmt.Registry) error {
+	if swag.IsZero(m.Accounts) { // not required
+		return nil
+	}
+
+	if m.Accounts != nil {
+		if err := m.Accounts.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) validateResources(formats strfmt.Registry) error {
+	if swag.IsZero(m.Resources) { // not required
+		return nil
+	}
+
+	if m.Resources != nil {
+		if err := m.Resources.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resources")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resources")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -77,6 +129,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) validateStatus(f
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccounts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResources(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSeverity(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -88,6 +148,48 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) ContextValidate(
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) contextValidateAccounts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Accounts != nil {
+
+		if swag.IsZero(m.Accounts) { // not required
+			return nil
+		}
+
+		if err := m.Accounts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIPolicyTree) contextValidateResources(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Resources != nil {
+
+		if swag.IsZero(m.Resources) { // not required
+			return nil
+		}
+
+		if err := m.Resources.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resources")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resources")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

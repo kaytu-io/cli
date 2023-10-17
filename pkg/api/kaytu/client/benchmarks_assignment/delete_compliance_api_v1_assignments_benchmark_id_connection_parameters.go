@@ -80,6 +80,12 @@ type DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams struct {
 	*/
 	ConnectionID []string
 
+	/* ResourceCollection.
+
+	   Resource Collection
+	*/
+	ResourceCollection []string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -166,6 +172,17 @@ func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) SetConnect
 	o.ConnectionID = connectionID
 }
 
+// WithResourceCollection adds the resourceCollection to the delete compliance API v1 assignments benchmark ID connection params
+func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) WithResourceCollection(resourceCollection []string) *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the delete compliance API v1 assignments benchmark ID connection params
+func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -197,6 +214,17 @@ func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) WriteToReq
 
 		// query array param connectionId
 		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
+			return err
+		}
+	}
+
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
 			return err
 		}
 	}
@@ -239,4 +267,21 @@ func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) bindParamC
 	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
+}
+
+// bindParamDeleteComplianceAPIV1AssignmentsBenchmarkIDConnection binds the parameter resourceCollection
+func (o *DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

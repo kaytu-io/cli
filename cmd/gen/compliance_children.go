@@ -86,6 +86,41 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 	},
 }
 
+var GetComplianceApiV1FindingsBenchmarkIdAccountsCmd = &cobra.Command{
+	Use:   "get-accounts-findings",
+	Short: `Retrieving the number of findings field count by policies.`,
+	Long:  `Retrieving the number of findings field count by policies.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_accounts] : %v", err)
+		}
+
+		req := compliance.NewGetComplianceAPIV1FindingsBenchmarkIDAccountsParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+
+		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDAccounts(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_accounts] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-findings-benchmark-id-accounts", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_accounts] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 	Use:   "get-benchmark-summary",
 	Short: `Retrieving a summary of a benchmark and its associated checks and results.`,
