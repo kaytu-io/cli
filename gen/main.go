@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-var swaggerFileName = "https://app.kaytu.dev/docs/api/1.0/swagger.yaml"
+var swaggerFileName = "https://app.kaytu.io/docs/api/1.0/swagger.yaml"
 
 func main() {
 	swag, err := swagger.New(swaggerFileName)

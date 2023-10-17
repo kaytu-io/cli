@@ -54,7 +54,7 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspace struct {
 	Tier GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier `json:"tier,omitempty"`
 
 	// uri
-	// Example: https://app.kaytu.dev/kaytu
+	// Example: https://app.kaytu.io/kaytu
 	URI string `json:"uri,omitempty"`
 }
 

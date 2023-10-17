@@ -30,7 +30,7 @@ func init() {
 	manual_commands.POSTAlertingApiV1RuleCreateCmd.MarkFlagsMutuallyExclusive("connection-id", "connection-group")
 
 	manual_commands.POSTAlertingApiV1RuleCreateCmd.Flags().String("connector", "", "")
-	manual_commands.POSTAlertingApiV1RuleCreateCmd.Flags().String("operator", "", "")
+	manual_commands.POSTAlertingApiV1RuleCreateCmd.Flags().String("operator", "", "examples: \nvalue > 100 and value < 200 \nvalue > 100 and ( value < 1000 or value > 1200) \n( value > 10 and value < 100 ) or ( value > 130 and value < 200)")
 	manual_commands.POSTAlertingApiV1RuleCreateCmd.MarkFlagRequired("operator")
 	manual_commands.POSTAlertingApiV1RuleCreateCmd.Flags().String("action-id", "", "")
 	manual_commands.POSTAlertingApiV1RuleCreateCmd.MarkFlagRequired("action-id")
