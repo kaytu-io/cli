@@ -39,6 +39,13 @@ func PrintOutputDefault(cmd *cobra.Command, commandName string, obj interface{})
 		}
 	}
 
+	byteString := string(bytes[0])
+	if byteString != "[" {
+		if byteString != "{" {
+			typeOutput = ""
+		}
+	}
+
 	switch typeOutput {
 	case "summary":
 		return output.PrintSummary(bytes, commandName)

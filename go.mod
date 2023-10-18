@@ -12,6 +12,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/iancoleman/strcase v0.2.0
 	github.com/jedib0t/go-pretty/v6 v6.4.6
+	github.com/kaytu-io/kaytu-engine v0.135.8
 	github.com/leekchan/accounting v1.0.0
 	github.com/manifoldco/promptui v0.9.0
 	github.com/spf13/cobra v1.7.0
@@ -33,7 +34,6 @@ require (
 	github.com/go-openapi/jsonreference v0.20.2 // indirect
 	github.com/go-openapi/loads v0.21.2 // indirect
 	github.com/go-openapi/spec v0.20.9 // indirect
-	github.com/google/uuid v1.3.1 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/lib/pq v1.10.3 // indirect
