@@ -36,7 +36,7 @@ require (
 	github.com/go-openapi/spec v0.20.9 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
-	github.com/kaytu-io/kaytu-util v0.0.0-20231014160036-3b260bc58a75 // indirect
+	github.com/lib/pq v1.10.3 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
@@ -54,6 +54,7 @@ require (
 	go.mongodb.org/mongo-driver v1.12.1 // indirect
 	go.opentelemetry.io/otel v1.17.0 // indirect
 	go.opentelemetry.io/otel/metric v1.17.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.17.0 // indirect
 	go.opentelemetry.io/otel/trace v1.17.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	gopkg.in/sourcemap.v1 v1.0.5 // indirect
