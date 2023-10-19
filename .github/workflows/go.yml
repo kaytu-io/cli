@@ -44,6 +44,7 @@ jobs:
       run: |
         echo -e "machine gitlab.com login gitlab-ci-token password ${{ secrets.CI_ACCESS_TOKEN }}" > ~/.netrc
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
+        git config --global url.https://${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io.insteadOf https://github.com/kaytu-io
         
         GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-amd64 ./main.go
         GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-linux-arm64 ./main.go
