@@ -69,6 +69,10 @@ jobs:
     - name: Create snap
       id: snapcraft
       uses: snapcore/action-build@v1
+      with:
+        GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+        github_token: ${{ secrets.GH_ACCESS_TOKEN }}
+        token: ${{ secrets.GH_ACCESS_TOKEN }}
 
     - uses: snapcore/action-publish@v1
       env:
