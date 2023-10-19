@@ -25,7 +25,7 @@ jobs:
       id : tag_version
       uses: mathieudutour/github-tag-action@v6.1
       with:
-        github_token: ${{ secrets.GITHUBCI_TOKEN }}
+#        github_token: ${{ secrets.GITHUBCI_TOKEN }}
 
     - name: Get Latest Tag
       uses: WyriHaximus/github-action-get-previous-tag@v1
@@ -69,10 +69,6 @@ jobs:
     - name: Create snap
       id: snapcraft
       uses: snapcore/action-build@v1
-      with:
-        GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
-        github_token: ${{ secrets.GH_ACCESS_TOKEN }}
-        token: ${{ secrets.GH_ACCESS_TOKEN }}
 
     - uses: snapcore/action-publish@v1
       env:
