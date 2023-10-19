@@ -51,6 +51,7 @@ jobs:
         GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./build/ktucli-windows-amd64 ./main.go
         GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli-macos-amd64 ./main.go
         GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli-macos-arm64 ./main.go
+        export GOPRIVATE="gitlab.com/keibiengine,github.com/kaytu-io"
 
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
