@@ -23,8 +23,9 @@ func init() {
 
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.MarkFlagRequired("benchmark-id")
-	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("connection-group", nil, "Connection group ")
+	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("connection-group", nil, "Connection group")
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("connection-id", nil, "Connection ID or 'all' for everything")
+	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("resource-collection", nil, "Resource collection")
 
 	BenchmarksAssignmentCmd.AddCommand(DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd)
 
@@ -32,5 +33,6 @@ func init() {
 	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.MarkFlagRequired("benchmark-id")
 	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("connection-group", nil, "Connection Group ")
 	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("connection-id", nil, "Connection ID or 'all' for everything")
+	DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().StringArray("resource-collection", nil, "Resource Collection")
 
 }

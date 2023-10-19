@@ -45,7 +45,7 @@ GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK describes a response with st
 OK
 */
 type GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK struct {
-	Payload []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignedSource
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignedEntities
 }
 
 // IsSuccess returns true when this get compliance Api v1 assignments benchmark benchmark Id o k response has a 2xx status code
@@ -86,14 +86,16 @@ func (o *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/assignments/benchmark/{benchmark_id}][%d] getComplianceApiV1AssignmentsBenchmarkBenchmarkIdOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignedSource {
+func (o *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignedEntities {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignedEntities)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

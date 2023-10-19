@@ -58,6 +58,7 @@ var UrlNames = map[string]string{
 	"post_compliance_api_v1_ai_policy_policy_id_remediation":             "remediate-policy",
 	"put_schedule_api_v1_compliance_trigger_benchmark_id":                "trigger-benchmark",
 	"get_compliance_api_v1_findings_benchmark_id_field_count":            "get-field-findings-count",
+	"get_compliance_api_v1_findings_benchmark_id_accounts":               "get-accounts-findings",
 
 	// gpt
 	"post_ai_api_v1_gpt_run": "_",
@@ -287,8 +288,8 @@ var UrlNames = map[string]string{
 	"post_alerting_api_v1_rule_create":               "-",
 	"post_alerting_api_v1_action_create":             "create-action",
 	"get_alerting_api_v1_rule_rule_id_trigger":       "trigger-rule",
-	"get_alerting_api_v1_action_update":              "update-action",
-	"get_alerting_api_v1_rule_update":                "-",
+	"put_alerting_api_v1_action_update_action_id":    "update-action",
+	"put_alerting_api_v1_rule_update_rule_id":        "-",
 }
 
 // add preferred services instead of the main ones

@@ -26,7 +26,11 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkAssignment struct {
 
 	// Connection ID
 	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
-	SourceID string `json:"sourceId,omitempty"`
+	ConnectionID string `json:"connectionId,omitempty"`
+
+	// Resource Collection ID
+	// Example: example-rc
+	ResourceCollectionID string `json:"resourceCollectionId,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api benchmark assignment

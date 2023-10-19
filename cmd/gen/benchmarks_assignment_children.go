@@ -63,6 +63,7 @@ var PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd = &cobra.Command{
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
 		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 
 		resp, err := client.BenchmarksAssignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnection(req, auth)
 		if err != nil {
@@ -97,6 +98,7 @@ var DeleteComplianceApiV1AssignmentsBenchmarkIdConnectionCmd = &cobra.Command{
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
 		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 
 		_, err = client.BenchmarksAssignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection(req, auth)
 		if err != nil {
