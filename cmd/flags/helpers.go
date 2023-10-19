@@ -1,6 +1,7 @@
 package flags
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -139,11 +140,23 @@ func ReadEnumArrayFlag[T ~string](cmd *cobra.Command, name string) []T {
 }
 
 func ReadMapStringFlag(cmd *cobra.Command, name string) map[string]string {
-	return nil //TODO
+	value := ReadStringFlag(cmd, name)
+	var jsonValue map[string]string
+	err := json.Unmarshal([]byte(value), &jsonValue)
+	if err != nil {
+		panic(err)
+	}
+	return jsonValue
 }
 
 func ReadMapStringArrayFlag(cmd *cobra.Command, name string) map[string][]string {
-	return nil //TODO
+	value := ReadStringFlag(cmd, name)
+	var jsonValue map[string][]string
+	err := json.Unmarshal([]byte(value), &jsonValue)
+	if err != nil {
+		panic(err)
+	}
+	return nil
 }
 
 func Name(n string) string {
