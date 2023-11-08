@@ -59,6 +59,7 @@ var UrlNames = map[string]string{
 	"put_schedule_api_v1_compliance_trigger_benchmark_id":                "trigger-benchmark",
 	"get_compliance_api_v1_findings_benchmark_id_field_count":            "get-field-findings-count",
 	"get_compliance_api_v1_findings_benchmark_id_accounts":               "get-accounts-findings",
+	"get_compliance_api_v1_findings_benchmark_id_services":               "-",
 
 	// gpt
 	"post_ai_api_v1_gpt_run": "_",
@@ -264,6 +265,8 @@ var UrlNames = map[string]string{
 	"get_workspace_api_v1_workspace_current":                    "get-current-workspace",
 	"delete_workspace_api_v1_organization_organization_id":      "delete-organization",
 	"post_workspace_api_v1_organization":                        "create-organization",
+	"get_workspace_api_v1_bootstrap_workspace_name":             "-",
+	"get_workspace_api_v1_organization":                         "-",
 
 	// analytics
 	"get_inventory_api_v2_analytics_trend":               "get-assets-trend",
@@ -290,6 +293,12 @@ var UrlNames = map[string]string{
 	"get_alerting_api_v1_rule_rule_id_trigger":       "trigger-rule",
 	"put_alerting_api_v1_action_update_action_id":    "update-action",
 	"put_alerting_api_v1_rule_update_rule_id":        "-",
+	"get_alerting_api_v1_trigger_list":               "-",
+	"post_alerting_api_v1_action_jira":               "-",
+	"post_alerting_api_v1_action_slack":              "-",
+
+	"get_cost_estimator_api_v1_cost_aws_resource_id_resource_type":   "-",
+	"get_cost_estimator_api_v1_cost_azure_resource_id_resource_type": "-",
 }
 
 // add preferred services instead of the main ones

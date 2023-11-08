@@ -38,6 +38,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters struct {
 	// Example: ["azure_cis_v140_7_5"]
 	PolicyID []string `json:"policyID"`
 
+	// Resource Collection ID
+	// Example: ["example-rc"]
+	ResourceCollection []string `json:"resourceCollection"`
+
 	// Resource unique identifier
 	// Example: ["/subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1"]
 	ResourceID []string `json:"resourceID"`

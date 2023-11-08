@@ -13,89 +13,91 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TypesFinding types finding
+// GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding github com kaytu io kaytu engine pkg compliance api finding
 //
-// swagger:model types.Finding
-type TypesFinding struct {
+// swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.Finding
+type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 
-	// Finding ID
-	// Example: /subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1-azure_cis_v140_7_5
-	ID string `json:"ID,omitempty"`
-
-	// Benchmark ID
+	// benchmark ID
 	// Example: azure_cis_v140
 	BenchmarkID string `json:"benchmarkID,omitempty"`
 
-	// Compliance job ID
+	// compliance job ID
 	// Example: 1
 	ComplianceJobID int64 `json:"complianceJobID,omitempty"`
 
-	// Connection ID
+	// connection ID
 	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
 	ConnectionID string `json:"connectionID,omitempty"`
 
-	// Cloud provider
+	// connector
 	// Example: Azure
 	Connector SourceType `json:"connector,omitempty"`
 
-	// Timestamp of the policy description
-	// Example: 1589395200
-	DescribedAt int64 `json:"describedAt,omitempty"`
-
-	// Timestamp of the policy evaluation
+	// evaluated at
 	// Example: 1589395200
 	EvaluatedAt int64 `json:"evaluatedAt,omitempty"`
 
-	// Evaluator name
+	// evaluator
 	// Example: steampipe-v0.5
 	Evaluator string `json:"evaluator,omitempty"`
 
-	// Policy ID
+	// parent benchmarks
+	ParentBenchmarks []string `json:"parentBenchmarks"`
+
+	// policy ID
 	// Example: azure_cis_v140_7_5
 	PolicyID string `json:"policyID,omitempty"`
 
-	// Reason for the policy evaluation result
+	// policy title
+	PolicyTitle string `json:"policyTitle,omitempty"`
+
+	// Connection ID
+	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
+	ProviderConnectionID string `json:"providerConnectionID,omitempty"`
+
+	// Connection ID
+	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8
+	ProviderConnectionName string `json:"providerConnectionName,omitempty"`
+
+	// reason
 	// Example: The VM is not using managed disks
 	Reason string `json:"reason,omitempty"`
 
 	// Resource collection
 	ResourceCollection string `json:"resourceCollection,omitempty"`
 
-	// Resource ID
+	// resource ID
 	// Example: /subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1
 	ResourceID string `json:"resourceID,omitempty"`
 
-	// Resource location
+	// resource location
 	// Example: eastus
 	ResourceLocation string `json:"resourceLocation,omitempty"`
 
-	// Resource name
+	// resource name
 	// Example: vm-1
 	ResourceName string `json:"resourceName,omitempty"`
 
-	// Resource type
+	// resource type
 	// Example: Microsoft.Compute/virtualMachines
 	ResourceType string `json:"resourceType,omitempty"`
 
-	// Compliance result
+	// result
 	// Example: alarm
 	Result TypesComplianceResult `json:"result,omitempty"`
 
-	// Schedule job ID
-	// Example: 1
-	ScheduleJobID int64 `json:"scheduleJobID,omitempty"`
-
-	// Compliance severity
+	// severity
 	// Example: low
 	Severity TypesFindingSeverity `json:"severity,omitempty"`
 
-	// Whether the policy is active or not
+	// state active
 	// Example: true
 	StateActive bool `json:"stateActive,omitempty"`
 }
 
-// Validate validates this types finding
-func (m *TypesFinding) Validate(formats strfmt.Registry) error {
+// Validate validates this github com kaytu io kaytu engine pkg compliance api finding
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConnector(formats); err != nil {
@@ -116,7 +118,7 @@ func (m *TypesFinding) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TypesFinding) validateConnector(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) validateConnector(formats strfmt.Registry) error {
 	if swag.IsZero(m.Connector) { // not required
 		return nil
 	}
@@ -124,7 +126,7 @@ func (m *TypesFinding) validateConnector(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TypesFinding) validateResult(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) validateResult(formats strfmt.Registry) error {
 	if swag.IsZero(m.Result) { // not required
 		return nil
 	}
@@ -132,7 +134,7 @@ func (m *TypesFinding) validateResult(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TypesFinding) validateSeverity(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) validateSeverity(formats strfmt.Registry) error {
 	if swag.IsZero(m.Severity) { // not required
 		return nil
 	}
@@ -140,8 +142,8 @@ func (m *TypesFinding) validateSeverity(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this types finding based on the context it is used
-func (m *TypesFinding) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this github com kaytu io kaytu engine pkg compliance api finding based on the context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConnector(ctx, formats); err != nil {
@@ -162,23 +164,23 @@ func (m *TypesFinding) ContextValidate(ctx context.Context, formats strfmt.Regis
 	return nil
 }
 
-func (m *TypesFinding) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) contextValidateConnector(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
 
-func (m *TypesFinding) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
 
-func (m *TypesFinding) contextValidateSeverity(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) contextValidateSeverity(ctx context.Context, formats strfmt.Registry) error {
 
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *TypesFinding) MarshalBinary() ([]byte, error) {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -186,8 +188,8 @@ func (m *TypesFinding) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *TypesFinding) UnmarshalBinary(b []byte) error {
-	var res TypesFinding
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding) UnmarshalBinary(b []byte) error {
+	var res GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -27,11 +27,17 @@ type GithubComKaytuIoKaytuEnginePkgAlertingAPIRule struct {
 	// id
 	ID int64 `json:"id,omitempty"`
 
+	// metadata
+	Metadata *GithubComKaytuIoKaytuEnginePkgAlertingAPIMetadata `json:"metadata,omitempty"`
+
 	// operator
 	Operator *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct `json:"operator,omitempty"`
 
 	// scope
 	Scope *GithubComKaytuIoKaytuEnginePkgAlertingAPIScope `json:"scope,omitempty"`
+
+	// trigger status
+	TriggerStatus string `json:"trigger_status,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg alerting api rule
@@ -39,6 +45,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIRule) Validate(formats strfmt.
 	var res []error
 
 	if err := m.validateEventType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -67,6 +77,25 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIRule) validateEventType(format
 				return ve.ValidateName("event_type")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("event_type")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIRule) validateMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
+	if m.Metadata != nil {
+		if err := m.Metadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
 			}
 			return err
 		}
@@ -121,6 +150,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIRule) ContextValidate(ctx cont
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOperator(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -148,6 +181,27 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIRule) contextValidateEventType
 				return ve.ValidateName("event_type")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("event_type")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIRule) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Metadata != nil {
+
+		if swag.IsZero(m.Metadata) { // not required
+			return nil
+		}
+
+		if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
 			}
 			return err
 		}

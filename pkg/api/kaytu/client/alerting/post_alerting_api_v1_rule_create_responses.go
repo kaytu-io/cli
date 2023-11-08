@@ -43,7 +43,7 @@ PostAlertingAPIV1RuleCreateOK describes a response with status code 200, with de
 OK
 */
 type PostAlertingAPIV1RuleCreateOK struct {
-	Payload string
+	Payload int64
 }
 
 // IsSuccess returns true when this post alerting Api v1 rule create o k response has a 2xx status code
@@ -84,7 +84,7 @@ func (o *PostAlertingAPIV1RuleCreateOK) String() string {
 	return fmt.Sprintf("[POST /alerting/api/v1/rule/create][%d] postAlertingApiV1RuleCreateOK  %+v", 200, o.Payload)
 }
 
-func (o *PostAlertingAPIV1RuleCreateOK) GetPayload() string {
+func (o *PostAlertingAPIV1RuleCreateOK) GetPayload() int64 {
 	return o.Payload
 }
 

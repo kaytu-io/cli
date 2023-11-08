@@ -37,6 +37,7 @@ var GetInventoryApiV2AnalyticsMetricCmd = &cobra.Command{
 		req.SetMinCount(flags.ReadInt64OptionalFlag(cmd, "MinCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
@@ -77,6 +78,7 @@ var GetInventoryApiV2AnalyticsCompositionKeyCmd = &cobra.Command{
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetKey(flags.ReadStringFlag(cmd, "Key"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTop(flags.ReadInt64Flag(cmd, "Top"))
 
@@ -117,6 +119,7 @@ var GetInventoryApiV2AnalyticsTrendCmd = &cobra.Command{
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetIds(flags.ReadStringArrayFlag(cmd, "Ids"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
@@ -241,44 +244,6 @@ var GetInventoryApiV2AnalyticsSpendCompositionCmd = &cobra.Command{
 	},
 }
 
-var GetInventoryApiV2AnalyticsSpendMetricsTrendCmd = &cobra.Command{
-	Use:   "get-spend-trend-by-metrics",
-	Short: `Retrieving a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
-	Long:  `Retrieving a list of costs over the course of the specified time frame based on the given input filters. If startTime and endTime are empty, the API returns the last month trend.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metrics_trend] : %v", err)
-		}
-
-		req := analytics.NewGetInventoryAPIV2AnalyticsSpendMetricsTrendParams()
-
-		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
-		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
-		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))
-		req.SetMetricIds(flags.ReadStringArrayFlag(cmd, "MetricIds"))
-		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsSpendMetricsTrend(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metrics_trend] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-analytics-spend-metrics-trend", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_analytics_spend_metrics_trend] : %v", err)
-		}
-
-		return nil
-	},
-}
-
 var GetInventoryApiV2AnalyticsTagCmd = &cobra.Command{
 	Use:   "get-tags",
 	Short: `Retrieving a list of tag keys with their possible values for all analytic metrics.`,
@@ -301,6 +266,7 @@ var GetInventoryApiV2AnalyticsTagCmd = &cobra.Command{
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetMetricType(flags.ReadStringOptionalFlag(cmd, "MetricType"))
 		req.SetMinCount(flags.ReadInt64OptionalFlag(cmd, "MinCount"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Analytics.GetInventoryAPIV2AnalyticsTag(req, auth)
@@ -435,7 +401,7 @@ var GetInventoryApiV2AnalyticsSpendTableCmd = &cobra.Command{
 
 		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringOptionalFlag(cmd, "Connector"))
+		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetDimension(flags.ReadStringOptionalFlag(cmd, "Dimension"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetGranularity(flags.ReadStringOptionalFlag(cmd, "Granularity"))

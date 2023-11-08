@@ -26,6 +26,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig struct {
 	// account Id
 	AccountID string `json:"accountId,omitempty"`
 
+	// assume admin role name
+	AssumeAdminRoleName string `json:"assumeAdminRoleName,omitempty"`
+
 	// assume role name
 	AssumeRoleName string `json:"assumeRoleName,omitempty"`
 

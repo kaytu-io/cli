@@ -22,6 +22,8 @@ func init() {
 	PostAlertingApiV1ActionCreateCmd.MarkFlagRequired("headers")
 	PostAlertingApiV1ActionCreateCmd.Flags().String("method", "", "")
 	PostAlertingApiV1ActionCreateCmd.MarkFlagRequired("method")
+	PostAlertingApiV1ActionCreateCmd.Flags().String("name", "", "")
+	PostAlertingApiV1ActionCreateCmd.MarkFlagRequired("name")
 	PostAlertingApiV1ActionCreateCmd.Flags().String("url", "", "")
 	PostAlertingApiV1ActionCreateCmd.MarkFlagRequired("url")
 
@@ -51,6 +53,7 @@ func init() {
 	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("body", "", "")
 	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("headers", "", "")
 	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("method", "", "")
+	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("name", "", "")
 	PutAlertingApiV1ActionUpdateActionIdCmd.Flags().String("url", "", "")
 
 }

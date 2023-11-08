@@ -80,6 +80,12 @@ type GetComplianceAPIV1BenchmarksSummaryParams struct {
 	*/
 	Connector []string
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* TimeAt.
 
 	   timestamp for values in epoch seconds
@@ -172,6 +178,17 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetConnector(connector []str
 	o.Connector = connector
 }
 
+// WithResourceCollection adds the resourceCollection to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithResourceCollection(resourceCollection []string) *GetComplianceAPIV1BenchmarksSummaryParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithTimeAt adds the timeAt to the get compliance API v1 benchmarks summary params
 func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithTimeAt(timeAt *int64) *GetComplianceAPIV1BenchmarksSummaryParams {
 	o.SetTimeAt(timeAt)
@@ -220,6 +237,17 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) WriteToRequest(r runtime.Cli
 
 		// query array param connector
 		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
+		}
+	}
+
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
 			return err
 		}
 	}
@@ -296,4 +324,21 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamConnector(formats s
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetComplianceAPIV1BenchmarksSummary binds the parameter resourceCollection
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

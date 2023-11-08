@@ -116,6 +116,12 @@ type GetInventoryAPIV2AnalyticsMetricParams struct {
 	*/
 	PageSize *int64
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* SortBy.
 
 	   Sort by field - default is count
@@ -284,6 +290,17 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) WithPageSize(pageSize *int64) *
 // SetPageSize adds the pageSize to the get inventory API v2 analytics metric params
 func (o *GetInventoryAPIV2AnalyticsMetricParams) SetPageSize(pageSize *int64) {
 	o.PageSize = pageSize
+}
+
+// WithResourceCollection adds the resourceCollection to the get inventory API v2 analytics metric params
+func (o *GetInventoryAPIV2AnalyticsMetricParams) WithResourceCollection(resourceCollection []string) *GetInventoryAPIV2AnalyticsMetricParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get inventory API v2 analytics metric params
+func (o *GetInventoryAPIV2AnalyticsMetricParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
 }
 
 // WithSortBy adds the sortBy to the get inventory API v2 analytics metric params
@@ -456,6 +473,17 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) WriteToRequest(r runtime.Client
 		}
 	}
 
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
 	if o.SortBy != nil {
 
 		// query param sortBy
@@ -573,6 +601,23 @@ func (o *GetInventoryAPIV2AnalyticsMetricParams) bindParamMetricIDs(formats strf
 	metricIDsIS := swag.JoinByFormat(metricIDsIC, "csv")
 
 	return metricIDsIS
+}
+
+// bindParamGetInventoryAPIV2AnalyticsMetric binds the parameter resourceCollection
+func (o *GetInventoryAPIV2AnalyticsMetricParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }
 
 // bindParamGetInventoryAPIV2AnalyticsMetric binds the parameter tag

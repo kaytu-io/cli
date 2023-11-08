@@ -28,10 +28,12 @@ var PostAlertingApiV1ActionCreateCmd = &cobra.Command{
 		}
 
 		req := alerting.NewPostAlertingAPIV1ActionCreateParams()
+
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgAlertingAPICreateActionReq{
 			Body:    flags.ReadStringFlag(cmd, "Body"),
 			Headers: flags.ReadMapStringFlag(cmd, "Headers"),
 			Method:  flags.ReadStringFlag(cmd, "Method"),
+			Name:    flags.ReadStringFlag(cmd, "Name"),
 			URL:     flags.ReadStringFlag(cmd, "URL"),
 		})
 
@@ -226,6 +228,7 @@ var PutAlertingApiV1ActionUpdateActionIdCmd = &cobra.Command{
 			Body:    flags.ReadStringFlag(cmd, "Body"),
 			Headers: flags.ReadMapStringFlag(cmd, "Headers"),
 			Method:  flags.ReadStringFlag(cmd, "Method"),
+			Name:    flags.ReadStringFlag(cmd, "Name"),
 			URL:     flags.ReadStringFlag(cmd, "URL"),
 		})
 

@@ -78,7 +78,7 @@ type GetInventoryAPIV2AnalyticsSpendTableParams struct {
 
 	   Connector
 	*/
-	Connector *string
+	Connector []string
 
 	/* Dimension.
 
@@ -186,13 +186,13 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetConnectionID(connectionI
 }
 
 // WithConnector adds the connector to the get inventory API v2 analytics spend table params
-func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WithConnector(connector *string) *GetInventoryAPIV2AnalyticsSpendTableParams {
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WithConnector(connector []string) *GetInventoryAPIV2AnalyticsSpendTableParams {
 	o.SetConnector(connector)
 	return o
 }
 
 // SetConnector adds the connector to the get inventory API v2 analytics spend table params
-func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetConnector(connector *string) {
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) SetConnector(connector []string) {
 	o.Connector = connector
 }
 
@@ -283,18 +283,12 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) WriteToRequest(r runtime.Cl
 
 	if o.Connector != nil {
 
-		// query param connector
-		var qrConnector string
+		// binding items for connector
+		joinedConnector := o.bindParamConnector(reg)
 
-		if o.Connector != nil {
-			qrConnector = *o.Connector
-		}
-		qConnector := qrConnector
-		if qConnector != "" {
-
-			if err := r.SetQueryParam("connector", qConnector); err != nil {
-				return err
-			}
+		// query array param connector
+		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
+			return err
 		}
 	}
 
@@ -415,6 +409,23 @@ func (o *GetInventoryAPIV2AnalyticsSpendTableParams) bindParamConnectionID(forma
 	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
+}
+
+// bindParamGetInventoryAPIV2AnalyticsSpendTable binds the parameter connector
+func (o *GetInventoryAPIV2AnalyticsSpendTableParams) bindParamConnector(formats strfmt.Registry) []string {
+	connectorIR := o.Connector
+
+	var connectorIC []string
+	for _, connectorIIR := range connectorIR { // explode []string
+
+		connectorIIV := connectorIIR // string as string
+		connectorIC = append(connectorIC, connectorIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectorIS := swag.JoinByFormat(connectorIC, "csv")
+
+	return connectorIS
 }
 
 // bindParamGetInventoryAPIV2AnalyticsSpendTable binds the parameter metricIds

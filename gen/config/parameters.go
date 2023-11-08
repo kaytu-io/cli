@@ -7,6 +7,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection_groups"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/cost_estimator"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
@@ -25,7 +26,10 @@ var ParamModels = map[string]interface{}{
 	"GetAlertingAPIV1ActionList":                            alerting.GetAlertingAPIV1ActionListParams{},
 	"GetAlertingAPIV1RuleList":                              alerting.GetAlertingAPIV1RuleListParams{},
 	"GetAlertingAPIV1RuleRuleIDTrigger":                     alerting.GetAlertingAPIV1RuleRuleIDTriggerParams{},
+	"GetAlertingAPIV1TriggerList":                           alerting.GetAlertingAPIV1TriggerListParams{},
 	"PostAlertingAPIV1ActionCreate":                         alerting.PostAlertingAPIV1ActionCreateParams{},
+	"PostAlertingAPIV1ActionJira":                           alerting.PostAlertingAPIV1ActionJiraParams{},
+	"PostAlertingAPIV1ActionSlack":                          alerting.PostAlertingAPIV1ActionSlackParams{},
 	"PostAlertingAPIV1RuleCreate":                           alerting.PostAlertingAPIV1RuleCreateParams{},
 	"PutAlertingAPIV1ActionUpdateActionID":                  alerting.PutAlertingAPIV1ActionUpdateActionIDParams{},
 	"PutAlertingAPIV1RuleUpdateRuleID":                      alerting.PutAlertingAPIV1RuleUpdateRuleIDParams{},
@@ -36,7 +40,6 @@ var ParamModels = map[string]interface{}{
 	"GetInventoryAPIV2AnalyticsMetricsMetricID":             analytics.GetInventoryAPIV2AnalyticsMetricsMetricIDParams{},
 	"GetInventoryAPIV2AnalyticsSpendComposition":            analytics.GetInventoryAPIV2AnalyticsSpendCompositionParams{},
 	"GetInventoryAPIV2AnalyticsSpendMetric":                 analytics.GetInventoryAPIV2AnalyticsSpendMetricParams{},
-	"GetInventoryAPIV2AnalyticsSpendMetricsTrend":           analytics.GetInventoryAPIV2AnalyticsSpendMetricsTrendParams{},
 	"GetInventoryAPIV2AnalyticsSpendTable":                  analytics.GetInventoryAPIV2AnalyticsSpendTableParams{},
 	"GetInventoryAPIV2AnalyticsSpendTrend":                  analytics.GetInventoryAPIV2AnalyticsSpendTrendParams{},
 	"GetInventoryAPIV2AnalyticsTable":                       analytics.GetInventoryAPIV2AnalyticsTableParams{},
@@ -45,19 +48,22 @@ var ParamModels = map[string]interface{}{
 	"DeleteComplianceAPIV1AssignmentsBenchmarkIDConnection": benchmarks_assignment.DeleteComplianceAPIV1AssignmentsBenchmarkIDConnectionParams{},
 	"GetComplianceAPIV1AssignmentsBenchmarkBenchmarkID":     benchmarks_assignment.GetComplianceAPIV1AssignmentsBenchmarkBenchmarkIDParams{},
 	"PostComplianceAPIV1AssignmentsBenchmarkIDConnection":   benchmarks_assignment.PostComplianceAPIV1AssignmentsBenchmarkIDConnectionParams{},
+	"GetComplianceAPIV1BenchmarksBenchmarkIDPolicies":       compliance.GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams{},
 	"GetComplianceAPIV1BenchmarksBenchmarkIDSummary":        compliance.GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams{},
-	"GetComplianceAPIV1BenchmarksBenchmarkIDTree":           compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams{},
 	"GetComplianceAPIV1BenchmarksBenchmarkIDTrend":          compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams{},
 	"GetComplianceAPIV1BenchmarksSummary":                   compliance.GetComplianceAPIV1BenchmarksSummaryParams{},
 	"GetComplianceAPIV1FindingsBenchmarkIDAccounts":         compliance.GetComplianceAPIV1FindingsBenchmarkIDAccountsParams{},
 	"GetComplianceAPIV1FindingsBenchmarkIDFieldCount":       compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldCountParams{},
 	"GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount":    compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams{},
+	"GetComplianceAPIV1FindingsBenchmarkIDServices":         compliance.GetComplianceAPIV1FindingsBenchmarkIDServicesParams{},
 	"GetComplianceAPIV1QueriesSync":                         compliance.GetComplianceAPIV1QueriesSyncParams{},
 	"PostComplianceAPIV1AiPolicyPolicyIDRemediation":        compliance.PostComplianceAPIV1AiPolicyPolicyIDRemediationParams{},
 	"PostComplianceAPIV1Findings":                           compliance.PostComplianceAPIV1FindingsParams{},
 	"GetOnboardAPIV1ConnectionGroupsConnectionGroupName":    connection_groups.GetOnboardAPIV1ConnectionGroupsConnectionGroupNameParams{},
 	"GetOnboardAPIV1ConnectionGroups":                       connection_groups.GetOnboardAPIV1ConnectionGroupsParams{},
 	"GetOnboardAPIV1ConnectionsSummary":                     connections.GetOnboardAPIV1ConnectionsSummaryParams{},
+	"GetCostEstimatorAPIV1CostAwsResourceIDResourceType":    cost_estimator.GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeParams{},
+	"GetCostEstimatorAPIV1CostAzureResourceIDResourceType":  cost_estimator.GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeParams{},
 	"PutScheduleAPIV1ComplianceTriggerBenchmarkID":          describe.PutScheduleAPIV1ComplianceTriggerBenchmarkIDParams{},
 	"PutScheduleAPIV1DescribeConnectionStatus":              describe.PutScheduleAPIV1DescribeConnectionStatusParams{},
 	"PutScheduleAPIV1DescribeTriggerConnectionID":           describe.PutScheduleAPIV1DescribeTriggerConnectionIDParams{},
@@ -111,6 +117,8 @@ var ParamModels = map[string]interface{}{
 	"PutAuthAPIV1UserRoleBinding":                           users.PutAuthAPIV1UserRoleBindingParams{},
 	"DeleteWorkspaceAPIV1OrganizationOrganizationID":        workspace.DeleteWorkspaceAPIV1OrganizationOrganizationIDParams{},
 	"DeleteWorkspaceAPIV1WorkspaceWorkspaceID":              workspace.DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams{},
+	"GetWorkspaceAPIV1BootstrapWorkspaceName":               workspace.GetWorkspaceAPIV1BootstrapWorkspaceNameParams{},
+	"GetWorkspaceAPIV1Organization":                         workspace.GetWorkspaceAPIV1OrganizationParams{},
 	"GetWorkspaceAPIV1WorkspaceCurrent":                     workspace.GetWorkspaceAPIV1WorkspaceCurrentParams{},
 	"GetWorkspaceAPIV1WorkspacesByidWorkspaceID":            workspace.GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams{},
 	"GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID":      workspace.GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams{},

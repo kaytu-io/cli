@@ -10,7 +10,8 @@ set -x
 
 rm -rf pkg/api/kaytu/client pkg/api/kaytu/models
 
-swagger generate client --spec https://app.kaytu.io/docs/api/1.0/swagger.yaml --target ./pkg/api/kaytu/
+swagger generate client --spec /home/saleh/projects/keibi/kaytu-engine/pkg/docs/swagger.yaml --target ./pkg/api/kaytu/
+#swagger generate client --spec https://app.kaytu.io/docs/api/1.0/swagger.yaml --target ./pkg/api/kaytu/
 go run scripts/fix_api.go
 go run scripts/params/populate_parameters.go > ./gen/config/parameters.go
 

@@ -21,6 +21,7 @@ func init() {
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("insight-id", "", "Insight ID")
 	GetComplianceApiV1InsightInsightIdCmd.MarkFlagRequired("insight-id")
+	GetComplianceApiV1InsightInsightIdCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetComplianceApiV1InsightInsightIdCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdCmd)
@@ -30,6 +31,7 @@ func init() {
 	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
 	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("insight-group-id", "", "Insight Group ID")
 	GetComplianceApiV1InsightGroupInsightGroupIdCmd.MarkFlagRequired("insight-group-id")
+	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetComplianceApiV1InsightGroupInsightGroupIdCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd)
@@ -40,6 +42,7 @@ func init() {
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().String("insight-group-id", "", "Insight Group ID")
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.MarkFlagRequired("insight-group-id")
+	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetComplianceApiV1InsightGroupInsightGroupIdTrendCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1MetadataInsightInsightIdCmd)
@@ -55,6 +58,7 @@ func init() {
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().String("insight-id", "", "Insight ID")
 	GetComplianceApiV1InsightInsightIdTrendCmd.MarkFlagRequired("insight-id")
+	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetComplianceApiV1InsightInsightIdTrendCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 
 	InsightsCmd.AddCommand(GetComplianceApiV1InsightGroupCmd)
@@ -63,6 +67,7 @@ func init() {
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("connector", nil, "filter insights by connector")
 	GetComplianceApiV1InsightGroupCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
+	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetComplianceApiV1InsightGroupCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 	GetComplianceApiV1InsightGroupCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
 
@@ -72,6 +77,7 @@ func init() {
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connection-id", nil, "filter the result by source id")
 	GetComplianceApiV1InsightCmd.Flags().StringArray("connector", nil, "filter insights by connector")
 	GetComplianceApiV1InsightCmd.Flags().String("end-time", "", "unix seconds for the end time of the trend")
+	GetComplianceApiV1InsightCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetComplianceApiV1InsightCmd.Flags().String("start-time", "", "unix seconds for the start time of the trend")
 	GetComplianceApiV1InsightCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
 

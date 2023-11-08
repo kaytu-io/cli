@@ -98,6 +98,12 @@ type GetInventoryAPIV2AnalyticsCompositionKeyParams struct {
 	*/
 	MetricType *string
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* StartTime.
 
 	   timestamp for resource count change comparison in epoch seconds
@@ -229,6 +235,17 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetMetricType(metricTyp
 	o.MetricType = metricType
 }
 
+// WithResourceCollection adds the resourceCollection to the get inventory API v2 analytics composition key params
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WithResourceCollection(resourceCollection []string) *GetInventoryAPIV2AnalyticsCompositionKeyParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get inventory API v2 analytics composition key params
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithStartTime adds the startTime to the get inventory API v2 analytics composition key params
 func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WithStartTime(startTime *int64) *GetInventoryAPIV2AnalyticsCompositionKeyParams {
 	o.SetStartTime(startTime)
@@ -331,6 +348,17 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) WriteToRequest(r runtim
 		}
 	}
 
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
 	if o.StartTime != nil {
 
 		// query param startTime
@@ -413,4 +441,21 @@ func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) bindParamConnector(form
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetInventoryAPIV2AnalyticsCompositionKey binds the parameter resourceCollection
+func (o *GetInventoryAPIV2AnalyticsCompositionKeyParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

@@ -30,9 +30,9 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error)
+	GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error)
 
-	GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error)
+	GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error)
 
 	GetComplianceAPIV1BenchmarksBenchmarkIDTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTrendOK, error)
 
@@ -44,6 +44,8 @@ type ClientService interface {
 
 	GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountOK, error)
 
+	GetComplianceAPIV1FindingsBenchmarkIDServices(params *GetComplianceAPIV1FindingsBenchmarkIDServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDServicesOK, error)
+
 	GetComplianceAPIV1QueriesSync(params *GetComplianceAPIV1QueriesSyncParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1QueriesSyncOK, error)
 
 	PostComplianceAPIV1AiPolicyPolicyIDRemediation(params *PostComplianceAPIV1AiPolicyPolicyIDRemediationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AiPolicyPolicyIDRemediationOK, error)
@@ -51,6 +53,45 @@ type ClientService interface {
 	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+GetComplianceAPIV1BenchmarksBenchmarkIDPolicies gets benchmark policies
+*/
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDPolicies",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/policies",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -91,47 +132,6 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetCompl
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDSummary: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-GetComplianceAPIV1BenchmarksBenchmarkIDTree gets benchmark tree
-
-Retrieving the benchmark tree, including all of its child benchmarks.
-*/
-func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDTree(params *GetComplianceAPIV1BenchmarksBenchmarkIDTreeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDTreeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDTree",
-		Method:             "GET",
-		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/tree",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDTreeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDTreeOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDTree: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -218,9 +218,9 @@ func (a *Client) GetComplianceAPIV1BenchmarksSummary(params *GetComplianceAPIV1B
 }
 
 /*
-GetComplianceAPIV1FindingsBenchmarkIDAccounts gets findings field count by policies
+GetComplianceAPIV1FindingsBenchmarkIDAccounts gets accounts findings summaries
 
-Retrieving the number of findings field count by policies.
+Retrieving list of accounts with their security score and severities findings count
 */
 func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDAccounts(params *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDAccountsOK, error) {
 	// TODO: Validate the params before sending
@@ -337,6 +337,47 @@ func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(params *GetC
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1FindingsBenchmarkIDServices gets services findings summary
+
+Retrieving list of services with their security score and severities findings count
+*/
+func (a *Client) GetComplianceAPIV1FindingsBenchmarkIDServices(params *GetComplianceAPIV1FindingsBenchmarkIDServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1FindingsBenchmarkIDServicesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1FindingsBenchmarkIDServicesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1FindingsBenchmarkIDServices",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/findings/{benchmarkId}/services",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1FindingsBenchmarkIDServicesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1FindingsBenchmarkIDServicesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1FindingsBenchmarkIDServices: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -8,7 +8,6 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -18,11 +17,8 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.BenchmarkTrendDatapoint
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint struct {
 
-	// checks
-	Checks *TypesSeverityResult `json:"checks,omitempty"`
-
-	// result
-	Result *TypesComplianceResultSummary `json:"result,omitempty"`
+	// security score
+	SecurityScore float64 `json:"securityScore,omitempty"`
 
 	// Time
 	// Example: 1686346668
@@ -31,117 +27,11 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint struct {
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api benchmark trend datapoint
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateChecks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateResult(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint) validateChecks(formats strfmt.Registry) error {
-	if swag.IsZero(m.Checks) { // not required
-		return nil
-	}
-
-	if m.Checks != nil {
-		if err := m.Checks.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("checks")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("checks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint) validateResult(formats strfmt.Registry) error {
-	if swag.IsZero(m.Result) { // not required
-		return nil
-	}
-
-	if m.Result != nil {
-		if err := m.Result.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("result")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("result")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this github com kaytu io kaytu engine pkg compliance api benchmark trend datapoint based on the context it is used
+// ContextValidate validates this github com kaytu io kaytu engine pkg compliance api benchmark trend datapoint based on context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateChecks(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateResult(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint) contextValidateChecks(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Checks != nil {
-
-		if swag.IsZero(m.Checks) { // not required
-			return nil
-		}
-
-		if err := m.Checks.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("checks")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("checks")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkTrendDatapoint) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Result != nil {
-
-		if swag.IsZero(m.Result) { // not required
-			return nil
-		}
-
-		if err := m.Result.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("result")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("result")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

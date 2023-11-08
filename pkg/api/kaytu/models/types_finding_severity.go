@@ -33,6 +33,9 @@ const (
 	// TypesFindingSeverityNone captures enum value "none"
 	TypesFindingSeverityNone TypesFindingSeverity = "none"
 
+	// TypesFindingSeverityPassed captures enum value "passed"
+	TypesFindingSeverityPassed TypesFindingSeverity = "passed"
+
 	// TypesFindingSeverityLow captures enum value "low"
 	TypesFindingSeverityLow TypesFindingSeverity = "low"
 
@@ -51,7 +54,7 @@ var typesFindingSeverityEnum []interface{}
 
 func init() {
 	var res []TypesFindingSeverity
-	if err := json.Unmarshal([]byte(`["none","low","medium","high","critical"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["none","passed","low","medium","high","critical"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

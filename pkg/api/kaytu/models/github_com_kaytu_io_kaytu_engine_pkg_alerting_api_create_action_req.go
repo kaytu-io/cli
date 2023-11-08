@@ -26,6 +26,9 @@ type GithubComKaytuIoKaytuEnginePkgAlertingAPICreateActionReq struct {
 	// method
 	Method string `json:"method,omitempty"`
 
+	// name
+	Name string `json:"name,omitempty"`
+
 	// url
 	URL string `json:"url,omitempty"`
 }

@@ -16,6 +16,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/compliance"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connection_groups"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/connections"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/cost_estimator"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/describe"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/insights"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/keys"
@@ -76,6 +77,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KaytuServi
 	cli.Compliance = compliance.New(transport, formats)
 	cli.ConnectionGroups = connection_groups.New(transport, formats)
 	cli.Connections = connections.New(transport, formats)
+	cli.CostEstimator = cost_estimator.New(transport, formats)
 	cli.Describe = describe.New(transport, formats)
 	cli.Insights = insights.New(transport, formats)
 	cli.Keys = keys.New(transport, formats)
@@ -142,6 +144,8 @@ type KaytuServiceAPI struct {
 
 	Connections connections.ClientService
 
+	CostEstimator cost_estimator.ClientService
+
 	Describe describe.ClientService
 
 	Insights insights.ClientService
@@ -174,6 +178,7 @@ func (c *KaytuServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Compliance.SetTransport(transport)
 	c.ConnectionGroups.SetTransport(transport)
 	c.Connections.SetTransport(transport)
+	c.CostEstimator.SetTransport(transport)
 	c.Describe.SetTransport(transport)
 	c.Insights.SetTransport(transport)
 	c.Keys.SetTransport(transport)

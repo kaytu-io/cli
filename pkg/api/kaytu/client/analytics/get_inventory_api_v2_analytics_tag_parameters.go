@@ -98,6 +98,12 @@ type GetInventoryAPIV2AnalyticsTagParams struct {
 	*/
 	MinCount *int64
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* StartTime.
 
 	   Start time in unix timestamp format, default now - 1 month
@@ -223,6 +229,17 @@ func (o *GetInventoryAPIV2AnalyticsTagParams) SetMinCount(minCount *int64) {
 	o.MinCount = minCount
 }
 
+// WithResourceCollection adds the resourceCollection to the get inventory API v2 analytics tag params
+func (o *GetInventoryAPIV2AnalyticsTagParams) WithResourceCollection(resourceCollection []string) *GetInventoryAPIV2AnalyticsTagParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get inventory API v2 analytics tag params
+func (o *GetInventoryAPIV2AnalyticsTagParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithStartTime adds the startTime to the get inventory API v2 analytics tag params
 func (o *GetInventoryAPIV2AnalyticsTagParams) WithStartTime(startTime *int64) *GetInventoryAPIV2AnalyticsTagParams {
 	o.SetStartTime(startTime)
@@ -326,6 +343,17 @@ func (o *GetInventoryAPIV2AnalyticsTagParams) WriteToRequest(r runtime.ClientReq
 		}
 	}
 
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
 	if o.StartTime != nil {
 
 		// query param startTime
@@ -398,4 +426,21 @@ func (o *GetInventoryAPIV2AnalyticsTagParams) bindParamConnector(formats strfmt.
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetInventoryAPIV2AnalyticsTag binds the parameter resourceCollection
+func (o *GetInventoryAPIV2AnalyticsTagParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

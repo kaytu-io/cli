@@ -33,6 +33,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightInsightID(req, auth)
@@ -70,6 +71,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightGroupID(flags.ReadStringFlag(cmd, "InsightGroupID"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightGroupInsightGroupID(req, auth)
@@ -108,6 +110,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req.SetDatapointCount(flags.ReadInt64OptionalFlag(cmd, "DatapointCount"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightGroupID(flags.ReadStringFlag(cmd, "InsightGroupID"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightGroupInsightGroupIDTrend(req, auth)
@@ -178,6 +181,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req.SetDatapointCount(flags.ReadInt64OptionalFlag(cmd, "DatapointCount"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
 		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Insights.GetComplianceAPIV1InsightInsightIDTrend(req, auth)
@@ -215,6 +219,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 
@@ -253,6 +258,7 @@ Returns "all:provider" job results if connectionId is not defined.`,
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 

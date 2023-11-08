@@ -24,6 +24,8 @@ func init() {
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-access-key", "", "")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-account-id", "", "")
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-account-id")
+	PostOnboardApiV1SourceAwsCmd.Flags().String("config-assume-admin-role-name", "", "")
+	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-assume-admin-role-name")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-assume-role-name", "", "")
 	PostOnboardApiV1SourceAwsCmd.MarkFlagRequired("config-assume-role-name")
 	PostOnboardApiV1SourceAwsCmd.Flags().String("config-assume-role-policy-name", "", "")

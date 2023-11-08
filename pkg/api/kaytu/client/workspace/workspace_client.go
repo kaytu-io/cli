@@ -34,6 +34,10 @@ type ClientService interface {
 
 	DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspaceAPIV1WorkspaceWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteWorkspaceAPIV1WorkspaceWorkspaceIDOK, error)
 
+	GetWorkspaceAPIV1BootstrapWorkspaceName(params *GetWorkspaceAPIV1BootstrapWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1BootstrapWorkspaceNameOK, error)
+
+	GetWorkspaceAPIV1Organization(params *GetWorkspaceAPIV1OrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1OrganizationCreated, error)
+
 	GetWorkspaceAPIV1WorkspaceCurrent(params *GetWorkspaceAPIV1WorkspaceCurrentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceCurrentOK, error)
 
 	GetWorkspaceAPIV1Workspaces(params *GetWorkspaceAPIV1WorkspacesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesOK, error)
@@ -142,6 +146,84 @@ func (a *Client) DeleteWorkspaceAPIV1WorkspaceWorkspaceID(params *DeleteWorkspac
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for DeleteWorkspaceAPIV1WorkspaceWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetWorkspaceAPIV1BootstrapWorkspaceName gets bootstrap status
+*/
+func (a *Client) GetWorkspaceAPIV1BootstrapWorkspaceName(params *GetWorkspaceAPIV1BootstrapWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1BootstrapWorkspaceNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWorkspaceAPIV1BootstrapWorkspaceNameParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetWorkspaceAPIV1BootstrapWorkspaceName",
+		Method:             "GET",
+		PathPattern:        "/workspace/api/v1/bootstrap/{workspace_name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWorkspaceAPIV1BootstrapWorkspaceNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetWorkspaceAPIV1BootstrapWorkspaceNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1BootstrapWorkspaceName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetWorkspaceAPIV1Organization lists all organizations
+*/
+func (a *Client) GetWorkspaceAPIV1Organization(params *GetWorkspaceAPIV1OrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1OrganizationCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWorkspaceAPIV1OrganizationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetWorkspaceAPIV1Organization",
+		Method:             "GET",
+		PathPattern:        "/workspace/api/v1/organization",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWorkspaceAPIV1OrganizationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetWorkspaceAPIV1OrganizationCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1Organization: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

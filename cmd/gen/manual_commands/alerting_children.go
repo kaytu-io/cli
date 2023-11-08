@@ -3,14 +3,15 @@ package manual_commands
 import (
 	"errors"
 	"fmt"
+	"strconv"
+	"strings"
+
 	"github.com/kaytu-io/cli-program/cmd/flags"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/alerting"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
 	"github.com/spf13/cobra"
-	"strconv"
-	"strings"
 )
 
 var POSTAlertingApiV1RuleCreateCmd = &cobra.Command{
@@ -226,10 +227,8 @@ func HandelOperatorInput(operator string) models.GithubComKaytuIoKaytuEnginePkgA
 				value, _ := strconv.Atoi(operatorArray[i+2])
 				operatorType := FixingOperatorType(operatorArray[i+1])
 				operatorStr = models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct{
-					OperatorInfo: &models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorInformation{
-						OperatorType: models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType(operatorType),
-						Value:        int64(value),
-					},
+					OperatorType: models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType(operatorType),
+					Value:        int64(value),
 				}
 
 				continue
@@ -241,10 +240,8 @@ func HandelOperatorInput(operator string) models.GithubComKaytuIoKaytuEnginePkgA
 					operatorType := FixingOperatorType(operatorArray[i+1])
 
 					op := models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct{
-						OperatorInfo: &models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorInformation{
-							OperatorType: models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType(operatorType),
-							Value:        int64(value),
-						},
+						OperatorType: models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType(operatorType),
+						Value:        int64(value),
 					}
 					if conditionType != "" {
 						operatorStr.Condition.ConditionType = models.GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionType(conditionType)
@@ -301,10 +298,8 @@ func compereParantes(textArray []string, textString string) models.GithubComKayt
 			operatorType := FixingOperatorType(textArray[i+1])
 
 			op := models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct{
-				OperatorInfo: &models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorInformation{
-					OperatorType: models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType(operatorType),
-					Value:        int64(value),
-				},
+				OperatorType: models.GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType(operatorType),
+				Value:        int64(value),
 			}
 			operatorStr.Condition.Operator = append(operatorStr.Condition.Operator, &op)
 

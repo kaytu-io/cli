@@ -92,6 +92,12 @@ type GetComplianceAPIV1InsightInsightIDTrendParams struct {
 	*/
 	InsightID string
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* StartTime.
 
 	   unix seconds for the start time of the trend
@@ -206,6 +212,17 @@ func (o *GetComplianceAPIV1InsightInsightIDTrendParams) SetInsightID(insightID s
 	o.InsightID = insightID
 }
 
+// WithResourceCollection adds the resourceCollection to the get compliance API v1 insight insight ID trend params
+func (o *GetComplianceAPIV1InsightInsightIDTrendParams) WithResourceCollection(resourceCollection []string) *GetComplianceAPIV1InsightInsightIDTrendParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get compliance API v1 insight insight ID trend params
+func (o *GetComplianceAPIV1InsightInsightIDTrendParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithStartTime adds the startTime to the get compliance API v1 insight insight ID trend params
 func (o *GetComplianceAPIV1InsightInsightIDTrendParams) WithStartTime(startTime *int64) *GetComplianceAPIV1InsightInsightIDTrendParams {
 	o.SetStartTime(startTime)
@@ -286,6 +303,17 @@ func (o *GetComplianceAPIV1InsightInsightIDTrendParams) WriteToRequest(r runtime
 		return err
 	}
 
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
 	if o.StartTime != nil {
 
 		// query param startTime
@@ -341,4 +369,21 @@ func (o *GetComplianceAPIV1InsightInsightIDTrendParams) bindParamConnectionID(fo
 	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
+}
+
+// bindParamGetComplianceAPIV1InsightInsightIDTrend binds the parameter resourceCollection
+func (o *GetComplianceAPIV1InsightInsightIDTrendParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

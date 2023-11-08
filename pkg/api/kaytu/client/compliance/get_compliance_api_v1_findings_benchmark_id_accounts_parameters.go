@@ -80,12 +80,6 @@ type GetComplianceAPIV1FindingsBenchmarkIDAccountsParams struct {
 	*/
 	ConnectionID []string
 
-	/* Connector.
-
-	   Connector type to filter by
-	*/
-	Connector []string
-
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -172,17 +166,6 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) SetConnectionID(co
 	o.ConnectionID = connectionID
 }
 
-// WithConnector adds the connector to the get compliance API v1 findings benchmark ID accounts params
-func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) WithConnector(connector []string) *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams {
-	o.SetConnector(connector)
-	return o
-}
-
-// SetConnector adds the connector to the get compliance API v1 findings benchmark ID accounts params
-func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) SetConnector(connector []string) {
-	o.Connector = connector
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -214,17 +197,6 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) WriteToRequest(r r
 
 		// query array param connectionId
 		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
-			return err
-		}
-	}
-
-	if o.Connector != nil {
-
-		// binding items for connector
-		joinedConnector := o.bindParamConnector(reg)
-
-		// query array param connector
-		if err := r.SetQueryParam("connector", joinedConnector...); err != nil {
 			return err
 		}
 	}
@@ -267,21 +239,4 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) bindParamConnectio
 	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
 
 	return connectionIDIS
-}
-
-// bindParamGetComplianceAPIV1FindingsBenchmarkIDAccounts binds the parameter connector
-func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsParams) bindParamConnector(formats strfmt.Registry) []string {
-	connectorIR := o.Connector
-
-	var connectorIC []string
-	for _, connectorIIR := range connectorIR { // explode []string
-
-		connectorIIV := connectorIIR // string as string
-		connectorIC = append(connectorIC, connectorIIV)
-	}
-
-	// items.CollectionFormat: "csv"
-	connectorIS := swag.JoinByFormat(connectorIC, "csv")
-
-	return connectorIS
 }

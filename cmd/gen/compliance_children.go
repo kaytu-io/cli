@@ -35,6 +35,7 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetCount(flags.ReadInt64Flag(cmd, "Count"))
 		req.SetField(flags.ReadStringFlag(cmd, "Field"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetSeverities(flags.ReadStringArrayFlag(cmd, "Severities"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldTopCount(req, auth)
@@ -45,6 +46,38 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-findings-benchmark-id-field-top-count", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_findings_benchmark_id_field_top_count] : %v", err)
+		}
+
+		return nil
+	},
+}
+
+var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
+	Use:   "benchmark-policies",
+	Short: ``,
+	Long:  ``,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
+		}
+
+		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams()
+
+		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+
+		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-policies", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_policies] : %v", err)
 		}
 
 		return nil
@@ -70,6 +103,7 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetTimeAt(flags.ReadInt64OptionalFlag(cmd, "TimeAt"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksSummary(req, auth)
@@ -88,8 +122,8 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 
 var GetComplianceApiV1FindingsBenchmarkIdAccountsCmd = &cobra.Command{
 	Use:   "get-accounts-findings",
-	Short: `Retrieving the number of findings field count by policies.`,
-	Long:  `Retrieving the number of findings field count by policies.`,
+	Short: `Retrieving list of accounts with their security score and severities findings count`,
+	Long:  `Retrieving list of accounts with their security score and severities findings count`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
 		if err != nil {
@@ -105,7 +139,6 @@ var GetComplianceApiV1FindingsBenchmarkIdAccountsCmd = &cobra.Command{
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
 		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDAccounts(req, auth)
 		if err != nil {
@@ -141,6 +174,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetTimeAt(flags.ReadInt64OptionalFlag(cmd, "TimeAt"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDSummary(req, auth)
@@ -151,38 +185,6 @@ var GetComplianceApiV1BenchmarksBenchmarkIdSummaryCmd = &cobra.Command{
 		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-summary", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_summary] : %v", err)
-		}
-
-		return nil
-	},
-}
-
-var GetComplianceApiV1BenchmarksBenchmarkIdTreeCmd = &cobra.Command{
-	Use:   "get-benchmark-tree",
-	Short: `Retrieving the benchmark tree, including all of its child benchmarks.`,
-	Long:  `Retrieving the benchmark tree, including all of its child benchmarks.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_tree] : %v", err)
-		}
-
-		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDTreeParams()
-
-		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
-
-		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTree(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_tree] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-benchmarks-benchmark-id-tree", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_compliance_api_v_1_benchmarks_benchmark_id_tree] : %v", err)
 		}
 
 		return nil
@@ -210,6 +212,7 @@ var GetComplianceApiV1BenchmarksBenchmarkIdTrendCmd = &cobra.Command{
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDTrend(req, auth)
@@ -247,6 +250,7 @@ var GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd = &cobra.Command{
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetField(flags.ReadStringFlag(cmd, "Field"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetSeverities(flags.ReadStringArrayFlag(cmd, "Severities"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1FindingsBenchmarkIDFieldCount(req, auth)
@@ -281,25 +285,16 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest{
 			Filters: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters{
-				ActiveOnly:     flags.ReadBooleanFlag(cmd, "Filters-ActiveOnly"),
-				BenchmarkID:    flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
-				ConnectionID:   flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
-				Connector:      flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
-				PolicyID:       flags.ReadStringArrayFlag(cmd, "Filters-PolicyID"),
-				ResourceID:     flags.ReadStringArrayFlag(cmd, "Filters-ResourceID"),
-				ResourceTypeID: flags.ReadStringArrayFlag(cmd, "Filters-ResourceTypeID"),
-				Severity:       flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
-				Status:         flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
-			},
-			Page: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIPage{
-				No:   flags.ReadInt64Flag(cmd, "Page-No"),
-				Size: flags.ReadInt64Flag(cmd, "Page-Size"),
-			},
-			Sorts: []*models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem{
-				{
-					Direction: models.GithubComKaytuIoKaytuEnginePkgComplianceAPIDirectionType(flags.ReadStringFlag(cmd, "Sorts-Direction")),
-					Field:     models.GithubComKaytuIoKaytuEnginePkgComplianceAPISortFieldType(flags.ReadStringFlag(cmd, "Sorts-Field")),
-				},
+				ActiveOnly:         flags.ReadBooleanFlag(cmd, "Filters-ActiveOnly"),
+				BenchmarkID:        flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
+				ConnectionID:       flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
+				Connector:          flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
+				PolicyID:           flags.ReadStringArrayFlag(cmd, "Filters-PolicyID"),
+				ResourceCollection: flags.ReadStringArrayFlag(cmd, "Filters-ResourceCollection"),
+				ResourceID:         flags.ReadStringArrayFlag(cmd, "Filters-ResourceID"),
+				ResourceTypeID:     flags.ReadStringArrayFlag(cmd, "Filters-ResourceTypeID"),
+				Severity:           flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
+				Status:             flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
 			},
 		})
 

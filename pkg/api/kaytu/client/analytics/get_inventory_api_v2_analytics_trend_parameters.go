@@ -104,6 +104,12 @@ type GetInventoryAPIV2AnalyticsTrendParams struct {
 	*/
 	MetricType *string
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* StartTime.
 
 	   timestamp for start in epoch seconds
@@ -246,6 +252,17 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) SetMetricType(metricType *string
 	o.MetricType = metricType
 }
 
+// WithResourceCollection adds the resourceCollection to the get inventory API v2 analytics trend params
+func (o *GetInventoryAPIV2AnalyticsTrendParams) WithResourceCollection(resourceCollection []string) *GetInventoryAPIV2AnalyticsTrendParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get inventory API v2 analytics trend params
+func (o *GetInventoryAPIV2AnalyticsTrendParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithStartTime adds the startTime to the get inventory API v2 analytics trend params
 func (o *GetInventoryAPIV2AnalyticsTrendParams) WithStartTime(startTime *int64) *GetInventoryAPIV2AnalyticsTrendParams {
 	o.SetStartTime(startTime)
@@ -371,6 +388,17 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
 	if o.StartTime != nil {
 
 		// query param startTime
@@ -471,6 +499,23 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) bindParamIds(formats strfmt.Regi
 	idsIS := swag.JoinByFormat(idsIC, "csv")
 
 	return idsIS
+}
+
+// bindParamGetInventoryAPIV2AnalyticsTrend binds the parameter resourceCollection
+func (o *GetInventoryAPIV2AnalyticsTrendParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }
 
 // bindParamGetInventoryAPIV2AnalyticsTrend binds the parameter tag

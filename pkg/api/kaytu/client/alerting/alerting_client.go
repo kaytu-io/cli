@@ -40,7 +40,13 @@ type ClientService interface {
 
 	GetAlertingAPIV1RuleRuleIDTrigger(params *GetAlertingAPIV1RuleRuleIDTriggerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1RuleRuleIDTriggerOK, error)
 
+	GetAlertingAPIV1TriggerList(params *GetAlertingAPIV1TriggerListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1TriggerListOK, error)
+
 	PostAlertingAPIV1ActionCreate(params *PostAlertingAPIV1ActionCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1ActionCreateOK, error)
+
+	PostAlertingAPIV1ActionJira(params *PostAlertingAPIV1ActionJiraParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1ActionJiraOK, error)
+
+	PostAlertingAPIV1ActionSlack(params *PostAlertingAPIV1ActionSlackParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1ActionSlackOK, error)
 
 	PostAlertingAPIV1RuleCreate(params *PostAlertingAPIV1RuleCreateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1RuleCreateOK, error)
 
@@ -257,6 +263,47 @@ func (a *Client) GetAlertingAPIV1RuleRuleIDTrigger(params *GetAlertingAPIV1RuleR
 }
 
 /*
+GetAlertingAPIV1TriggerList lists triggers
+
+returns list of all the triggers
+*/
+func (a *Client) GetAlertingAPIV1TriggerList(params *GetAlertingAPIV1TriggerListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAlertingAPIV1TriggerListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAlertingAPIV1TriggerListParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetAlertingAPIV1TriggerList",
+		Method:             "GET",
+		PathPattern:        "/alerting/api/v1/trigger/list",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAlertingAPIV1TriggerListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAlertingAPIV1TriggerListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetAlertingAPIV1TriggerList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 PostAlertingAPIV1ActionCreate creates action
 
 create an action by the specified input
@@ -294,6 +341,88 @@ func (a *Client) PostAlertingAPIV1ActionCreate(params *PostAlertingAPIV1ActionCr
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostAlertingAPIV1ActionCreate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostAlertingAPIV1ActionJira creates jira action
+
+Create action with jira url and header and body
+*/
+func (a *Client) PostAlertingAPIV1ActionJira(params *PostAlertingAPIV1ActionJiraParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1ActionJiraOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostAlertingAPIV1ActionJiraParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostAlertingAPIV1ActionJira",
+		Method:             "POST",
+		PathPattern:        "/alerting/api/v1/action/jira",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostAlertingAPIV1ActionJiraReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostAlertingAPIV1ActionJiraOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostAlertingAPIV1ActionJira: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostAlertingAPIV1ActionSlack creates slack action
+
+Create action with slack url and body
+*/
+func (a *Client) PostAlertingAPIV1ActionSlack(params *PostAlertingAPIV1ActionSlackParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAlertingAPIV1ActionSlackOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostAlertingAPIV1ActionSlackParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostAlertingAPIV1ActionSlack",
+		Method:             "POST",
+		PathPattern:        "/alerting/api/v1/action/slack",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostAlertingAPIV1ActionSlackReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostAlertingAPIV1ActionSlackOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostAlertingAPIV1ActionSlack: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

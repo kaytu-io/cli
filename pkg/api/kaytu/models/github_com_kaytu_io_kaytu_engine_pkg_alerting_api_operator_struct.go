@@ -21,8 +21,11 @@ type GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct struct {
 	// condition
 	Condition *GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionStruct `json:"condition,omitempty"`
 
-	// operator info
-	OperatorInfo *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorInformation `json:"operator_info,omitempty"`
+	// operator type
+	OperatorType GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorType `json:"operator_type,omitempty"`
+
+	// value
+	Value int64 `json:"value,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg alerting api operator struct
@@ -33,7 +36,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) Validate(forma
 		res = append(res, err)
 	}
 
-	if err := m.validateOperatorInfo(formats); err != nil {
+	if err := m.validateOperatorType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,20 +65,18 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) validateCondit
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) validateOperatorInfo(formats strfmt.Registry) error {
-	if swag.IsZero(m.OperatorInfo) { // not required
+func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) validateOperatorType(formats strfmt.Registry) error {
+	if swag.IsZero(m.OperatorType) { // not required
 		return nil
 	}
 
-	if m.OperatorInfo != nil {
-		if err := m.OperatorInfo.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operator_info")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("operator_info")
-			}
-			return err
+	if err := m.OperatorType.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("operator_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("operator_type")
 		}
+		return err
 	}
 
 	return nil
@@ -89,7 +90,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) ContextValidat
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateOperatorInfo(ctx, formats); err != nil {
+	if err := m.contextValidateOperatorType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -120,22 +121,19 @@ func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) contextValidat
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) contextValidateOperatorInfo(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgAlertingAPIOperatorStruct) contextValidateOperatorType(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.OperatorInfo != nil {
+	if swag.IsZero(m.OperatorType) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.OperatorInfo) { // not required
-			return nil
+	if err := m.OperatorType.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("operator_type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("operator_type")
 		}
-
-		if err := m.OperatorInfo.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("operator_info")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("operator_info")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil

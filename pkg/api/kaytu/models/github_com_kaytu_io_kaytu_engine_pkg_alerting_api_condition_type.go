@@ -33,8 +33,14 @@ const (
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeAND captures enum value "AND"
 	GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeAND GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionType = "AND"
 
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeAnd captures enum value "and"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeAnd GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionType = "and"
+
 	// GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeOR captures enum value "OR"
 	GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeOR GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionType = "OR"
+
+	// GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeOr captures enum value "or"
+	GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionTypeOr GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionType = "or"
 )
 
 // for schema
@@ -42,7 +48,7 @@ var githubComKaytuIoKaytuEnginePkgAlertingApiConditionTypeEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgAlertingAPIConditionType
-	if err := json.Unmarshal([]byte(`["AND","OR"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["AND","and","OR","or"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

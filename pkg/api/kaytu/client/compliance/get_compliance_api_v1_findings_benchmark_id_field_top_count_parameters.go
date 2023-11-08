@@ -98,6 +98,12 @@ type GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams struct {
 	*/
 	Field string
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* Severities.
 
 	   Severities to filter by
@@ -223,6 +229,17 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetField(fiel
 	o.Field = field
 }
 
+// WithResourceCollection adds the resourceCollection to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithResourceCollection(resourceCollection []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get compliance API v1 findings benchmark ID field top count params
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithSeverities adds the severities to the get compliance API v1 findings benchmark ID field top count params
 func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WithSeverities(severities []string) *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams {
 	o.SetSeverities(severities)
@@ -288,6 +305,17 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) WriteToReques
 	// path param field
 	if err := r.SetPathParam("field", o.Field); err != nil {
 		return err
+	}
+
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
 	}
 
 	if o.Severities != nil {
@@ -356,6 +384,23 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) bindParamConn
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter resourceCollection
+func (o *GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }
 
 // bindParamGetComplianceAPIV1FindingsBenchmarkIDFieldTopCount binds the parameter severities

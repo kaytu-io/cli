@@ -92,6 +92,12 @@ type GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams struct {
 	*/
 	EndTime *int64
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* StartTime.
 
 	   timestamp for start of the chart in epoch seconds
@@ -206,6 +212,17 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) SetEndTime(endTime 
 	o.EndTime = endTime
 }
 
+// WithResourceCollection adds the resourceCollection to the get compliance API v1 benchmarks benchmark ID trend params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) WithResourceCollection(resourceCollection []string) *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get compliance API v1 benchmarks benchmark ID trend params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
+}
+
 // WithStartTime adds the startTime to the get compliance API v1 benchmarks benchmark ID trend params
 func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) WithStartTime(startTime *int64) *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams {
 	o.SetStartTime(startTime)
@@ -277,6 +294,17 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) WriteToRequest(r ru
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
 		}
 	}
 
@@ -352,4 +380,21 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) bindParamConnector(
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetComplianceAPIV1BenchmarksBenchmarkIDTrend binds the parameter resourceCollection
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

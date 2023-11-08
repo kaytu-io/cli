@@ -45,7 +45,7 @@ GetComplianceAPIV1FindingsBenchmarkIDAccountsOK describes a response with status
 OK
 */
 type GetComplianceAPIV1FindingsBenchmarkIDAccountsOK struct {
-	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse
+	Payload *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetAccountsFindingsSummaryResponse
 }
 
 // IsSuccess returns true when this get compliance Api v1 findings benchmark Id accounts o k response has a 2xx status code
@@ -86,13 +86,13 @@ func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsOK) String() string {
 	return fmt.Sprintf("[GET /compliance/api/v1/findings/{benchmarkId}/accounts][%d] getComplianceApiV1FindingsBenchmarkIdAccountsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse {
+func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetAccountsFindingsSummaryResponse {
 	return o.Payload
 }
 
 func (o *GetComplianceAPIV1FindingsBenchmarkIDAccountsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetTopFieldResponse)
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetAccountsFindingsSummaryResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

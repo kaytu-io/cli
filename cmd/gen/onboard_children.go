@@ -65,6 +65,7 @@ var PostOnboardApiV1SourceAwsCmd = &cobra.Command{
 			Config: &models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
 				AccessKey:            flags.ReadStringOptionalFlag(cmd, "Config-AccessKey"),
 				AccountID:            flags.ReadStringFlag(cmd, "Config-AccountID"),
+				AssumeAdminRoleName:  flags.ReadStringFlag(cmd, "Config-AssumeAdminRoleName"),
 				AssumeRoleName:       flags.ReadStringFlag(cmd, "Config-AssumeRoleName"),
 				AssumeRolePolicyName: flags.ReadStringFlag(cmd, "Config-AssumeRolePolicyName"),
 				ExternalID:           flags.ReadStringFlag(cmd, "Config-ExternalID"),

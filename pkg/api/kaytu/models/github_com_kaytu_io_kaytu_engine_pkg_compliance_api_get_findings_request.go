@@ -7,12 +7,10 @@ package models
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest github com kaytu io kaytu engine pkg compliance api get findings request
@@ -22,13 +20,6 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest struct {
 
 	// filters
 	Filters *GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters `json:"filters,omitempty"`
-
-	// page
-	// Required: true
-	Page *GithubComKaytuIoKaytuEnginePkgComplianceAPIPage `json:"page"`
-
-	// sorts
-	Sorts []*GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingSortItem `json:"sorts"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api get findings request
@@ -36,14 +27,6 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) Validate
 	var res []error
 
 	if err := m.validateFilters(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePage(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSorts(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -72,65 +55,11 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) validate
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) validatePage(formats strfmt.Registry) error {
-
-	if err := validate.Required("page", "body", m.Page); err != nil {
-		return err
-	}
-
-	if m.Page != nil {
-		if err := m.Page.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("page")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("page")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) validateSorts(formats strfmt.Registry) error {
-	if swag.IsZero(m.Sorts) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Sorts); i++ {
-		if swag.IsZero(m.Sorts[i]) { // not required
-			continue
-		}
-
-		if m.Sorts[i] != nil {
-			if err := m.Sorts[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("sorts" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("sorts" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 // ContextValidate validate this github com kaytu io kaytu engine pkg compliance api get findings request based on the context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidatePage(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSorts(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -156,48 +85,6 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) contextV
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) contextValidatePage(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Page != nil {
-
-		if err := m.Page.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("page")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("page")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest) contextValidateSorts(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Sorts); i++ {
-
-		if m.Sorts[i] != nil {
-
-			if swag.IsZero(m.Sorts[i]) { // not required
-				return nil
-			}
-
-			if err := m.Sorts[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("sorts" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("sorts" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil
