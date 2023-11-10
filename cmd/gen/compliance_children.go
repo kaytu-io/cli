@@ -104,6 +104,7 @@ var GetComplianceApiV1BenchmarksSummaryCmd = &cobra.Command{
 		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 		req.SetConnector(flags.ReadStringArrayFlag(cmd, "Connector"))
 		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
+		req.SetTag(flags.ReadStringArrayFlag(cmd, "Tag"))
 		req.SetTimeAt(flags.ReadInt64OptionalFlag(cmd, "TimeAt"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksSummary(req, auth)
@@ -285,7 +286,6 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest{
 			Filters: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters{
-				ActiveOnly:         flags.ReadBooleanFlag(cmd, "Filters-ActiveOnly"),
 				BenchmarkID:        flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
 				ConnectionID:       flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),
 				Connector:          flags.ReadEnumArrayFlag[models.SourceType](cmd, "Filters-Connector"),
@@ -296,6 +296,8 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 				Severity:           flags.ReadStringArrayFlag(cmd, "Filters-Severity"),
 				Status:             flags.ReadEnumArrayFlag[models.TypesComplianceResult](cmd, "Filters-Status"),
 			},
+			Limit: flags.ReadInt64Flag(cmd, "Limit"),
+			Sort:  flags.ReadMapStringFlag(cmd, "Sort"),
 		})
 
 		resp, err := client.Compliance.PostComplianceAPIV1Findings(req, auth)

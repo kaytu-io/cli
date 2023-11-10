@@ -91,6 +91,9 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// Example: low
 	Severity TypesFindingSeverity `json:"severity,omitempty"`
 
+	// sort key
+	SortKey []interface{} `json:"sortKey"`
+
 	// state active
 	// Example: true
 	StateActive bool `json:"stateActive,omitempty"`

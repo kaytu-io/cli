@@ -39,6 +39,7 @@ func init() {
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
+	GetComplianceApiV1BenchmarksSummaryCmd.Flags().StringArray("tag", nil, "Key-Value tags in key=value format to filter by")
 	GetComplianceApiV1BenchmarksSummaryCmd.Flags().Int64("time-at", 0, "timestamp for values in epoch seconds")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1FindingsBenchmarkIdAccountsCmd)
@@ -83,8 +84,7 @@ func init() {
 
 	ComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
 
-	PostComplianceApiV1FindingsCmd.Flags().Bool("filters-active-only", false, "")
-	PostComplianceApiV1FindingsCmd.MarkFlagRequired("filters-active-only")
+	PostComplianceApiV1FindingsCmd.Flags().String("after-sort-key", "", "")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-benchmark-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-connection-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().String("filters-connector", "", "")
@@ -94,6 +94,11 @@ func init() {
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-resource-type-id", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().StringArray("filters-severity", nil, "")
 	PostComplianceApiV1FindingsCmd.Flags().String("filters-status", "", "")
+
+	PostComplianceApiV1FindingsCmd.Flags().Int64("limit", 0, "")
+	PostComplianceApiV1FindingsCmd.MarkFlagRequired("limit")
+	PostComplianceApiV1FindingsCmd.Flags().String("sort", "", "")
+	PostComplianceApiV1FindingsCmd.MarkFlagRequired("sort")
 
 	ComplianceCmd.AddCommand(PostComplianceApiV1AiPolicyPolicyIdRemediationCmd)
 

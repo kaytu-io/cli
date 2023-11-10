@@ -30,32 +30,32 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetCostEstimatorAPIV1CostAwsResourceIDResourceType(params *GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeOK, error)
+	GetCostEstimatorAPIV1CostAwsResourceTypeResourceID(params *GetCostEstimatorAPIV1CostAwsResourceTypeResourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAwsResourceTypeResourceIDOK, error)
 
-	GetCostEstimatorAPIV1CostAzureResourceIDResourceType(params *GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeOK, error)
+	GetCostEstimatorAPIV1CostAzureResourceTypeResourceID(params *GetCostEstimatorAPIV1CostAzureResourceTypeResourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAzureResourceTypeResourceIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-GetCostEstimatorAPIV1CostAwsResourceIDResourceType gets a w s cost
+GetCostEstimatorAPIV1CostAwsResourceTypeResourceID gets a w s cost
 
 Get AWS cost for each resource
 */
-func (a *Client) GetCostEstimatorAPIV1CostAwsResourceIDResourceType(params *GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeOK, error) {
+func (a *Client) GetCostEstimatorAPIV1CostAwsResourceTypeResourceID(params *GetCostEstimatorAPIV1CostAwsResourceTypeResourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAwsResourceTypeResourceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetCostEstimatorAPIV1CostAwsResourceIDResourceTypeParams()
+		params = NewGetCostEstimatorAPIV1CostAwsResourceTypeResourceIDParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetCostEstimatorAPIV1CostAwsResourceIDResourceType",
+		ID:                 "GetCostEstimatorAPIV1CostAwsResourceTypeResourceID",
 		Method:             "GET",
-		PathPattern:        "/cost_estimator/api/v1/cost/aws/{resourceId}/{resourceType}",
+		PathPattern:        "/cost_estimator/api/v1/cost/aws/{resourceType}/{resourceId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeReader{formats: a.formats},
+		Reader:             &GetCostEstimatorAPIV1CostAwsResourceTypeResourceIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -68,35 +68,35 @@ func (a *Client) GetCostEstimatorAPIV1CostAwsResourceIDResourceType(params *GetC
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetCostEstimatorAPIV1CostAwsResourceIDResourceTypeOK)
+	success, ok := result.(*GetCostEstimatorAPIV1CostAwsResourceTypeResourceIDOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetCostEstimatorAPIV1CostAwsResourceIDResourceType: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetCostEstimatorAPIV1CostAwsResourceTypeResourceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-GetCostEstimatorAPIV1CostAzureResourceIDResourceType gets azure cost
+GetCostEstimatorAPIV1CostAzureResourceTypeResourceID gets azure cost
 
 Get Azure cost for each resource
 */
-func (a *Client) GetCostEstimatorAPIV1CostAzureResourceIDResourceType(params *GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeOK, error) {
+func (a *Client) GetCostEstimatorAPIV1CostAzureResourceTypeResourceID(params *GetCostEstimatorAPIV1CostAzureResourceTypeResourceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCostEstimatorAPIV1CostAzureResourceTypeResourceIDOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetCostEstimatorAPIV1CostAzureResourceIDResourceTypeParams()
+		params = NewGetCostEstimatorAPIV1CostAzureResourceTypeResourceIDParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "GetCostEstimatorAPIV1CostAzureResourceIDResourceType",
+		ID:                 "GetCostEstimatorAPIV1CostAzureResourceTypeResourceID",
 		Method:             "GET",
-		PathPattern:        "/cost_estimator/api/v1/cost/azure/{resourceId}/{resourceType}",
+		PathPattern:        "/cost_estimator/api/v1/cost/azure/{resourceType}/{resourceId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeReader{formats: a.formats},
+		Reader:             &GetCostEstimatorAPIV1CostAzureResourceTypeResourceIDReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -109,13 +109,13 @@ func (a *Client) GetCostEstimatorAPIV1CostAzureResourceIDResourceType(params *Ge
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetCostEstimatorAPIV1CostAzureResourceIDResourceTypeOK)
+	success, ok := result.(*GetCostEstimatorAPIV1CostAzureResourceTypeResourceIDOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetCostEstimatorAPIV1CostAzureResourceIDResourceType: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for GetCostEstimatorAPIV1CostAzureResourceTypeResourceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

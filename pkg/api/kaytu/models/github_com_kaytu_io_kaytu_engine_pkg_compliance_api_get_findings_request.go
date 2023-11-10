@@ -18,8 +18,18 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.GetFindingsRequest
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest struct {
 
+	// after sort key
+	AfterSortKey []interface{} `json:"afterSortKey"`
+
 	// filters
 	Filters *GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters `json:"filters,omitempty"`
+
+	// limit
+	// Example: 100
+	Limit int64 `json:"limit,omitempty"`
+
+	// sort
+	Sort map[string]string `json:"sort,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api get findings request

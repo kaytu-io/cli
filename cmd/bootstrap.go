@@ -17,8 +17,9 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/sts"
 	"github.com/kaytu-io/cli-program/pkg"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu"
-	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/onboard"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/workspace"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/models"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 	"strings"
 	"time"
@@ -275,13 +276,44 @@ var bootstrapCmd = &cobra.Command{
 var awsCmd = &cobra.Command{
 	Use: "aws",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		kaytuClient, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		config, err := pkg.GetConfig(cmd, false)
+		if err != nil {
+			return err
+		}
+		kaytuClient, auth := kaytu.GetKaytuAuthClientWithConfig("kaytu", config.AccessToken)
 		if err != nil {
 			if errors.Is(err, pkg.ExpiredSession) {
 				fmt.Println(err.Error())
 				return nil
 			}
 			return err
+		}
+
+		resp, err := kaytuClient.Workspace.GetWorkspaceAPIV1Workspaces(workspace.NewGetWorkspaceAPIV1WorkspacesParams(), auth)
+		if err != nil {
+			return fmt.Errorf("[bootstrap-aws]: %v", err)
+		}
+		response := resp.GetPayload()
+		var workspaceName string
+		if len(response) > 1 {
+			var items []string
+			for _, r := range response {
+				items = append(items, r.Name)
+			}
+			fmt.Println("\n")
+			prompt := promptui.Select{
+				Label: "Please select the bootstrapping workspace",
+				Items: items,
+			}
+			_, result, err := prompt.Run()
+			if err != nil {
+				return fmt.Errorf("[bootstrap-aws]: %v", err)
+			}
+			workspaceName = result
+		} else if len(response) == 0 {
+			return fmt.Errorf("no workspace found")
+		} else {
+			workspaceName = response[0].Name
 		}
 
 		var cfg aws.Config
@@ -328,21 +360,32 @@ var awsCmd = &cobra.Command{
 			return err
 		}
 
-		fmt.Println("* onboarding into kaytu")
-		req := onboard.NewPostOnboardAPIV1CredentialParams()
-		cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
-			AccessKey:           key.AccessKey.AccessKeyId,
-			SecretKey:           key.AccessKey.SecretAccessKey,
-			AssumeAdminRoleName: adminARN,
-			AssumeRoleName:      arn,
-		}
-		req.SetConfig(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateCredentialRequest{
-			Config:     cnf,
-			SourceType: models.SourceTypeAWS,
-		})
-		_, err = kaytuClient.Onboard.PostOnboardAPIV1Credential(req, auth)
-		if err != nil {
-			return err
+		for i := 0; i < 6; i++ {
+			time.Sleep(5 * time.Second)
+
+			fmt.Println("* onboarding into kaytu")
+			req := workspace.NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
+			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
+				AccessKey:           key.AccessKey.AccessKeyId,
+				SecretKey:           key.AccessKey.SecretAccessKey,
+				AssumeAdminRoleName: adminARN,
+				AssumeRoleName:      arn,
+			}
+			req.SetWorkspaceName(workspaceName)
+			req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{
+				Config:        cnf,
+				ConnectorType: models.SourceTypeAWS,
+			})
+			_, err = kaytuClient.Workspace.PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(req, auth)
+
+			if err != nil {
+				if i < 5 {
+					fmt.Printf("Failure while onboarding: %v\nRetrying in a bit ...", err)
+					continue
+				}
+				return err
+			}
+			break
 		}
 		fmt.Println("* finished :)")
 		return nil

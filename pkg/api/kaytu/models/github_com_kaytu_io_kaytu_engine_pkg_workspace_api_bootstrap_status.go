@@ -38,6 +38,9 @@ const (
 
 	// GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusWaitingForJobs captures enum value "WaitingForJobs"
 	GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusWaitingForJobs GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatus = "WaitingForJobs"
+
+	// GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusFinished captures enum value "Finished"
+	GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusFinished GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatus = "Finished"
 )
 
 // for schema
@@ -45,7 +48,7 @@ var githubComKaytuIoKaytuEnginePkgWorkspaceApiBootstrapStatusEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatus
-	if err := json.Unmarshal([]byte(`["OnboardConnection","CreatingWorkspace","WaitingForJobs"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["OnboardConnection","CreatingWorkspace","WaitingForJobs","Finished"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

@@ -36,6 +36,8 @@ type ClientService interface {
 
 	GetWorkspaceAPIV1BootstrapWorkspaceName(params *GetWorkspaceAPIV1BootstrapWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1BootstrapWorkspaceNameOK, error)
 
+	GetWorkspaceAPIV1BootstrapWorkspaceNameFinish(params *GetWorkspaceAPIV1BootstrapWorkspaceNameFinishParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1BootstrapWorkspaceNameFinishOK, error)
+
 	GetWorkspaceAPIV1Organization(params *GetWorkspaceAPIV1OrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1OrganizationCreated, error)
 
 	GetWorkspaceAPIV1WorkspaceCurrent(params *GetWorkspaceAPIV1WorkspaceCurrentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspaceCurrentOK, error)
@@ -49,6 +51,8 @@ type ClientService interface {
 	GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error)
 
 	GetWorkspaceAPIV1WorkspacesWorkspaceID(params *GetWorkspaceAPIV1WorkspacesWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesWorkspaceIDOK, error)
+
+	PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(params *PostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1BootstrapWorkspaceNameCredentialOK, error)
 
 	PostWorkspaceAPIV1Organization(params *PostWorkspaceAPIV1OrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1OrganizationCreated, error)
 
@@ -185,6 +189,45 @@ func (a *Client) GetWorkspaceAPIV1BootstrapWorkspaceName(params *GetWorkspaceAPI
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1BootstrapWorkspaceName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetWorkspaceAPIV1BootstrapWorkspaceNameFinish finishes bootstrap
+*/
+func (a *Client) GetWorkspaceAPIV1BootstrapWorkspaceNameFinish(params *GetWorkspaceAPIV1BootstrapWorkspaceNameFinishParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1BootstrapWorkspaceNameFinishOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWorkspaceAPIV1BootstrapWorkspaceNameFinishParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetWorkspaceAPIV1BootstrapWorkspaceNameFinish",
+		Method:             "GET",
+		PathPattern:        "/workspace/api/v1/bootstrap/{workspace_name}/finish",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWorkspaceAPIV1BootstrapWorkspaceNameFinishReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetWorkspaceAPIV1BootstrapWorkspaceNameFinishOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1BootstrapWorkspaceNameFinish: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -464,6 +507,45 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesWorkspaceID(params *GetWorkspaceAPIV
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspacesWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostWorkspaceAPIV1BootstrapWorkspaceNameCredential adds credential for workspace to be onboarded
+*/
+func (a *Client) PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(params *PostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1BootstrapWorkspaceNameCredentialOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostWorkspaceAPIV1BootstrapWorkspaceNameCredential",
+		Method:             "POST",
+		PathPattern:        "/workspace/api/v1/bootstrap/{workspace_name}/credential",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostWorkspaceAPIV1BootstrapWorkspaceNameCredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostWorkspaceAPIV1BootstrapWorkspaceNameCredentialOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostWorkspaceAPIV1BootstrapWorkspaceNameCredential: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -19,9 +19,6 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.FindingFilters
 type GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters struct {
 
-	// active only
-	ActiveOnly bool `json:"activeOnly,omitempty"`
-
 	// Benchmark ID
 	// Example: ["azure_cis_v140"]
 	BenchmarkID []string `json:"benchmarkID"`
@@ -54,7 +51,7 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters struct {
 	// Example: ["low"]
 	Severity []string `json:"severity"`
 
-	// Compliance result status
+	// status
 	// Example: ["alarm"]
 	Status []TypesComplianceResult `json:"status"`
 }

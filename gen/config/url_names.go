@@ -60,6 +60,7 @@ var UrlNames = map[string]string{
 	"get_compliance_api_v1_findings_benchmark_id_field_count":            "get-field-findings-count",
 	"get_compliance_api_v1_findings_benchmark_id_accounts":               "get-accounts-findings",
 	"get_compliance_api_v1_findings_benchmark_id_services":               "-",
+	"get_compliance_api_v1_metadata_tag_compliance":                      "-",
 
 	// gpt
 	"post_ai_api_v1_gpt_run": "_",
@@ -267,6 +268,8 @@ var UrlNames = map[string]string{
 	"post_workspace_api_v1_organization":                        "create-organization",
 	"get_workspace_api_v1_bootstrap_workspace_name":             "-",
 	"get_workspace_api_v1_organization":                         "-",
+	"post_workspace_api_v1_bootstrap_workspace_name_credential": "-",
+	"get_workspace_api_v1_bootstrap_workspace_name_finish":      "-",
 
 	// analytics
 	"get_inventory_api_v2_analytics_trend":               "get-assets-trend",
@@ -299,6 +302,8 @@ var UrlNames = map[string]string{
 
 	"get_cost_estimator_api_v1_cost_aws_resource_id_resource_type":   "-",
 	"get_cost_estimator_api_v1_cost_azure_resource_id_resource_type": "-",
+	"get_cost_estimator_api_v1_cost_aws_resource_type_resource_id":   "-",
+	"get_cost_estimator_api_v1_cost_azure_resource_type_resource_id": "-",
 }
 
 // add preferred services instead of the main ones

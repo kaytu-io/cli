@@ -86,6 +86,12 @@ type GetComplianceAPIV1BenchmarksSummaryParams struct {
 	*/
 	ResourceCollection []string
 
+	/* Tag.
+
+	   Key-Value tags in key=value format to filter by
+	*/
+	Tag []string
+
 	/* TimeAt.
 
 	   timestamp for values in epoch seconds
@@ -189,6 +195,17 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetResourceCollection(resour
 	o.ResourceCollection = resourceCollection
 }
 
+// WithTag adds the tag to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithTag(tag []string) *GetComplianceAPIV1BenchmarksSummaryParams {
+	o.SetTag(tag)
+	return o
+}
+
+// SetTag adds the tag to the get compliance API v1 benchmarks summary params
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) SetTag(tag []string) {
+	o.Tag = tag
+}
+
 // WithTimeAt adds the timeAt to the get compliance API v1 benchmarks summary params
 func (o *GetComplianceAPIV1BenchmarksSummaryParams) WithTimeAt(timeAt *int64) *GetComplianceAPIV1BenchmarksSummaryParams {
 	o.SetTimeAt(timeAt)
@@ -248,6 +265,17 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) WriteToRequest(r runtime.Cli
 
 		// query array param resourceCollection
 		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
+	if o.Tag != nil {
+
+		// binding items for tag
+		joinedTag := o.bindParamTag(reg)
+
+		// query array param tag
+		if err := r.SetQueryParam("tag", joinedTag...); err != nil {
 			return err
 		}
 	}
@@ -341,4 +369,21 @@ func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamResourceCollection(
 	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
 
 	return resourceCollectionIS
+}
+
+// bindParamGetComplianceAPIV1BenchmarksSummary binds the parameter tag
+func (o *GetComplianceAPIV1BenchmarksSummaryParams) bindParamTag(formats strfmt.Registry) []string {
+	tagIR := o.Tag
+
+	var tagIC []string
+	for _, tagIIR := range tagIR { // explode []string
+
+		tagIIV := tagIIR // string as string
+		tagIC = append(tagIC, tagIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	tagIS := swag.JoinByFormat(tagIC, "csv")
+
+	return tagIS
 }

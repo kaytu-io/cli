@@ -45,21 +45,26 @@ var loginCmd = &cobra.Command{
 			}
 			response := resp.GetPayload()
 
-			var items []string
-			for _, r := range response {
-				items = append(items, r.Name)
+			if len(response) > 1 {
+				var items []string
+				for _, r := range response {
+					items = append(items, r.Name)
+				}
+				fmt.Println("\n")
+				prompt := promptui.Select{
+					Label: "Please select the default workspace",
+					Items: items,
+				}
+				_, result, err := prompt.Run()
+				if err != nil {
+					return fmt.Errorf("[login-defaultWS]: %v", err)
+				}
+				workspaceName = result
+			} else if len(response) == 0 {
+				return fmt.Errorf("no workspace found")
+			} else {
+				workspaceName = response[0].Name
 			}
-			fmt.Println("\n")
-			prompt := promptui.Select{
-				Label: "Please select the default workspace",
-				Items: items,
-			}
-			_, result, err := prompt.Run()
-			if err != nil {
-				return fmt.Errorf("[login-defaultWS]: %v", err)
-			}
-
-			workspaceName = result
 		}
 
 		err = pkg.SetConfig(pkg.Config{
