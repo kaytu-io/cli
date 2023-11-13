@@ -70,10 +70,12 @@ func CreateStack(rootID string, cfg aws.Config) (string, string, error) {
 		StackName: aws.String("Kaytu-Org-Deploy"),
 	})
 	if err != nil {
-		return "", "", err
+		if !strings.Contains(err.Error(), "does not exist") {
+			return "", "", err
+		}
 	}
 
-	if len(stacks.Stacks) == 0 {
+	if stacks == nil || len(stacks.Stacks) == 0 {
 		_, err := client.CreateStack(context.Background(), &cloudformation.CreateStackInput{
 			StackName:                   aws.String("Kaytu-Org-Deploy"),
 			Capabilities:                []types.Capability{types.CapabilityCapabilityNamedIam},
@@ -244,11 +246,11 @@ func CreateAndAssignPolicies(cfg aws.Config) error {
 	fmt.Println("* kaytu policy created")
 
 	policyArns := []string{
-		"arn:aws:iam::aws:policy/AWSOrganizationsReadOnlyAccess",
-		"arn:aws:iam::aws:policy/AWSBillingReadOnlyAccess",
-		"arn:aws:iam::aws:policy/AWSBudgetsReadOnlyAccess",
-		"arn:aws:iam::aws:policy/SecurityAudit",
-		"arn:aws:iam::aws:policy/ReadOnlyAccess",
+		//"arn:aws:iam::aws:policy/AWSOrganizationsReadOnlyAccess",
+		//"arn:aws:iam::aws:policy/AWSBillingReadOnlyAccess",
+		//"arn:aws:iam::aws:policy/AWSBudgetsReadOnlyAccess",
+		//"arn:aws:iam::aws:policy/SecurityAudit",
+		//"arn:aws:iam::aws:policy/ReadOnlyAccess",
 		customPolicyArn,
 	}
 
