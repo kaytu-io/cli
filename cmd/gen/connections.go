@@ -27,6 +27,7 @@ func init() {
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Bool("need-resource-count", false, "for quicker inquiry send this parameter as false, default: true")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("page-number", 0, "page number - default is 1")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().Int64("page-size", 0, "page size - default is 20")
+	GetOnboardApiV1ConnectionsSummaryCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("sort-by", "", "column to sort by - default is cost")
 	GetOnboardApiV1ConnectionsSummaryCmd.Flags().String("start-time", "", "start time in unix seconds")
 

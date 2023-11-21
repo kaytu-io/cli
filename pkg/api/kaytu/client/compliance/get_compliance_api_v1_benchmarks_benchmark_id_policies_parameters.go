@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams creates a new GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams object,
@@ -66,6 +67,18 @@ type GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams struct {
 	   Benchmark ID
 	*/
 	BenchmarkID string
+
+	/* ConnectionGroup.
+
+	   Connection groups to filter by
+	*/
+	ConnectionGroup []string
+
+	/* ConnectionID.
+
+	   Connection IDs to filter by
+	*/
+	ConnectionID []string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,6 +144,28 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) SetBenchmarkID(b
 	o.BenchmarkID = benchmarkID
 }
 
+// WithConnectionGroup adds the connectionGroup to the get compliance API v1 benchmarks benchmark ID policies params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) WithConnectionGroup(connectionGroup []string) *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams {
+	o.SetConnectionGroup(connectionGroup)
+	return o
+}
+
+// SetConnectionGroup adds the connectionGroup to the get compliance API v1 benchmarks benchmark ID policies params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) SetConnectionGroup(connectionGroup []string) {
+	o.ConnectionGroup = connectionGroup
+}
+
+// WithConnectionID adds the connectionID to the get compliance API v1 benchmarks benchmark ID policies params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) WithConnectionID(connectionID []string) *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams {
+	o.SetConnectionID(connectionID)
+	return o
+}
+
+// SetConnectionID adds the connectionId to the get compliance API v1 benchmarks benchmark ID policies params
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) SetConnectionID(connectionID []string) {
+	o.ConnectionID = connectionID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -144,8 +179,64 @@ func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) WriteToRequest(r
 		return err
 	}
 
+	if o.ConnectionGroup != nil {
+
+		// binding items for connectionGroup
+		joinedConnectionGroup := o.bindParamConnectionGroup(reg)
+
+		// query array param connectionGroup
+		if err := r.SetQueryParam("connectionGroup", joinedConnectionGroup...); err != nil {
+			return err
+		}
+	}
+
+	if o.ConnectionID != nil {
+
+		// binding items for connectionId
+		joinedConnectionID := o.bindParamConnectionID(reg)
+
+		// query array param connectionId
+		if err := r.SetQueryParam("connectionId", joinedConnectionID...); err != nil {
+			return err
+		}
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamGetComplianceAPIV1BenchmarksBenchmarkIDPolicies binds the parameter connectionGroup
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) bindParamConnectionGroup(formats strfmt.Registry) []string {
+	connectionGroupIR := o.ConnectionGroup
+
+	var connectionGroupIC []string
+	for _, connectionGroupIIR := range connectionGroupIR { // explode []string
+
+		connectionGroupIIV := connectionGroupIIR // string as string
+		connectionGroupIC = append(connectionGroupIC, connectionGroupIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionGroupIS := swag.JoinByFormat(connectionGroupIC, "csv")
+
+	return connectionGroupIS
+}
+
+// bindParamGetComplianceAPIV1BenchmarksBenchmarkIDPolicies binds the parameter connectionId
+func (o *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams) bindParamConnectionID(formats strfmt.Registry) []string {
+	connectionIDIR := o.ConnectionID
+
+	var connectionIDIC []string
+	for _, connectionIDIIR := range connectionIDIR { // explode []string
+
+		connectionIDIIV := connectionIDIIR // string as string
+		connectionIDIC = append(connectionIDIC, connectionIDIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	connectionIDIS := swag.JoinByFormat(connectionIDIC, "csv")
+
+	return connectionIDIS
 }

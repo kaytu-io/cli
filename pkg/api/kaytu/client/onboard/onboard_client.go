@@ -44,6 +44,8 @@ type ClientService interface {
 
 	GetOnboardAPIV1SourceSourceIDHealthcheck(params *GetOnboardAPIV1SourceSourceIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDHealthcheckOK, error)
 
+	PostOnboardAPIV1ConnectionsConnectionIDState(params *PostOnboardAPIV1ConnectionsConnectionIDStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1ConnectionsConnectionIDStateOK, error)
+
 	PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialOK, error)
 
 	PostOnboardAPIV1CredentialCredentialIDAutoonboard(params *PostOnboardAPIV1CredentialCredentialIDAutoonboardParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialCredentialIDAutoonboardOK, error)
@@ -341,6 +343,45 @@ func (a *Client) GetOnboardAPIV1SourceSourceIDHealthcheck(params *GetOnboardAPIV
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1SourceSourceIDHealthcheck: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostOnboardAPIV1ConnectionsConnectionIDState changes connection lifecycle state
+*/
+func (a *Client) PostOnboardAPIV1ConnectionsConnectionIDState(params *PostOnboardAPIV1ConnectionsConnectionIDStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1ConnectionsConnectionIDStateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostOnboardAPIV1ConnectionsConnectionIDStateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostOnboardAPIV1ConnectionsConnectionIDState",
+		Method:             "POST",
+		PathPattern:        "/onboard/api/v1/connections/{connectionId}/state",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostOnboardAPIV1ConnectionsConnectionIDStateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostOnboardAPIV1ConnectionsConnectionIDStateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostOnboardAPIV1ConnectionsConnectionIDState: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

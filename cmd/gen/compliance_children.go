@@ -69,6 +69,8 @@ var GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd = &cobra.Command{
 		req := compliance.NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams()
 
 		req.SetBenchmarkID(flags.ReadStringFlag(cmd, "BenchmarkID"))
+		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
+		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
 
 		resp, err := client.Compliance.GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(req, auth)
 		if err != nil {

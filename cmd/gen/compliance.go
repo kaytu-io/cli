@@ -32,6 +32,8 @@ func init() {
 
 	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.MarkFlagRequired("benchmark-id")
+	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.Flags().StringArray("connection-group", nil, "Connection groups to filter by ")
+	GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksSummaryCmd)
 

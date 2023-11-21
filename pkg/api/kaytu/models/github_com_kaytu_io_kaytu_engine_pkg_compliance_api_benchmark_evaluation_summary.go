@@ -42,6 +42,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmarkEvaluationSummary struc
 	// Example: azure_cis_v140
 	ID string `json:"id,omitempty"`
 
+	// Last job status
+	// Example: success
+	LastJobStatus string `json:"lastJobStatus,omitempty"`
+
 	// Compliance result summary
 	Result TypesComplianceResultSummary `json:"result,omitempty"`
 

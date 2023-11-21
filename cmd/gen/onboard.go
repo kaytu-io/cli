@@ -99,6 +99,12 @@ func init() {
 	GetOnboardApiV1CredentialCmd.Flags().Int64("page-number", 0, "page number")
 	GetOnboardApiV1CredentialCmd.Flags().Int64("page-size", 0, "page size")
 
+	OnboardCmd.AddCommand(PostOnboardApiV1ConnectionsConnectionIdStateCmd)
+
+	PostOnboardApiV1ConnectionsConnectionIdStateCmd.Flags().String("connection-id", "", "Request")
+	PostOnboardApiV1ConnectionsConnectionIdStateCmd.MarkFlagRequired("connection-id")
+	PostOnboardApiV1ConnectionsConnectionIdStateCmd.Flags().String("state", "", "")
+
 	OnboardCmd.AddCommand(PutOnboardApiV1CredentialCredentialIdCmd)
 
 	PutOnboardApiV1CredentialCredentialIdCmd.Flags().String("config-config", "", "")

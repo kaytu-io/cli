@@ -32,6 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesOK, error)
 
+	GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDOK, error)
+
 	GetComplianceAPIV1BenchmarksBenchmarkIDSummary(params *GetComplianceAPIV1BenchmarksBenchmarkIDSummaryParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDSummaryOK, error)
 
 	GetComplianceAPIV1BenchmarksBenchmarkIDTrend(params *GetComplianceAPIV1BenchmarksBenchmarkIDTrendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDTrendOK, error)
@@ -53,6 +55,8 @@ type ClientService interface {
 	PostComplianceAPIV1AiPolicyPolicyIDRemediation(params *PostComplianceAPIV1AiPolicyPolicyIDRemediationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AiPolicyPolicyIDRemediationOK, error)
 
 	PostComplianceAPIV1Findings(params *PostComplianceAPIV1FindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsOK, error)
+
+	PostComplianceAPIV1FindingsFilters(params *PostComplianceAPIV1FindingsFiltersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsFiltersOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -93,6 +97,45 @@ func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPolicies(params *GetComp
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyID gets benchmark policies
+*/
+func (a *Client) GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyID(params *GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyID",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/benchmarks/{benchmark_id}/policies/{policyId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1BenchmarksBenchmarkIDPoliciesPolicyID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -542,6 +585,47 @@ func (a *Client) PostComplianceAPIV1Findings(params *PostComplianceAPIV1Findings
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostComplianceAPIV1Findings: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostComplianceAPIV1FindingsFilters gets possible values for finding filters
+
+Retrieving possible values for finding filters.
+*/
+func (a *Client) PostComplianceAPIV1FindingsFilters(params *PostComplianceAPIV1FindingsFiltersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1FindingsFiltersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostComplianceAPIV1FindingsFiltersParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostComplianceAPIV1FindingsFilters",
+		Method:             "POST",
+		PathPattern:        "/compliance/api/v1/findings/filters",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostComplianceAPIV1FindingsFiltersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostComplianceAPIV1FindingsFiltersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostComplianceAPIV1FindingsFilters: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

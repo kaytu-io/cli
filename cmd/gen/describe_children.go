@@ -83,9 +83,14 @@ var PutScheduleApiV1InsightTriggerInsightIdCmd = &cobra.Command{
 
 		req := describe.NewPutScheduleAPIV1InsightTriggerInsightIDParams()
 
-		req.SetInsightID(flags.ReadStringFlag(cmd, "InsightID"))
+		req.SetInsightID(flags.ReadInt64Flag(cmd, "InsightID"))
 
-		_, err = client.Describe.PutScheduleAPIV1InsightTriggerInsightID(req, auth)
+		resp, err := client.Describe.PutScheduleAPIV1InsightTriggerInsightID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[put_schedule_api_v_1_insight_trigger_insight_id] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "put-schedule-api-v1-insight-trigger-insight-id", resp.GetPayload())
 		if err != nil {
 			return fmt.Errorf("[put_schedule_api_v_1_insight_trigger_insight_id] : %v", err)
 		}

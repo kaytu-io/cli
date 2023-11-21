@@ -39,6 +39,7 @@ var GetOnboardApiV1ConnectionsSummaryCmd = &cobra.Command{
 		req.SetNeedResourceCount(flags.ReadBooleanOptionalFlag(cmd, "NeedResourceCount"))
 		req.SetPageNumber(flags.ReadInt64OptionalFlag(cmd, "PageNumber"))
 		req.SetPageSize(flags.ReadInt64OptionalFlag(cmd, "PageSize"))
+		req.SetResourceCollection(flags.ReadStringArrayFlag(cmd, "ResourceCollection"))
 		req.SetSortBy(flags.ReadStringOptionalFlag(cmd, "SortBy"))
 		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
 

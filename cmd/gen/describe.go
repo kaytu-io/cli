@@ -27,7 +27,7 @@ func init() {
 
 	DescribeCmd.AddCommand(PutScheduleApiV1InsightTriggerInsightIdCmd)
 
-	PutScheduleApiV1InsightTriggerInsightIdCmd.Flags().String("insight-id", "", "Insight ID")
+	PutScheduleApiV1InsightTriggerInsightIdCmd.Flags().Int64("insight-id", 0, "Insight ID")
 	PutScheduleApiV1InsightTriggerInsightIdCmd.MarkFlagRequired("insight-id")
 
 }

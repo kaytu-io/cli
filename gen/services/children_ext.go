@@ -70,6 +70,8 @@ func (g *Generator) ExtractChildren(root, servicePath string) error {
 		commandName = config.UrlNames[name]
 		if commandName == "" {
 			return errors.New("url name not found for cmd: " + name + " please add it in gen/config/url-names.go")
+			//fmt.Println(errors.New("url name not found for cmd: " + name + " please add it in gen/config/url-names.go"))
+			//continue
 		}
 		if commandName == "-" {
 			continue

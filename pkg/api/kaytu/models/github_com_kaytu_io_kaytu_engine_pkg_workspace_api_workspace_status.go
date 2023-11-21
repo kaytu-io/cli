@@ -36,6 +36,9 @@ const (
 	// GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusBOOTSTRAPPING captures enum value "BOOTSTRAPPING"
 	GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusBOOTSTRAPPING GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus = "BOOTSTRAPPING"
 
+	// GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusRESERVED captures enum value "RESERVED"
+	GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusRESERVED GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus = "RESERVED"
+
 	// GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusPROVISIONING captures enum value "PROVISIONING"
 	GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusPROVISIONING GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus = "PROVISIONING"
 
@@ -60,7 +63,7 @@ var githubComKaytuIoKaytuEnginePkgWorkspaceApiWorkspaceStatusEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus
-	if err := json.Unmarshal([]byte(`["PROVISIONED","BOOTSTRAPPING","PROVISIONING","PROVISIONING_FAILED","DELETING","DELETED","SUSPENDING","SUSPENDED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["PROVISIONED","BOOTSTRAPPING","RESERVED","PROVISIONING","PROVISIONING_FAILED","DELETING","DELETED","SUSPENDING","SUSPENDED"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

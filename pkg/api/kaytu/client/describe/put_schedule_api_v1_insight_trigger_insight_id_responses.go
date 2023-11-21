@@ -7,6 +7,7 @@ package describe
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
@@ -42,6 +43,7 @@ PutScheduleAPIV1InsightTriggerInsightIDOK describes a response with status code 
 OK
 */
 type PutScheduleAPIV1InsightTriggerInsightIDOK struct {
+	Payload []int64
 }
 
 // IsSuccess returns true when this put schedule Api v1 insight trigger insight Id o k response has a 2xx status code
@@ -75,14 +77,23 @@ func (o *PutScheduleAPIV1InsightTriggerInsightIDOK) Code() int {
 }
 
 func (o *PutScheduleAPIV1InsightTriggerInsightIDOK) Error() string {
-	return fmt.Sprintf("[PUT /schedule/api/v1/insight/trigger/{insight_id}][%d] putScheduleApiV1InsightTriggerInsightIdOK ", 200)
+	return fmt.Sprintf("[PUT /schedule/api/v1/insight/trigger/{insight_id}][%d] putScheduleApiV1InsightTriggerInsightIdOK  %+v", 200, o.Payload)
 }
 
 func (o *PutScheduleAPIV1InsightTriggerInsightIDOK) String() string {
-	return fmt.Sprintf("[PUT /schedule/api/v1/insight/trigger/{insight_id}][%d] putScheduleApiV1InsightTriggerInsightIdOK ", 200)
+	return fmt.Sprintf("[PUT /schedule/api/v1/insight/trigger/{insight_id}][%d] putScheduleApiV1InsightTriggerInsightIdOK  %+v", 200, o.Payload)
+}
+
+func (o *PutScheduleAPIV1InsightTriggerInsightIDOK) GetPayload() []int64 {
+	return o.Payload
 }
 
 func (o *PutScheduleAPIV1InsightTriggerInsightIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response payload
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

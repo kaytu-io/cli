@@ -18,15 +18,52 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_workspace_api.BootstrapStatusResponse
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse struct {
 
-	// status
-	Status GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatus `json:"status,omitempty"`
+	// analytics status
+	AnalyticsStatus *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapProgress `json:"analyticsStatus,omitempty"`
+
+	// compliance status
+	ComplianceStatus *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapProgress `json:"complianceStatus,omitempty"`
+
+	// connection count
+	ConnectionCount map[string]int64 `json:"connection_count,omitempty"`
+
+	// discovery status
+	DiscoveryStatus *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapProgress `json:"discoveryStatus,omitempty"`
+
+	// insights status
+	InsightsStatus *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapProgress `json:"insightsStatus,omitempty"`
+
+	// max connections
+	MaxConnections int64 `json:"maxConnections,omitempty"`
+
+	// min required connections
+	MinRequiredConnections int64 `json:"minRequiredConnections,omitempty"`
+
+	// workspace creation status
+	WorkspaceCreationStatus *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapProgress `json:"workspaceCreationStatus,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg workspace api bootstrap status response
 func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateStatus(formats); err != nil {
+	if err := m.validateAnalyticsStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateComplianceStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiscoveryStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInsightsStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWorkspaceCreationStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -36,18 +73,96 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) Vali
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) validateStatus(formats strfmt.Registry) error {
-	if swag.IsZero(m.Status) { // not required
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) validateAnalyticsStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.AnalyticsStatus) { // not required
 		return nil
 	}
 
-	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("status")
+	if m.AnalyticsStatus != nil {
+		if err := m.AnalyticsStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("analyticsStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("analyticsStatus")
+			}
+			return err
 		}
-		return err
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) validateComplianceStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.ComplianceStatus) { // not required
+		return nil
+	}
+
+	if m.ComplianceStatus != nil {
+		if err := m.ComplianceStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("complianceStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("complianceStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) validateDiscoveryStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.DiscoveryStatus) { // not required
+		return nil
+	}
+
+	if m.DiscoveryStatus != nil {
+		if err := m.DiscoveryStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("discoveryStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("discoveryStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) validateInsightsStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.InsightsStatus) { // not required
+		return nil
+	}
+
+	if m.InsightsStatus != nil {
+		if err := m.InsightsStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("insightsStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("insightsStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) validateWorkspaceCreationStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.WorkspaceCreationStatus) { // not required
+		return nil
+	}
+
+	if m.WorkspaceCreationStatus != nil {
+		if err := m.WorkspaceCreationStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("workspaceCreationStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("workspaceCreationStatus")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -57,7 +172,23 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) vali
 func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateStatus(ctx, formats); err != nil {
+	if err := m.contextValidateAnalyticsStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateComplianceStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDiscoveryStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInsightsStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWorkspaceCreationStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -67,19 +198,106 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) Cont
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) contextValidateAnalyticsStatus(ctx context.Context, formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Status) { // not required
-		return nil
+	if m.AnalyticsStatus != nil {
+
+		if swag.IsZero(m.AnalyticsStatus) { // not required
+			return nil
+		}
+
+		if err := m.AnalyticsStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("analyticsStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("analyticsStatus")
+			}
+			return err
+		}
 	}
 
-	if err := m.Status.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("status")
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) contextValidateComplianceStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ComplianceStatus != nil {
+
+		if swag.IsZero(m.ComplianceStatus) { // not required
+			return nil
 		}
-		return err
+
+		if err := m.ComplianceStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("complianceStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("complianceStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) contextValidateDiscoveryStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DiscoveryStatus != nil {
+
+		if swag.IsZero(m.DiscoveryStatus) { // not required
+			return nil
+		}
+
+		if err := m.DiscoveryStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("discoveryStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("discoveryStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) contextValidateInsightsStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InsightsStatus != nil {
+
+		if swag.IsZero(m.InsightsStatus) { // not required
+			return nil
+		}
+
+		if err := m.InsightsStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("insightsStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("insightsStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIBootstrapStatusResponse) contextValidateWorkspaceCreationStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.WorkspaceCreationStatus != nil {
+
+		if swag.IsZero(m.WorkspaceCreationStatus) { // not required
+			return nil
+		}
+
+		if err := m.WorkspaceCreationStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("workspaceCreationStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("workspaceCreationStatus")
+			}
+			return err
+		}
 	}
 
 	return nil

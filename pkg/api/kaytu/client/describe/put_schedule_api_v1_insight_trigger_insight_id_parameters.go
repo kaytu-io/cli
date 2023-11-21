@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPutScheduleAPIV1InsightTriggerInsightIDParams creates a new PutScheduleAPIV1InsightTriggerInsightIDParams object,
@@ -65,7 +66,7 @@ type PutScheduleAPIV1InsightTriggerInsightIDParams struct {
 
 	   Insight ID
 	*/
-	InsightID string
+	InsightID int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -121,13 +122,13 @@ func (o *PutScheduleAPIV1InsightTriggerInsightIDParams) SetHTTPClient(client *ht
 }
 
 // WithInsightID adds the insightID to the put schedule API v1 insight trigger insight ID params
-func (o *PutScheduleAPIV1InsightTriggerInsightIDParams) WithInsightID(insightID string) *PutScheduleAPIV1InsightTriggerInsightIDParams {
+func (o *PutScheduleAPIV1InsightTriggerInsightIDParams) WithInsightID(insightID int64) *PutScheduleAPIV1InsightTriggerInsightIDParams {
 	o.SetInsightID(insightID)
 	return o
 }
 
 // SetInsightID adds the insightId to the put schedule API v1 insight trigger insight ID params
-func (o *PutScheduleAPIV1InsightTriggerInsightIDParams) SetInsightID(insightID string) {
+func (o *PutScheduleAPIV1InsightTriggerInsightIDParams) SetInsightID(insightID int64) {
 	o.InsightID = insightID
 }
 
@@ -140,7 +141,7 @@ func (o *PutScheduleAPIV1InsightTriggerInsightIDParams) WriteToRequest(r runtime
 	var res []error
 
 	// path param insight_id
-	if err := r.SetPathParam("insight_id", o.InsightID); err != nil {
+	if err := r.SetPathParam("insight_id", swag.FormatInt64(o.InsightID)); err != nil {
 		return err
 	}
 

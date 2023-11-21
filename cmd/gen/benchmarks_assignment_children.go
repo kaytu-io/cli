@@ -44,6 +44,38 @@ var GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd = &cobra.Command{
 	},
 }
 
+var GetComplianceApiV1AssignmentsConnectionConnectionIdCmd = &cobra.Command{
+	Use:   "connection-assignments",
+	Short: `Retrieving all benchmark assigned to a connection with connection id`,
+	Long:  `Retrieving all benchmark assigned to a connection with connection id`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
+		}
+
+		req := benchmarks_assignment.NewGetComplianceAPIV1AssignmentsConnectionConnectionIDParams()
+
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+
+		resp, err := client.BenchmarksAssignment.GetComplianceAPIV1AssignmentsConnectionConnectionID(req, auth)
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
+		}
+
+		err = pkg.PrintOutput(cmd, "get-compliance-api-v1-assignments-connection-connection-id", resp.GetPayload())
+		if err != nil {
+			return fmt.Errorf("[get_compliance_api_v_1_assignments_connection_connection_id] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd = &cobra.Command{
 	Use:   "create-benchmark-assignment",
 	Short: `Creating a benchmark assignment for a connection.`,

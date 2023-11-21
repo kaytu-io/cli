@@ -19,6 +19,11 @@ func init() {
 	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.Flags().String("benchmark-id", "", "Benchmark ID")
 	GetComplianceApiV1AssignmentsBenchmarkBenchmarkIdCmd.MarkFlagRequired("benchmark-id")
 
+	BenchmarksAssignmentCmd.AddCommand(GetComplianceApiV1AssignmentsConnectionConnectionIdCmd)
+
+	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.Flags().String("connection-id", "", "Connection ID")
+	GetComplianceApiV1AssignmentsConnectionConnectionIdCmd.MarkFlagRequired("connection-id")
+
 	BenchmarksAssignmentCmd.AddCommand(PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd)
 
 	PostComplianceApiV1AssignmentsBenchmarkIdConnectionCmd.Flags().String("benchmark-id", "", "Benchmark ID")

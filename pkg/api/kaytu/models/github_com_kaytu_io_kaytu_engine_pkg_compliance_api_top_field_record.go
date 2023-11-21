@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -17,20 +18,135 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.TopFieldRecord
 type GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord struct {
 
+	// connection
+	Connection *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection `json:"connection,omitempty"`
+
 	// count
 	Count int64 `json:"count,omitempty"`
 
-	// value
-	Value string `json:"value,omitempty"`
+	// field
+	Field string `json:"field,omitempty"`
+
+	// resource type
+	ResourceType *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceType `json:"resourceType,omitempty"`
+
+	// service
+	Service string `json:"service,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance api top field record
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateConnection(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResourceType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this github com kaytu io kaytu engine pkg compliance api top field record based on context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) validateConnection(formats strfmt.Registry) error {
+	if swag.IsZero(m.Connection) { // not required
+		return nil
+	}
+
+	if m.Connection != nil {
+		if err := m.Connection.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connection")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connection")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) validateResourceType(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceType) { // not required
+		return nil
+	}
+
+	if m.ResourceType != nil {
+		if err := m.ResourceType.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resourceType")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resourceType")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this github com kaytu io kaytu engine pkg compliance api top field record based on the context it is used
 func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConnection(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResourceType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) contextValidateConnection(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Connection != nil {
+
+		if swag.IsZero(m.Connection) { // not required
+			return nil
+		}
+
+		if err := m.Connection.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connection")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connection")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) contextValidateResourceType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ResourceType != nil {
+
+		if swag.IsZero(m.ResourceType) { // not required
+			return nil
+		}
+
+		if err := m.ResourceType.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("resourceType")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("resourceType")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

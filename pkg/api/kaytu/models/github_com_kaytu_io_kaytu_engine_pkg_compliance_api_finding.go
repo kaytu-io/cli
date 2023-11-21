@@ -45,6 +45,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// parent benchmarks
 	ParentBenchmarks []string `json:"parentBenchmarks"`
 
+	// parent compliance job ID
+	// Example: 1
+	ParentComplianceJobID int64 `json:"parentComplianceJobID,omitempty"`
+
 	// policy ID
 	// Example: azure_cis_v140_7_5
 	PolicyID string `json:"policyID,omitempty"`

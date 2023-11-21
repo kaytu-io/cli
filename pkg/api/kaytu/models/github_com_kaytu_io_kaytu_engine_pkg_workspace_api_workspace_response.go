@@ -18,6 +18,10 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_workspace_api.WorkspaceResponse
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse struct {
 
+	// aws user arn
+	// Example: kaytu
+	AwsUserArn string `json:"aws_user_arn,omitempty"`
+
 	// created at
 	// Example: 2023-05-17T14:39:02.707659Z
 	CreatedAt string `json:"createdAt,omitempty"`
@@ -29,6 +33,12 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse struct {
 	// id
 	// Example: ws-698542025141040315
 	ID string `json:"id,omitempty"`
+
+	// is bootstrap input finished
+	IsBootstrapInputFinished bool `json:"is_bootstrap_input_finished,omitempty"`
+
+	// is created
+	IsCreated bool `json:"is_created,omitempty"`
 
 	// name
 	// Example: kaytu

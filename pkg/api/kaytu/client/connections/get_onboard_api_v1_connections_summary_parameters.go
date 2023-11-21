@@ -128,6 +128,12 @@ type GetOnboardAPIV1ConnectionsSummaryParams struct {
 	*/
 	PageSize *int64
 
+	/* ResourceCollection.
+
+	   Resource collection IDs to filter by
+	*/
+	ResourceCollection []string
+
 	/* SortBy.
 
 	   column to sort by - default is cost
@@ -312,6 +318,17 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithPageSize(pageSize *int64) 
 // SetPageSize adds the pageSize to the get onboard API v1 connections summary params
 func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetPageSize(pageSize *int64) {
 	o.PageSize = pageSize
+}
+
+// WithResourceCollection adds the resourceCollection to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) WithResourceCollection(resourceCollection []string) *GetOnboardAPIV1ConnectionsSummaryParams {
+	o.SetResourceCollection(resourceCollection)
+	return o
+}
+
+// SetResourceCollection adds the resourceCollection to the get onboard API v1 connections summary params
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) SetResourceCollection(resourceCollection []string) {
+	o.ResourceCollection = resourceCollection
 }
 
 // WithSortBy adds the sortBy to the get onboard API v1 connections summary params
@@ -513,6 +530,17 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) WriteToRequest(r runtime.Clien
 		}
 	}
 
+	if o.ResourceCollection != nil {
+
+		// binding items for resourceCollection
+		joinedResourceCollection := o.bindParamResourceCollection(reg)
+
+		// query array param resourceCollection
+		if err := r.SetQueryParam("resourceCollection", joinedResourceCollection...); err != nil {
+			return err
+		}
+	}
+
 	if o.SortBy != nil {
 
 		// query param sortBy
@@ -602,4 +630,21 @@ func (o *GetOnboardAPIV1ConnectionsSummaryParams) bindParamConnector(formats str
 	connectorIS := swag.JoinByFormat(connectorIC, "csv")
 
 	return connectorIS
+}
+
+// bindParamGetOnboardAPIV1ConnectionsSummary binds the parameter resourceCollection
+func (o *GetOnboardAPIV1ConnectionsSummaryParams) bindParamResourceCollection(formats strfmt.Registry) []string {
+	resourceCollectionIR := o.ResourceCollection
+
+	var resourceCollectionIC []string
+	for _, resourceCollectionIIR := range resourceCollectionIR { // explode []string
+
+		resourceCollectionIIV := resourceCollectionIIR // string as string
+		resourceCollectionIC = append(resourceCollectionIC, resourceCollectionIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	resourceCollectionIS := swag.JoinByFormat(resourceCollectionIC, "csv")
+
+	return resourceCollectionIS
 }

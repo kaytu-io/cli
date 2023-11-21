@@ -386,6 +386,36 @@ var GetOnboardApiV1CredentialCmd = &cobra.Command{
 	},
 }
 
+var PostOnboardApiV1ConnectionsConnectionIdStateCmd = &cobra.Command{
+	Use:   "update-connection-state",
+	Short: ``,
+	Long:  ``,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
+		if err != nil {
+			if errors.Is(err, pkg.ExpiredSession) {
+				fmt.Println(err.Error())
+				return nil
+			}
+			return fmt.Errorf("[post_onboard_api_v_1_connections_connection_id_state] : %v", err)
+		}
+
+		req := onboard.NewPostOnboardAPIV1ConnectionsConnectionIDStateParams()
+
+		req.SetConnectionID(flags.ReadStringFlag(cmd, "ConnectionID"))
+		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPIChangeConnectionLifecycleStateRequest{
+			State: models.GithubComKaytuIoKaytuEnginePkgOnboardAPIConnectionLifecycleState(flags.ReadStringFlag(cmd, "State")),
+		})
+
+		_, err = client.Onboard.PostOnboardAPIV1ConnectionsConnectionIDState(req, auth)
+		if err != nil {
+			return fmt.Errorf("[post_onboard_api_v_1_connections_connection_id_state] : %v", err)
+		}
+
+		return nil
+	},
+}
+
 var PutOnboardApiV1CredentialCredentialIdCmd = &cobra.Command{
 	Use:   "update-credential",
 	Short: `Edit a credential by ID`,
