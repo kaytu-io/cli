@@ -109,11 +109,7 @@ func CreateStack(cfg aws.Config, userARN, workspaceID string) (string, error) {
 		if len(stacks.Stacks) > 0 {
 			var roleName string
 			for _, output := range stacks.Stacks[0].Outputs {
-				fmt.Println(
-					*output.OutputKey,
-					*output.OutputValue,
-				)
-				if *output.OutputKey == "RoleArn" {
+				if *output.OutputKey == "KaytuReadOnly" {
 					roleName = *output.OutputValue
 				}
 			}
@@ -148,7 +144,6 @@ func CreateStackSet(cfg aws.Config, userARN, workspaceID string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("rootID:", rootID)
 
 	client := cloudformation.NewFromConfig(cfg)
 	stackName := "KaytuEnrollOrganization"
@@ -169,6 +164,7 @@ func CreateStackSet(cfg aws.Config, userARN, workspaceID string) error {
 				ParameterValue: aws.String(workspaceID),
 			},
 		},
+		Capabilities: []types.Capability{types.CapabilityCapabilityNamedIam},
 		TemplateBody: aws.String(templateBody),
 	})
 	if err != nil {
@@ -182,11 +178,19 @@ func CreateStackSet(cfg aws.Config, userARN, workspaceID string) error {
 		DeploymentTargets: &types.DeploymentTargets{
 			OrganizationalUnitIds: []string{rootID},
 		},
+		OperationPreferences: &types.StackSetOperationPreferences{
+			MaxConcurrentPercentage: aws.Int32(50),
+		},
 	})
 	if err != nil {
 		return err
 	}
 	fmt.Println("* stack instance is created")
+
+	_ = si
+
+	// one success
+	return nil
 }
 
 func CheckAccessToMasterAccount(cfg aws.Config) (bool, error) {
