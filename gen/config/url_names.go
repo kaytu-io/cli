@@ -69,6 +69,9 @@ var UrlNames = map[string]string{
 	"get_inventory_api_v2_metadata_resource_collection":                         "-",
 	"post_workspace_api_v1_bootstrap_workspace_name_finish":                     "-",
 	"get_inventory_api_v2_resource_collection_resource_collection_id_landscape": "-",
+	"get_inventory_api_v2_resource_collection":                                  "-",
+	"get_inventory_api_v2_resource_collection_resource_collection_id":           "-",
+	"get_schedule_api_v1_jobs":                                                  "-",
 
 	// gpt
 	"post_ai_api_v1_gpt_run": "_",

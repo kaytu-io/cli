@@ -24,6 +24,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/onboard"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource_collection"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/scheduler"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/smart_query"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/users"
@@ -86,6 +87,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *KaytuServi
 	cli.Onboard = onboard.New(transport, formats)
 	cli.Resource = resource.New(transport, formats)
 	cli.ResourceCollection = resource_collection.New(transport, formats)
+	cli.Scheduler = scheduler.New(transport, formats)
 	cli.SmartQuery = smart_query.New(transport, formats)
 	cli.Stack = stack.New(transport, formats)
 	cli.Users = users.New(transport, formats)
@@ -162,6 +164,8 @@ type KaytuServiceAPI struct {
 
 	ResourceCollection resource_collection.ClientService
 
+	Scheduler scheduler.ClientService
+
 	SmartQuery smart_query.ClientService
 
 	Stack stack.ClientService
@@ -190,6 +194,7 @@ func (c *KaytuServiceAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Onboard.SetTransport(transport)
 	c.Resource.SetTransport(transport)
 	c.ResourceCollection.SetTransport(transport)
+	c.Scheduler.SetTransport(transport)
 	c.SmartQuery.SetTransport(transport)
 	c.Stack.SetTransport(transport)
 	c.Users.SetTransport(transport)

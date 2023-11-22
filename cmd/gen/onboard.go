@@ -101,9 +101,10 @@ func init() {
 
 	OnboardCmd.AddCommand(PostOnboardApiV1ConnectionsConnectionIdStateCmd)
 
-	PostOnboardApiV1ConnectionsConnectionIdStateCmd.Flags().String("connection-id", "", "Request")
+	PostOnboardApiV1ConnectionsConnectionIdStateCmd.Flags().String("connection-id", "", "Connection ID")
 	PostOnboardApiV1ConnectionsConnectionIdStateCmd.MarkFlagRequired("connection-id")
 	PostOnboardApiV1ConnectionsConnectionIdStateCmd.Flags().String("state", "", "")
+	PostOnboardApiV1ConnectionsConnectionIdStateCmd.MarkFlagRequired("state")
 
 	OnboardCmd.AddCommand(PutOnboardApiV1CredentialCredentialIdCmd)
 

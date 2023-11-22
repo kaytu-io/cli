@@ -63,7 +63,7 @@ func GetConfig(ctx context.Context, awsAccessKey, awsSecretKey, awsSessionToken,
 	return cfg, nil
 }
 
-func CreateStack(cfg aws.Config, userARN, workspaceID string) (string, error) {
+func CreateStack(cfg aws.Config, userARN, handshakeID string) (string, error) {
 	client := cloudformation.NewFromConfig(cfg)
 	stackName := "Kaytu-Deploy"
 	stacks, err := client.DescribeStacks(context.Background(), &cloudformation.DescribeStacksInput{
@@ -85,7 +85,7 @@ func CreateStack(cfg aws.Config, userARN, workspaceID string) (string, error) {
 				},
 				{
 					ParameterKey:   aws.String("KaytuHandshakeID"),
-					ParameterValue: aws.String(workspaceID),
+					ParameterValue: aws.String(handshakeID),
 				},
 			},
 			Capabilities: []types.Capability{types.CapabilityCapabilityNamedIam},
@@ -139,7 +139,7 @@ func GetRootID(cfg aws.Config) (string, error) {
 	return *roots.Roots[0].Id, nil
 }
 
-func CreateStackSet(cfg aws.Config, userARN, workspaceID string) error {
+func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
 	rootID, err := GetRootID(cfg)
 	if err != nil {
 		return err
@@ -161,14 +161,16 @@ func CreateStackSet(cfg aws.Config, userARN, workspaceID string) error {
 			},
 			{
 				ParameterKey:   aws.String("KaytuHandshakeID"),
-				ParameterValue: aws.String(workspaceID),
+				ParameterValue: aws.String(handshakeID),
 			},
 		},
 		Capabilities: []types.Capability{types.CapabilityCapabilityNamedIam},
 		TemplateBody: aws.String(templateBody),
 	})
 	if err != nil {
-		return err
+		if !strings.Contains(err.Error(), "StackSet already exists.") {
+			return err
+		}
 	}
 	fmt.Println("* stackset is created")
 
@@ -246,7 +248,8 @@ var awsCmd = &cobra.Command{
 			for _, r := range response {
 				items = append(items, r.Name)
 			}
-			fmt.Println("\n")
+			fmt.Println()
+			fmt.Println()
 			prompt := promptui.Select{
 				Label: "Please select the bootstrapping workspace",
 				Items: items,
@@ -280,13 +283,13 @@ var awsCmd = &cobra.Command{
 		}
 
 		fmt.Println("* creating cloudformation stacks")
-		arn, err := CreateStack(cfg, ws.AwsUserArn, ws.ID)
+		arn, err := CreateStack(cfg, ws.AwsUserArn, ws.AwsUniqueID)
 		if err != nil {
 			return err
 		}
 		if isMaster {
 			fmt.Println("* creating cloudformation stack set")
-			err := CreateStackSet(cfg, ws.AwsUserArn, ws.ID)
+			err := CreateStackSet(cfg, ws.AwsUserArn, ws.AwsUniqueID)
 			if err != nil {
 				return err
 			}
@@ -299,7 +302,8 @@ var awsCmd = &cobra.Command{
 			fmt.Println("* onboarding into kaytu")
 			req := workspace.NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
 			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
-				AssumeRoleName: arn,
+				AssumeRoleName:      arn,
+				AssumeAdminRoleName: arn,
 			}
 			req.SetWorkspaceName(workspaceName)
 			req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{

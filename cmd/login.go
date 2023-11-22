@@ -50,7 +50,8 @@ var loginCmd = &cobra.Command{
 				for _, r := range response {
 					items = append(items, r.Name)
 				}
-				fmt.Println("\n")
+				fmt.Println()
+				fmt.Println()
 				prompt := promptui.Select{
 					Label: "Please select the default workspace",
 					Items: items,

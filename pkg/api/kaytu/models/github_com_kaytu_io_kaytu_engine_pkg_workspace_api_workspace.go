@@ -18,6 +18,10 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_workspace_api.Workspace
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspace struct {
 
+	// aws unique id
+	// Example: kaytu
+	AwsUniqueID string `json:"aws_unique_id,omitempty"`
+
 	// aws user arn
 	// Example: kaytu
 	AwsUserArn string `json:"aws_user_arn,omitempty"`

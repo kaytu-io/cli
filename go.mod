@@ -10,6 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/iam v1.26.0
 	github.com/aws/aws-sdk-go-v2/service/organizations v1.22.0
 	github.com/aws/aws-sdk-go-v2/service/sts v1.25.0
+	github.com/aws/smithy-go v1.16.0
 	github.com/fatih/color v1.15.0
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/runtime v0.26.0
@@ -22,6 +23,7 @@ require (
 	github.com/leekchan/accounting v1.0.0
 	github.com/manifoldco/promptui v0.9.0
 	github.com/spf13/cobra v1.7.0
+	github.com/stretchr/testify v1.8.4
 	github.com/teacat/jsonfilter v0.0.0-20210909033008-ce10fc951871
 	github.com/teambition/json-mask-go v1.2.0
 	golang.org/x/term v0.13.0
@@ -37,7 +39,6 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.10.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.17.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.19.0 // indirect
-	github.com/aws/smithy-go v1.16.0 // indirect
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e // indirect
 	github.com/cockroachdb/apd v1.1.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect

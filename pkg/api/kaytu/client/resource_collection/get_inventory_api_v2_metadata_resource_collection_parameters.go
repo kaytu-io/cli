@@ -68,6 +68,12 @@ type GetInventoryAPIV2MetadataResourceCollectionParams struct {
 	*/
 	ID []string
 
+	/* Status.
+
+	   Resource collection status
+	*/
+	Status []string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -132,6 +138,17 @@ func (o *GetInventoryAPIV2MetadataResourceCollectionParams) SetID(id []string) {
 	o.ID = id
 }
 
+// WithStatus adds the status to the get inventory API v2 metadata resource collection params
+func (o *GetInventoryAPIV2MetadataResourceCollectionParams) WithStatus(status []string) *GetInventoryAPIV2MetadataResourceCollectionParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the get inventory API v2 metadata resource collection params
+func (o *GetInventoryAPIV2MetadataResourceCollectionParams) SetStatus(status []string) {
+	o.Status = status
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetInventoryAPIV2MetadataResourceCollectionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -147,6 +164,17 @@ func (o *GetInventoryAPIV2MetadataResourceCollectionParams) WriteToRequest(r run
 
 		// query array param id
 		if err := r.SetQueryParam("id", joinedID...); err != nil {
+			return err
+		}
+	}
+
+	if o.Status != nil {
+
+		// binding items for status
+		joinedStatus := o.bindParamStatus(reg)
+
+		// query array param status
+		if err := r.SetQueryParam("status", joinedStatus...); err != nil {
 			return err
 		}
 	}
@@ -172,4 +200,21 @@ func (o *GetInventoryAPIV2MetadataResourceCollectionParams) bindParamID(formats 
 	iDIS := swag.JoinByFormat(iDIC, "csv")
 
 	return iDIS
+}
+
+// bindParamGetInventoryAPIV2MetadataResourceCollection binds the parameter status
+func (o *GetInventoryAPIV2MetadataResourceCollectionParams) bindParamStatus(formats strfmt.Registry) []string {
+	statusIR := o.Status
+
+	var statusIC []string
+	for _, statusIIR := range statusIR { // explode []string
+
+		statusIIV := statusIIR // string as string
+		statusIC = append(statusIC, statusIIV)
+	}
+
+	// items.CollectionFormat: "csv"
+	statusIS := swag.JoinByFormat(statusIC, "csv")
+
+	return statusIS
 }

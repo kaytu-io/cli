@@ -287,6 +287,7 @@ var PostComplianceApiV1FindingsCmd = &cobra.Command{
 		req := compliance.NewPostComplianceAPIV1FindingsParams()
 
 		req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgComplianceAPIGetFindingsRequest{
+			//AfterSortKey: flags.ReadEnumArrayFlag[interface{}](cmd, "AfterSortKey"),
 			Filters: &models.GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters{
 				BenchmarkID:        flags.ReadStringArrayFlag(cmd, "Filters-BenchmarkID"),
 				ConnectionID:       flags.ReadStringArrayFlag(cmd, "Filters-ConnectionID"),

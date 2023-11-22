@@ -34,6 +34,10 @@ type ClientService interface {
 
 	GetInventoryAPIV2MetadataResourceCollectionResourceCollectionID(params *GetInventoryAPIV2MetadataResourceCollectionResourceCollectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2MetadataResourceCollectionResourceCollectionIDOK, error)
 
+	GetInventoryAPIV2ResourceCollection(params *GetInventoryAPIV2ResourceCollectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourceCollectionOK, error)
+
+	GetInventoryAPIV2ResourceCollectionResourceCollectionID(params *GetInventoryAPIV2ResourceCollectionResourceCollectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourceCollectionResourceCollectionIDOK, error)
+
 	GetInventoryAPIV2ResourceCollectionResourceCollectionIDLandscape(params *GetInventoryAPIV2ResourceCollectionResourceCollectionIDLandscapeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourceCollectionResourceCollectionIDLandscapeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -118,6 +122,88 @@ func (a *Client) GetInventoryAPIV2MetadataResourceCollectionResourceCollectionID
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2MetadataResourceCollectionResourceCollectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2ResourceCollection lists resource collections with inventory data
+
+Retrieving list of resource collections by specified filters with inventory data
+*/
+func (a *Client) GetInventoryAPIV2ResourceCollection(params *GetInventoryAPIV2ResourceCollectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourceCollectionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2ResourceCollectionParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2ResourceCollection",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/resource-collection",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2ResourceCollectionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2ResourceCollectionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourceCollection: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetInventoryAPIV2ResourceCollectionResourceCollectionID gets resource collection with inventory data
+
+Retrieving resource collection by specified ID with inventory data
+*/
+func (a *Client) GetInventoryAPIV2ResourceCollectionResourceCollectionID(params *GetInventoryAPIV2ResourceCollectionResourceCollectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInventoryAPIV2ResourceCollectionResourceCollectionIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetInventoryAPIV2ResourceCollectionResourceCollectionIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetInventoryAPIV2ResourceCollectionResourceCollectionID",
+		Method:             "GET",
+		PathPattern:        "/inventory/api/v2/resource-collection/{resourceCollectionId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetInventoryAPIV2ResourceCollectionResourceCollectionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetInventoryAPIV2ResourceCollectionResourceCollectionIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetInventoryAPIV2ResourceCollectionResourceCollectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

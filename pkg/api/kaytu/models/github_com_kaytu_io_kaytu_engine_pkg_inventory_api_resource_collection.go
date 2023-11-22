@@ -19,6 +19,9 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_inventory_api.ResourceCollection
 type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection struct {
 
+	// connectors
+	Connectors []SourceType `json:"connectors"`
+
 	// created at
 	CreatedAt string `json:"created_at,omitempty"`
 
@@ -31,8 +34,14 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// last evaluated at
+	LastEvaluatedAt string `json:"last_evaluated_at,omitempty"`
+
 	// name
 	Name string `json:"name,omitempty"`
+
+	// resource count
+	ResourceCount int64 `json:"resource_count,omitempty"`
 
 	// status
 	Status GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollectionStatus `json:"status,omitempty"`
@@ -45,6 +54,10 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection struct {
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateConnectors(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFilters(formats); err != nil {
 		res = append(res, err)
 	}
@@ -56,6 +69,27 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) Validate(
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) validateConnectors(formats strfmt.Registry) error {
+	if swag.IsZero(m.Connectors) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Connectors); i++ {
+
+		if err := m.Connectors[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connectors" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connectors" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -106,6 +140,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) validateS
 func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateConnectors(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -117,6 +155,28 @@ func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) ContextVa
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection) contextValidateConnectors(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Connectors); i++ {
+
+		if swag.IsZero(m.Connectors[i]) { // not required
+			return nil
+		}
+
+		if err := m.Connectors[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connectors" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("connectors" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 

@@ -15,6 +15,7 @@ import (
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/onboard"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/resource_collection"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/scheduler"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/smart_query"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/stack"
 	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/users"
@@ -105,7 +106,10 @@ var ParamModels = map[string]interface{}{
 	"PostAiAPIV1GptRun":                                                resource.PostAiAPIV1GptRunParams{},
 	"GetInventoryAPIV2MetadataResourceCollection":                      resource_collection.GetInventoryAPIV2MetadataResourceCollectionParams{},
 	"GetInventoryAPIV2MetadataResourceCollectionResourceCollectionID":  resource_collection.GetInventoryAPIV2MetadataResourceCollectionResourceCollectionIDParams{},
+	"GetInventoryAPIV2ResourceCollection":                              resource_collection.GetInventoryAPIV2ResourceCollectionParams{},
 	"GetInventoryAPIV2ResourceCollectionResourceCollectionIDLandscape": resource_collection.GetInventoryAPIV2ResourceCollectionResourceCollectionIDLandscapeParams{},
+	"GetInventoryAPIV2ResourceCollectionResourceCollectionID":          resource_collection.GetInventoryAPIV2ResourceCollectionResourceCollectionIDParams{},
+	"GetScheduleAPIV1Jobs":                                             scheduler.GetScheduleAPIV1JobsParams{},
 	"GetInventoryAPIV1Query":                                           smart_query.GetInventoryAPIV1QueryParams{},
 	"GetInventoryAPIV1QueryRunHistory":                                 smart_query.GetInventoryAPIV1QueryRunHistoryParams{},
 	"PostInventoryAPIV1QueryRun":                                       smart_query.PostInventoryAPIV1QueryRunParams{},

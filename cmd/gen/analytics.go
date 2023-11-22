@@ -5,15 +5,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var AssetsCmd = &cobra.Command{
-	Use: "assets",
+var SpendCmd = &cobra.Command{
+	Use: "spend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
 }
 
-var SpendCmd = &cobra.Command{
-	Use: "spend",
+var AssetsCmd = &cobra.Command{
+	Use: "assets",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
