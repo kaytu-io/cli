@@ -304,6 +304,7 @@ var awsCmd = &cobra.Command{
 			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
 				AssumeRoleName:      arn,
 				AssumeAdminRoleName: arn,
+				ExternalID:          ws.AwsUniqueID,
 			}
 			req.SetWorkspaceName(workspaceName)
 			req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{
