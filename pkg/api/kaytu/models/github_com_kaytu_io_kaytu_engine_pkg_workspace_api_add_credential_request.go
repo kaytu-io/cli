@@ -18,8 +18,11 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_workspace_api.AddCredentialRequest
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest struct {
 
-	// config
-	Config interface{} `json:"config,omitempty"`
+	// aws config
+	AwsConfig *GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config `json:"awsConfig,omitempty"`
+
+	// azure config
+	AzureConfig *GithubComKaytuIoKaytuEnginePkgOnboardAPIAzureCredentialConfig `json:"azureConfig,omitempty"`
 
 	// connector type
 	ConnectorType SourceType `json:"connectorType,omitempty"`
@@ -29,6 +32,14 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest struct {
 func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAwsConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAzureConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateConnectorType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -36,6 +47,44 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) Validat
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) validateAwsConfig(formats strfmt.Registry) error {
+	if swag.IsZero(m.AwsConfig) { // not required
+		return nil
+	}
+
+	if m.AwsConfig != nil {
+		if err := m.AwsConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("awsConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("awsConfig")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) validateAzureConfig(formats strfmt.Registry) error {
+	if swag.IsZero(m.AzureConfig) { // not required
+		return nil
+	}
+
+	if m.AzureConfig != nil {
+		if err := m.AzureConfig.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("azureConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("azureConfig")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -60,6 +109,14 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) validat
 func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAwsConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAzureConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateConnectorType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -67,6 +124,48 @@ func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) Context
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) contextValidateAwsConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AwsConfig != nil {
+
+		if swag.IsZero(m.AwsConfig) { // not required
+			return nil
+		}
+
+		if err := m.AwsConfig.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("awsConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("awsConfig")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest) contextValidateAzureConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AzureConfig != nil {
+
+		if swag.IsZero(m.AzureConfig) { // not required
+			return nil
+		}
+
+		if err := m.AzureConfig.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("azureConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("azureConfig")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

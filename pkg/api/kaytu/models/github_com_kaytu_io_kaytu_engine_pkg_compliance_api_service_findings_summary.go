@@ -133,6 +133,12 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIServiceFindingsSummarySeverities
 
 	// medium
 	Medium int64 `json:"medium,omitempty"`
+
+	// none
+	None int64 `json:"none,omitempty"`
+
+	// passed
+	Passed int64 `json:"passed,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg compliance API service findings summary severities count

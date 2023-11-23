@@ -54,6 +54,8 @@ type ClientService interface {
 
 	PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1SourceAzureOK, error)
 
+	PostOnboardAPIV2Credential(params *PostOnboardAPIV2CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV2CredentialOK, error)
+
 	PutOnboardAPIV1CredentialCredentialID(params *PutOnboardAPIV1CredentialCredentialIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PutOnboardAPIV1CredentialCredentialIDOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -546,6 +548,47 @@ func (a *Client) PostOnboardAPIV1SourceAzure(params *PostOnboardAPIV1SourceAzure
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostOnboardAPIV1SourceAzure: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostOnboardAPIV2Credential creates connection credentials
+
+Creating connection credentials
+*/
+func (a *Client) PostOnboardAPIV2Credential(params *PostOnboardAPIV2CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV2CredentialOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostOnboardAPIV2CredentialParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostOnboardAPIV2Credential",
+		Method:             "POST",
+		PathPattern:        "/onboard/api/v2/credential",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostOnboardAPIV2CredentialReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostOnboardAPIV2CredentialOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostOnboardAPIV2Credential: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

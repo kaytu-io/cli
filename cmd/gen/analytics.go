@@ -5,15 +5,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var SpendCmd = &cobra.Command{
-	Use: "spend",
+var AssetsCmd = &cobra.Command{
+	Use: "assets",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
 }
 
-var AssetsCmd = &cobra.Command{
-	Use: "assets",
+var SpendCmd = &cobra.Command{
+	Use: "spend",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
@@ -63,8 +63,8 @@ func init() {
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().StringArray("connection-group", nil, "Connection group to filter by - mutually exclusive with connectionId")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().StringArray("connector", nil, "Connector type to filter by")
-	GetInventoryApiV2AnalyticsTrendCmd.Flags().String("datapoint-count", "", "maximum number of datapoints to return, default is 30")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().String("end-time", "", "timestamp for end in epoch seconds")
+	GetInventoryApiV2AnalyticsTrendCmd.Flags().String("granularity", "", "Granularity of the table, default is daily")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().StringArray("ids", nil, "")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().String("metric-type", "", "Metric type, default: assets")
 	GetInventoryApiV2AnalyticsTrendCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")

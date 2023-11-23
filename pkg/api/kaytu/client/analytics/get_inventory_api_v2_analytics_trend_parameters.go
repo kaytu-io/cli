@@ -80,17 +80,17 @@ type GetInventoryAPIV2AnalyticsTrendParams struct {
 	*/
 	Connector []string
 
-	/* DatapointCount.
-
-	   maximum number of datapoints to return, default is 30
-	*/
-	DatapointCount *string
-
 	/* EndTime.
 
 	   timestamp for end in epoch seconds
 	*/
 	EndTime *int64
+
+	/* Granularity.
+
+	   Granularity of the table, default is daily
+	*/
+	Granularity *string
 
 	/* Ids.
 
@@ -208,17 +208,6 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) SetConnector(connector []string)
 	o.Connector = connector
 }
 
-// WithDatapointCount adds the datapointCount to the get inventory API v2 analytics trend params
-func (o *GetInventoryAPIV2AnalyticsTrendParams) WithDatapointCount(datapointCount *string) *GetInventoryAPIV2AnalyticsTrendParams {
-	o.SetDatapointCount(datapointCount)
-	return o
-}
-
-// SetDatapointCount adds the datapointCount to the get inventory API v2 analytics trend params
-func (o *GetInventoryAPIV2AnalyticsTrendParams) SetDatapointCount(datapointCount *string) {
-	o.DatapointCount = datapointCount
-}
-
 // WithEndTime adds the endTime to the get inventory API v2 analytics trend params
 func (o *GetInventoryAPIV2AnalyticsTrendParams) WithEndTime(endTime *int64) *GetInventoryAPIV2AnalyticsTrendParams {
 	o.SetEndTime(endTime)
@@ -228,6 +217,17 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) WithEndTime(endTime *int64) *Get
 // SetEndTime adds the endTime to the get inventory API v2 analytics trend params
 func (o *GetInventoryAPIV2AnalyticsTrendParams) SetEndTime(endTime *int64) {
 	o.EndTime = endTime
+}
+
+// WithGranularity adds the granularity to the get inventory API v2 analytics trend params
+func (o *GetInventoryAPIV2AnalyticsTrendParams) WithGranularity(granularity *string) *GetInventoryAPIV2AnalyticsTrendParams {
+	o.SetGranularity(granularity)
+	return o
+}
+
+// SetGranularity adds the granularity to the get inventory API v2 analytics trend params
+func (o *GetInventoryAPIV2AnalyticsTrendParams) SetGranularity(granularity *string) {
+	o.Granularity = granularity
 }
 
 // WithIds adds the ids to the get inventory API v2 analytics trend params
@@ -326,23 +326,6 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
-	if o.DatapointCount != nil {
-
-		// query param datapointCount
-		var qrDatapointCount string
-
-		if o.DatapointCount != nil {
-			qrDatapointCount = *o.DatapointCount
-		}
-		qDatapointCount := qrDatapointCount
-		if qDatapointCount != "" {
-
-			if err := r.SetQueryParam("datapointCount", qDatapointCount); err != nil {
-				return err
-			}
-		}
-	}
-
 	if o.EndTime != nil {
 
 		// query param endTime
@@ -355,6 +338,23 @@ func (o *GetInventoryAPIV2AnalyticsTrendParams) WriteToRequest(r runtime.ClientR
 		if qEndTime != "" {
 
 			if err := r.SetQueryParam("endTime", qEndTime); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Granularity != nil {
+
+		// query param granularity
+		var qrGranularity string
+
+		if o.Granularity != nil {
+			qrGranularity = *o.Granularity
+		}
+		qGranularity := qrGranularity
+		if qGranularity != "" {
+
+			if err := r.SetQueryParam("granularity", qGranularity); err != nil {
 				return err
 			}
 		}

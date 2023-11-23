@@ -287,6 +287,15 @@ var awsCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+
+		arnPart1, roleName, ok := strings.Cut(arn, "/")
+		if !ok {
+			return errors.New("invalid arn: " + arn)
+		}
+		//arn:aws:iam::508060272139:user/kaytu-user-aws-uid-488537249936379764
+		parts := strings.Split(arnPart1, ":")
+		accountID := parts[4]
+
 		if isMaster {
 			fmt.Println("* creating cloudformation stack set")
 			err := CreateStackSet(cfg, ws.AwsUserArn, ws.AwsUniqueID)
@@ -301,14 +310,15 @@ var awsCmd = &cobra.Command{
 
 			fmt.Println("* onboarding into kaytu")
 			req := workspace.NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
-			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIAWSCredentialConfig{
-				AssumeRoleName:      arn,
-				AssumeAdminRoleName: arn,
+			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
+				AccountID:           accountID,
+				AssumeRoleName:      roleName,
 				ExternalID:          ws.AwsUniqueID,
+				HealthCheckPolicies: nil,
 			}
 			req.SetWorkspaceName(workspaceName)
 			req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{
-				Config:        cnf,
+				AwsConfig:     &cnf,
 				ConnectorType: models.SourceTypeAWS,
 			})
 			_, err = kaytuClient.Workspace.PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(req, auth)

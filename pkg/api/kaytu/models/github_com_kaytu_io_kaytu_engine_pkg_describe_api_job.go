@@ -30,6 +30,9 @@ type GithubComKaytuIoKaytuEnginePkgDescribeAPIJob struct {
 	// created at
 	CreatedAt string `json:"createdAt,omitempty"`
 
+	// failure reason
+	FailureReason string `json:"failureReason,omitempty"`
+
 	// id
 	ID int64 `json:"id,omitempty"`
 
