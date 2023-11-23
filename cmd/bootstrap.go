@@ -66,36 +66,25 @@ func GetConfig(ctx context.Context, awsAccessKey, awsSecretKey, awsSessionToken,
 func CreateStack(cfg aws.Config, userARN, handshakeID string) (string, error) {
 	client := cloudformation.NewFromConfig(cfg)
 	stackName := "Kaytu-Deploy"
-	stacks, err := client.DescribeStacks(context.Background(), &cloudformation.DescribeStacksInput{
+	_, err := client.CreateStack(context.Background(), &cloudformation.CreateStackInput{
 		StackName: aws.String(stackName),
+		Parameters: []types.Parameter{
+			{
+				ParameterKey:   aws.String("KaytuManagementIAMUser"),
+				ParameterValue: aws.String(userARN),
+			},
+			{
+				ParameterKey:   aws.String("KaytuHandshakeID"),
+				ParameterValue: aws.String(handshakeID),
+			},
+		},
+		Capabilities: []types.Capability{types.CapabilityCapabilityNamedIam},
+		TemplateBody: aws.String(templateBody),
 	})
 	if err != nil {
-		if !strings.Contains(err.Error(), "does not exist") {
-			return "", err
-		}
+		return "", err
 	}
-
-	if stacks == nil || len(stacks.Stacks) == 0 {
-		_, err := client.CreateStack(context.Background(), &cloudformation.CreateStackInput{
-			StackName: aws.String(stackName),
-			Parameters: []types.Parameter{
-				{
-					ParameterKey:   aws.String("KaytuManagementIAMUser"),
-					ParameterValue: aws.String(userARN),
-				},
-				{
-					ParameterKey:   aws.String("KaytuHandshakeID"),
-					ParameterValue: aws.String(handshakeID),
-				},
-			},
-			Capabilities: []types.Capability{types.CapabilityCapabilityNamedIam},
-			TemplateBody: aws.String(templateBody),
-		})
-		if err != nil {
-			return "", err
-		}
-		fmt.Println("* stacks is created")
-	}
+	fmt.Println("* stacks is created")
 
 	fmt.Println("* waiting for stacks to finish")
 	for {
@@ -168,20 +157,18 @@ func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
 		TemplateBody: aws.String(templateBody),
 	})
 	if err != nil {
-		if !strings.Contains(err.Error(), "StackSet already exists.") {
-			return err
-		}
+		return err
 	}
 	fmt.Println("* stackset is created")
 
-	si, err := client.CreateStackInstances(context.Background(), &cloudformation.CreateStackInstancesInput{
+	_, err = client.CreateStackInstances(context.Background(), &cloudformation.CreateStackInstancesInput{
 		Regions:      []string{"us-east-1"},
 		StackSetName: aws.String(stackName),
 		DeploymentTargets: &types.DeploymentTargets{
 			OrganizationalUnitIds: []string{rootID},
 		},
 		OperationPreferences: &types.StackSetOperationPreferences{
-			MaxConcurrentPercentage: aws.Int32(50),
+			MaxConcurrentPercentage: aws.Int32(100),
 		},
 	})
 	if err != nil {
@@ -189,8 +176,34 @@ func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
 	}
 	fmt.Println("* stack instance is created")
 
-	_ = si
+	fmt.Println("* waiting for stack instances to finish")
+	for {
+		instances, err := client.ListStackInstances(context.Background(), &cloudformation.ListStackInstancesInput{
+			StackSetName: aws.String(stackName),
+		})
+		if err != nil {
+			return err
+		}
 
+		if len(instances.Summaries) == 0 {
+			time.Sleep(1 * time.Second)
+			continue
+		}
+
+		isRunning := false
+		for _, instance := range instances.Summaries {
+			if instance.StackInstanceStatus.DetailedStatus == types.StackInstanceDetailedStatusPending ||
+				instance.StackInstanceStatus.DetailedStatus == types.StackInstanceDetailedStatusRunning {
+				isRunning = true
+			}
+		}
+
+		if isRunning {
+			time.Sleep(5 * time.Second)
+			continue
+		}
+		break
+	}
 	// one success
 	return nil
 }
@@ -248,8 +261,6 @@ var awsCmd = &cobra.Command{
 			for _, r := range response {
 				items = append(items, r.Name)
 			}
-			fmt.Println()
-			fmt.Println()
 			prompt := promptui.Select{
 				Label: "Please select the bootstrapping workspace",
 				Items: items,
@@ -276,7 +287,7 @@ var awsCmd = &cobra.Command{
 			return err
 		}
 
-		fmt.Println("* checking to make sure you are on the master account")
+		fmt.Println("* checking to see if you are onboarding organization account or standalone account")
 		isMaster, err := CheckAccessToMasterAccount(cfg)
 		if err != nil {
 			return err
@@ -292,7 +303,6 @@ var awsCmd = &cobra.Command{
 		if !ok {
 			return errors.New("invalid arn: " + arn)
 		}
-		//arn:aws:iam::508060272139:user/kaytu-user-aws-uid-488537249936379764
 		parts := strings.Split(arnPart1, ":")
 		accountID := parts[4]
 
