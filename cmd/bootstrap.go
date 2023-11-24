@@ -168,7 +168,8 @@ func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
 			OrganizationalUnitIds: []string{rootID},
 		},
 		OperationPreferences: &types.StackSetOperationPreferences{
-			MaxConcurrentPercentage: aws.Int32(100),
+			MaxConcurrentCount:    aws.Int32(10),
+			FailureToleranceCount: aws.Int32(9),
 		},
 	})
 	if err != nil {
