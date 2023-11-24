@@ -31,12 +31,6 @@ jobs:
       uses: WyriHaximus/github-action-get-previous-tag@v1
       id: previousTag
 
-    - name: update CLI version in version command
-      run: |
-        cd cmd
-        sed -i 's+'NEW_VERSION_CLI'+${{ steps.tag_version.outputs.new_tag }}+g' version.go
-        cd ..
-
     - name: Build
       env:
         CI_ACCESS_TOKEN: ${{ secrets.CI_ACCESS_TOKEN }}
@@ -46,12 +40,14 @@ jobs:
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
         git config --global url.https://${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io.insteadOf https://github.com/kaytu-io
         
-        GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-amd64 ./main.go
-        GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-linux-arm64 ./main.go
-        GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o ./build/ktucli-windows-amd64 ./main.go
-        GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli-macos-amd64 ./main.go
-        GOPRIVATE=github.com/kaytu-io CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli-macos-arm64 ./main.go
-        export GOPRIVATE="gitlab.com/keibiengine,github.com/kaytu-io"
+        sed -i 's+'NEW_VERSION_CLI'+${{ steps.tag_version.outputs.new_tag }}+g' cmd/version.go
+        export GOPRIVATE=github.com/kaytu-io
+        export CGO_ENABLED=0
+        GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-amd64 ./main.go
+        GOOS=linux GOARCH=arm64 go build -o ./build/ktucli-linux-arm64 ./main.go
+        GOOS=windows GOARCH=amd64 go build -o ./build/ktucli-windows-amd64 ./main.go
+        GOOS=darwin GOARCH=amd64 go build -o ./build/ktucli-macos-amd64 ./main.go
+        GOOS=darwin GOARCH=arm64 go build -o ./build/ktucli-macos-arm64 ./main.go
 
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
@@ -64,9 +60,7 @@ jobs:
 
     - name: update cli version in snap
       run: |
-        cd snap
-        sed -i "s+VERSION_LINUX_X64+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" snapcraft.yaml
-        cd ..
+        sed -i "s+VERSION_LINUX_X64+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" snap/snapcraft.yaml
 
     - name: Create snap
       id: snapcraft
@@ -79,17 +73,22 @@ jobs:
         snap: ${{ steps.snapcraft.outputs.snap }}
         release: stable
 
-    - name: Set git identity
-      run: |
-        git config user.name 'Kaytu Developer'
-        git config user.email 'dev@kaytu.io'
-
     - name: update cli version in homebrew
       run: |        
-        cd homebrew
-        sed -i "s+VERSION_HOMEBREW+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" kaytu.rb
+        sed -i "s+VERSION_HOMEBREW+$(echo "${{ steps.tag_version.outputs.new_tag }}" | sed 's/^.//')+g" homebrew/kaytu.rb
 
-        cd ..
+        sha256sum build/ktucli-macos-amd64 | awk '{print $1}' > newHash
+        sed -i "s+HASH_MAC_AMD64+$(cat newHash)+g" homebrew/kaytu.rb
+
+        sha256sum build/ktucli-macos-arm64 | awk '{print $1}' > newHash
+        sed -i "s+HASH_MAC_ARM64+$(cat newHash)+g" homebrew/kaytu.rb
+
+        sha256sum build/ktucli-linux-arm64 | awk '{print $1}' > newHash
+        sed -i "s+HASH_LINUX_ARM64+$(cat newHash)+g" homebrew/kaytu.rb
+        
+        sha256sum build/ktucli-linux-amd64 | awk '{print $1}' > newHash
+        sed -i "s+HASH_LINUX_AMD64+$(cat newHash)+g" homebrew/kaytu.rb
+
         git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
         
         cd homebrew-cli-tap
@@ -105,56 +104,5 @@ jobs:
         git commit -a -m "update cli version"
         git push homebrew-cli-tap-origin 
         
-        cd ..
-        rm -rf homebrew-cli-tap
-
-    - name: update hashes in homebrew
-      run: |        
-        cd homebrew
-        
-        sha256sum ../build/ktucli-macos-amd64 >> newHash
-        cat newHash | rev | cut -c 28- | rev >> newHash 
-        sed -i '1d' newHash
-        sed -i 's/ *$//' newHash
-        sed -i "9s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
-        rm -rf newHash
-        
-        sha256sum ../build/ktucli-macos-arm64 >> newHash
-        cat newHash | rev | cut -c 28- | rev >> newHash 
-        sed -i '1d' newHash
-        sed -i 's/ *$//' newHash
-        sed -i "17s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
-        rm -rf newHash
-
-        sha256sum ../build/ktucli-linux-arm64 >> newHash
-        cat newHash | rev | cut -c 28- | rev >> newHash 
-        sed -i '1d' newHash
-        sed -i 's/ *$//' newHash
-        sed -i "25s/.*/$(printf '    sha256 "%s" \n' "$(cat newHash)") /" kaytu.rb
-        rm -rf newHash
-        
-        sha256sum ../build/ktucli-linux-amd64 >> newHash
-        cat newHash | rev | cut -c 28- | rev >> newHash 
-        sed -i '1d' newHash
-        sed -i 's/ *$//' newHash
-        sed -i "33s/.*/$(printf '    sha256 "%s"\n' "$(cat newHash)") /" kaytu.rb
-        rm -rf newHash
-        
-        cd ..
-        
-        git clone https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
-        cd homebrew-cli-tap
-
-        cp  ../homebrew/kaytu.rb kaytu.rb
-        
-        git remote add homebrew-cli-tap-origin https://x-access-token:${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io/homebrew-cli-tap.git
-        git config user.name 'Kaytu Developer'
-        git config user.email 'dev@kaytu.io'
-        
-        git checkout main
-        git add .
-        git commit -a -m "update hashes "
-        git push homebrew-cli-tap-origin
-
         cd ..
         rm -rf homebrew-cli-tap
