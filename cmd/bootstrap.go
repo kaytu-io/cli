@@ -27,11 +27,15 @@ import (
 //go:embed onboard/template.yaml
 var templateBody string
 
-func GetConfig(ctx context.Context, awsAccessKey, awsSecretKey, awsSessionToken, assumeRoleArn string, externalId *string) (aws.Config, error) {
+func GetConfig(ctx context.Context, awsAccessKey, awsSecretKey, awsSessionToken, assumeRoleArn, profile string, externalId *string) (aws.Config, error) {
 	opts := []func(*config.LoadOptions) error{}
 
 	if awsAccessKey != "" {
 		opts = append(opts, config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(awsAccessKey, awsSecretKey, awsSessionToken)))
+	}
+
+	if profile != "" {
+		opts = append(opts, config.WithSharedConfigProfile(profile))
 	}
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
@@ -213,6 +217,9 @@ func CheckAccessToMasterAccount(cfg aws.Config) (bool, error) {
 	orgClient := organizations.NewFromConfig(cfg)
 	out, err := orgClient.DescribeOrganization(context.Background(), &organizations.DescribeOrganizationInput{})
 	if err != nil {
+		if strings.Contains(err.Error(), "AWSOrganizationsNotInUseException") {
+			return false, nil
+		}
 		return false, err
 	}
 
@@ -283,7 +290,7 @@ var awsCmd = &cobra.Command{
 		}
 
 		var cfg aws.Config
-		cfg, err = GetConfig(context.Background(), "", "", "", "", nil)
+		cfg, err = GetConfig(context.Background(), "", "", "", "", cmd.Flag("profile").Value.String(), nil)
 		if err != nil {
 			return err
 		}
@@ -351,4 +358,5 @@ var awsCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(bootstrapCmd)
 	bootstrapCmd.AddCommand(awsCmd)
+	awsCmd.Flags().String("profile", "", "Specifying AWS CLI profile ")
 }
