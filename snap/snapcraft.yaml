@@ -13,6 +13,7 @@ apps:
     plugs:
       - home
       - network
+      - dot-config-aws
 
 parts:
   kaytu:
@@ -27,3 +28,7 @@ plugs:
     interface: home
   kaytu-network:
     interface: network
+  dot-config-aws:
+    interface: personal-files
+    read:
+      - $HOME/.aws
