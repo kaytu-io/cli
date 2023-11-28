@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/kaytu-io/cli-program/cmd/gen"
+	"github.com/kaytu-io/cli-program/pkg/api/kaytu/client/onboard"
 	"strings"
 	"time"
 
@@ -230,6 +231,7 @@ func CheckAccessToMasterAccount(cfg aws.Config) (bool, error) {
 	return callerAccount == masterAccount, nil
 }
 
+var bootstrappingMode *bool
 var awsCmd = &cobra.Command{
 	Use: "aws",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -323,19 +325,34 @@ var awsCmd = &cobra.Command{
 
 			fmt.Println("* Onboarding into Kaytu")
 
-			req := workspace.NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
-			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
-				AccountID:           accountID,
-				AssumeRoleName:      roleName,
-				ExternalID:          ws.AwsUniqueID,
-				HealthCheckPolicies: nil,
+			if bootstrappingMode != nil && *bootstrappingMode == true {
+				req := workspace.NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
+				cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
+					AccountID:           accountID,
+					AssumeRoleName:      roleName,
+					ExternalID:          ws.AwsUniqueID,
+					HealthCheckPolicies: nil,
+				}
+				req.SetWorkspaceName(workspaceName)
+				req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{
+					AwsConfig:     &cnf,
+					ConnectorType: models.SourceTypeAWS,
+				})
+				_, err = kaytuClient.Workspace.PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(req, auth)
+			} else {
+				req := onboard.NewPostOnboardAPIV2CredentialParams()
+				cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
+					AccountID:           accountID,
+					AssumeRoleName:      roleName,
+					ExternalID:          ws.AwsUniqueID,
+					HealthCheckPolicies: nil,
+				}
+				req.SetConfig(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2CreateCredentialV2Request{
+					AwsConfig: &cnf,
+					Connector: models.SourceTypeAWS,
+				})
+				_, err = kaytuClient.Onboard.PostOnboardAPIV2Credential(req, auth)
 			}
-			req.SetWorkspaceName(workspaceName)
-			req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{
-				AwsConfig:     &cnf,
-				ConnectorType: models.SourceTypeAWS,
-			})
-			_, err = kaytuClient.Workspace.PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(req, auth)
 
 			if err != nil {
 				if i < 5 {
@@ -353,4 +370,5 @@ var awsCmd = &cobra.Command{
 func init() {
 	gen.OnboardCmd.AddCommand(awsCmd)
 	awsCmd.Flags().String("profile", "", "Specifying AWS CLI profile ")
+	bootstrappingMode = awsCmd.Flags().BoolP("bootstrap-mode", "b", false, "Onboarding for workspace bootstrap mode")
 }
