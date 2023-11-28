@@ -26,7 +26,7 @@ func init() {
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().String("field", "", "Field")
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.MarkFlagRequired("field")
 	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
-	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().StringArray("severities", nil, "Severities to filter by")
+	GetComplianceApiV1FindingsBenchmarkIdFieldTopCountCmd.Flags().StringArray("severities", nil, "Severities to filter by defaults to all severities except passed")
 
 	ComplianceCmd.AddCommand(GetComplianceApiV1BenchmarksBenchmarkIdPoliciesCmd)
 
@@ -82,7 +82,7 @@ func init() {
 	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().String("field", "", "Field")
 	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.MarkFlagRequired("field")
 	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("resource-collection", nil, "Resource collection IDs to filter by")
-	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("severities", nil, "Severities to filter by")
+	GetComplianceApiV1FindingsBenchmarkIdFieldCountCmd.Flags().StringArray("severities", nil, "Severities to filter by defaults to all severities except passed")
 
 	ComplianceCmd.AddCommand(PostComplianceApiV1FindingsCmd)
 

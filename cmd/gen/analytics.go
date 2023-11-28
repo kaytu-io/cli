@@ -5,8 +5,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var AssetsCmd = &cobra.Command{
-	Use: "assets",
+var AnalyticsCmd = &cobra.Command{
+	Use: "analytics",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},
@@ -19,8 +19,8 @@ var SpendCmd = &cobra.Command{
 	},
 }
 
-var AnalyticsCmd = &cobra.Command{
-	Use: "analytics",
+var AssetsCmd = &cobra.Command{
+	Use: "assets",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return cmd.Help()
 	},

@@ -42,6 +42,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// Example: steampipe-v0.5
 	Evaluator string `json:"evaluator,omitempty"`
 
+	// parent benchmark names
+	// Example: ["Azure CIS v1.4.0"]
+	ParentBenchmarkNames []string `json:"parentBenchmarkNames"`
+
 	// parent benchmarks
 	ParentBenchmarks []string `json:"parentBenchmarks"`
 
@@ -86,6 +90,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// resource type
 	// Example: Microsoft.Compute/virtualMachines
 	ResourceType string `json:"resourceType,omitempty"`
+
+	// resource type name
+	// Example: Virtual Machine
+	ResourceTypeName string `json:"resourceTypeName,omitempty"`
 
 	// result
 	// Example: alarm

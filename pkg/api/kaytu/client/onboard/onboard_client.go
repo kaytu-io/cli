@@ -44,6 +44,8 @@ type ClientService interface {
 
 	GetOnboardAPIV1SourceSourceIDHealthcheck(params *GetOnboardAPIV1SourceSourceIDHealthcheckParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOnboardAPIV1SourceSourceIDHealthcheckOK, error)
 
+	PostOnboardAPIV1ConnectionsAws(params *PostOnboardAPIV1ConnectionsAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1ConnectionsAwsOK, error)
+
 	PostOnboardAPIV1ConnectionsConnectionIDState(params *PostOnboardAPIV1ConnectionsConnectionIDStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1ConnectionsConnectionIDStateOK, error)
 
 	PostOnboardAPIV1Credential(params *PostOnboardAPIV1CredentialParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1CredentialOK, error)
@@ -345,6 +347,47 @@ func (a *Client) GetOnboardAPIV1SourceSourceIDHealthcheck(params *GetOnboardAPIV
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetOnboardAPIV1SourceSourceIDHealthcheck: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PostOnboardAPIV1ConnectionsAws creates a w s connection
+
+Creating AWS connection
+*/
+func (a *Client) PostOnboardAPIV1ConnectionsAws(params *PostOnboardAPIV1ConnectionsAwsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostOnboardAPIV1ConnectionsAwsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostOnboardAPIV1ConnectionsAwsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PostOnboardAPIV1ConnectionsAws",
+		Method:             "POST",
+		PathPattern:        "/onboard/api/v1/connections/aws",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostOnboardAPIV1ConnectionsAwsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostOnboardAPIV1ConnectionsAwsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostOnboardAPIV1ConnectionsAws: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

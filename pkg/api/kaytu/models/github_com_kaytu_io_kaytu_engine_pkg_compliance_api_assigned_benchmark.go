@@ -13,10 +13,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark github com kaytu io kaytu engine pkg compliance api connection assigned benchmark
+// GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark github com kaytu io kaytu engine pkg compliance api assigned benchmark
 //
-// swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.ConnectionAssignedBenchmark
-type GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark struct {
+// swagger:model github_com_kaytu-io_kaytu-engine_pkg_compliance_api.AssignedBenchmark
+type GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark struct {
 
 	// benchmark Id
 	BenchmarkID *GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark `json:"benchmarkId,omitempty"`
@@ -26,8 +26,8 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark stru
 	Status bool `json:"status,omitempty"`
 }
 
-// Validate validates this github com kaytu io kaytu engine pkg compliance api connection assigned benchmark
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark) Validate(formats strfmt.Registry) error {
+// Validate validates this github com kaytu io kaytu engine pkg compliance api assigned benchmark
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateBenchmarkID(formats); err != nil {
@@ -40,7 +40,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark)
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark) validateBenchmarkID(formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark) validateBenchmarkID(formats strfmt.Registry) error {
 	if swag.IsZero(m.BenchmarkID) { // not required
 		return nil
 	}
@@ -59,8 +59,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark)
 	return nil
 }
 
-// ContextValidate validate this github com kaytu io kaytu engine pkg compliance api connection assigned benchmark based on the context it is used
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this github com kaytu io kaytu engine pkg compliance api assigned benchmark based on the context it is used
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateBenchmarkID(ctx, formats); err != nil {
@@ -73,7 +73,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark)
 	return nil
 }
 
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark) contextValidateBenchmarkID(ctx context.Context, formats strfmt.Registry) error {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark) contextValidateBenchmarkID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BenchmarkID != nil {
 
@@ -95,7 +95,7 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark)
 }
 
 // MarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark) MarshalBinary() ([]byte, error) {
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -103,8 +103,8 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark)
 }
 
 // UnmarshalBinary interface implementation
-func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark) UnmarshalBinary(b []byte) error {
-	var res GithubComKaytuIoKaytuEnginePkgComplianceAPIConnectionAssignedBenchmark
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark) UnmarshalBinary(b []byte) error {
+	var res GithubComKaytuIoKaytuEnginePkgComplianceAPIAssignedBenchmark
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

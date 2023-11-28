@@ -36,6 +36,8 @@ type ClientService interface {
 
 	GetComplianceAPIV1AssignmentsConnectionConnectionID(params *GetComplianceAPIV1AssignmentsConnectionConnectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsConnectionConnectionIDOK, error)
 
+	GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionID(params *GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDOK, error)
+
 	PostComplianceAPIV1AssignmentsBenchmarkIDConnection(params *PostComplianceAPIV1AssignmentsBenchmarkIDConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostComplianceAPIV1AssignmentsBenchmarkIDConnectionOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -161,6 +163,47 @@ func (a *Client) GetComplianceAPIV1AssignmentsConnectionConnectionID(params *Get
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1AssignmentsConnectionConnectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionID gets list of benchmark assignments for a resource collection
+
+Retrieving all benchmark assigned to a resource collection with resource collection id
+*/
+func (a *Client) GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionID(params *GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionID",
+		Method:             "GET",
+		PathPattern:        "/compliance/api/v1/assignments/resource_collection/{resource_collection_id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetComplianceAPIV1AssignmentsResourceCollectionResourceCollectionID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -105,6 +105,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 	// Maximum: 100
 	// Minimum: 0
 	UnhealthyConnections *int64 `json:"unhealthy_connections,omitempty"`
+
+	// version
+	Version int64 `json:"version,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api credential

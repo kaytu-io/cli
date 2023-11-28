@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"errors"
 	"fmt"
+	"github.com/kaytu-io/cli-program/cmd/gen"
 	"strings"
 	"time"
 
@@ -88,9 +89,7 @@ func CreateStack(cfg aws.Config, userARN, handshakeID string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	fmt.Println("* stacks is created")
 
-	fmt.Println("* waiting for stacks to finish")
 	for {
 		stacks, err := client.DescribeStacks(context.Background(), &cloudformation.DescribeStacksInput{
 			StackName: aws.String(stackName),
@@ -163,7 +162,6 @@ func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("* stackset is created")
 
 	_, err = client.CreateStackInstances(context.Background(), &cloudformation.CreateStackInstancesInput{
 		Regions:      []string{"us-east-1"},
@@ -179,9 +177,7 @@ func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("* stack instance is created")
 
-	fmt.Println("* waiting for stack instances to finish")
 	for {
 		instances, err := client.ListStackInstances(context.Background(), &cloudformation.ListStackInstancesInput{
 			StackSetName: aws.String(stackName),
@@ -234,13 +230,6 @@ func CheckAccessToMasterAccount(cfg aws.Config) (bool, error) {
 	return callerAccount == masterAccount, nil
 }
 
-var bootstrapCmd = &cobra.Command{
-	Use: "bootstrap",
-	RunE: func(cmd *cobra.Command, args []string) error {
-		return cmd.Help()
-	},
-}
-
 var awsCmd = &cobra.Command{
 	Use: "aws",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -264,13 +253,16 @@ var awsCmd = &cobra.Command{
 		response := resp.GetPayload()
 		var workspaceName string
 		var ws *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse
-		if len(response) > 1 {
-			var items []string
-			for _, r := range response {
+		var items []string
+		for _, r := range response {
+			if r.Status == models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusBOOTSTRAPPING {
 				items = append(items, r.Name)
 			}
+		}
+
+		if len(items) > 1 {
 			prompt := promptui.Select{
-				Label: "Please select the bootstrapping workspace",
+				Label: "Please select the workspace you want to onboard into",
 				Items: items,
 			}
 			_, result, err := prompt.Run()
@@ -289,23 +281,25 @@ var awsCmd = &cobra.Command{
 			}
 		}
 
+		fmt.Println("* Checking IAM Login")
 		var cfg aws.Config
 		cfg, err = GetConfig(context.Background(), "", "", "", "", cmd.Flag("profile").Value.String(), nil)
 		if err != nil {
 			return err
 		}
 
-		fmt.Println("* checking to see if you are onboarding organization account or standalone account")
+		fmt.Println("* Checking Access")
 		isMaster, err := CheckAccessToMasterAccount(cfg)
 		if err != nil {
 			return err
 		}
 
-		fmt.Println("* creating cloudformation stacks")
+		fmt.Println("* Configuring Organization Master Account")
 		arn, err := CreateStack(cfg, ws.AwsUserArn, ws.AwsUniqueID)
 		if err != nil {
 			return err
 		}
+		fmt.Println("* Completed configuration of Organization Master Account")
 
 		arnPart1, roleName, ok := strings.Cut(arn, "/")
 		if !ok {
@@ -315,18 +309,20 @@ var awsCmd = &cobra.Command{
 		accountID := parts[4]
 
 		if isMaster {
-			fmt.Println("* creating cloudformation stack set")
+			fmt.Println("* Configuring Organization Members Account")
 			err := CreateStackSet(cfg, ws.AwsUserArn, ws.AwsUniqueID)
 			if err != nil {
 				return err
 			}
+			fmt.Println("* Completed configuration of Organization Master Accounts")
 		}
 
-		fmt.Println("* finished, got the arn:", arn)
+		fmt.Println("* The Role ARN:", arn)
 		for i := 0; i < 6; i++ {
 			time.Sleep(5 * time.Second)
 
-			fmt.Println("* onboarding into kaytu")
+			fmt.Println("* Onboarding into Kaytu")
+
 			req := workspace.NewPostWorkspaceAPIV1BootstrapWorkspaceNameCredentialParams()
 			cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
 				AccountID:           accountID,
@@ -343,20 +339,18 @@ var awsCmd = &cobra.Command{
 
 			if err != nil {
 				if i < 5 {
-					fmt.Printf("* failure while onboarding: %v\n* retrying in a bit ... ", err)
 					continue
 				}
 				return err
 			}
 			break
 		}
-		fmt.Println("* finished :)")
+		fmt.Println("* Finished :)")
 		return nil
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(bootstrapCmd)
-	bootstrapCmd.AddCommand(awsCmd)
+	gen.OnboardCmd.AddCommand(awsCmd)
 	awsCmd.Flags().String("profile", "", "Specifying AWS CLI profile ")
 }

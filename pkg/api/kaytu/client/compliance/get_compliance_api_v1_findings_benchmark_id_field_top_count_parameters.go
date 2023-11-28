@@ -106,7 +106,7 @@ type GetComplianceAPIV1FindingsBenchmarkIDFieldTopCountParams struct {
 
 	/* Severities.
 
-	   Severities to filter by
+	   Severities to filter by defaults to all severities except passed
 	*/
 	Severities []string
 

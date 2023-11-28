@@ -19,6 +19,9 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_inventory_api.ResourceCollection
 type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection struct {
 
+	// connection count
+	ConnectionCount int64 `json:"connection_count,omitempty"`
+
 	// connectors
 	Connectors []SourceType `json:"connectors"`
 
@@ -36,6 +39,9 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIResourceCollection struct {
 
 	// last evaluated at
 	LastEvaluatedAt string `json:"last_evaluated_at,omitempty"`
+
+	// metric count
+	MetricCount int64 `json:"metric_count,omitempty"`
 
 	// name
 	Name string `json:"name,omitempty"`
