@@ -9,11 +9,11 @@ func init() {
 	
     rootCmd.AddCommand(gen.AlertingCmd)
 	
-    rootCmd.AddCommand(gen.AnalyticsCmd)
-	
     rootCmd.AddCommand(gen.SpendCmd)
 	
     rootCmd.AddCommand(gen.AssetsCmd)
+	
+    rootCmd.AddCommand(gen.AnalyticsCmd)
 	
     rootCmd.AddCommand(gen.BenchmarksAssignmentCmd)
 	

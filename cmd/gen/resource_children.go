@@ -43,39 +43,3 @@ var PostAiApiV1GptRunCmd = &cobra.Command{
 		return nil
 	},
 }
-
-var GetInventoryApiV2ResourcesMetricResourceTypeCmd = &cobra.Command{
-	Use:   "resource-metrics",
-	Short: `Retrieving metrics for a specific resource type.`,
-	Long:  `Retrieving metrics for a specific resource type.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		client, auth, err := kaytu.GetKaytuAuthClient(cmd)
-		if err != nil {
-			if errors.Is(err, pkg.ExpiredSession) {
-				fmt.Println(err.Error())
-				return nil
-			}
-			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
-		}
-
-		req := resource.NewGetInventoryAPIV2ResourcesMetricResourceTypeParams()
-
-		req.SetConnectionGroup(flags.ReadStringArrayFlag(cmd, "ConnectionGroup"))
-		req.SetConnectionID(flags.ReadStringArrayFlag(cmd, "ConnectionID"))
-		req.SetEndTime(flags.ReadTimeOptionalFlag(cmd, "EndTime"))
-		req.SetResourceType(flags.ReadStringFlag(cmd, "ResourceType"))
-		req.SetStartTime(flags.ReadTimeOptionalFlag(cmd, "StartTime"))
-
-		resp, err := client.Resource.GetInventoryAPIV2ResourcesMetricResourceType(req, auth)
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
-		}
-
-		err = pkg.PrintOutput(cmd, "get-inventory-api-v2-resources-metric-resource-type", resp.GetPayload())
-		if err != nil {
-			return fmt.Errorf("[get_inventory_api_v_2_resources_metric_resource_type] : %v", err)
-		}
-
-		return nil
-	},
-}

@@ -19,13 +19,4 @@ func init() {
 	PostAiApiV1GptRunCmd.Flags().String("query", "", "Description of query for KaytuGPT")
 	PostAiApiV1GptRunCmd.MarkFlagRequired("query")
 
-	ResourceCmd.AddCommand(GetInventoryApiV2ResourcesMetricResourceTypeCmd)
-
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().StringArray("connection-group", nil, "Connection group to filter by - mutually exclusive with connectionId")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().StringArray("connection-id", nil, "Connection IDs to filter by - mutually exclusive with connectionGroup")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("end-time", "", "timestamp for resource count in epoch seconds")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("resource-type", "", "ResourceType")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.MarkFlagRequired("resource-type")
-	GetInventoryApiV2ResourcesMetricResourceTypeCmd.Flags().String("start-time", "", "timestamp for resource count change comparison in epoch seconds")
-
 }

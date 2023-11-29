@@ -282,7 +282,7 @@ var awsCmd = &cobra.Command{
 		} else if len(response) == 0 {
 			return fmt.Errorf("no workspace found")
 		} else {
-			workspaceName = response[0].Name
+			workspaceName = items[0]
 		}
 		for _, r := range response {
 			if r.Name == workspaceName {
@@ -342,8 +342,9 @@ var awsCmd = &cobra.Command{
 				}
 				req.SetWorkspaceName(workspaceName)
 				req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest{
-					AwsConfig:     &cnf,
-					ConnectorType: models.SourceTypeAWS,
+					SingleConnection: singleConnection != nil && *singleConnection,
+					AwsConfig:        &cnf,
+					ConnectorType:    models.SourceTypeAWS,
 				})
 				_, err = kaytuClient.Workspace.PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(req, auth)
 			} else if singleConnection != nil && *singleConnection == true {
@@ -392,5 +393,5 @@ func init() {
 	awsCmd.Flags().String("profile", "", "Specifying AWS CLI profile ")
 	bootstrappingMode = awsCmd.Flags().BoolP("bootstrap-mode", "b", false, "Onboarding for workspace bootstrap mode")
 	singleConnection = awsCmd.Flags().BoolP("single-connection", "s", false, "")
-	ou = awsCmd.Flags().StringP("organization-unit", "ou", "", "")
+	ou = awsCmd.Flags().StringP("organization-unit", "u", "", "")
 }

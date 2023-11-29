@@ -26,6 +26,9 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIAddCredentialRequest struct {
 
 	// connector type
 	ConnectorType SourceType `json:"connectorType,omitempty"`
+
+	// single connection
+	SingleConnection bool `json:"singleConnection,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg workspace api add credential request

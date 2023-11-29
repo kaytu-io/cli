@@ -105,7 +105,6 @@ var ParamModels = map[string]interface{}{
 	"PostOnboardAPIV1SourceAzure":                                         onboard.PostOnboardAPIV1SourceAzureParams{},
 	"PostOnboardAPIV2Credential":                                          onboard.PostOnboardAPIV2CredentialParams{},
 	"PutOnboardAPIV1CredentialCredentialID":                               onboard.PutOnboardAPIV1CredentialCredentialIDParams{},
-	"GetInventoryAPIV2ResourcesMetricResourceType":                        resource.GetInventoryAPIV2ResourcesMetricResourceTypeParams{},
 	"PostAiAPIV1GptRun":                                                   resource.PostAiAPIV1GptRunParams{},
 	"GetInventoryAPIV2MetadataResourceCollection":                         resource_collection.GetInventoryAPIV2MetadataResourceCollectionParams{},
 	"GetInventoryAPIV2MetadataResourceCollectionResourceCollectionID":     resource_collection.GetInventoryAPIV2MetadataResourceCollectionResourceCollectionIDParams{},
