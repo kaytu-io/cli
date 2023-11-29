@@ -237,7 +237,7 @@ func CheckAccessToMasterAccount(cfg aws.Config) (bool, error) {
 	return callerAccount == masterAccount, nil
 }
 
-var bootstrappingMode *bool
+var bootstrappingMode, singleConnection *bool
 var ou *string
 var awsCmd = &cobra.Command{
 	Use: "aws",
@@ -346,6 +346,19 @@ var awsCmd = &cobra.Command{
 					ConnectorType: models.SourceTypeAWS,
 				})
 				_, err = kaytuClient.Workspace.PostWorkspaceAPIV1BootstrapWorkspaceNameCredential(req, auth)
+			} else if singleConnection != nil && *singleConnection == true {
+				req := onboard.NewPostOnboardAPIV1ConnectionsAwsParams()
+				cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
+					AccountID:           accountID,
+					AssumeRoleName:      roleName,
+					ExternalID:          ws.AwsUniqueID,
+					HealthCheckPolicies: nil,
+				}
+				req.SetRequest(&models.GithubComKaytuIoKaytuEnginePkgOnboardAPICreateAwsConnectionRequest{
+					AwsConfig: &cnf,
+					Name:      "",
+				})
+				_, err = kaytuClient.Onboard.PostOnboardAPIV1ConnectionsAws(req, auth)
 			} else {
 				req := onboard.NewPostOnboardAPIV2CredentialParams()
 				cnf := models.GithubComKaytuIoKaytuEnginePkgOnboardAPIV2AWSCredentialV2Config{
@@ -378,5 +391,6 @@ func init() {
 	gen.OnboardCmd.AddCommand(awsCmd)
 	awsCmd.Flags().String("profile", "", "Specifying AWS CLI profile ")
 	bootstrappingMode = awsCmd.Flags().BoolP("bootstrap-mode", "b", false, "Onboarding for workspace bootstrap mode")
+	singleConnection = awsCmd.Flags().BoolP("single-connection", "s", false, "")
 	ou = awsCmd.Flags().StringP("organization-unit", "ou", "", "")
 }
