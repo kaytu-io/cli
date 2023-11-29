@@ -133,14 +133,20 @@ func GetRootID(cfg aws.Config) (string, error) {
 }
 
 func CreateStackSet(cfg aws.Config, userARN, handshakeID string) error {
-	rootID, err := GetRootID(cfg)
-	if err != nil {
-		return err
+	var rootID string
+	if ou != nil && len(*ou) > 0 {
+		rootID = *ou
+	} else {
+		var err error
+		rootID, err = GetRootID(cfg)
+		if err != nil {
+			return err
+		}
 	}
 
 	client := cloudformation.NewFromConfig(cfg)
 	stackName := "KaytuEnrollOrganization"
-	_, err = client.CreateStackSet(context.Background(), &cloudformation.CreateStackSetInput{
+	_, err := client.CreateStackSet(context.Background(), &cloudformation.CreateStackSetInput{
 		StackSetName: aws.String(stackName),
 		AutoDeployment: &types.AutoDeployment{
 			Enabled:                      aws.Bool(true),
@@ -232,6 +238,7 @@ func CheckAccessToMasterAccount(cfg aws.Config) (bool, error) {
 }
 
 var bootstrappingMode *bool
+var ou *string
 var awsCmd = &cobra.Command{
 	Use: "aws",
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -371,4 +378,5 @@ func init() {
 	gen.OnboardCmd.AddCommand(awsCmd)
 	awsCmd.Flags().String("profile", "", "Specifying AWS CLI profile ")
 	bootstrappingMode = awsCmd.Flags().BoolP("bootstrap-mode", "b", false, "Onboarding for workspace bootstrap mode")
+	ou = awsCmd.Flags().StringP("organization-unit", "ou", "", "")
 }
