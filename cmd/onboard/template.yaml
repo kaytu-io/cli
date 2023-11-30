@@ -4,12 +4,14 @@ Parameters:
   KaytuManagementIAMUser:
     Description: The Kaytu iam user which has permission to your account.
     MinLength: '1'
+    Default: '${KaytuManagementIAMUser}'
     Type: String
   KaytuHandshakeID:
     Description: >-
       The External ID to authenticate your account - used internally by Kaytu to
       connect you with our accounts - DO NOT CHANGE THIS
     MinLength: '1'
+    Default: '${KaytuHandshakeID}'
     Type: String
 Resources:
   KaytuAdditionalPolicy:
