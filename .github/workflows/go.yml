@@ -57,6 +57,7 @@ jobs:
           artifacts : "release.tar.gz,foo/*.txt,./build/ktucli-linux-amd64,./build/ktucli-linux-arm64,./build/ktucli-windows-amd64,./build/ktucli-macos-amd64,./build/ktucli-macos-arm64"
           draft: false
           prerelease: false
+          makeLatest: true
 
     - name: update cli version in snap
       run: |
