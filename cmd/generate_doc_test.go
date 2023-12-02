@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/kaytu-io/cli-program/cmd/genv2"
+	"github.com/kaytu-io/cli-program/cmd/predef"
 	"github.com/spf13/cobra/doc"
 	"io/fs"
 	"log"
@@ -13,11 +14,18 @@ import (
 )
 
 func TestGenerateDoc(t *testing.T) {
-	genv2.KaytuCmd.Execute()
+	os.Args = []string{"kaytu"}
+
+	predef.Init()
+
+	err := genv2.KaytuCmd.Execute()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	os.Mkdir("./docs", os.ModePerm)
 
-	err := doc.GenMarkdownTree(genv2.KaytuCmd, "./docs/")
+	err = doc.GenMarkdownTree(genv2.KaytuCmd, "./docs/")
 	if err != nil {
 		log.Fatal(err)
 	}

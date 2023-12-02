@@ -24,6 +24,7 @@ kaytu onboard [flags]
 
 * [kaytu](.)	 - 
 * [kaytu onboard account](kaytu_onboard_account)	 - 
+* [kaytu onboard aws](kaytu_onboard_aws)	 - 
 * [kaytu onboard credential](kaytu_onboard_credential)	 - 
 * [kaytu onboard list-credentials](kaytu_onboard_list-credentials)	 - 
 
