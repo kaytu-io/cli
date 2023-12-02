@@ -11,7 +11,7 @@ import (
 func main() {
 	count := 0
 	var re = regexp.MustCompile(`var res \[\]struct \{\s+([a-zA-Z]+)\s+\}`)
-	var re2 = regexp.MustCompile(`struct \{\s+([a-zA-Z]+)\s+\}\s+\` + "`" + `json`)
+	var re2 = regexp.MustCompile(`struct \{\s+([a-zA-Z]+)\s+\}\s+\` + "`json")
 
 	err := filepath.Walk("./pkg/api/kaytu", func(path string, info fs.FileInfo, err error) error {
 		if info == nil {

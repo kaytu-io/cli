@@ -14,6 +14,27 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func ReadStructFlag(cmd *cobra.Command, name string, resp interface{}) {
+	name = strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
+	if cmd.Flags().Lookup(name) == nil {
+		fmt.Println("cant find", name)
+	}
+	value := cmd.Flags().Lookup(name).Value.String()
+
+	var ctn string
+	if strings.HasPrefix(value, "@") {
+		ctn = readFile(value[1:])
+	} else if strings.HasPrefix(value, "file://") {
+		ctn = readFile(value[7:])
+	}
+	ctn = value
+
+	err := json.Unmarshal([]byte(ctn), &resp)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func ReadStringFlag(cmd *cobra.Command, name string) string {
 	name = strings.ReplaceAll(strcase.ToSnake(name), "_", "-")
 	if cmd.Flags().Lookup(name) == nil {

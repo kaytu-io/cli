@@ -42,6 +42,12 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPICostMetric struct {
 	// Minimum: 0
 	DailyCostAtStartTime *float64 `json:"daily_cost_at_start_time,omitempty"`
 
+	// finder per connection query
+	FinderPerConnectionQuery string `json:"finderPerConnectionQuery,omitempty"`
+
+	// finder query
+	FinderQuery string `json:"finderQuery,omitempty"`
+
 	// total cost
 	// Example: 621041.2436112489
 	// Minimum: 0

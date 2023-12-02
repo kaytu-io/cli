@@ -7,7 +7,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/iancoleman/strcase"
 	"github.com/jedib0t/go-pretty/v6/table"
-	"github.com/kaytu-io/cli-program/gen/config"
+	"github.com/kaytu-io/cli-program/codegen/config"
 	"github.com/leekchan/accounting"
 	jsonmask "github.com/teambition/json-mask-go"
 	"golang.org/x/term"
@@ -41,7 +41,7 @@ func keepTwoDigits(v interface{}, k string) interface{} {
 }
 
 func PrintSummary(objJSON []byte, commandName string) error {
-	if v, ok := config.UrlSummary[commandName]; ok {
+	if v := config.GetSummaryByAPIName(commandName); len(v) > 0 {
 		result, err := jsonmask.Mask(objJSON, v)
 		if err != nil {
 			return err
@@ -162,7 +162,7 @@ func PrintTable(objJSON []byte, customOrder *map[string]int) error {
 	headersSize := 5
 	var headers []interface{}
 	for _, item := range headersOrdered {
-		headers = append(headers, strcase.ToSnake(item))
+		headers = append(headers, strcase.ToSnake(strings.TrimSpace(item)))
 		headersSize += len(strcase.ToSnake(item)) + 3
 	}
 	printTable.AppendHeader(headers)
@@ -172,7 +172,7 @@ func PrintTable(objJSON []byte, customOrder *map[string]int) error {
 		rowSize := 5
 		var row []interface{}
 		for _, header := range headersOrdered {
-			value := item[header]
+			value := strings.TrimSpace(item[header])
 			row = append(row, value)
 			rowSize += len(value) + 3
 		}
@@ -242,7 +242,9 @@ func PrintList(objJSON []byte, customOrder *map[string]int) error {
 	for i, item := range rows {
 		var row []interface{}
 		for _, header := range headersOrdered {
-			value := item[header]
+			value := strings.TrimSpace(item[header])
+			header = strings.TrimSpace(header)
+			header = strcase.ToCamel(header)
 			row = append(row, value)
 			spaces := strings.Repeat(" ", maxSize-len(header)+2)
 			if len(value) == 0 {
@@ -251,16 +253,16 @@ func PrintList(objJSON []byte, customOrder *map[string]int) error {
 			if value[0] == '[' {
 				var strList []string
 				if err = json.Unmarshal([]byte(value), &strList); err == nil {
-					fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(strcase.ToCamel(header)+":"), spaces, strList))
+					fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(header+":"), spaces, strList))
 					continue
 				}
-				fmt.Println(color.CyanString(strcase.ToCamel(header) + ":"))
+				fmt.Println(color.CyanString(header + ":"))
 				divider := fmt.Sprintf("%s\n", strings.Repeat("=", maxSize))
 				fmt.Print(color.CyanString(divider))
 				PrintTable([]byte(value), customOrder)
 				fmt.Print(color.CyanString(divider))
 			} else {
-				fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(strcase.ToCamel(header)+":"), spaces, value))
+				fmt.Println(fmt.Sprintf("%s %s%s", color.CyanString(header+":"), spaces, value))
 			}
 		}
 		if i < (len(rows) - 1) {

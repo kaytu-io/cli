@@ -37,6 +37,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIQuery struct {
 	// Example: ["null"]
 	ListOfTables []string `json:"listOfTables"`
 
+	// primary table
+	// Example: null
+	PrimaryTable string `json:"primaryTable,omitempty"`
+
 	// query to execute
 	// Example: select\n  -- Required Columns\n  'active_directory' as resource,\n  'info' as status,\n  'Manual verification required.' as reason;\n
 	QueryToExecute string `json:"queryToExecute,omitempty"`

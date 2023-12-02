@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetInventoryAPIV2AnalyticsCategoriesParams creates a new GetInventoryAPIV2AnalyticsCategoriesParams object,
@@ -66,6 +67,12 @@ type GetInventoryAPIV2AnalyticsCategoriesParams struct {
 	   Metric type, default: assets
 	*/
 	MetricType *string
+
+	/* MinCount.
+
+	   For assets minimum number of resources returned resourcetype must have, default 1
+	*/
+	MinCount *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,6 +138,17 @@ func (o *GetInventoryAPIV2AnalyticsCategoriesParams) SetMetricType(metricType *s
 	o.MetricType = metricType
 }
 
+// WithMinCount adds the minCount to the get inventory API v2 analytics categories params
+func (o *GetInventoryAPIV2AnalyticsCategoriesParams) WithMinCount(minCount *int64) *GetInventoryAPIV2AnalyticsCategoriesParams {
+	o.SetMinCount(minCount)
+	return o
+}
+
+// SetMinCount adds the minCount to the get inventory API v2 analytics categories params
+func (o *GetInventoryAPIV2AnalyticsCategoriesParams) SetMinCount(minCount *int64) {
+	o.MinCount = minCount
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetInventoryAPIV2AnalyticsCategoriesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -151,6 +169,23 @@ func (o *GetInventoryAPIV2AnalyticsCategoriesParams) WriteToRequest(r runtime.Cl
 		if qMetricType != "" {
 
 			if err := r.SetQueryParam("metricType", qMetricType); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.MinCount != nil {
+
+		// query param minCount
+		var qrMinCount int64
+
+		if o.MinCount != nil {
+			qrMinCount = *o.MinCount
+		}
+		qMinCount := swag.FormatInt64(qrMinCount)
+		if qMinCount != "" {
+
+			if err := r.SetQueryParam("minCount", qMinCount); err != nil {
 				return err
 			}
 		}

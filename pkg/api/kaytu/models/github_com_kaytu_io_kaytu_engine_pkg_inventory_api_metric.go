@@ -27,6 +27,10 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIMetric struct {
 	// Example: 100
 	Count int64 `json:"count,omitempty"`
 
+	// finder per connection query
+	// Example: select * from kaytu_resources where resource_type = 'aws::ec2::instance' AND connection_id IN \u003cCONNECTION_ID_LIST\u003e
+	FinderPerConnectionQuery string `json:"finderPerConnectionQuery,omitempty"`
+
 	// finder query
 	// Example: select * from kaytu_resources where resource_type = 'aws::ec2::instance'
 	FinderQuery string `json:"finderQuery,omitempty"`

@@ -22,6 +22,9 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIAnalyticsMetric struct {
 	// connectors
 	Connectors []SourceType `json:"connectors"`
 
+	// finder per connection query
+	FinderPerConnectionQuery string `json:"finderPerConnectionQuery,omitempty"`
+
 	// finder query
 	FinderQuery string `json:"finderQuery,omitempty"`
 

@@ -10,7 +10,12 @@ import (
 )
 
 func PrintOutput(cmd *cobra.Command, commandName string, obj interface{}) error {
-	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
+	var typeOutput string
+
+	typeOutputFlag := cmd.Flags().Lookup("output-type")
+	if typeOutputFlag != nil {
+		typeOutput = typeOutputFlag.Value.String()
+	}
 
 	if function, ok := outputFunctions[commandName]; ok && typeOutput != "json" {
 		return function(cmd, commandName, obj)
@@ -29,8 +34,17 @@ func PrintOutputDefault(cmd *cobra.Command, commandName string, obj interface{})
 	if err != nil {
 		return fmt.Errorf("[output]: %v", err)
 	}
-	typeOutput := cmd.Flags().Lookup("output-type").Value.String()
-	filter := cmd.Flags().Lookup("filter").Value.String()
+
+	var typeOutput, filter string
+
+	typeOutputFlag := cmd.Flags().Lookup("output-type")
+	if typeOutputFlag != nil {
+		typeOutput = typeOutputFlag.Value.String()
+	}
+	filterFlag := cmd.Flags().Lookup("filter")
+	if filterFlag != nil {
+		filter = filterFlag.Value.String()
+	}
 
 	if filter != "" {
 		bytes, err = jsonfilter.Filter(bytes, filter)

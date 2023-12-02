@@ -60,6 +60,13 @@ GetComplianceAPIV1QueriesSyncParams contains all the parameters to send to the A
 	Typically these are written to a http.Request.
 */
 type GetComplianceAPIV1QueriesSyncParams struct {
+
+	/* ConfigzGitURL.
+
+	   Git URL
+	*/
+	ConfigzGitURL *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +120,17 @@ func (o *GetComplianceAPIV1QueriesSyncParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// WithConfigzGitURL adds the configzGitURL to the get compliance API v1 queries sync params
+func (o *GetComplianceAPIV1QueriesSyncParams) WithConfigzGitURL(configzGitURL *string) *GetComplianceAPIV1QueriesSyncParams {
+	o.SetConfigzGitURL(configzGitURL)
+	return o
+}
+
+// SetConfigzGitURL adds the configzGitUrl to the get compliance API v1 queries sync params
+func (o *GetComplianceAPIV1QueriesSyncParams) SetConfigzGitURL(configzGitURL *string) {
+	o.ConfigzGitURL = configzGitURL
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetComplianceAPIV1QueriesSyncParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +138,23 @@ func (o *GetComplianceAPIV1QueriesSyncParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
+
+	if o.ConfigzGitURL != nil {
+
+		// query param configzGitURL
+		var qrConfigzGitURL string
+
+		if o.ConfigzGitURL != nil {
+			qrConfigzGitURL = *o.ConfigzGitURL
+		}
+		qConfigzGitURL := qrConfigzGitURL
+		if qConfigzGitURL != "" {
+
+			if err := r.SetQueryParam("configzGitURL", qConfigzGitURL); err != nil {
+				return err
+			}
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
