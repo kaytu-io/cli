@@ -40,7 +40,7 @@ jobs:
         echo -e "machine github.com login api password ${{ secrets.GITHUBCI_TOKEN }}" >> ~/.netrc
         git config --global url.https://${{ secrets.GITHUBCI_TOKEN }}@github.com/kaytu-io.insteadOf https://github.com/kaytu-io
         
-        sed -i 's+'NEW_VERSION_CLI'+${{ steps.tag_version.outputs.new_tag }}+g' cmd/version.go
+        sed -i 's+'NEW_VERSION_CLI'+${{ steps.tag_version.outputs.new_tag }}+g' cmd/predef/version.go
         export GOPRIVATE=github.com/kaytu-io
         export CGO_ENABLED=0
         GOOS=linux GOARCH=amd64 go build -o ./build/ktucli-linux-amd64 ./main.go
