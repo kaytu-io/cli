@@ -21,6 +21,9 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord struct {
 	// connection
 	Connection *GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection `json:"connection,omitempty"`
 
+	// control
+	Control *GithubComKaytuIoKaytuEnginePkgComplianceAPIControl `json:"control,omitempty"`
+
 	// count
 	Count int64 `json:"count,omitempty"`
 
@@ -39,6 +42,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) Validate(for
 	var res []error
 
 	if err := m.validateConnection(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateControl(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -63,6 +70,25 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) validateConn
 				return ve.ValidateName("connection")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("connection")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) validateControl(formats strfmt.Registry) error {
+	if swag.IsZero(m.Control) { // not required
+		return nil
+	}
+
+	if m.Control != nil {
+		if err := m.Control.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("control")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("control")
 			}
 			return err
 		}
@@ -98,6 +124,10 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) ContextValid
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateControl(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateResourceType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -121,6 +151,27 @@ func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) contextValid
 				return ve.ValidateName("connection")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("connection")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GithubComKaytuIoKaytuEnginePkgComplianceAPITopFieldRecord) contextValidateControl(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Control != nil {
+
+		if swag.IsZero(m.Control) { // not required
+			return nil
+		}
+
+		if err := m.Control.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("control")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("control")
 			}
 			return err
 		}

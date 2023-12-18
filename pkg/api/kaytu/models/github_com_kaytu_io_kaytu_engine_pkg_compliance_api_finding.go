@@ -34,6 +34,13 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// Example: Azure
 	Connector SourceType `json:"connector,omitempty"`
 
+	// control ID
+	// Example: azure_cis_v140_7_5
+	ControlID string `json:"controlID,omitempty"`
+
+	// control title
+	ControlTitle string `json:"controlTitle,omitempty"`
+
 	// evaluated at
 	// Example: 1589395200
 	EvaluatedAt int64 `json:"evaluatedAt,omitempty"`
@@ -41,6 +48,14 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// evaluator
 	// Example: steampipe-v0.5
 	Evaluator string `json:"evaluator,omitempty"`
+
+	// kaytu resource ID
+	// Example: /subscriptions/123/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-1
+	KaytuResourceID string `json:"kaytuResourceID,omitempty"`
+
+	// no of occurrences
+	// Example: 1
+	NoOfOccurrences int64 `json:"noOfOccurrences,omitempty"`
 
 	// parent benchmark names
 	// Example: ["Azure CIS v1.4.0"]
@@ -52,13 +67,6 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFinding struct {
 	// parent compliance job ID
 	// Example: 1
 	ParentComplianceJobID int64 `json:"parentComplianceJobID,omitempty"`
-
-	// policy ID
-	// Example: azure_cis_v140_7_5
-	PolicyID string `json:"policyID,omitempty"`
-
-	// policy title
-	PolicyTitle string `json:"policyTitle,omitempty"`
 
 	// Connection ID
 	// Example: 8e0f8e7a-1b1c-4e6f-b7e4-9c6af9d2b1c8

@@ -62,6 +62,12 @@ GetScheduleAPIV1JobsParams contains all the parameters to send to the API endpoi
 */
 type GetScheduleAPIV1JobsParams struct {
 
+	/* Hours.
+
+	   Hours
+	*/
+	Hours *int64
+
 	/* Limit.
 
 	   Limit
@@ -121,6 +127,17 @@ func (o *GetScheduleAPIV1JobsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithHours adds the hours to the get schedule API v1 jobs params
+func (o *GetScheduleAPIV1JobsParams) WithHours(hours *int64) *GetScheduleAPIV1JobsParams {
+	o.SetHours(hours)
+	return o
+}
+
+// SetHours adds the hours to the get schedule API v1 jobs params
+func (o *GetScheduleAPIV1JobsParams) SetHours(hours *int64) {
+	o.Hours = hours
+}
+
 // WithLimit adds the limit to the get schedule API v1 jobs params
 func (o *GetScheduleAPIV1JobsParams) WithLimit(limit *int64) *GetScheduleAPIV1JobsParams {
 	o.SetLimit(limit)
@@ -139,6 +156,23 @@ func (o *GetScheduleAPIV1JobsParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.Hours != nil {
+
+		// query param hours
+		var qrHours int64
+
+		if o.Hours != nil {
+			qrHours = *o.Hours
+		}
+		qHours := swag.FormatInt64(qrHours)
+		if qHours != "" {
+
+			if err := r.SetQueryParam("hours", qHours); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.Limit != nil {
 

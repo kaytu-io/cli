@@ -43,10 +43,6 @@ func init() {
 
 	KaytuCmd.AddCommand(kaytu.InviteCmd)
 
-	KaytuCmd.AddCommand(kaytu.ResumeCmd)
-
-	KaytuCmd.AddCommand(kaytu.SuspendCmd)
-
 	KaytuCmd.PersistentFlags().String("workspace-name", "", "")
 
 	KaytuCmd.PersistentFlags().String("output-type", "summary", "output type [summary, json, csv, list, table]")

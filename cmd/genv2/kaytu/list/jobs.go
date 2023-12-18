@@ -27,6 +27,8 @@ var JobsCmd = &cobra.Command{
 
 		req := scheduler.NewGetScheduleAPIV1JobsParams()
 
+		req.SetHours(flags.ReadInt64OptionalFlag(cmd, "Hours"))
+
 		req.SetLimit(flags.ReadInt64OptionalFlag(cmd, "Limit"))
 
 		resp, err := client.Scheduler.GetScheduleAPIV1Jobs(req, auth)
@@ -45,6 +47,8 @@ var JobsCmd = &cobra.Command{
 }
 
 func init() {
+
+	JobsCmd.Flags().Int64("hours", 0, "Hours")
 
 	JobsCmd.Flags().Int64("limit", 0, "Limit")
 

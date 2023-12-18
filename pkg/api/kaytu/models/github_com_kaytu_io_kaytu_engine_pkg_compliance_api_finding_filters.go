@@ -31,9 +31,9 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIFindingFilters struct {
 	// Example: ["Azure"]
 	Connector []SourceType `json:"connector"`
 
-	// Policy ID
+	// Control ID
 	// Example: ["azure_cis_v140_7_5"]
-	PolicyID []string `json:"policyID"`
+	ControlID []string `json:"controlID"`
 
 	// Resource Collection ID
 	// Example: ["example-rc"]

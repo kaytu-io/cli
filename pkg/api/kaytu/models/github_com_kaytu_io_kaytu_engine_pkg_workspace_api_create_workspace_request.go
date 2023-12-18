@@ -17,9 +17,6 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_workspace_api.CreateWorkspaceRequest
 type GithubComKaytuIoKaytuEnginePkgWorkspaceAPICreateWorkspaceRequest struct {
 
-	// description
-	Description string `json:"description,omitempty"`
-
 	// name
 	Name string `json:"name,omitempty"`
 

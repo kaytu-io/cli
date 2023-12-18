@@ -82,7 +82,7 @@ func init() {
 
 	MetricsCmd.Flags().String("metric-type", "", "Metric type, default: assets")
 
-	MetricsCmd.Flags().Int64("min-count", 0, "Minimum number of resources with this tag value, default 1")
+	MetricsCmd.Flags().Int64("min-count", 0, "Minimum number of resources with this tag value, default 0")
 
 	MetricsCmd.Flags().Int64("page-number", 0, "page number - default is 1")
 

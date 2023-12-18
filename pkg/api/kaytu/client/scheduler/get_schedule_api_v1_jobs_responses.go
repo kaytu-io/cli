@@ -45,7 +45,7 @@ GetScheduleAPIV1JobsOK describes a response with status code 200, with default h
 OK
 */
 type GetScheduleAPIV1JobsOK struct {
-	Payload []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPIJob
+	Payload *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIListJobsResponse
 }
 
 // IsSuccess returns true when this get schedule Api v1 jobs o k response has a 2xx status code
@@ -86,14 +86,16 @@ func (o *GetScheduleAPIV1JobsOK) String() string {
 	return fmt.Sprintf("[GET /schedule/api/v1/jobs][%d] getScheduleApiV1JobsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetScheduleAPIV1JobsOK) GetPayload() []*models.GithubComKaytuIoKaytuEnginePkgDescribeAPIJob {
+func (o *GetScheduleAPIV1JobsOK) GetPayload() *models.GithubComKaytuIoKaytuEnginePkgDescribeAPIListJobsResponse {
 	return o.Payload
 }
 
 func (o *GetScheduleAPIV1JobsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.GithubComKaytuIoKaytuEnginePkgDescribeAPIListJobsResponse)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

@@ -44,6 +44,8 @@ type ClientService interface {
 
 	GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesByidWorkspaceIDOK, error)
 
+	GetWorkspaceAPIV1WorkspacesBynameWorkspaceName(params *GetWorkspaceAPIV1WorkspacesBynameWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesBynameWorkspaceNameOK, error)
+
 	GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceID(params *GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsByidWorkspaceIDOK, error)
 
 	GetWorkspaceAPIV1WorkspacesLimitsWorkspaceName(params *GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesLimitsWorkspaceNameOK, error)
@@ -63,10 +65,6 @@ type ClientService interface {
 	PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganization(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOrganizationOK, error)
 
 	PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDOwnerOK, error)
-
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK, error)
-
-	PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK, error)
 
 	PostWorkspaceAPIV1WorkspaceWorkspaceIDTier(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDTierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDTierOK, error)
 
@@ -349,6 +347,47 @@ func (a *Client) GetWorkspaceAPIV1WorkspacesByidWorkspaceID(params *GetWorkspace
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspacesByidWorkspaceID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetWorkspaceAPIV1WorkspacesBynameWorkspaceName gets workspace for workspace service
+
+Get workspace with workspace name
+*/
+func (a *Client) GetWorkspaceAPIV1WorkspacesBynameWorkspaceName(params *GetWorkspaceAPIV1WorkspacesBynameWorkspaceNameParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceAPIV1WorkspacesBynameWorkspaceNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWorkspaceAPIV1WorkspacesBynameWorkspaceNameParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetWorkspaceAPIV1WorkspacesBynameWorkspaceName",
+		Method:             "GET",
+		PathPattern:        "/workspace/api/v1/workspaces/byname/{workspace_name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWorkspaceAPIV1WorkspacesBynameWorkspaceNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetWorkspaceAPIV1WorkspacesBynameWorkspaceNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetWorkspaceAPIV1WorkspacesBynameWorkspaceName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -743,84 +782,6 @@ func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner(params *PostWorkspa
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for PostWorkspaceAPIV1WorkspaceWorkspaceIDOwner: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostWorkspaceAPIV1WorkspaceWorkspaceIDResume resumes workspace
-*/
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDResume(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDResumeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostWorkspaceAPIV1WorkspaceWorkspaceIDResume",
-		Method:             "POST",
-		PathPattern:        "/workspace/api/v1/workspace/{workspace_id}/resume",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostWorkspaceAPIV1WorkspaceWorkspaceIDResumeOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostWorkspaceAPIV1WorkspaceWorkspaceIDResume: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend suspends workspace
-*/
-func (a *Client) PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend(params *PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend",
-		Method:             "POST",
-		PathPattern:        "/workspace/api/v1/workspace/{workspace_id}/suspend",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspendOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for PostWorkspaceAPIV1WorkspaceWorkspaceIDSuspend: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

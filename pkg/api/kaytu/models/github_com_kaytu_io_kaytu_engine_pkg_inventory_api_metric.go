@@ -39,6 +39,10 @@ type GithubComKaytuIoKaytuEnginePkgInventoryAPIMetric struct {
 	// Example: vms
 	ID string `json:"id,omitempty"`
 
+	// Last time the metric was evaluated
+	// Example: 2020-01-01T00:00:00Z
+	LastEvaluated string `json:"last_evaluated,omitempty"`
+
 	// Resource Type
 	// Example: VMs
 	Name string `json:"name,omitempty"`

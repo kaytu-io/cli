@@ -94,6 +94,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPICredential struct {
 	// Minimum: 0
 	OnboardConnections *int64 `json:"onboard_connections,omitempty"`
 
+	// spend discovery
+	SpendDiscovery bool `json:"spendDiscovery,omitempty"`
+
 	// total connections
 	// Example: 300
 	// Maximum: 1000

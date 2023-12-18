@@ -263,7 +263,8 @@ var AWSCmd = &cobra.Command{
 		var ws *models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceResponse
 		var items []string
 		for _, r := range response {
-			if r.Status == models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatusBOOTSTRAPPING {
+			if (r.Status == models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIStateIDWAITINGFORCREDENTIAL ||
+				r.Status == models.GithubComKaytuIoKaytuEnginePkgWorkspaceAPIStateIDPROVISIONING) && !r.IsBootstrapInputFinished {
 				items = append(items, r.Name)
 			}
 		}

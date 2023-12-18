@@ -30,10 +30,6 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspace struct {
 	// Example: 2023-05-17T14:39:02.707659Z
 	CreatedAt string `json:"createdAt,omitempty"`
 
-	// description
-	// Example: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-	Description string `json:"description,omitempty"`
-
 	// id
 	// Example: ws-698542025141040315
 	ID string `json:"id,omitempty"`
@@ -61,15 +57,11 @@ type GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspace struct {
 
 	// status
 	// Example: PROVISIONED
-	Status GithubComKaytuIoKaytuEnginePkgWorkspaceAPIWorkspaceStatus `json:"status,omitempty"`
+	Status GithubComKaytuIoKaytuEnginePkgWorkspaceAPIStateID `json:"status,omitempty"`
 
 	// tier
 	// Example: ENTERPRISE
 	Tier GithubComKaytuIoKaytuEnginePkgWorkspaceAPITier `json:"tier,omitempty"`
-
-	// uri
-	// Example: https://app.kaytu.dev/kaytu
-	URI string `json:"uri,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg workspace api workspace

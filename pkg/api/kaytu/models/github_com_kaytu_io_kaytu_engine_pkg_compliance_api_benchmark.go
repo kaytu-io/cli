@@ -38,6 +38,10 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark struct {
 	// Example: ["[azure]"]
 	Connectors []SourceType `json:"connectors"`
 
+	// Benchmark controls
+	// Example: ["[azure_cis_v140_1_1"," azure_cis_v140_1_2]"]
+	Controls []string `json:"controls"`
+
 	// Benchmark creation date
 	// Example: 2020-01-01T00:00:00Z
 	CreatedAt string `json:"createdAt,omitempty"`
@@ -64,10 +68,6 @@ type GithubComKaytuIoKaytuEnginePkgComplianceAPIBenchmark struct {
 	// Whether the benchmark is managed or not
 	// Example: true
 	Managed bool `json:"managed,omitempty"`
-
-	// Benchmark policies
-	// Example: ["[azure_cis_v140_1_1"," azure_cis_v140_1_2]"]
-	Policies []string `json:"policies"`
 
 	// Benchmark tags
 	Tags map[string][]string `json:"tags,omitempty"`

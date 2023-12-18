@@ -100,7 +100,7 @@ type GetInventoryAPIV2AnalyticsMetricParams struct {
 
 	/* MinCount.
 
-	   Minimum number of resources with this tag value, default 1
+	   Minimum number of resources with this tag value, default 0
 	*/
 	MinCount *int64
 

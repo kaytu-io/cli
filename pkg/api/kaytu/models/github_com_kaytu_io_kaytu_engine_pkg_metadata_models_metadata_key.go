@@ -96,6 +96,9 @@ const (
 	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyFullDiscoveryJobInterval captures enum value "full_discovery_job_interval"
 	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyFullDiscoveryJobInterval GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "full_discovery_job_interval"
 
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyCostDiscoveryJobInterval captures enum value "cost_discovery_job_interval"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyCostDiscoveryJobInterval GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "cost_discovery_job_interval"
+
 	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyHealthCheckJobInterval captures enum value "health_check_job_interval"
 	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyHealthCheckJobInterval GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "health_check_job_interval"
 
@@ -105,11 +108,35 @@ const (
 	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyMetricsJobInterval captures enum value "metrics_job_interval"
 	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyMetricsJobInterval GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "metrics_job_interval"
 
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyComplianceJobInterval captures enum value "compliance_job_interval"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyComplianceJobInterval GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "compliance_job_interval"
+
 	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyDataRetentionDuration captures enum value "data_retention_duration"
 	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyDataRetentionDuration GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "data_retention_duration"
 
 	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAnalyticsGitURL captures enum value "analytics_git_url"
 	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAnalyticsGitURL GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "analytics_git_url"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAssetDiscoveryAwsPolicyArns captures enum value "asset_discovery_aws_policy_arns"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAssetDiscoveryAwsPolicyArns GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "asset_discovery_aws_policy_arns"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeySpendDiscoveryAwsPolicyArns captures enum value "spend_discovery_aws_policy_arns"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeySpendDiscoveryAwsPolicyArns GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "spend_discovery_aws_policy_arns"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAssetDiscoveryAzureRoleIds captures enum value "asset_discovery_azure_role_ids"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAssetDiscoveryAzureRoleIds GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "asset_discovery_azure_role_ids"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeySpendDiscoveryAzureRoleIds captures enum value "spend_discovery_azure_role_ids"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeySpendDiscoveryAzureRoleIds GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "spend_discovery_azure_role_ids"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyCustomizationEnabled captures enum value "customization_enabled"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyCustomizationEnabled GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "customization_enabled"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAwsDiscoveryRequiredOnly captures enum value "aws_discovery_required_only"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAwsDiscoveryRequiredOnly GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "aws_discovery_required_only"
+
+	// GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAzureDiscoveryRequiredOnly captures enum value "azure_discovery_required_only"
+	GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyAzureDiscoveryRequiredOnly GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey = "azure_discovery_required_only"
 )
 
 // for schema
@@ -117,7 +144,7 @@ var githubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKeyEnum []interface{}
 
 func init() {
 	var res []GithubComKaytuIoKaytuEnginePkgMetadataModelsMetadataKey
-	if err := json.Unmarshal([]byte(`["workspace_ownership","workspace_id","workspace_name","workspace_plan","workspace_creation_time","workspace_date_time_format","workspace_debug_mode","workspace_time_window","asset_management_enabled","compliance_enabled","product_management_enabled","custom_idp","resource_limit","connection_limit","user_limit","allow_invite","workspace_key_support","workspace_max_keys","allowed_email_domains","auto_discovery_method","describe_job_interval","full_discovery_job_interval","health_check_job_interval","insight_job_interval","metrics_job_interval","data_retention_duration","analytics_git_url"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["workspace_ownership","workspace_id","workspace_name","workspace_plan","workspace_creation_time","workspace_date_time_format","workspace_debug_mode","workspace_time_window","asset_management_enabled","compliance_enabled","product_management_enabled","custom_idp","resource_limit","connection_limit","user_limit","allow_invite","workspace_key_support","workspace_max_keys","allowed_email_domains","auto_discovery_method","describe_job_interval","full_discovery_job_interval","cost_discovery_job_interval","health_check_job_interval","insight_job_interval","metrics_job_interval","compliance_job_interval","data_retention_duration","analytics_git_url","asset_discovery_aws_policy_arns","spend_discovery_aws_policy_arns","asset_discovery_azure_role_ids","spend_discovery_azure_role_ids","customization_enabled","aws_discovery_required_only","azure_discovery_required_only"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

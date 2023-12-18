@@ -19,6 +19,9 @@ import (
 // swagger:model github_com_kaytu-io_kaytu-engine_pkg_onboard_api.Connection
 type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 
+	// asset discovery
+	AssetDiscovery bool `json:"assetDiscovery,omitempty"`
+
 	// asset discovery method
 	// Example: scheduled
 	AssetDiscoveryMethod SourceAssetDiscoveryMethodType `json:"assetDiscoveryMethod,omitempty"`
@@ -119,6 +122,9 @@ type GithubComKaytuIoKaytuEnginePkgOnboardAPIConnection struct {
 	// Maximum: 1e+06
 	// Minimum: 0
 	ResourceCount *int64 `json:"resourceCount,omitempty"`
+
+	// spend discovery
+	SpendDiscovery bool `json:"spendDiscovery,omitempty"`
 }
 
 // Validate validates this github com kaytu io kaytu engine pkg onboard api connection
